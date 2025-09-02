@@ -3,6 +3,8 @@
 /workspace/build/CMakeFiles/CHTLErrorSystem.dir
 /workspace/build/CMakeFiles/CHTLUtilSystem.dir
 /workspace/build/CMakeFiles/CHTLModuleSystem.dir
+/workspace/build/CMakeFiles/CHTLCoreSystem.dir
+/workspace/build/CMakeFiles/CHTLComponentSystem.dir
 /workspace/build/CMakeFiles/CHTLJSCore.dir
 /workspace/build/CMakeFiles/CHTLScanner.dir
 /workspace/build/CMakeFiles/CHTLConstraint.dir
@@ -25,6 +27,7 @@
 /workspace/build/CMakeFiles/chtl_document_compliance.dir
 /workspace/build/CMakeFiles/chtl_official_antlr_test.dir
 /workspace/build/CMakeFiles/chtl_final_completion_verification.dir
+/workspace/build/CMakeFiles/chtl_project_optimization_report.dir
 /workspace/build/CMakeFiles/chtl_lexer_test.dir
 /workspace/build/CMakeFiles/chtl_antlr_test.dir
 /workspace/build/CMakeFiles/chtl_template_test.dir

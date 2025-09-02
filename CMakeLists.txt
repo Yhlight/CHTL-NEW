@@ -136,12 +136,27 @@ set(MODULE_SOURCES
     src/Module/ModuleLoader.cpp
 )
 
+# 核心组件系统源文件 (新增)
+set(CORE_SOURCES
+    src/Core/ComponentManager.cpp
+    src/Core/CompilerComponentBase.cpp
+    src/Core/ServiceLocator.cpp
+)
+
+# 模块化组件源文件 (新增)
+set(COMPONENT_SOURCES
+    src/Components/CHTLCompilerComponent.cpp
+    src/Components/ModularCompilerDispatcher.cpp
+)
+
 # 创建CHTL核心库
 add_library(CHTLCore STATIC ${CHTL_CORE_SOURCES})
 add_library(CHTLCMODSystem STATIC ${CMOD_SOURCES})
 add_library(CHTLErrorSystem STATIC ${ERROR_SOURCES})
 add_library(CHTLUtilSystem STATIC ${UTIL_SOURCES})
 add_library(CHTLModuleSystem STATIC ${MODULE_SOURCES})
+add_library(CHTLCoreSystem STATIC ${CORE_SOURCES})
+add_library(CHTLComponentSystem STATIC ${COMPONENT_SOURCES})
 target_include_directories(CHTLCore PUBLIC src/CHTL)
 
 # 创建CHTL JS核心库（完全独立）
@@ -237,6 +252,9 @@ add_executable(chtl_official_antlr_test src/Test/OfficialANTLRTest.cpp)
 
 # 最终完成验证报告可执行文件
 add_executable(chtl_final_completion_verification src/Test/FinalCompletionVerification.cpp)
+
+# 项目结构优化报告可执行文件
+add_executable(chtl_project_optimization_report src/Test/ProjectOptimizationReport.cpp)
 
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)

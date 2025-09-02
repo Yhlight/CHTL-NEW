@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libCHTLComponentSystem.a CMakeFiles/CHTLComponentSystem.dir/src/Components/CHTLCompilerComponent.cpp.o CMakeFiles/CHTLComponentSystem.dir/src/Components/ModularCompilerDispatcher.cpp.o
+/usr/bin/ranlib lib/libCHTLComponentSystem.a
