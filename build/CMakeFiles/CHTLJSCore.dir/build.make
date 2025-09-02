@@ -142,13 +142,73 @@ CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSContext/CHTLJSContext.cpp.s: cmake_f
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSContext/CHTLJSContext.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CHTLJSContext/CHTLJSContext.cpp" -o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSContext/CHTLJSContext.cpp.s
 
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o: CMakeFiles/CHTLJSCore.dir/flags.make
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o: /workspace/src/CHTL\ JS/CHTLJSNode/CHTLJSBaseNode.cpp
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o: CMakeFiles/CHTLJSCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o -MF CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o.d -o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o -c "/workspace/src/CHTL JS/CHTLJSNode/CHTLJSBaseNode.cpp"
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/workspace/src/CHTL JS/CHTLJSNode/CHTLJSBaseNode.cpp" > CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.i
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CHTLJSNode/CHTLJSBaseNode.cpp" -o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.s
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o: CMakeFiles/CHTLJSCore.dir/flags.make
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o: /workspace/src/CHTL\ JS/CHTLJSNode/EnhanceSelectorNode.cpp
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o: CMakeFiles/CHTLJSCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o -MF CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o.d -o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o -c "/workspace/src/CHTL JS/CHTLJSNode/EnhanceSelectorNode.cpp"
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/workspace/src/CHTL JS/CHTLJSNode/EnhanceSelectorNode.cpp" > CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.i
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CHTLJSNode/EnhanceSelectorNode.cpp" -o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.s
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o: CMakeFiles/CHTLJSCore.dir/flags.make
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o: /workspace/src/CHTL\ JS/CHTLJSNode/VirObjectNode.cpp
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o: CMakeFiles/CHTLJSCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o -MF CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o.d -o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o -c "/workspace/src/CHTL JS/CHTLJSNode/VirObjectNode.cpp"
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/workspace/src/CHTL JS/CHTLJSNode/VirObjectNode.cpp" > CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.i
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CHTLJSNode/VirObjectNode.cpp" -o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.s
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o: CMakeFiles/CHTLJSCore.dir/flags.make
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o: /workspace/src/CHTL\ JS/CHTLJSNode/AnimateNode.cpp
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o: CMakeFiles/CHTLJSCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o -MF CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o.d -o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o -c "/workspace/src/CHTL JS/CHTLJSNode/AnimateNode.cpp"
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/workspace/src/CHTL JS/CHTLJSNode/AnimateNode.cpp" > CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.i
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CHTLJSNode/AnimateNode.cpp" -o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.s
+
 # Object files for target CHTLJSCore
 CHTLJSCore_OBJECTS = \
 "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSToken.cpp.o" \
 "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSGlobalMap.cpp.o" \
 "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSLexer.cpp.o" \
 "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.o" \
-"CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSContext/CHTLJSContext.cpp.o"
+"CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSContext/CHTLJSContext.cpp.o" \
+"CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o" \
+"CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o" \
+"CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o" \
+"CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o"
 
 # External object files for target CHTLJSCore
 CHTLJSCore_EXTERNAL_OBJECTS =
@@ -158,9 +218,13 @@ lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSGlo
 lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSLexer.cpp.o
 lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.o
 lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSContext/CHTLJSContext.cpp.o
+lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o
+lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o
+lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o
+lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o
 lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/build.make
 lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library lib/libCHTLJSCore.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library lib/libCHTLJSCore.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/CHTLJSCore.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CHTLJSCore.dir/link.txt --verbose=$(VERBOSE)
 

@@ -374,6 +374,174 @@ src/CHTL/CHTLLexer/CHTLToken.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLToken.cpp.s
 .PHONY : src/CHTL/CHTLLexer/CHTLToken.cpp.s
 
+src/CHTL/CHTLNode/CHTLBaseNode.o: src/CHTL/CHTLNode/CHTLBaseNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/CHTLBaseNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/CHTLBaseNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/CHTLBaseNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/CHTLBaseNode.cpp.o
+
+src/CHTL/CHTLNode/CHTLBaseNode.i: src/CHTL/CHTLNode/CHTLBaseNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/CHTLBaseNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/CHTLBaseNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/CHTLBaseNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/CHTLBaseNode.cpp.i
+
+src/CHTL/CHTLNode/CHTLBaseNode.s: src/CHTL/CHTLNode/CHTLBaseNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/CHTLBaseNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/CHTLBaseNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/CHTLBaseNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/CHTLBaseNode.cpp.s
+
+src/CHTL/CHTLNode/CustomNode.o: src/CHTL/CHTLNode/CustomNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/CustomNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/CustomNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/CustomNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/CustomNode.cpp.o
+
+src/CHTL/CHTLNode/CustomNode.i: src/CHTL/CHTLNode/CustomNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/CustomNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/CustomNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/CustomNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/CustomNode.cpp.i
+
+src/CHTL/CHTLNode/CustomNode.s: src/CHTL/CHTLNode/CustomNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/CustomNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/CustomNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/CustomNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/CustomNode.cpp.s
+
+src/CHTL/CHTLNode/ElementNode.o: src/CHTL/CHTLNode/ElementNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/ElementNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/ElementNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/ElementNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/ElementNode.cpp.o
+
+src/CHTL/CHTLNode/ElementNode.i: src/CHTL/CHTLNode/ElementNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/ElementNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/ElementNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/ElementNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/ElementNode.cpp.i
+
+src/CHTL/CHTLNode/ElementNode.s: src/CHTL/CHTLNode/ElementNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/ElementNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/ElementNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/ElementNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/ElementNode.cpp.s
+
+src/CHTL/CHTLNode/ScriptNode.o: src/CHTL/CHTLNode/ScriptNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/ScriptNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/ScriptNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/ScriptNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/ScriptNode.cpp.o
+
+src/CHTL/CHTLNode/ScriptNode.i: src/CHTL/CHTLNode/ScriptNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/ScriptNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/ScriptNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/ScriptNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/ScriptNode.cpp.i
+
+src/CHTL/CHTLNode/ScriptNode.s: src/CHTL/CHTLNode/ScriptNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/ScriptNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/ScriptNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/ScriptNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/ScriptNode.cpp.s
+
+src/CHTL/CHTLNode/StyleNode.o: src/CHTL/CHTLNode/StyleNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/StyleNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/StyleNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/StyleNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/StyleNode.cpp.o
+
+src/CHTL/CHTLNode/StyleNode.i: src/CHTL/CHTLNode/StyleNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/StyleNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/StyleNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/StyleNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/StyleNode.cpp.i
+
+src/CHTL/CHTLNode/StyleNode.s: src/CHTL/CHTLNode/StyleNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/StyleNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/StyleNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/StyleNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/StyleNode.cpp.s
+
+src/CHTL/CHTLNode/TemplateNode.o: src/CHTL/CHTLNode/TemplateNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/TemplateNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/TemplateNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/TemplateNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/TemplateNode.cpp.o
+
+src/CHTL/CHTLNode/TemplateNode.i: src/CHTL/CHTLNode/TemplateNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/TemplateNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/TemplateNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/TemplateNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/TemplateNode.cpp.i
+
+src/CHTL/CHTLNode/TemplateNode.s: src/CHTL/CHTLNode/TemplateNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/TemplateNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/TemplateNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/TemplateNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/TemplateNode.cpp.s
+
+src/CHTL/CHTLNode/TextNode.o: src/CHTL/CHTLNode/TextNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/TextNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/TextNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/TextNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/TextNode.cpp.o
+
+src/CHTL/CHTLNode/TextNode.i: src/CHTL/CHTLNode/TextNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/TextNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/TextNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/TextNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/TextNode.cpp.i
+
+src/CHTL/CHTLNode/TextNode.s: src/CHTL/CHTLNode/TextNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/TextNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/TextNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/TextNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/TextNode.cpp.s
+
 src/CHTL/CHTLState/CHTLState.o: src/CHTL/CHTLState/CHTLState.cpp.o
 .PHONY : src/CHTL/CHTLState/CHTLState.o
 
@@ -493,6 +661,102 @@ src/CHTL_JS/CHTLJSLexer/CHTLJSToken.s: src/CHTL_JS/CHTLJSLexer/CHTLJSToken.cpp.s
 src/CHTL_JS/CHTLJSLexer/CHTLJSToken.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSToken.cpp.s
 .PHONY : src/CHTL_JS/CHTLJSLexer/CHTLJSToken.cpp.s
+
+src/CHTL_JS/CHTLJSNode/AnimateNode.o: src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o
+.PHONY : src/CHTL_JS/CHTLJSNode/AnimateNode.o
+
+# target to build an object file
+src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o
+.PHONY : src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o
+
+src/CHTL_JS/CHTLJSNode/AnimateNode.i: src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.i
+.PHONY : src/CHTL_JS/CHTLJSNode/AnimateNode.i
+
+# target to preprocess a source file
+src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.i
+.PHONY : src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.i
+
+src/CHTL_JS/CHTLJSNode/AnimateNode.s: src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.s
+.PHONY : src/CHTL_JS/CHTLJSNode/AnimateNode.s
+
+# target to generate assembly for a file
+src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.s
+.PHONY : src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.s
+
+src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.o: src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o
+.PHONY : src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.o
+
+# target to build an object file
+src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o
+.PHONY : src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.o
+
+src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.i: src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.i
+.PHONY : src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.i
+
+# target to preprocess a source file
+src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.i
+.PHONY : src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.i
+
+src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.s: src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.s
+.PHONY : src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.s
+
+# target to generate assembly for a file
+src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.s
+.PHONY : src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.cpp.s
+
+src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.o: src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o
+.PHONY : src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.o
+
+# target to build an object file
+src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o
+.PHONY : src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.o
+
+src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.i: src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.i
+.PHONY : src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.i
+
+# target to preprocess a source file
+src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.i
+.PHONY : src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.i
+
+src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.s: src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.s
+.PHONY : src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.s
+
+# target to generate assembly for a file
+src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.s
+.PHONY : src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.cpp.s
+
+src/CHTL_JS/CHTLJSNode/VirObjectNode.o: src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o
+.PHONY : src/CHTL_JS/CHTLJSNode/VirObjectNode.o
+
+# target to build an object file
+src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o
+.PHONY : src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o
+
+src/CHTL_JS/CHTLJSNode/VirObjectNode.i: src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.i
+.PHONY : src/CHTL_JS/CHTLJSNode/VirObjectNode.i
+
+# target to preprocess a source file
+src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.i
+.PHONY : src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.i
+
+src/CHTL_JS/CHTLJSNode/VirObjectNode.s: src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.s
+.PHONY : src/CHTL_JS/CHTLJSNode/VirObjectNode.s
+
+# target to generate assembly for a file
+src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.s
+.PHONY : src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.s
 
 src/CHTL_JS/CHTLJSState/CHTLJSState.o: src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.o
 .PHONY : src/CHTL_JS/CHTLJSState/CHTLJSState.o
@@ -671,6 +935,27 @@ help:
 	@echo "... src/CHTL/CHTLLexer/CHTLToken.o"
 	@echo "... src/CHTL/CHTLLexer/CHTLToken.i"
 	@echo "... src/CHTL/CHTLLexer/CHTLToken.s"
+	@echo "... src/CHTL/CHTLNode/CHTLBaseNode.o"
+	@echo "... src/CHTL/CHTLNode/CHTLBaseNode.i"
+	@echo "... src/CHTL/CHTLNode/CHTLBaseNode.s"
+	@echo "... src/CHTL/CHTLNode/CustomNode.o"
+	@echo "... src/CHTL/CHTLNode/CustomNode.i"
+	@echo "... src/CHTL/CHTLNode/CustomNode.s"
+	@echo "... src/CHTL/CHTLNode/ElementNode.o"
+	@echo "... src/CHTL/CHTLNode/ElementNode.i"
+	@echo "... src/CHTL/CHTLNode/ElementNode.s"
+	@echo "... src/CHTL/CHTLNode/ScriptNode.o"
+	@echo "... src/CHTL/CHTLNode/ScriptNode.i"
+	@echo "... src/CHTL/CHTLNode/ScriptNode.s"
+	@echo "... src/CHTL/CHTLNode/StyleNode.o"
+	@echo "... src/CHTL/CHTLNode/StyleNode.i"
+	@echo "... src/CHTL/CHTLNode/StyleNode.s"
+	@echo "... src/CHTL/CHTLNode/TemplateNode.o"
+	@echo "... src/CHTL/CHTLNode/TemplateNode.i"
+	@echo "... src/CHTL/CHTLNode/TemplateNode.s"
+	@echo "... src/CHTL/CHTLNode/TextNode.o"
+	@echo "... src/CHTL/CHTLNode/TextNode.i"
+	@echo "... src/CHTL/CHTLNode/TextNode.s"
 	@echo "... src/CHTL/CHTLState/CHTLState.o"
 	@echo "... src/CHTL/CHTLState/CHTLState.i"
 	@echo "... src/CHTL/CHTLState/CHTLState.s"
@@ -686,6 +971,18 @@ help:
 	@echo "... src/CHTL_JS/CHTLJSLexer/CHTLJSToken.o"
 	@echo "... src/CHTL_JS/CHTLJSLexer/CHTLJSToken.i"
 	@echo "... src/CHTL_JS/CHTLJSLexer/CHTLJSToken.s"
+	@echo "... src/CHTL_JS/CHTLJSNode/AnimateNode.o"
+	@echo "... src/CHTL_JS/CHTLJSNode/AnimateNode.i"
+	@echo "... src/CHTL_JS/CHTLJSNode/AnimateNode.s"
+	@echo "... src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.o"
+	@echo "... src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.i"
+	@echo "... src/CHTL_JS/CHTLJSNode/CHTLJSBaseNode.s"
+	@echo "... src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.o"
+	@echo "... src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.i"
+	@echo "... src/CHTL_JS/CHTLJSNode/EnhanceSelectorNode.s"
+	@echo "... src/CHTL_JS/CHTLJSNode/VirObjectNode.o"
+	@echo "... src/CHTL_JS/CHTLJSNode/VirObjectNode.i"
+	@echo "... src/CHTL_JS/CHTLJSNode/VirObjectNode.s"
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.o"
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.i"
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.s"
