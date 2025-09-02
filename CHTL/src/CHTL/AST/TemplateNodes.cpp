@@ -1,0 +1,82 @@
+#include "CHTL/AST/TemplateNodes.h"
+#include "CHTL/AST/ASTVisitor.h"
+
+namespace CHTL {
+
+void TemplateStyleNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitTemplateStyle(this);
+}
+
+void TemplateElementNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitTemplateElement(this);
+}
+
+void TemplateVarNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitTemplateVar(this);
+}
+
+void CustomStyleNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitCustomStyle(this);
+}
+
+void CustomElementNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitCustomElement(this);
+}
+
+void CustomVarNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitCustomVar(this);
+}
+
+void OriginNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitOrigin(this);
+}
+
+void ImportNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitImport(this);
+}
+
+void NamespaceNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitNamespace(this);
+}
+
+void ConfigurationNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitConfiguration(this);
+}
+
+void LocalStyleNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitLocalStyle(this);
+}
+
+void LocalScriptNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitLocalScript(this);
+}
+
+void StyleRuleNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitStyleRule(this);
+}
+
+void StylePropertyNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitStyleProperty(this);
+}
+
+void AttributeNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitAttribute(this);
+}
+
+void SpecializationNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitSpecialization(this);
+}
+
+void DeleteNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitDelete(this);
+}
+
+void InsertNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitInsert(this);
+}
+
+void CommentNode::Accept(ASTVisitor* visitor) {
+    visitor->VisitComment(this);
+}
+
+} // namespace CHTL

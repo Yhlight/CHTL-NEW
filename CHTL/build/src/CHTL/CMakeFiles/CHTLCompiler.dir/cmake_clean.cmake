@@ -1,0 +1,39 @@
+file(REMOVE_RECURSE
+  "../../lib/libCHTLCompiler.a"
+  "../../lib/libCHTLCompiler.pdb"
+  "CMakeFiles/CHTLCompiler.dir/AST/ASTNode.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/AST/ASTNode.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/AST/ASTVisitor.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/AST/ASTVisitor.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/AST/CustomNodes.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/AST/CustomNodes.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/AST/StyleNodes.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/AST/StyleNodes.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/AST/TemplateNodes.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/AST/TemplateNodes.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/Core/Context.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/Core/Context.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/Core/GlobalMap.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/Core/GlobalMap.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/Core/State.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/Core/State.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/Core/Token.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/Core/Token.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/Generator/Generator.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/Generator/Generator.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/Lexer/Lexer.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/Lexer/Lexer.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/Parser/Parser.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/Parser/Parser.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/Utils/FileUtils.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/Utils/FileUtils.cpp.o.d"
+  "CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o"
+  "CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o.d"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/CHTLCompiler.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

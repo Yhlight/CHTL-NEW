@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../lib/libCMODHandler.a CMakeFiles/CMODHandler.dir/CMODHandler.cpp.o
+/usr/bin/ranlib ../../lib/libCMODHandler.a
