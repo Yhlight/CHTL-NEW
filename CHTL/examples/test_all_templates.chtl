@@ -1,0 +1,65 @@
+use html5;
+
+[Template] @Style TextStyle
+{
+    font-size: "16px";
+    line-height: "1.6";
+}
+
+[Template] @Var Colors
+{
+    primary: "#007bff";
+    text: "#333";
+}
+
+[Template] @Element Card
+{
+    div
+    {
+        class: "card";
+        style
+        {
+            border: "1px solid #ddd";
+            padding: "20px";
+        }
+        
+        h3
+        {
+            text { "卡片标题" }
+        }
+        
+        p
+        {
+            text { "卡片内容" }
+        }
+    }
+}
+
+html
+{
+    body
+    {
+        h1
+        {
+            style
+            {
+                @Style TextStyle;
+                color: Colors(primary);
+            }
+            
+            text { "模板系统测试" }
+        }
+        
+        @Element Card;
+        
+        p
+        {
+            style
+            {
+                color: Colors(text);
+            }
+            
+            text { "使用了变量组的文本" }
+        }
+    }
+}

@@ -134,7 +134,9 @@ std::shared_ptr<ASTNode> Parser::ParseUseStatement() {
     // use @Config 配置名;
     if (Check(TokenType::AT_CONFIG)) {
         ConsumeToken();
-        std::string configName = ParseIdentifier()->ToString();
+        Expect(TokenType::IDENTIFIER, "期望标识符");
+        std::string configName = CurrentToken().value;
+        ConsumeToken();
         Expect(TokenType::SEMICOLON, "期望 ';'");
         
         // TODO: 设置活动配置
@@ -164,7 +166,12 @@ std::shared_ptr<ASTNode> Parser::ParseTemplate() {
 }
 
 std::shared_ptr<ASTNode> Parser::ParseTemplateStyle() {
-    std::string name = ParseIdentifier()->ToString();
+    if (!Check(TokenType::IDENTIFIER)) {
+        ReportError("期望标识符");
+        return nullptr;
+    }
+    std::string name = CurrentToken().value;
+    ConsumeToken();
     auto node = std::make_shared<TemplateStyleNode>(name);
     
     // 添加到全局映射表
@@ -186,7 +193,12 @@ std::shared_ptr<ASTNode> Parser::ParseTemplateStyle() {
 }
 
 std::shared_ptr<ASTNode> Parser::ParseTemplateElement() {
-    std::string name = ParseIdentifier()->ToString();
+    if (!Check(TokenType::IDENTIFIER)) {
+        ReportError("期望标识符");
+        return nullptr;
+    }
+    std::string name = CurrentToken().value;
+    ConsumeToken();
     auto node = std::make_shared<TemplateElementNode>(name);
     
     // 添加到全局映射表
@@ -212,7 +224,12 @@ std::shared_ptr<ASTNode> Parser::ParseTemplateElement() {
 }
 
 std::shared_ptr<ASTNode> Parser::ParseTemplateVar() {
-    std::string name = ParseIdentifier()->ToString();
+    if (!Check(TokenType::IDENTIFIER)) {
+        ReportError("期望标识符");
+        return nullptr;
+    }
+    std::string name = CurrentToken().value;
+    ConsumeToken();
     auto node = std::make_shared<TemplateVarNode>(name);
     
     // 添加到全局映射表
@@ -234,6 +251,7 @@ std::shared_ptr<ASTNode> Parser::ParseTemplateVar() {
             Expect(TokenType::SEMICOLON, "期望 ';'");
             
             // 添加变量到节点
+            LOG_DEBUG("添加变量: " + varName + " = " + value);
             node->AddVariable(varName, value);
         } else {
             // 跳过未知token
@@ -296,6 +314,10 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
             ConsumeToken();
             Expect(TokenType::COLON, "期望 ':'");
             std::string attrValue = ParseStringOrUnquotedLiteral();
+            
+            // 处理变量引用
+            attrValue = ProcessVariableReferences(attrValue);
+            
             Expect(TokenType::SEMICOLON, "期望 ';'");
             
             // 将属性添加到元素
@@ -304,7 +326,9 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
         // 元素模板引用
         else if (Check(TokenType::AT_ELEMENT)) {
             ConsumeToken(); // 消费 @Element
-            std::string templateName = ParseIdentifier()->ToString();
+            Expect(TokenType::IDENTIFIER, "期望标识符");
+            std::string templateName = CurrentToken().value;
+            ConsumeToken();
             Expect(TokenType::SEMICOLON, "期望 ';'");
             
             // 从全局映射表获取模板
@@ -399,7 +423,9 @@ std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {
         if (Check(TokenType::AT_STYLE)) {
             // 样式模板引用: @Style 模板名;
             ConsumeToken(); // 消费 @Style
-            std::string templateName = ParseIdentifier()->ToString();
+            Expect(TokenType::IDENTIFIER, "期望标识符");
+            std::string templateName = CurrentToken().value;
+            ConsumeToken();
             Expect(TokenType::SEMICOLON, "期望 ';'");
             
             // 从全局映射表获取模板
@@ -425,6 +451,9 @@ std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {
             
             // 样式属性值
             std::string propValue = ParseStringOrUnquotedLiteral();
+            
+            // 处理变量引用
+            propValue = ProcessVariableReferences(propValue);
             
             Expect(TokenType::SEMICOLON, "期望 ';'");
             
@@ -471,6 +500,9 @@ std::shared_ptr<ASTNode> Parser::ParseStyleProperty() {
         Expect(TokenType::COLON, "期望 ':'");
         
         std::string value = ParseStringOrUnquotedLiteral();
+        
+        // 处理变量引用
+        value = ProcessVariableReferences(value);
         
         Expect(TokenType::SEMICOLON, "期望 ';'");
         
@@ -580,6 +612,62 @@ void Parser::RecoverFromError() {
         }
         ConsumeToken();
     }
+}
+
+std::string Parser::ProcessVariableReferences(const std::string& value) {
+    std::string result = value;
+    size_t pos = 0;
+    
+    LOG_DEBUG("处理变量引用: " + value);
+    
+    // 查找所有的变量引用模式: VarGroupName(varName)
+    while ((pos = result.find('(', pos)) != std::string::npos) {
+        // 找到左括号，检查是否是变量引用
+        size_t endPos = result.find(')', pos);
+        if (endPos == std::string::npos) {
+            pos++;
+            continue;
+        }
+        
+        // 提取变量组名（左括号前的标识符）
+        size_t startPos = pos;
+        while (startPos > 0 && (std::isalnum(result[startPos-1]) || result[startPos-1] == '_')) {
+            startPos--;
+        }
+        
+        if (startPos < pos) {
+            std::string varGroupName = result.substr(startPos, pos - startPos);
+            std::string varName = result.substr(pos + 1, endPos - pos - 1);
+            
+            // 去除varName两端的空格
+            size_t first = varName.find_first_not_of(" \t");
+            size_t last = varName.find_last_not_of(" \t");
+            if (first != std::string::npos && last != std::string::npos) {
+                varName = varName.substr(first, last - first + 1);
+            }
+            
+            // 从全局映射表获取变量组
+            LOG_DEBUG("查找变量组: " + varGroupName + ", 变量名: " + varName);
+            auto varGroup = context->GetGlobalMap()->GetTemplateVar(varGroupName);
+            if (varGroup) {
+                std::string varValue = varGroup->GetVariable(varName);
+                LOG_DEBUG("找到变量值: " + varValue);
+                if (!varValue.empty()) {
+                    // 替换整个变量引用
+                    result.replace(startPos, endPos - startPos + 1, varValue);
+                    pos = startPos + varValue.length();
+                    continue;
+                }
+            } else {
+                LOG_DEBUG("未找到变量组: " + varGroupName);
+            }
+        }
+        
+        pos++;
+    }
+    
+    LOG_DEBUG("处理后的值: " + result);
+    return result;
 }
 
 } // namespace CHTL

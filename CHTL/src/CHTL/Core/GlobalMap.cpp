@@ -1,5 +1,6 @@
 #include "CHTL/Core/GlobalMap.h"
 #include "CHTL/AST/TemplateNodes.h"
+#include "Common/Logger.h"
 #include <algorithm>
 
 namespace CHTL {
@@ -48,7 +49,9 @@ void GlobalMap::AddTemplateElement(const std::string& name, std::shared_ptr<Temp
 }
 
 void GlobalMap::AddTemplateVar(const std::string& name, std::shared_ptr<TemplateVarNode> node) {
-    templateVars[GetFullNamespacePath(name)] = node;
+    std::string fullPath = GetFullNamespacePath(name);
+    LOG_DEBUG("添加变量组模板: " + name + " (完整路径: " + fullPath + ")");
+    templateVars[fullPath] = node;
 }
 
 std::shared_ptr<TemplateStyleNode> GlobalMap::GetTemplateStyle(const std::string& name) const {
@@ -62,8 +65,15 @@ std::shared_ptr<TemplateElementNode> GlobalMap::GetTemplateElement(const std::st
 }
 
 std::shared_ptr<TemplateVarNode> GlobalMap::GetTemplateVar(const std::string& name) const {
-    auto it = templateVars.find(GetFullNamespacePath(name));
-    return it != templateVars.end() ? it->second : nullptr;
+    std::string fullPath = GetFullNamespacePath(name);
+    LOG_DEBUG("查找变量组模板: " + name + " (完整路径: " + fullPath + ")");
+    auto it = templateVars.find(fullPath);
+    if (it != templateVars.end()) {
+        LOG_DEBUG("找到变量组模板: " + name);
+        return it->second;
+    }
+    LOG_DEBUG("未找到变量组模板: " + name);
+    return nullptr;
 }
 
 void GlobalMap::AddCustomStyle(const std::string& name, std::shared_ptr<CustomStyleNode> node) {

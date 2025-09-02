@@ -1,0 +1,14 @@
+use html5;
+
+[Template] @Var MyColors
+{
+    myred: "#ff0000";
+}
+
+html
+{
+    body
+    {
+        text { "测试" }
+    }
+}

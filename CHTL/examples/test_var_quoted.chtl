@@ -1,0 +1,23 @@
+use html5;
+
+[Template] @Var Colors
+{
+    red: "#ff0000";
+    blue: "#0000ff";
+}
+
+html
+{
+    body
+    {
+        div
+        {
+            style
+            {
+                color: "Colors(red)";
+            }
+            
+            text { "测试带引号的变量引用" }
+        }
+    }
+}

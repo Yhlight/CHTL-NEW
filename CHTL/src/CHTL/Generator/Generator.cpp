@@ -145,7 +145,9 @@ void Generator::VisitTemplateStyle(TemplateStyleNode* node) {
 void Generator::VisitTemplateElement(TemplateElementNode* node) {
     // 模板定义不生成输出，只在使用时生效
 }
-void Generator::VisitTemplateVar(TemplateVarNode* node) {}
+void Generator::VisitTemplateVar(TemplateVarNode* node) {
+    // 模板定义不生成输出，只在使用时生效
+}
 void Generator::VisitCustomStyle(CustomStyleNode* node) {}
 void Generator::VisitCustomElement(CustomElementNode* node) {}
 void Generator::VisitCustomVar(CustomVarNode* node) {}

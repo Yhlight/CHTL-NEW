@@ -99,6 +99,9 @@ private:
     std::shared_ptr<ASTNode> ParseTemplateElement();
     std::shared_ptr<ASTNode> ParseTemplateVar();
     
+    // 辅助方法
+    std::string ProcessVariableReferences(const std::string& value);
+    
 public:
     explicit Parser(std::shared_ptr<CompileContext> ctx);
     ~Parser() = default;
