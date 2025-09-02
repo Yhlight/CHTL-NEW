@@ -1,0 +1,21 @@
+use html5;
+
+[Template] @Style BlueText
+{
+    color: "blue";
+}
+
+html
+{
+    body
+    {
+        p
+        {
+            style
+            {
+                @Style BlueText;
+            }
+            text { "无命名空间测试" }
+        }
+    }
+}

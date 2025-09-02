@@ -1,0 +1,41 @@
+use html5;
+
+[Import] @Chtl from namespace_lib;
+
+html
+{
+    body
+    {
+        // 使用命名空间中的元素模板
+        @Element Card from UI;
+        
+        div
+        {
+            style
+            {
+                // 使用嵌套命名空间中的样式模板
+                @Style Input from UI.Forms;
+            }
+            
+            button
+            {
+                style
+                {
+                    // 使用UI命名空间中的按钮样式
+                    @Style Button from UI;
+                }
+                text { "点击我" }
+            }
+        }
+        
+        p
+        {
+            style
+            {
+                // 使用Utils命名空间中的变量
+                color: Utils.Colors(primary);
+            }
+            text { "这是使用命名空间的测试" }
+        }
+    }
+}

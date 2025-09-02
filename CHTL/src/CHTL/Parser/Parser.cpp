@@ -174,8 +174,13 @@ std::shared_ptr<ASTNode> Parser::ParseTemplateStyle() {
     ConsumeToken();
     auto node = std::make_shared<TemplateStyleNode>(name);
     
-    // 添加到全局映射表
-    context->GetGlobalMap()->AddTemplateStyle(name, node);
+    // 添加到全局映射表（使用完整的命名空间路径）
+    std::string fullName = name;
+    std::string namespacePath = context->GetFullNamespacePath();
+    if (!namespacePath.empty()) {
+        fullName = namespacePath + "." + name;
+    }
+    context->GetGlobalMap()->AddTemplateStyle(fullName, node);
     
     Expect(TokenType::LEFT_BRACE, "期望 '{'");
     
@@ -201,8 +206,13 @@ std::shared_ptr<ASTNode> Parser::ParseTemplateElement() {
     ConsumeToken();
     auto node = std::make_shared<TemplateElementNode>(name);
     
-    // 添加到全局映射表
-    context->GetGlobalMap()->AddTemplateElement(name, node);
+    // 添加到全局映射表（使用完整的命名空间路径）
+    std::string fullName = name;
+    std::string namespacePath = context->GetFullNamespacePath();
+    if (!namespacePath.empty()) {
+        fullName = namespacePath + "." + name;
+    }
+    context->GetGlobalMap()->AddTemplateElement(fullName, node);
     
     Expect(TokenType::LEFT_BRACE, "期望 '{'");
     
@@ -232,8 +242,13 @@ std::shared_ptr<ASTNode> Parser::ParseTemplateVar() {
     ConsumeToken();
     auto node = std::make_shared<TemplateVarNode>(name);
     
-    // 添加到全局映射表
-    context->GetGlobalMap()->AddTemplateVar(name, node);
+    // 添加到全局映射表（使用完整的命名空间路径）
+    std::string fullName = name;
+    std::string namespacePath = context->GetFullNamespacePath();
+    if (!namespacePath.empty()) {
+        fullName = namespacePath + "." + name;
+    }
+    context->GetGlobalMap()->AddTemplateVar(fullName, node);
     
     Expect(TokenType::LEFT_BRACE, "期望 '{'");
     
@@ -464,9 +479,46 @@ std::shared_ptr<ASTNode> Parser::ParseImport() {
 }
 
 std::shared_ptr<ASTNode> Parser::ParseNamespace() {
-    // TODO: 实现Namespace解析
-    ConsumeToken(); // 暂时跳过
-    return nullptr;
+    Expect(TokenType::NAMESPACE, "期望 '[Namespace]'");
+    
+    // 期望命名空间名称
+    if (!Check(TokenType::IDENTIFIER)) {
+        ReportError("期望命名空间名称");
+        return nullptr;
+    }
+    
+    std::string namespaceName = CurrentToken().value;
+    ConsumeToken();
+    
+    auto namespaceNode = std::make_shared<NamespaceNode>(namespaceName);
+    
+    // 进入命名空间
+    context->EnterNamespace(namespaceName);
+    
+    // 命名空间可以有花括号包围的内容，也可以没有
+    if (Check(TokenType::LEFT_BRACE)) {
+        ConsumeToken(); // 消费 {
+        
+        // 解析命名空间内的内容
+        while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
+            auto child = ParseTopLevelDeclaration();
+            if (child) {
+                namespaceNode->AddChild(child);
+            } else {
+                // 如果解析失败，尝试恢复
+                RecoverFromError();
+            }
+        }
+        
+        Expect(TokenType::RIGHT_BRACE, "期望 '}'");
+        
+        // 退出命名空间
+        context->ExitNamespace();
+    }
+    // 如果没有花括号，命名空间会影响后续的声明，直到文件结束或遇到另一个命名空间
+    // 在这种情况下，命名空间的退出会在文件结束或遇到新命名空间时处理
+    
+    return namespaceNode;
 }
 
 std::shared_ptr<ASTNode> Parser::ParseConfiguration() {
@@ -511,10 +563,43 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
             Expect(TokenType::IDENTIFIER, "期望标识符");
             std::string templateName = CurrentToken().value;
             ConsumeToken();
+            
+            // 检查是否有 from 子句
+            std::string namespacePath;
+            if (Check(TokenType::FROM)) {
+                ConsumeToken(); // 消费 from
+                
+                // 解析命名空间路径
+                if (!Check(TokenType::IDENTIFIER)) {
+                    ReportError("期望命名空间名称");
+                } else {
+                    namespacePath = CurrentToken().value;
+                    ConsumeToken();
+                    
+                    // 支持点号分隔的命名空间路径
+                    while (Check(TokenType::DOT)) {
+                        namespacePath += ".";
+                        ConsumeToken();
+                        if (!Check(TokenType::IDENTIFIER)) {
+                            ReportError("期望命名空间段");
+                            break;
+                        }
+                        namespacePath += CurrentToken().value;
+                        ConsumeToken();
+                    }
+                }
+            }
+            
             Expect(TokenType::SEMICOLON, "期望 ';'");
             
+            // 构建完整的模板名称
+            std::string fullTemplateName = templateName;
+            if (!namespacePath.empty()) {
+                fullTemplateName = namespacePath + "." + templateName;
+            }
+            
             // 从全局映射表获取模板
-            auto templateNode = context->GetGlobalMap()->GetTemplateElement(templateName);
+            auto templateNode = context->GetGlobalMap()->GetTemplateElement(fullTemplateName);
             if (templateNode) {
                 // 将模板中的所有元素添加到当前元素
                 for (const auto& child : templateNode->GetChildren()) {
@@ -522,7 +607,7 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
                     element->AddChild(child);
                 }
             } else {
-                ReportError("未找到元素模板: " + templateName);
+                ReportError("未找到元素模板: " + fullTemplateName);
             }
         }
         // 子元素
@@ -606,15 +691,48 @@ std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {
     // 解析样式属性或样式模板引用
     while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
         if (Check(TokenType::AT_STYLE)) {
-            // 样式模板引用: @Style 模板名;
+            // 样式模板引用: @Style 模板名 [from 命名空间];
             ConsumeToken(); // 消费 @Style
             Expect(TokenType::IDENTIFIER, "期望标识符");
             std::string templateName = CurrentToken().value;
             ConsumeToken();
+            
+            // 检查是否有 from 子句
+            std::string namespacePath;
+            if (Check(TokenType::FROM)) {
+                ConsumeToken(); // 消费 from
+                
+                // 解析命名空间路径
+                if (!Check(TokenType::IDENTIFIER)) {
+                    ReportError("期望命名空间名称");
+                } else {
+                    namespacePath = CurrentToken().value;
+                    ConsumeToken();
+                    
+                    // 支持点号分隔的命名空间路径
+                    while (Check(TokenType::DOT)) {
+                        namespacePath += ".";
+                        ConsumeToken();
+                        if (!Check(TokenType::IDENTIFIER)) {
+                            ReportError("期望命名空间段");
+                            break;
+                        }
+                        namespacePath += CurrentToken().value;
+                        ConsumeToken();
+                    }
+                }
+            }
+            
             Expect(TokenType::SEMICOLON, "期望 ';'");
             
+            // 构建完整的模板名称
+            std::string fullTemplateName = templateName;
+            if (!namespacePath.empty()) {
+                fullTemplateName = namespacePath + "." + templateName;
+            }
+            
             // 从全局映射表获取模板
-            auto templateNode = context->GetGlobalMap()->GetTemplateStyle(templateName);
+            auto templateNode = context->GetGlobalMap()->GetTemplateStyle(fullTemplateName);
             if (templateNode) {
                 // 将模板中的所有属性添加到当前样式节点
                 for (const auto& child : templateNode->GetChildren()) {

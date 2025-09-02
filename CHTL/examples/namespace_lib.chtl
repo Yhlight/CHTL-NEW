@@ -1,0 +1,50 @@
+// 命名空间测试库文件
+
+[Namespace] UI
+{
+    [Template] @Style Button
+    {
+        padding: "10px 20px";
+        background-color: "#007bff";
+        color: "white";
+        border: "none";
+        border-radius: "4px";
+        cursor: "pointer";
+    }
+    
+    [Template] @Element Card
+    {
+        div {
+            class: "ui-card";
+            style {
+                border: "1px solid #ddd";
+                border-radius: "8px";
+                padding: "20px";
+                margin: "10px";
+                box-shadow: "0 2px 4px rgba(0,0,0,0.1)";
+            }
+        }
+    }
+    
+    [Namespace] Forms
+    {
+        [Template] @Style Input
+        {
+            padding: "8px 12px";
+            border: "1px solid #ccc";
+            border-radius: "4px";
+            font-size: "14px";
+        }
+    }
+}
+
+// 没有花括号的命名空间
+[Namespace] Utils
+
+[Template] @Var Colors
+{
+    primary: "#007bff";
+    secondary: "#6c757d";
+    success: "#28a745";
+    danger: "#dc3545";
+}

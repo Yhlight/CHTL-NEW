@@ -67,6 +67,9 @@ private:
     std::unordered_map<std::string, bool> importedFiles;  // 已导入的文件
     std::vector<std::string> importPath;                  // 导入路径栈
     
+    // 命名空间管理
+    std::vector<std::string> namespaceStack;              // 命名空间栈
+    
 public:
     CompileContext();
     ~CompileContext() = default;
@@ -139,6 +142,12 @@ public:
     void PushImportPath(const std::string& path);
     void PopImportPath();
     bool IsInImportCycle(const std::string& filePath) const;
+    
+    // 命名空间管理
+    void EnterNamespace(const std::string& namespaceName);
+    void ExitNamespace();
+    std::string GetCurrentNamespace() const;
+    std::string GetFullNamespacePath() const;
     
     // 重置上下文
     void Reset();

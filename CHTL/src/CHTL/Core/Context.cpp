@@ -147,12 +147,38 @@ void CompileContext::Reset() {
     importedFiles.clear();
     importPath.clear();
     
+    // 清空命名空间栈
+    namespaceStack.clear();
+    
     // 重置选项为默认值
     options = CompileOptions();
     
     // 清空其他状态
     currentFile.clear();
     activeConfiguration.reset();
+}
+
+void CompileContext::EnterNamespace(const std::string& namespaceName) {
+    namespaceStack.push_back(namespaceName);
+}
+
+void CompileContext::ExitNamespace() {
+    if (!namespaceStack.empty()) {
+        namespaceStack.pop_back();
+    }
+}
+
+std::string CompileContext::GetCurrentNamespace() const {
+    return namespaceStack.empty() ? "" : namespaceStack.back();
+}
+
+std::string CompileContext::GetFullNamespacePath() const {
+    std::string path;
+    for (size_t i = 0; i < namespaceStack.size(); ++i) {
+        if (i > 0) path += ".";
+        path += namespaceStack[i];
+    }
+    return path;
 }
 
 } // namespace CHTL

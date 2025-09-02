@@ -103,10 +103,20 @@ public:
 
 
 class NamespaceNode : public ASTNode {
+private:
+    std::string namespaceName;
+    
 public:
-    NamespaceNode() : ASTNode(ASTNodeType::Namespace) {}
+    NamespaceNode(const std::string& name = "") 
+        : ASTNode(ASTNodeType::Namespace), namespaceName(name) {}
+    
+    const std::string& GetName() const { return namespaceName; }
+    void SetName(const std::string& name) { namespaceName = name; }
+    
     void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "NamespaceNode"; }
+    std::string ToString() const override { 
+        return "NamespaceNode(" + namespaceName + ")"; 
+    }
 };
 
 class ConfigurationNode : public ASTNode {

@@ -1,0 +1,24 @@
+use html5;
+
+[Namespace] Test
+{
+    [Template] @Style RedText
+    {
+        color: "red";
+    }
+}
+
+html
+{
+    body
+    {
+        p
+        {
+            style
+            {
+                @Style RedText from Test;
+            }
+            text { "命名空间测试" }
+        }
+    }
+}
