@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libCHTLCore.a CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLToken.cpp.o CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLGlobalMap.cpp.o CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLLexer.cpp.o CMakeFiles/CHTLCore.dir/src/CHTL/CHTLState/CHTLState.cpp.o CMakeFiles/CHTLCore.dir/src/CHTL/CHTLContext/CHTLContext.cpp.o
+/usr/bin/ranlib lib/libCHTLCore.a

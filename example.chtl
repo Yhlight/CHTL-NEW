@@ -1,0 +1,286 @@
+// CHTL示例文件 - 展示CHTL和CHTL JS完全分离的架构
+// 支持UTF-8中文字符
+
+use html5;
+
+html {
+    head {
+        text {
+            CHTL编译器演示页面
+        }
+    }
+    
+    body {
+        div {
+            id: main-container;
+            class: page-wrapper;
+            
+            style {
+                .container {
+                    width: 100%;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    font-family: 'Microsoft YaHei', sans-serif;
+                }
+                
+                .header {
+                    text-align: center;
+                    margin-bottom: 30px;
+                    color: #2c3e50;
+                }
+                
+                .demo-box {
+                    width: 300px;
+                    height: 200px;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    border-radius: 15px;
+                    margin: 20px auto;
+                    cursor: pointer;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-size: 18px;
+                    font-weight: bold;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                }
+                
+                &:hover {
+                    transform: translateY(-5px) scale(1.02);
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                }
+                
+                &:active {
+                    transform: translateY(-2px) scale(0.98);
+                }
+            }
+            
+            script {
+                // CHTL JS语法演示
+                
+                // 1. 模块导入（AMD风格）
+                module {
+                    load: ./utils.js,
+                    load: ./animations.cjjs,
+                    load: ./events.cjjs
+                }
+                
+                // 2. 虚对象演示
+                vir demoController = listen {
+                    click: () => {
+                        console.log('演示盒子被点击！');
+                        alert('欢迎使用CHTL编译器！\n这是一个支持中文的超文本语言。');
+                    },
+                    
+                    mouseenter: () => {
+                        console.log('鼠标进入演示区域');
+                    },
+                    
+                    mouseleave: () => {
+                        console.log('鼠标离开演示区域');
+                    },
+                    
+                    getData: {
+                        name: 'CHTL演示',
+                        version: '1.0.0',
+                        features: ['UTF-8支持', '模块化架构', '完全分离设计']
+                    }
+                };
+                
+                // 3. 增强选择器演示
+                {{.demo-box}}->listen {
+                    click: demoController->click,
+                    mouseenter: demoController->mouseenter,
+                    mouseleave: demoController->mouseleave
+                };
+                
+                // 4. 事件委托演示
+                {{body}}->delegate {
+                    target: [{{.demo-box}}, {{.header}}],
+                    click: (e) => {
+                        console.log('通过事件委托处理:', e.target.className);
+                    },
+                    
+                    keydown: (e) => {
+                        if (e.key === 'Enter') {
+                            console.log('回车键被按下');
+                        }
+                    }
+                };
+                
+                // 5. 动画演示
+                const fadeInAnimation = animate {
+                    target: [{{.demo-box}}, {{.header}}],
+                    duration: 1500,
+                    easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                    
+                    begin: {
+                        opacity: 0,
+                        transform: 'translateY(50px) scale(0.8)'
+                    },
+                    
+                    when: [
+                        {
+                            at: 0.3,
+                            opacity: 0.3,
+                            transform: 'translateY(30px) scale(0.9)'
+                        },
+                        {
+                            at: 0.7,
+                            opacity: 0.8,
+                            transform: 'translateY(10px) scale(0.95)'
+                        }
+                    ],
+                    
+                    end: {
+                        opacity: 1,
+                        transform: 'translateY(0px) scale(1)'
+                    },
+                    
+                    delay: 300,
+                    callback: () => {
+                        console.log('淡入动画完成！');
+                    }
+                };
+                
+                // 6. 事件绑定操作符演示
+                {{.demo-box}} &-> dblclick {
+                    console.log('双击事件通过&->绑定');
+                    {{&}}->style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+                }
+                
+                // 7. 上下文引用演示
+                {{&}}->addEventListener('contextmenu', (e) => {
+                    e.preventDefault();
+                    console.log('右键菜单被禁用');
+                });
+                
+                // 8. 虚对象键引用演示
+                console.log('演示数据:', demoController->getData);
+                
+                // 页面加载完成后的初始化
+                document.addEventListener('DOMContentLoaded', () => {
+                    console.log('CHTL页面加载完成');
+                    console.log('编译器架构: CHTL和CHTL JS完全分离');
+                    console.log('支持特性:', demoController->getData->features);
+                });
+            }
+            
+            h1 {
+                style {
+                    .header {
+                        // 继承容器样式并添加特定样式
+                    }
+                }
+                
+                text {
+                    CHTL编译器演示
+                }
+            }
+            
+            div {
+                style {
+                    .demo-box {
+                        // 样式已在父元素中定义
+                    }
+                }
+                
+                text {
+                    点击我试试！
+                }
+            }
+            
+            p {
+                style {
+                    .description {
+                        color: #7f8c8d;
+                        text-align: center;
+                        margin-top: 20px;
+                        line-height: 1.6;
+                    }
+                }
+                
+                text {
+                    这个页面展示了CHTL编译器的核心功能：
+                    ✓ CHTL和CHTL JS完全分离的架构
+                    ✓ UTF-8中文字符完整支持  
+                    ✓ 模块化设计和高质量代码标准
+                    ✓ 严格遵循CHTL语法文档规范
+                }
+            }
+        }
+    }
+}
+
+// 模板演示
+[Template] @Style ButtonStyle {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+[Template] @Element InfoCard {
+    div {
+        style {
+            .card {
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                padding: 20px;
+                margin: 15px 0;
+            }
+        }
+        
+        h3 {
+            text {
+                信息卡片
+            }
+        }
+        
+        p {
+            text {
+                这是一个使用CHTL模板系统创建的信息卡片。
+            }
+        }
+    }
+}
+
+// 自定义演示
+[Custom] @Style ThemeColors {
+    primaryColor: "#3498db";
+    secondaryColor: "#e74c3c";
+    successColor: "#2ecc71";
+    warningColor: "#f39c12";
+}
+
+[Custom] @Element ActionButton {
+    button {
+        style {
+            @Style ButtonStyle;
+            
+            .primary {
+                background-color: ThemeColors(primaryColor);
+                color: white;
+            }
+            
+            &:hover {
+                background-color: ThemeColors(secondaryColor);
+                transform: translateY(-2px);
+            }
+        }
+        
+        text {
+            点击按钮
+        }
+    }
+}
+
+// 使用模板和自定义
+@Element InfoCard;
+@Element ActionButton;

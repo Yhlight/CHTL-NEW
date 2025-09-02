@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libCHTLJSCore.a CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSToken.cpp.o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSGlobalMap.cpp.o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSLexer.cpp.o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSContext/CHTLJSContext.cpp.o
+/usr/bin/ranlib lib/libCHTLJSCore.a

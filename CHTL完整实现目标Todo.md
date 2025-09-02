@@ -277,27 +277,67 @@
 32. 约束：except精确/类型/全局约束
 33. 选择器自动化配置
 
-### CHTL JS核心语法特征
+### CHTL核心语法特征（包含局部script）
+1. 注释：//、/**/、--
+2. 文本节点：text{}
+3. 字面量：无修饰、""、''
+4. CE对等式：:和=等价
+5. 元素节点：所有HTML元素
+6. 属性：属性名:属性值;
+7. 局部样式块：style{}
+8. 内联样式
+9. 自动化类名/id
+10. 上下文推导：&引用
+11. 局部script：script{}（属于CHTL，支持CHTL JS语法）
+12. 模板：[Template] @Style/@Element/@Var
+13. 模板继承：组合式和inherit
+14. 自定义：[Custom] @Style/@Element/@Var
+15. 无值样式组
+16. 特例化：delete属性、delete继承
+17. 索引访问：[index]
+18. 插入元素：insert after/before/replace/at top/at bottom
+19. 删除元素：delete
+20. 变量组特例化
+21. 全缀名访问
+22. 原始嵌入：[Origin] @Html/@Style/@JavaScript
+23. 带名原始嵌入
+24. 自定义类型系统
+25. 配置组：[Configuration]
+26. Name配置块
+27. OriginType配置块
+28. 命名配置组
+29. 导入：[Import]各种类型
+30. use语法：html5、@Config
+31. 命名空间：[Namespace]
+32. 嵌套命名空间
+33. 约束：except精确/类型/全局约束
+34. 选择器自动化配置
+
+### CHTL JS核心语法特征（在script{}内使用）
 1. 文件后缀：*.cjjs
 2. 模块导入：module{}
 3. AMD风格加载器
-4. 局部script：script{}
-5. 增强选择器：{{CSS选择器}}
-6. 标签/类名/id查找优先级
-7. 精确访问：{{button[0]}}
-8. ->操作符（等价于.）
-9. 增强监听器：listen{}
-10. 事件委托：delegate{}
-11. 全局注册表管理
-12. 动画：animate{}
-13. requestAnimationFrame封装
-14. 虚对象：vir
-15. View对象管理
-16. 键值类型识别
-17. 事件绑定操作符：&->
-18. iNeverAway函数重载
-19. 状态区分同名键
-20. util...then表达式
+4. 增强选择器：{{CSS选择器}}
+5. 标签/类名/id查找优先级
+6. 精确访问：{{button[0]}}
+7. ->操作符（等价于.）
+8. 增强监听器：listen{}
+9. 事件委托：delegate{}
+10. 全局注册表管理
+11. 动画：animate{}
+12. requestAnimationFrame封装
+13. 虚对象：vir
+14. View对象管理
+15. 键值类型识别
+16. 事件绑定操作符：&->
+
+### CJMOD扩展特征（非核心语法）
+1. printMylove（珂朵莉模块扩展）
+2. iNeverAway函数重载（珂朵莉模块扩展）
+3. util...then表达式（珂朵莉模块扩展）
+4. Syntax API
+5. Arg/AtomArg API
+6. CJMODScanner/Generator API
 
 ### CJMOD API特征
 1. Syntax类：analyze、isObject、isFunction、isArray、isCHTLJSFunction

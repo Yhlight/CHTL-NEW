@@ -1,0 +1,691 @@
+#include "CompilerDispatcher.h"
+#include <algorithm>
+#include <sstream>
+#include <regex>
+
+namespace CHTL {
+
+// 临时的CSS和JS编译器声明（后续用ANTLR实现）
+class CSSCompiler {
+public:
+    CompilationResult Compile(const std::vector<CodeFragment>& fragments) {
+        std::ostringstream css;
+        for (const auto& fragment : fragments) {
+            css << fragment.Content << "\n";
+        }
+        return CompilationResult(css.str(), "CSS");
+    }
+};
+
+class JavaScriptCompiler {
+public:
+    CompilationResult Compile(const std::vector<CodeFragment>& fragments) {
+        std::ostringstream js;
+        for (const auto& fragment : fragments) {
+            js << fragment.Content << "\n";
+        }
+        return CompilationResult(js.str(), "JavaScript");
+    }
+};
+
+CompilerDispatcher::CompilerDispatcher() : m_HasError(false) {
+    InitializeCompilers();
+}
+
+CompilerDispatcher::~CompilerDispatcher() {
+    // 自定义析构函数以处理incomplete type
+}
+
+void CompilerDispatcher::InitializeCompilers() {
+    m_Scanner = std::make_unique<CHTLUnifiedScanner>("");
+    m_CHTLCompiler = std::make_unique<CHTLLexer>("");
+    m_CHTLJSCompiler = std::make_unique<CHTLJS::CHTLJSLexer>("");
+    m_CSSCompiler = std::make_unique<CSSCompiler>();
+    m_JSCompiler = std::make_unique<JavaScriptCompiler>();
+}
+
+bool CompilerDispatcher::Compile(const std::string& sourceCode) {
+    Reset();
+    m_SourceCode = sourceCode;
+    
+    // 步骤1：执行代码扫描和切割
+    if (!PerformScanning()) {
+        SetCompilationError("Failed to scan source code");
+        return false;
+    }
+    
+    // 步骤2：按类型分组片段
+    GroupFragmentsByType();
+    
+    // 步骤3：分发片段给对应编译器
+    if (!DispatchFragments()) {
+        SetCompilationError("Failed to dispatch fragments to compilers");
+        return false;
+    }
+    
+    // 步骤4：合并编译结果
+    if (!MergeCompilationResults()) {
+        SetCompilationError("Failed to merge compilation results");
+        return false;
+    }
+    
+    // 步骤5：验证编译结果一致性
+    if (!ValidateCompilationConsistency()) {
+        SetCompilationError("Compilation consistency validation failed");
+        return false;
+    }
+    
+    return !m_HasError;
+}
+
+bool CompilerDispatcher::PerformScanning() {
+    m_Scanner->SetSourceCode(m_SourceCode);
+    
+    if (!m_Scanner->Scan()) {
+        SetCompilationError("Scanner error: " + m_Scanner->GetErrorMessage());
+        return false;
+    }
+    
+    m_Fragments = m_Scanner->GetFragments();
+    
+    if (m_Fragments.empty()) {
+        AddCompilationWarning("No code fragments found in source");
+    }
+    
+    return true;
+}
+
+void CompilerDispatcher::GroupFragmentsByType() {
+    m_FragmentsByType.clear();
+    
+    for (const auto& fragment : m_Fragments) {
+        m_FragmentsByType[fragment.Type].push_back(fragment);
+    }
+}
+
+bool CompilerDispatcher::DispatchFragments() {
+    m_CompilationResults.clear();
+    
+    // 编译CHTL片段
+    if (m_FragmentsByType.find(FragmentType::CHTL_FRAGMENT) != m_FragmentsByType.end()) {
+        auto chtlResult = CompileCHTLFragments(m_FragmentsByType[FragmentType::CHTL_FRAGMENT]);
+        if (!chtlResult.IsSuccess) {
+            SetCompilationError("CHTL compilation failed: " + chtlResult.ErrorMessage);
+            return false;
+        }
+        m_CompilationResults.push_back(chtlResult);
+    }
+    
+    // 编译CHTL JS片段
+    if (m_FragmentsByType.find(FragmentType::CHTL_JS_FRAGMENT) != m_FragmentsByType.end()) {
+        auto chtljsResult = CompileCHTLJSFragments(m_FragmentsByType[FragmentType::CHTL_JS_FRAGMENT]);
+        if (!chtljsResult.IsSuccess) {
+            SetCompilationError("CHTL JS compilation failed: " + chtljsResult.ErrorMessage);
+            return false;
+        }
+        m_CompilationResults.push_back(chtljsResult);
+    }
+    
+    // 编译CSS片段
+    if (m_FragmentsByType.find(FragmentType::CSS_FRAGMENT) != m_FragmentsByType.end()) {
+        auto cssResult = CompileCSSFragments(m_FragmentsByType[FragmentType::CSS_FRAGMENT]);
+        if (!cssResult.IsSuccess) {
+            SetCompilationError("CSS compilation failed: " + cssResult.ErrorMessage);
+            return false;
+        }
+        m_CompilationResults.push_back(cssResult);
+    }
+    
+    // 编译JavaScript片段
+    if (m_FragmentsByType.find(FragmentType::JS_FRAGMENT) != m_FragmentsByType.end()) {
+        auto jsResult = CompileJavaScriptFragments(m_FragmentsByType[FragmentType::JS_FRAGMENT]);
+        if (!jsResult.IsSuccess) {
+            SetCompilationError("JavaScript compilation failed: " + jsResult.ErrorMessage);
+            return false;
+        }
+        m_CompilationResults.push_back(jsResult);
+    }
+    
+    return true;
+}
+
+CompilationResult CompilerDispatcher::CompileCHTLFragments(const std::vector<CodeFragment>& fragments) {
+    std::ostringstream combinedContent;
+    
+    // 合并所有CHTL片段
+    for (const auto& fragment : fragments) {
+        combinedContent << fragment.Content << "\n";
+    }
+    
+    // 使用CHTL编译器进行词法分析
+    m_CHTLCompiler->SetSourceCode(combinedContent.str());
+    
+    if (!m_CHTLCompiler->Tokenize()) {
+        CompilationResult result;
+        result.IsSuccess = false;
+        result.ErrorMessage = m_CHTLCompiler->GetErrorMessage();
+        return result;
+    }
+    
+    // 生成HTML代码（这里是简化实现，后续需要完整的解析器和生成器）
+    std::ostringstream html;
+    const auto& tokens = m_CHTLCompiler->GetTokens();
+    
+    for (const auto& token : tokens) {
+        if (token.Type == CHTLTokenType::IDENTIFIER) {
+            // 检查是否为HTML元素
+            if (IsHTMLElement(token.Value)) {
+                html << "<" << token.Value << ">";
+            }
+        }
+        else if (token.Type == CHTLTokenType::TEXT) {
+            html << "<!-- CHTL text block -->";
+        }
+        else if (token.Type == CHTLTokenType::STYLE) {
+            // 局部样式块由CHTL编译器处理
+            html << "<!-- CHTL local style block -->";
+        }
+        else if (token.Type == CHTLTokenType::SCRIPT) {
+            // 局部脚本块由CHTL编译器处理（支持CHTL JS语法）
+            html << "<!-- CHTL local script block -->";
+        }
+    }
+    
+    // 处理自动生成的选择器
+    std::string processedHTML = ProcessAutoGeneratedSelectors(html.str());
+    
+    return CompilationResult(processedHTML, "HTML");
+}
+
+CompilationResult CompilerDispatcher::CompileCHTLJSFragments(const std::vector<CodeFragment>& fragments) {
+    std::ostringstream combinedContent;
+    
+    // 合并所有CHTL JS片段
+    for (const auto& fragment : fragments) {
+        combinedContent << fragment.Content << "\n";
+    }
+    
+    // 使用CHTL JS编译器进行词法分析
+    m_CHTLJSCompiler->SetSourceCode(combinedContent.str());
+    
+    if (!m_CHTLJSCompiler->Tokenize()) {
+        CompilationResult result;
+        result.IsSuccess = false;
+        result.ErrorMessage = m_CHTLJSCompiler->GetErrorMessage();
+        return result;
+    }
+    
+    // 生成JavaScript代码（简化实现）
+    std::ostringstream js;
+    const auto& tokens = m_CHTLJSCompiler->GetTokens();
+    
+    for (const auto& token : tokens) {
+        if (token.Type == CHTLJS::CHTLJSTokenType::MODULE) {
+            js << m_CHTLJSCompiler->GetContextManager()->GenerateModuleLoadCode();
+        }
+        else if (token.Type == CHTLJS::CHTLJSTokenType::LISTEN) {
+            js << "// CHTL JS listen function\n";
+        }
+        else if (token.Type == CHTLJS::CHTLJSTokenType::DELEGATE) {
+            js << "// CHTL JS delegate function\n";
+        }
+        else if (token.Type == CHTLJS::CHTLJSTokenType::ANIMATE) {
+            js << "// CHTL JS animate function\n";
+        }
+        else if (token.Type == CHTLJS::CHTLJSTokenType::VIR) {
+            js << "// CHTL JS virtual object\n";
+        }
+        else if (token.Type == CHTLJS::CHTLJSTokenType::SELECTOR_CONTENT) {
+            std::string domCode = m_CHTLJSCompiler->GetContextManager()->ResolveEnhancedSelector(token.Value);
+            js << domCode << ";\n";
+        }
+    }
+    
+    // 处理增强选择器转换
+    std::string processedJS = ProcessEnhancedSelectors(js.str());
+    
+    return CompilationResult(processedJS, "JavaScript");
+}
+
+CompilationResult CompilerDispatcher::CompileCSSFragments(const std::vector<CodeFragment>& fragments) {
+    // 使用CSS编译器（ANTLR）处理CSS片段
+    return m_CSSCompiler->Compile(fragments);
+}
+
+CompilationResult CompilerDispatcher::CompileJavaScriptFragments(const std::vector<CodeFragment>& fragments) {
+    // 使用JavaScript编译器（ANTLR）处理JavaScript片段
+    return m_JSCompiler->Compile(fragments);
+}
+
+bool CompilerDispatcher::MergeCompilationResults() {
+    m_MergedResult = MergedCompilationResult();
+    
+    std::ostringstream htmlContent, cssContent, jsContent;
+    
+    // 合并各编译器的结果
+    for (const auto& result : m_CompilationResults) {
+        if (!result.IsSuccess) {
+            m_MergedResult.Errors.push_back(result.ErrorMessage);
+            continue;
+        }
+        
+        if (result.Type == "HTML") {
+            htmlContent << result.Content;
+        }
+        else if (result.Type == "CSS") {
+            cssContent << result.Content;
+        }
+        else if (result.Type == "JavaScript") {
+            jsContent << result.Content;
+        }
+        
+        // 添加警告
+        m_MergedResult.Warnings.insert(m_MergedResult.Warnings.end(), 
+                                      result.Warnings.begin(), result.Warnings.end());
+    }
+    
+    m_MergedResult.HTMLContent = htmlContent.str();
+    m_MergedResult.CSSContent = cssContent.str();
+    m_MergedResult.JavaScriptContent = jsContent.str();
+    
+    // 生成完整HTML文档
+    m_MergedResult.FullHTML = GenerateHTMLDocument(
+        m_MergedResult.HTMLContent,
+        m_MergedResult.CSSContent,
+        m_MergedResult.JavaScriptContent
+    );
+    
+    m_MergedResult.IsSuccess = m_MergedResult.Errors.empty();
+    return m_MergedResult.IsSuccess;
+}
+
+std::string CompilerDispatcher::ProcessLocalStyleBlocks(const std::vector<std::string>& styleBlocks) {
+    std::ostringstream css;
+    
+    // 局部样式块由CHTL编译器处理
+    // 包括：内联样式、自动化类名/id、上下文推导(&)、选择器生成
+    for (const auto& block : styleBlocks) {
+        // 解析局部样式块中的选择器
+        std::regex selectorPattern(R"(\.([a-zA-Z][a-zA-Z0-9\-_]*)\s*\{([^}]*)\})");
+        std::sregex_iterator iter(block.begin(), block.end(), selectorPattern);
+        std::sregex_iterator end;
+        
+        for (; iter != end; ++iter) {
+            std::smatch match = *iter;
+            std::string className = match[1].str();
+            std::string properties = match[2].str();
+            
+            // 生成CSS类选择器，自动添加到全局样式块
+            css << "." << className << " {\n";
+            css << properties << "\n";
+            css << "}\n";
+        }
+        
+        // 处理ID选择器
+        std::regex idPattern(R"(#([a-zA-Z][a-zA-Z0-9\-_]*)\s*\{([^}]*)\})");
+        std::sregex_iterator idIter(block.begin(), block.end(), idPattern);
+        
+        for (; idIter != end; ++idIter) {
+            std::smatch match = *idIter;
+            std::string idName = match[1].str();
+            std::string properties = match[2].str();
+            
+            css << "#" << idName << " {\n";
+            css << properties << "\n";
+            css << "}\n";
+        }
+        
+        // 处理上下文引用&
+        std::regex contextPattern(R"(&(:[a-zA-Z\-]+|::[a-zA-Z\-]+)?\s*\{([^}]*)\})");
+        std::sregex_iterator contextIter(block.begin(), block.end(), contextPattern);
+        
+        for (; contextIter != end; ++contextIter) {
+            std::smatch match = *contextIter;
+            std::string pseudoSelector = match[1].str();
+            std::string properties = match[2].str();
+            
+            // 解析&引用（优先class）
+            std::string resolvedSelector = ResolveContextReference();
+            css << resolvedSelector << pseudoSelector << " {\n";
+            css << properties << "\n";
+            css << "}\n";
+        }
+    }
+    
+    return css.str();
+}
+
+std::string CompilerDispatcher::ProcessGlobalStyleBlocks(const std::vector<std::string>& globalStyles) {
+    std::ostringstream css;
+    
+    // 全局样式块由CSS编译器处理
+    // 注意：CHTL并没有对全局样式块进行增强
+    for (const auto& style : globalStyles) {
+        css << style << "\n";
+    }
+    
+    return css.str();
+}
+
+std::string CompilerDispatcher::ProcessScriptBlocks(const std::vector<std::string>& scriptBlocks) {
+    std::ostringstream js;
+    
+    // 脚本块由CHTL编译器、CHTL JS编译器及JS编译器共同管理
+    for (const auto& block : scriptBlocks) {
+        // 检查是否包含CHTL JS语法
+        if (ContainsCHTLJSSyntax(block)) {
+            // 使用CHTL JS编译器处理
+            auto chtljsResult = ProcessCHTLJSScriptBlock(block);
+            js << chtljsResult;
+        }
+        else {
+            // 使用JavaScript编译器处理
+            js << block << "\n";
+        }
+    }
+    
+    return js.str();
+}
+
+std::string CompilerDispatcher::GenerateHTMLDocument(const std::string& htmlContent, 
+                                                    const std::string& cssContent, 
+                                                    const std::string& jsContent) {
+    std::ostringstream document;
+    
+    document << "<!DOCTYPE html>\n";
+    document << "<html>\n";
+    document << "<head>\n";
+    document << "    <meta charset=\"UTF-8\">\n";
+    document << "    <title>CHTL Generated Document</title>\n";
+    
+    // 添加CSS内容
+    if (!cssContent.empty()) {
+        document << "    <style>\n";
+        document << cssContent;
+        document << "    </style>\n";
+    }
+    
+    document << "</head>\n";
+    document << "<body>\n";
+    
+    // 添加HTML内容
+    document << htmlContent;
+    
+    document << "\n</body>\n";
+    
+    // 添加JavaScript内容
+    if (!jsContent.empty()) {
+        document << "<script>\n";
+        document << jsContent;
+        document << "</script>\n";
+    }
+    
+    document << "</html>";
+    
+    return ProcessUTF8Encoding(document.str());
+}
+
+std::string CompilerDispatcher::ProcessAutoGeneratedSelectors(const std::string& chtlResult) {
+    std::string result = chtlResult;
+    
+    // 获取CHTL编译器生成的自动类名和ID
+    auto globalMap = m_CHTLCompiler->GetGlobalMap();
+    auto contextManager = m_CHTLCompiler->GetContextManager();
+    
+    // 处理自动生成的类名
+    std::string autoClass = contextManager->GetFirstAutoClass();
+    if (!autoClass.empty()) {
+        // 在HTML元素中添加class属性
+        std::regex elementPattern(R"(<(\w+)([^>]*)>)");
+        result = std::regex_replace(result, elementPattern, "<$1 class=\"" + autoClass + "\"$2>");
+    }
+    
+    // 处理自动生成的ID
+    std::string autoId = contextManager->GetFirstAutoId();
+    if (!autoId.empty()) {
+        // 在HTML元素中添加id属性
+        std::regex elementPattern(R"(<(\w+)([^>]*)>)");
+        result = std::regex_replace(result, elementPattern, "<$1 id=\"" + autoId + "\"$2>");
+    }
+    
+    return result;
+}
+
+std::string CompilerDispatcher::ProcessEnhancedSelectors(const std::string& chtljsResult) {
+    std::string result = chtljsResult;
+    
+    // 获取CHTL JS编译器的选择器映射
+    auto contextManager = m_CHTLJSCompiler->GetContextManager();
+    
+    // 转换增强选择器为标准DOM查询
+    std::regex selectorPattern(R"(\{\{([^}]+)\}\})");
+    std::string processedResult = result;
+    
+    std::sregex_iterator iter(result.begin(), result.end(), selectorPattern);
+    std::sregex_iterator end;
+    
+    for (; iter != end; ++iter) {
+        std::smatch match = *iter;
+        std::string selector = "{{" + match[1].str() + "}}";
+        std::string replacement = contextManager->ResolveEnhancedSelector(selector);
+        
+        size_t pos = processedResult.find(match.str());
+        if (pos != std::string::npos) {
+            processedResult.replace(pos, match.str().length(), replacement);
+        }
+    }
+    
+    result = processedResult;
+    
+    return result;
+}
+
+bool CompilerDispatcher::ValidateCompilationConsistency() {
+    // 验证编译结果的一致性
+    
+    // 检查HTML结构完整性
+    if (!ValidateHTMLStructure(m_MergedResult.HTMLContent)) {
+        AddCompilationWarning("HTML structure validation failed");
+    }
+    
+    // 检查CSS语法有效性
+    if (!ValidateCSSContent(m_MergedResult.CSSContent)) {
+        AddCompilationWarning("CSS content validation failed");
+    }
+    
+    // 检查JavaScript语法有效性
+    if (!ValidateJavaScriptContent(m_MergedResult.JavaScriptContent)) {
+        AddCompilationWarning("JavaScript content validation failed");
+    }
+    
+    // 检查选择器引用一致性
+    if (!ValidateSelectorReferences()) {
+        AddCompilationWarning("Selector reference validation failed");
+    }
+    
+    return true; // 警告不影响编译成功
+}
+
+const MergedCompilationResult& CompilerDispatcher::GetMergedResult() const {
+    return m_MergedResult;
+}
+
+std::string CompilerDispatcher::GetHTMLOutput() const {
+    return m_MergedResult.HTMLContent;
+}
+
+std::string CompilerDispatcher::GetCSSOutput() const {
+    return m_MergedResult.CSSContent;
+}
+
+std::string CompilerDispatcher::GetJavaScriptOutput() const {
+    return m_MergedResult.JavaScriptContent;
+}
+
+std::string CompilerDispatcher::GetFullHTMLDocument() const {
+    return m_MergedResult.FullHTML;
+}
+
+bool CompilerDispatcher::HasError() const {
+    return m_HasError;
+}
+
+std::string CompilerDispatcher::GetErrorMessage() const {
+    return m_ErrorMessage;
+}
+
+std::vector<std::string> CompilerDispatcher::GetWarnings() const {
+    return m_MergedResult.Warnings;
+}
+
+void CompilerDispatcher::Reset() {
+    m_SourceCode.clear();
+    m_Fragments.clear();
+    m_FragmentsByType.clear();
+    m_CompilationResults.clear();
+    m_MergedResult = MergedCompilationResult();
+    m_HasError = false;
+    m_ErrorMessage.clear();
+    
+    if (m_Scanner) {
+        m_Scanner->Reset();
+    }
+    if (m_CHTLCompiler) {
+        m_CHTLCompiler->Reset();
+    }
+    if (m_CHTLJSCompiler) {
+        m_CHTLJSCompiler->Reset();
+    }
+}
+
+std::string CompilerDispatcher::GetCompilationStatistics() const {
+    std::ostringstream stats;
+    
+    stats << "Compilation Statistics:\n";
+    stats << "======================\n";
+    stats << "Total Fragments: " << m_Fragments.size() << "\n";
+    
+    for (const auto& group : m_FragmentsByType) {
+        std::string typeName;
+        switch (group.first) {
+            case FragmentType::CHTL_FRAGMENT: typeName = "CHTL"; break;
+            case FragmentType::CHTL_JS_FRAGMENT: typeName = "CHTL JS"; break;
+            case FragmentType::CSS_FRAGMENT: typeName = "CSS"; break;
+            case FragmentType::JS_FRAGMENT: typeName = "JavaScript"; break;
+        }
+        stats << typeName << " Fragments: " << group.second.size() << "\n";
+    }
+    
+    stats << "\nCompilation Results: " << m_CompilationResults.size() << "\n";
+    stats << "HTML Length: " << m_MergedResult.HTMLContent.length() << " chars\n";
+    stats << "CSS Length: " << m_MergedResult.CSSContent.length() << " chars\n";
+    stats << "JavaScript Length: " << m_MergedResult.JavaScriptContent.length() << " chars\n";
+    stats << "Errors: " << m_MergedResult.Errors.size() << "\n";
+    stats << "Warnings: " << m_MergedResult.Warnings.size() << "\n";
+    
+    return stats.str();
+}
+
+void CompilerDispatcher::SetCompilationError(const std::string& message) {
+    m_HasError = true;
+    m_ErrorMessage = message;
+    m_MergedResult.Errors.push_back(message);
+}
+
+void CompilerDispatcher::AddCompilationWarning(const std::string& message) {
+    m_MergedResult.Warnings.push_back(message);
+}
+
+std::string CompilerDispatcher::ProcessUTF8Encoding(const std::string& content) {
+    // 确保UTF-8编码正确处理中文字符
+    return content; // 简化实现，实际需要完整的UTF-8处理
+}
+
+// 辅助方法（需要完善）
+bool CompilerDispatcher::IsHTMLElement(const std::string& name) {
+    // 检查是否为有效的HTML元素名
+    static const std::vector<std::string> htmlElements = {
+        "html", "head", "body", "div", "span", "p", "a", "img", "ul", "li", "ol",
+        "h1", "h2", "h3", "h4", "h5", "h6", "button", "input", "form", "table",
+        "tr", "td", "th", "thead", "tbody", "nav", "header", "footer", "section",
+        "article", "aside", "main", "figure", "figcaption", "canvas", "video", "audio"
+    };
+    
+    return std::find(htmlElements.begin(), htmlElements.end(), name) != htmlElements.end();
+}
+
+bool CompilerDispatcher::ContainsCHTLJSSyntax(const std::string& block) {
+    // 检查是否包含CHTL JS语法特征
+    std::regex chtljsPatterns[] = {
+        std::regex(R"(\{\{[^}]+\}\})"),      // 增强选择器
+        std::regex(R"(->(?:listen|delegate|textContent))"), // ->操作符
+        std::regex(R"(&->\s*\w+)"),         // 事件绑定操作符
+        std::regex(R"(vir\s+\w+\s*=)"),     // 虚对象
+        std::regex(R"(module\s*\{)"),       // 模块导入
+        std::regex(R"(listen\s*\{)"),       // 监听器
+        std::regex(R"(delegate\s*\{)"),     // 事件委托
+        std::regex(R"(animate\s*\{)")       // 动画
+    };
+    
+    for (const auto& pattern : chtljsPatterns) {
+        if (std::regex_search(block, pattern)) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+std::string CompilerDispatcher::ProcessCHTLJSScriptBlock(const std::string& block) {
+    // 临时实现，将CHTL JS语法转换为标准JavaScript
+    std::string result = block;
+    
+    // 转换增强选择器
+    result = ProcessEnhancedSelectors(result);
+    
+    // 转换->操作符为.
+    result = std::regex_replace(result, std::regex(R"(->)"), ".");
+    
+    return result;
+}
+
+std::string CompilerDispatcher::ResolveContextReference() {
+    // 从CHTL编译器获取上下文引用解析
+    auto contextManager = m_CHTLCompiler->GetContextManager();
+    auto resolution = contextManager->ResolveContextReference();
+    
+    if (resolution.IsResolved) {
+        if (resolution.ReferenceType == "class") {
+            return "." + resolution.ResolvedValue;
+        }
+        else if (resolution.ReferenceType == "id") {
+            return "#" + resolution.ResolvedValue;
+        }
+    }
+    
+    return ".default"; // 默认类名
+}
+
+bool CompilerDispatcher::ValidateHTMLStructure(const std::string& html) {
+    // 简化的HTML结构验证
+    return !html.empty();
+}
+
+bool CompilerDispatcher::ValidateCSSContent(const std::string& css) {
+    // 简化的CSS内容验证
+    return true;
+}
+
+bool CompilerDispatcher::ValidateJavaScriptContent(const std::string& js) {
+    // 简化的JavaScript内容验证
+    return true;
+}
+
+bool CompilerDispatcher::ValidateSelectorReferences() {
+    // 验证选择器引用一致性
+    return true;
+}
+
+
+
+} // namespace CHTL
