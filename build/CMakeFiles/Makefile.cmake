@@ -83,6 +83,8 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/chtl_final_system_demo.dir/DependInfo.cmake"
   "CMakeFiles/chtl_complete_flow_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_project_audit.dir/DependInfo.cmake"
+  "CMakeFiles/chtl_performance_benchmark.dir/DependInfo.cmake"
+  "CMakeFiles/chtl_final_100_percent.dir/DependInfo.cmake"
   "CMakeFiles/run_tests.dir/DependInfo.cmake"
   "CMakeFiles/compile_example.dir/DependInfo.cmake"
   )

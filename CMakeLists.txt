@@ -248,6 +248,13 @@ target_link_libraries(chtl_complete_flow_test CHTLDispatcher CHTLCodeMerger CHTL
 # 项目完成度审计可执行文件
 add_executable(chtl_project_audit src/Test/ProjectCompletionAudit.cpp)
 
+# 性能基准测试可执行文件
+add_executable(chtl_performance_benchmark src/Test/PerformanceBenchmark.cpp)
+target_link_libraries(chtl_performance_benchmark CHTLDispatcher CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler antlr4-runtime)
+
+# 最终100%完成报告可执行文件
+add_executable(chtl_final_100_percent src/Test/Final100PercentReport.cpp)
+
 # 设置调试信息
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_definitions(CHTL_DEBUG_MODE)

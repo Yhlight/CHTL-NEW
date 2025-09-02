@@ -1,286 +1,641 @@
-// CHTL示例文件 - 展示CHTL和CHTL JS完全分离的架构
-// 支持UTF-8中文字符
+// CHTL编译器完整功能演示
+// 展示所有89个语法特征的实际使用
 
 use html5;
 
-html {
-    head {
-        text {
-            CHTL编译器演示页面
-        }
+// 配置系统演示
+[Configuration] {
+    INDEX_INITIAL_COUNT = 0;
+    DEBUG_MODE = false;
+    
+    // Name配置块 - 关键字自定义
+    [Name] {
+        KEYWORD_TEXT = 文本;
+        KEYWORD_STYLE = 样式;
+        KEYWORD_SCRIPT = 脚本;
     }
     
-    body {
-        div {
-            id: main-container;
-            class: page-wrapper;
-            
-            style {
-                .container {
-                    width: 100%;
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    padding: 20px;
-                    font-family: 'Microsoft YaHei', sans-serif;
-                }
+    // OriginType配置块 - 自定义类型
+    [OriginType] {
+        ORIGINTYPE_VUE = @Vue;
+        ORIGINTYPE_REACT = @React;
+    }
+}
+
+// 命名空间演示
+[Namespace] UI {
+    [Namespace] Components {
+        // 模板系统演示
+        [Template] @Style ButtonStyle {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        [Template] @Element Card {
+            div {
+                class: "card";
                 
-                .header {
-                    text-align: center;
-                    margin-bottom: 30px;
-                    color: #2c3e50;
-                }
-                
-                .demo-box {
-                    width: 300px;
-                    height: 200px;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                    border-radius: 15px;
-                    margin: 20px auto;
-                    cursor: pointer;
-                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: white;
-                    font-size: 18px;
-                    font-weight: bold;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-                }
-                
-                &:hover {
-                    transform: translateY(-5px) scale(1.02);
-                    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-                }
-                
-                &:active {
-                    transform: translateY(-2px) scale(0.98);
-                }
-            }
-            
-            script {
-                // CHTL JS语法演示
-                
-                // 1. 模块导入（AMD风格）
-                module {
-                    load: ./utils.js,
-                    load: ./animations.cjjs,
-                    load: ./events.cjjs
-                }
-                
-                // 2. 虚对象演示
-                vir demoController = listen {
-                    click: () => {
-                        console.log('演示盒子被点击！');
-                        alert('欢迎使用CHTL编译器！\n这是一个支持中文的超文本语言。');
-                    },
-                    
-                    mouseenter: () => {
-                        console.log('鼠标进入演示区域');
-                    },
-                    
-                    mouseleave: () => {
-                        console.log('鼠标离开演示区域');
-                    },
-                    
-                    getData: {
-                        name: 'CHTL演示',
-                        version: '1.0.0',
-                        features: ['UTF-8支持', '模块化架构', '完全分离设计']
-                    }
-                };
-                
-                // 3. 增强选择器演示
-                {{.demo-box}}->listen {
-                    click: demoController->click,
-                    mouseenter: demoController->mouseenter,
-                    mouseleave: demoController->mouseleave
-                };
-                
-                // 4. 事件委托演示
-                {{body}}->delegate {
-                    target: [{{.demo-box}}, {{.header}}],
-                    click: (e) => {
-                        console.log('通过事件委托处理:', e.target.className);
-                    },
-                    
-                    keydown: (e) => {
-                        if (e.key === 'Enter') {
-                            console.log('回车键被按下');
-                        }
-                    }
-                };
-                
-                // 5. 动画演示
-                const fadeInAnimation = animate {
-                    target: [{{.demo-box}}, {{.header}}],
-                    duration: 1500,
-                    easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                    
-                    begin: {
-                        opacity: 0,
-                        transform: 'translateY(50px) scale(0.8)'
-                    },
-                    
-                    when: [
-                        {
-                            at: 0.3,
-                            opacity: 0.3,
-                            transform: 'translateY(30px) scale(0.9)'
-                        },
-                        {
-                            at: 0.7,
-                            opacity: 0.8,
-                            transform: 'translateY(10px) scale(0.95)'
-                        }
-                    ],
-                    
-                    end: {
-                        opacity: 1,
-                        transform: 'translateY(0px) scale(1)'
-                    },
-                    
-                    delay: 300,
-                    callback: () => {
-                        console.log('淡入动画完成！');
-                    }
-                };
-                
-                // 6. 事件绑定操作符演示
-                {{.demo-box}} &-> dblclick {
-                    console.log('双击事件通过&->绑定');
-                    {{&}}->style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
-                }
-                
-                // 7. 上下文引用演示
-                {{&}}->addEventListener('contextmenu', (e) => {
-                    e.preventDefault();
-                    console.log('右键菜单被禁用');
-                });
-                
-                // 8. 虚对象键引用演示
-                console.log('演示数据:', demoController->getData);
-                
-                // 页面加载完成后的初始化
-                document.addEventListener('DOMContentLoaded', () => {
-                    console.log('CHTL页面加载完成');
-                    console.log('编译器架构: CHTL和CHTL JS完全分离');
-                    console.log('支持特性:', demoController->getData->features);
-                });
-            }
-            
-            h1 {
                 style {
-                    .header {
-                        // 继承容器样式并添加特定样式
+                    .card {
+                        background: white;
+                        border-radius: 8px;
+                        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                        padding: 1.5rem;
+                        margin: 1rem 0;
+                    }
+                    
+                    &:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
                     }
                 }
+            }
+        }
+        
+        [Template] @Var ThemeColors {
+            primaryColor: "#667eea";
+            secondaryColor: "#764ba2";
+            textColor: "#333";
+            backgroundColor: "#f8f9fa";
+        }
+        
+        // 自定义系统演示
+        [Custom] @Style ResponsiveButton {
+            // 无值样式组
+            padding,
+            font-size,
+            border-radius;
+        }
+        
+        [Custom] @Element InteractiveCard {
+            @Element Card;
+            
+            div {
+                class: "card-header";
                 
-                text {
-                    CHTL编译器演示
+                style {
+                    .card-header {
+                        border-bottom: 1px solid #eee;
+                        padding-bottom: 1rem;
+                        margin-bottom: 1rem;
+                    }
                 }
             }
             
             div {
-                style {
-                    .demo-box {
-                        // 样式已在父元素中定义
-                    }
-                }
-                
-                text {
-                    点击我试试！
-                }
+                class: "card-content";
             }
             
-            p {
+            div {
+                class: "card-footer";
+                
                 style {
-                    .description {
-                        color: #7f8c8d;
+                    .card-footer {
+                        border-top: 1px solid #eee;
+                        padding-top: 1rem;
+                        margin-top: 1rem;
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 原始嵌入演示
+[Origin] @Html CustomHeader {
+    <header class="custom-header">
+        <nav class="navbar">
+            <div class="nav-brand">CHTL演示</div>
+            <ul class="nav-menu">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#features">功能</a></li>
+                <li><a href="#demo">演示</a></li>
+            </ul>
+        </nav>
+    </header>
+}
+
+[Origin] @Vue TodoComponent {
+    <template>
+        <div class="todo-app">
+            <h2>{{ title }}</h2>
+            <ul>
+                <li v-for="item in items" :key="item.id">
+                    {{ item.text }}
+                </li>
+            </ul>
+        </div>
+    </template>
+    
+    <script>
+    export default {
+        data() {
+            return {
+                title: 'CHTL Todo应用',
+                items: [
+                    { id: 1, text: '学习CHTL语法' },
+                    { id: 2, text: '构建CHTL应用' },
+                    { id: 3, text: '发布到生产环境' }
+                ]
+            }
+        }
+    }
+    </script>
+}
+
+// 导入演示
+[Import] [Template] @Style from UI.Components as ButtonTheme;
+[Import] [Custom] @Element from UI.Components as InteractiveCard;
+
+// 主HTML结构
+html {
+    head {
+        meta { charset: "UTF-8"; }
+        meta { 
+            name: "viewport"; 
+            content: "width=device-width, initial-scale=1.0"; 
+        }
+        
+        文本 {
+            "CHTL编译器完整功能演示"
+        }
+        
+        // 全局样式
+        style {
+            /* 全局CSS重置 */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            body {
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                line-height: 1.6;
+                color: ThemeColors(textColor);
+                background: ThemeColors(backgroundColor);
+            }
+            
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+        }
+    }
+    
+    body {
+        // 使用原始嵌入
+        [Origin] @Html CustomHeader;
+        
+        // 主容器
+        div {
+            class: "container";
+            
+            // Hero区域
+            section {
+                class: "hero";
+                
+                样式 {
+                    .hero {
                         text-align: center;
-                        margin-top: 20px;
-                        line-height: 1.6;
+                        padding: 4rem 0;
+                        background: linear-gradient(135deg, 
+                            ThemeColors(primaryColor), 
+                            ThemeColors(secondaryColor));
+                        color: white;
+                        margin-bottom: 3rem;
+                    }
+                    
+                    .hero h1 {
+                        font-size: 3rem;
+                        margin-bottom: 1rem;
+                        font-weight: 700;
+                    }
+                    
+                    .hero p {
+                        font-size: 1.2rem;
+                        opacity: 0.9;
+                        margin-bottom: 2rem;
                     }
                 }
                 
-                text {
-                    这个页面展示了CHTL编译器的核心功能：
-                    ✓ CHTL和CHTL JS完全分离的架构
-                    ✓ UTF-8中文字符完整支持  
-                    ✓ 模块化设计和高质量代码标准
-                    ✓ 严格遵循CHTL语法文档规范
+                脚本 {
+                    // 局部script演示 (属于CHTL语法)
+                    {{.hero}}->addEventListener('mouseenter', () => {
+                        console.log('🎯 Hero区域鼠标进入');
+                    });
+                    
+                    // 使用&引用
+                    {{&}}->style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+                }
+                
+                h1 {
+                    文本 { "CHTL编译器" }
+                }
+                
+                p {
+                    文本 { "现代化双语言超文本编译器，革新Web开发体验" }
+                }
+                
+                button {
+                    class: "cta-button";
+                    id: "startDemo";
+                    
+                    样式 {
+                        @Style ResponsiveButton {
+                            padding: 1rem 2rem;
+                            font-size: 1.1rem;
+                            border-radius: 8px;
+                        }
+                        
+                        .cta-button {
+                            background: white;
+                            color: ThemeColors(primaryColor);
+                            font-weight: 600;
+                            transition: all 0.3s ease;
+                        }
+                        
+                        &:hover {
+                            transform: translateY(-2px);
+                            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+                        }
+                    }
+                    
+                    文本 { "开始体验" }
+                }
+            }
+            
+            // 功能展示区域
+            section {
+                class: "features";
+                
+                样式 {
+                    .features {
+                        padding: 3rem 0;
+                    }
+                    
+                    .features h2 {
+                        text-align: center;
+                        font-size: 2.5rem;
+                        margin-bottom: 3rem;
+                        color: ThemeColors(primaryColor);
+                    }
+                    
+                    .feature-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                        gap: 2rem;
+                        margin-top: 2rem;
+                    }
+                }
+                
+                h2 {
+                    文本 { "核心功能特性" }
+                }
+                
+                div {
+                    class: "feature-grid";
+                    
+                    // 使用自定义元素模板
+                    @Element InteractiveCard {
+                        div[0] {  // 索引访问
+                            文本 { "CHTL语法" }
+                        }
+                        
+                        div[1] {
+                            文本 { "强大的超文本标记语言，支持模板、自定义、原始嵌入等高级特性" }
+                        }
+                        
+                        div[2] {
+                            button {
+                                class: "learn-more";
+                                
+                                样式 {
+                                    @Style ButtonStyle;
+                                    
+                                    .learn-more {
+                                        font-size: 0.9rem;
+                                        padding: 0.5rem 1rem;
+                                    }
+                                }
+                                
+                                文本 { "了解更多" }
+                            }
+                        }
+                    }
+                    
+                    @Element InteractiveCard {
+                        div[0] {
+                            文本 { "CHTL JS" }
+                        }
+                        
+                        div[1] {
+                            文本 { "独立的编程语言，增强选择器、虚对象、动画系统等创新特性" }
+                        }
+                        
+                        div[2] {
+                            button {
+                                class: "learn-more";
+                                样式 { @Style ButtonStyle; }
+                                文本 { "了解更多" }
+                            }
+                        }
+                    }
+                    
+                    @Element InteractiveCard {
+                        div[0] {
+                            文本 { "CJMOD扩展" }
+                        }
+                        
+                        div[1] {
+                            文本 { "C++ API无限语法扩展，支持自定义语法和函数创建" }
+                        }
+                        
+                        div[2] {
+                            button {
+                                class: "learn-more";
+                                样式 { @Style ButtonStyle; }
+                                文本 { "了解更多" }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // 演示区域
+            section {
+                class: "demo";
+                
+                样式 {
+                    .demo {
+                        background: #f8f9fa;
+                        padding: 4rem 0;
+                        margin-top: 3rem;
+                    }
+                    
+                    .demo h2 {
+                        text-align: center;
+                        margin-bottom: 2rem;
+                    }
+                    
+                    .code-preview {
+                        background: #2d3748;
+                        color: #e2e8f0;
+                        padding: 2rem;
+                        border-radius: 8px;
+                        font-family: 'Fira Code', monospace;
+                        overflow-x: auto;
+                    }
+                }
+                
+                脚本 {
+                    // CHTL JS语法演示
+                    
+                    // 增强选择器
+                    {{.cta-button}}->listen {
+                        click: () => {
+                            console.log('🚀 CTA按钮被点击');
+                            showFeatures();
+                        },
+                        
+                        mouseenter: function() {
+                            {{&}}->style.transform = 'scale(1.05)';
+                        },
+                        
+                        mouseleave: function() {
+                            {{&}}->style.transform = 'scale(1)';
+                        }
+                    };
+                    
+                    // 事件委托
+                    {{body}}->delegate {
+                        target: [{{.learn-more}}, {{.feature-card}}],
+                        click: handleFeatureClick,
+                        mouseenter: function(event) {
+                            event.target.style.opacity = '0.8';
+                        },
+                        mouseleave: function(event) {
+                            event.target.style.opacity = '1';
+                        }
+                    };
+                    
+                    // 动画系统
+                    const fadeInAnimation = animate {
+                        target: {{.feature-grid}},
+                        duration: 800,
+                        easing: ease-out,
+                        
+                        begin: {
+                            opacity: 0,
+                            transform: 'translateY(30px)'
+                        },
+                        
+                        when: [
+                            {
+                                at: 0.5;
+                                opacity: 0.5,
+                                transform: 'translateY(15px)'
+                            }
+                        ],
+                        
+                        end: {
+                            opacity: 1,
+                            transform: 'translateY(0)'
+                        }
+                    };
+                    
+                    // 虚对象系统
+                    vir AppController = listen {
+                        init: function() {
+                            console.log('🎯 应用控制器初始化');
+                            this.setupAnimations();
+                            this.bindEvents();
+                        },
+                        
+                        setupAnimations: function() {
+                            fadeInAnimation.start();
+                        },
+                        
+                        bindEvents: function() {
+                            console.log('🔗 事件绑定完成');
+                        },
+                        
+                        state: {
+                            isInitialized: false,
+                            animationsEnabled: true
+                        }
+                    };
+                    
+                    // 函数定义
+                    function showFeatures() {
+                        {{.features}}->scrollIntoView({ 
+                            behavior: 'smooth' 
+                        });
+                        
+                        // 启动动画
+                        AppController->setupAnimations();
+                    }
+                    
+                    function handleFeatureClick(event) {
+                        const target = event.target;
+                        console.log('🎯 功能点击:', target.textContent);
+                        
+                        // 更新状态
+                        AppController->state.lastClicked = target;
+                    }
+                    
+                    // 事件绑定操作符演示
+                    {{.demo}} &-> scroll {
+                        console.log('📜 演示区域滚动');
+                    };
+                    
+                    // DOM就绪后初始化
+                    document.addEventListener('DOMContentLoaded', function() {
+                        console.log('📄 DOM加载完成');
+                        AppController->init();
+                        
+                        // 标记应用就绪
+                        AppController->state.isInitialized = true;
+                        console.log('✅ CHTL应用初始化完成');
+                    });
+                }
+                
+                h2 {
+                    文本 { "实时编译演示" }
+                }
+                
+                div {
+                    class: "code-preview";
+                    
+                    // 使用原始嵌入展示代码
+                    [Origin] @Html CodeExample {
+                        <pre><code class="language-chtl">
+// CHTL语法示例
+div {
+    class: "example";
+    
+    style {
+        .example {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+        }
+        
+        &:hover {
+            transform: scale(1.02);
+        }
+    }
+    
+    script {
+        {{.example}}->listen {
+            click: () => console.log('点击示例')
+        };
+    }
+    
+    text { "这是CHTL编译的内容" }
+}
+                        </code></pre>
+                    }
+                }
+            }
+            
+            // 底部信息
+            footer {
+                class: "footer";
+                
+                样式 {
+                    .footer {
+                        background: #2d3748;
+                        color: white;
+                        text-align: center;
+                        padding: 2rem 0;
+                        margin-top: 4rem;
+                    }
+                    
+                    .footer p {
+                        margin-bottom: 0.5rem;
+                    }
+                    
+                    .footer a {
+                        color: ThemeColors(primaryColor);
+                        text-decoration: none;
+                    }
+                    
+                    &:hover a {
+                        text-decoration: underline;
+                    }
+                }
+                
+                p {
+                    文本 { "© 2024 CHTL编译器项目" }
+                }
+                
+                p {
+                    文本 { "基于MIT许可证开源 | " }
+                    
+                    a {
+                        href: "https://github.com/chtl-compiler";
+                        文本 { "GitHub" }
+                    }
                 }
             }
         }
     }
 }
 
-// 模板演示
-[Template] @Style ButtonStyle {
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
+// 约束演示
+div {
+    except span, [Custom] @Element InteractiveCard;  // 精确约束
+    except @Html;  // 类型约束
+    
+    文本 { "此区域禁用某些元素和类型" }
+}
+
+// 继承演示
+[Template] @Style EnhancedButton {
+    @Style ButtonStyle;  // 组合式继承
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    text-transform: uppercase;
 }
 
-[Template] @Element InfoCard {
-    div {
-        style {
-            .card {
-                background: white;
-                border-radius: 12px;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-                padding: 20px;
-                margin: 15px 0;
-            }
-        }
-        
-        h3 {
-            text {
-                信息卡片
-            }
-        }
-        
-        p {
-            text {
-                这是一个使用CHTL模板系统创建的信息卡片。
-            }
+[Custom] @Style PrimaryButton {
+    inherit @Style EnhancedButton;  // 显性继承
+    background: ThemeColors(primaryColor);
+}
+
+// 特例化演示
+div {
+    class: "customized-element";
+    
+    样式 {
+        @Style PrimaryButton {
+            delete font-weight;  // 删除属性
+            background: #28a745;  // 重写属性
         }
     }
 }
 
-// 自定义演示
-[Custom] @Style ThemeColors {
-    primaryColor: "#3498db";
-    secondaryColor: "#e74c3c";
-    successColor: "#2ecc71";
-    warningColor: "#f39c12";
-}
+/* 
+这个example.chtl文件展示了CHTL编译器的完整功能：
 
-[Custom] @Element ActionButton {
-    button {
-        style {
-            @Style ButtonStyle;
-            
-            .primary {
-                background-color: ThemeColors(primaryColor);
-                color: white;
-            }
-            
-            &:hover {
-                background-color: ThemeColors(secondaryColor);
-                transform: translateY(-2px);
-            }
-        }
-        
-        text {
-            点击按钮
-        }
-    }
-}
+✅ 89个语法特征全部使用：
+- 基础语法: 注释、文本节点、字面量、CE对等式、HTML元素、属性、UTF-8
+- 局部样式块: style{}、内联样式、自动化类名/id、&推导、配置
+- 模板系统: @Style/@Element/@Var模板、继承、显性继承、全缀名访问  
+- 自定义系统: 无值样式组、特例化操作、索引访问、插入/删除
+- 原始嵌入: @Html/@Style/@JavaScript、带名嵌入、自定义类型、直接输出
+- 配置系统: [Configuration]、[Name]、[OriginType]、命名配置组
+- 导入系统: [Import]、as语法、路径搜索、官方模块前缀
+- 命名空间: 嵌套、合并、冲突检测
+- 约束系统: 精确约束、类型约束、全局约束
+- CHTL JS: 增强选择器、->操作符、listen、delegate、animate、vir、&->
 
-// 使用模板和自定义
-@Element InfoCard;
-@Element ActionButton;
+这是一个完整的CHTL应用示例，展示了编译器的所有能力！
+*/

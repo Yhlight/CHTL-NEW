@@ -41,6 +41,9 @@ bool CHTLLexer::ScanNextToken() {
     size_t tokenStart = m_CurrentPosition;
     
     CHTLToken token;
+    token.Line = 1; // 简化实现
+    token.Column = 1;
+    token.Position = tokenStart;
     
     // 根据字符类型扫描不同的令牌
     if (ch == '[') {
@@ -108,9 +111,16 @@ CHTLToken CHTLLexer::ScanIdentifierOrKeyword() {
     size_t start = m_CurrentPosition;
     std::string value;
     
-    // 读取标识符
-    while (!IsAtEnd() && (std::isalnum(PeekChar()) || PeekChar() == '_' || PeekChar() == '-')) {
-        value += GetNextChar();
+    // 读取标识符 (支持UTF-8字符)
+    while (!IsAtEnd()) {
+        char ch = PeekChar();
+        if (std::isalnum(ch) || ch == '_' || ch == '-' || 
+            (ch & 0x80)) { // UTF-8多字节字符
+            value += GetNextChar();
+        }
+        else {
+            break;
+        }
     }
     
     // 检查复合关键字（如"at top", "at bottom"）
@@ -134,8 +144,38 @@ CHTLToken CHTLLexer::ScanIdentifierOrKeyword() {
         }
     }
     
-    CHTLTokenType type = m_TokenManager->GetTokenType(value);
-    return CreateToken(type, value, value.length());
+    // 检查CHTL特殊关键字
+    CHTLTokenType type = CHTLTokenType::IDENTIFIER;
+    
+    // 优先检查CHTL关键字
+    if (value == "text") type = CHTLTokenType::TEXT;
+    else if (value == "style") type = CHTLTokenType::STYLE;
+    else if (value == "script") type = CHTLTokenType::SCRIPT;
+    else if (value == "html") type = CHTLTokenType::IDENTIFIER; // HTML元素作为标识符
+    else if (value == "inherit") type = CHTLTokenType::INHERIT;
+    else if (value == "delete") type = CHTLTokenType::DELETE;
+    else if (value == "insert") type = CHTLTokenType::INSERT;
+    else if (value == "except") type = CHTLTokenType::EXCEPT;
+    else if (value == "use") type = CHTLTokenType::USE;
+    else if (value == "from") type = CHTLTokenType::FROM;
+    else if (value == "as") type = CHTLTokenType::AS;
+    else if (value == "after") type = CHTLTokenType::AFTER;
+    else if (value == "before") type = CHTLTokenType::BEFORE;
+    else if (value == "replace") type = CHTLTokenType::REPLACE;
+    else if (value == "at top") type = CHTLTokenType::AT_TOP;
+    else if (value == "at bottom") type = CHTLTokenType::AT_BOTTOM;
+    else if (value == "html5") type = CHTLTokenType::HTML5;
+    else {
+        // 使用TokenManager进行更详细的类型判断
+        type = m_TokenManager->GetTokenType(value);
+    }
+    
+    CHTLToken token = CreateToken(type, value, value.length());
+    token.Line = 1; // 简化实现
+    token.Column = 1;
+    token.Position = start;
+    
+    return token;
 }
 
 CHTLToken CHTLLexer::ScanStringLiteral(char quote) {

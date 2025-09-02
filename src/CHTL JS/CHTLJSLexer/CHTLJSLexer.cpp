@@ -41,6 +41,9 @@ bool CHTLJSLexer::ScanNextCHTLJSToken() {
     size_t tokenStart = m_CurrentPosition;
     
     CHTLJSToken token;
+    token.Line = 1; // 简化实现
+    token.Column = 1;
+    token.Position = tokenStart;
     
     // 根据字符类型扫描不同的CHTL JS令牌
     if (ch == '{' && PeekChar(2) == '{') {

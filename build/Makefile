@@ -578,6 +578,32 @@ chtl_project_audit/fast:
 .PHONY : chtl_project_audit/fast
 
 #=============================================================================
+# Target rules for targets named chtl_performance_benchmark
+
+# Build rule for target.
+chtl_performance_benchmark: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_performance_benchmark
+.PHONY : chtl_performance_benchmark
+
+# fast build rule for target.
+chtl_performance_benchmark/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_performance_benchmark.dir/build.make CMakeFiles/chtl_performance_benchmark.dir/build
+.PHONY : chtl_performance_benchmark/fast
+
+#=============================================================================
+# Target rules for targets named chtl_final_100_percent
+
+# Build rule for target.
+chtl_final_100_percent: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_100_percent
+.PHONY : chtl_final_100_percent
+
+# fast build rule for target.
+chtl_final_100_percent/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_100_percent.dir/build.make CMakeFiles/chtl_final_100_percent.dir/build
+.PHONY : chtl_final_100_percent/fast
+
+#=============================================================================
 # Target rules for targets named run_tests
 
 # Build rule for target.
@@ -1923,6 +1949,30 @@ src/Test/CustomSystemTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_custom_test.dir/build.make CMakeFiles/chtl_custom_test.dir/src/Test/CustomSystemTest.cpp.s
 .PHONY : src/Test/CustomSystemTest.cpp.s
 
+src/Test/Final100PercentReport.o: src/Test/Final100PercentReport.cpp.o
+.PHONY : src/Test/Final100PercentReport.o
+
+# target to build an object file
+src/Test/Final100PercentReport.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_100_percent.dir/build.make CMakeFiles/chtl_final_100_percent.dir/src/Test/Final100PercentReport.cpp.o
+.PHONY : src/Test/Final100PercentReport.cpp.o
+
+src/Test/Final100PercentReport.i: src/Test/Final100PercentReport.cpp.i
+.PHONY : src/Test/Final100PercentReport.i
+
+# target to preprocess a source file
+src/Test/Final100PercentReport.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_100_percent.dir/build.make CMakeFiles/chtl_final_100_percent.dir/src/Test/Final100PercentReport.cpp.i
+.PHONY : src/Test/Final100PercentReport.cpp.i
+
+src/Test/Final100PercentReport.s: src/Test/Final100PercentReport.cpp.s
+.PHONY : src/Test/Final100PercentReport.s
+
+# target to generate assembly for a file
+src/Test/Final100PercentReport.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_100_percent.dir/build.make CMakeFiles/chtl_final_100_percent.dir/src/Test/Final100PercentReport.cpp.s
+.PHONY : src/Test/Final100PercentReport.cpp.s
+
 src/Test/FinalAchievementReport.o: src/Test/FinalAchievementReport.cpp.o
 .PHONY : src/Test/FinalAchievementReport.o
 
@@ -2115,6 +2165,30 @@ src/Test/ParserGeneratorTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_parser_test.dir/build.make CMakeFiles/chtl_parser_test.dir/src/Test/ParserGeneratorTest.cpp.s
 .PHONY : src/Test/ParserGeneratorTest.cpp.s
 
+src/Test/PerformanceBenchmark.o: src/Test/PerformanceBenchmark.cpp.o
+.PHONY : src/Test/PerformanceBenchmark.o
+
+# target to build an object file
+src/Test/PerformanceBenchmark.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_performance_benchmark.dir/build.make CMakeFiles/chtl_performance_benchmark.dir/src/Test/PerformanceBenchmark.cpp.o
+.PHONY : src/Test/PerformanceBenchmark.cpp.o
+
+src/Test/PerformanceBenchmark.i: src/Test/PerformanceBenchmark.cpp.i
+.PHONY : src/Test/PerformanceBenchmark.i
+
+# target to preprocess a source file
+src/Test/PerformanceBenchmark.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_performance_benchmark.dir/build.make CMakeFiles/chtl_performance_benchmark.dir/src/Test/PerformanceBenchmark.cpp.i
+.PHONY : src/Test/PerformanceBenchmark.cpp.i
+
+src/Test/PerformanceBenchmark.s: src/Test/PerformanceBenchmark.cpp.s
+.PHONY : src/Test/PerformanceBenchmark.s
+
+# target to generate assembly for a file
+src/Test/PerformanceBenchmark.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_performance_benchmark.dir/build.make CMakeFiles/chtl_performance_benchmark.dir/src/Test/PerformanceBenchmark.cpp.s
+.PHONY : src/Test/PerformanceBenchmark.cpp.s
+
 src/Test/ProjectCompletionAudit.o: src/Test/ProjectCompletionAudit.cpp.o
 .PHONY : src/Test/ProjectCompletionAudit.o
 
@@ -2245,6 +2319,7 @@ help:
 	@echo "... chtl_complete_flow_test"
 	@echo "... chtl_constraint_test"
 	@echo "... chtl_custom_test"
+	@echo "... chtl_final_100_percent"
 	@echo "... chtl_final_achievement"
 	@echo "... chtl_final_summary"
 	@echo "... chtl_final_system_demo"
@@ -2252,6 +2327,7 @@ help:
 	@echo "... chtl_lexer_test"
 	@echo "... chtl_origin_config_test"
 	@echo "... chtl_parser_test"
+	@echo "... chtl_performance_benchmark"
 	@echo "... chtl_project_audit"
 	@echo "... chtl_simple_test"
 	@echo "... chtl_status_report"
@@ -2422,6 +2498,9 @@ help:
 	@echo "... src/Test/CustomSystemTest.o"
 	@echo "... src/Test/CustomSystemTest.i"
 	@echo "... src/Test/CustomSystemTest.s"
+	@echo "... src/Test/Final100PercentReport.o"
+	@echo "... src/Test/Final100PercentReport.i"
+	@echo "... src/Test/Final100PercentReport.s"
 	@echo "... src/Test/FinalAchievementReport.o"
 	@echo "... src/Test/FinalAchievementReport.i"
 	@echo "... src/Test/FinalAchievementReport.s"
@@ -2446,6 +2525,9 @@ help:
 	@echo "... src/Test/ParserGeneratorTest.o"
 	@echo "... src/Test/ParserGeneratorTest.i"
 	@echo "... src/Test/ParserGeneratorTest.s"
+	@echo "... src/Test/PerformanceBenchmark.o"
+	@echo "... src/Test/PerformanceBenchmark.i"
+	@echo "... src/Test/PerformanceBenchmark.s"
 	@echo "... src/Test/ProjectCompletionAudit.o"
 	@echo "... src/Test/ProjectCompletionAudit.i"
 	@echo "... src/Test/ProjectCompletionAudit.s"
