@@ -131,15 +131,26 @@ std::shared_ptr<ASTNode> Parser::ParseUseStatement() {
         return useNode;
     }
     
-    // use @Config 配置名;
-    if (Check(TokenType::AT_CONFIG)) {
+    // use @Config 配置名; 或 use [Configuration] @Config 配置名;
+    if (Check(TokenType::AT_CONFIG) || Check(TokenType::CONFIGURATION)) {
+        bool isFullName = Check(TokenType::CONFIGURATION);
+        if (isFullName) {
+            ConsumeToken(); // 消费 [Configuration]
+            Expect(TokenType::AT_CONFIG, "期望 '@Config'");
+        }
         ConsumeToken();
         Expect(TokenType::IDENTIFIER, "期望标识符");
         std::string configName = CurrentToken().value;
         ConsumeToken();
         Expect(TokenType::SEMICOLON, "期望 ';'");
         
-        // TODO: 设置活动配置
+        // 从全局映射表获取配置组
+        auto config = context->GetGlobalMap()->GetConfiguration(configName);
+        if (config) {
+            ApplyConfiguration(config);
+        } else {
+            ReportError("未找到配置组: " + configName);
+        }
         
         auto useNode = std::make_shared<UseNode>(configName);
         return useNode;
@@ -522,9 +533,84 @@ std::shared_ptr<ASTNode> Parser::ParseNamespace() {
 }
 
 std::shared_ptr<ASTNode> Parser::ParseConfiguration() {
-    // TODO: 实现Configuration解析
-    ConsumeToken(); // 暂时跳过
-    return nullptr;
+    Expect(TokenType::CONFIGURATION, "期望 '[Configuration]'");
+    
+    std::string configName;
+    
+    // 检查是否有 @Config 和名称
+    if (Check(TokenType::AT_CONFIG)) {
+        ConsumeToken(); // 消费 @Config
+        if (Check(TokenType::IDENTIFIER)) {
+            configName = CurrentToken().value;
+            ConsumeToken();
+        }
+    }
+    
+    auto configNode = std::make_shared<ConfigurationNode>(configName);
+    
+    Expect(TokenType::LEFT_BRACE, "期望 '{'");
+    
+    // 解析配置内容
+    while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
+        if (Check(TokenType::LEFT_BRACKET)) {
+            // 子配置组，如 [Name] 或 [OriginType]
+            ConsumeToken(); // 消费 [
+            if (!Check(TokenType::IDENTIFIER)) {
+                ReportError("期望子配置组名称");
+                RecoverFromError();
+                continue;
+            }
+            std::string subGroupName = CurrentToken().value;
+            ConsumeToken();
+            Expect(TokenType::RIGHT_BRACKET, "期望 ']'");
+            
+            // 解析子配置组
+            auto subGroup = ParseConfigSubGroup(subGroupName);
+            if (subGroup) {
+                configNode->AddSubGroup(subGroupName, subGroup);
+            }
+        } else if (Check(TokenType::IDENTIFIER)) {
+            // 配置选项，如 DEBUG_MODE = true;
+            std::string optionName = CurrentToken().value;
+            ConsumeToken();
+            
+            Expect(TokenType::EQUALS, "期望 '='");
+            
+            std::string optionValue;
+            if (Check(TokenType::STRING_LITERAL)) {
+                optionValue = CurrentToken().value;
+                ConsumeToken();
+            } else if (Check(TokenType::IDENTIFIER)) {
+                // 支持 true/false 等标识符值
+                optionValue = CurrentToken().value;
+                ConsumeToken();
+            } else if (Check(TokenType::NUMBER)) {
+                optionValue = CurrentToken().value;
+                ConsumeToken();
+            } else {
+                ReportError("期望配置值");
+            }
+            
+            Expect(TokenType::SEMICOLON, "期望 ';'");
+            
+            configNode->AddOption(optionName, optionValue);
+        } else {
+            // 跳过未知token
+            ConsumeToken();
+        }
+    }
+    
+    Expect(TokenType::RIGHT_BRACE, "期望 '}'");
+    
+    // 如果是无名配置组，立即应用到上下文
+    if (configName.empty()) {
+        ApplyConfiguration(configNode);
+    }
+    
+    // 存储配置组到全局映射表
+    context->GetGlobalMap()->AddConfiguration(configName.empty() ? "" : configName, configNode);
+    
+    return configNode;
 }
 
 std::shared_ptr<ElementNode> Parser::ParseElement() {
@@ -971,6 +1057,115 @@ std::string Parser::ProcessVariableReferences(const std::string& value) {
     
     LOG_DEBUG("处理后的值: " + result);
     return result;
+}
+
+std::shared_ptr<ASTNode> Parser::ParseConfigSubGroup(const std::string& groupName) {
+    Expect(TokenType::LEFT_BRACE, "期望 '{'");
+    
+    auto subGroup = std::make_shared<ConfigurationNode>(groupName);
+    
+    // 解析子配置组内容
+    while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
+        if (Check(TokenType::IDENTIFIER)) {
+            std::string key = CurrentToken().value;
+            ConsumeToken();
+            
+            Expect(TokenType::EQUALS, "期望 '='");
+            
+            std::string value;
+            // 支持组选项语法，如 [@Style, @style, @CSS]
+            if (Check(TokenType::LEFT_BRACKET)) {
+                ConsumeToken(); // 消费 [
+                value = "[";
+                bool first = true;
+                while (!Check(TokenType::RIGHT_BRACKET) && !Check(TokenType::EOF_TOKEN)) {
+                    if (!first) value += ", ";
+                    first = false;
+                    
+                    if (Check(TokenType::AMPERSAND)) {
+                        value += "@";
+                        ConsumeToken();
+                    }
+                    if (Check(TokenType::IDENTIFIER)) {
+                        value += CurrentToken().value;
+                        ConsumeToken();
+                    }
+                    if (Check(TokenType::COMMA)) {
+                        ConsumeToken();
+                    }
+                }
+                value += "]";
+                Expect(TokenType::RIGHT_BRACKET, "期望 ']'");
+            } else if (Check(TokenType::AMPERSAND)) {
+                // 单个 @Type 值
+                value = "@";
+                ConsumeToken();
+                if (Check(TokenType::IDENTIFIER)) {
+                    value += CurrentToken().value;
+                    ConsumeToken();
+                }
+            } else if (Check(TokenType::STRING_LITERAL)) {
+                value = CurrentToken().value;
+                ConsumeToken();
+            } else if (Check(TokenType::IDENTIFIER)) {
+                value = CurrentToken().value;
+                ConsumeToken();
+            } else if (Check(TokenType::NUMBER)) {
+                value = CurrentToken().value;
+                ConsumeToken();
+            }
+            
+            Expect(TokenType::SEMICOLON, "期望 ';'");
+            
+            subGroup->AddOption(key, value);
+        } else {
+            ConsumeToken(); // 跳过未知token
+        }
+    }
+    
+    Expect(TokenType::RIGHT_BRACE, "期望 '}'");
+    
+    return subGroup;
+}
+
+void Parser::ApplyConfiguration(std::shared_ptr<ConfigurationNode> config) {
+    if (!config) return;
+    
+    // 应用配置选项到上下文
+    auto options = config->GetOptions();
+    
+    // 处理各种配置选项
+    auto it = options.find("DISABLE_STYLE_AUTO_ADD_CLASS");
+    if (it != options.end()) {
+        context->SetDisableStyleAutoAddClass(it->second == "true");
+    }
+    
+    it = options.find("DISABLE_STYLE_AUTO_ADD_ID");
+    if (it != options.end()) {
+        context->SetDisableStyleAutoAddId(it->second == "true");
+    }
+    
+    it = options.find("DISABLE_SCRIPT_AUTO_ADD_CLASS");
+    if (it != options.end()) {
+        context->SetDisableScriptAutoAddClass(it->second == "true");
+    }
+    
+    it = options.find("DISABLE_SCRIPT_AUTO_ADD_ID");
+    if (it != options.end()) {
+        context->SetDisableScriptAutoAddId(it->second == "true");
+    }
+    
+    it = options.find("DISABLE_DEFAULT_NAMESPACE");
+    if (it != options.end()) {
+        context->SetDisableDefaultNamespace(it->second == "true");
+    }
+    
+    it = options.find("DEBUG_MODE");
+    if (it != options.end()) {
+        // TODO: 设置调试模式
+    }
+    
+    // 配置已经通过各个选项应用到上下文了
 }
 
 } // namespace CHTL

@@ -76,6 +76,8 @@ private:
     std::shared_ptr<ASTNode> ParseImport();
     std::shared_ptr<ASTNode> ParseNamespace();
     std::shared_ptr<ASTNode> ParseConfiguration();
+    std::shared_ptr<ASTNode> ParseConfigSubGroup(const std::string& groupName);
+    void ApplyConfiguration(std::shared_ptr<ConfigurationNode> config);
     std::shared_ptr<ElementNode> ParseElement();
     std::shared_ptr<TextNode> ParseText();
     std::shared_ptr<ASTNode> ParseAttribute();

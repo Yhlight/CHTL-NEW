@@ -120,10 +120,42 @@ public:
 };
 
 class ConfigurationNode : public ASTNode {
+private:
+    std::string configName;  // 配置组名称（可选）
+    std::map<std::string, std::string> options;  // 配置选项
+    std::map<std::string, std::shared_ptr<ASTNode>> subGroups;  // 子配置组如[Name], [OriginType]
+    
 public:
-    ConfigurationNode() : ASTNode(ASTNodeType::Configuration) {}
+    ConfigurationNode(const std::string& name = "") 
+        : ASTNode(ASTNodeType::Configuration), configName(name) {}
+    
+    const std::string& GetName() const { return configName; }
+    void SetName(const std::string& name) { configName = name; }
+    
+    void AddOption(const std::string& key, const std::string& value) {
+        options[key] = value;
+    }
+    
+    std::string GetOption(const std::string& key) const {
+        auto it = options.find(key);
+        return (it != options.end()) ? it->second : "";
+    }
+    
+    const std::map<std::string, std::string>& GetOptions() const { return options; }
+    
+    void AddSubGroup(const std::string& name, std::shared_ptr<ASTNode> group) {
+        subGroups[name] = group;
+    }
+    
+    std::shared_ptr<ASTNode> GetSubGroup(const std::string& name) const {
+        auto it = subGroups.find(name);
+        return (it != subGroups.end()) ? it->second : nullptr;
+    }
+    
     void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "ConfigurationNode"; }
+    std::string ToString() const override { 
+        return "ConfigurationNode(" + (configName.empty() ? "unnamed" : configName) + ")"; 
+    }
 };
 
 class LocalStyleNode : public ASTNode {
