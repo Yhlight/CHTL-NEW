@@ -1,0 +1,14 @@
+use html5;
+
+html {
+    body {
+        div {
+            text { "测试内容" }
+        }
+        
+        // 尝试HTML类型的Origin块
+        [Origin] @Html MyHtml {
+            <p>这是原始HTML内容</p>
+        }
+    }
+}

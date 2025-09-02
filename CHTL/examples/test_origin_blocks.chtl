@@ -1,0 +1,56 @@
+// 测试[Origin]块功能
+
+use html5;
+
+html {
+    head {
+        title: "Origin块测试";
+        
+        // 测试Style类型的Origin块
+        [Origin] @Style GlobalStyles {
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+            }
+            
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+        }
+        
+        // 测试JavaScript类型的Origin块
+        [Origin] @JavaScript InitScript {
+            console.log("页面初始化");
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log("DOM加载完成");
+            });
+        }
+    }
+    
+    body {
+        div {
+            class: "container";
+            
+            h1 { text { "Origin块测试" } }
+            
+            p { text { "这个页面测试了[Origin]块的功能" } }
+        }
+        
+        // 测试HTML类型的Origin块
+        [Origin] @Html CustomFooter {
+            <footer style="background: #333; color: white; padding: 20px; text-align: center;">
+                <p>&copy; 2024 CHTL 测试</p>
+            </footer>
+        }
+        
+        // 测试自定义类型的Origin块
+        [Origin] @Custom Vue {
+            <div id="app">
+                {{ message }}
+            </div>
+        }
+    }
+}

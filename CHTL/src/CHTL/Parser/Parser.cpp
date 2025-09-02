@@ -444,7 +444,14 @@ std::shared_ptr<ASTNode> Parser::ParseOrigin() {
                 if (braceDepth == 0) break;
             }
             
-            content += CurrentToken().value + " ";
+            // 简单地收集所有内容
+            content += CurrentToken().value;
+            
+            // 添加空格（除了右花括号之前）
+            if (PeekToken().type != TokenType::RIGHT_BRACE) {
+                content += " ";
+            }
+            
             ConsumeToken();
         }
         
@@ -1046,6 +1053,13 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
             );
             ConsumeToken();
             element->AddChild(commentNode);
+        }
+        // [Origin]块
+        else if (Check(TokenType::ORIGIN)) {
+            auto originNode = ParseOrigin();
+            if (originNode) {
+                element->AddChild(originNode);
+            }
         }
         // 跳过其他类型的注释
         else if (CurrentToken().IsComment()) {
@@ -1835,8 +1849,17 @@ std::string Parser::ParseStringOrUnquotedLiteral() {
             }
             hasContent = true;
         } else if (Check(TokenType::LEFT_PAREN)) {
-            // 支持函数调用如 rgb(255, 255, 255)
-            if (hasContent) value += " ";
+            // 支持函数调用如 rgb(255, 255, 255) 或变量引用如 Colors(primary)
+            // 如果前一个token是标识符，不添加空格（变量引用的情况）
+            bool shouldAddSpace = hasContent;
+            if (hasContent && !value.empty()) {
+                // 检查最后一个字符是否是字母或数字（标识符的一部分）
+                char lastChar = value.back();
+                if (std::isalnum(lastChar) || lastChar == '_') {
+                    shouldAddSpace = false;
+                }
+            }
+            if (shouldAddSpace) value += " ";
             value += CurrentToken().value;
             ConsumeToken();
             

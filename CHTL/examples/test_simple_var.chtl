@@ -1,0 +1,16 @@
+[Template] @Var Colors {
+    primary: "#007bff";
+}
+
+use html5;
+
+html {
+    body {
+        div {
+            style {
+                // 测试无空格的变量引用
+                color: Colors(primary);
+            }
+        }
+    }
+}
