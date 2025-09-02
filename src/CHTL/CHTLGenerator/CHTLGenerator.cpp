@@ -6,7 +6,7 @@
 namespace CHTL {
 
 CHTLGenerator::CHTLGenerator() 
-    : m_HasError(false), m_GenerateIndentedHTML(true), m_MinifyCSS(false), 
+    : CHTLDefaultVisitor(), m_HasError(false), m_GenerateIndentedHTML(true), m_MinifyCSS(false), 
       m_AddSourceComments(true), m_IndentLevel(0) {
 }
 

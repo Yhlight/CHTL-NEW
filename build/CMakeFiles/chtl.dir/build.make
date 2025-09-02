@@ -97,6 +97,8 @@ bin/chtl: CMakeFiles/chtl.dir/src/main.cpp.o
 bin/chtl: CMakeFiles/chtl.dir/build.make
 bin/chtl: CMakeFiles/chtl.dir/compiler_depend.ts
 bin/chtl: lib/libCHTLDispatcher.a
+bin/chtl: lib/libCHTLImport.a
+bin/chtl: lib/libCHTLConstraint.a
 bin/chtl: lib/libCHTLCore.a
 bin/chtl: lib/libCHTLJSCore.a
 bin/chtl: lib/libCHTLScanner.a

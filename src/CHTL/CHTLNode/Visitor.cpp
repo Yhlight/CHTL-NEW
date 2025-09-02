@@ -86,7 +86,10 @@ void CHTLDefaultVisitor::VisitChildren(CHTLBaseNode* node) {
 }
 
 // CHTLHTMLGeneratorVisitor实现
-CHTLHTMLGeneratorVisitor::CHTLHTMLGeneratorVisitor() : m_IndentLevel(0) {
+CHTLHTMLGeneratorVisitor::CHTLHTMLGeneratorVisitor() : CHTLDefaultVisitor(), m_IndentLevel(0) {
+}
+
+CHTLHTMLGeneratorVisitor::~CHTLHTMLGeneratorVisitor() {
 }
 
 void CHTLHTMLGeneratorVisitor::Reset() {
@@ -146,6 +149,35 @@ std::string CHTLHTMLGeneratorVisitor::GenerateCSSSelector(const std::string& cla
 std::string CHTLHTMLGeneratorVisitor::AddIndent(const std::string& content) {
     std::string indent(m_IndentLevel * 2, ' ');
     return indent + content;
+}
+
+// 实现CHTLHTMLGeneratorVisitor的虚函数
+void CHTLHTMLGeneratorVisitor::VisitElementNode(ElementNode* node) {
+    if (node) {
+        // 默认实现：调用基类方法
+        CHTLDefaultVisitor::VisitElementNode(node);
+    }
+}
+
+void CHTLHTMLGeneratorVisitor::VisitTextNode(TextNode* node) {
+    if (node) {
+        // 默认实现：调用基类方法
+        CHTLDefaultVisitor::VisitTextNode(node);
+    }
+}
+
+void CHTLHTMLGeneratorVisitor::VisitStyleNode(StyleNode* node) {
+    if (node) {
+        // 默认实现：调用基类方法
+        CHTLDefaultVisitor::VisitStyleNode(node);
+    }
+}
+
+void CHTLHTMLGeneratorVisitor::VisitScriptNode(ScriptNode* node) {
+    if (node) {
+        // 默认实现：调用基类方法
+        CHTLDefaultVisitor::VisitScriptNode(node);
+    }
 }
 
 } // namespace CHTL

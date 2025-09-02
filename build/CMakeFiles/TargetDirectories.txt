@@ -1,10 +1,17 @@
 /workspace/build/CMakeFiles/CHTLCore.dir
 /workspace/build/CMakeFiles/CHTLJSCore.dir
 /workspace/build/CMakeFiles/CHTLScanner.dir
+/workspace/build/CMakeFiles/CHTLConstraint.dir
+/workspace/build/CMakeFiles/CHTLImport.dir
 /workspace/build/CMakeFiles/CHTLDispatcher.dir
 /workspace/build/CMakeFiles/chtl.dir
 /workspace/build/CMakeFiles/chtl_test.dir
 /workspace/build/CMakeFiles/chtl_simple_test.dir
+/workspace/build/CMakeFiles/chtl_parser_test.dir
+/workspace/build/CMakeFiles/chtl_architecture_test.dir
+/workspace/build/CMakeFiles/chtl_constraint_test.dir
+/workspace/build/CMakeFiles/chtl_import_test.dir
+/workspace/build/CMakeFiles/chtl_final_summary.dir
 /workspace/build/CMakeFiles/run_tests.dir
 /workspace/build/CMakeFiles/compile_example.dir
 /workspace/build/CMakeFiles/edit_cache.dir

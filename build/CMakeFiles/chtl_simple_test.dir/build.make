@@ -97,6 +97,8 @@ bin/chtl_simple_test: CMakeFiles/chtl_simple_test.dir/src/Test/SimpleCompilerTes
 bin/chtl_simple_test: CMakeFiles/chtl_simple_test.dir/build.make
 bin/chtl_simple_test: CMakeFiles/chtl_simple_test.dir/compiler_depend.ts
 bin/chtl_simple_test: lib/libCHTLDispatcher.a
+bin/chtl_simple_test: lib/libCHTLImport.a
+bin/chtl_simple_test: lib/libCHTLConstraint.a
 bin/chtl_simple_test: lib/libCHTLCore.a
 bin/chtl_simple_test: lib/libCHTLJSCore.a
 bin/chtl_simple_test: lib/libCHTLScanner.a

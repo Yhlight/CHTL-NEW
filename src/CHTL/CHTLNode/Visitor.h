@@ -162,7 +162,7 @@ public:
     /**
      * 析构函数
      */
-    ~CHTLHTMLGeneratorVisitor() override = default;
+    ~CHTLHTMLGeneratorVisitor() override;
     
     /**
      * 获取生成的HTML代码

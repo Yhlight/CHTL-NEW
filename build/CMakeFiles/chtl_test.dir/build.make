@@ -97,6 +97,8 @@ bin/chtl_test: CMakeFiles/chtl_test.dir/src/Test/BasicCompilationTest.cpp.o
 bin/chtl_test: CMakeFiles/chtl_test.dir/build.make
 bin/chtl_test: CMakeFiles/chtl_test.dir/compiler_depend.ts
 bin/chtl_test: lib/libCHTLDispatcher.a
+bin/chtl_test: lib/libCHTLImport.a
+bin/chtl_test: lib/libCHTLConstraint.a
 bin/chtl_test: lib/libCHTLCore.a
 bin/chtl_test: lib/libCHTLJSCore.a
 bin/chtl_test: lib/libCHTLScanner.a

@@ -120,11 +120,11 @@ public:
      */
     void Reset();
     
-    // 访问者方法
-    void VisitElementNode(ElementNode* node);
-    void VisitTextNode(TextNode* node);
-    void VisitStyleNode(StyleNode* node);
-    void VisitScriptNode(ScriptNode* node);
+    // 重写访问者方法
+    void VisitElementNode(ElementNode* node) override;
+    void VisitTextNode(TextNode* node) override;
+    void VisitStyleNode(StyleNode* node) override;
+    void VisitScriptNode(ScriptNode* node) override;
 
 private:
     // 预处理阶段

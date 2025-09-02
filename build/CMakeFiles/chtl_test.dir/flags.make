@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/workspace/src -I/workspace/src/CompilerDispatcher -I/workspace/src/CHTL -I"/workspace/src/CHTL JS" -I/workspace/src/Scanner
+CXX_INCLUDES = -I/workspace/src -I/workspace/src/CompilerDispatcher -I/workspace/src/CHTL -I"/workspace/src/CHTL JS" -I/workspace/src/Scanner -I/workspace/src/ConstraintSystem -I/workspace/src/ImportSystem
 
 CXX_FLAGS = -std=c++17 -Wall -Wextra -Wpedantic
 

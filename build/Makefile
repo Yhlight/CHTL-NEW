@@ -201,6 +201,32 @@ CHTLScanner/fast:
 .PHONY : CHTLScanner/fast
 
 #=============================================================================
+# Target rules for targets named CHTLConstraint
+
+# Build rule for target.
+CHTLConstraint: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLConstraint
+.PHONY : CHTLConstraint
+
+# fast build rule for target.
+CHTLConstraint/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLConstraint.dir/build.make CMakeFiles/CHTLConstraint.dir/build
+.PHONY : CHTLConstraint/fast
+
+#=============================================================================
+# Target rules for targets named CHTLImport
+
+# Build rule for target.
+CHTLImport: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLImport
+.PHONY : CHTLImport
+
+# fast build rule for target.
+CHTLImport/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLImport.dir/build.make CMakeFiles/CHTLImport.dir/build
+.PHONY : CHTLImport/fast
+
+#=============================================================================
 # Target rules for targets named CHTLDispatcher
 
 # Build rule for target.
@@ -251,6 +277,71 @@ chtl_simple_test: cmake_check_build_system
 chtl_simple_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_simple_test.dir/build.make CMakeFiles/chtl_simple_test.dir/build
 .PHONY : chtl_simple_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_parser_test
+
+# Build rule for target.
+chtl_parser_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_parser_test
+.PHONY : chtl_parser_test
+
+# fast build rule for target.
+chtl_parser_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_parser_test.dir/build.make CMakeFiles/chtl_parser_test.dir/build
+.PHONY : chtl_parser_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_architecture_test
+
+# Build rule for target.
+chtl_architecture_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_architecture_test
+.PHONY : chtl_architecture_test
+
+# fast build rule for target.
+chtl_architecture_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_architecture_test.dir/build.make CMakeFiles/chtl_architecture_test.dir/build
+.PHONY : chtl_architecture_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_constraint_test
+
+# Build rule for target.
+chtl_constraint_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_constraint_test
+.PHONY : chtl_constraint_test
+
+# fast build rule for target.
+chtl_constraint_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_constraint_test.dir/build.make CMakeFiles/chtl_constraint_test.dir/build
+.PHONY : chtl_constraint_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_import_test
+
+# Build rule for target.
+chtl_import_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_import_test
+.PHONY : chtl_import_test
+
+# fast build rule for target.
+chtl_import_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_import_test.dir/build.make CMakeFiles/chtl_import_test.dir/build
+.PHONY : chtl_import_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_final_summary
+
+# Build rule for target.
+chtl_final_summary: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_summary
+.PHONY : chtl_final_summary
+
+# fast build rule for target.
+chtl_final_summary/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_summary.dir/build.make CMakeFiles/chtl_final_summary.dir/build
+.PHONY : chtl_final_summary/fast
 
 #=============================================================================
 # Target rules for targets named run_tests
@@ -926,6 +1017,54 @@ src/CompilerDispatcher/CompilerDispatcher.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLDispatcher.dir/build.make CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.s
 .PHONY : src/CompilerDispatcher/CompilerDispatcher.cpp.s
 
+src/ConstraintSystem/CHTLConstraintValidator.o: src/ConstraintSystem/CHTLConstraintValidator.cpp.o
+.PHONY : src/ConstraintSystem/CHTLConstraintValidator.o
+
+# target to build an object file
+src/ConstraintSystem/CHTLConstraintValidator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLConstraint.dir/build.make CMakeFiles/CHTLConstraint.dir/src/ConstraintSystem/CHTLConstraintValidator.cpp.o
+.PHONY : src/ConstraintSystem/CHTLConstraintValidator.cpp.o
+
+src/ConstraintSystem/CHTLConstraintValidator.i: src/ConstraintSystem/CHTLConstraintValidator.cpp.i
+.PHONY : src/ConstraintSystem/CHTLConstraintValidator.i
+
+# target to preprocess a source file
+src/ConstraintSystem/CHTLConstraintValidator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLConstraint.dir/build.make CMakeFiles/CHTLConstraint.dir/src/ConstraintSystem/CHTLConstraintValidator.cpp.i
+.PHONY : src/ConstraintSystem/CHTLConstraintValidator.cpp.i
+
+src/ConstraintSystem/CHTLConstraintValidator.s: src/ConstraintSystem/CHTLConstraintValidator.cpp.s
+.PHONY : src/ConstraintSystem/CHTLConstraintValidator.s
+
+# target to generate assembly for a file
+src/ConstraintSystem/CHTLConstraintValidator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLConstraint.dir/build.make CMakeFiles/CHTLConstraint.dir/src/ConstraintSystem/CHTLConstraintValidator.cpp.s
+.PHONY : src/ConstraintSystem/CHTLConstraintValidator.cpp.s
+
+src/ImportSystem/CHTLImportManager.o: src/ImportSystem/CHTLImportManager.cpp.o
+.PHONY : src/ImportSystem/CHTLImportManager.o
+
+# target to build an object file
+src/ImportSystem/CHTLImportManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLImport.dir/build.make CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o
+.PHONY : src/ImportSystem/CHTLImportManager.cpp.o
+
+src/ImportSystem/CHTLImportManager.i: src/ImportSystem/CHTLImportManager.cpp.i
+.PHONY : src/ImportSystem/CHTLImportManager.i
+
+# target to preprocess a source file
+src/ImportSystem/CHTLImportManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLImport.dir/build.make CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.i
+.PHONY : src/ImportSystem/CHTLImportManager.cpp.i
+
+src/ImportSystem/CHTLImportManager.s: src/ImportSystem/CHTLImportManager.cpp.s
+.PHONY : src/ImportSystem/CHTLImportManager.s
+
+# target to generate assembly for a file
+src/ImportSystem/CHTLImportManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLImport.dir/build.make CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.s
+.PHONY : src/ImportSystem/CHTLImportManager.cpp.s
+
 src/Scanner/CHTLUnifiedScanner.o: src/Scanner/CHTLUnifiedScanner.cpp.o
 .PHONY : src/Scanner/CHTLUnifiedScanner.o
 
@@ -950,6 +1089,30 @@ src/Scanner/CHTLUnifiedScanner.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLScanner.dir/build.make CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.s
 .PHONY : src/Scanner/CHTLUnifiedScanner.cpp.s
 
+src/Test/ArchitectureTest.o: src/Test/ArchitectureTest.cpp.o
+.PHONY : src/Test/ArchitectureTest.o
+
+# target to build an object file
+src/Test/ArchitectureTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_architecture_test.dir/build.make CMakeFiles/chtl_architecture_test.dir/src/Test/ArchitectureTest.cpp.o
+.PHONY : src/Test/ArchitectureTest.cpp.o
+
+src/Test/ArchitectureTest.i: src/Test/ArchitectureTest.cpp.i
+.PHONY : src/Test/ArchitectureTest.i
+
+# target to preprocess a source file
+src/Test/ArchitectureTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_architecture_test.dir/build.make CMakeFiles/chtl_architecture_test.dir/src/Test/ArchitectureTest.cpp.i
+.PHONY : src/Test/ArchitectureTest.cpp.i
+
+src/Test/ArchitectureTest.s: src/Test/ArchitectureTest.cpp.s
+.PHONY : src/Test/ArchitectureTest.s
+
+# target to generate assembly for a file
+src/Test/ArchitectureTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_architecture_test.dir/build.make CMakeFiles/chtl_architecture_test.dir/src/Test/ArchitectureTest.cpp.s
+.PHONY : src/Test/ArchitectureTest.cpp.s
+
 src/Test/BasicCompilationTest.o: src/Test/BasicCompilationTest.cpp.o
 .PHONY : src/Test/BasicCompilationTest.o
 
@@ -973,6 +1136,102 @@ src/Test/BasicCompilationTest.s: src/Test/BasicCompilationTest.cpp.s
 src/Test/BasicCompilationTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_test.dir/build.make CMakeFiles/chtl_test.dir/src/Test/BasicCompilationTest.cpp.s
 .PHONY : src/Test/BasicCompilationTest.cpp.s
+
+src/Test/ConstraintTest.o: src/Test/ConstraintTest.cpp.o
+.PHONY : src/Test/ConstraintTest.o
+
+# target to build an object file
+src/Test/ConstraintTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_constraint_test.dir/build.make CMakeFiles/chtl_constraint_test.dir/src/Test/ConstraintTest.cpp.o
+.PHONY : src/Test/ConstraintTest.cpp.o
+
+src/Test/ConstraintTest.i: src/Test/ConstraintTest.cpp.i
+.PHONY : src/Test/ConstraintTest.i
+
+# target to preprocess a source file
+src/Test/ConstraintTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_constraint_test.dir/build.make CMakeFiles/chtl_constraint_test.dir/src/Test/ConstraintTest.cpp.i
+.PHONY : src/Test/ConstraintTest.cpp.i
+
+src/Test/ConstraintTest.s: src/Test/ConstraintTest.cpp.s
+.PHONY : src/Test/ConstraintTest.s
+
+# target to generate assembly for a file
+src/Test/ConstraintTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_constraint_test.dir/build.make CMakeFiles/chtl_constraint_test.dir/src/Test/ConstraintTest.cpp.s
+.PHONY : src/Test/ConstraintTest.cpp.s
+
+src/Test/FinalProjectSummary.o: src/Test/FinalProjectSummary.cpp.o
+.PHONY : src/Test/FinalProjectSummary.o
+
+# target to build an object file
+src/Test/FinalProjectSummary.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_summary.dir/build.make CMakeFiles/chtl_final_summary.dir/src/Test/FinalProjectSummary.cpp.o
+.PHONY : src/Test/FinalProjectSummary.cpp.o
+
+src/Test/FinalProjectSummary.i: src/Test/FinalProjectSummary.cpp.i
+.PHONY : src/Test/FinalProjectSummary.i
+
+# target to preprocess a source file
+src/Test/FinalProjectSummary.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_summary.dir/build.make CMakeFiles/chtl_final_summary.dir/src/Test/FinalProjectSummary.cpp.i
+.PHONY : src/Test/FinalProjectSummary.cpp.i
+
+src/Test/FinalProjectSummary.s: src/Test/FinalProjectSummary.cpp.s
+.PHONY : src/Test/FinalProjectSummary.s
+
+# target to generate assembly for a file
+src/Test/FinalProjectSummary.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_summary.dir/build.make CMakeFiles/chtl_final_summary.dir/src/Test/FinalProjectSummary.cpp.s
+.PHONY : src/Test/FinalProjectSummary.cpp.s
+
+src/Test/ImportTest.o: src/Test/ImportTest.cpp.o
+.PHONY : src/Test/ImportTest.o
+
+# target to build an object file
+src/Test/ImportTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_import_test.dir/build.make CMakeFiles/chtl_import_test.dir/src/Test/ImportTest.cpp.o
+.PHONY : src/Test/ImportTest.cpp.o
+
+src/Test/ImportTest.i: src/Test/ImportTest.cpp.i
+.PHONY : src/Test/ImportTest.i
+
+# target to preprocess a source file
+src/Test/ImportTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_import_test.dir/build.make CMakeFiles/chtl_import_test.dir/src/Test/ImportTest.cpp.i
+.PHONY : src/Test/ImportTest.cpp.i
+
+src/Test/ImportTest.s: src/Test/ImportTest.cpp.s
+.PHONY : src/Test/ImportTest.s
+
+# target to generate assembly for a file
+src/Test/ImportTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_import_test.dir/build.make CMakeFiles/chtl_import_test.dir/src/Test/ImportTest.cpp.s
+.PHONY : src/Test/ImportTest.cpp.s
+
+src/Test/ParserGeneratorTest.o: src/Test/ParserGeneratorTest.cpp.o
+.PHONY : src/Test/ParserGeneratorTest.o
+
+# target to build an object file
+src/Test/ParserGeneratorTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_parser_test.dir/build.make CMakeFiles/chtl_parser_test.dir/src/Test/ParserGeneratorTest.cpp.o
+.PHONY : src/Test/ParserGeneratorTest.cpp.o
+
+src/Test/ParserGeneratorTest.i: src/Test/ParserGeneratorTest.cpp.i
+.PHONY : src/Test/ParserGeneratorTest.i
+
+# target to preprocess a source file
+src/Test/ParserGeneratorTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_parser_test.dir/build.make CMakeFiles/chtl_parser_test.dir/src/Test/ParserGeneratorTest.cpp.i
+.PHONY : src/Test/ParserGeneratorTest.cpp.i
+
+src/Test/ParserGeneratorTest.s: src/Test/ParserGeneratorTest.cpp.s
+.PHONY : src/Test/ParserGeneratorTest.s
+
+# target to generate assembly for a file
+src/Test/ParserGeneratorTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_parser_test.dir/build.make CMakeFiles/chtl_parser_test.dir/src/Test/ParserGeneratorTest.cpp.s
+.PHONY : src/Test/ParserGeneratorTest.cpp.s
 
 src/Test/SimpleCompilerTest.o: src/Test/SimpleCompilerTest.cpp.o
 .PHONY : src/Test/SimpleCompilerTest.o
@@ -1036,11 +1295,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... compile_example"
 	@echo "... run_tests"
+	@echo "... CHTLConstraint"
 	@echo "... CHTLCore"
 	@echo "... CHTLDispatcher"
+	@echo "... CHTLImport"
 	@echo "... CHTLJSCore"
 	@echo "... CHTLScanner"
 	@echo "... chtl"
+	@echo "... chtl_architecture_test"
+	@echo "... chtl_constraint_test"
+	@echo "... chtl_final_summary"
+	@echo "... chtl_import_test"
+	@echo "... chtl_parser_test"
 	@echo "... chtl_simple_test"
 	@echo "... chtl_test"
 	@echo "... src/CHTL/CHTLContext/CHTLContext.o"
@@ -1124,12 +1390,33 @@ help:
 	@echo "... src/CompilerDispatcher/CompilerDispatcher.o"
 	@echo "... src/CompilerDispatcher/CompilerDispatcher.i"
 	@echo "... src/CompilerDispatcher/CompilerDispatcher.s"
+	@echo "... src/ConstraintSystem/CHTLConstraintValidator.o"
+	@echo "... src/ConstraintSystem/CHTLConstraintValidator.i"
+	@echo "... src/ConstraintSystem/CHTLConstraintValidator.s"
+	@echo "... src/ImportSystem/CHTLImportManager.o"
+	@echo "... src/ImportSystem/CHTLImportManager.i"
+	@echo "... src/ImportSystem/CHTLImportManager.s"
 	@echo "... src/Scanner/CHTLUnifiedScanner.o"
 	@echo "... src/Scanner/CHTLUnifiedScanner.i"
 	@echo "... src/Scanner/CHTLUnifiedScanner.s"
+	@echo "... src/Test/ArchitectureTest.o"
+	@echo "... src/Test/ArchitectureTest.i"
+	@echo "... src/Test/ArchitectureTest.s"
 	@echo "... src/Test/BasicCompilationTest.o"
 	@echo "... src/Test/BasicCompilationTest.i"
 	@echo "... src/Test/BasicCompilationTest.s"
+	@echo "... src/Test/ConstraintTest.o"
+	@echo "... src/Test/ConstraintTest.i"
+	@echo "... src/Test/ConstraintTest.s"
+	@echo "... src/Test/FinalProjectSummary.o"
+	@echo "... src/Test/FinalProjectSummary.i"
+	@echo "... src/Test/FinalProjectSummary.s"
+	@echo "... src/Test/ImportTest.o"
+	@echo "... src/Test/ImportTest.i"
+	@echo "... src/Test/ImportTest.s"
+	@echo "... src/Test/ParserGeneratorTest.o"
+	@echo "... src/Test/ParserGeneratorTest.i"
+	@echo "... src/Test/ParserGeneratorTest.s"
 	@echo "... src/Test/SimpleCompilerTest.o"
 	@echo "... src/Test/SimpleCompilerTest.i"
 	@echo "... src/Test/SimpleCompilerTest.s"

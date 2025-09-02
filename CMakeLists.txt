@@ -71,6 +71,16 @@ set(DISPATCHER_SOURCES
     src/CompilerDispatcher/CompilerDispatcher.cpp
 )
 
+# 约束系统源文件
+set(CONSTRAINT_SOURCES
+    src/ConstraintSystem/CHTLConstraintValidator.cpp
+)
+
+# Import导入系统源文件
+set(IMPORT_SOURCES
+    src/ImportSystem/CHTLImportManager.cpp
+)
+
 # 创建CHTL核心库
 add_library(CHTLCore STATIC ${CHTL_CORE_SOURCES})
 target_include_directories(CHTLCore PUBLIC src/CHTL)
@@ -83,22 +93,51 @@ target_include_directories(CHTLJSCore PUBLIC "src/CHTL JS")
 add_library(CHTLScanner STATIC ${SCANNER_SOURCES})
 target_include_directories(CHTLScanner PUBLIC src/Scanner)
 
+# 创建约束系统库
+add_library(CHTLConstraint STATIC ${CONSTRAINT_SOURCES})
+target_include_directories(CHTLConstraint PUBLIC src/ConstraintSystem)
+target_link_libraries(CHTLConstraint CHTLCore CHTLJSCore)
+
+# 创建Import导入系统库
+add_library(CHTLImport STATIC ${IMPORT_SOURCES})
+target_include_directories(CHTLImport PUBLIC src/ImportSystem)
+
 # 创建调度器库
 add_library(CHTLDispatcher STATIC ${DISPATCHER_SOURCES})
 target_include_directories(CHTLDispatcher PUBLIC src/CompilerDispatcher)
-target_link_libraries(CHTLDispatcher CHTLCore CHTLJSCore CHTLScanner)
+target_link_libraries(CHTLDispatcher CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport)
 
 # 主程序可执行文件
 add_executable(chtl src/main.cpp)
-target_link_libraries(chtl CHTLDispatcher CHTLCore CHTLJSCore CHTLScanner)
+target_link_libraries(chtl CHTLDispatcher CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
 
 # 测试可执行文件
 add_executable(chtl_test src/Test/BasicCompilationTest.cpp)
-target_link_libraries(chtl_test CHTLDispatcher CHTLCore CHTLJSCore CHTLScanner)
+target_link_libraries(chtl_test CHTLDispatcher CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
 
 # 简化测试可执行文件
 add_executable(chtl_simple_test src/Test/SimpleCompilerTest.cpp)
-target_link_libraries(chtl_simple_test CHTLDispatcher CHTLCore CHTLJSCore CHTLScanner)
+target_link_libraries(chtl_simple_test CHTLDispatcher CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# 解析器生成器测试可执行文件
+add_executable(chtl_parser_test src/Test/ParserGeneratorTest.cpp)
+target_link_libraries(chtl_parser_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# 架构验证测试可执行文件
+add_executable(chtl_architecture_test src/Test/ArchitectureTest.cpp)
+target_link_libraries(chtl_architecture_test CHTLDispatcher CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# 约束系统测试可执行文件
+add_executable(chtl_constraint_test src/Test/ConstraintTest.cpp)
+target_link_libraries(chtl_constraint_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# Import导入系统测试可执行文件
+add_executable(chtl_import_test src/Test/ImportTest.cpp)
+target_link_libraries(chtl_import_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# 最终项目总结可执行文件
+add_executable(chtl_final_summary src/Test/FinalProjectSummary.cpp)
+target_link_libraries(chtl_final_summary CHTLDispatcher CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
 
 # 设置调试信息
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
