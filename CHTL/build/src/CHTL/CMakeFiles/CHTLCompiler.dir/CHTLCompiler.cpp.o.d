@@ -246,6 +246,11 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o: \
   /workspace/CHTL/include/CHTL/Parser/Parser.h \
   /workspace/CHTL/include/CHTL/Generator/Generator.h \
   /workspace/CHTL/include/CHTL/AST/ASTVisitor.h \
+  /workspace/CHTL/include/CHTL/AST/TemplateNodes.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/map \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_tree.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_map.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_multimap.h \
   /workspace/CHTL/include/Common/Logger.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/iostream \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/chrono \
@@ -264,4 +269,14 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/codecvt.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_facets_nonio.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_conv.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/quoted_string.h
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/quoted_string.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/fstream \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/x86_64-linux-gnu/c++/14/bits/basic_file.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/x86_64-linux-gnu/c++/14/bits/c++io.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/fstream.tcc \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/algorithm \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_algo.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/algorithmfwd.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_heap.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/uniform_int_dist.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/pstl/glue_algorithm_defs.h

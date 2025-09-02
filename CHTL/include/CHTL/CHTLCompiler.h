@@ -7,6 +7,12 @@
 #include "CHTL/Core/Context.h"
 #include "CHTL/Core/CompileResult.h"
 
+// 前向声明
+namespace CHTL {
+    class ProgramNode;
+    class ImportNode;
+}
+
 namespace CHTL {
 
 // 前向声明
@@ -46,6 +52,16 @@ private:
      * 后处理编译结果
      */
     void PostprocessResult(CompileResult& result);
+    
+    /**
+     * 处理导入
+     */
+    void ProcessImports(std::shared_ptr<ProgramNode> ast);
+    void ProcessImportNode(std::shared_ptr<ImportNode> importNode);
+    std::string ResolveImportPath(const std::string& importPath, const std::string& currentFile);
+    void LoadAndMergeFile(const std::string& filePath, int importType, 
+                          const std::string& itemName, const std::string& asName);
+    void MergeImportedAST(std::shared_ptr<ProgramNode> importedAst, const std::string& namespaceName = "");
     
 public:
     CHTLCompiler();
