@@ -1,0 +1,24 @@
+use html5;
+
+// 全局约束测试
+[Namespace] RestrictedSpace
+{
+    except [Template];  // 在这个命名空间内禁止定义模板
+    
+    // 下面的模板定义应该被禁止
+    // [Template] @Style ErrorStyle { color: red; }
+    
+    // 但是可以定义普通元素
+    [Custom] @Element AllowedElement
+    {
+        div { text { "这是允许的自定义元素" } }
+    }
+}
+
+html
+{
+    body
+    {
+        text { "命名空间约束测试" }
+    }
+}

@@ -1,0 +1,15 @@
+use html5;
+
+html
+{
+    body
+    {
+        div
+        {
+            except span;
+            
+            h1 { text { "标题" } }
+            p { text { "段落" } }
+        }
+    }
+}

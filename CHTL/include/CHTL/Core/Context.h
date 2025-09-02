@@ -15,6 +15,7 @@ namespace CHTL {
 class ASTNode;
 class ElementNode;
 class Configuration;
+class ExceptNode;
 
 /**
  * 编译上下文
@@ -69,6 +70,9 @@ private:
     
     // 命名空间管理
     std::vector<std::string> namespaceStack;              // 命名空间栈
+    
+    // 约束管理
+    std::vector<std::shared_ptr<ExceptNode>> constraints; // 当前约束列表
     
 public:
     CompileContext();
@@ -148,6 +152,11 @@ public:
     void ExitNamespace();
     std::string GetCurrentNamespace() const;
     std::string GetFullNamespacePath() const;
+    
+    // 约束管理
+    void AddConstraint(std::shared_ptr<ExceptNode> constraint);
+    bool IsElementAllowed(const std::string& elementName) const;
+    bool IsTypeAllowed(const std::string& typeName, const std::string& modifier = "") const;
     
     // 重置上下文
     void Reset();

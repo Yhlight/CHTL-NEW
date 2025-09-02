@@ -119,6 +119,44 @@ public:
     }
 };
 
+class ExceptNode : public ASTNode {
+public:
+    enum class ConstraintType {
+        Exact,      // 精确约束（具体元素名）
+        Type        // 类型约束（@Html, [Custom]等）
+    };
+    
+    struct Constraint {
+        ConstraintType type;
+        std::string value;      // 元素名或类型名
+        std::string modifier;   // [Custom], [Template]等修饰符
+    };
+    
+private:
+    std::vector<Constraint> constraints;
+    
+public:
+    ExceptNode() : ASTNode(ASTNodeType::Except) {}
+    
+    void AddConstraint(ConstraintType type, const std::string& value, 
+                      const std::string& modifier = "") {
+        constraints.push_back({type, value, modifier});
+    }
+    
+    const std::vector<Constraint>& GetConstraints() const { return constraints; }
+    
+    void Accept(ASTVisitor* visitor) override;
+    std::string ToString() const override { 
+        std::string result = "ExceptNode(";
+        for (size_t i = 0; i < constraints.size(); ++i) {
+            if (i > 0) result += ", ";
+            result += constraints[i].value;
+        }
+        result += ")";
+        return result;
+    }
+};
+
 class ConfigurationNode : public ASTNode {
 private:
     std::string configName;  // 配置组名称（可选）

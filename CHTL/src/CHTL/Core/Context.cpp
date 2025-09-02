@@ -1,5 +1,7 @@
 #include "CHTL/Core/Context.h"
+#include "CHTL/AST/TemplateNodes.h"
 #include <algorithm>
+#include <set>
 
 namespace CHTL {
 
@@ -150,6 +152,9 @@ void CompileContext::Reset() {
     // 清空命名空间栈
     namespaceStack.clear();
     
+    // 清空约束
+    constraints.clear();
+    
     // 重置选项为默认值
     options = CompileOptions();
     
@@ -179,6 +184,71 @@ std::string CompileContext::GetFullNamespacePath() const {
         path += namespaceStack[i];
     }
     return path;
+}
+
+void CompileContext::AddConstraint(std::shared_ptr<ExceptNode> constraint) {
+    if (constraint) {
+        constraints.push_back(constraint);
+    }
+}
+
+bool CompileContext::IsElementAllowed(const std::string& elementName) const {
+    // 检查所有约束
+    for (const auto& constraint : constraints) {
+        if (!constraint) continue;
+        
+        for (const auto& c : constraint->GetConstraints()) {
+            if (c.type == ExceptNode::ConstraintType::Exact && 
+                c.value == elementName) {
+                return false; // 精确约束匹配，不允许
+            }
+            
+            // 检查@Html类型约束
+            if (c.type == ExceptNode::ConstraintType::Type && 
+                c.value == "Html" && c.modifier.empty()) {
+                // 检查是否是HTML元素（简单判断）
+                // TODO: 完善HTML元素列表
+                static const std::set<std::string> htmlElements = {
+                    "div", "span", "p", "h1", "h2", "h3", "h4", "h5", "h6",
+                    "ul", "ol", "li", "table", "tr", "td", "th", "thead", "tbody",
+                    "a", "img", "form", "input", "button", "select", "textarea",
+                    "header", "footer", "nav", "section", "article", "aside",
+                    "html", "head", "body", "meta", "title", "link", "script", "style"
+                };
+                
+                if (htmlElements.find(elementName) != htmlElements.end()) {
+                    return false; // 是HTML元素，不允许
+                }
+            }
+        }
+    }
+    
+    return true; // 默认允许
+}
+
+bool CompileContext::IsTypeAllowed(const std::string& typeName, const std::string& modifier) const {
+    // 检查所有约束
+    for (const auto& constraint : constraints) {
+        if (!constraint) continue;
+        
+        for (const auto& c : constraint->GetConstraints()) {
+            if (c.type == ExceptNode::ConstraintType::Type) {
+                // 检查修饰符匹配
+                if (c.modifier == modifier) {
+                    // 如果约束的值为空，表示禁止整个类型
+                    if (c.value.empty()) {
+                        return false;
+                    }
+                    // 否则检查具体类型
+                    if (c.value == typeName) {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    
+    return true; // 默认允许
 }
 
 } // namespace CHTL

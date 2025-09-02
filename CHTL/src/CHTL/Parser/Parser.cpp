@@ -105,6 +105,11 @@ std::shared_ptr<ASTNode> Parser::ParseTopLevelDeclaration() {
         return ParseConfiguration();
     }
     
+    // except约束（用于全局约束）
+    if (Check(TokenType::EXCEPT)) {
+        return ParseExcept();
+    }
+    
     // 元素
     if (IsElementStart()) {
         return ParseElement();
@@ -724,6 +729,13 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
                 element->AddChild(script);
             }
         }
+        // except约束
+        else if (Check(TokenType::EXCEPT)) {
+            auto except = ParseExcept();
+            if (except) {
+                element->AddChild(except);
+            }
+        }
         else {
             ConsumeToken(); // 跳过未知token
         }
@@ -873,6 +885,75 @@ std::shared_ptr<ASTNode> Parser::ParseLocalScript() {
     Expect(TokenType::RIGHT_BRACE, "期望 '}'");
     
     return scriptNode;
+}
+
+std::shared_ptr<ASTNode> Parser::ParseExcept() {
+    Expect(TokenType::EXCEPT, "期望 'except'");
+    
+    auto exceptNode = std::make_shared<ExceptNode>();
+    
+    // 解析约束列表
+    bool first = true;
+    while (!Check(TokenType::SEMICOLON) && !Check(TokenType::EOF_TOKEN)) {
+        if (!first) {
+            Expect(TokenType::COMMA, "期望 ','");
+        }
+        first = false;
+        
+        // 检查是否是类型约束
+        if (Check(TokenType::AMPERSAND)) {
+            // @Html, @Style等
+            ConsumeToken(); // 消费 @
+            if (Check(TokenType::IDENTIFIER)) {
+                std::string typeName = CurrentToken().value;
+                ConsumeToken();
+                exceptNode->AddConstraint(ExceptNode::ConstraintType::Type, typeName);
+            } else {
+                ReportError("期望类型名");
+            }
+        } else if (Check(TokenType::LEFT_BRACKET)) {
+            // [Custom], [Template]等
+            ConsumeToken(); // 消费 [
+            if (!Check(TokenType::IDENTIFIER)) {
+                ReportError("期望修饰符");
+                continue;
+            }
+            std::string modifier = CurrentToken().value;
+            ConsumeToken();
+            Expect(TokenType::RIGHT_BRACKET, "期望 ']'");
+            
+            // 检查是否有具体的类型
+            if (Check(TokenType::AMPERSAND)) {
+                ConsumeToken(); // 消费 @
+                if (Check(TokenType::IDENTIFIER)) {
+                    std::string typeName = CurrentToken().value;
+                    ConsumeToken();
+                    exceptNode->AddConstraint(ExceptNode::ConstraintType::Type, 
+                                            typeName, "[" + modifier + "]");
+                } else {
+                    // 只有修饰符，如 [Custom]
+                    exceptNode->AddConstraint(ExceptNode::ConstraintType::Type, 
+                                            "", "[" + modifier + "]");
+                }
+            } else {
+                // 只有修饰符，如 [Template]
+                exceptNode->AddConstraint(ExceptNode::ConstraintType::Type, 
+                                        "", "[" + modifier + "]");
+            }
+        } else if (Check(TokenType::IDENTIFIER)) {
+            // 精确约束，如 span, div
+            std::string elementName = CurrentToken().value;
+            ConsumeToken();
+            exceptNode->AddConstraint(ExceptNode::ConstraintType::Exact, elementName);
+        } else {
+            ReportError("无效的约束");
+            ConsumeToken(); // 跳过无效token
+        }
+    }
+    
+    Expect(TokenType::SEMICOLON, "期望 ';'");
+    
+    return exceptNode;
 }
 
 std::shared_ptr<ASTNode> Parser::ParseStyleRule() {
