@@ -245,6 +245,9 @@ target_link_libraries(chtl_final_system_demo CHTLCodeMerger CHTLCSSCompiler CHTL
 add_executable(chtl_complete_flow_test src/Test/CompleteCompilationFlowTest.cpp)
 target_link_libraries(chtl_complete_flow_test CHTLDispatcher CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler antlr4-runtime)
 
+# 项目完成度审计可执行文件
+add_executable(chtl_project_audit src/Test/ProjectCompletionAudit.cpp)
+
 # 设置调试信息
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_definitions(CHTL_DEBUG_MODE)

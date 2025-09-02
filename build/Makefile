@@ -565,6 +565,19 @@ chtl_complete_flow_test/fast:
 .PHONY : chtl_complete_flow_test/fast
 
 #=============================================================================
+# Target rules for targets named chtl_project_audit
+
+# Build rule for target.
+chtl_project_audit: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_project_audit
+.PHONY : chtl_project_audit
+
+# fast build rule for target.
+chtl_project_audit/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_project_audit.dir/build.make CMakeFiles/chtl_project_audit.dir/build
+.PHONY : chtl_project_audit/fast
+
+#=============================================================================
 # Target rules for targets named run_tests
 
 # Build rule for target.
@@ -2102,6 +2115,30 @@ src/Test/ParserGeneratorTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_parser_test.dir/build.make CMakeFiles/chtl_parser_test.dir/src/Test/ParserGeneratorTest.cpp.s
 .PHONY : src/Test/ParserGeneratorTest.cpp.s
 
+src/Test/ProjectCompletionAudit.o: src/Test/ProjectCompletionAudit.cpp.o
+.PHONY : src/Test/ProjectCompletionAudit.o
+
+# target to build an object file
+src/Test/ProjectCompletionAudit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_project_audit.dir/build.make CMakeFiles/chtl_project_audit.dir/src/Test/ProjectCompletionAudit.cpp.o
+.PHONY : src/Test/ProjectCompletionAudit.cpp.o
+
+src/Test/ProjectCompletionAudit.i: src/Test/ProjectCompletionAudit.cpp.i
+.PHONY : src/Test/ProjectCompletionAudit.i
+
+# target to preprocess a source file
+src/Test/ProjectCompletionAudit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_project_audit.dir/build.make CMakeFiles/chtl_project_audit.dir/src/Test/ProjectCompletionAudit.cpp.i
+.PHONY : src/Test/ProjectCompletionAudit.cpp.i
+
+src/Test/ProjectCompletionAudit.s: src/Test/ProjectCompletionAudit.cpp.s
+.PHONY : src/Test/ProjectCompletionAudit.s
+
+# target to generate assembly for a file
+src/Test/ProjectCompletionAudit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_project_audit.dir/build.make CMakeFiles/chtl_project_audit.dir/src/Test/ProjectCompletionAudit.cpp.s
+.PHONY : src/Test/ProjectCompletionAudit.cpp.s
+
 src/Test/SimpleCompilerTest.o: src/Test/SimpleCompilerTest.cpp.o
 .PHONY : src/Test/SimpleCompilerTest.o
 
@@ -2215,6 +2252,7 @@ help:
 	@echo "... chtl_lexer_test"
 	@echo "... chtl_origin_config_test"
 	@echo "... chtl_parser_test"
+	@echo "... chtl_project_audit"
 	@echo "... chtl_simple_test"
 	@echo "... chtl_status_report"
 	@echo "... chtl_template_test"
@@ -2408,6 +2446,9 @@ help:
 	@echo "... src/Test/ParserGeneratorTest.o"
 	@echo "... src/Test/ParserGeneratorTest.i"
 	@echo "... src/Test/ParserGeneratorTest.s"
+	@echo "... src/Test/ProjectCompletionAudit.o"
+	@echo "... src/Test/ProjectCompletionAudit.i"
+	@echo "... src/Test/ProjectCompletionAudit.s"
 	@echo "... src/Test/SimpleCompilerTest.o"
 	@echo "... src/Test/SimpleCompilerTest.i"
 	@echo "... src/Test/SimpleCompilerTest.s"

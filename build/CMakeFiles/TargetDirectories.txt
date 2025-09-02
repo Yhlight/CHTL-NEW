@@ -29,6 +29,7 @@
 /workspace/build/CMakeFiles/chtl_code_merger_test.dir
 /workspace/build/CMakeFiles/chtl_final_system_demo.dir
 /workspace/build/CMakeFiles/chtl_complete_flow_test.dir
+/workspace/build/CMakeFiles/chtl_project_audit.dir
 /workspace/build/CMakeFiles/run_tests.dir
 /workspace/build/CMakeFiles/compile_example.dir
 /workspace/build/CMakeFiles/edit_cache.dir
