@@ -1,0 +1,28 @@
+// 由比滨结衣官方模块信息
+[Info]
+{
+    name = "chtl::yuigahama";
+    version = "1.0.0";
+    description = "由比滨结衣主题模块 - 温柔的团子女孩";
+    author = "CHTL Team";
+    license = "MIT";
+    dependencies = "";
+    category = "theme";
+    minCHTLVersion = "1.0.0";
+    maxCHTLVersion = "2.0.0";
+}
+
+[Export]
+{
+    [Custom] @Style YuigahamaTheme, YuigahamaCard, YuigahamaButton,
+           YuigahamaAccordion, YuigahamaNote, YuigahamaBubble;
+
+    [Custom] @Element YuigahamaPage, YuigahamaMusic, YuigahamaGallery,
+             YuigahamaChat, YuigahamaMemo, YuigahamaSakura;
+
+    [Custom] @Var YuigahamaColors, YuigahamaFonts, YuigahamaEffects;
+
+    [Template] @Style YuigahamaBase, YuigahamaText, YuigahamaGradient;
+    [Template] @Element YuigahamaContainer, YuigahamaSection;
+    [Template] @Var YuigahamaThemeVars;
+}
