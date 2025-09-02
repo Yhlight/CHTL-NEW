@@ -233,9 +233,7 @@ target_link_libraries(chtl_constraint_test CHTLImport CHTLConstraint CHTLCore CH
 add_executable(chtl_import_test src/Test/ImportTest.cpp)
 target_link_libraries(chtl_import_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
 
-# 最终项目总结可执行文件
-add_executable(chtl_final_project_summary src/Test/FinalProjectSummary.cpp)
-target_link_libraries(chtl_final_project_summary CHTLDispatcher CJMOD CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
 
 # 项目结构修正报告可执行文件
 add_executable(chtl_structure_fix_report src/Test/ProjectStructureFixReport.cpp)
@@ -267,13 +265,14 @@ target_link_libraries(chtl_module_classification_test CHTLUtilSystem)
 # 最终严格文档遵循验证报告可执行文件
 add_executable(chtl_final_strict_compliance src/Test/FinalStrictComplianceReport.cpp)
 
+# 仓库清理报告可执行文件
+add_executable(chtl_repository_cleanup_report src/Test/RepositoryCleanupReport.cpp)
+
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)
 target_link_libraries(chtl_lexer_test CHTLCore CHTLJSCore CHTLScanner)
 
-# ANTLR集成测试可执行文件
-add_executable(chtl_antlr_test src/Test/ANTLRIntegrationTest.cpp)
-target_link_libraries(chtl_antlr_test CHTLDispatcher CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
 
 # 模板系统完善测试可执行文件
 add_executable(chtl_template_test src/Test/TemplateSystemTest.cpp)
@@ -283,9 +282,8 @@ target_link_libraries(chtl_template_test CHTLImport CHTLConstraint CHTLCore CHTL
 add_executable(chtl_custom_test src/Test/CustomSystemTest.cpp)
 target_link_libraries(chtl_custom_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
 
-# 最终项目状态报告可执行文件
-add_executable(chtl_status_report src/Test/FinalProjectStatus.cpp)
-target_link_libraries(chtl_status_report CHTLDispatcher CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+
 
 # 原始嵌入和配置系统测试可执行文件
 add_executable(chtl_origin_config_test src/Test/OriginConfigTest.cpp)
@@ -295,9 +293,8 @@ target_link_libraries(chtl_origin_config_test CHTLImport CHTLConstraint CHTLCore
 add_executable(chtl_cjmod_test src/Test/CJMODTest.cpp)
 target_link_libraries(chtl_cjmod_test CJMOD CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
 
-# 最终成就报告可执行文件
-add_executable(chtl_final_achievement src/Test/FinalAchievementReport.cpp)
-target_link_libraries(chtl_final_achievement CJMOD CHTLDispatcher CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+
 
 # ANTLR真实集成测试可执行文件
 add_executable(chtl_antlr_real_test src/Test/ANTLRRealIntegrationTest.cpp)
@@ -325,16 +322,13 @@ add_executable(chtl_project_audit src/Test/ProjectCompletionAudit.cpp)
 add_executable(chtl_performance_benchmark src/Test/PerformanceBenchmark.cpp)
 target_link_libraries(chtl_performance_benchmark CHTLDispatcher CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler antlr4-runtime)
 
-# 最终100%完成报告可执行文件
-add_executable(chtl_final_100_percent src/Test/Final100PercentReport.cpp)
+
 
 # CJMOD真实集成测试可执行文件
 add_executable(chtl_cjmod_real_test src/Test/CJMODRealIntegrationTest.cpp)
 target_link_libraries(chtl_cjmod_real_test CJMOD CHTLJSCore CHTLScanner)
 
-# CJMOD官方模块测试可执行文件
-add_executable(chtl_cjmod_official_test src/Test/CJMODOfficialModuleTest.cpp)
-target_link_libraries(chtl_cjmod_official_test CJMOD)
+
 
 # 设置调试信息
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")

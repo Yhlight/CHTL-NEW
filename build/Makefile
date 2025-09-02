@@ -461,19 +461,6 @@ chtl_import_test/fast:
 .PHONY : chtl_import_test/fast
 
 #=============================================================================
-# Target rules for targets named chtl_final_project_summary
-
-# Build rule for target.
-chtl_final_project_summary: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_project_summary
-.PHONY : chtl_final_project_summary
-
-# fast build rule for target.
-chtl_final_project_summary/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_project_summary.dir/build.make CMakeFiles/chtl_final_project_summary.dir/build
-.PHONY : chtl_final_project_summary/fast
-
-#=============================================================================
 # Target rules for targets named chtl_structure_fix_report
 
 # Build rule for target.
@@ -591,6 +578,19 @@ chtl_final_strict_compliance/fast:
 .PHONY : chtl_final_strict_compliance/fast
 
 #=============================================================================
+# Target rules for targets named chtl_repository_cleanup_report
+
+# Build rule for target.
+chtl_repository_cleanup_report: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_repository_cleanup_report
+.PHONY : chtl_repository_cleanup_report
+
+# fast build rule for target.
+chtl_repository_cleanup_report/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_repository_cleanup_report.dir/build.make CMakeFiles/chtl_repository_cleanup_report.dir/build
+.PHONY : chtl_repository_cleanup_report/fast
+
+#=============================================================================
 # Target rules for targets named chtl_lexer_test
 
 # Build rule for target.
@@ -602,19 +602,6 @@ chtl_lexer_test: cmake_check_build_system
 chtl_lexer_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_lexer_test.dir/build.make CMakeFiles/chtl_lexer_test.dir/build
 .PHONY : chtl_lexer_test/fast
-
-#=============================================================================
-# Target rules for targets named chtl_antlr_test
-
-# Build rule for target.
-chtl_antlr_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_antlr_test
-.PHONY : chtl_antlr_test
-
-# fast build rule for target.
-chtl_antlr_test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_antlr_test.dir/build.make CMakeFiles/chtl_antlr_test.dir/build
-.PHONY : chtl_antlr_test/fast
 
 #=============================================================================
 # Target rules for targets named chtl_template_test
@@ -643,19 +630,6 @@ chtl_custom_test/fast:
 .PHONY : chtl_custom_test/fast
 
 #=============================================================================
-# Target rules for targets named chtl_status_report
-
-# Build rule for target.
-chtl_status_report: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_status_report
-.PHONY : chtl_status_report
-
-# fast build rule for target.
-chtl_status_report/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_status_report.dir/build.make CMakeFiles/chtl_status_report.dir/build
-.PHONY : chtl_status_report/fast
-
-#=============================================================================
 # Target rules for targets named chtl_origin_config_test
 
 # Build rule for target.
@@ -680,19 +654,6 @@ chtl_cjmod_test: cmake_check_build_system
 chtl_cjmod_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_test.dir/build.make CMakeFiles/chtl_cjmod_test.dir/build
 .PHONY : chtl_cjmod_test/fast
-
-#=============================================================================
-# Target rules for targets named chtl_final_achievement
-
-# Build rule for target.
-chtl_final_achievement: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_achievement
-.PHONY : chtl_final_achievement
-
-# fast build rule for target.
-chtl_final_achievement/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_achievement.dir/build.make CMakeFiles/chtl_final_achievement.dir/build
-.PHONY : chtl_final_achievement/fast
 
 #=============================================================================
 # Target rules for targets named chtl_antlr_real_test
@@ -786,19 +747,6 @@ chtl_performance_benchmark/fast:
 .PHONY : chtl_performance_benchmark/fast
 
 #=============================================================================
-# Target rules for targets named chtl_final_100_percent
-
-# Build rule for target.
-chtl_final_100_percent: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_100_percent
-.PHONY : chtl_final_100_percent
-
-# fast build rule for target.
-chtl_final_100_percent/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_100_percent.dir/build.make CMakeFiles/chtl_final_100_percent.dir/build
-.PHONY : chtl_final_100_percent/fast
-
-#=============================================================================
 # Target rules for targets named chtl_cjmod_real_test
 
 # Build rule for target.
@@ -810,19 +758,6 @@ chtl_cjmod_real_test: cmake_check_build_system
 chtl_cjmod_real_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_test.dir/build.make CMakeFiles/chtl_cjmod_real_test.dir/build
 .PHONY : chtl_cjmod_real_test/fast
-
-#=============================================================================
-# Target rules for targets named chtl_cjmod_official_test
-
-# Build rule for target.
-chtl_cjmod_official_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_cjmod_official_test
-.PHONY : chtl_cjmod_official_test
-
-# fast build rule for target.
-chtl_cjmod_official_test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_official_test.dir/build.make CMakeFiles/chtl_cjmod_official_test.dir/build
-.PHONY : chtl_cjmod_official_test/fast
 
 #=============================================================================
 # Target rules for targets named run_tests
@@ -2218,30 +2153,6 @@ src/Test/ANTLRBuildReport.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_antlr_build_report.dir/build.make CMakeFiles/chtl_antlr_build_report.dir/src/Test/ANTLRBuildReport.cpp.s
 .PHONY : src/Test/ANTLRBuildReport.cpp.s
 
-src/Test/ANTLRIntegrationTest.o: src/Test/ANTLRIntegrationTest.cpp.o
-.PHONY : src/Test/ANTLRIntegrationTest.o
-
-# target to build an object file
-src/Test/ANTLRIntegrationTest.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_antlr_test.dir/build.make CMakeFiles/chtl_antlr_test.dir/src/Test/ANTLRIntegrationTest.cpp.o
-.PHONY : src/Test/ANTLRIntegrationTest.cpp.o
-
-src/Test/ANTLRIntegrationTest.i: src/Test/ANTLRIntegrationTest.cpp.i
-.PHONY : src/Test/ANTLRIntegrationTest.i
-
-# target to preprocess a source file
-src/Test/ANTLRIntegrationTest.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_antlr_test.dir/build.make CMakeFiles/chtl_antlr_test.dir/src/Test/ANTLRIntegrationTest.cpp.i
-.PHONY : src/Test/ANTLRIntegrationTest.cpp.i
-
-src/Test/ANTLRIntegrationTest.s: src/Test/ANTLRIntegrationTest.cpp.s
-.PHONY : src/Test/ANTLRIntegrationTest.s
-
-# target to generate assembly for a file
-src/Test/ANTLRIntegrationTest.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_antlr_test.dir/build.make CMakeFiles/chtl_antlr_test.dir/src/Test/ANTLRIntegrationTest.cpp.s
-.PHONY : src/Test/ANTLRIntegrationTest.cpp.s
-
 src/Test/ANTLRRealIntegrationTest.o: src/Test/ANTLRRealIntegrationTest.cpp.o
 .PHONY : src/Test/ANTLRRealIntegrationTest.o
 
@@ -2313,30 +2224,6 @@ src/Test/BasicCompilationTest.s: src/Test/BasicCompilationTest.cpp.s
 src/Test/BasicCompilationTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_test.dir/build.make CMakeFiles/chtl_test.dir/src/Test/BasicCompilationTest.cpp.s
 .PHONY : src/Test/BasicCompilationTest.cpp.s
-
-src/Test/CJMODOfficialModuleTest.o: src/Test/CJMODOfficialModuleTest.cpp.o
-.PHONY : src/Test/CJMODOfficialModuleTest.o
-
-# target to build an object file
-src/Test/CJMODOfficialModuleTest.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_official_test.dir/build.make CMakeFiles/chtl_cjmod_official_test.dir/src/Test/CJMODOfficialModuleTest.cpp.o
-.PHONY : src/Test/CJMODOfficialModuleTest.cpp.o
-
-src/Test/CJMODOfficialModuleTest.i: src/Test/CJMODOfficialModuleTest.cpp.i
-.PHONY : src/Test/CJMODOfficialModuleTest.i
-
-# target to preprocess a source file
-src/Test/CJMODOfficialModuleTest.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_official_test.dir/build.make CMakeFiles/chtl_cjmod_official_test.dir/src/Test/CJMODOfficialModuleTest.cpp.i
-.PHONY : src/Test/CJMODOfficialModuleTest.cpp.i
-
-src/Test/CJMODOfficialModuleTest.s: src/Test/CJMODOfficialModuleTest.cpp.s
-.PHONY : src/Test/CJMODOfficialModuleTest.s
-
-# target to generate assembly for a file
-src/Test/CJMODOfficialModuleTest.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_official_test.dir/build.make CMakeFiles/chtl_cjmod_official_test.dir/src/Test/CJMODOfficialModuleTest.cpp.s
-.PHONY : src/Test/CJMODOfficialModuleTest.cpp.s
 
 src/Test/CJMODRealIntegrationTest.o: src/Test/CJMODRealIntegrationTest.cpp.o
 .PHONY : src/Test/CJMODRealIntegrationTest.o
@@ -2506,54 +2393,6 @@ src/Test/DocumentComplianceReport.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_document_compliance.dir/build.make CMakeFiles/chtl_document_compliance.dir/src/Test/DocumentComplianceReport.cpp.s
 .PHONY : src/Test/DocumentComplianceReport.cpp.s
 
-src/Test/Final100PercentReport.o: src/Test/Final100PercentReport.cpp.o
-.PHONY : src/Test/Final100PercentReport.o
-
-# target to build an object file
-src/Test/Final100PercentReport.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_100_percent.dir/build.make CMakeFiles/chtl_final_100_percent.dir/src/Test/Final100PercentReport.cpp.o
-.PHONY : src/Test/Final100PercentReport.cpp.o
-
-src/Test/Final100PercentReport.i: src/Test/Final100PercentReport.cpp.i
-.PHONY : src/Test/Final100PercentReport.i
-
-# target to preprocess a source file
-src/Test/Final100PercentReport.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_100_percent.dir/build.make CMakeFiles/chtl_final_100_percent.dir/src/Test/Final100PercentReport.cpp.i
-.PHONY : src/Test/Final100PercentReport.cpp.i
-
-src/Test/Final100PercentReport.s: src/Test/Final100PercentReport.cpp.s
-.PHONY : src/Test/Final100PercentReport.s
-
-# target to generate assembly for a file
-src/Test/Final100PercentReport.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_100_percent.dir/build.make CMakeFiles/chtl_final_100_percent.dir/src/Test/Final100PercentReport.cpp.s
-.PHONY : src/Test/Final100PercentReport.cpp.s
-
-src/Test/FinalAchievementReport.o: src/Test/FinalAchievementReport.cpp.o
-.PHONY : src/Test/FinalAchievementReport.o
-
-# target to build an object file
-src/Test/FinalAchievementReport.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_achievement.dir/build.make CMakeFiles/chtl_final_achievement.dir/src/Test/FinalAchievementReport.cpp.o
-.PHONY : src/Test/FinalAchievementReport.cpp.o
-
-src/Test/FinalAchievementReport.i: src/Test/FinalAchievementReport.cpp.i
-.PHONY : src/Test/FinalAchievementReport.i
-
-# target to preprocess a source file
-src/Test/FinalAchievementReport.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_achievement.dir/build.make CMakeFiles/chtl_final_achievement.dir/src/Test/FinalAchievementReport.cpp.i
-.PHONY : src/Test/FinalAchievementReport.cpp.i
-
-src/Test/FinalAchievementReport.s: src/Test/FinalAchievementReport.cpp.s
-.PHONY : src/Test/FinalAchievementReport.s
-
-# target to generate assembly for a file
-src/Test/FinalAchievementReport.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_achievement.dir/build.make CMakeFiles/chtl_final_achievement.dir/src/Test/FinalAchievementReport.cpp.s
-.PHONY : src/Test/FinalAchievementReport.cpp.s
-
 src/Test/FinalCompletionVerification.o: src/Test/FinalCompletionVerification.cpp.o
 .PHONY : src/Test/FinalCompletionVerification.o
 
@@ -2577,54 +2416,6 @@ src/Test/FinalCompletionVerification.s: src/Test/FinalCompletionVerification.cpp
 src/Test/FinalCompletionVerification.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_verification.dir/build.make CMakeFiles/chtl_final_completion_verification.dir/src/Test/FinalCompletionVerification.cpp.s
 .PHONY : src/Test/FinalCompletionVerification.cpp.s
-
-src/Test/FinalProjectStatus.o: src/Test/FinalProjectStatus.cpp.o
-.PHONY : src/Test/FinalProjectStatus.o
-
-# target to build an object file
-src/Test/FinalProjectStatus.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_status_report.dir/build.make CMakeFiles/chtl_status_report.dir/src/Test/FinalProjectStatus.cpp.o
-.PHONY : src/Test/FinalProjectStatus.cpp.o
-
-src/Test/FinalProjectStatus.i: src/Test/FinalProjectStatus.cpp.i
-.PHONY : src/Test/FinalProjectStatus.i
-
-# target to preprocess a source file
-src/Test/FinalProjectStatus.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_status_report.dir/build.make CMakeFiles/chtl_status_report.dir/src/Test/FinalProjectStatus.cpp.i
-.PHONY : src/Test/FinalProjectStatus.cpp.i
-
-src/Test/FinalProjectStatus.s: src/Test/FinalProjectStatus.cpp.s
-.PHONY : src/Test/FinalProjectStatus.s
-
-# target to generate assembly for a file
-src/Test/FinalProjectStatus.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_status_report.dir/build.make CMakeFiles/chtl_status_report.dir/src/Test/FinalProjectStatus.cpp.s
-.PHONY : src/Test/FinalProjectStatus.cpp.s
-
-src/Test/FinalProjectSummary.o: src/Test/FinalProjectSummary.cpp.o
-.PHONY : src/Test/FinalProjectSummary.o
-
-# target to build an object file
-src/Test/FinalProjectSummary.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_project_summary.dir/build.make CMakeFiles/chtl_final_project_summary.dir/src/Test/FinalProjectSummary.cpp.o
-.PHONY : src/Test/FinalProjectSummary.cpp.o
-
-src/Test/FinalProjectSummary.i: src/Test/FinalProjectSummary.cpp.i
-.PHONY : src/Test/FinalProjectSummary.i
-
-# target to preprocess a source file
-src/Test/FinalProjectSummary.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_project_summary.dir/build.make CMakeFiles/chtl_final_project_summary.dir/src/Test/FinalProjectSummary.cpp.i
-.PHONY : src/Test/FinalProjectSummary.cpp.i
-
-src/Test/FinalProjectSummary.s: src/Test/FinalProjectSummary.cpp.s
-.PHONY : src/Test/FinalProjectSummary.s
-
-# target to generate assembly for a file
-src/Test/FinalProjectSummary.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_project_summary.dir/build.make CMakeFiles/chtl_final_project_summary.dir/src/Test/FinalProjectSummary.cpp.s
-.PHONY : src/Test/FinalProjectSummary.cpp.s
 
 src/Test/FinalStrictComplianceReport.o: src/Test/FinalStrictComplianceReport.cpp.o
 .PHONY : src/Test/FinalStrictComplianceReport.o
@@ -2938,6 +2729,30 @@ src/Test/ProjectStructureFixReport.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_structure_fix_report.dir/build.make CMakeFiles/chtl_structure_fix_report.dir/src/Test/ProjectStructureFixReport.cpp.s
 .PHONY : src/Test/ProjectStructureFixReport.cpp.s
 
+src/Test/RepositoryCleanupReport.o: src/Test/RepositoryCleanupReport.cpp.o
+.PHONY : src/Test/RepositoryCleanupReport.o
+
+# target to build an object file
+src/Test/RepositoryCleanupReport.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_repository_cleanup_report.dir/build.make CMakeFiles/chtl_repository_cleanup_report.dir/src/Test/RepositoryCleanupReport.cpp.o
+.PHONY : src/Test/RepositoryCleanupReport.cpp.o
+
+src/Test/RepositoryCleanupReport.i: src/Test/RepositoryCleanupReport.cpp.i
+.PHONY : src/Test/RepositoryCleanupReport.i
+
+# target to preprocess a source file
+src/Test/RepositoryCleanupReport.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_repository_cleanup_report.dir/build.make CMakeFiles/chtl_repository_cleanup_report.dir/src/Test/RepositoryCleanupReport.cpp.i
+.PHONY : src/Test/RepositoryCleanupReport.cpp.i
+
+src/Test/RepositoryCleanupReport.s: src/Test/RepositoryCleanupReport.cpp.s
+.PHONY : src/Test/RepositoryCleanupReport.s
+
+# target to generate assembly for a file
+src/Test/RepositoryCleanupReport.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_repository_cleanup_report.dir/build.make CMakeFiles/chtl_repository_cleanup_report.dir/src/Test/RepositoryCleanupReport.cpp.s
+.PHONY : src/Test/RepositoryCleanupReport.cpp.s
+
 src/Test/SimpleCompilerTest.o: src/Test/SimpleCompilerTest.cpp.o
 .PHONY : src/Test/SimpleCompilerTest.o
 
@@ -3115,9 +2930,7 @@ help:
 	@echo "... chtl"
 	@echo "... chtl_antlr_build_report"
 	@echo "... chtl_antlr_real_test"
-	@echo "... chtl_antlr_test"
 	@echo "... chtl_architecture_test"
-	@echo "... chtl_cjmod_official_test"
 	@echo "... chtl_cjmod_real_test"
 	@echo "... chtl_cjmod_test"
 	@echo "... chtl_code_merger_test"
@@ -3125,10 +2938,7 @@ help:
 	@echo "... chtl_constraint_test"
 	@echo "... chtl_custom_test"
 	@echo "... chtl_document_compliance"
-	@echo "... chtl_final_100_percent"
-	@echo "... chtl_final_achievement"
 	@echo "... chtl_final_completion_verification"
-	@echo "... chtl_final_project_summary"
 	@echo "... chtl_final_strict_compliance"
 	@echo "... chtl_final_system_demo"
 	@echo "... chtl_import_test"
@@ -3141,8 +2951,8 @@ help:
 	@echo "... chtl_performance_benchmark"
 	@echo "... chtl_project_audit"
 	@echo "... chtl_project_optimization_report"
+	@echo "... chtl_repository_cleanup_report"
 	@echo "... chtl_simple_test"
-	@echo "... chtl_status_report"
 	@echo "... chtl_strict_module_compliance_test"
 	@echo "... chtl_structure_fix_report"
 	@echo "... chtl_template_test"
@@ -3318,9 +3128,6 @@ help:
 	@echo "... src/Test/ANTLRBuildReport.o"
 	@echo "... src/Test/ANTLRBuildReport.i"
 	@echo "... src/Test/ANTLRBuildReport.s"
-	@echo "... src/Test/ANTLRIntegrationTest.o"
-	@echo "... src/Test/ANTLRIntegrationTest.i"
-	@echo "... src/Test/ANTLRIntegrationTest.s"
 	@echo "... src/Test/ANTLRRealIntegrationTest.o"
 	@echo "... src/Test/ANTLRRealIntegrationTest.i"
 	@echo "... src/Test/ANTLRRealIntegrationTest.s"
@@ -3330,9 +3137,6 @@ help:
 	@echo "... src/Test/BasicCompilationTest.o"
 	@echo "... src/Test/BasicCompilationTest.i"
 	@echo "... src/Test/BasicCompilationTest.s"
-	@echo "... src/Test/CJMODOfficialModuleTest.o"
-	@echo "... src/Test/CJMODOfficialModuleTest.i"
-	@echo "... src/Test/CJMODOfficialModuleTest.s"
 	@echo "... src/Test/CJMODRealIntegrationTest.o"
 	@echo "... src/Test/CJMODRealIntegrationTest.i"
 	@echo "... src/Test/CJMODRealIntegrationTest.s"
@@ -3354,21 +3158,9 @@ help:
 	@echo "... src/Test/DocumentComplianceReport.o"
 	@echo "... src/Test/DocumentComplianceReport.i"
 	@echo "... src/Test/DocumentComplianceReport.s"
-	@echo "... src/Test/Final100PercentReport.o"
-	@echo "... src/Test/Final100PercentReport.i"
-	@echo "... src/Test/Final100PercentReport.s"
-	@echo "... src/Test/FinalAchievementReport.o"
-	@echo "... src/Test/FinalAchievementReport.i"
-	@echo "... src/Test/FinalAchievementReport.s"
 	@echo "... src/Test/FinalCompletionVerification.o"
 	@echo "... src/Test/FinalCompletionVerification.i"
 	@echo "... src/Test/FinalCompletionVerification.s"
-	@echo "... src/Test/FinalProjectStatus.o"
-	@echo "... src/Test/FinalProjectStatus.i"
-	@echo "... src/Test/FinalProjectStatus.s"
-	@echo "... src/Test/FinalProjectSummary.o"
-	@echo "... src/Test/FinalProjectSummary.i"
-	@echo "... src/Test/FinalProjectSummary.s"
 	@echo "... src/Test/FinalStrictComplianceReport.o"
 	@echo "... src/Test/FinalStrictComplianceReport.i"
 	@echo "... src/Test/FinalStrictComplianceReport.s"
@@ -3408,6 +3200,9 @@ help:
 	@echo "... src/Test/ProjectStructureFixReport.o"
 	@echo "... src/Test/ProjectStructureFixReport.i"
 	@echo "... src/Test/ProjectStructureFixReport.s"
+	@echo "... src/Test/RepositoryCleanupReport.o"
+	@echo "... src/Test/RepositoryCleanupReport.i"
+	@echo "... src/Test/RepositoryCleanupReport.s"
 	@echo "... src/Test/SimpleCompilerTest.o"
 	@echo "... src/Test/SimpleCompilerTest.i"
 	@echo "... src/Test/SimpleCompilerTest.s"
