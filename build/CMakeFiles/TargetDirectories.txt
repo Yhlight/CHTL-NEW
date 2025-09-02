@@ -15,7 +15,7 @@
 /workspace/build/CMakeFiles/chtl_architecture_test.dir
 /workspace/build/CMakeFiles/chtl_constraint_test.dir
 /workspace/build/CMakeFiles/chtl_import_test.dir
-/workspace/build/CMakeFiles/chtl_final_summary.dir
+/workspace/build/CMakeFiles/chtl_final_project_summary.dir
 /workspace/build/CMakeFiles/chtl_lexer_test.dir
 /workspace/build/CMakeFiles/chtl_antlr_test.dir
 /workspace/build/CMakeFiles/chtl_template_test.dir
@@ -33,6 +33,7 @@
 /workspace/build/CMakeFiles/chtl_performance_benchmark.dir
 /workspace/build/CMakeFiles/chtl_final_100_percent.dir
 /workspace/build/CMakeFiles/chtl_cjmod_real_test.dir
+/workspace/build/CMakeFiles/chtl_cjmod_official_test.dir
 /workspace/build/CMakeFiles/run_tests.dir
 /workspace/build/CMakeFiles/compile_example.dir
 /workspace/build/CMakeFiles/edit_cache.dir

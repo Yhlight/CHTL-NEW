@@ -383,17 +383,17 @@ chtl_import_test/fast:
 .PHONY : chtl_import_test/fast
 
 #=============================================================================
-# Target rules for targets named chtl_final_summary
+# Target rules for targets named chtl_final_project_summary
 
 # Build rule for target.
-chtl_final_summary: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_summary
-.PHONY : chtl_final_summary
+chtl_final_project_summary: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_project_summary
+.PHONY : chtl_final_project_summary
 
 # fast build rule for target.
-chtl_final_summary/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_summary.dir/build.make CMakeFiles/chtl_final_summary.dir/build
-.PHONY : chtl_final_summary/fast
+chtl_final_project_summary/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_project_summary.dir/build.make CMakeFiles/chtl_final_project_summary.dir/build
+.PHONY : chtl_final_project_summary/fast
 
 #=============================================================================
 # Target rules for targets named chtl_lexer_test
@@ -615,6 +615,19 @@ chtl_cjmod_real_test: cmake_check_build_system
 chtl_cjmod_real_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_test.dir/build.make CMakeFiles/chtl_cjmod_real_test.dir/build
 .PHONY : chtl_cjmod_real_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_cjmod_official_test
+
+# Build rule for target.
+chtl_cjmod_official_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_cjmod_official_test
+.PHONY : chtl_cjmod_official_test
+
+# fast build rule for target.
+chtl_cjmod_official_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_official_test.dir/build.make CMakeFiles/chtl_cjmod_official_test.dir/build
+.PHONY : chtl_cjmod_official_test/fast
 
 #=============================================================================
 # Target rules for targets named run_tests
@@ -1434,6 +1447,30 @@ src/CJMOD/CJMODSyntax.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.s
 .PHONY : src/CJMOD/CJMODSyntax.cpp.s
 
+src/CJMOD/ChthollyOfficialModule.o: src/CJMOD/ChthollyOfficialModule.cpp.o
+.PHONY : src/CJMOD/ChthollyOfficialModule.o
+
+# target to build an object file
+src/CJMOD/ChthollyOfficialModule.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/ChthollyOfficialModule.cpp.o
+.PHONY : src/CJMOD/ChthollyOfficialModule.cpp.o
+
+src/CJMOD/ChthollyOfficialModule.i: src/CJMOD/ChthollyOfficialModule.cpp.i
+.PHONY : src/CJMOD/ChthollyOfficialModule.i
+
+# target to preprocess a source file
+src/CJMOD/ChthollyOfficialModule.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/ChthollyOfficialModule.cpp.i
+.PHONY : src/CJMOD/ChthollyOfficialModule.cpp.i
+
+src/CJMOD/ChthollyOfficialModule.s: src/CJMOD/ChthollyOfficialModule.cpp.s
+.PHONY : src/CJMOD/ChthollyOfficialModule.s
+
+# target to generate assembly for a file
+src/CJMOD/ChthollyOfficialModule.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/ChthollyOfficialModule.cpp.s
+.PHONY : src/CJMOD/ChthollyOfficialModule.cpp.s
+
 src/CSS/CSSCompiler.o: src/CSS/CSSCompiler.cpp.o
 .PHONY : src/CSS/CSSCompiler.o
 
@@ -1866,6 +1903,30 @@ src/Test/BasicCompilationTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_test.dir/build.make CMakeFiles/chtl_test.dir/src/Test/BasicCompilationTest.cpp.s
 .PHONY : src/Test/BasicCompilationTest.cpp.s
 
+src/Test/CJMODOfficialModuleTest.o: src/Test/CJMODOfficialModuleTest.cpp.o
+.PHONY : src/Test/CJMODOfficialModuleTest.o
+
+# target to build an object file
+src/Test/CJMODOfficialModuleTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_official_test.dir/build.make CMakeFiles/chtl_cjmod_official_test.dir/src/Test/CJMODOfficialModuleTest.cpp.o
+.PHONY : src/Test/CJMODOfficialModuleTest.cpp.o
+
+src/Test/CJMODOfficialModuleTest.i: src/Test/CJMODOfficialModuleTest.cpp.i
+.PHONY : src/Test/CJMODOfficialModuleTest.i
+
+# target to preprocess a source file
+src/Test/CJMODOfficialModuleTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_official_test.dir/build.make CMakeFiles/chtl_cjmod_official_test.dir/src/Test/CJMODOfficialModuleTest.cpp.i
+.PHONY : src/Test/CJMODOfficialModuleTest.cpp.i
+
+src/Test/CJMODOfficialModuleTest.s: src/Test/CJMODOfficialModuleTest.cpp.s
+.PHONY : src/Test/CJMODOfficialModuleTest.s
+
+# target to generate assembly for a file
+src/Test/CJMODOfficialModuleTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_official_test.dir/build.make CMakeFiles/chtl_cjmod_official_test.dir/src/Test/CJMODOfficialModuleTest.cpp.s
+.PHONY : src/Test/CJMODOfficialModuleTest.cpp.s
+
 src/Test/CJMODRealIntegrationTest.o: src/Test/CJMODRealIntegrationTest.cpp.o
 .PHONY : src/Test/CJMODRealIntegrationTest.o
 
@@ -2087,7 +2148,7 @@ src/Test/FinalProjectSummary.o: src/Test/FinalProjectSummary.cpp.o
 
 # target to build an object file
 src/Test/FinalProjectSummary.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_summary.dir/build.make CMakeFiles/chtl_final_summary.dir/src/Test/FinalProjectSummary.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_project_summary.dir/build.make CMakeFiles/chtl_final_project_summary.dir/src/Test/FinalProjectSummary.cpp.o
 .PHONY : src/Test/FinalProjectSummary.cpp.o
 
 src/Test/FinalProjectSummary.i: src/Test/FinalProjectSummary.cpp.i
@@ -2095,7 +2156,7 @@ src/Test/FinalProjectSummary.i: src/Test/FinalProjectSummary.cpp.i
 
 # target to preprocess a source file
 src/Test/FinalProjectSummary.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_summary.dir/build.make CMakeFiles/chtl_final_summary.dir/src/Test/FinalProjectSummary.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_project_summary.dir/build.make CMakeFiles/chtl_final_project_summary.dir/src/Test/FinalProjectSummary.cpp.i
 .PHONY : src/Test/FinalProjectSummary.cpp.i
 
 src/Test/FinalProjectSummary.s: src/Test/FinalProjectSummary.cpp.s
@@ -2103,7 +2164,7 @@ src/Test/FinalProjectSummary.s: src/Test/FinalProjectSummary.cpp.s
 
 # target to generate assembly for a file
 src/Test/FinalProjectSummary.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_summary.dir/build.make CMakeFiles/chtl_final_summary.dir/src/Test/FinalProjectSummary.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_project_summary.dir/build.make CMakeFiles/chtl_final_project_summary.dir/src/Test/FinalProjectSummary.cpp.s
 .PHONY : src/Test/FinalProjectSummary.cpp.s
 
 src/Test/FinalSystemDemo.o: src/Test/FinalSystemDemo.cpp.o
@@ -2375,6 +2436,7 @@ help:
 	@echo "... chtl_antlr_real_test"
 	@echo "... chtl_antlr_test"
 	@echo "... chtl_architecture_test"
+	@echo "... chtl_cjmod_official_test"
 	@echo "... chtl_cjmod_real_test"
 	@echo "... chtl_cjmod_test"
 	@echo "... chtl_code_merger_test"
@@ -2383,7 +2445,7 @@ help:
 	@echo "... chtl_custom_test"
 	@echo "... chtl_final_100_percent"
 	@echo "... chtl_final_achievement"
-	@echo "... chtl_final_summary"
+	@echo "... chtl_final_project_summary"
 	@echo "... chtl_final_system_demo"
 	@echo "... chtl_import_test"
 	@echo "... chtl_lexer_test"
@@ -2494,6 +2556,9 @@ help:
 	@echo "... src/CJMOD/CJMODSyntax.o"
 	@echo "... src/CJMOD/CJMODSyntax.i"
 	@echo "... src/CJMOD/CJMODSyntax.s"
+	@echo "... src/CJMOD/ChthollyOfficialModule.o"
+	@echo "... src/CJMOD/ChthollyOfficialModule.i"
+	@echo "... src/CJMOD/ChthollyOfficialModule.s"
 	@echo "... src/CSS/CSSCompiler.o"
 	@echo "... src/CSS/CSSCompiler.i"
 	@echo "... src/CSS/CSSCompiler.s"
@@ -2548,6 +2613,9 @@ help:
 	@echo "... src/Test/BasicCompilationTest.o"
 	@echo "... src/Test/BasicCompilationTest.i"
 	@echo "... src/Test/BasicCompilationTest.s"
+	@echo "... src/Test/CJMODOfficialModuleTest.o"
+	@echo "... src/Test/CJMODOfficialModuleTest.i"
+	@echo "... src/Test/CJMODOfficialModuleTest.s"
 	@echo "... src/Test/CJMODRealIntegrationTest.o"
 	@echo "... src/Test/CJMODRealIntegrationTest.i"
 	@echo "... src/Test/CJMODRealIntegrationTest.s"

@@ -68,7 +68,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/chtl_architecture_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_constraint_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_import_test.dir/DependInfo.cmake"
-  "CMakeFiles/chtl_final_summary.dir/DependInfo.cmake"
+  "CMakeFiles/chtl_final_project_summary.dir/DependInfo.cmake"
   "CMakeFiles/chtl_lexer_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_antlr_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_template_test.dir/DependInfo.cmake"
@@ -86,6 +86,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/chtl_performance_benchmark.dir/DependInfo.cmake"
   "CMakeFiles/chtl_final_100_percent.dir/DependInfo.cmake"
   "CMakeFiles/chtl_cjmod_real_test.dir/DependInfo.cmake"
+  "CMakeFiles/chtl_cjmod_official_test.dir/DependInfo.cmake"
   "CMakeFiles/run_tests.dir/DependInfo.cmake"
   "CMakeFiles/compile_example.dir/DependInfo.cmake"
   )

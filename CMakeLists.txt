@@ -106,6 +106,7 @@ set(CJMOD_SOURCES
     src/CJMOD/CJMODScanner.cpp
     src/CJMOD/CJMODGenerator.cpp
     src/CJMOD/CJMODIntegration.cpp
+    src/CJMOD/ChthollyOfficialModule.cpp
 )
 
 # 代码合并器源文件
@@ -192,8 +193,8 @@ add_executable(chtl_import_test src/Test/ImportTest.cpp)
 target_link_libraries(chtl_import_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
 
 # 最终项目总结可执行文件
-add_executable(chtl_final_summary src/Test/FinalProjectSummary.cpp)
-target_link_libraries(chtl_final_summary CHTLDispatcher CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+add_executable(chtl_final_project_summary src/Test/FinalProjectSummary.cpp)
+target_link_libraries(chtl_final_project_summary CHTLDispatcher CJMOD CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
 
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)
@@ -259,6 +260,10 @@ add_executable(chtl_final_100_percent src/Test/Final100PercentReport.cpp)
 # CJMOD真实集成测试可执行文件
 add_executable(chtl_cjmod_real_test src/Test/CJMODRealIntegrationTest.cpp)
 target_link_libraries(chtl_cjmod_real_test CJMOD CHTLJSCore CHTLScanner)
+
+# CJMOD官方模块测试可执行文件
+add_executable(chtl_cjmod_official_test src/Test/CJMODOfficialModuleTest.cpp)
+target_link_libraries(chtl_cjmod_official_test CJMOD)
 
 # 设置调试信息
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
