@@ -276,6 +276,8 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: \
   /workspace/src/CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/EnhanceSelectorNode.h \
   /workspace/src/CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/VirObjectNode.h \
   /workspace/src/CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/AnimateNode.h \
+  /workspace/src/CompilerDispatcher/../CSS/CSSCompiler.h \
+  /workspace/src/CompilerDispatcher/../JS/JavaScriptCompiler.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/algorithm \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_algo.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/algorithmfwd.h \

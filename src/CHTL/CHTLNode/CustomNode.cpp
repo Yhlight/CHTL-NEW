@@ -627,4 +627,46 @@ std::string CustomNode::ToString(int indent) const {
     return oss.str();
 }
 
+// 无值样式组功能实现
+void CustomNode::SetValuelessStyleGroup(bool isValueless) {
+    m_IsValuelessStyleGroup = isValueless;
+    
+    if (isValueless && m_CustomType != CustomType::STYLE_CUSTOM) {
+        // 只有样式自定义才能设置为无值样式组
+        m_IsValuelessStyleGroup = false;
+    }
+}
+
+void CustomNode::AddValuelessSelector(const std::string& selector) {
+    if (m_IsValuelessStyleGroup) {
+        m_ValuelessSelectors.push_back(selector);
+    }
+}
+
+std::string CustomNode::GenerateValuelessStyleCSS() const {
+    if (!m_IsValuelessStyleGroup || m_ValuelessSelectors.empty()) {
+        return "";
+    }
+    
+    std::ostringstream css;
+    
+    // 无值样式组生成CSS：只生成选择器，不生成属性
+    for (const auto& selector : m_ValuelessSelectors) {
+        css << selector << " {\n";
+        css << "  /* 无值样式组：" << m_CustomName << " */\n";
+        css << "}\n\n";
+    }
+    
+    // 如果有无值属性，生成为注释
+    if (!m_ValuelessProperties.empty()) {
+        css << "/* 无值属性列表：";
+        for (const auto& prop : m_ValuelessProperties) {
+            css << " " << prop;
+        }
+        css << " */\n";
+    }
+    
+    return css.str();
+}
+
 } // namespace CHTL

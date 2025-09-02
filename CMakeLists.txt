@@ -81,6 +81,16 @@ set(IMPORT_SOURCES
     src/ImportSystem/CHTLImportManager.cpp
 )
 
+# CSS编译器源文件
+set(CSS_SOURCES
+    src/CSS/CSSCompiler.cpp
+)
+
+# JavaScript编译器源文件
+set(JS_SOURCES
+    src/JS/JavaScriptCompiler.cpp
+)
+
 # 创建CHTL核心库
 add_library(CHTLCore STATIC ${CHTL_CORE_SOURCES})
 target_include_directories(CHTLCore PUBLIC src/CHTL)
@@ -102,10 +112,18 @@ target_link_libraries(CHTLConstraint CHTLCore CHTLJSCore)
 add_library(CHTLImport STATIC ${IMPORT_SOURCES})
 target_include_directories(CHTLImport PUBLIC src/ImportSystem)
 
+# 创建CSS编译器库
+add_library(CHTLCSSCompiler STATIC ${CSS_SOURCES})
+target_include_directories(CHTLCSSCompiler PUBLIC src/CSS)
+
+# 创建JavaScript编译器库
+add_library(CHTLJSCompiler STATIC ${JS_SOURCES})
+target_include_directories(CHTLJSCompiler PUBLIC src/JS)
+
 # 创建调度器库
 add_library(CHTLDispatcher STATIC ${DISPATCHER_SOURCES})
 target_include_directories(CHTLDispatcher PUBLIC src/CompilerDispatcher)
-target_link_libraries(CHTLDispatcher CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport)
+target_link_libraries(CHTLDispatcher CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport CHTLCSSCompiler CHTLJSCompiler)
 
 # 主程序可执行文件
 add_executable(chtl src/main.cpp)
@@ -138,6 +156,26 @@ target_link_libraries(chtl_import_test CHTLImport CHTLConstraint CHTLCore CHTLJS
 # 最终项目总结可执行文件
 add_executable(chtl_final_summary src/Test/FinalProjectSummary.cpp)
 target_link_libraries(chtl_final_summary CHTLDispatcher CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# 词法分析器测试可执行文件
+add_executable(chtl_lexer_test src/Test/LexerTest.cpp)
+target_link_libraries(chtl_lexer_test CHTLCore CHTLJSCore CHTLScanner)
+
+# ANTLR集成测试可执行文件
+add_executable(chtl_antlr_test src/Test/ANTLRIntegrationTest.cpp)
+target_link_libraries(chtl_antlr_test CHTLDispatcher CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# 模板系统完善测试可执行文件
+add_executable(chtl_template_test src/Test/TemplateSystemTest.cpp)
+target_link_libraries(chtl_template_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# 自定义系统完善测试可执行文件
+add_executable(chtl_custom_test src/Test/CustomSystemTest.cpp)
+target_link_libraries(chtl_custom_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# 最终项目状态报告可执行文件
+add_executable(chtl_status_report src/Test/FinalProjectStatus.cpp)
+target_link_libraries(chtl_status_report CHTLDispatcher CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
 
 # 设置调试信息
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")

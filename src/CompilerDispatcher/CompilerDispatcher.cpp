@@ -1,32 +1,13 @@
 #include "CompilerDispatcher.h"
+#include "../CSS/CSSCompiler.h"
+#include "../JS/JavaScriptCompiler.h"
 #include <algorithm>
 #include <sstream>
 #include <regex>
 
 namespace CHTL {
 
-// 临时的CSS和JS编译器声明（后续用ANTLR实现）
-class CSSCompiler {
-public:
-    CompilationResult Compile(const std::vector<CodeFragment>& fragments) {
-        std::ostringstream css;
-        for (const auto& fragment : fragments) {
-            css << fragment.Content << "\n";
-        }
-        return CompilationResult(css.str(), "CSS");
-    }
-};
-
-class JavaScriptCompiler {
-public:
-    CompilationResult Compile(const std::vector<CodeFragment>& fragments) {
-        std::ostringstream js;
-        for (const auto& fragment : fragments) {
-            js << fragment.Content << "\n";
-        }
-        return CompilationResult(js.str(), "JavaScript");
-    }
-};
+// CSS和JavaScript编译器现在使用真实实现
 
 CompilerDispatcher::CompilerDispatcher() : m_HasError(false) {
     InitializeCompilers();
@@ -237,13 +218,51 @@ CompilationResult CompilerDispatcher::CompileCHTLJSFragments(const std::vector<C
 }
 
 CompilationResult CompilerDispatcher::CompileCSSFragments(const std::vector<CodeFragment>& fragments) {
-    // 使用CSS编译器（ANTLR）处理CSS片段
-    return m_CSSCompiler->Compile(fragments);
+    std::vector<std::string> cssContents;
+    
+    // 提取CSS内容
+    for (const auto& fragment : fragments) {
+        cssContents.push_back(fragment.Content);
+    }
+    
+    // 使用CSS编译器处理
+    auto cssResult = m_CSSCompiler->CompileFragments(cssContents);
+    
+    CompilationResult result(cssResult.OptimizedCSS, "CSS");
+    result.IsSuccess = cssResult.IsSuccess;
+    result.Warnings = cssResult.Warnings;
+    
+    if (!cssResult.IsSuccess) {
+        for (const auto& error : cssResult.Errors) {
+            result.Warnings.push_back("CSS编译错误: " + error);
+        }
+    }
+    
+    return result;
 }
 
 CompilationResult CompilerDispatcher::CompileJavaScriptFragments(const std::vector<CodeFragment>& fragments) {
-    // 使用JavaScript编译器（ANTLR）处理JavaScript片段
-    return m_JSCompiler->Compile(fragments);
+    std::vector<std::string> jsContents;
+    
+    // 提取JavaScript内容
+    for (const auto& fragment : fragments) {
+        jsContents.push_back(fragment.Content);
+    }
+    
+    // 使用JavaScript编译器处理
+    auto jsResult = m_JSCompiler->CompileFragments(jsContents);
+    
+    CompilationResult result(jsResult.OptimizedJS, "JavaScript");
+    result.IsSuccess = jsResult.IsSuccess;
+    result.Warnings = jsResult.Warnings;
+    
+    if (!jsResult.IsSuccess) {
+        for (const auto& error : jsResult.Errors) {
+            result.Warnings.push_back("JavaScript编译错误: " + error);
+        }
+    }
+    
+    return result;
 }
 
 bool CompilerDispatcher::MergeCompilationResults() {

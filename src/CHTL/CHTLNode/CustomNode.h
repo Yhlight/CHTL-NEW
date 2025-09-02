@@ -56,11 +56,10 @@ private:
     std::vector<std::string> m_InheritedTemplates;      // 继承的模板列表
     std::vector<std::string> m_InheritedCustoms;        // 继承的自定义列表
     std::vector<std::unique_ptr<CHTLBaseNode>> m_CustomElements; // 自定义元素（对于元素自定义）
-    std::vector<SpecializationOperation> m_Specializations; // 特例化操作列表
-    
-    // 无值样式组相关
     bool m_IsValuelessStyleGroup;                       // 是否为无值样式组
+    std::vector<std::string> m_ValuelessSelectors;     // 无值样式选择器列表
     std::vector<std::string> m_ValuelessProperties;    // 无值属性列表
+    std::vector<SpecializationOperation> m_Specializations; // 特例化操作列表
     
     // 特例化标记
     bool m_HasSpecialization;                          // 是否有特例化操作
@@ -142,18 +141,38 @@ public:
      */
     const std::unordered_map<std::string, std::string>& GetCustomProperties() const { return m_CustomProperties; }
     
-    // 无值样式组管理
+    // 无值样式组功能
     /**
      * 设置为无值样式组
-     * @param isValueless 是否为无值样式组
+     * @param isValueless 是否为无值
      */
-    void SetValuelessStyleGroup(bool isValueless) { m_IsValuelessStyleGroup = isValueless; }
+    void SetValuelessStyleGroup(bool isValueless);
     
     /**
      * 检查是否为无值样式组
      * @return 是否为无值样式组
      */
     bool IsValuelessStyleGroup() const { return m_IsValuelessStyleGroup; }
+    
+    /**
+     * 添加无值样式选择器
+     * @param selector 选择器
+     */
+    void AddValuelessSelector(const std::string& selector);
+    
+    /**
+     * 获取无值样式选择器列表
+     * @return 选择器列表
+     */
+    const std::vector<std::string>& GetValuelessSelectors() const { return m_ValuelessSelectors; }
+    
+    /**
+     * 生成无值样式组CSS
+     * @return 生成的CSS
+     */
+    std::string GenerateValuelessStyleCSS() const;
+    
+    // 无值样式组管理（方法已在上面声明）
     
     /**
      * 添加无值属性

@@ -6,6 +6,9 @@
 
 namespace CHTL {
 
+// 前向声明
+class CHTLGlobalMap;
+
 /**
  * 模板类型枚举
  */
@@ -26,6 +29,7 @@ private:
     std::string m_TemplateContent;                      // 模板内容
     std::unordered_map<std::string, std::string> m_TemplateProperties; // 模板属性
     std::vector<std::string> m_InheritedTemplates;      // 继承的模板列表
+    std::string m_FullNamespacePath;                    // 完整命名空间路径
     std::vector<std::unique_ptr<CHTLBaseNode>> m_TemplateElements; // 模板元素（对于元素模板）
     
     bool m_IsInheritanceTemplate;                       // 是否为继承模板
@@ -118,6 +122,52 @@ public:
      * @return 继承模板列表
      */
     const std::vector<std::string>& GetInheritedTemplates() const { return m_InheritedTemplates; }
+    
+    // 全缀名访问功能
+    /**
+     * 设置模板的完整命名空间路径
+     * @param namespacePath 命名空间路径
+     */
+    void SetFullNamespacePath(const std::string& namespacePath);
+    
+    /**
+     * 获取模板的完整命名空间路径
+     * @return 命名空间路径
+     */
+    const std::string& GetFullNamespacePath() const { return m_FullNamespacePath; }
+    
+    /**
+     * 获取全缀名（命名空间::模板名）
+     * @return 全缀名
+     */
+    std::string GetFullQualifiedName() const;
+    
+    /**
+     * 解析全缀名引用
+     * @param fullName 全缀名（如 UI::Button::Style）
+     * @return 解析结果（命名空间和模板名）
+     */
+    static std::pair<std::string, std::string> ParseFullQualifiedName(const std::string& fullName);
+    
+    /**
+     * 查找指定命名空间中的模板
+     * @param namespacePath 命名空间路径
+     * @param templateName 模板名称
+     * @param globalMap 全局映射表
+     * @return 找到的模板节点
+     */
+    static TemplateNode* FindTemplateInNamespace(const std::string& namespacePath, 
+                                                 const std::string& templateName,
+                                                 CHTLGlobalMap* globalMap);
+    
+    /**
+     * 解析模板引用路径
+     * @param referencePath 引用路径（支持相对路径和绝对路径）
+     * @param currentNamespace 当前命名空间
+     * @return 解析后的完整路径
+     */
+    static std::string ResolveTemplateReferencePath(const std::string& referencePath, 
+                                                    const std::string& currentNamespace);
     
     /**
      * 检查是否有继承

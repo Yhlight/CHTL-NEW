@@ -9,6 +9,8 @@ bin/chtl_simple_test: \
   lib/libCHTLCore.a \
   lib/libCHTLJSCore.a \
   lib/libCHTLScanner.a \
+  lib/libCHTLCSSCompiler.a \
+  lib/libCHTLJSCompiler.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so \
   /lib/x86_64-linux-gnu/libm.so \
   /lib/x86_64-linux-gnu/libm.so \
@@ -56,6 +58,10 @@ lib/libCHTLCore.a:
 lib/libCHTLJSCore.a:
 
 lib/libCHTLScanner.a:
+
+lib/libCHTLCSSCompiler.a:
+
+lib/libCHTLJSCompiler.a:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so:
 

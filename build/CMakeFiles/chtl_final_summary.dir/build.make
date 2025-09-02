@@ -102,6 +102,8 @@ bin/chtl_final_summary: lib/libCHTLConstraint.a
 bin/chtl_final_summary: lib/libCHTLCore.a
 bin/chtl_final_summary: lib/libCHTLJSCore.a
 bin/chtl_final_summary: lib/libCHTLScanner.a
+bin/chtl_final_summary: lib/libCHTLCSSCompiler.a
+bin/chtl_final_summary: lib/libCHTLJSCompiler.a
 bin/chtl_final_summary: CMakeFiles/chtl_final_summary.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/chtl_final_summary"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chtl_final_summary.dir/link.txt --verbose=$(VERBOSE)

@@ -227,6 +227,32 @@ CHTLImport/fast:
 .PHONY : CHTLImport/fast
 
 #=============================================================================
+# Target rules for targets named CHTLCSSCompiler
+
+# Build rule for target.
+CHTLCSSCompiler: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLCSSCompiler
+.PHONY : CHTLCSSCompiler
+
+# fast build rule for target.
+CHTLCSSCompiler/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/build
+.PHONY : CHTLCSSCompiler/fast
+
+#=============================================================================
+# Target rules for targets named CHTLJSCompiler
+
+# Build rule for target.
+CHTLJSCompiler: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLJSCompiler
+.PHONY : CHTLJSCompiler
+
+# fast build rule for target.
+CHTLJSCompiler/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/build
+.PHONY : CHTLJSCompiler/fast
+
+#=============================================================================
 # Target rules for targets named CHTLDispatcher
 
 # Build rule for target.
@@ -342,6 +368,71 @@ chtl_final_summary: cmake_check_build_system
 chtl_final_summary/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_summary.dir/build.make CMakeFiles/chtl_final_summary.dir/build
 .PHONY : chtl_final_summary/fast
+
+#=============================================================================
+# Target rules for targets named chtl_lexer_test
+
+# Build rule for target.
+chtl_lexer_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_lexer_test
+.PHONY : chtl_lexer_test
+
+# fast build rule for target.
+chtl_lexer_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_lexer_test.dir/build.make CMakeFiles/chtl_lexer_test.dir/build
+.PHONY : chtl_lexer_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_antlr_test
+
+# Build rule for target.
+chtl_antlr_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_antlr_test
+.PHONY : chtl_antlr_test
+
+# fast build rule for target.
+chtl_antlr_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_antlr_test.dir/build.make CMakeFiles/chtl_antlr_test.dir/build
+.PHONY : chtl_antlr_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_template_test
+
+# Build rule for target.
+chtl_template_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_template_test
+.PHONY : chtl_template_test
+
+# fast build rule for target.
+chtl_template_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_template_test.dir/build.make CMakeFiles/chtl_template_test.dir/build
+.PHONY : chtl_template_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_custom_test
+
+# Build rule for target.
+chtl_custom_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_custom_test
+.PHONY : chtl_custom_test
+
+# fast build rule for target.
+chtl_custom_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_custom_test.dir/build.make CMakeFiles/chtl_custom_test.dir/build
+.PHONY : chtl_custom_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_status_report
+
+# Build rule for target.
+chtl_status_report: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_status_report
+.PHONY : chtl_status_report
+
+# fast build rule for target.
+chtl_status_report/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_status_report.dir/build.make CMakeFiles/chtl_status_report.dir/build
+.PHONY : chtl_status_report/fast
 
 #=============================================================================
 # Target rules for targets named run_tests
@@ -993,6 +1084,30 @@ src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.s
 .PHONY : src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.s
 
+src/CSS/CSSCompiler.o: src/CSS/CSSCompiler.cpp.o
+.PHONY : src/CSS/CSSCompiler.o
+
+# target to build an object file
+src/CSS/CSSCompiler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/CSSCompiler.cpp.o
+.PHONY : src/CSS/CSSCompiler.cpp.o
+
+src/CSS/CSSCompiler.i: src/CSS/CSSCompiler.cpp.i
+.PHONY : src/CSS/CSSCompiler.i
+
+# target to preprocess a source file
+src/CSS/CSSCompiler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/CSSCompiler.cpp.i
+.PHONY : src/CSS/CSSCompiler.cpp.i
+
+src/CSS/CSSCompiler.s: src/CSS/CSSCompiler.cpp.s
+.PHONY : src/CSS/CSSCompiler.s
+
+# target to generate assembly for a file
+src/CSS/CSSCompiler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/CSSCompiler.cpp.s
+.PHONY : src/CSS/CSSCompiler.cpp.s
+
 src/CompilerDispatcher/CompilerDispatcher.o: src/CompilerDispatcher/CompilerDispatcher.cpp.o
 .PHONY : src/CompilerDispatcher/CompilerDispatcher.o
 
@@ -1065,6 +1180,30 @@ src/ImportSystem/CHTLImportManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLImport.dir/build.make CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.s
 .PHONY : src/ImportSystem/CHTLImportManager.cpp.s
 
+src/JS/JavaScriptCompiler.o: src/JS/JavaScriptCompiler.cpp.o
+.PHONY : src/JS/JavaScriptCompiler.o
+
+# target to build an object file
+src/JS/JavaScriptCompiler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.o
+.PHONY : src/JS/JavaScriptCompiler.cpp.o
+
+src/JS/JavaScriptCompiler.i: src/JS/JavaScriptCompiler.cpp.i
+.PHONY : src/JS/JavaScriptCompiler.i
+
+# target to preprocess a source file
+src/JS/JavaScriptCompiler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.i
+.PHONY : src/JS/JavaScriptCompiler.cpp.i
+
+src/JS/JavaScriptCompiler.s: src/JS/JavaScriptCompiler.cpp.s
+.PHONY : src/JS/JavaScriptCompiler.s
+
+# target to generate assembly for a file
+src/JS/JavaScriptCompiler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.s
+.PHONY : src/JS/JavaScriptCompiler.cpp.s
+
 src/Scanner/CHTLUnifiedScanner.o: src/Scanner/CHTLUnifiedScanner.cpp.o
 .PHONY : src/Scanner/CHTLUnifiedScanner.o
 
@@ -1088,6 +1227,30 @@ src/Scanner/CHTLUnifiedScanner.s: src/Scanner/CHTLUnifiedScanner.cpp.s
 src/Scanner/CHTLUnifiedScanner.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLScanner.dir/build.make CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.s
 .PHONY : src/Scanner/CHTLUnifiedScanner.cpp.s
+
+src/Test/ANTLRIntegrationTest.o: src/Test/ANTLRIntegrationTest.cpp.o
+.PHONY : src/Test/ANTLRIntegrationTest.o
+
+# target to build an object file
+src/Test/ANTLRIntegrationTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_antlr_test.dir/build.make CMakeFiles/chtl_antlr_test.dir/src/Test/ANTLRIntegrationTest.cpp.o
+.PHONY : src/Test/ANTLRIntegrationTest.cpp.o
+
+src/Test/ANTLRIntegrationTest.i: src/Test/ANTLRIntegrationTest.cpp.i
+.PHONY : src/Test/ANTLRIntegrationTest.i
+
+# target to preprocess a source file
+src/Test/ANTLRIntegrationTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_antlr_test.dir/build.make CMakeFiles/chtl_antlr_test.dir/src/Test/ANTLRIntegrationTest.cpp.i
+.PHONY : src/Test/ANTLRIntegrationTest.cpp.i
+
+src/Test/ANTLRIntegrationTest.s: src/Test/ANTLRIntegrationTest.cpp.s
+.PHONY : src/Test/ANTLRIntegrationTest.s
+
+# target to generate assembly for a file
+src/Test/ANTLRIntegrationTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_antlr_test.dir/build.make CMakeFiles/chtl_antlr_test.dir/src/Test/ANTLRIntegrationTest.cpp.s
+.PHONY : src/Test/ANTLRIntegrationTest.cpp.s
 
 src/Test/ArchitectureTest.o: src/Test/ArchitectureTest.cpp.o
 .PHONY : src/Test/ArchitectureTest.o
@@ -1161,6 +1324,54 @@ src/Test/ConstraintTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_constraint_test.dir/build.make CMakeFiles/chtl_constraint_test.dir/src/Test/ConstraintTest.cpp.s
 .PHONY : src/Test/ConstraintTest.cpp.s
 
+src/Test/CustomSystemTest.o: src/Test/CustomSystemTest.cpp.o
+.PHONY : src/Test/CustomSystemTest.o
+
+# target to build an object file
+src/Test/CustomSystemTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_custom_test.dir/build.make CMakeFiles/chtl_custom_test.dir/src/Test/CustomSystemTest.cpp.o
+.PHONY : src/Test/CustomSystemTest.cpp.o
+
+src/Test/CustomSystemTest.i: src/Test/CustomSystemTest.cpp.i
+.PHONY : src/Test/CustomSystemTest.i
+
+# target to preprocess a source file
+src/Test/CustomSystemTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_custom_test.dir/build.make CMakeFiles/chtl_custom_test.dir/src/Test/CustomSystemTest.cpp.i
+.PHONY : src/Test/CustomSystemTest.cpp.i
+
+src/Test/CustomSystemTest.s: src/Test/CustomSystemTest.cpp.s
+.PHONY : src/Test/CustomSystemTest.s
+
+# target to generate assembly for a file
+src/Test/CustomSystemTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_custom_test.dir/build.make CMakeFiles/chtl_custom_test.dir/src/Test/CustomSystemTest.cpp.s
+.PHONY : src/Test/CustomSystemTest.cpp.s
+
+src/Test/FinalProjectStatus.o: src/Test/FinalProjectStatus.cpp.o
+.PHONY : src/Test/FinalProjectStatus.o
+
+# target to build an object file
+src/Test/FinalProjectStatus.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_status_report.dir/build.make CMakeFiles/chtl_status_report.dir/src/Test/FinalProjectStatus.cpp.o
+.PHONY : src/Test/FinalProjectStatus.cpp.o
+
+src/Test/FinalProjectStatus.i: src/Test/FinalProjectStatus.cpp.i
+.PHONY : src/Test/FinalProjectStatus.i
+
+# target to preprocess a source file
+src/Test/FinalProjectStatus.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_status_report.dir/build.make CMakeFiles/chtl_status_report.dir/src/Test/FinalProjectStatus.cpp.i
+.PHONY : src/Test/FinalProjectStatus.cpp.i
+
+src/Test/FinalProjectStatus.s: src/Test/FinalProjectStatus.cpp.s
+.PHONY : src/Test/FinalProjectStatus.s
+
+# target to generate assembly for a file
+src/Test/FinalProjectStatus.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_status_report.dir/build.make CMakeFiles/chtl_status_report.dir/src/Test/FinalProjectStatus.cpp.s
+.PHONY : src/Test/FinalProjectStatus.cpp.s
+
 src/Test/FinalProjectSummary.o: src/Test/FinalProjectSummary.cpp.o
 .PHONY : src/Test/FinalProjectSummary.o
 
@@ -1208,6 +1419,30 @@ src/Test/ImportTest.s: src/Test/ImportTest.cpp.s
 src/Test/ImportTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_import_test.dir/build.make CMakeFiles/chtl_import_test.dir/src/Test/ImportTest.cpp.s
 .PHONY : src/Test/ImportTest.cpp.s
+
+src/Test/LexerTest.o: src/Test/LexerTest.cpp.o
+.PHONY : src/Test/LexerTest.o
+
+# target to build an object file
+src/Test/LexerTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_lexer_test.dir/build.make CMakeFiles/chtl_lexer_test.dir/src/Test/LexerTest.cpp.o
+.PHONY : src/Test/LexerTest.cpp.o
+
+src/Test/LexerTest.i: src/Test/LexerTest.cpp.i
+.PHONY : src/Test/LexerTest.i
+
+# target to preprocess a source file
+src/Test/LexerTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_lexer_test.dir/build.make CMakeFiles/chtl_lexer_test.dir/src/Test/LexerTest.cpp.i
+.PHONY : src/Test/LexerTest.cpp.i
+
+src/Test/LexerTest.s: src/Test/LexerTest.cpp.s
+.PHONY : src/Test/LexerTest.s
+
+# target to generate assembly for a file
+src/Test/LexerTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_lexer_test.dir/build.make CMakeFiles/chtl_lexer_test.dir/src/Test/LexerTest.cpp.s
+.PHONY : src/Test/LexerTest.cpp.s
 
 src/Test/ParserGeneratorTest.o: src/Test/ParserGeneratorTest.cpp.o
 .PHONY : src/Test/ParserGeneratorTest.o
@@ -1257,6 +1492,30 @@ src/Test/SimpleCompilerTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_simple_test.dir/build.make CMakeFiles/chtl_simple_test.dir/src/Test/SimpleCompilerTest.cpp.s
 .PHONY : src/Test/SimpleCompilerTest.cpp.s
 
+src/Test/TemplateSystemTest.o: src/Test/TemplateSystemTest.cpp.o
+.PHONY : src/Test/TemplateSystemTest.o
+
+# target to build an object file
+src/Test/TemplateSystemTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_template_test.dir/build.make CMakeFiles/chtl_template_test.dir/src/Test/TemplateSystemTest.cpp.o
+.PHONY : src/Test/TemplateSystemTest.cpp.o
+
+src/Test/TemplateSystemTest.i: src/Test/TemplateSystemTest.cpp.i
+.PHONY : src/Test/TemplateSystemTest.i
+
+# target to preprocess a source file
+src/Test/TemplateSystemTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_template_test.dir/build.make CMakeFiles/chtl_template_test.dir/src/Test/TemplateSystemTest.cpp.i
+.PHONY : src/Test/TemplateSystemTest.cpp.i
+
+src/Test/TemplateSystemTest.s: src/Test/TemplateSystemTest.cpp.s
+.PHONY : src/Test/TemplateSystemTest.s
+
+# target to generate assembly for a file
+src/Test/TemplateSystemTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_template_test.dir/build.make CMakeFiles/chtl_template_test.dir/src/Test/TemplateSystemTest.cpp.s
+.PHONY : src/Test/TemplateSystemTest.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -1295,19 +1554,26 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... compile_example"
 	@echo "... run_tests"
+	@echo "... CHTLCSSCompiler"
 	@echo "... CHTLConstraint"
 	@echo "... CHTLCore"
 	@echo "... CHTLDispatcher"
 	@echo "... CHTLImport"
+	@echo "... CHTLJSCompiler"
 	@echo "... CHTLJSCore"
 	@echo "... CHTLScanner"
 	@echo "... chtl"
+	@echo "... chtl_antlr_test"
 	@echo "... chtl_architecture_test"
 	@echo "... chtl_constraint_test"
+	@echo "... chtl_custom_test"
 	@echo "... chtl_final_summary"
 	@echo "... chtl_import_test"
+	@echo "... chtl_lexer_test"
 	@echo "... chtl_parser_test"
 	@echo "... chtl_simple_test"
+	@echo "... chtl_status_report"
+	@echo "... chtl_template_test"
 	@echo "... chtl_test"
 	@echo "... src/CHTL/CHTLContext/CHTLContext.o"
 	@echo "... src/CHTL/CHTLContext/CHTLContext.i"
@@ -1387,6 +1653,9 @@ help:
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.o"
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.i"
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.s"
+	@echo "... src/CSS/CSSCompiler.o"
+	@echo "... src/CSS/CSSCompiler.i"
+	@echo "... src/CSS/CSSCompiler.s"
 	@echo "... src/CompilerDispatcher/CompilerDispatcher.o"
 	@echo "... src/CompilerDispatcher/CompilerDispatcher.i"
 	@echo "... src/CompilerDispatcher/CompilerDispatcher.s"
@@ -1396,9 +1665,15 @@ help:
 	@echo "... src/ImportSystem/CHTLImportManager.o"
 	@echo "... src/ImportSystem/CHTLImportManager.i"
 	@echo "... src/ImportSystem/CHTLImportManager.s"
+	@echo "... src/JS/JavaScriptCompiler.o"
+	@echo "... src/JS/JavaScriptCompiler.i"
+	@echo "... src/JS/JavaScriptCompiler.s"
 	@echo "... src/Scanner/CHTLUnifiedScanner.o"
 	@echo "... src/Scanner/CHTLUnifiedScanner.i"
 	@echo "... src/Scanner/CHTLUnifiedScanner.s"
+	@echo "... src/Test/ANTLRIntegrationTest.o"
+	@echo "... src/Test/ANTLRIntegrationTest.i"
+	@echo "... src/Test/ANTLRIntegrationTest.s"
 	@echo "... src/Test/ArchitectureTest.o"
 	@echo "... src/Test/ArchitectureTest.i"
 	@echo "... src/Test/ArchitectureTest.s"
@@ -1408,18 +1683,30 @@ help:
 	@echo "... src/Test/ConstraintTest.o"
 	@echo "... src/Test/ConstraintTest.i"
 	@echo "... src/Test/ConstraintTest.s"
+	@echo "... src/Test/CustomSystemTest.o"
+	@echo "... src/Test/CustomSystemTest.i"
+	@echo "... src/Test/CustomSystemTest.s"
+	@echo "... src/Test/FinalProjectStatus.o"
+	@echo "... src/Test/FinalProjectStatus.i"
+	@echo "... src/Test/FinalProjectStatus.s"
 	@echo "... src/Test/FinalProjectSummary.o"
 	@echo "... src/Test/FinalProjectSummary.i"
 	@echo "... src/Test/FinalProjectSummary.s"
 	@echo "... src/Test/ImportTest.o"
 	@echo "... src/Test/ImportTest.i"
 	@echo "... src/Test/ImportTest.s"
+	@echo "... src/Test/LexerTest.o"
+	@echo "... src/Test/LexerTest.i"
+	@echo "... src/Test/LexerTest.s"
 	@echo "... src/Test/ParserGeneratorTest.o"
 	@echo "... src/Test/ParserGeneratorTest.i"
 	@echo "... src/Test/ParserGeneratorTest.s"
 	@echo "... src/Test/SimpleCompilerTest.o"
 	@echo "... src/Test/SimpleCompilerTest.i"
 	@echo "... src/Test/SimpleCompilerTest.s"
+	@echo "... src/Test/TemplateSystemTest.o"
+	@echo "... src/Test/TemplateSystemTest.i"
+	@echo "... src/Test/TemplateSystemTest.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

@@ -409,4 +409,107 @@ std::string TemplateNode::ToString(int indent) const {
     return oss.str();
 }
 
+// 全缀名访问功能实现
+void TemplateNode::SetFullNamespacePath(const std::string& namespacePath) {
+    m_FullNamespacePath = namespacePath;
+}
+
+std::string TemplateNode::GetFullQualifiedName() const {
+    if (m_FullNamespacePath.empty()) {
+        return m_TemplateName;
+    }
+    else {
+        return m_FullNamespacePath + "::" + m_TemplateName;
+    }
+}
+
+std::pair<std::string, std::string> TemplateNode::ParseFullQualifiedName(const std::string& fullName) {
+    // 解析全缀名：UI::Button::Style → (UI::Button, Style)
+    size_t lastDoubleColon = fullName.find_last_of("::");
+    
+    if (lastDoubleColon == std::string::npos) {
+        // 没有命名空间，直接返回模板名
+        return {"", fullName};
+    }
+    
+    // 找到最后一个::的位置
+    if (lastDoubleColon > 0 && fullName[lastDoubleColon-1] == ':') {
+        lastDoubleColon--; // 指向第一个:
+    }
+    
+    std::string namespacePath = fullName.substr(0, lastDoubleColon);
+    std::string templateName = fullName.substr(lastDoubleColon + 2);
+    
+    return {namespacePath, templateName};
+}
+
+TemplateNode* TemplateNode::FindTemplateInNamespace(const std::string& namespacePath, 
+                                                   const std::string& templateName,
+                                                   CHTLGlobalMap* globalMap) {
+    if (!globalMap) {
+        return nullptr;
+    }
+    
+    // 构建完整的模板名称
+    std::string fullTemplateName;
+    if (namespacePath.empty()) {
+        fullTemplateName = templateName;
+    }
+    else {
+        fullTemplateName = namespacePath + "::" + templateName;
+    }
+    
+    // 在全局映射表中查找模板
+    // 这里需要根据CHTLGlobalMap的实际API来实现
+    // 暂时返回nullptr，等待CHTLGlobalMap完善
+    return nullptr;
+}
+
+std::string TemplateNode::ResolveTemplateReferencePath(const std::string& referencePath, 
+                                                       const std::string& currentNamespace) {
+    // 解析模板引用路径
+    
+    if (referencePath.empty()) {
+        return "";
+    }
+    
+    // 如果是绝对路径（以::开头），直接返回
+    if (referencePath.find("::") == 0) {
+        return referencePath.substr(2); // 移除开头的::
+    }
+    
+    // 如果包含::，说明是相对或绝对路径
+    if (referencePath.find("::") != std::string::npos) {
+        // 检查是否为相对路径
+        if (referencePath.find("../") == 0) {
+            // 相对路径：../ParentNamespace::Template
+            std::string relativePath = referencePath.substr(3); // 移除../
+            
+            // 从当前命名空间向上一级
+            size_t lastSeparator = currentNamespace.find_last_of("::");
+            if (lastSeparator != std::string::npos && lastSeparator > 0) {
+                std::string parentNamespace = currentNamespace.substr(0, lastSeparator - 1);
+                return parentNamespace + "::" + relativePath;
+            }
+            else {
+                // 已经在根命名空间
+                return relativePath;
+            }
+        }
+        else {
+            // 绝对路径或当前命名空间的相对路径
+            return referencePath;
+        }
+    }
+    else {
+        // 简单模板名，在当前命名空间中查找
+        if (currentNamespace.empty()) {
+            return referencePath;
+        }
+        else {
+            return currentNamespace + "::" + referencePath;
+        }
+    }
+}
+
 } // namespace CHTL

@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libCHTLCSSCompiler.a CMakeFiles/CHTLCSSCompiler.dir/src/CSS/CSSCompiler.cpp.o
+/usr/bin/ranlib lib/libCHTLCSSCompiler.a
