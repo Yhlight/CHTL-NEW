@@ -139,8 +139,12 @@ std::string Generator::GenerateAttributesString(const std::unordered_map<std::st
 }
 
 // 其他Visit方法暂时为空实现
-void Generator::VisitTemplateStyle(TemplateStyleNode* node) {}
-void Generator::VisitTemplateElement(TemplateElementNode* node) {}
+void Generator::VisitTemplateStyle(TemplateStyleNode* node) {
+    // 模板定义不生成输出，只在使用时生效
+}
+void Generator::VisitTemplateElement(TemplateElementNode* node) {
+    // 模板定义不生成输出，只在使用时生效
+}
 void Generator::VisitTemplateVar(TemplateVarNode* node) {}
 void Generator::VisitCustomStyle(CustomStyleNode* node) {}
 void Generator::VisitCustomElement(CustomElementNode* node) {}

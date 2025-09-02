@@ -8,24 +8,68 @@
 namespace CHTL {
 
 class TemplateStyleNode : public ASTNode {
+private:
+    std::string styleName;
+    
 public:
-    TemplateStyleNode() : ASTNode(ASTNodeType::TemplateStyle) {}
+    TemplateStyleNode(const std::string& name = "") 
+        : ASTNode(ASTNodeType::TemplateStyle), styleName(name) {}
+    
+    const std::string& GetName() const { return styleName; }
+    void SetName(const std::string& name) { styleName = name; }
+    
     void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "TemplateStyleNode"; }
+    std::string ToString() const override { 
+        return "TemplateStyleNode(" + styleName + ")"; 
+    }
 };
 
 class TemplateElementNode : public ASTNode {
+private:
+    std::string elementName;
+    
 public:
-    TemplateElementNode() : ASTNode(ASTNodeType::TemplateElement) {}
+    TemplateElementNode(const std::string& name = "") 
+        : ASTNode(ASTNodeType::TemplateElement), elementName(name) {}
+    
+    const std::string& GetName() const { return elementName; }
+    void SetName(const std::string& name) { elementName = name; }
+    
     void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "TemplateElementNode"; }
+    std::string ToString() const override { 
+        return "TemplateElementNode(" + elementName + ")"; 
+    }
 };
 
 class TemplateVarNode : public ASTNode {
+private:
+    std::string varGroupName;
+    std::map<std::string, std::string> variables;
+    
 public:
-    TemplateVarNode() : ASTNode(ASTNodeType::TemplateVar) {}
+    TemplateVarNode(const std::string& name = "") 
+        : ASTNode(ASTNodeType::TemplateVar), varGroupName(name) {}
+    
+    const std::string& GetName() const { return varGroupName; }
+    void SetName(const std::string& name) { varGroupName = name; }
+    
+    void AddVariable(const std::string& name, const std::string& value) {
+        variables[name] = value;
+    }
+    
+    std::string GetVariable(const std::string& name) const {
+        auto it = variables.find(name);
+        return (it != variables.end()) ? it->second : "";
+    }
+    
+    const std::map<std::string, std::string>& GetVariables() const {
+        return variables;
+    }
+    
     void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "TemplateVarNode"; }
+    std::string ToString() const override { 
+        return "TemplateVarNode(" + varGroupName + ")"; 
+    }
 };
 
 class CustomStyleNode : public ASTNode {
@@ -127,10 +171,24 @@ public:
 };
 
 class StylePropertyNode : public ASTNode {
+private:
+    std::string propertyName;
+    std::string propertyValue;
+    
 public:
-    StylePropertyNode() : ASTNode(ASTNodeType::StyleProperty) {}
+    StylePropertyNode(const std::string& name = "", const std::string& value = "") 
+        : ASTNode(ASTNodeType::StyleProperty), propertyName(name), propertyValue(value) {}
+    
+    const std::string& GetName() const { return propertyName; }
+    const std::string& GetValue() const { return propertyValue; }
+    
+    void SetName(const std::string& name) { propertyName = name; }
+    void SetValue(const std::string& value) { propertyValue = value; }
+    
     void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "StylePropertyNode"; }
+    std::string ToString() const override { 
+        return "StylePropertyNode(" + propertyName + ": " + propertyValue + ")"; 
+    }
 };
 
 class AttributeNode : public ASTNode {

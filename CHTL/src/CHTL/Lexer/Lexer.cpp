@@ -237,11 +237,14 @@ Token Lexer::ScanIdentifierOrKeyword() {
 Token Lexer::ScanUnquotedLiteral() {
     size_t startLine = line;
     size_t startColumn = column;
+    size_t startPosition = position;
     std::string value;
     
     // 读取到分隔符，但保留前导空白（可能是缩进）
     bool foundNonSpace = false;
-    while (IsUnquotedLiteralChar(CurrentChar()) && CurrentChar() != '\0') {
+    size_t maxLength = 1000; // 防止无限循环的安全限制
+    
+    while (IsUnquotedLiteralChar(CurrentChar()) && CurrentChar() != '\0' && value.length() < maxLength) {
         char ch = CurrentChar();
         
         // 如果遇到空白字符
@@ -263,7 +266,14 @@ Token Lexer::ScanUnquotedLiteral() {
             foundNonSpace = true;
             value += ch;
         }
+        
+        size_t prevPosition = position;
         Advance();
+        
+        // 安全检查：确保位置在前进
+        if (position == prevPosition) {
+            break;
+        }
     }
     
     // 去除尾部空白
@@ -463,7 +473,8 @@ Token Lexer::NextToken() {
     
     // 检查是否为无修饰字面量的开始
     // 在某些上下文中（如属性值），可能需要扫描无修饰字面量
-    if (opType == TokenType::UNKNOWN && ch != '-' && ch != '>' && ch != '<' && ch != '/') {
+    // 包括#开头的十六进制颜色值
+    if (opType == TokenType::UNKNOWN && ch != '-' && ch != '>' && ch != '<' && ch != '/' && ch != '!') {
         // 如果不是操作符，可能是无修饰字面量
         position = startColumn - 1; // 回退
         line = startLine;

@@ -165,7 +165,7 @@ std::shared_ptr<ASTNode> Parser::ParseTemplate() {
 
 std::shared_ptr<ASTNode> Parser::ParseTemplateStyle() {
     std::string name = ParseIdentifier()->ToString();
-    auto node = std::make_shared<TemplateStyleNode>();
+    auto node = std::make_shared<TemplateStyleNode>(name);
     
     // 添加到全局映射表
     context->GetGlobalMap()->AddTemplateStyle(name, node);
@@ -187,7 +187,7 @@ std::shared_ptr<ASTNode> Parser::ParseTemplateStyle() {
 
 std::shared_ptr<ASTNode> Parser::ParseTemplateElement() {
     std::string name = ParseIdentifier()->ToString();
-    auto node = std::make_shared<TemplateElementNode>();
+    auto node = std::make_shared<TemplateElementNode>(name);
     
     // 添加到全局映射表
     context->GetGlobalMap()->AddTemplateElement(name, node);
@@ -213,7 +213,7 @@ std::shared_ptr<ASTNode> Parser::ParseTemplateElement() {
 
 std::shared_ptr<ASTNode> Parser::ParseTemplateVar() {
     std::string name = ParseIdentifier()->ToString();
-    auto node = std::make_shared<TemplateVarNode>();
+    auto node = std::make_shared<TemplateVarNode>(name);
     
     // 添加到全局映射表
     context->GetGlobalMap()->AddTemplateVar(name, node);
@@ -233,7 +233,11 @@ std::shared_ptr<ASTNode> Parser::ParseTemplateVar() {
             
             Expect(TokenType::SEMICOLON, "期望 ';'");
             
-            // TODO: 添加变量到节点
+            // 添加变量到节点
+            node->AddVariable(varName, value);
+        } else {
+            // 跳过未知token
+            ConsumeToken();
         }
     }
     
@@ -296,6 +300,24 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
             
             // 将属性添加到元素
             element->SetAttribute(attrName, attrValue);
+        }
+        // 元素模板引用
+        else if (Check(TokenType::AT_ELEMENT)) {
+            ConsumeToken(); // 消费 @Element
+            std::string templateName = ParseIdentifier()->ToString();
+            Expect(TokenType::SEMICOLON, "期望 ';'");
+            
+            // 从全局映射表获取模板
+            auto templateNode = context->GetGlobalMap()->GetTemplateElement(templateName);
+            if (templateNode) {
+                // 将模板中的所有元素添加到当前元素
+                for (const auto& child : templateNode->GetChildren()) {
+                    // 深拷贝子元素
+                    element->AddChild(child);
+                }
+            } else {
+                ReportError("未找到元素模板: " + templateName);
+            }
         }
         // 子元素
         else if (IsElementStart()) {
@@ -372,9 +394,29 @@ std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {
     
     auto styleNode = std::make_shared<LocalStyleNode>(CurrentToken().line, CurrentToken().column);
     
-    // 解析样式属性
+    // 解析样式属性或样式模板引用
     while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
-        if (Check(TokenType::IDENTIFIER)) {
+        if (Check(TokenType::AT_STYLE)) {
+            // 样式模板引用: @Style 模板名;
+            ConsumeToken(); // 消费 @Style
+            std::string templateName = ParseIdentifier()->ToString();
+            Expect(TokenType::SEMICOLON, "期望 ';'");
+            
+            // 从全局映射表获取模板
+            auto templateNode = context->GetGlobalMap()->GetTemplateStyle(templateName);
+            if (templateNode) {
+                // 将模板中的所有属性添加到当前样式节点
+                for (const auto& child : templateNode->GetChildren()) {
+                    if (child->GetType() == ASTNodeType::StyleProperty) {
+                        auto prop = std::static_pointer_cast<StylePropertyNode>(child);
+                        styleNode->AddProperty(prop->GetName(), prop->GetValue());
+                    }
+                }
+            } else {
+                ReportError("未找到样式模板: " + templateName);
+            }
+        }
+        else if (Check(TokenType::IDENTIFIER)) {
             // 样式属性名
             std::string propName = CurrentToken().value;
             ConsumeToken();
@@ -432,8 +474,8 @@ std::shared_ptr<ASTNode> Parser::ParseStyleProperty() {
         
         Expect(TokenType::SEMICOLON, "期望 ';'");
         
-        // TODO: 创建样式属性节点
-        return nullptr;
+        // 创建样式属性节点
+        return std::make_shared<StylePropertyNode>(propName, value);
     }
     
     return nullptr;
@@ -507,6 +549,22 @@ std::string Parser::ParseStringOrUnquotedLiteral() {
     } else if (Check(TokenType::NUMBER)) {
         std::string value = CurrentToken().value;
         ConsumeToken();
+        
+        // 检查是否有紧跟的单位（如px, %, em等）
+        if (Check(TokenType::IDENTIFIER)) {
+            // 可能是CSS单位
+            std::string unit = CurrentToken().value;
+            // 常见的CSS单位
+            if (unit == "px" || unit == "%" || unit == "em" || unit == "rem" || 
+                unit == "vh" || unit == "vw" || unit == "pt" || unit == "pc" ||
+                unit == "cm" || unit == "mm" || unit == "in" || unit == "ex" ||
+                unit == "ch" || unit == "deg" || unit == "rad" || unit == "turn" ||
+                unit == "s" || unit == "ms" || unit == "fr") {
+                value += unit;
+                ConsumeToken();
+            }
+        }
+        
         return value;
     }
     

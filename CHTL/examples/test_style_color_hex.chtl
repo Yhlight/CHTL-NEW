@@ -1,0 +1,17 @@
+use html5;
+
+html
+{
+    body
+    {
+        div
+        {
+            style
+            {
+                background-color: #f0f0f0;
+            }
+            
+            text { "测试十六进制颜色" }
+        }
+    }
+}

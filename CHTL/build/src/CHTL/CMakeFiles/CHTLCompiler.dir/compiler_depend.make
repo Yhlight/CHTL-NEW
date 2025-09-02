@@ -373,9 +373,12 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/AST/ASTVisitor.cpp.o: /workspace/CHTL/src/C
   /usr/include/c++/14/bits/stl_iterator.h \
   /usr/include/c++/14/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/14/bits/stl_iterator_base_types.h \
+  /usr/include/c++/14/bits/stl_map.h \
+  /usr/include/c++/14/bits/stl_multimap.h \
   /usr/include/c++/14/bits/stl_pair.h \
   /usr/include/c++/14/bits/stl_raw_storage_iter.h \
   /usr/include/c++/14/bits/stl_tempbuf.h \
+  /usr/include/c++/14/bits/stl_tree.h \
   /usr/include/c++/14/bits/stl_uninitialized.h \
   /usr/include/c++/14/bits/stl_vector.h \
   /usr/include/c++/14/bits/string_view.tcc \
@@ -407,6 +410,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/AST/ASTVisitor.cpp.o: /workspace/CHTL/src/C
   /usr/include/c++/14/ext/type_traits.h \
   /usr/include/c++/14/initializer_list \
   /usr/include/c++/14/iosfwd \
+  /usr/include/c++/14/map \
   /usr/include/c++/14/memory \
   /usr/include/c++/14/new \
   /usr/include/c++/14/pstl/execution_defs.h \
@@ -1035,9 +1039,12 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/AST/TemplateNodes.cpp.o: /workspace/CHTL/sr
   /usr/include/c++/14/bits/stl_iterator.h \
   /usr/include/c++/14/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/14/bits/stl_iterator_base_types.h \
+  /usr/include/c++/14/bits/stl_map.h \
+  /usr/include/c++/14/bits/stl_multimap.h \
   /usr/include/c++/14/bits/stl_pair.h \
   /usr/include/c++/14/bits/stl_raw_storage_iter.h \
   /usr/include/c++/14/bits/stl_tempbuf.h \
+  /usr/include/c++/14/bits/stl_tree.h \
   /usr/include/c++/14/bits/stl_uninitialized.h \
   /usr/include/c++/14/bits/stl_vector.h \
   /usr/include/c++/14/bits/string_view.tcc \
@@ -1069,6 +1076,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/AST/TemplateNodes.cpp.o: /workspace/CHTL/sr
   /usr/include/c++/14/ext/type_traits.h \
   /usr/include/c++/14/initializer_list \
   /usr/include/c++/14/iosfwd \
+  /usr/include/c++/14/map \
   /usr/include/c++/14/memory \
   /usr/include/c++/14/new \
   /usr/include/c++/14/pstl/execution_defs.h \
@@ -1803,9 +1811,12 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Core/GlobalMap.cpp.o: /workspace/CHTL/src/C
   /usr/include/c++/14/bits/stl_iterator.h \
   /usr/include/c++/14/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/14/bits/stl_iterator_base_types.h \
+  /usr/include/c++/14/bits/stl_map.h \
+  /usr/include/c++/14/bits/stl_multimap.h \
   /usr/include/c++/14/bits/stl_pair.h \
   /usr/include/c++/14/bits/stl_raw_storage_iter.h \
   /usr/include/c++/14/bits/stl_tempbuf.h \
+  /usr/include/c++/14/bits/stl_tree.h \
   /usr/include/c++/14/bits/stl_uninitialized.h \
   /usr/include/c++/14/bits/stl_vector.h \
   /usr/include/c++/14/bits/string_view.tcc \
@@ -1838,6 +1849,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Core/GlobalMap.cpp.o: /workspace/CHTL/src/C
   /usr/include/c++/14/ext/type_traits.h \
   /usr/include/c++/14/initializer_list \
   /usr/include/c++/14/iosfwd \
+  /usr/include/c++/14/map \
   /usr/include/c++/14/memory \
   /usr/include/c++/14/new \
   /usr/include/c++/14/pstl/execution_defs.h \
@@ -2597,7 +2609,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Generator/Generator.cpp.o: /workspace/CHTL/
   /usr/lib/llvm-20/lib/clang/20/include/stdint.h \
   /workspace/CHTL/include/CHTL/AST/ASTNode.h \
   /workspace/CHTL/include/CHTL/AST/ASTVisitor.h \
-  /workspace/CHTL/include/CHTL/AST/LocalNodes.h \
+  /workspace/CHTL/include/CHTL/AST/TemplateNodes.h \
   /workspace/CHTL/include/CHTL/Core/CompileResult.h \
   /workspace/CHTL/include/CHTL/Core/Context.h \
   /workspace/CHTL/include/CHTL/Core/GlobalMap.h \
@@ -3131,7 +3143,6 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Parser/Parser.cpp.o: /workspace/CHTL/src/CH
   /usr/lib/llvm-20/lib/clang/20/include/stdint.h \
   /workspace/CHTL/include/CHTL/AST/ASTNode.h \
   /workspace/CHTL/include/CHTL/AST/ASTVisitor.h \
-  /workspace/CHTL/include/CHTL/AST/LocalNodes.h \
   /workspace/CHTL/include/CHTL/AST/TemplateNodes.h \
   /workspace/CHTL/include/CHTL/Core/Context.h \
   /workspace/CHTL/include/CHTL/Core/GlobalMap.h \
@@ -3529,14 +3540,6 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /workspace/CHTL/src/CHTL/Parser/Parser.cpp:
 
-/usr/include/c++/14/bits/stl_tree.h:
-
-/usr/include/c++/14/bits/stl_map.h:
-
-/usr/include/c++/14/map:
-
-/workspace/CHTL/src/CHTL/Generator/Generator.cpp:
-
 /workspace/CHTL/src/CHTL/Core/State.cpp:
 
 /workspace/CHTL/src/CHTL/Core/GlobalMap.cpp:
@@ -3582,6 +3585,10 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 /usr/include/c++/14/istream:
 
 /usr/include/c++/14/iostream:
+
+/usr/include/c++/14/deque:
+
+/usr/include/c++/14/cwctype:
 
 /usr/include/c++/14/bits/char_traits.h:
 
@@ -3757,10 +3764,6 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /usr/include/stdlib.h:
 
-/usr/include/c++/14/bits/stl_multimap.h:
-
-/usr/lib/llvm-20/lib/clang/20/include/sanitizer/tsan_interface.h:
-
 /usr/include/linux/errno.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
@@ -3772,6 +3775,10 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/c++/14/bits/stl_iterator_base_funcs.h:
+
+/usr/include/c++/14/ctime:
+
+/usr/include/c++/14/ext/numeric_traits.h:
 
 /usr/include/wchar.h:
 
@@ -3855,6 +3862,12 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
+/usr/include/c++/14/limits:
+
+/usr/include/c++/14/iomanip:
+
+/usr/include/c++/14/bits/functional_hash.h:
+
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
 /usr/include/sched.h:
@@ -3912,8 +3925,6 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 /usr/include/c++/14/bits/memoryfwd.h:
 
 /usr/include/c++/14/bits/nested_exception.h:
-
-/workspace/CHTL/include/CHTL/AST/LocalNodes.h:
 
 /usr/include/c++/14/bits/stl_uninitialized.h:
 
@@ -3995,6 +4006,10 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /usr/include/c++/14/ext/atomicity.h:
 
+/workspace/CHTL/src/CHTL/Generator/Generator.cpp:
+
+/usr/include/c++/14/map:
+
 /usr/include/c++/14/ext/concurrence.h:
 
 /usr/include/c++/14/ext/string_conversions.h:
@@ -4073,6 +4088,14 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /workspace/CHTL/include/CHTL/AST/ASTVisitor.h:
 
+/usr/include/c++/14/bits/stl_map.h:
+
+/usr/lib/llvm-20/lib/clang/20/include/sanitizer/tsan_interface.h:
+
+/usr/include/c++/14/bits/stl_multimap.h:
+
+/usr/include/c++/14/bits/stl_tree.h:
+
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
 
 /workspace/CHTL/include/CHTL/AST/TemplateNodes.h:
@@ -4121,20 +4144,6 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /usr/include/c++/14/bits/stl_stack.h:
 
-/usr/include/c++/14/deque:
-
 /usr/include/c++/14/bits/streambuf_iterator.h:
 
 /usr/include/c++/14/cstdint:
-
-/usr/include/c++/14/ext/numeric_traits.h:
-
-/usr/include/c++/14/ctime:
-
-/usr/include/c++/14/cwctype:
-
-/usr/include/c++/14/limits:
-
-/usr/include/c++/14/bits/functional_hash.h:
-
-/usr/include/c++/14/iomanip:

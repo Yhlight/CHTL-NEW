@@ -1,0 +1,42 @@
+use html5;
+
+[Template] @Style BaseText
+{
+    color: "black";
+    font-size: "14px";
+    line-height: "1.5";
+}
+
+[Template] @Style LargeText
+{
+    font-size: "18px";
+    font-weight: "bold";
+}
+
+html
+{
+    body
+    {
+        div
+        {
+            style
+            {
+                @Style BaseText;
+                @Style LargeText;
+            }
+            
+            text { "继承多个样式模板" }
+        }
+        
+        p
+        {
+            style
+            {
+                @Style BaseText;
+                color: "blue";
+            }
+            
+            text { "覆盖模板中的属性" }
+        }
+    }
+}

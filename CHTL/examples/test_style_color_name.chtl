@@ -1,0 +1,18 @@
+use html5;
+
+html
+{
+    body
+    {
+        div
+        {
+            style
+            {
+                color: red;
+                background: white;
+            }
+            
+            text { "测试颜色名称" }
+        }
+    }
+}
