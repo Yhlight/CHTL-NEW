@@ -279,6 +279,64 @@ CMakeFiles/chtl.dir/src/main.cpp.o: /workspace/CHTL/src/main.cpp \
   /workspace/CHTL/include/Dispatcher/CompilerDispatcher.h \
   /workspace/CHTL/include/Scanner/CHTLUnifiedScanner.h
 
+bin/chtl: /lib/x86_64-linux-gnu/Scrt1.o \
+  /lib/x86_64-linux-gnu/crti.o \
+  /lib/x86_64-linux-gnu/crtn.o \
+  /lib/x86_64-linux-gnu/libc.so \
+  /lib/x86_64-linux-gnu/libc.so.6 \
+  /lib/x86_64-linux-gnu/libgcc_s.so.1 \
+  /lib/x86_64-linux-gnu/libm.so \
+  /lib/x86_64-linux-gnu/libm.so.6 \
+  /lib/x86_64-linux-gnu/libmvec.so.1 \
+  /lib64/ld-linux-x86-64.so.2 \
+  /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
+  /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o \
+  /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a \
+  /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so \
+  /usr/lib/x86_64-linux-gnu/libc_nonshared.a \
+  CMakeFiles/chtl.dir/src/main.cpp.o \
+  lib/libCHTLCompiler.a \
+  lib/libCHTLJSCompiler.a \
+  lib/libCHTLUnifiedScanner.a \
+  lib/libCJMODHandler.a \
+  lib/libCMODHandler.a \
+  lib/libCSSCompiler.a \
+  lib/libCompilerDispatcher.a \
+  lib/libJavaScriptCompiler.a
+
+
+lib/libCompilerDispatcher.a:
+
+lib/libCMODHandler.a:
+
+lib/libCJMODHandler.a:
+
+lib/libCHTLUnifiedScanner.a:
+
+lib/libCHTLJSCompiler.a:
+
+lib/libCHTLCompiler.a:
+
+CMakeFiles/chtl.dir/src/main.cpp.o:
+
+/usr/lib/x86_64-linux-gnu/libc_nonshared.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o:
+
+/lib64/ld-linux-x86-64.so.2:
+
+/lib/x86_64-linux-gnu/libgcc_s.so.1:
+
+/lib/x86_64-linux-gnu/crtn.o:
+
+/lib/x86_64-linux-gnu/crti.o:
 
 /workspace/CHTL/include/Scanner/CHTLUnifiedScanner.h:
 
@@ -332,9 +390,13 @@ CMakeFiles/chtl.dir/src/main.cpp.o: /workspace/CHTL/src/main.cpp \
 
 /usr/include/c++/14/bits/basic_ios.tcc:
 
+/lib/x86_64-linux-gnu/libc.so.6:
+
 /usr/include/c++/14/pstl/glue_memory_defs.h:
 
 /usr/include/c++/14/bits/alloc_traits.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so:
 
 /usr/include/c++/14/bits/chrono.h:
 
@@ -482,6 +544,8 @@ CMakeFiles/chtl.dir/src/main.cpp.o: /workspace/CHTL/src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
+/lib/x86_64-linux-gnu/libmvec.so.1:
+
 /usr/include/stdlib.h:
 
 /usr/include/c++/14/istream:
@@ -548,6 +612,8 @@ CMakeFiles/chtl.dir/src/main.cpp.o: /workspace/CHTL/src/main.cpp \
 
 /usr/include/pthread.h:
 
+/lib/x86_64-linux-gnu/libc.so:
+
 /usr/include/c++/14/bits/fs_path.h:
 
 /usr/include/c++/14/bits/functexcept.h:
@@ -559,6 +625,8 @@ CMakeFiles/chtl.dir/src/main.cpp.o: /workspace/CHTL/src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/lib/x86_64-linux-gnu/libm.so:
 
 /usr/include/linux/sched/types.h:
 
@@ -620,6 +688,8 @@ CMakeFiles/chtl.dir/src/main.cpp.o: /workspace/CHTL/src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
 
+/lib/x86_64-linux-gnu/Scrt1.o:
+
 /usr/include/c++/14/bits/locale_classes.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
@@ -646,6 +716,8 @@ CMakeFiles/chtl.dir/src/main.cpp.o: /workspace/CHTL/src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
+lib/libCSSCompiler.a:
+
 /usr/include/c++/14/bits/requires_hosted.h:
 
 /usr/include/c++/14/iostream:
@@ -665,6 +737,8 @@ CMakeFiles/chtl.dir/src/main.cpp.o: /workspace/CHTL/src/main.cpp \
 /usr/include/c++/14/bits/istream.tcc:
 
 /usr/include/c++/14/bits/locale_conv.h:
+
+/lib/x86_64-linux-gnu/libm.so.6:
 
 /usr/include/c++/14/iosfwd:
 
@@ -757,6 +831,8 @@ CMakeFiles/chtl.dir/src/main.cpp.o: /workspace/CHTL/src/main.cpp \
 /usr/include/c++/14/exception:
 
 /usr/include/c++/14/ext/alloc_traits.h:
+
+lib/libJavaScriptCompiler.a:
 
 /usr/include/c++/14/ext/atomicity.h:
 

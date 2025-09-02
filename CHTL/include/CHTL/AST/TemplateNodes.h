@@ -2,6 +2,8 @@
 #define CHTL_CHTL_AST_TEMPLATENODES_H
 
 #include "CHTL/AST/ASTNode.h"
+#include "CHTL/AST/ASTVisitor.h"
+#include <map>
 
 namespace CHTL {
 
@@ -76,10 +78,38 @@ public:
 };
 
 class LocalStyleNode : public ASTNode {
+private:
+    // 存储CSS样式属性
+    std::map<std::string, std::string> properties;
+    
 public:
-    LocalStyleNode() : ASTNode(ASTNodeType::LocalStyle) {}
+    LocalStyleNode(int line = 0, int column = 0) 
+        : ASTNode(ASTNodeType::LocalStyle, line, column) {}
+    
+    // 添加样式属性
+    void AddProperty(const std::string& name, const std::string& value) {
+        properties[name] = value;
+    }
+    
+    // 获取所有属性
+    const std::map<std::string, std::string>& GetProperties() const {
+        return properties;
+    }
+    
+    // 生成内联样式字符串
+    std::string GenerateInlineStyle() const {
+        std::string result;
+        for (const auto& [name, value] : properties) {
+            if (!result.empty()) result += " ";
+            result += name + ": " + value + ";";
+        }
+        return result;
+    }
+    
     void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "LocalStyleNode"; }
+    std::string ToString() const override { 
+        return "LocalStyleNode(" + std::to_string(properties.size()) + " properties)"; 
+    }
 };
 
 class LocalScriptNode : public ASTNode {
@@ -136,6 +166,21 @@ public:
     CommentNode() : ASTNode(ASTNodeType::Comment) {}
     void Accept(ASTVisitor* visitor) override;
     std::string ToString() const override { return "CommentNode"; }
+};
+
+class UseNode : public ASTNode {
+private:
+    std::string useType; // "html5" or config name
+    
+public:
+    UseNode(const std::string& type = "html5") : ASTNode(ASTNodeType::Use), useType(type) {}
+    
+    const std::string& GetUseType() const { return useType; }
+    
+    void Accept(ASTVisitor* visitor) override {
+        // UseNode不需要特殊的访问逻辑
+    }
+    std::string ToString() const override { return "UseNode(" + useType + ")"; }
 };
 
 } // namespace CHTL

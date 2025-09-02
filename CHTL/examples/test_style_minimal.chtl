@@ -1,0 +1,17 @@
+use html5;
+
+html
+{
+    body
+    {
+        div
+        {
+            style
+            {
+                color: red;
+            }
+            
+            text { "测试局部样式" }
+        }
+    }
+}

@@ -62,6 +62,11 @@ private:
     void GenerateAttributes(const std::unordered_map<std::string, std::string>& attrs);
     
     /**
+     * 生成HTML属性字符串
+     */
+    std::string GenerateAttributesString(const std::unordered_map<std::string, std::string>& attrs);
+    
+    /**
      * 生成样式规则
      */
     void GenerateStyleRule(StyleRuleNode* rule);

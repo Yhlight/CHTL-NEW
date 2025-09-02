@@ -3,6 +3,7 @@
 #include <sstream>
 #include <algorithm>
 #include <cctype>
+#include <regex>
 
 namespace CHTL {
 
@@ -189,23 +190,38 @@ FragmentType CHTLUnifiedScanner::DetermineFragmentType(const std::string& conten
         }
     }
     
-    // 检查是否为CSS代码（简单判断）
-    if (trimmed.find('{') != std::string::npos && 
-        trimmed.find('}') != std::string::npos &&
+    // 检查CHTL特有关键字
+    if (trimmed.find("use html5") != std::string::npos ||
+        trimmed.find("use @Config") != std::string::npos ||
+        trimmed.find("text {") != std::string::npos ||
+        trimmed.find("@Style") != std::string::npos ||
+        trimmed.find("@Element") != std::string::npos ||
+        trimmed.find("@Var") != std::string::npos ||
+        trimmed.find("[Template]") != std::string::npos ||
+        trimmed.find("[Custom]") != std::string::npos ||
+        trimmed.find("[Origin]") != std::string::npos ||
+        trimmed.find("[Import]") != std::string::npos ||
+        trimmed.find("[Namespace]") != std::string::npos ||
+        trimmed.find("[Configuration]") != std::string::npos) {
+        return FragmentType::CHTL;
+    }
+    
+    // 检查是否有HTML元素后跟花括号（CHTL特征）
+    std::regex htmlElementPattern(R"(\b(html|head|body|div|span|p|h[1-6]|a|button|input|form|table|tr|td|th|ul|ol|li|img|video|audio|canvas|svg|header|footer|nav|main|section|article|aside)\s*\{)");
+    if (std::regex_search(trimmed, htmlElementPattern)) {
+        return FragmentType::CHTL;
+    }
+    
+    // 检查是否为纯CSS代码
+    // CSS通常以选择器开始，例如 .class、#id、element
+    std::regex cssStartPattern(R"(^\s*[\.#][\w-]+\s*\{|^\s*[\w-]+\s*\{)");
+    if (std::regex_search(trimmed, cssStartPattern) &&
         trimmed.find(':') != std::string::npos &&
         trimmed.find(';') != std::string::npos) {
-        // 检查是否有CHTL特有语法
-        if (trimmed.find("@Style") != std::string::npos ||
-            trimmed.find("@Element") != std::string::npos ||
-            trimmed.find("@Var") != std::string::npos ||
-            trimmed.find("[Template]") != std::string::npos ||
-            trimmed.find("[Custom]") != std::string::npos) {
-            return FragmentType::CHTL;
-        }
         return FragmentType::CSS;
     }
     
-    // 检查是否为JavaScript代码（简单判断）
+    // 检查是否为JavaScript代码
     if (trimmed.find("function") != std::string::npos ||
         trimmed.find("var ") != std::string::npos ||
         trimmed.find("let ") != std::string::npos ||
@@ -267,41 +283,8 @@ CodeFragmentList CHTLUnifiedScanner::Scan(const std::string& content) {
                     prevWord = ctx.buffer.substr(checkPos + 1, wordEnd - checkPos);
                 }
                 
-                if (prevWord == "style") {
-                    // 保存当前缓冲区内容（不包括style）
-                    std::string beforeStyle = ctx.buffer.substr(0, checkPos + 1);
-                    if (!beforeStyle.empty()) {
-                        auto fragment = CreateFragment(FragmentType::CHTL, beforeStyle,
-                                                     ctx.startLine, ctx.startColumn,
-                                                     currentLine, currentColumn);
-                        fragments.push_back(fragment);
-                    }
-                    
-                    // 开始新的局部样式块
-                    ctx.state = ScanState::InLocalStyle;
-                    ctx.buffer = "style{";
-                    ctx.startLine = currentLine;
-                    ctx.startColumn = currentColumn - 5; // "style"的长度
-                    ctx.braceDepth = 1;
-                } else if (prevWord == "script") {
-                    // 保存当前缓冲区内容（不包括script）
-                    std::string beforeScript = ctx.buffer.substr(0, checkPos + 1);
-                    if (!beforeScript.empty()) {
-                        auto fragment = CreateFragment(FragmentType::CHTL, beforeScript,
-                                                     ctx.startLine, ctx.startColumn,
-                                                     currentLine, currentColumn);
-                        fragments.push_back(fragment);
-                    }
-                    
-                    // 开始新的局部脚本块
-                    ctx.state = ScanState::InLocalScript;
-                    ctx.buffer = "script{";
-                    ctx.startLine = currentLine;
-                    ctx.startColumn = currentColumn - 6; // "script"的长度
-                    ctx.braceDepth = 1;
-                } else {
-                    ctx.buffer += ch;
-                }
+                // 局部样式和脚本块不需要分离，保持在CHTL片段中
+                ctx.buffer += ch;
             } else {
                 ctx.buffer += ch;
             }
@@ -309,30 +292,7 @@ CodeFragmentList CHTLUnifiedScanner::Scan(const std::string& content) {
             ctx.buffer += ch;
             ctx.braceDepth--;
             
-            // 检查是否结束局部样式块或脚本块
-            if (ctx.braceDepth == 0) {
-                if (ctx.state == ScanState::InLocalStyle) {
-                    auto fragment = CreateFragment(FragmentType::CHTL, ctx.buffer,
-                                                 ctx.startLine, ctx.startColumn,
-                                                 currentLine, currentColumn);
-                    fragments.push_back(fragment);
-                    ctx.buffer.clear();
-                    ctx.state = ScanState::Normal;
-                    ctx.startLine = currentLine;
-                    ctx.startColumn = currentColumn + 1;
-                } else if (ctx.state == ScanState::InLocalScript) {
-                    // 局部脚本块需要进一步分析是否包含CHTL JS语法
-                    FragmentType scriptType = DetermineFragmentType(ctx.buffer);
-                    auto fragment = CreateFragment(scriptType, ctx.buffer,
-                                                 ctx.startLine, ctx.startColumn,
-                                                 currentLine, currentColumn);
-                    fragments.push_back(fragment);
-                    ctx.buffer.clear();
-                    ctx.state = ScanState::Normal;
-                    ctx.startLine = currentLine;
-                    ctx.startColumn = currentColumn + 1;
-                }
-            }
+            // 花括号深度为0时不需要特殊处理，因为我们不再分离局部样式/脚本块
         } else {
             ctx.buffer += ch;
         }

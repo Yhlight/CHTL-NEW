@@ -239,20 +239,41 @@ Token Lexer::ScanUnquotedLiteral() {
     size_t startColumn = column;
     std::string value;
     
-    // 跳过开头的空白
-    while (std::isspace(CurrentChar()) && CurrentChar() != '\n') {
-        Advance();
-    }
-    
-    // 读取到分隔符
+    // 读取到分隔符，但保留前导空白（可能是缩进）
+    bool foundNonSpace = false;
     while (IsUnquotedLiteralChar(CurrentChar()) && CurrentChar() != '\0') {
-        value += CurrentChar();
+        char ch = CurrentChar();
+        
+        // 如果遇到空白字符
+        if (std::isspace(ch)) {
+            // 如果还没有遇到非空白字符，继续添加（保留缩进）
+            // 如果已经遇到非空白字符，检查是否应该结束
+            if (!foundNonSpace || ch != ' ' || PeekChar() == '\0' || !IsUnquotedLiteralChar(PeekChar())) {
+                value += ch;
+            } else {
+                // 检查后续是否为分隔符，如果是则结束
+                char next = PeekChar();
+                if (next == ';' || next == ':' || next == '=' || next == '{' || next == '}' ||
+                    next == ',' || next == '\n') {
+                    break;
+                }
+                value += ch;
+            }
+        } else {
+            foundNonSpace = true;
+            value += ch;
+        }
         Advance();
     }
     
     // 去除尾部空白
     while (!value.empty() && std::isspace(value.back())) {
         value.pop_back();
+    }
+    
+    // 如果值为空，返回UNKNOWN
+    if (value.empty()) {
+        return MakeToken(TokenType::UNKNOWN, "", startLine, startColumn, 0);
     }
     
     return MakeToken(TokenType::UNQUOTED_LITERAL, value, startLine, startColumn, value.length());
@@ -438,6 +459,16 @@ Token Lexer::NextToken() {
     if (opType != TokenType::UNKNOWN) {
         Advance();
         return MakeToken(opType, opValue, startLine, startColumn, 1);
+    }
+    
+    // 检查是否为无修饰字面量的开始
+    // 在某些上下文中（如属性值），可能需要扫描无修饰字面量
+    if (opType == TokenType::UNKNOWN && ch != '-' && ch != '>' && ch != '<' && ch != '/') {
+        // 如果不是操作符，可能是无修饰字面量
+        position = startColumn - 1; // 回退
+        line = startLine;
+        column = startColumn;
+        return ScanUnquotedLiteral();
     }
     
     // 未知字符

@@ -1,6 +1,6 @@
-src/CHTL/CMakeFiles/CHTLCompiler.dir/AST/TemplateNodes.cpp.o: \
-  /workspace/CHTL/src/CHTL/AST/TemplateNodes.cpp \
-  /workspace/CHTL/include/CHTL/AST/TemplateNodes.h \
+src/CHTL/CMakeFiles/CHTLCompiler.dir/AST/LocalNodes.cpp.o: \
+  /workspace/CHTL/src/CHTL/AST/LocalNodes.cpp \
+  /workspace/CHTL/include/CHTL/AST/LocalNodes.h \
   /workspace/CHTL/include/CHTL/AST/ASTNode.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/string \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/requires_hosted.h \
@@ -204,8 +204,8 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/AST/TemplateNodes.cpp.o: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/enable_special_members.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/node_handle.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/erase_if.h \
-  /workspace/CHTL/include/CHTL/AST/ASTVisitor.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/map \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_tree.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_map.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_multimap.h
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_multimap.h \
+  /workspace/CHTL/include/CHTL/AST/ASTVisitor.h

@@ -92,6 +92,12 @@ private:
     bool IsElementStart() const;
     bool IsStylePropertyStart() const;
     std::string ParseStringOrUnquotedLiteral();
+    void RecoverFromError();
+    
+    // 具体的解析方法
+    std::shared_ptr<ASTNode> ParseTemplateStyle();
+    std::shared_ptr<ASTNode> ParseTemplateElement();
+    std::shared_ptr<ASTNode> ParseTemplateVar();
     
 public:
     explicit Parser(std::shared_ptr<CompileContext> ctx);

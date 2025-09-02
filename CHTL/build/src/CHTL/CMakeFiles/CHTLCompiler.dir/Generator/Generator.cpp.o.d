@@ -239,4 +239,28 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Generator/Generator.cpp.o: \
   /workspace/CHTL/include/CHTL/AST/ASTNode.h \
   /workspace/CHTL/include/CHTL/Core/State.h \
   /workspace/CHTL/include/Common/Error.h \
-  /workspace/CHTL/include/CHTL/Core/CompileResult.h
+  /workspace/CHTL/include/CHTL/Core/CompileResult.h \
+  /workspace/CHTL/include/CHTL/AST/TemplateNodes.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/map \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_tree.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_map.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_multimap.h \
+  /workspace/CHTL/include/Common/Logger.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/iostream \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/chrono \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/chrono.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/ratio \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/cstdint \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/limits \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/ctime \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/parse_numbers.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/iomanip \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/locale \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_facets_nonio.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/x86_64-linux-gnu/c++/14/bits/time_members.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/codecvt.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_facets_nonio.tcc \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_conv.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/quoted_string.h

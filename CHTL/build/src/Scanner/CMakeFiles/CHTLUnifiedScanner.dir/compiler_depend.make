@@ -125,6 +125,7 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
   /usr/include/c++/14/bits/cpp_type_traits.h \
   /usr/include/c++/14/bits/cxxabi_forced.h \
   /usr/include/c++/14/bits/cxxabi_init_exception.h \
+  /usr/include/c++/14/bits/deque.tcc \
   /usr/include/c++/14/bits/exception.h \
   /usr/include/c++/14/bits/exception_defines.h \
   /usr/include/c++/14/bits/exception_ptr.h \
@@ -148,6 +149,7 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
   /usr/include/c++/14/bits/move.h \
   /usr/include/c++/14/bits/nested_exception.h \
   /usr/include/c++/14/bits/new_allocator.h \
+  /usr/include/c++/14/bits/node_handle.h \
   /usr/include/c++/14/bits/ostream.tcc \
   /usr/include/c++/14/bits/ostream_insert.h \
   /usr/include/c++/14/bits/parse_numbers.h \
@@ -157,24 +159,41 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
   /usr/include/c++/14/bits/quoted_string.h \
   /usr/include/c++/14/bits/range_access.h \
   /usr/include/c++/14/bits/refwrap.h \
+  /usr/include/c++/14/bits/regex.h \
+  /usr/include/c++/14/bits/regex.tcc \
+  /usr/include/c++/14/bits/regex_automaton.h \
+  /usr/include/c++/14/bits/regex_automaton.tcc \
+  /usr/include/c++/14/bits/regex_compiler.h \
+  /usr/include/c++/14/bits/regex_compiler.tcc \
+  /usr/include/c++/14/bits/regex_constants.h \
+  /usr/include/c++/14/bits/regex_error.h \
+  /usr/include/c++/14/bits/regex_executor.h \
+  /usr/include/c++/14/bits/regex_executor.tcc \
+  /usr/include/c++/14/bits/regex_scanner.h \
+  /usr/include/c++/14/bits/regex_scanner.tcc \
   /usr/include/c++/14/bits/requires_hosted.h \
   /usr/include/c++/14/bits/shared_ptr.h \
   /usr/include/c++/14/bits/shared_ptr_atomic.h \
   /usr/include/c++/14/bits/shared_ptr_base.h \
   /usr/include/c++/14/bits/sstream.tcc \
   /usr/include/c++/14/bits/std_abs.h \
+  /usr/include/c++/14/bits/std_function.h \
   /usr/include/c++/14/bits/stl_algo.h \
   /usr/include/c++/14/bits/stl_algobase.h \
   /usr/include/c++/14/bits/stl_bvector.h \
   /usr/include/c++/14/bits/stl_construct.h \
+  /usr/include/c++/14/bits/stl_deque.h \
   /usr/include/c++/14/bits/stl_function.h \
   /usr/include/c++/14/bits/stl_heap.h \
   /usr/include/c++/14/bits/stl_iterator.h \
   /usr/include/c++/14/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/14/bits/stl_iterator_base_types.h \
+  /usr/include/c++/14/bits/stl_map.h \
   /usr/include/c++/14/bits/stl_pair.h \
   /usr/include/c++/14/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/14/bits/stl_stack.h \
   /usr/include/c++/14/bits/stl_tempbuf.h \
+  /usr/include/c++/14/bits/stl_tree.h \
   /usr/include/c++/14/bits/stl_uninitialized.h \
   /usr/include/c++/14/bits/stl_vector.h \
   /usr/include/c++/14/bits/streambuf.tcc \
@@ -188,6 +207,7 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
   /usr/include/c++/14/bits/utility.h \
   /usr/include/c++/14/bits/vector.tcc \
   /usr/include/c++/14/bits/version.h \
+  /usr/include/c++/14/bitset \
   /usr/include/c++/14/cctype \
   /usr/include/c++/14/cerrno \
   /usr/include/c++/14/chrono \
@@ -202,6 +222,7 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
   /usr/include/c++/14/cwctype \
   /usr/include/c++/14/debug/assertions.h \
   /usr/include/c++/14/debug/debug.h \
+  /usr/include/c++/14/deque \
   /usr/include/c++/14/exception \
   /usr/include/c++/14/ext/aligned_buffer.h \
   /usr/include/c++/14/ext/alloc_traits.h \
@@ -227,7 +248,9 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
   /usr/include/c++/14/pstl/glue_memory_defs.h \
   /usr/include/c++/14/pstl/pstl_config.h \
   /usr/include/c++/14/ratio \
+  /usr/include/c++/14/regex \
   /usr/include/c++/14/sstream \
+  /usr/include/c++/14/stack \
   /usr/include/c++/14/stdexcept \
   /usr/include/c++/14/streambuf \
   /usr/include/c++/14/string \
@@ -287,6 +310,38 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/lib/llvm-20/lib/clang/20/include/__stddef_size_t.h:
 
+/usr/lib/llvm-20/lib/clang/20/include/__stddef_offsetof.h:
+
+/usr/lib/llvm-20/lib/clang/20/include/__stddef_null.h:
+
+/usr/lib/llvm-20/lib/clang/20/include/__stddef_max_align_t.h:
+
+/usr/lib/llvm-20/lib/clang/20/include/__stddef_header_macro.h:
+
+/usr/lib/llvm-20/lib/clang/20/include/__stdarg___gnuc_va_list.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/os_defines.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/error_constants.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/ctype_base.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/c++locale.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/c++io.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/c++allocator.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/atomic_word.h:
+
+/usr/include/c++/14/vector:
+
+/usr/include/c++/14/typeinfo:
+
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
 /usr/include/c++/14/bits/exception.h:
@@ -325,8 +380,6 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
-/usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h:
-
 /usr/include/x86_64-linux-gnu/sys/single_threaded.h:
 
 /usr/include/x86_64-linux-gnu/sys/select.h:
@@ -355,8 +408,6 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
-/usr/include/c++/14/bits/shared_ptr_atomic.h:
-
 /usr/include/c++/14/backward/auto_ptr.h:
 
 /usr/include/c++/14/bits/move.h:
@@ -376,10 +427,6 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 /usr/include/c++/14/streambuf:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
-
-/usr/include/c++/14/bits/exception_defines.h:
-
-/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
 
@@ -401,11 +448,11 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/c++/14/bits/allocated_ptr.h:
 
+/usr/include/c++/14/stack:
+
 /usr/include/x86_64-linux-gnu/asm/errno.h:
 
 /usr/include/c++/14/bits/cxxabi_forced.h:
-
-/usr/include/x86_64-linux-gnu/bits/time64.h:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
@@ -449,9 +496,11 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
-/usr/include/x86_64-linux-gnu/bits/types.h:
-
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/usr/lib/llvm-20/lib/clang/20/include/__stddef_nullptr_t.h:
+
+/usr/include/c++/14/bits/stl_uninitialized.h:
 
 /usr/include/c++/14/bits/codecvt.h:
 
@@ -460,6 +509,12 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 /usr/include/wchar.h:
 
 /usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/gthr.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
@@ -487,6 +542,8 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
+/usr/include/c++/14/bits/std_function.h:
+
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
 /usr/include/asm-generic/posix_types.h:
@@ -501,7 +558,15 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/c++/14/bits/functexcept.h:
 
+/usr/include/x86_64-linux-gnu/bits/time64.h:
+
+/usr/include/c++/14/bits/regex_constants.h:
+
+/usr/include/c++/14/bits/regex_executor.h:
+
 /usr/include/x86_64-linux-gnu/asm/types.h:
+
+/usr/include/c++/14/bits/regex_error.h:
 
 /usr/include/asm-generic/errno.h:
 
@@ -541,17 +606,15 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /workspace/CHTL/src/Scanner/CHTLUnifiedScanner.cpp:
 
-/usr/include/features.h:
+/usr/include/x86_64-linux-gnu/c++/14/bits/ctype_inline.h:
 
-/usr/include/c++/14/bits/stl_heap.h:
+/usr/include/c++/14/clocale:
 
 /usr/include/linux/posix_types.h:
 
 /usr/include/libintl.h:
 
 /usr/include/c++/14/bits/locale_classes.tcc:
-
-/usr/include/c++/14/bits/exception_ptr.h:
 
 /usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
 
@@ -564,8 +627,6 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 /usr/include/c++/14/bits/uniform_int_dist.h:
-
-/usr/include/c++/14/vector:
 
 /usr/include/c++/14/bits/atomic_base.h:
 
@@ -581,6 +642,14 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/c++/14/bits/locale_classes.h:
 
+/usr/include/c++/14/bits/exception_defines.h:
+
+/usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
+
+/usr/include/c++/14/bits/deque.tcc:
+
+/usr/include/c++/14/bits/stringfwd.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
 /usr/include/c++/14/bits/basic_string.h:
@@ -595,13 +664,13 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
-/usr/include/x86_64-linux-gnu/c++/14/bits/error_constants.h:
-
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
-/usr/include/x86_64-linux-gnu/c++/14/bits/os_defines.h:
-
 /usr/include/features-time64.h:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/cpu_defines.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
@@ -611,7 +680,11 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
+/usr/include/c++/14/bits/exception_ptr.h:
+
 /usr/include/c++/14/bits/fstream.tcc:
+
+/usr/include/c++/14/bits/stl_map.h:
 
 /usr/include/c++/14/bits/invoke.h:
 
@@ -623,11 +696,7 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/c++/14/bits/locale_conv.h:
 
-/usr/include/c++/14/iosfwd:
-
 /usr/include/c++/14/bits/locale_facets_nonio.h:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/c++allocator.h:
 
 /usr/include/c++/14/bits/ptr_traits.h:
 
@@ -639,11 +708,13 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/c++/14/bits/nested_exception.h:
 
-/usr/include/c++/14/bits/stl_uninitialized.h:
+/usr/include/c++/14/bits/shared_ptr_atomic.h:
 
-/usr/lib/llvm-20/lib/clang/20/include/__stddef_nullptr_t.h:
+/usr/include/c++/14/bits/regex_automaton.tcc:
 
-/usr/lib/llvm-20/lib/clang/20/include/__stddef_offsetof.h:
+/usr/include/features.h:
+
+/usr/include/c++/14/bits/node_handle.h:
 
 /usr/lib/llvm-20/lib/clang/20/include/__stddef_ptrdiff_t.h:
 
@@ -651,19 +722,41 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/c++/14/bits/ostream_insert.h:
 
-/usr/lib/llvm-20/lib/clang/20/include/__stddef_max_align_t.h:
-
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/include/c++/14/ostream:
 
 /usr/include/c++/14/bits/parse_numbers.h:
 
+/usr/include/c++/14/bits/regex_compiler.h:
+
 /usr/include/c++/14/bits/quoted_string.h:
 
 /usr/include/c++/14/bits/range_access.h:
 
 /usr/include/c++/14/bits/refwrap.h:
+
+/usr/include/c++/14/bits/regex.h:
+
+/usr/include/c++/14/bits/regex_scanner.h:
+
+/usr/include/c++/14/bits/regex.tcc:
+
+/usr/include/c++/14/fstream:
+
+/usr/include/c++/14/bits/regex_automaton.h:
+
+/usr/include/c++/14/bits/regex_compiler.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/c++/14/bits/regex_executor.tcc:
+
+/usr/include/c++/14/cstdint:
+
+/usr/include/c++/14/iosfwd:
+
+/usr/include/c++/14/bits/regex_scanner.tcc:
 
 /usr/include/c++/14/bits/sstream.tcc:
 
@@ -677,11 +770,19 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/c++/14/bits/stl_construct.h:
 
+/usr/include/c++/14/bits/stl_heap.h:
+
+/usr/include/c++/14/bits/stl_stack.h:
+
+/usr/include/c++/14/deque:
+
 /usr/include/c++/14/bits/stl_raw_storage_iter.h:
+
+/usr/include/c++/14/bits/stl_tree.h:
 
 /usr/include/c++/14/bits/streambuf_iterator.h:
 
-/usr/include/c++/14/bits/stringfwd.h:
+/usr/include/c++/14/bits/stl_deque.h:
 
 /usr/include/c++/14/bits/unique_ptr.h:
 
@@ -693,11 +794,15 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/c++/14/bits/version.h:
 
+/usr/include/c++/14/bitset:
+
+/usr/include/x86_64-linux-gnu/c++/14/bits/c++config.h:
+
+/usr/include/c++/14/cerrno:
+
 /usr/include/c++/14/concepts:
 
 /usr/include/c++/14/cstddef:
-
-/usr/include/c++/14/cstdint:
 
 /usr/include/c++/14/bits/utility.h:
 
@@ -719,6 +824,8 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 
 /usr/include/c++/14/ext/alloc_traits.h:
 
+/usr/include/c++/14/regex:
+
 /usr/include/c++/14/ext/atomicity.h:
 
 /usr/include/c++/14/ext/concurrence.h:
@@ -726,8 +833,6 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 /usr/include/c++/14/ext/string_conversions.h:
 
 /usr/include/c++/14/ext/type_traits.h:
-
-/usr/include/c++/14/fstream:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
@@ -770,39 +875,3 @@ src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/CHTLUnifiedScanner.cpp.o: /workspa
 /usr/include/c++/14/string:
 
 /usr/include/c++/14/tuple:
-
-/usr/include/c++/14/typeinfo:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/atomic_word.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/cpu_defines.h:
-
-/usr/include/c++/14/cerrno:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/c++config.h:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/c++io.h:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/c++locale.h:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/ctype_base.h:
-
-/usr/include/c++/14/clocale:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/ctype_inline.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/gthr.h:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/time_members.h:
-
-/usr/lib/llvm-20/lib/clang/20/include/__stdarg___gnuc_va_list.h:
-
-/usr/lib/llvm-20/lib/clang/20/include/__stddef_header_macro.h:
-
-/usr/lib/llvm-20/lib/clang/20/include/__stddef_null.h:

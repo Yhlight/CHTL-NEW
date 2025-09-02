@@ -1,0 +1,19 @@
+use html5;
+
+html
+{
+    body
+    {
+        div
+        {
+            id: main-container;
+            class: container;
+            
+            p
+            {
+                class: text-primary;
+                text { "测试属性功能" }
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+use html5;
+
+html
+{
+    head
+    {
+        title { text { "局部样式测试" } }
+    }
+    
+    body
+    {
+        div
+        {
+            id: container;
+            
+            style
+            {
+                width: "800px";
+                margin: "0 auto";
+                background-color: "#f0f0f0";
+                padding: "20px";
+            }
+            
+            h1
+            {
+                text { "CHTL局部样式测试" }
+            }
+            
+            p
+            {
+                style
+                {
+                    color: "#333";
+                    font-size: "16px";
+                    line-height: "1.5";
+                }
+                
+                text { "这是一个带有局部样式的段落。" }
+            }
+        }
+    }
+}

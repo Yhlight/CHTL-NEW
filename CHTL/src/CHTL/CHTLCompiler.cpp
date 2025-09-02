@@ -42,7 +42,7 @@ std::string CHTLCompiler::Compile(const CodeFragmentPtr& fragment) {
         auto ast = parser->Parse(lexer->GetTokens());
         
         // 检查HTML5声明
-        if (ast->UseHTML5()) {
+        if (context->UseHTML5()) {
             hasHTML5Declaration = true;
         }
         
