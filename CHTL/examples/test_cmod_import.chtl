@@ -1,0 +1,15 @@
+use html5;
+
+// 导入TestModule模块
+[Import] @Chtl from TestModule;
+
+html
+{
+    body
+    {
+        h1 { text { "CMOD导入测试" } }
+        
+        // 使用导入的模板
+        @Element Button;
+    }
+}

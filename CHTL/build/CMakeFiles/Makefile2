@@ -175,10 +175,12 @@ src/CJMOD/clean: src/CJMOD/CMakeFiles/CJMODHandler.dir/clean
 
 # Recursive "all" directory target.
 src/CMOD/all: src/CMOD/CMakeFiles/CMODHandler.dir/all
+src/CMOD/all: src/CMOD/CMakeFiles/cmod_tool.dir/all
 .PHONY : src/CMOD/all
 
 # Recursive "codegen" directory target.
 src/CMOD/codegen: src/CMOD/CMakeFiles/CMODHandler.dir/codegen
+src/CMOD/codegen: src/CMOD/CMakeFiles/cmod_tool.dir/codegen
 .PHONY : src/CMOD/codegen
 
 # Recursive "preinstall" directory target.
@@ -187,6 +189,7 @@ src/CMOD/preinstall:
 
 # Recursive "clean" directory target.
 src/CMOD/clean: src/CMOD/CMakeFiles/CMODHandler.dir/clean
+src/CMOD/clean: src/CMOD/CMakeFiles/cmod_tool.dir/clean
 .PHONY : src/CMOD/clean
 
 #=============================================================================
@@ -363,6 +366,7 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/all: src/CHTL/CMakeFiles/CHTLCo
 src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/all: src/CHTLJS/CMakeFiles/CHTLJSCompiler.dir/all
 src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/all: src/CSS/CMakeFiles/CSSCompiler.dir/all
 src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/all: src/JavaScript/CMakeFiles/JavaScriptCompiler.dir/all
+src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/all: src/CMOD/CMakeFiles/CMODHandler.dir/all
 	$(MAKE) $(MAKESILENT) -f src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/build.make src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/build.make src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/CHTL/build/CMakeFiles --progress-num=44,45 "Built target CompilerDispatcher"
@@ -370,7 +374,7 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/all: src/JavaScript/CMakeFiles/
 
 # Build rule for subdir invocation for target.
 src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/CHTL/build/CMakeFiles 41
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/CHTL/build/CMakeFiles 43
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/CHTL/build/CMakeFiles 0
 .PHONY : src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/rule
@@ -394,7 +398,7 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/clean:
 # Target rules for target src/CHTL/CMakeFiles/CHTLCompiler.dir
 
 # All Build rule for target.
-src/CHTL/CMakeFiles/CHTLCompiler.dir/all:
+src/CHTL/CMakeFiles/CHTLCompiler.dir/all: src/CMOD/CMakeFiles/CMODHandler.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CHTL/CMakeFiles/CHTLCompiler.dir/build.make src/CHTL/CMakeFiles/CHTLCompiler.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CHTL/CMakeFiles/CHTLCompiler.dir/build.make src/CHTL/CMakeFiles/CHTLCompiler.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/CHTL/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 "Built target CHTLCompiler"
@@ -402,7 +406,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/all:
 
 # Build rule for subdir invocation for target.
 src/CHTL/CMakeFiles/CHTLCompiler.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/CHTL/build/CMakeFiles 16
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/CHTL/build/CMakeFiles 18
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CHTL/CMakeFiles/CHTLCompiler.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/CHTL/build/CMakeFiles 0
 .PHONY : src/CHTL/CMakeFiles/CHTLCompiler.dir/rule
@@ -549,6 +553,38 @@ src/CMOD/CMakeFiles/CMODHandler.dir/codegen:
 src/CMOD/CMakeFiles/CMODHandler.dir/clean:
 	$(MAKE) $(MAKESILENT) -f src/CMOD/CMakeFiles/CMODHandler.dir/build.make src/CMOD/CMakeFiles/CMODHandler.dir/clean
 .PHONY : src/CMOD/CMakeFiles/CMODHandler.dir/clean
+
+#=============================================================================
+# Target rules for target src/CMOD/CMakeFiles/cmod_tool.dir
+
+# All Build rule for target.
+src/CMOD/CMakeFiles/cmod_tool.dir/all: src/CMOD/CMakeFiles/CMODHandler.dir/all
+	$(MAKE) $(MAKESILENT) -f src/CMOD/CMakeFiles/cmod_tool.dir/build.make src/CMOD/CMakeFiles/cmod_tool.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/CMOD/CMakeFiles/cmod_tool.dir/build.make src/CMOD/CMakeFiles/cmod_tool.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/CHTL/build/CMakeFiles --progress-num=50,51 "Built target cmod_tool"
+.PHONY : src/CMOD/CMakeFiles/cmod_tool.dir/all
+
+# Build rule for subdir invocation for target.
+src/CMOD/CMakeFiles/cmod_tool.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/CHTL/build/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMOD/CMakeFiles/cmod_tool.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/CHTL/build/CMakeFiles 0
+.PHONY : src/CMOD/CMakeFiles/cmod_tool.dir/rule
+
+# Convenience name for target.
+cmod_tool: src/CMOD/CMakeFiles/cmod_tool.dir/rule
+.PHONY : cmod_tool
+
+# codegen rule for target.
+src/CMOD/CMakeFiles/cmod_tool.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f src/CMOD/CMakeFiles/cmod_tool.dir/build.make src/CMOD/CMakeFiles/cmod_tool.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/CHTL/build/CMakeFiles --progress-num=50,51 "Finished codegen for target cmod_tool"
+.PHONY : src/CMOD/CMakeFiles/cmod_tool.dir/codegen
+
+# clean rule for target.
+src/CMOD/CMakeFiles/cmod_tool.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/CMOD/CMakeFiles/cmod_tool.dir/build.make src/CMOD/CMakeFiles/cmod_tool.dir/clean
+.PHONY : src/CMOD/CMakeFiles/cmod_tool.dir/clean
 
 #=============================================================================
 # Target rules for target src/CJMOD/CMakeFiles/CJMODHandler.dir

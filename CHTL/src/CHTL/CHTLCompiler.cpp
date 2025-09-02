@@ -5,8 +5,10 @@
 #include "CHTL/AST/ASTNode.h"
 #include "CHTL/AST/TemplateNodes.h"
 #include "Common/Logger.h"
+#include "Common/CMODHandler.h"
 #include <fstream>
 #include <algorithm>
+#include <filesystem>
 
 namespace CHTL {
 
@@ -122,6 +124,25 @@ void CHTLCompiler::ProcessImports(std::shared_ptr<ProgramNode> ast) {
 
 void CHTLCompiler::ProcessImportNode(std::shared_ptr<ImportNode> importNode) {
     if (!importNode) return;
+    
+    std::string importPath = importNode->GetFromPath();
+    ImportNode::ImportType importType = importNode->GetImportType();
+    
+    // 对于@Chtl导入，检查是否是模块名
+    if (importType == ImportNode::ImportType::Chtl) {
+        // 检查是否是模块名（不含路径分隔符和后缀）
+        bool isModuleName = (importPath.find('/') == std::string::npos && 
+                           importPath.find('\\') == std::string::npos &&
+                           importPath.find('.') == std::string::npos);
+        
+        if (isModuleName) {
+            // 尝试作为CMOD模块处理
+            if (ProcessCMODImport(importPath, importNode->GetAsName())) {
+                return;
+            }
+            // 如果CMOD导入失败，继续尝试作为普通文件
+        }
+    }
     
     // 解析导入路径
     std::string resolvedPath = ResolveImportPath(
@@ -322,6 +343,103 @@ void CHTLCompiler::MergeImportedAST(std::shared_ptr<ProgramNode> importedAst, co
                 break;
         }
     }
+}
+
+std::string CHTLCompiler::FindCMODModule(const std::string& moduleName) {
+    namespace fs = std::filesystem;
+    CMODHandler cmodHandler;
+    
+    // 如果是官方模块前缀
+    if (moduleName.substr(0, 6) == "chtl::") {
+        std::string actualName = moduleName.substr(6);
+        cmodHandler.SetWorkingDirectory(cmodHandler.GetOfficialModuleDirectory());
+        auto found = cmodHandler.FindModules(actualName);
+        if (!found.empty()) {
+            return found[0].string();
+        }
+        return "";
+    }
+    
+    // 设置工作目录为源文件所在目录
+    if (!sourceFile.empty()) {
+        fs::path sourcePath(sourceFile);
+        cmodHandler.SetWorkingDirectory(sourcePath.parent_path());
+    }
+    
+    // 查找模块
+    auto found = cmodHandler.FindModules(moduleName);
+    
+    // 优先返回.cmod文件
+    for (const auto& path : found) {
+        if (path.extension() == ".cmod") {
+            return path.string();
+        }
+    }
+    
+    // 如果没有.cmod文件，返回第一个找到的
+    if (!found.empty()) {
+        return found[0].string();
+    }
+    
+    return "";
+}
+
+bool CHTLCompiler::ProcessCMODImport(const std::string& moduleName, const std::string& namespaceName) {
+    namespace fs = std::filesystem;
+    
+    LOG_INFO("处理CMOD导入: " + moduleName);
+    
+    // 查找CMOD模块
+    std::string modulePath = FindCMODModule(moduleName);
+    if (modulePath.empty()) {
+        LOG_ERROR("找不到CMOD模块: " + moduleName);
+        return false;
+    }
+    
+    LOG_INFO("找到CMOD模块: " + modulePath);
+    
+    fs::path modPath(modulePath);
+    
+    // 如果是.cmod文件，需要先解包到临时目录
+    if (modPath.extension() == ".cmod") {
+        CMODHandler cmodHandler;
+        
+        // 创建临时目录
+        fs::path tempDir = fs::temp_directory_path() / ("chtl_cmod_" + std::to_string(std::hash<std::string>{}(modulePath)));
+        fs::create_directories(tempDir);
+        
+        // 解包模块
+        if (!cmodHandler.UnpackModule(modPath, tempDir)) {
+            LOG_ERROR("解包CMOD模块失败: " + modulePath);
+            return false;
+        }
+        
+        // 更新模块路径到解包后的目录
+        modPath = tempDir;
+    }
+    
+    // 检查模块结构
+    fs::path srcDir = modPath / "src";
+    fs::path infoDir = modPath / "info";
+    
+    if (!fs::exists(srcDir) || !fs::exists(infoDir)) {
+        LOG_ERROR("无效的CMOD模块结构: " + modPath.string());
+        return false;
+    }
+    
+    // 导入src目录下的所有.chtl文件
+    for (const auto& entry : fs::recursive_directory_iterator(srcDir)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".chtl") {
+            LOG_INFO("导入CMOD文件: " + entry.path().string());
+            
+            // 使用LoadAndMergeFile导入文件
+            LoadAndMergeFile(entry.path().string(), 
+                           static_cast<int>(ImportNode::ImportType::Chtl),
+                           "", namespaceName);
+        }
+    }
+    
+    return true;
 }
 
 } // namespace CHTL

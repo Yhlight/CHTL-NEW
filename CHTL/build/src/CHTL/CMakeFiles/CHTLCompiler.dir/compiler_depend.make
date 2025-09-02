@@ -1244,6 +1244,10 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o: /workspace/CHTL/src/CHT
   /usr/include/c++/14/bits/exception.h \
   /usr/include/c++/14/bits/exception_defines.h \
   /usr/include/c++/14/bits/exception_ptr.h \
+  /usr/include/c++/14/bits/fs_dir.h \
+  /usr/include/c++/14/bits/fs_fwd.h \
+  /usr/include/c++/14/bits/fs_ops.h \
+  /usr/include/c++/14/bits/fs_path.h \
   /usr/include/c++/14/bits/fstream.tcc \
   /usr/include/c++/14/bits/functexcept.h \
   /usr/include/c++/14/bits/functional_hash.h \
@@ -1317,6 +1321,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o: /workspace/CHTL/src/CHT
   /usr/include/c++/14/cerrno \
   /usr/include/c++/14/chrono \
   /usr/include/c++/14/clocale \
+  /usr/include/c++/14/codecvt \
   /usr/include/c++/14/concepts \
   /usr/include/c++/14/cstddef \
   /usr/include/c++/14/cstdint \
@@ -1336,6 +1341,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o: /workspace/CHTL/src/CHT
   /usr/include/c++/14/ext/numeric_traits.h \
   /usr/include/c++/14/ext/string_conversions.h \
   /usr/include/c++/14/ext/type_traits.h \
+  /usr/include/c++/14/filesystem \
   /usr/include/c++/14/fstream \
   /usr/include/c++/14/initializer_list \
   /usr/include/c++/14/iomanip \
@@ -1406,6 +1412,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o: /workspace/CHTL/src/CHT
   /workspace/CHTL/include/CHTL/Generator/Generator.h \
   /workspace/CHTL/include/CHTL/Lexer/Lexer.h \
   /workspace/CHTL/include/CHTL/Parser/Parser.h \
+  /workspace/CHTL/include/Common/CMODHandler.h \
   /workspace/CHTL/include/Common/CodeFragment.h \
   /workspace/CHTL/include/Common/Error.h \
   /workspace/CHTL/include/Common/ICompiler.h \
@@ -1580,10 +1587,15 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Core/Context.cpp.o: /workspace/CHTL/src/CHT
   /usr/include/c++/14/bits/stl_iterator.h \
   /usr/include/c++/14/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/14/bits/stl_iterator_base_types.h \
+  /usr/include/c++/14/bits/stl_map.h \
+  /usr/include/c++/14/bits/stl_multimap.h \
+  /usr/include/c++/14/bits/stl_multiset.h \
   /usr/include/c++/14/bits/stl_pair.h \
   /usr/include/c++/14/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/14/bits/stl_set.h \
   /usr/include/c++/14/bits/stl_stack.h \
   /usr/include/c++/14/bits/stl_tempbuf.h \
+  /usr/include/c++/14/bits/stl_tree.h \
   /usr/include/c++/14/bits/stl_uninitialized.h \
   /usr/include/c++/14/bits/stl_vector.h \
   /usr/include/c++/14/bits/streambuf.tcc \
@@ -1622,6 +1634,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Core/Context.cpp.o: /workspace/CHTL/src/CHT
   /usr/include/c++/14/ios \
   /usr/include/c++/14/iosfwd \
   /usr/include/c++/14/istream \
+  /usr/include/c++/14/map \
   /usr/include/c++/14/memory \
   /usr/include/c++/14/new \
   /usr/include/c++/14/ostream \
@@ -1629,6 +1642,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Core/Context.cpp.o: /workspace/CHTL/src/CHT
   /usr/include/c++/14/pstl/glue_algorithm_defs.h \
   /usr/include/c++/14/pstl/glue_memory_defs.h \
   /usr/include/c++/14/pstl/pstl_config.h \
+  /usr/include/c++/14/set \
   /usr/include/c++/14/sstream \
   /usr/include/c++/14/stack \
   /usr/include/c++/14/stdexcept \
@@ -1666,6 +1680,8 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Core/Context.cpp.o: /workspace/CHTL/src/CHT
   /usr/lib/llvm-20/lib/clang/20/include/stddef.h \
   /usr/lib/llvm-20/lib/clang/20/include/stdint.h \
   /workspace/CHTL/include/CHTL/AST/ASTNode.h \
+  /workspace/CHTL/include/CHTL/AST/ASTVisitor.h \
+  /workspace/CHTL/include/CHTL/AST/TemplateNodes.h \
   /workspace/CHTL/include/CHTL/Core/Context.h \
   /workspace/CHTL/include/CHTL/Core/GlobalMap.h \
   /workspace/CHTL/include/CHTL/Core/State.h \
@@ -3597,11 +3613,15 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /workspace/CHTL/src/CHTL/Core/GlobalMap.cpp:
 
+/usr/include/c++/14/bits/stl_multiset.h:
+
 /workspace/CHTL/src/CHTL/Core/Context.cpp:
 
 /workspace/CHTL/include/Common/Logger.h:
 
 /workspace/CHTL/include/Common/Error.h:
+
+/workspace/CHTL/include/Common/CMODHandler.h:
 
 /workspace/CHTL/include/CHTL/Parser/Parser.h:
 
@@ -3643,17 +3663,31 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /usr/include/c++/14/cstdint:
 
+/usr/include/c++/14/codecvt:
+
 /usr/include/c++/14/bits/streambuf_iterator.h:
 
 /usr/include/c++/14/bits/streambuf.tcc:
+
+/usr/include/c++/14/bits/stl_stack.h:
+
+/usr/include/c++/14/bits/stl_heap.h:
+
+/usr/include/c++/14/sstream:
+
+/usr/include/c++/14/bits/stl_algo.h:
+
+/usr/include/c++/14/bits/stl_set.h:
+
+/workspace/CHTL/include/CHTL/Core/Token.h:
+
+/usr/include/c++/14/bits/sstream.tcc:
 
 /usr/include/c++/14/bits/char_traits.h:
 
 /usr/include/x86_64-linux-gnu/asm/posix_types.h:
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
-
-/usr/include/c++/14/bits/exception.h:
 
 /usr/include/c++/14/cctype:
 
@@ -3663,9 +3697,13 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /usr/include/c++/14/bits/cpp_type_traits.h:
 
+/usr/include/c++/14/set:
+
 /usr/include/c++/14/bits/functexcept.h:
 
 /usr/include/pthread.h:
+
+/usr/include/c++/14/bits/fs_path.h:
 
 /usr/include/c++/14/bits/alloc_traits.h:
 
@@ -3706,10 +3744,6 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 /usr/include/x86_64-linux-gnu/c++/14/bits/gthr-default.h:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
-
-/usr/include/c++/14/sstream:
-
-/usr/include/c++/14/bits/stl_algo.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
@@ -3909,10 +3943,6 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /usr/include/c++/14/clocale:
 
-/usr/include/c++/14/bits/stl_stack.h:
-
-/usr/include/c++/14/bits/stl_heap.h:
-
 /usr/include/c++/14/bits/exception_ptr.h:
 
 /usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
@@ -3937,6 +3967,8 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
+/usr/include/c++/14/filesystem:
+
 /usr/include/sched.h:
 
 /usr/include/wctype.h:
@@ -3944,6 +3976,8 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 /usr/include/c++/14/bits/hashtable.h:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/usr/include/c++/14/bits/fs_fwd.h:
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
@@ -4038,6 +4072,10 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/c++/14/bits/deque.tcc:
+
+/usr/include/c++/14/bits/stl_deque.h:
+
+/usr/include/c++/14/bits/unique_ptr.h:
 
 /usr/include/c++/14/bits/unordered_map.h:
 
@@ -4137,6 +4175,8 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/gthr.h:
 
+/usr/include/c++/14/bits/fs_ops.h:
+
 /usr/lib/llvm-20/lib/clang/20/include/__stdarg___gnuc_va_list.h:
 
 /usr/lib/llvm-20/lib/clang/20/include/__stddef_header_macro.h:
@@ -4181,6 +4221,10 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /usr/include/c++/14/bits/basic_ios.h:
 
+/usr/include/c++/14/bits/exception.h:
+
+/usr/include/c++/14/bits/fs_dir.h:
+
 /usr/include/c++/14/bits/codecvt.h:
 
 /usr/include/c++/14/bits/algorithmfwd.h:
@@ -4198,11 +4242,3 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 /usr/include/c++/14/bits/parse_numbers.h:
 
 /usr/include/c++/14/bits/quoted_string.h:
-
-/workspace/CHTL/include/CHTL/Core/Token.h:
-
-/usr/include/c++/14/bits/sstream.tcc:
-
-/usr/include/c++/14/bits/unique_ptr.h:
-
-/usr/include/c++/14/bits/stl_deque.h:

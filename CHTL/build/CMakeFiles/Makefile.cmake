@@ -79,5 +79,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/CSS/CMakeFiles/CSSCompiler.dir/DependInfo.cmake"
   "src/JavaScript/CMakeFiles/JavaScriptCompiler.dir/DependInfo.cmake"
   "src/CMOD/CMakeFiles/CMODHandler.dir/DependInfo.cmake"
+  "src/CMOD/CMakeFiles/cmod_tool.dir/DependInfo.cmake"
   "src/CJMOD/CMakeFiles/CJMODHandler.dir/DependInfo.cmake"
   )

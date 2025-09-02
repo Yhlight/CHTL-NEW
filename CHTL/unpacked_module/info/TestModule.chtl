@@ -1,0 +1,9 @@
+// TestModule模块信息文件
+
+[Namespace] TestModule {
+    // 导出的样式模板
+    [Template] @Style PrimaryButton;
+    
+    // 导出的元素模板
+    [Template] @Element Button;
+}

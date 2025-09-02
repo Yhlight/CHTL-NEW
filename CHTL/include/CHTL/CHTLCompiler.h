@@ -63,6 +63,16 @@ private:
                           const std::string& itemName, const std::string& asName);
     void MergeImportedAST(std::shared_ptr<ProgramNode> importedAst, const std::string& namespaceName = "");
     
+    /**
+     * 处理CMOD导入
+     */
+    bool ProcessCMODImport(const std::string& moduleName, const std::string& namespaceName = "");
+    
+    /**
+     * 查找CMOD模块
+     */
+    std::string FindCMODModule(const std::string& moduleName);
+    
 public:
     CHTLCompiler();
     ~CHTLCompiler() override;

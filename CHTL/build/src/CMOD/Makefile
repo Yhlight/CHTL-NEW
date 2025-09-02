@@ -185,6 +185,20 @@ CMODHandler/fast:
 	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CMOD/CMakeFiles/CMODHandler.dir/build.make src/CMOD/CMakeFiles/CMODHandler.dir/build
 .PHONY : CMODHandler/fast
 
+# Convenience name for target.
+src/CMOD/CMakeFiles/cmod_tool.dir/rule:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMOD/CMakeFiles/cmod_tool.dir/rule
+.PHONY : src/CMOD/CMakeFiles/cmod_tool.dir/rule
+
+# Convenience name for target.
+cmod_tool: src/CMOD/CMakeFiles/cmod_tool.dir/rule
+.PHONY : cmod_tool
+
+# fast build rule for target.
+cmod_tool/fast:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CMOD/CMakeFiles/cmod_tool.dir/build.make src/CMOD/CMakeFiles/cmod_tool.dir/build
+.PHONY : cmod_tool/fast
+
 CMODHandler.o: CMODHandler.cpp.o
 .PHONY : CMODHandler.o
 
@@ -209,6 +223,30 @@ CMODHandler.cpp.s:
 	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CMOD/CMakeFiles/CMODHandler.dir/build.make src/CMOD/CMakeFiles/CMODHandler.dir/CMODHandler.cpp.s
 .PHONY : CMODHandler.cpp.s
 
+cmod_tool.o: cmod_tool.cpp.o
+.PHONY : cmod_tool.o
+
+# target to build an object file
+cmod_tool.cpp.o:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CMOD/CMakeFiles/cmod_tool.dir/build.make src/CMOD/CMakeFiles/cmod_tool.dir/cmod_tool.cpp.o
+.PHONY : cmod_tool.cpp.o
+
+cmod_tool.i: cmod_tool.cpp.i
+.PHONY : cmod_tool.i
+
+# target to preprocess a source file
+cmod_tool.cpp.i:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CMOD/CMakeFiles/cmod_tool.dir/build.make src/CMOD/CMakeFiles/cmod_tool.dir/cmod_tool.cpp.i
+.PHONY : cmod_tool.cpp.i
+
+cmod_tool.s: cmod_tool.cpp.s
+.PHONY : cmod_tool.s
+
+# target to generate assembly for a file
+cmod_tool.cpp.s:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CMOD/CMakeFiles/cmod_tool.dir/build.make src/CMOD/CMakeFiles/cmod_tool.dir/cmod_tool.cpp.s
+.PHONY : cmod_tool.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -223,9 +261,13 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... CMODHandler"
+	@echo "... cmod_tool"
 	@echo "... CMODHandler.o"
 	@echo "... CMODHandler.i"
 	@echo "... CMODHandler.s"
+	@echo "... cmod_tool.o"
+	@echo "... cmod_tool.i"
+	@echo "... cmod_tool.s"
 .PHONY : help
 
 

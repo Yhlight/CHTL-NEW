@@ -55,6 +55,7 @@
 /workspace/CHTL/build/src/JavaScript/CMakeFiles/install/local.dir
 /workspace/CHTL/build/src/JavaScript/CMakeFiles/install/strip.dir
 /workspace/CHTL/build/src/CMOD/CMakeFiles/CMODHandler.dir
+/workspace/CHTL/build/src/CMOD/CMakeFiles/cmod_tool.dir
 /workspace/CHTL/build/src/CMOD/CMakeFiles/test.dir
 /workspace/CHTL/build/src/CMOD/CMakeFiles/edit_cache.dir
 /workspace/CHTL/build/src/CMOD/CMakeFiles/rebuild_cache.dir

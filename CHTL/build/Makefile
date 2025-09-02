@@ -276,6 +276,19 @@ CMODHandler/fast:
 .PHONY : CMODHandler/fast
 
 #=============================================================================
+# Target rules for targets named cmod_tool
+
+# Build rule for target.
+cmod_tool: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cmod_tool
+.PHONY : cmod_tool
+
+# fast build rule for target.
+cmod_tool/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMOD/CMakeFiles/cmod_tool.dir/build.make src/CMOD/CMakeFiles/cmod_tool.dir/build
+.PHONY : cmod_tool/fast
+
+#=============================================================================
 # Target rules for targets named CJMODHandler
 
 # Build rule for target.
@@ -334,6 +347,7 @@ help:
 	@echo "... CompilerDispatcher"
 	@echo "... JavaScriptCompiler"
 	@echo "... chtl"
+	@echo "... cmod_tool"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
