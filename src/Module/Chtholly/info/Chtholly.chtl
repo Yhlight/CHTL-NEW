@@ -1,0 +1,30 @@
+// 珂朵莉模块 - CMOD + CJMOD混合模块
+// 这是我一直喜欢着的人物，希望让珂朵莉成为CHTL中重要的模块
+
+[Info]
+{
+    Name: Chtholly;
+    Version: 1.0.0;
+    Author: CHTL Official;
+    Description: "珂朵莉官方模块 - CMOD + CJMOD混合结构";
+    Type: Mixed; // 混合模块标识
+    License: MIT;
+    Website: "https://chtl.org/modules/chtholly";
+    Dependencies: [];
+}
+
+[Export]
+{
+    // CMOD导出项
+    手风琴: "src/Accordion.chtl";
+    四叶窗相册: "src/FourLeafAlbum.chtl";  
+    备忘录: "src/Memo.chtl";
+    暖色笔记: "src/WarmNote.chtl";
+    樱花雨: "src/SakuraRain.chtl";
+    鼠标特效: "src/MouseEffect.chtl";
+    
+    // CJMOD导出项 (C++实现)
+    printMylove: "src/printMylove.cpp";
+    iNeverAway: "src/iNeverAway.cpp"; 
+    utilThen: "src/utilThen.cpp";
+}

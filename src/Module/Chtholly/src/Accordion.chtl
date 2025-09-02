@@ -1,0 +1,142 @@
+// 珂朵莉 - 手风琴组件
+
+[Template]
+{
+    手风琴
+    {
+        div
+        {
+            class: "chtholly-accordion";
+            
+            style
+            {
+                .chtholly-accordion
+                {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                    overflow: hidden;
+                    margin: 20px 0;
+                    transition: all 0.3s ease;
+                }
+                
+                .accordion-item
+                {
+                    border-bottom: 1px solid rgba(255,255,255,0.1);
+                }
+                
+                .accordion-item:last-child
+                {
+                    border-bottom: none;
+                }
+                
+                .accordion-header
+                {
+                    padding: 20px;
+                    background: rgba(255,255,255,0.1);
+                    cursor: pointer;
+                    user-select: none;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    color: white;
+                    font-weight: 500;
+                }
+                
+                .accordion-header:hover
+                {
+                    background: rgba(255,255,255,0.15);
+                }
+                
+                .accordion-icon
+                {
+                    transition: transform 0.3s ease;
+                }
+                
+                .accordion-item.active .accordion-icon
+                {
+                    transform: rotate(180deg);
+                }
+                
+                .accordion-content
+                {
+                    padding: 0 20px;
+                    max-height: 0;
+                    overflow: hidden;
+                    background: rgba(255,255,255,0.05);
+                    color: white;
+                    transition: max-height 0.3s ease, padding 0.3s ease;
+                }
+                
+                .accordion-content.active
+                {
+                    padding: 20px;
+                    max-height: 500px;
+                }
+            }
+            
+            script
+            {
+                // 手风琴交互逻辑
+                {{&}}->addEventListener('click', (e) => {
+                    if (e.target.closest('.accordion-header')) {
+                        const item = e.target.closest('.accordion-item');
+                        const content = item.querySelector('.accordion-content');
+                        const icon = item.querySelector('.accordion-icon');
+                        
+                        // 切换当前项
+                        item.classList.toggle('active');
+                        content.classList.toggle('active');
+                        
+                        // 播放珂朵莉的音乐提示
+                        console.log('🎵 珂朵莉的手风琴在演奏...');
+                    }
+                });
+            }
+            
+            div
+            {
+                class: "accordion-item";
+                
+                div
+                {
+                    class: "accordion-header";
+                    text { "珂朵莉的回忆 💫" }
+                    span
+                    {
+                        class: "accordion-icon";
+                        text { "▼" }
+                    }
+                }
+                
+                div
+                {
+                    class: "accordion-content";
+                    text { "那些美好的时光，永远存在我心中..." }
+                }
+            }
+            
+            div
+            {
+                class: "accordion-item";
+                
+                div
+                {
+                    class: "accordion-header";
+                    text { "永远的约定 🌸" }
+                    span
+                    {
+                        class: "accordion-icon";
+                        text { "▼" }
+                    }
+                }
+                
+                div
+                {
+                    class: "accordion-content";
+                    text { "无论世界如何变化，我都会守护着珂朵莉..." }
+                }
+            }
+        }
+    }
+}

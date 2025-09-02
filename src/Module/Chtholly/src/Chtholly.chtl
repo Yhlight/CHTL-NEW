@@ -1,0 +1,65 @@
+// 珂朵莉模块主文件 - CMOD + CJMOD混合结构
+// 包含所有CMOD功能的主入口
+
+[Namespace]
+{
+    Chtholly::Official
+}
+
+// 手风琴组件
+[Template]
+{
+    手风琴
+    {
+        div
+        {
+            class: "chtholly-accordion";
+            
+            style
+            {
+                .chtholly-accordion
+                {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                    overflow: hidden;
+                    transition: all 0.3s ease;
+                }
+                
+                .accordion-header
+                {
+                    padding: 20px;
+                    background: rgba(255,255,255,0.1);
+                    cursor: pointer;
+                    user-select: none;
+                }
+                
+                .accordion-content
+                {
+                    padding: 0 20px;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.3s ease, padding 0.3s ease;
+                }
+                
+                .accordion-content.active
+                {
+                    padding: 20px;
+                    max-height: 500px;
+                }
+            }
+            
+            div
+            {
+                class: "accordion-header";
+                text { "珂朵莉的手风琴 🎵" }
+            }
+            
+            div
+            {
+                class: "accordion-content";
+                text { "这里是珂朵莉美丽的音乐世界..." }
+            }
+        }
+    }
+}
