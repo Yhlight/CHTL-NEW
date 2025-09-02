@@ -70,10 +70,31 @@ int main(int argc, char* argv[]) {
     std::cout << std::endl;
     
     try {
+        // 处理命令行参数
+        if (argc >= 2) {
+            std::string arg1 = argv[1];
+            if (arg1 == "--help" || arg1 == "-h") {
+                std::cout << "用法: chtl [输入文件] [输出文件]" << std::endl;
+                std::cout << "选项:" << std::endl;
+                std::cout << "  --help, -h     显示帮助信息" << std::endl;
+                std::cout << "  --version, -v  显示版本信息" << std::endl;
+                std::cout << std::endl;
+                std::cout << "示例:" << std::endl;
+                std::cout << "  chtl index.chtl output.html" << std::endl;
+                std::cout << "  chtl test.chtl" << std::endl;
+                return 0;
+            }
+            if (arg1 == "--version" || arg1 == "-v") {
+                std::cout << "CHTL编译器 v1.0.0" << std::endl;
+                std::cout << "基于C++17，支持UTF-8，完全模块化架构" << std::endl;
+                std::cout << "MIT License - CHTL Official" << std::endl;
+                return 0;
+            }
+        }
+        
         std::string inputFile = "test.chtl";
         std::string outputFile = "output.html";
         
-        // 处理命令行参数
         if (argc >= 2) {
             inputFile = argv[1];
         }

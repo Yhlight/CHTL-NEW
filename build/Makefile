@@ -578,6 +578,19 @@ chtl_final_completion_report/fast:
 .PHONY : chtl_final_completion_report/fast
 
 #=============================================================================
+# Target rules for targets named chtl_final_compilation_success
+
+# Build rule for target.
+chtl_final_compilation_success: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_compilation_success
+.PHONY : chtl_final_compilation_success
+
+# fast build rule for target.
+chtl_final_compilation_success/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_compilation_success.dir/build.make CMakeFiles/chtl_final_compilation_success.dir/build
+.PHONY : chtl_final_compilation_success/fast
+
+#=============================================================================
 # Target rules for targets named chtl_lexer_test
 
 # Build rule for target.
@@ -2308,6 +2321,30 @@ src/Test/DocumentComplianceReport.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_document_compliance.dir/build.make CMakeFiles/chtl_document_compliance.dir/src/Test/DocumentComplianceReport.cpp.s
 .PHONY : src/Test/DocumentComplianceReport.cpp.s
 
+src/Test/FinalCompilationSuccessReport.o: src/Test/FinalCompilationSuccessReport.cpp.o
+.PHONY : src/Test/FinalCompilationSuccessReport.o
+
+# target to build an object file
+src/Test/FinalCompilationSuccessReport.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_compilation_success.dir/build.make CMakeFiles/chtl_final_compilation_success.dir/src/Test/FinalCompilationSuccessReport.cpp.o
+.PHONY : src/Test/FinalCompilationSuccessReport.cpp.o
+
+src/Test/FinalCompilationSuccessReport.i: src/Test/FinalCompilationSuccessReport.cpp.i
+.PHONY : src/Test/FinalCompilationSuccessReport.i
+
+# target to preprocess a source file
+src/Test/FinalCompilationSuccessReport.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_compilation_success.dir/build.make CMakeFiles/chtl_final_compilation_success.dir/src/Test/FinalCompilationSuccessReport.cpp.i
+.PHONY : src/Test/FinalCompilationSuccessReport.cpp.i
+
+src/Test/FinalCompilationSuccessReport.s: src/Test/FinalCompilationSuccessReport.cpp.s
+.PHONY : src/Test/FinalCompilationSuccessReport.s
+
+# target to generate assembly for a file
+src/Test/FinalCompilationSuccessReport.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_compilation_success.dir/build.make CMakeFiles/chtl_final_compilation_success.dir/src/Test/FinalCompilationSuccessReport.cpp.s
+.PHONY : src/Test/FinalCompilationSuccessReport.cpp.s
+
 src/Test/FinalCompletionVerification.o: src/Test/FinalCompletionVerification.cpp.o
 .PHONY : src/Test/FinalCompletionVerification.o
 
@@ -2854,6 +2891,7 @@ help:
 	@echo "... chtl_constraint_test"
 	@echo "... chtl_custom_test"
 	@echo "... chtl_document_compliance"
+	@echo "... chtl_final_compilation_success"
 	@echo "... chtl_final_completion_report"
 	@echo "... chtl_final_completion_verification"
 	@echo "... chtl_final_strict_compliance"
@@ -3066,6 +3104,9 @@ help:
 	@echo "... src/Test/DocumentComplianceReport.o"
 	@echo "... src/Test/DocumentComplianceReport.i"
 	@echo "... src/Test/DocumentComplianceReport.s"
+	@echo "... src/Test/FinalCompilationSuccessReport.o"
+	@echo "... src/Test/FinalCompilationSuccessReport.i"
+	@echo "... src/Test/FinalCompilationSuccessReport.s"
 	@echo "... src/Test/FinalCompletionVerification.o"
 	@echo "... src/Test/FinalCompletionVerification.i"
 	@echo "... src/Test/FinalCompletionVerification.s"

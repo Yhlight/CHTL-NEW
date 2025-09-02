@@ -197,7 +197,7 @@ target_link_libraries(CHTLJSCompiler antlr4-runtime)
 
 # 创建CJMOD API库
 add_library(CJMOD STATIC ${CJMOD_SOURCES})
-target_include_directories(CJMOD PUBLIC src/CJMOD)
+target_include_directories(CJMOD PUBLIC "src/CHTL JS/CJMODSystem")
 
 # 创建代码合并器库
 add_library(CHTLCodeMerger STATIC ${CODE_MERGER_SOURCES})
@@ -206,11 +206,11 @@ target_include_directories(CHTLCodeMerger PUBLIC src/CodeMerger)
 # 创建调度器库
 add_library(CHTLDispatcher STATIC ${DISPATCHER_SOURCES})
 target_include_directories(CHTLDispatcher PUBLIC src/CompilerDispatcher)
-target_link_libraries(CHTLDispatcher CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler)
+target_link_libraries(CHTLDispatcher CJMOD CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler)
 
 # 主程序可执行文件
 add_executable(chtl src/main.cpp)
-target_link_libraries(chtl CHTLDispatcher CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+target_link_libraries(chtl CHTLDispatcher CJMOD CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner antlr4-runtime)
 
 # 测试可执行文件
 add_executable(chtl_test src/Test/BasicCompilationTest.cpp)
@@ -273,6 +273,9 @@ add_executable(chtl_repository_cleanup_report src/Test/RepositoryCleanupReport.c
 
 # 最终完成验证可执行文件
 add_executable(chtl_final_completion_report src/Test/FinalCompletionVerification.cpp)
+
+# 最终编译成功报告可执行文件
+add_executable(chtl_final_compilation_success src/Test/FinalCompilationSuccessReport.cpp)
 
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)

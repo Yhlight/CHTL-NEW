@@ -30,6 +30,7 @@
 /workspace/build/CMakeFiles/chtl_final_strict_compliance.dir
 /workspace/build/CMakeFiles/chtl_repository_cleanup_report.dir
 /workspace/build/CMakeFiles/chtl_final_completion_report.dir
+/workspace/build/CMakeFiles/chtl_final_compilation_success.dir
 /workspace/build/CMakeFiles/chtl_lexer_test.dir
 /workspace/build/CMakeFiles/chtl_template_test.dir
 /workspace/build/CMakeFiles/chtl_custom_test.dir

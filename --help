@@ -1,0 +1,78 @@
+html {
+    head {
+        text {
+            CHTL示例页面
+        }
+    }
+    
+    body {
+        div {
+            style {
+                .container {
+                    width: 100%;
+                    max-width: 800px;
+                    margin: 0 auto;
+                    padding: 20px;
+                }
+                
+                .box {
+                    width: 200px;
+                    height: 200px;
+                    background-color: #ff6b6b;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+                
+                &:hover {
+                    background-color: #4ecdc4;
+                    transform: scale(1.05);
+                }
+            }
+            
+            script {
+                {{box}}->listen {
+                    click: () => {
+                        console.log('盒子被点击了！');
+                        alert('欢迎使用CHTL！');
+                    },
+                    
+                    mouseenter: () => {
+                        console.log('鼠标进入盒子');
+                    },
+                    
+                    mouseleave: () => {
+                        console.log('鼠标离开盒子');
+                    }
+                };
+                
+                // 使用事件委托
+                {{body}}->delegate {
+                    target: {{.box}},
+                    click: (e) => {
+                        console.log('通过事件委托处理点击');
+                    }
+                };
+                
+                // 使用动画
+                const fadeIn = animate {
+                    target: {{.box}},
+                    duration: 1000,
+                    begin: {
+                        opacity: 0,
+                        transform: 'translateY(50px)'
+                    },
+                    end: {
+                        opacity: 1,
+                        transform: 'translateY(0px)'
+                    },
+                    easing: 'ease-out'
+                };
+            }
+            
+            text {
+                点击下面的盒子试试！
+            }
+        }
+    }
+}
