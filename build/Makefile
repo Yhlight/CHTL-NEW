@@ -253,6 +253,19 @@ CHTLJSCompiler/fast:
 .PHONY : CHTLJSCompiler/fast
 
 #=============================================================================
+# Target rules for targets named CJMOD
+
+# Build rule for target.
+CJMOD: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CJMOD
+.PHONY : CJMOD
+
+# fast build rule for target.
+CJMOD/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/build
+.PHONY : CJMOD/fast
+
+#=============================================================================
 # Target rules for targets named CHTLDispatcher
 
 # Build rule for target.
@@ -435,6 +448,45 @@ chtl_status_report/fast:
 .PHONY : chtl_status_report/fast
 
 #=============================================================================
+# Target rules for targets named chtl_origin_config_test
+
+# Build rule for target.
+chtl_origin_config_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_origin_config_test
+.PHONY : chtl_origin_config_test
+
+# fast build rule for target.
+chtl_origin_config_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_origin_config_test.dir/build.make CMakeFiles/chtl_origin_config_test.dir/build
+.PHONY : chtl_origin_config_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_cjmod_test
+
+# Build rule for target.
+chtl_cjmod_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_cjmod_test
+.PHONY : chtl_cjmod_test
+
+# fast build rule for target.
+chtl_cjmod_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_test.dir/build.make CMakeFiles/chtl_cjmod_test.dir/build
+.PHONY : chtl_cjmod_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_final_achievement
+
+# Build rule for target.
+chtl_final_achievement: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_achievement
+.PHONY : chtl_final_achievement
+
+# fast build rule for target.
+chtl_final_achievement/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_achievement.dir/build.make CMakeFiles/chtl_final_achievement.dir/build
+.PHONY : chtl_final_achievement/fast
+
+#=============================================================================
 # Target rules for targets named run_tests
 
 # Build rule for target.
@@ -604,6 +656,30 @@ src/CHTL/CHTLNode/CHTLBaseNode.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/CHTLBaseNode.cpp.s
 .PHONY : src/CHTL/CHTLNode/CHTLBaseNode.cpp.s
 
+src/CHTL/CHTLNode/ConfigNode.o: src/CHTL/CHTLNode/ConfigNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/ConfigNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/ConfigNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/ConfigNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/ConfigNode.cpp.o
+
+src/CHTL/CHTLNode/ConfigNode.i: src/CHTL/CHTLNode/ConfigNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/ConfigNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/ConfigNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/ConfigNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/ConfigNode.cpp.i
+
+src/CHTL/CHTLNode/ConfigNode.s: src/CHTL/CHTLNode/ConfigNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/ConfigNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/ConfigNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/ConfigNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/ConfigNode.cpp.s
+
 src/CHTL/CHTLNode/CustomNode.o: src/CHTL/CHTLNode/CustomNode.cpp.o
 .PHONY : src/CHTL/CHTLNode/CustomNode.o
 
@@ -651,6 +727,54 @@ src/CHTL/CHTLNode/ElementNode.s: src/CHTL/CHTLNode/ElementNode.cpp.s
 src/CHTL/CHTLNode/ElementNode.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/ElementNode.cpp.s
 .PHONY : src/CHTL/CHTLNode/ElementNode.cpp.s
+
+src/CHTL/CHTLNode/NamespaceNode.o: src/CHTL/CHTLNode/NamespaceNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/NamespaceNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/NamespaceNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/NamespaceNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/NamespaceNode.cpp.o
+
+src/CHTL/CHTLNode/NamespaceNode.i: src/CHTL/CHTLNode/NamespaceNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/NamespaceNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/NamespaceNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/NamespaceNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/NamespaceNode.cpp.i
+
+src/CHTL/CHTLNode/NamespaceNode.s: src/CHTL/CHTLNode/NamespaceNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/NamespaceNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/NamespaceNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/NamespaceNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/NamespaceNode.cpp.s
+
+src/CHTL/CHTLNode/OriginNode.o: src/CHTL/CHTLNode/OriginNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/OriginNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/OriginNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/OriginNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/OriginNode.cpp.o
+
+src/CHTL/CHTLNode/OriginNode.i: src/CHTL/CHTLNode/OriginNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/OriginNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/OriginNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/OriginNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/OriginNode.cpp.i
+
+src/CHTL/CHTLNode/OriginNode.s: src/CHTL/CHTLNode/OriginNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/OriginNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/OriginNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/OriginNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/OriginNode.cpp.s
 
 src/CHTL/CHTLNode/ScriptNode.o: src/CHTL/CHTLNode/ScriptNode.cpp.o
 .PHONY : src/CHTL/CHTLNode/ScriptNode.o
@@ -1084,6 +1208,78 @@ src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.s
 .PHONY : src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.s
 
+src/CJMOD/CJMODGenerator.o: src/CJMOD/CJMODGenerator.cpp.o
+.PHONY : src/CJMOD/CJMODGenerator.o
+
+# target to build an object file
+src/CJMOD/CJMODGenerator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.o
+.PHONY : src/CJMOD/CJMODGenerator.cpp.o
+
+src/CJMOD/CJMODGenerator.i: src/CJMOD/CJMODGenerator.cpp.i
+.PHONY : src/CJMOD/CJMODGenerator.i
+
+# target to preprocess a source file
+src/CJMOD/CJMODGenerator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.i
+.PHONY : src/CJMOD/CJMODGenerator.cpp.i
+
+src/CJMOD/CJMODGenerator.s: src/CJMOD/CJMODGenerator.cpp.s
+.PHONY : src/CJMOD/CJMODGenerator.s
+
+# target to generate assembly for a file
+src/CJMOD/CJMODGenerator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.s
+.PHONY : src/CJMOD/CJMODGenerator.cpp.s
+
+src/CJMOD/CJMODScanner.o: src/CJMOD/CJMODScanner.cpp.o
+.PHONY : src/CJMOD/CJMODScanner.o
+
+# target to build an object file
+src/CJMOD/CJMODScanner.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.o
+.PHONY : src/CJMOD/CJMODScanner.cpp.o
+
+src/CJMOD/CJMODScanner.i: src/CJMOD/CJMODScanner.cpp.i
+.PHONY : src/CJMOD/CJMODScanner.i
+
+# target to preprocess a source file
+src/CJMOD/CJMODScanner.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.i
+.PHONY : src/CJMOD/CJMODScanner.cpp.i
+
+src/CJMOD/CJMODScanner.s: src/CJMOD/CJMODScanner.cpp.s
+.PHONY : src/CJMOD/CJMODScanner.s
+
+# target to generate assembly for a file
+src/CJMOD/CJMODScanner.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.s
+.PHONY : src/CJMOD/CJMODScanner.cpp.s
+
+src/CJMOD/CJMODSyntax.o: src/CJMOD/CJMODSyntax.cpp.o
+.PHONY : src/CJMOD/CJMODSyntax.o
+
+# target to build an object file
+src/CJMOD/CJMODSyntax.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.o
+.PHONY : src/CJMOD/CJMODSyntax.cpp.o
+
+src/CJMOD/CJMODSyntax.i: src/CJMOD/CJMODSyntax.cpp.i
+.PHONY : src/CJMOD/CJMODSyntax.i
+
+# target to preprocess a source file
+src/CJMOD/CJMODSyntax.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.i
+.PHONY : src/CJMOD/CJMODSyntax.cpp.i
+
+src/CJMOD/CJMODSyntax.s: src/CJMOD/CJMODSyntax.cpp.s
+.PHONY : src/CJMOD/CJMODSyntax.s
+
+# target to generate assembly for a file
+src/CJMOD/CJMODSyntax.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.s
+.PHONY : src/CJMOD/CJMODSyntax.cpp.s
+
 src/CSS/CSSCompiler.o: src/CSS/CSSCompiler.cpp.o
 .PHONY : src/CSS/CSSCompiler.o
 
@@ -1300,6 +1496,30 @@ src/Test/BasicCompilationTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_test.dir/build.make CMakeFiles/chtl_test.dir/src/Test/BasicCompilationTest.cpp.s
 .PHONY : src/Test/BasicCompilationTest.cpp.s
 
+src/Test/CJMODTest.o: src/Test/CJMODTest.cpp.o
+.PHONY : src/Test/CJMODTest.o
+
+# target to build an object file
+src/Test/CJMODTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_test.dir/build.make CMakeFiles/chtl_cjmod_test.dir/src/Test/CJMODTest.cpp.o
+.PHONY : src/Test/CJMODTest.cpp.o
+
+src/Test/CJMODTest.i: src/Test/CJMODTest.cpp.i
+.PHONY : src/Test/CJMODTest.i
+
+# target to preprocess a source file
+src/Test/CJMODTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_test.dir/build.make CMakeFiles/chtl_cjmod_test.dir/src/Test/CJMODTest.cpp.i
+.PHONY : src/Test/CJMODTest.cpp.i
+
+src/Test/CJMODTest.s: src/Test/CJMODTest.cpp.s
+.PHONY : src/Test/CJMODTest.s
+
+# target to generate assembly for a file
+src/Test/CJMODTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_test.dir/build.make CMakeFiles/chtl_cjmod_test.dir/src/Test/CJMODTest.cpp.s
+.PHONY : src/Test/CJMODTest.cpp.s
+
 src/Test/ConstraintTest.o: src/Test/ConstraintTest.cpp.o
 .PHONY : src/Test/ConstraintTest.o
 
@@ -1347,6 +1567,30 @@ src/Test/CustomSystemTest.s: src/Test/CustomSystemTest.cpp.s
 src/Test/CustomSystemTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_custom_test.dir/build.make CMakeFiles/chtl_custom_test.dir/src/Test/CustomSystemTest.cpp.s
 .PHONY : src/Test/CustomSystemTest.cpp.s
+
+src/Test/FinalAchievementReport.o: src/Test/FinalAchievementReport.cpp.o
+.PHONY : src/Test/FinalAchievementReport.o
+
+# target to build an object file
+src/Test/FinalAchievementReport.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_achievement.dir/build.make CMakeFiles/chtl_final_achievement.dir/src/Test/FinalAchievementReport.cpp.o
+.PHONY : src/Test/FinalAchievementReport.cpp.o
+
+src/Test/FinalAchievementReport.i: src/Test/FinalAchievementReport.cpp.i
+.PHONY : src/Test/FinalAchievementReport.i
+
+# target to preprocess a source file
+src/Test/FinalAchievementReport.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_achievement.dir/build.make CMakeFiles/chtl_final_achievement.dir/src/Test/FinalAchievementReport.cpp.i
+.PHONY : src/Test/FinalAchievementReport.cpp.i
+
+src/Test/FinalAchievementReport.s: src/Test/FinalAchievementReport.cpp.s
+.PHONY : src/Test/FinalAchievementReport.s
+
+# target to generate assembly for a file
+src/Test/FinalAchievementReport.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_achievement.dir/build.make CMakeFiles/chtl_final_achievement.dir/src/Test/FinalAchievementReport.cpp.s
+.PHONY : src/Test/FinalAchievementReport.cpp.s
 
 src/Test/FinalProjectStatus.o: src/Test/FinalProjectStatus.cpp.o
 .PHONY : src/Test/FinalProjectStatus.o
@@ -1443,6 +1687,30 @@ src/Test/LexerTest.s: src/Test/LexerTest.cpp.s
 src/Test/LexerTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_lexer_test.dir/build.make CMakeFiles/chtl_lexer_test.dir/src/Test/LexerTest.cpp.s
 .PHONY : src/Test/LexerTest.cpp.s
+
+src/Test/OriginConfigTest.o: src/Test/OriginConfigTest.cpp.o
+.PHONY : src/Test/OriginConfigTest.o
+
+# target to build an object file
+src/Test/OriginConfigTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_origin_config_test.dir/build.make CMakeFiles/chtl_origin_config_test.dir/src/Test/OriginConfigTest.cpp.o
+.PHONY : src/Test/OriginConfigTest.cpp.o
+
+src/Test/OriginConfigTest.i: src/Test/OriginConfigTest.cpp.i
+.PHONY : src/Test/OriginConfigTest.i
+
+# target to preprocess a source file
+src/Test/OriginConfigTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_origin_config_test.dir/build.make CMakeFiles/chtl_origin_config_test.dir/src/Test/OriginConfigTest.cpp.i
+.PHONY : src/Test/OriginConfigTest.cpp.i
+
+src/Test/OriginConfigTest.s: src/Test/OriginConfigTest.cpp.s
+.PHONY : src/Test/OriginConfigTest.s
+
+# target to generate assembly for a file
+src/Test/OriginConfigTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_origin_config_test.dir/build.make CMakeFiles/chtl_origin_config_test.dir/src/Test/OriginConfigTest.cpp.s
+.PHONY : src/Test/OriginConfigTest.cpp.s
 
 src/Test/ParserGeneratorTest.o: src/Test/ParserGeneratorTest.cpp.o
 .PHONY : src/Test/ParserGeneratorTest.o
@@ -1562,14 +1830,18 @@ help:
 	@echo "... CHTLJSCompiler"
 	@echo "... CHTLJSCore"
 	@echo "... CHTLScanner"
+	@echo "... CJMOD"
 	@echo "... chtl"
 	@echo "... chtl_antlr_test"
 	@echo "... chtl_architecture_test"
+	@echo "... chtl_cjmod_test"
 	@echo "... chtl_constraint_test"
 	@echo "... chtl_custom_test"
+	@echo "... chtl_final_achievement"
 	@echo "... chtl_final_summary"
 	@echo "... chtl_import_test"
 	@echo "... chtl_lexer_test"
+	@echo "... chtl_origin_config_test"
 	@echo "... chtl_parser_test"
 	@echo "... chtl_simple_test"
 	@echo "... chtl_status_report"
@@ -1593,12 +1865,21 @@ help:
 	@echo "... src/CHTL/CHTLNode/CHTLBaseNode.o"
 	@echo "... src/CHTL/CHTLNode/CHTLBaseNode.i"
 	@echo "... src/CHTL/CHTLNode/CHTLBaseNode.s"
+	@echo "... src/CHTL/CHTLNode/ConfigNode.o"
+	@echo "... src/CHTL/CHTLNode/ConfigNode.i"
+	@echo "... src/CHTL/CHTLNode/ConfigNode.s"
 	@echo "... src/CHTL/CHTLNode/CustomNode.o"
 	@echo "... src/CHTL/CHTLNode/CustomNode.i"
 	@echo "... src/CHTL/CHTLNode/CustomNode.s"
 	@echo "... src/CHTL/CHTLNode/ElementNode.o"
 	@echo "... src/CHTL/CHTLNode/ElementNode.i"
 	@echo "... src/CHTL/CHTLNode/ElementNode.s"
+	@echo "... src/CHTL/CHTLNode/NamespaceNode.o"
+	@echo "... src/CHTL/CHTLNode/NamespaceNode.i"
+	@echo "... src/CHTL/CHTLNode/NamespaceNode.s"
+	@echo "... src/CHTL/CHTLNode/OriginNode.o"
+	@echo "... src/CHTL/CHTLNode/OriginNode.i"
+	@echo "... src/CHTL/CHTLNode/OriginNode.s"
 	@echo "... src/CHTL/CHTLNode/ScriptNode.o"
 	@echo "... src/CHTL/CHTLNode/ScriptNode.i"
 	@echo "... src/CHTL/CHTLNode/ScriptNode.s"
@@ -1653,6 +1934,15 @@ help:
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.o"
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.i"
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.s"
+	@echo "... src/CJMOD/CJMODGenerator.o"
+	@echo "... src/CJMOD/CJMODGenerator.i"
+	@echo "... src/CJMOD/CJMODGenerator.s"
+	@echo "... src/CJMOD/CJMODScanner.o"
+	@echo "... src/CJMOD/CJMODScanner.i"
+	@echo "... src/CJMOD/CJMODScanner.s"
+	@echo "... src/CJMOD/CJMODSyntax.o"
+	@echo "... src/CJMOD/CJMODSyntax.i"
+	@echo "... src/CJMOD/CJMODSyntax.s"
 	@echo "... src/CSS/CSSCompiler.o"
 	@echo "... src/CSS/CSSCompiler.i"
 	@echo "... src/CSS/CSSCompiler.s"
@@ -1680,12 +1970,18 @@ help:
 	@echo "... src/Test/BasicCompilationTest.o"
 	@echo "... src/Test/BasicCompilationTest.i"
 	@echo "... src/Test/BasicCompilationTest.s"
+	@echo "... src/Test/CJMODTest.o"
+	@echo "... src/Test/CJMODTest.i"
+	@echo "... src/Test/CJMODTest.s"
 	@echo "... src/Test/ConstraintTest.o"
 	@echo "... src/Test/ConstraintTest.i"
 	@echo "... src/Test/ConstraintTest.s"
 	@echo "... src/Test/CustomSystemTest.o"
 	@echo "... src/Test/CustomSystemTest.i"
 	@echo "... src/Test/CustomSystemTest.s"
+	@echo "... src/Test/FinalAchievementReport.o"
+	@echo "... src/Test/FinalAchievementReport.i"
+	@echo "... src/Test/FinalAchievementReport.s"
 	@echo "... src/Test/FinalProjectStatus.o"
 	@echo "... src/Test/FinalProjectStatus.i"
 	@echo "... src/Test/FinalProjectStatus.s"
@@ -1698,6 +1994,9 @@ help:
 	@echo "... src/Test/LexerTest.o"
 	@echo "... src/Test/LexerTest.i"
 	@echo "... src/Test/LexerTest.s"
+	@echo "... src/Test/OriginConfigTest.o"
+	@echo "... src/Test/OriginConfigTest.i"
+	@echo "... src/Test/OriginConfigTest.s"
 	@echo "... src/Test/ParserGeneratorTest.o"
 	@echo "... src/Test/ParserGeneratorTest.i"
 	@echo "... src/Test/ParserGeneratorTest.s"

@@ -41,6 +41,9 @@ set(CHTL_CORE_SOURCES
     src/CHTL/CHTLNode/ScriptNode.cpp
     src/CHTL/CHTLNode/TemplateNode.cpp
     src/CHTL/CHTLNode/CustomNode.cpp
+    src/CHTL/CHTLNode/OriginNode.cpp
+    src/CHTL/CHTLNode/ConfigNode.cpp
+    src/CHTL/CHTLNode/NamespaceNode.cpp
     src/CHTL/CHTLNode/Visitor.cpp
     src/CHTL/CHTLParser/CHTLParser.cpp
     src/CHTL/CHTLGenerator/CHTLGenerator.cpp
@@ -91,6 +94,13 @@ set(JS_SOURCES
     src/JS/JavaScriptCompiler.cpp
 )
 
+# CJMOD API源文件
+set(CJMOD_SOURCES
+    src/CJMOD/CJMODSyntax.cpp
+    src/CJMOD/CJMODScanner.cpp
+    src/CJMOD/CJMODGenerator.cpp
+)
+
 # 创建CHTL核心库
 add_library(CHTLCore STATIC ${CHTL_CORE_SOURCES})
 target_include_directories(CHTLCore PUBLIC src/CHTL)
@@ -119,6 +129,10 @@ target_include_directories(CHTLCSSCompiler PUBLIC src/CSS)
 # 创建JavaScript编译器库
 add_library(CHTLJSCompiler STATIC ${JS_SOURCES})
 target_include_directories(CHTLJSCompiler PUBLIC src/JS)
+
+# 创建CJMOD API库
+add_library(CJMOD STATIC ${CJMOD_SOURCES})
+target_include_directories(CJMOD PUBLIC src/CJMOD)
 
 # 创建调度器库
 add_library(CHTLDispatcher STATIC ${DISPATCHER_SOURCES})
@@ -176,6 +190,18 @@ target_link_libraries(chtl_custom_test CHTLImport CHTLConstraint CHTLCore CHTLJS
 # 最终项目状态报告可执行文件
 add_executable(chtl_status_report src/Test/FinalProjectStatus.cpp)
 target_link_libraries(chtl_status_report CHTLDispatcher CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# 原始嵌入和配置系统测试可执行文件
+add_executable(chtl_origin_config_test src/Test/OriginConfigTest.cpp)
+target_link_libraries(chtl_origin_config_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# CJMOD API系统测试可执行文件
+add_executable(chtl_cjmod_test src/Test/CJMODTest.cpp)
+target_link_libraries(chtl_cjmod_test CJMOD CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# 最终成就报告可执行文件
+add_executable(chtl_final_achievement src/Test/FinalAchievementReport.cpp)
+target_link_libraries(chtl_final_achievement CJMOD CHTLDispatcher CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
 
 # 设置调试信息
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")

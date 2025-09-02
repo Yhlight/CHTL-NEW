@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libCJMOD.a CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.o CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.o CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.o
+/usr/bin/ranlib lib/libCJMOD.a
