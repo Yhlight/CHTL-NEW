@@ -95,9 +95,40 @@ public:
 
 class OriginNode : public ASTNode {
 public:
-    OriginNode() : ASTNode(ASTNodeType::Origin) {}
+    enum class OriginType {
+        Html,
+        Style,
+        JavaScript,
+        Custom  // 自定义类型如 @Vue
+    };
+
+private:
+    OriginType type;
+    std::string customTypeName;  // 对于Custom类型，存储类型名
+    std::string name;           // 可选的名称
+    std::string content;        // 原始内容
+
+public:
+    OriginNode(OriginType t = OriginType::Html) 
+        : ASTNode(ASTNodeType::Origin), type(t) {}
+    
+    void SetType(OriginType t) { type = t; }
+    OriginType GetType() const { return type; }
+    
+    void SetCustomTypeName(const std::string& name) { customTypeName = name; }
+    const std::string& GetCustomTypeName() const { return customTypeName; }
+    
+    void SetName(const std::string& n) { name = n; }
+    const std::string& GetName() const { return name; }
+    
+    void SetContent(const std::string& c) { content = c; }
+    const std::string& GetContent() const { return content; }
+    
     void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "OriginNode"; }
+    std::string ToString() const override { 
+        std::string typeStr = type == OriginType::Custom ? customTypeName : "Origin";
+        return "OriginNode(" + typeStr + ")"; 
+    }
 };
 
 

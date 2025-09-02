@@ -55,13 +55,19 @@ private:
         bool disableScriptAutoAddClass;
         bool disableScriptAutoAddId;
         bool disableDefaultNamespace;
+        int indexInitialCount;
+        bool disableNameGroup;
+        bool disableCustomOriginType;
         
         CompileOptions() : debugMode(false), useHTML5(false),
                           disableStyleAutoAddClass(false),
                           disableStyleAutoAddId(false),
                           disableScriptAutoAddClass(true),
                           disableScriptAutoAddId(true),
-                          disableDefaultNamespace(false) {}
+                          disableDefaultNamespace(false),
+                          indexInitialCount(0),
+                          disableNameGroup(false),
+                          disableCustomOriginType(false) {}
     } options;
     
     // 导入管理
@@ -138,6 +144,13 @@ public:
     bool IsScriptAutoAddIdDisabled() const { return options.disableScriptAutoAddId; }
     
     void SetDisableDefaultNamespace(bool disable) { options.disableDefaultNamespace = disable; }
+    void SetIndexInitialCount(int count) { options.indexInitialCount = count; }
+    void SetDisableNameGroup(bool disable) { options.disableNameGroup = disable; }
+    void SetDisableCustomOriginType(bool disable) { options.disableCustomOriginType = disable; }
+    
+    int GetIndexInitialCount() const { return options.indexInitialCount; }
+    bool IsNameGroupDisabled() const { return options.disableNameGroup; }
+    bool IsCustomOriginTypeDisabled() const { return options.disableCustomOriginType; }
     bool IsDefaultNamespaceDisabled() const { return options.disableDefaultNamespace; }
     
     // 导入管理

@@ -356,9 +356,81 @@ std::shared_ptr<ASTNode> Parser::ParseCustom() {
 }
 
 std::shared_ptr<ASTNode> Parser::ParseOrigin() {
-    // TODO: 实现Origin解析
-    ConsumeToken(); // 暂时跳过
-    return nullptr;
+    Expect(TokenType::ORIGIN, "期望 '[Origin]'");
+    
+    auto originNode = std::make_shared<OriginNode>();
+    
+    // 解析原始嵌入类型
+    if (Check(TokenType::AT_HTML)) {
+        ConsumeToken();
+        originNode->SetType(OriginNode::OriginType::Html);
+    } else if (Check(TokenType::AT_STYLE)) {
+        ConsumeToken();
+        originNode->SetType(OriginNode::OriginType::Style);
+    } else if (Check(TokenType::AT_JAVASCRIPT)) {
+        ConsumeToken();
+        originNode->SetType(OriginNode::OriginType::JavaScript);
+    } else if (Check(TokenType::AT) && PeekToken().type == TokenType::IDENTIFIER) {
+        // 自定义原始嵌入类型，如 @Vue
+        ConsumeToken(); // 消费 @
+        
+        if (!context->IsCustomOriginTypeDisabled()) {
+            std::string customType = CurrentToken().value;
+            ConsumeToken();
+            originNode->SetType(OriginNode::OriginType::Custom);
+            originNode->SetCustomTypeName(customType);
+        } else {
+            ReportError("自定义原始嵌入类型已被禁用");
+            RecoverFromError();
+            return nullptr;
+        }
+    } else {
+        ReportError("期望原始嵌入类型 (@Html, @Style, @JavaScript 或自定义类型)");
+        RecoverFromError();
+        return nullptr;
+    }
+    
+    // 解析可选的名称
+    if (Check(TokenType::IDENTIFIER)) {
+        originNode->SetName(CurrentToken().value);
+        ConsumeToken();
+    }
+    
+    // 解析内容块或引用
+    if (Check(TokenType::LEFT_BRACE)) {
+        ConsumeToken(); // 消费 {
+        
+        // 收集原始内容直到遇到 }
+        std::string content;
+        int braceDepth = 1;
+        
+        while (braceDepth > 0 && !Check(TokenType::EOF_TOKEN)) {
+            if (Check(TokenType::LEFT_BRACE)) {
+                braceDepth++;
+            } else if (Check(TokenType::RIGHT_BRACE)) {
+                braceDepth--;
+                if (braceDepth == 0) break;
+            }
+            
+            content += CurrentToken().value;
+            if (CurrentToken().type == TokenType::NEWLINE) {
+                content += "\n";
+            } else {
+                content += " ";
+            }
+            ConsumeToken();
+        }
+        
+        Expect(TokenType::RIGHT_BRACE, "期望 '}'");
+        originNode->SetContent(content);
+    } else if (Check(TokenType::SEMICOLON)) {
+        // 引用已定义的原始嵌入
+        ConsumeToken();
+    } else {
+        ReportError("期望 '{' 或 ';'");
+    }
+    
+    return originNode;
 }
 
 std::shared_ptr<ASTNode> Parser::ParseImport() {
@@ -1599,7 +1671,26 @@ void Parser::ApplyConfiguration(std::shared_ptr<ConfigurationNode> config) {
     
     it = options.find("DEBUG_MODE");
     if (it != options.end()) {
-        // TODO: 设置调试模式
+        context->SetDebugMode(it->second == "true");
+    }
+    
+    it = options.find("INDEX_INITIAL_COUNT");
+    if (it != options.end()) {
+        try {
+            context->SetIndexInitialCount(std::stoi(it->second));
+        } catch (...) {
+            LOG_ERROR("无效的INDEX_INITIAL_COUNT值: " + it->second);
+        }
+    }
+    
+    it = options.find("DISABLE_NAME_GROUP");
+    if (it != options.end()) {
+        context->SetDisableNameGroup(it->second == "true");
+    }
+    
+    it = options.find("DISABLE_CUSTOM_ORIGIN_TYPE");
+    if (it != options.end()) {
+        context->SetDisableCustomOriginType(it->second == "true");
     }
     
     // 配置已经通过各个选项应用到上下文了
