@@ -301,6 +301,19 @@ CJMODHandler/fast:
 	$(MAKE) $(MAKESILENT) -f src/CJMOD/CMakeFiles/CJMODHandler.dir/build.make src/CJMOD/CMakeFiles/CJMODHandler.dir/build
 .PHONY : CJMODHandler/fast
 
+#=============================================================================
+# Target rules for targets named cjmod_tool
+
+# Build rule for target.
+cjmod_tool: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cjmod_tool
+.PHONY : cjmod_tool
+
+# fast build rule for target.
+cjmod_tool/fast:
+	$(MAKE) $(MAKESILENT) -f src/CJMOD/CMakeFiles/cjmod_tool.dir/build.make src/CJMOD/CMakeFiles/cjmod_tool.dir/build
+.PHONY : cjmod_tool/fast
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -347,6 +360,7 @@ help:
 	@echo "... CompilerDispatcher"
 	@echo "... JavaScriptCompiler"
 	@echo "... chtl"
+	@echo "... cjmod_tool"
 	@echo "... cmod_tool"
 	@echo "... src/main.o"
 	@echo "... src/main.i"

@@ -86,17 +86,33 @@ src/CJMOD/CMakeFiles/CJMODHandler.dir/CJMODHandler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CJMODHandler.dir/CJMODHandler.cpp.s"
 	cd /workspace/CHTL/build/src/CJMOD && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/CHTL/src/CJMOD/CJMODHandler.cpp -o CMakeFiles/CJMODHandler.dir/CJMODHandler.cpp.s
 
+src/CJMOD/CMakeFiles/CJMODHandler.dir/API.cpp.o: src/CJMOD/CMakeFiles/CJMODHandler.dir/flags.make
+src/CJMOD/CMakeFiles/CJMODHandler.dir/API.cpp.o: /workspace/CHTL/src/CJMOD/API.cpp
+src/CJMOD/CMakeFiles/CJMODHandler.dir/API.cpp.o: src/CJMOD/CMakeFiles/CJMODHandler.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/CHTL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CJMOD/CMakeFiles/CJMODHandler.dir/API.cpp.o"
+	cd /workspace/CHTL/build/src/CJMOD && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CJMOD/CMakeFiles/CJMODHandler.dir/API.cpp.o -MF CMakeFiles/CJMODHandler.dir/API.cpp.o.d -o CMakeFiles/CJMODHandler.dir/API.cpp.o -c /workspace/CHTL/src/CJMOD/API.cpp
+
+src/CJMOD/CMakeFiles/CJMODHandler.dir/API.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CJMODHandler.dir/API.cpp.i"
+	cd /workspace/CHTL/build/src/CJMOD && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/CHTL/src/CJMOD/API.cpp > CMakeFiles/CJMODHandler.dir/API.cpp.i
+
+src/CJMOD/CMakeFiles/CJMODHandler.dir/API.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CJMODHandler.dir/API.cpp.s"
+	cd /workspace/CHTL/build/src/CJMOD && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/CHTL/src/CJMOD/API.cpp -o CMakeFiles/CJMODHandler.dir/API.cpp.s
+
 # Object files for target CJMODHandler
 CJMODHandler_OBJECTS = \
-"CMakeFiles/CJMODHandler.dir/CJMODHandler.cpp.o"
+"CMakeFiles/CJMODHandler.dir/CJMODHandler.cpp.o" \
+"CMakeFiles/CJMODHandler.dir/API.cpp.o"
 
 # External object files for target CJMODHandler
 CJMODHandler_EXTERNAL_OBJECTS =
 
 lib/libCJMODHandler.a: src/CJMOD/CMakeFiles/CJMODHandler.dir/CJMODHandler.cpp.o
+lib/libCJMODHandler.a: src/CJMOD/CMakeFiles/CJMODHandler.dir/API.cpp.o
 lib/libCJMODHandler.a: src/CJMOD/CMakeFiles/CJMODHandler.dir/build.make
 lib/libCJMODHandler.a: src/CJMOD/CMakeFiles/CJMODHandler.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/CHTL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ../../lib/libCJMODHandler.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/CHTL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library ../../lib/libCJMODHandler.a"
 	cd /workspace/CHTL/build/src/CJMOD && $(CMAKE_COMMAND) -P CMakeFiles/CJMODHandler.dir/cmake_clean_target.cmake
 	cd /workspace/CHTL/build/src/CJMOD && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CJMODHandler.dir/link.txt --verbose=$(VERBOSE)
 

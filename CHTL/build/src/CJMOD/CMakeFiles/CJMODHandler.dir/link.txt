@@ -1,2 +1,2 @@
-/usr/bin/ar qc ../../lib/libCJMODHandler.a CMakeFiles/CJMODHandler.dir/CJMODHandler.cpp.o
+/usr/bin/ar qc ../../lib/libCJMODHandler.a CMakeFiles/CJMODHandler.dir/CJMODHandler.cpp.o CMakeFiles/CJMODHandler.dir/API.cpp.o
 /usr/bin/ranlib ../../lib/libCJMODHandler.a

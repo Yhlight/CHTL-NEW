@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "../../lib/libCJMODHandler.a"
   "../../lib/libCJMODHandler.pdb"
+  "CMakeFiles/CJMODHandler.dir/API.cpp.o"
+  "CMakeFiles/CJMODHandler.dir/API.cpp.o.d"
   "CMakeFiles/CJMODHandler.dir/CJMODHandler.cpp.o"
   "CMakeFiles/CJMODHandler.dir/CJMODHandler.cpp.o.d"
 )

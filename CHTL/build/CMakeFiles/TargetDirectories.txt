@@ -64,6 +64,7 @@
 /workspace/CHTL/build/src/CMOD/CMakeFiles/install/local.dir
 /workspace/CHTL/build/src/CMOD/CMakeFiles/install/strip.dir
 /workspace/CHTL/build/src/CJMOD/CMakeFiles/CJMODHandler.dir
+/workspace/CHTL/build/src/CJMOD/CMakeFiles/cjmod_tool.dir
 /workspace/CHTL/build/src/CJMOD/CMakeFiles/test.dir
 /workspace/CHTL/build/src/CJMOD/CMakeFiles/edit_cache.dir
 /workspace/CHTL/build/src/CJMOD/CMakeFiles/rebuild_cache.dir

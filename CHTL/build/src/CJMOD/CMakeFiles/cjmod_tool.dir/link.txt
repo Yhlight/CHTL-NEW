@@ -1,0 +1,1 @@
+/usr/bin/c++ -Xlinker --dependency-file=CMakeFiles/cjmod_tool.dir/link.d CMakeFiles/cjmod_tool.dir/cjmod_tool.cpp.o -o ../../bin/cjmod_tool  ../../lib/libCJMODHandler.a -ldl

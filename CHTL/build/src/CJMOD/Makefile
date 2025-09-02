@@ -185,6 +185,44 @@ CJMODHandler/fast:
 	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CJMOD/CMakeFiles/CJMODHandler.dir/build.make src/CJMOD/CMakeFiles/CJMODHandler.dir/build
 .PHONY : CJMODHandler/fast
 
+# Convenience name for target.
+src/CJMOD/CMakeFiles/cjmod_tool.dir/rule:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CJMOD/CMakeFiles/cjmod_tool.dir/rule
+.PHONY : src/CJMOD/CMakeFiles/cjmod_tool.dir/rule
+
+# Convenience name for target.
+cjmod_tool: src/CJMOD/CMakeFiles/cjmod_tool.dir/rule
+.PHONY : cjmod_tool
+
+# fast build rule for target.
+cjmod_tool/fast:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CJMOD/CMakeFiles/cjmod_tool.dir/build.make src/CJMOD/CMakeFiles/cjmod_tool.dir/build
+.PHONY : cjmod_tool/fast
+
+API.o: API.cpp.o
+.PHONY : API.o
+
+# target to build an object file
+API.cpp.o:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CJMOD/CMakeFiles/CJMODHandler.dir/build.make src/CJMOD/CMakeFiles/CJMODHandler.dir/API.cpp.o
+.PHONY : API.cpp.o
+
+API.i: API.cpp.i
+.PHONY : API.i
+
+# target to preprocess a source file
+API.cpp.i:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CJMOD/CMakeFiles/CJMODHandler.dir/build.make src/CJMOD/CMakeFiles/CJMODHandler.dir/API.cpp.i
+.PHONY : API.cpp.i
+
+API.s: API.cpp.s
+.PHONY : API.s
+
+# target to generate assembly for a file
+API.cpp.s:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CJMOD/CMakeFiles/CJMODHandler.dir/build.make src/CJMOD/CMakeFiles/CJMODHandler.dir/API.cpp.s
+.PHONY : API.cpp.s
+
 CJMODHandler.o: CJMODHandler.cpp.o
 .PHONY : CJMODHandler.o
 
@@ -209,6 +247,30 @@ CJMODHandler.cpp.s:
 	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CJMOD/CMakeFiles/CJMODHandler.dir/build.make src/CJMOD/CMakeFiles/CJMODHandler.dir/CJMODHandler.cpp.s
 .PHONY : CJMODHandler.cpp.s
 
+cjmod_tool.o: cjmod_tool.cpp.o
+.PHONY : cjmod_tool.o
+
+# target to build an object file
+cjmod_tool.cpp.o:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CJMOD/CMakeFiles/cjmod_tool.dir/build.make src/CJMOD/CMakeFiles/cjmod_tool.dir/cjmod_tool.cpp.o
+.PHONY : cjmod_tool.cpp.o
+
+cjmod_tool.i: cjmod_tool.cpp.i
+.PHONY : cjmod_tool.i
+
+# target to preprocess a source file
+cjmod_tool.cpp.i:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CJMOD/CMakeFiles/cjmod_tool.dir/build.make src/CJMOD/CMakeFiles/cjmod_tool.dir/cjmod_tool.cpp.i
+.PHONY : cjmod_tool.cpp.i
+
+cjmod_tool.s: cjmod_tool.cpp.s
+.PHONY : cjmod_tool.s
+
+# target to generate assembly for a file
+cjmod_tool.cpp.s:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/CJMOD/CMakeFiles/cjmod_tool.dir/build.make src/CJMOD/CMakeFiles/cjmod_tool.dir/cjmod_tool.cpp.s
+.PHONY : cjmod_tool.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -223,9 +285,16 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... CJMODHandler"
+	@echo "... cjmod_tool"
+	@echo "... API.o"
+	@echo "... API.i"
+	@echo "... API.s"
 	@echo "... CJMODHandler.o"
 	@echo "... CJMODHandler.i"
 	@echo "... CJMODHandler.s"
+	@echo "... cjmod_tool.o"
+	@echo "... cjmod_tool.i"
+	@echo "... cjmod_tool.s"
 .PHONY : help
 
 
