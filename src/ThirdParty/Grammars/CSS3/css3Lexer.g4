@@ -23,17 +23,15 @@ Divide       : '/';
 Pipe         : '|';
 Underscore   : '_';
 
-At: '@';
+fragment At: '@';
 
 fragment Hex: [0-9a-fA-F];
 
-// Removed empty alternative
-fragment NewlineOrSpace: '\r\n' | [ 	
-];
+fragment NewlineOrSpace: '\r\n' | [ \t\r\n\f] |;
 
-fragment Unicode: '\' Hex Hex? Hex? Hex? Hex? Hex? NewlineOrSpace;
+fragment Unicode: '\\' Hex Hex? Hex? Hex? Hex? Hex? NewlineOrSpace;
 
-fragment Escape: Unicode | '\' ~[\r\n\f0-9a-fA-F];
+fragment Escape: Unicode | '\\' ~[\r\n\f0-9a-fA-F];
 
 fragment Nmstart: [_a-zA-Z] | Nonascii | Escape;
 
@@ -51,68 +49,65 @@ fragment Name: Nmchar+;
 
 Url: U R L '(' Whitespace ( [!#$%&*-~] | Nonascii | Escape)* Whitespace ')';
 
-Space: [ 	
-]+;
+Space: [ \t\r\n\f]+;
 
-// Removed empty alternative
-fragment Whitespace: Space;
+fragment Whitespace: Space |;
 
 fragment Newline: '\n' | '\r\n' | '\r' | '\f';
 
 fragment ZeroToFourZeros: '0'? '0'? '0'? '0'?;
 
-// Removed NewlineOrSpace from keyword fragments
-fragment A: 'a' | 'A' | '\' ZeroToFourZeros ('41' | '61');
+fragment A: 'a' | 'A' | '\\' ZeroToFourZeros ('41' | '61') NewlineOrSpace;
 
-fragment B: 'b' | 'B' | '\' ZeroToFourZeros ('42' | '62');
+fragment B: 'b' | 'B' | '\\' ZeroToFourZeros ('42' | '62') NewlineOrSpace;
 
-fragment C: 'c' | 'C' | '\' ZeroToFourZeros ('43' | '63');
+fragment C: 'c' | 'C' | '\\' ZeroToFourZeros ('43' | '63') NewlineOrSpace;
 
-fragment D: 'd' | 'D' | '\' ZeroToFourZeros ('44' | '64');
+fragment D: 'd' | 'D' | '\\' ZeroToFourZeros ('44' | '64') NewlineOrSpace;
 
-fragment E: 'e' | 'E' | '\' ZeroToFourZeros ('45' | '65');
+fragment E: 'e' | 'E' | '\\' ZeroToFourZeros ('45' | '65') NewlineOrSpace;
 
-fragment F: 'f' | 'F' | '\' ZeroToFourZeros ('46' | '66');
+fragment F: 'f' | 'F' | '\\' ZeroToFourZeros ('46' | '66') NewlineOrSpace;
 
-fragment G: 'g' | 'G' | '\' ZeroToFourZeros ('47' | '67') | '\g' | '\G';
+fragment G: 'g' | 'G' | '\\' ZeroToFourZeros ('47' | '67') NewlineOrSpace | '\\g' | '\\G';
 
-fragment H: 'h' | 'H' | '\' ZeroToFourZeros ('48' | '68') | '\h' | '\H';
+fragment H: 'h' | 'H' | '\\' ZeroToFourZeros ('48' | '68') NewlineOrSpace | '\\h' | '\\H';
 
-fragment I: 'i' | 'I' | '\' ZeroToFourZeros ('49' | '69') | '\i' | '\I';
+fragment I: 'i' | 'I' | '\\' ZeroToFourZeros ('49' | '69') NewlineOrSpace | '\\i' | '\\I';
 
-fragment K: 'k' | 'K' | '\' ZeroToFourZeros ('4b' | '6b') | '\k' | '\K';
+fragment K: 'k' | 'K' | '\\' ZeroToFourZeros ('4b' | '6b') NewlineOrSpace | '\\k' | '\\K';
 
-fragment L: 'l' | 'L' | '\' ZeroToFourZeros ('4c' | '6c') | '\l' | '\L';
+fragment L: 'l' | 'L' | '\\' ZeroToFourZeros ('4c' | '6c') NewlineOrSpace | '\\l' | '\\L';
 
-fragment M: 'm' | 'M' | '\' ZeroToFourZeros ('4d' | '6d') | '\m' | '\M';
+fragment M: 'm' | 'M' | '\\' ZeroToFourZeros ('4d' | '6d') NewlineOrSpace | '\\m' | '\\M';
 
-fragment N: 'n' | 'N' | '\' ZeroToFourZeros ('4e' | '6e') | '\n' | '\N';
+fragment N: 'n' | 'N' | '\\' ZeroToFourZeros ('4e' | '6e') NewlineOrSpace | '\\n' | '\\N';
 
-fragment O: 'o' | 'O' | '\' ZeroToFourZeros ('4f' | '6f') | '\o' | '\O';
+fragment O: 'o' | 'O' | '\\' ZeroToFourZeros ('4f' | '6f') NewlineOrSpace | '\\o' | '\\O';
 
-fragment P: 'p' | 'P' | '\' ZeroToFourZeros ('50' | '70') | '\p' | '\P';
+fragment P: 'p' | 'P' | '\\' ZeroToFourZeros ('50' | '70') NewlineOrSpace | '\\p' | '\\P';
 
-fragment Q: 'q' | 'Q' | '\' ZeroToFourZeros ('51' | '71') | '\q' | '\Q';
+fragment Q: 'q' | 'Q' | '\\' ZeroToFourZeros ('51' | '71') NewlineOrSpace | '\\q' | '\\Q';
 
-fragment R: 'r' | 'R' | '\' ZeroToFourZeros ('52' | '72') | '\r' | '\R';
+fragment R: 'r' | 'R' | '\\' ZeroToFourZeros ('52' | '72') NewlineOrSpace | '\\r' | '\\R';
 
-fragment S: 's' | 'S' | '\' ZeroToFourZeros ('53' | '73') | '\s' | '\S';
+fragment S: 's' | 'S' | '\\' ZeroToFourZeros ('53' | '73') NewlineOrSpace | '\\s' | '\\S';
 
-fragment T: 't' | 'T' | '\' ZeroToFourZeros ('54' | '74') | '\t' | '\T';
+fragment T: 't' | 'T' | '\\' ZeroToFourZeros ('54' | '74') NewlineOrSpace | '\\t' | '\\T';
 
-fragment U: 'u' | 'U' | '\' ZeroToFourZeros ('55' | '75') | '\u' | '\U';
+fragment U: 'u' | 'U' | '\\' ZeroToFourZeros ('55' | '75') NewlineOrSpace | '\\u' | '\\U';
 
-fragment V: 'v' | 'V' | '\' ZeroToFourZeros ('56' | '76') | '\v' | '\V';
+fragment V: 'v' | 'V' | '\\' ZeroToFourZeros ('56' | '76') NewlineOrSpace | '\\v' | '\\V';
 
-fragment W: 'w' | 'W' | '\' ZeroToFourZeros ('57' | '77') | '\w' | '\W';
+fragment W: 'w' | 'W' | '\\' ZeroToFourZeros ('57' | '77') NewlineOrSpace | '\\w' | '\\W';
 
-fragment X: 'x' | 'X' | '\' ZeroToFourZeros ('58' | '78') | '\x' | '\X';
+fragment X: 'x' | 'X' | '\\' ZeroToFourZeros ('58' | '78') NewlineOrSpace | '\\x' | '\\X';
 
-fragment Y: 'y' | 'Y' | '\' ZeroToFourZeros ('59' | '79') | '\y' | '\Y';
+fragment Y: 'y' | 'Y' | '\\' ZeroToFourZeros ('59' | '79') NewlineOrSpace | '\\y' | '\\Y';
 
-fragment Z: 'z' | 'Z' | '\' ZeroToFourZeros ('5a' | '7a') | '\z' | '\Z';
+fragment Z: 'z' | 'Z' | '\\' ZeroToFourZeros ('5a' | '7a') NewlineOrSpace | '\\z' | '\\Z';
 
-fragment DashChar: '-' | '\' ZeroToFourZeros '2d';
+fragment DashChar: '-' | '\\' ZeroToFourZeros '2d' NewlineOrSpace;
 
 Cdo: '<!--';
 
@@ -167,7 +162,8 @@ UnicodeRange:
     | [u|U] '+' Hex Hex '?'? '?'? '?'? '?'?
     | [u|U] '+' Hex Hex Hex '?'? '?'? '?'?
     | [u|U] '+' Hex Hex Hex Hex '?'? '?'?
-    | [u|U] '+' Hex Hex Hex Hex Hex '?';
+    | [u|U] '+' Hex Hex Hex Hex Hex '?'?
+;
 
 // https://www.w3.org/TR/css3-mediaqueries/
 MediaOnly: O N L Y;
@@ -202,8 +198,9 @@ PseudoNot: ':' N O T '(';
 Number: [0-9]+ | [0-9]* '.' [0-9]+;
 
 String_:
-    '"' (~[\n\r\f\"] | '\' Newline | Nonascii | Escape)* '"'
-    | '\'' ( ~[\n\r\f\\] | '\' Newline | Nonascii | Escape)* '\'';
+    '"' (~[\n\r\f\\"] | '\\' Newline | Nonascii | Escape)* '"'
+    | '\'' ( ~[\n\r\f\\'] | '\\' Newline | Nonascii | Escape)* '\''
+;
 
 PrefixMatch: '^=';
 

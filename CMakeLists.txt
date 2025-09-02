@@ -84,20 +84,20 @@ set(IMPORT_SOURCES
     src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp
 )
 
-# CSS编译器源文件（包含ANTLR生成的代码）
+# CSS编译器源文件（包含官方ANTLR生成的代码）
 set(CSS_SOURCES
     src/CSS/CSSCompiler.cpp
-    src/CSS/generated/CSSLexer.cpp
-    src/CSS/generated/CSSParser.cpp
-    src/CSS/generated/CSSBaseListener.cpp
+    src/CSS/generated/css3Lexer.cpp
+    src/CSS/generated/css3Parser.cpp
+    src/CSS/generated/css3ParserBaseListener.cpp
 )
 
-# JavaScript编译器源文件（包含ANTLR生成的代码）
+# JavaScript编译器源文件（包含官方ANTLR生成的代码）
 set(JS_SOURCES
     src/JS/JavaScriptCompiler.cpp
     src/JS/generated/JavaScriptLexer.cpp
     src/JS/generated/JavaScriptParser.cpp
-    src/JS/generated/JavaScriptBaseListener.cpp
+    src/JS/generated/JavaScriptParserBaseListener.cpp
 )
 
 # CJMOD API源文件 (已移动到CHTL JS/CJMODSystem内部)
@@ -231,6 +231,12 @@ target_link_libraries(chtl_official_module_test CHTLModuleSystem CHTLCMODSystem 
 
 # 文档遵循验证报告可执行文件
 add_executable(chtl_document_compliance src/Test/DocumentComplianceReport.cpp)
+
+# 官方ANTLR集成测试可执行文件
+add_executable(chtl_official_antlr_test src/Test/OfficialANTLRTest.cpp)
+
+# 最终完成验证报告可执行文件
+add_executable(chtl_final_completion_verification src/Test/FinalCompletionVerification.cpp)
 
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)

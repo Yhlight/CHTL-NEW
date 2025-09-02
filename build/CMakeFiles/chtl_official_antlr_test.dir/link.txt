@@ -1,0 +1,1 @@
+/usr/bin/c++ -Xlinker --dependency-file=CMakeFiles/chtl_official_antlr_test.dir/link.d CMakeFiles/chtl_official_antlr_test.dir/src/Test/OfficialANTLRTest.cpp.o -o bin/chtl_official_antlr_test   -L/workspace/thirdparty/antlr/lib

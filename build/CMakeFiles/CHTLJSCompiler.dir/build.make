@@ -114,26 +114,26 @@ CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.s: cmake_for
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/JS/generated/JavaScriptParser.cpp -o CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.s
 
-CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.o: CMakeFiles/CHTLJSCompiler.dir/flags.make
-CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.o: /workspace/src/JS/generated/JavaScriptBaseListener.cpp
-CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.o: CMakeFiles/CHTLJSCompiler.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.o -MF CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.o.d -o CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.o -c /workspace/src/JS/generated/JavaScriptBaseListener.cpp
+CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o: CMakeFiles/CHTLJSCompiler.dir/flags.make
+CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o: /workspace/src/JS/generated/JavaScriptParserBaseListener.cpp
+CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o: CMakeFiles/CHTLJSCompiler.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o -MF CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o.d -o CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o -c /workspace/src/JS/generated/JavaScriptParserBaseListener.cpp
 
-CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/JS/generated/JavaScriptBaseListener.cpp > CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.i
+CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/JS/generated/JavaScriptParserBaseListener.cpp > CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.i
 
-CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/JS/generated/JavaScriptBaseListener.cpp -o CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.s
+CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/JS/generated/JavaScriptParserBaseListener.cpp -o CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.s
 
 # Object files for target CHTLJSCompiler
 CHTLJSCompiler_OBJECTS = \
 "CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.o" \
 "CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexer.cpp.o" \
 "CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.o" \
-"CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.o"
+"CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o"
 
 # External object files for target CHTLJSCompiler
 CHTLJSCompiler_EXTERNAL_OBJECTS =
@@ -141,7 +141,7 @@ CHTLJSCompiler_EXTERNAL_OBJECTS =
 lib/libCHTLJSCompiler.a: CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.o
 lib/libCHTLJSCompiler.a: CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexer.cpp.o
 lib/libCHTLJSCompiler.a: CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.o
-lib/libCHTLJSCompiler.a: CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.o
+lib/libCHTLJSCompiler.a: CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o
 lib/libCHTLJSCompiler.a: CMakeFiles/CHTLJSCompiler.dir/build.make
 lib/libCHTLJSCompiler.a: CMakeFiles/CHTLJSCompiler.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library lib/libCHTLJSCompiler.a"

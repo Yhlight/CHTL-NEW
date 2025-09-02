@@ -487,6 +487,32 @@ chtl_document_compliance/fast:
 .PHONY : chtl_document_compliance/fast
 
 #=============================================================================
+# Target rules for targets named chtl_official_antlr_test
+
+# Build rule for target.
+chtl_official_antlr_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_official_antlr_test
+.PHONY : chtl_official_antlr_test
+
+# fast build rule for target.
+chtl_official_antlr_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_official_antlr_test.dir/build.make CMakeFiles/chtl_official_antlr_test.dir/build
+.PHONY : chtl_official_antlr_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_final_completion_verification
+
+# Build rule for target.
+chtl_final_completion_verification: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_completion_verification
+.PHONY : chtl_final_completion_verification
+
+# fast build rule for target.
+chtl_final_completion_verification/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_verification.dir/build.make CMakeFiles/chtl_final_completion_verification.dir/build
+.PHONY : chtl_final_completion_verification/fast
+
+#=============================================================================
 # Target rules for targets named chtl_lexer_test
 
 # Build rule for target.
@@ -1634,77 +1660,77 @@ src/CSS/CSSCompiler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/CSSCompiler.cpp.s
 .PHONY : src/CSS/CSSCompiler.cpp.s
 
-src/CSS/generated/CSSBaseListener.o: src/CSS/generated/CSSBaseListener.cpp.o
-.PHONY : src/CSS/generated/CSSBaseListener.o
+src/CSS/generated/css3Lexer.o: src/CSS/generated/css3Lexer.cpp.o
+.PHONY : src/CSS/generated/css3Lexer.o
 
 # target to build an object file
-src/CSS/generated/CSSBaseListener.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/CSSBaseListener.cpp.o
-.PHONY : src/CSS/generated/CSSBaseListener.cpp.o
+src/CSS/generated/css3Lexer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3Lexer.cpp.o
+.PHONY : src/CSS/generated/css3Lexer.cpp.o
 
-src/CSS/generated/CSSBaseListener.i: src/CSS/generated/CSSBaseListener.cpp.i
-.PHONY : src/CSS/generated/CSSBaseListener.i
+src/CSS/generated/css3Lexer.i: src/CSS/generated/css3Lexer.cpp.i
+.PHONY : src/CSS/generated/css3Lexer.i
 
 # target to preprocess a source file
-src/CSS/generated/CSSBaseListener.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/CSSBaseListener.cpp.i
-.PHONY : src/CSS/generated/CSSBaseListener.cpp.i
+src/CSS/generated/css3Lexer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3Lexer.cpp.i
+.PHONY : src/CSS/generated/css3Lexer.cpp.i
 
-src/CSS/generated/CSSBaseListener.s: src/CSS/generated/CSSBaseListener.cpp.s
-.PHONY : src/CSS/generated/CSSBaseListener.s
+src/CSS/generated/css3Lexer.s: src/CSS/generated/css3Lexer.cpp.s
+.PHONY : src/CSS/generated/css3Lexer.s
 
 # target to generate assembly for a file
-src/CSS/generated/CSSBaseListener.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/CSSBaseListener.cpp.s
-.PHONY : src/CSS/generated/CSSBaseListener.cpp.s
+src/CSS/generated/css3Lexer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3Lexer.cpp.s
+.PHONY : src/CSS/generated/css3Lexer.cpp.s
 
-src/CSS/generated/CSSLexer.o: src/CSS/generated/CSSLexer.cpp.o
-.PHONY : src/CSS/generated/CSSLexer.o
+src/CSS/generated/css3Parser.o: src/CSS/generated/css3Parser.cpp.o
+.PHONY : src/CSS/generated/css3Parser.o
 
 # target to build an object file
-src/CSS/generated/CSSLexer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/CSSLexer.cpp.o
-.PHONY : src/CSS/generated/CSSLexer.cpp.o
+src/CSS/generated/css3Parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3Parser.cpp.o
+.PHONY : src/CSS/generated/css3Parser.cpp.o
 
-src/CSS/generated/CSSLexer.i: src/CSS/generated/CSSLexer.cpp.i
-.PHONY : src/CSS/generated/CSSLexer.i
+src/CSS/generated/css3Parser.i: src/CSS/generated/css3Parser.cpp.i
+.PHONY : src/CSS/generated/css3Parser.i
 
 # target to preprocess a source file
-src/CSS/generated/CSSLexer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/CSSLexer.cpp.i
-.PHONY : src/CSS/generated/CSSLexer.cpp.i
+src/CSS/generated/css3Parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3Parser.cpp.i
+.PHONY : src/CSS/generated/css3Parser.cpp.i
 
-src/CSS/generated/CSSLexer.s: src/CSS/generated/CSSLexer.cpp.s
-.PHONY : src/CSS/generated/CSSLexer.s
+src/CSS/generated/css3Parser.s: src/CSS/generated/css3Parser.cpp.s
+.PHONY : src/CSS/generated/css3Parser.s
 
 # target to generate assembly for a file
-src/CSS/generated/CSSLexer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/CSSLexer.cpp.s
-.PHONY : src/CSS/generated/CSSLexer.cpp.s
+src/CSS/generated/css3Parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3Parser.cpp.s
+.PHONY : src/CSS/generated/css3Parser.cpp.s
 
-src/CSS/generated/CSSParser.o: src/CSS/generated/CSSParser.cpp.o
-.PHONY : src/CSS/generated/CSSParser.o
+src/CSS/generated/css3ParserBaseListener.o: src/CSS/generated/css3ParserBaseListener.cpp.o
+.PHONY : src/CSS/generated/css3ParserBaseListener.o
 
 # target to build an object file
-src/CSS/generated/CSSParser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/CSSParser.cpp.o
-.PHONY : src/CSS/generated/CSSParser.cpp.o
+src/CSS/generated/css3ParserBaseListener.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserBaseListener.cpp.o
+.PHONY : src/CSS/generated/css3ParserBaseListener.cpp.o
 
-src/CSS/generated/CSSParser.i: src/CSS/generated/CSSParser.cpp.i
-.PHONY : src/CSS/generated/CSSParser.i
+src/CSS/generated/css3ParserBaseListener.i: src/CSS/generated/css3ParserBaseListener.cpp.i
+.PHONY : src/CSS/generated/css3ParserBaseListener.i
 
 # target to preprocess a source file
-src/CSS/generated/CSSParser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/CSSParser.cpp.i
-.PHONY : src/CSS/generated/CSSParser.cpp.i
+src/CSS/generated/css3ParserBaseListener.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserBaseListener.cpp.i
+.PHONY : src/CSS/generated/css3ParserBaseListener.cpp.i
 
-src/CSS/generated/CSSParser.s: src/CSS/generated/CSSParser.cpp.s
-.PHONY : src/CSS/generated/CSSParser.s
+src/CSS/generated/css3ParserBaseListener.s: src/CSS/generated/css3ParserBaseListener.cpp.s
+.PHONY : src/CSS/generated/css3ParserBaseListener.s
 
 # target to generate assembly for a file
-src/CSS/generated/CSSParser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/CSSParser.cpp.s
-.PHONY : src/CSS/generated/CSSParser.cpp.s
+src/CSS/generated/css3ParserBaseListener.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserBaseListener.cpp.s
+.PHONY : src/CSS/generated/css3ParserBaseListener.cpp.s
 
 src/CodeMerger/CHTLCodeMerger.o: src/CodeMerger/CHTLCodeMerger.cpp.o
 .PHONY : src/CodeMerger/CHTLCodeMerger.o
@@ -1850,30 +1876,6 @@ src/JS/JavaScriptCompiler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.s
 .PHONY : src/JS/JavaScriptCompiler.cpp.s
 
-src/JS/generated/JavaScriptBaseListener.o: src/JS/generated/JavaScriptBaseListener.cpp.o
-.PHONY : src/JS/generated/JavaScriptBaseListener.o
-
-# target to build an object file
-src/JS/generated/JavaScriptBaseListener.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.o
-.PHONY : src/JS/generated/JavaScriptBaseListener.cpp.o
-
-src/JS/generated/JavaScriptBaseListener.i: src/JS/generated/JavaScriptBaseListener.cpp.i
-.PHONY : src/JS/generated/JavaScriptBaseListener.i
-
-# target to preprocess a source file
-src/JS/generated/JavaScriptBaseListener.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.i
-.PHONY : src/JS/generated/JavaScriptBaseListener.cpp.i
-
-src/JS/generated/JavaScriptBaseListener.s: src/JS/generated/JavaScriptBaseListener.cpp.s
-.PHONY : src/JS/generated/JavaScriptBaseListener.s
-
-# target to generate assembly for a file
-src/JS/generated/JavaScriptBaseListener.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.s
-.PHONY : src/JS/generated/JavaScriptBaseListener.cpp.s
-
 src/JS/generated/JavaScriptLexer.o: src/JS/generated/JavaScriptLexer.cpp.o
 .PHONY : src/JS/generated/JavaScriptLexer.o
 
@@ -1921,6 +1923,30 @@ src/JS/generated/JavaScriptParser.s: src/JS/generated/JavaScriptParser.cpp.s
 src/JS/generated/JavaScriptParser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.s
 .PHONY : src/JS/generated/JavaScriptParser.cpp.s
+
+src/JS/generated/JavaScriptParserBaseListener.o: src/JS/generated/JavaScriptParserBaseListener.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserBaseListener.o
+
+# target to build an object file
+src/JS/generated/JavaScriptParserBaseListener.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserBaseListener.cpp.o
+
+src/JS/generated/JavaScriptParserBaseListener.i: src/JS/generated/JavaScriptParserBaseListener.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserBaseListener.i
+
+# target to preprocess a source file
+src/JS/generated/JavaScriptParserBaseListener.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserBaseListener.cpp.i
+
+src/JS/generated/JavaScriptParserBaseListener.s: src/JS/generated/JavaScriptParserBaseListener.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserBaseListener.s
+
+# target to generate assembly for a file
+src/JS/generated/JavaScriptParserBaseListener.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserBaseListener.cpp.s
 
 src/Module/ModuleLoader.o: src/Module/ModuleLoader.cpp.o
 .PHONY : src/Module/ModuleLoader.o
@@ -2330,6 +2356,30 @@ src/Test/FinalAchievementReport.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_achievement.dir/build.make CMakeFiles/chtl_final_achievement.dir/src/Test/FinalAchievementReport.cpp.s
 .PHONY : src/Test/FinalAchievementReport.cpp.s
 
+src/Test/FinalCompletionVerification.o: src/Test/FinalCompletionVerification.cpp.o
+.PHONY : src/Test/FinalCompletionVerification.o
+
+# target to build an object file
+src/Test/FinalCompletionVerification.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_verification.dir/build.make CMakeFiles/chtl_final_completion_verification.dir/src/Test/FinalCompletionVerification.cpp.o
+.PHONY : src/Test/FinalCompletionVerification.cpp.o
+
+src/Test/FinalCompletionVerification.i: src/Test/FinalCompletionVerification.cpp.i
+.PHONY : src/Test/FinalCompletionVerification.i
+
+# target to preprocess a source file
+src/Test/FinalCompletionVerification.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_verification.dir/build.make CMakeFiles/chtl_final_completion_verification.dir/src/Test/FinalCompletionVerification.cpp.i
+.PHONY : src/Test/FinalCompletionVerification.cpp.i
+
+src/Test/FinalCompletionVerification.s: src/Test/FinalCompletionVerification.cpp.s
+.PHONY : src/Test/FinalCompletionVerification.s
+
+# target to generate assembly for a file
+src/Test/FinalCompletionVerification.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_verification.dir/build.make CMakeFiles/chtl_final_completion_verification.dir/src/Test/FinalCompletionVerification.cpp.s
+.PHONY : src/Test/FinalCompletionVerification.cpp.s
+
 src/Test/FinalProjectStatus.o: src/Test/FinalProjectStatus.cpp.o
 .PHONY : src/Test/FinalProjectStatus.o
 
@@ -2449,6 +2499,30 @@ src/Test/LexerTest.s: src/Test/LexerTest.cpp.s
 src/Test/LexerTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_lexer_test.dir/build.make CMakeFiles/chtl_lexer_test.dir/src/Test/LexerTest.cpp.s
 .PHONY : src/Test/LexerTest.cpp.s
+
+src/Test/OfficialANTLRTest.o: src/Test/OfficialANTLRTest.cpp.o
+.PHONY : src/Test/OfficialANTLRTest.o
+
+# target to build an object file
+src/Test/OfficialANTLRTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_official_antlr_test.dir/build.make CMakeFiles/chtl_official_antlr_test.dir/src/Test/OfficialANTLRTest.cpp.o
+.PHONY : src/Test/OfficialANTLRTest.cpp.o
+
+src/Test/OfficialANTLRTest.i: src/Test/OfficialANTLRTest.cpp.i
+.PHONY : src/Test/OfficialANTLRTest.i
+
+# target to preprocess a source file
+src/Test/OfficialANTLRTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_official_antlr_test.dir/build.make CMakeFiles/chtl_official_antlr_test.dir/src/Test/OfficialANTLRTest.cpp.i
+.PHONY : src/Test/OfficialANTLRTest.cpp.i
+
+src/Test/OfficialANTLRTest.s: src/Test/OfficialANTLRTest.cpp.s
+.PHONY : src/Test/OfficialANTLRTest.s
+
+# target to generate assembly for a file
+src/Test/OfficialANTLRTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_official_antlr_test.dir/build.make CMakeFiles/chtl_official_antlr_test.dir/src/Test/OfficialANTLRTest.cpp.s
+.PHONY : src/Test/OfficialANTLRTest.cpp.s
 
 src/Test/OfficialModuleTest.o: src/Test/OfficialModuleTest.cpp.o
 .PHONY : src/Test/OfficialModuleTest.o
@@ -2757,10 +2831,12 @@ help:
 	@echo "... chtl_document_compliance"
 	@echo "... chtl_final_100_percent"
 	@echo "... chtl_final_achievement"
+	@echo "... chtl_final_completion_verification"
 	@echo "... chtl_final_project_summary"
 	@echo "... chtl_final_system_demo"
 	@echo "... chtl_import_test"
 	@echo "... chtl_lexer_test"
+	@echo "... chtl_official_antlr_test"
 	@echo "... chtl_official_module_test"
 	@echo "... chtl_origin_config_test"
 	@echo "... chtl_parser_test"
@@ -2882,15 +2958,15 @@ help:
 	@echo "... src/CSS/CSSCompiler.o"
 	@echo "... src/CSS/CSSCompiler.i"
 	@echo "... src/CSS/CSSCompiler.s"
-	@echo "... src/CSS/generated/CSSBaseListener.o"
-	@echo "... src/CSS/generated/CSSBaseListener.i"
-	@echo "... src/CSS/generated/CSSBaseListener.s"
-	@echo "... src/CSS/generated/CSSLexer.o"
-	@echo "... src/CSS/generated/CSSLexer.i"
-	@echo "... src/CSS/generated/CSSLexer.s"
-	@echo "... src/CSS/generated/CSSParser.o"
-	@echo "... src/CSS/generated/CSSParser.i"
-	@echo "... src/CSS/generated/CSSParser.s"
+	@echo "... src/CSS/generated/css3Lexer.o"
+	@echo "... src/CSS/generated/css3Lexer.i"
+	@echo "... src/CSS/generated/css3Lexer.s"
+	@echo "... src/CSS/generated/css3Parser.o"
+	@echo "... src/CSS/generated/css3Parser.i"
+	@echo "... src/CSS/generated/css3Parser.s"
+	@echo "... src/CSS/generated/css3ParserBaseListener.o"
+	@echo "... src/CSS/generated/css3ParserBaseListener.i"
+	@echo "... src/CSS/generated/css3ParserBaseListener.s"
 	@echo "... src/CodeMerger/CHTLCodeMerger.o"
 	@echo "... src/CodeMerger/CHTLCodeMerger.i"
 	@echo "... src/CodeMerger/CHTLCodeMerger.s"
@@ -2909,15 +2985,15 @@ help:
 	@echo "... src/JS/JavaScriptCompiler.o"
 	@echo "... src/JS/JavaScriptCompiler.i"
 	@echo "... src/JS/JavaScriptCompiler.s"
-	@echo "... src/JS/generated/JavaScriptBaseListener.o"
-	@echo "... src/JS/generated/JavaScriptBaseListener.i"
-	@echo "... src/JS/generated/JavaScriptBaseListener.s"
 	@echo "... src/JS/generated/JavaScriptLexer.o"
 	@echo "... src/JS/generated/JavaScriptLexer.i"
 	@echo "... src/JS/generated/JavaScriptLexer.s"
 	@echo "... src/JS/generated/JavaScriptParser.o"
 	@echo "... src/JS/generated/JavaScriptParser.i"
 	@echo "... src/JS/generated/JavaScriptParser.s"
+	@echo "... src/JS/generated/JavaScriptParserBaseListener.o"
+	@echo "... src/JS/generated/JavaScriptParserBaseListener.i"
+	@echo "... src/JS/generated/JavaScriptParserBaseListener.s"
 	@echo "... src/Module/ModuleLoader.o"
 	@echo "... src/Module/ModuleLoader.i"
 	@echo "... src/Module/ModuleLoader.s"
@@ -2969,6 +3045,9 @@ help:
 	@echo "... src/Test/FinalAchievementReport.o"
 	@echo "... src/Test/FinalAchievementReport.i"
 	@echo "... src/Test/FinalAchievementReport.s"
+	@echo "... src/Test/FinalCompletionVerification.o"
+	@echo "... src/Test/FinalCompletionVerification.i"
+	@echo "... src/Test/FinalCompletionVerification.s"
 	@echo "... src/Test/FinalProjectStatus.o"
 	@echo "... src/Test/FinalProjectStatus.i"
 	@echo "... src/Test/FinalProjectStatus.s"
@@ -2984,6 +3063,9 @@ help:
 	@echo "... src/Test/LexerTest.o"
 	@echo "... src/Test/LexerTest.i"
 	@echo "... src/Test/LexerTest.s"
+	@echo "... src/Test/OfficialANTLRTest.o"
+	@echo "... src/Test/OfficialANTLRTest.i"
+	@echo "... src/Test/OfficialANTLRTest.s"
 	@echo "... src/Test/OfficialModuleTest.o"
 	@echo "... src/Test/OfficialModuleTest.i"
 	@echo "... src/Test/OfficialModuleTest.s"

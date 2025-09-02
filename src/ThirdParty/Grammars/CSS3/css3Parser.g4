@@ -335,8 +335,9 @@ generalEnclosed
 // Url
 // https://www.w3.org/TR/css3-values/#urls
 url
-    : Url // Corrected: Removed redundant parsing of Url_ ws String_ ws ')'
-;
+    : Url_ ws String_ ws ')'
+    | Url
+    ;
 
 // Variable
 // https://www.w3.org/TR/css-variables-1

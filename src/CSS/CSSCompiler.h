@@ -5,10 +5,10 @@
 #include <memory>
 #include <unordered_map>
 
-// ANTLR生成的头文件
-#include "generated/CSSLexer.h"
-#include "generated/CSSParser.h"
-#include "generated/CSSBaseListener.h"
+// ANTLR生成的头文件（官方语法）
+#include "generated/css3Lexer.h"
+#include "generated/css3Parser.h"
+#include "generated/css3ParserBaseListener.h"
 
 // ANTLR运行时
 #include "../../thirdparty/antlr/include/antlr4-runtime.h"
@@ -32,7 +32,7 @@ struct CSSCompilationResult {
  * CSS监听器
  * 用于遍历CSS AST并生成优化后的CSS
  */
-class CSSCompilerListener : public CSSBaseListener {
+class CSSCompilerListener : public css3ParserBaseListener {
 private:
     std::string m_CompiledCSS;                          // 编译结果
     std::vector<std::string> m_Errors;                  // 错误列表
@@ -52,32 +52,32 @@ public:
     /**
      * 进入样式表
      */
-    void enterStylesheet(CSSParser::StylesheetContext *ctx) override;
+    void enterStylesheet(css3Parser::StylesheetContext *ctx) override;
     
     /**
      * 退出样式表
      */
-    void exitStylesheet(CSSParser::StylesheetContext *ctx) override;
+    void exitStylesheet(css3Parser::StylesheetContext *ctx) override;
     
     /**
-     * 进入CSS规则
+     * 进入CSS规则集
      */
-    void enterCssRule(CSSParser::CssRuleContext *ctx) override;
+    void enterRuleset(css3Parser::RulesetContext *ctx) override;
     
     /**
-     * 退出CSS规则
+     * 退出CSS规则集
      */
-    void exitCssRule(CSSParser::CssRuleContext *ctx) override;
+    void exitRuleset(css3Parser::RulesetContext *ctx) override;
     
     /**
      * 进入选择器
      */
-    void enterSelector(CSSParser::SelectorContext *ctx) override;
+    void enterSelector(css3Parser::SelectorContext *ctx) override;
     
     /**
      * 进入声明
      */
-    void enterDeclaration(CSSParser::DeclarationContext *ctx) override;
+    void enterDeclaration(css3Parser::DeclarationContext *ctx) override;
     
     /**
      * 获取编译结果

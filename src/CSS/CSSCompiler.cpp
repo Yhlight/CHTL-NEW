@@ -1,4 +1,7 @@
 #include "CSSCompiler.h"
+#include "generated/css3Lexer.h"
+#include "generated/css3Parser.h"
+#include "generated/css3ParserBaseListener.h"
 #include <sstream>
 #include <regex>
 #include <algorithm>
@@ -10,26 +13,26 @@ CSSCompilerListener::CSSCompilerListener() {
     // 初始化监听器
 }
 
-void CSSCompilerListener::enterStylesheet(CSSParser::StylesheetContext *ctx) {
-    m_CompiledCSS += "/* ANTLR Compiled CSS */\n";
+void CSSCompilerListener::enterStylesheet(css3Parser::StylesheetContext *ctx) {
+    m_CompiledCSS += "/* 官方ANTLR CSS3编译器 */\n";
 }
 
-void CSSCompilerListener::exitStylesheet(CSSParser::StylesheetContext *ctx) {
-    m_CompiledCSS += "\n/* End ANTLR Compiled CSS */";
+void CSSCompilerListener::exitStylesheet(css3Parser::StylesheetContext *ctx) {
+    m_CompiledCSS += "\n/* 官方ANTLR CSS3编译器结束 */";
 }
 
-void CSSCompilerListener::enterCssRule(CSSParser::CssRuleContext *ctx) {
-    // 处理CSS规则
+void CSSCompilerListener::enterRuleset(css3Parser::RulesetContext *ctx) {
+    // 处理CSS规则集
     if (ctx->getText().length() > 0) {
         m_CompiledCSS += ctx->getText() + "\n";
     }
 }
 
-void CSSCompilerListener::exitCssRule(CSSParser::CssRuleContext *ctx) {
-    // 规则处理完成
+void CSSCompilerListener::exitRuleset(css3Parser::RulesetContext *ctx) {
+    // 规则集处理完成
 }
 
-void CSSCompilerListener::enterSelector(CSSParser::SelectorContext *ctx) {
+void CSSCompilerListener::enterSelector(css3Parser::SelectorContext *ctx) {
     // 处理选择器
     std::string selectorText = ctx->getText();
     
@@ -39,7 +42,7 @@ void CSSCompilerListener::enterSelector(CSSParser::SelectorContext *ctx) {
     }
 }
 
-void CSSCompilerListener::enterDeclaration(CSSParser::DeclarationContext *ctx) {
+void CSSCompilerListener::enterDeclaration(css3Parser::DeclarationContext *ctx) {
     // 处理CSS声明
     std::string declarationText = ctx->getText();
     

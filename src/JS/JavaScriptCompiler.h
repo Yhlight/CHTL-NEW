@@ -8,7 +8,7 @@
 // ANTLR生成的头文件
 #include "generated/JavaScriptLexer.h"
 #include "generated/JavaScriptParser.h"
-#include "generated/JavaScriptBaseListener.h"
+#include "generated/JavaScriptParserBaseListener.h"
 
 // ANTLR运行时
 #include "../../thirdparty/antlr/include/antlr4-runtime.h"
@@ -32,7 +32,7 @@ struct JavaScriptCompilationResult {
  * JavaScript监听器
  * 用于遍历JavaScript AST并生成优化后的JavaScript
  */
-class JavaScriptCompilerListener : public JavaScriptBaseListener {
+class JavaScriptCompilerListener : public JavaScriptParserBaseListener {
 private:
     std::string m_CompiledJS;                           // 编译结果
     std::vector<std::string> m_Errors;                  // 错误列表
