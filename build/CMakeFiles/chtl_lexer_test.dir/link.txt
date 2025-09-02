@@ -1,1 +1,1 @@
-/usr/bin/c++ -Xlinker --dependency-file=CMakeFiles/chtl_lexer_test.dir/link.d CMakeFiles/chtl_lexer_test.dir/src/Test/LexerTest.cpp.o -o bin/chtl_lexer_test  lib/libCHTLCore.a lib/libCHTLJSCore.a lib/libCHTLScanner.a
+/usr/bin/c++ -Xlinker --dependency-file=CMakeFiles/chtl_lexer_test.dir/link.d CMakeFiles/chtl_lexer_test.dir/src/Test/LexerTest.cpp.o -o bin/chtl_lexer_test   -L/workspace/thirdparty/antlr/lib  -Wl,-rpath,/workspace/thirdparty/antlr/lib lib/libCHTLCore.a lib/libCHTLJSCore.a lib/libCHTLScanner.a

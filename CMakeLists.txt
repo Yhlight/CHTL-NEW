@@ -84,14 +84,20 @@ set(IMPORT_SOURCES
     src/ImportSystem/CHTLImportManager.cpp
 )
 
-# CSS编译器源文件
+# CSS编译器源文件（包含ANTLR生成的代码）
 set(CSS_SOURCES
     src/CSS/CSSCompiler.cpp
+    src/CSS/generated/CSSLexer.cpp
+    src/CSS/generated/CSSParser.cpp
+    src/CSS/generated/CSSBaseListener.cpp
 )
 
-# JavaScript编译器源文件
+# JavaScript编译器源文件（包含ANTLR生成的代码）
 set(JS_SOURCES
     src/JS/JavaScriptCompiler.cpp
+    src/JS/generated/JavaScriptLexer.cpp
+    src/JS/generated/JavaScriptParser.cpp
+    src/JS/generated/JavaScriptBaseListener.cpp
 )
 
 # CJMOD API源文件
@@ -122,13 +128,21 @@ target_link_libraries(CHTLConstraint CHTLCore CHTLJSCore)
 add_library(CHTLImport STATIC ${IMPORT_SOURCES})
 target_include_directories(CHTLImport PUBLIC src/ImportSystem)
 
+# 添加ANTLR库路径
+link_directories(${CMAKE_SOURCE_DIR}/thirdparty/antlr/lib)
+include_directories(${CMAKE_SOURCE_DIR}/thirdparty/antlr/include)
+
 # 创建CSS编译器库
 add_library(CHTLCSSCompiler STATIC ${CSS_SOURCES})
 target_include_directories(CHTLCSSCompiler PUBLIC src/CSS)
+target_include_directories(CHTLCSSCompiler PUBLIC ${CMAKE_SOURCE_DIR}/thirdparty/antlr/include)
+target_link_libraries(CHTLCSSCompiler antlr4-runtime)
 
 # 创建JavaScript编译器库
 add_library(CHTLJSCompiler STATIC ${JS_SOURCES})
 target_include_directories(CHTLJSCompiler PUBLIC src/JS)
+target_include_directories(CHTLJSCompiler PUBLIC ${CMAKE_SOURCE_DIR}/thirdparty/antlr/include)
+target_link_libraries(CHTLJSCompiler antlr4-runtime)
 
 # 创建CJMOD API库
 add_library(CJMOD STATIC ${CJMOD_SOURCES})
@@ -202,6 +216,13 @@ target_link_libraries(chtl_cjmod_test CJMOD CHTLImport CHTLConstraint CHTLCore C
 # 最终成就报告可执行文件
 add_executable(chtl_final_achievement src/Test/FinalAchievementReport.cpp)
 target_link_libraries(chtl_final_achievement CJMOD CHTLDispatcher CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# ANTLR真实集成测试可执行文件
+add_executable(chtl_antlr_real_test src/Test/ANTLRRealIntegrationTest.cpp)
+target_link_libraries(chtl_antlr_real_test CHTLCSSCompiler CHTLJSCompiler antlr4-runtime)
+
+# ANTLR构建报告可执行文件
+add_executable(chtl_antlr_build_report src/Test/ANTLRBuildReport.cpp)
 
 # 设置调试信息
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")

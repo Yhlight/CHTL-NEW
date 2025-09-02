@@ -1,2 +1,2 @@
-/usr/bin/ar qc lib/libCHTLJSCompiler.a CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.o
+/usr/bin/ar qc lib/libCHTLJSCompiler.a CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.o CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexer.cpp.o CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.o CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptBaseListener.cpp.o
 /usr/bin/ranlib lib/libCHTLJSCompiler.a

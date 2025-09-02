@@ -5,236 +5,150 @@
 
 namespace CHTL {
 
+// CSSCompilerListener实现
+CSSCompilerListener::CSSCompilerListener() {
+    // 初始化监听器
+}
+
+void CSSCompilerListener::enterStylesheet(CSSParser::StylesheetContext *ctx) {
+    m_CompiledCSS += "/* ANTLR Compiled CSS */\n";
+}
+
+void CSSCompilerListener::exitStylesheet(CSSParser::StylesheetContext *ctx) {
+    m_CompiledCSS += "\n/* End ANTLR Compiled CSS */";
+}
+
+void CSSCompilerListener::enterCssRule(CSSParser::CssRuleContext *ctx) {
+    // 处理CSS规则
+    if (ctx->getText().length() > 0) {
+        m_CompiledCSS += ctx->getText() + "\n";
+    }
+}
+
+void CSSCompilerListener::exitCssRule(CSSParser::CssRuleContext *ctx) {
+    // 规则处理完成
+}
+
+void CSSCompilerListener::enterSelector(CSSParser::SelectorContext *ctx) {
+    // 处理选择器
+    std::string selectorText = ctx->getText();
+    
+    // 简单的选择器优化
+    if (selectorText.find("  ") != std::string::npos) {
+        addWarning("选择器包含多余空格: " + selectorText);
+    }
+}
+
+void CSSCompilerListener::enterDeclaration(CSSParser::DeclarationContext *ctx) {
+    // 处理CSS声明
+    std::string declarationText = ctx->getText();
+    
+    // 简单的声明验证
+    if (declarationText.find(":") == std::string::npos) {
+        addError("无效的CSS声明: " + declarationText);
+    }
+}
+
+void CSSCompilerListener::addError(const std::string& error) {
+    m_Errors.push_back(error);
+}
+
+void CSSCompilerListener::addWarning(const std::string& warning) {
+    m_Warnings.push_back(warning);
+}
+
+// CSSCompiler实现
 CSSCompiler::CSSCompiler() 
-    : m_MinifyCSS(false), m_RemoveComments(false), 
-      m_OptimizeSelectors(true), m_MergeRules(true) {
-    InitializeANTLR();
+    : m_MinifyCSS(false), m_RemoveComments(false), m_OptimizeSelectors(true), m_MergeRules(true) {
 }
 
 CSSCompilationResult CSSCompiler::Compile(const std::string& cssCode) {
-    CSSCompilationResult result;
-    Reset();
-    
-    try {
-        // 1. 使用ANTLR解析CSS语法树（暂时简化实现）
-        if (!ParseCSSTree(cssCode)) {
-            result.IsSuccess = false;
-            result.Errors = m_Errors;
-            return result;
-        }
-        
-        // 2. 验证CSS语法
-        if (!ValidateCSS(cssCode)) {
-            AddWarning("CSS语法验证发现问题");
-        }
-        
-        // 3. 应用CSS优化
-        std::string optimizedCSS = ApplyCSSOptimizations(cssCode);
-        
-        // 4. 生成源映射（如果需要）
-        // TODO: 实现源映射生成
-        
-        result.OptimizedCSS = optimizedCSS;
-        result.IsSuccess = true;
-        result.Warnings = m_Warnings;
-        result.Errors = m_Errors;
-        
-    }
-    catch (const std::exception& e) {
-        AddError("CSS编译异常: " + std::string(e.what()));
-        result.IsSuccess = false;
-        result.Errors = m_Errors;
-    }
-    
-    return result;
+    return CompileSingleFragment(cssCode);
 }
 
 CSSCompilationResult CSSCompiler::CompileFragments(const std::vector<std::string>& cssFragments) {
     CSSCompilationResult result;
     
-    std::ostringstream combinedCSS;
-    
-    // 合并所有CSS片段
-    for (size_t i = 0; i < cssFragments.size(); ++i) {
-        const auto& fragment = cssFragments[i];
+    try {
+        std::ostringstream combinedCSS;
         
-        // 编译单个片段
-        auto fragmentResult = Compile(fragment);
-        
-        if (!fragmentResult.IsSuccess) {
-            AddError("CSS片段 " + std::to_string(i+1) + " 编译失败");
-            result.IsSuccess = false;
+        for (const auto& fragment : cssFragments) {
+            auto fragmentResult = CompileSingleFragment(fragment);
+            
+            if (fragmentResult.IsSuccess) {
+                combinedCSS << fragmentResult.OptimizedCSS << "\n";
+            }
+            else {
+                // 收集错误
+                result.Errors.insert(result.Errors.end(), 
+                                    fragmentResult.Errors.begin(), fragmentResult.Errors.end());
+            }
+            
+            // 收集警告
+            result.Warnings.insert(result.Warnings.end(), 
+                                 fragmentResult.Warnings.begin(), fragmentResult.Warnings.end());
         }
-        else {
-            combinedCSS << fragmentResult.OptimizedCSS << "\n";
-        }
         
-        // 收集警告和错误
-        result.Warnings.insert(result.Warnings.end(), 
-                              fragmentResult.Warnings.begin(), 
-                              fragmentResult.Warnings.end());
-        result.Errors.insert(result.Errors.end(), 
-                            fragmentResult.Errors.begin(), 
-                            fragmentResult.Errors.end());
+        result.OptimizedCSS = combinedCSS.str();
+        result.IsSuccess = result.Errors.empty();
+        
+    }
+    catch (const std::exception& e) {
+        result.IsSuccess = false;
+        result.Errors.push_back("CSS编译异常: " + std::string(e.what()));
     }
     
-    if (result.IsSuccess) {
-        result.OptimizedCSS = combinedCSS.str();
+    return result;
+}
+
+CSSCompilationResult CSSCompiler::CompileSingleFragment(const std::string& cssCode) {
+    CSSCompilationResult result;
+    
+    try {
+        // 初始化ANTLR组件
+        initializeANTLR(cssCode);
         
-        // 对合并后的CSS进行最终优化
-        if (m_MergeRules) {
-            result.OptimizedCSS = MergeDuplicateRules(result.OptimizedCSS);
+        // 执行解析
+        bool parseSuccess = parseCSS();
+        
+        if (parseSuccess) {
+            // 获取监听器结果
+            result.OptimizedCSS = m_Listener->getCompiledCSS();
+            result.Errors = m_Listener->getErrors();
+            result.Warnings = m_Listener->getWarnings();
+            
+            // 如果没有解析错误，应用优化
+            if (result.Errors.empty()) {
+                result.OptimizedCSS = ApplyCSSOptimizations(result.OptimizedCSS);
+                result.IsSuccess = true;
+            }
         }
+        else {
+            result.IsSuccess = false;
+            result.Errors.push_back("CSS语法解析失败");
+        }
+        
+    }
+    catch (const std::exception& e) {
+        result.IsSuccess = false;
+        result.Errors.push_back("CSS编译异常: " + std::string(e.what()));
     }
     
     return result;
 }
 
 bool CSSCompiler::ValidateCSS(const std::string& cssCode) {
-    // 基础CSS语法验证（简化实现，等待ANTLR集成）
-    
-    // 检查基本的CSS结构
-    std::regex cssRulePattern(R"([^{}]*\{[^{}]*\})");
-    std::sregex_iterator iter(cssCode.begin(), cssCode.end(), cssRulePattern);
-    std::sregex_iterator end;
-    
-    bool hasValidRules = false;
-    
-    for (; iter != end; ++iter) {
-        hasValidRules = true;
-        std::string rule = iter->str();
-        
-        // 检查选择器部分
-        size_t bracePos = rule.find('{');
-        if (bracePos != std::string::npos) {
-            std::string selector = rule.substr(0, bracePos);
-            
-            // 简单的选择器验证
-            if (selector.empty() || selector.find_first_not_of(" \t\n\r") == std::string::npos) {
-                AddWarning("发现空选择器");
-            }
-        }
-        
-        // 检查属性部分
-        size_t startBrace = rule.find('{');
-        size_t endBrace = rule.find('}');
-        if (startBrace != std::string::npos && endBrace != std::string::npos) {
-            std::string properties = rule.substr(startBrace + 1, endBrace - startBrace - 1);
-            
-            // 检查属性格式
-            if (!properties.empty()) {
-                std::regex propertyPattern(R"([^:]+:[^;]+;?)");
-                std::sregex_iterator propIter(properties.begin(), properties.end(), propertyPattern);
-                
-                if (propIter == std::sregex_iterator()) {
-                    AddWarning("CSS属性格式可能有问题: " + properties);
-                }
-            }
-        }
+    try {
+        initializeANTLR(cssCode);
+        return parseCSS() && m_Listener->getErrors().empty();
     }
-    
-    return hasValidRules || cssCode.empty();
+    catch (const std::exception&) {
+        return false;
+    }
 }
 
 std::string CSSCompiler::OptimizeCSS(const std::string& cssCode) {
     return ApplyCSSOptimizations(cssCode);
-}
-
-std::string CSSCompiler::ApplyCSSOptimizations(const std::string& cssCode) {
-    std::string optimized = cssCode;
-    
-    // 1. 移除注释（如果启用）
-    if (m_RemoveComments) {
-        std::regex commentPattern(R"(/\*.*?\*/)");
-        optimized = std::regex_replace(optimized, commentPattern, "");
-    }
-    
-    // 2. 优化选择器（如果启用）
-    if (m_OptimizeSelectors) {
-        optimized = OptimizeSelectors(optimized);
-    }
-    
-    // 3. 压缩CSS（如果启用）
-    if (m_MinifyCSS) {
-        optimized = MinifyCSS(optimized);
-    }
-    
-    return optimized;
-}
-
-std::string CSSCompiler::MinifyCSS(const std::string& cssCode) {
-    std::string minified = cssCode;
-    
-    // 移除多余的空白
-    std::regex excessWhitespace(R"(\s+)");
-    minified = std::regex_replace(minified, excessWhitespace, " ");
-    
-    // 移除不必要的分号和空格
-    std::regex unnecessaryChars(R"(\s*;\s*\})");
-    minified = std::regex_replace(minified, unnecessaryChars, "}");
-    
-    std::regex spaceAroundBraces(R"(\s*\{\s*)");
-    minified = std::regex_replace(minified, spaceAroundBraces, "{");
-    
-    std::regex spaceAroundColons(R"(\s*:\s*)");
-    minified = std::regex_replace(minified, spaceAroundColons, ":");
-    
-    // 移除行首行尾空白
-    std::regex leadingTrailingSpace(R"(^\s+|\s+$)");
-    minified = std::regex_replace(minified, leadingTrailingSpace, "");
-    
-    return minified;
-}
-
-std::string CSSCompiler::MergeDuplicateRules(const std::string& cssCode) {
-    // 简化的规则合并实现
-    std::unordered_map<std::string, std::string> selectorProperties;
-    
-    std::regex cssRulePattern(R"(([^{}]+)\{([^{}]*)\})");
-    std::sregex_iterator iter(cssCode.begin(), cssCode.end(), cssRulePattern);
-    std::sregex_iterator end;
-    
-    // 收集所有规则
-    for (; iter != end; ++iter) {
-        std::smatch match = *iter;
-        std::string selector = match[1].str();
-        std::string properties = match[2].str();
-        
-        // 清理选择器
-        selector.erase(0, selector.find_first_not_of(" \t\n\r"));
-        selector.erase(selector.find_last_not_of(" \t\n\r") + 1);
-        
-        // 合并相同选择器的属性
-        if (selectorProperties.find(selector) != selectorProperties.end()) {
-            selectorProperties[selector] += " " + properties;
-        }
-        else {
-            selectorProperties[selector] = properties;
-        }
-    }
-    
-    // 重新构建CSS
-    std::ostringstream mergedCSS;
-    for (const auto& rule : selectorProperties) {
-        mergedCSS << rule.first << " { " << rule.second << " }\n";
-    }
-    
-    return mergedCSS.str();
-}
-
-std::string CSSCompiler::OptimizeSelectors(const std::string& cssCode) {
-    // 简化的选择器优化
-    std::string optimized = cssCode;
-    
-    // 移除重复的空格
-    std::regex multipleSpaces(R"(\s+)");
-    optimized = std::regex_replace(optimized, multipleSpaces, " ");
-    
-    // 优化后代选择器
-    std::regex descendantOptimize(R"(\s+>\s+)");
-    optimized = std::regex_replace(optimized, descendantOptimize, ">");
-    
-    return optimized;
 }
 
 void CSSCompiler::SetCompilationOptions(bool minify, bool removeComments, 
@@ -248,6 +162,109 @@ void CSSCompiler::SetCompilationOptions(bool minify, bool removeComments,
 void CSSCompiler::Reset() {
     m_Errors.clear();
     m_Warnings.clear();
+    
+    // 重置ANTLR组件
+    m_InputStream.reset();
+    m_Lexer.reset();
+    m_TokenStream.reset();
+    m_Parser.reset();
+    m_Listener.reset();
+}
+
+void CSSCompiler::initializeANTLR(const std::string& cssCode) {
+    // 创建输入流
+    m_InputStream = std::make_unique<antlr4::ANTLRInputStream>(cssCode);
+    
+    // 创建词法分析器
+    m_Lexer = std::make_unique<CSSLexer>(m_InputStream.get());
+    
+    // 创建令牌流
+    m_TokenStream = std::make_unique<antlr4::CommonTokenStream>(m_Lexer.get());
+    
+    // 创建解析器
+    m_Parser = std::make_unique<CSSParser>(m_TokenStream.get());
+    
+    // 创建监听器
+    m_Listener = std::make_unique<CSSCompilerListener>();
+}
+
+bool CSSCompiler::parseCSS() {
+    try {
+        // 解析CSS样式表
+        auto tree = m_Parser->stylesheet();
+        
+        // 遍历语法树
+        antlr4::tree::ParseTreeWalker walker;
+        walker.walk(m_Listener.get(), tree);
+        
+        return true;
+    }
+    catch (const std::exception& e) {
+        AddError("CSS解析异常: " + std::string(e.what()));
+        return false;
+    }
+}
+
+std::string CSSCompiler::ApplyCSSOptimizations(const std::string& cssCode) {
+    std::string optimized = cssCode;
+    
+    // 应用各种优化
+    if (m_RemoveComments) {
+        optimized = std::regex_replace(optimized, std::regex(R"(/\*.*?\*/)"), "");
+    }
+    
+    if (m_OptimizeSelectors) {
+        optimized = OptimizeSelectors(optimized);
+    }
+    
+    if (m_MergeRules) {
+        optimized = MergeDuplicateRules(optimized);
+    }
+    
+    if (m_MinifyCSS) {
+        optimized = MinifyCSS(optimized);
+    }
+    
+    return optimized;
+}
+
+std::string CSSCompiler::MinifyCSS(const std::string& cssCode) {
+    std::string minified = cssCode;
+    
+    // 移除多余空白
+    minified = std::regex_replace(minified, std::regex(R"(\s+)"), " ");
+    
+    // 移除分号前的空格
+    minified = std::regex_replace(minified, std::regex(R"(\s*;\s*)"), ";");
+    
+    // 移除大括号周围的空格
+    minified = std::regex_replace(minified, std::regex(R"(\s*\{\s*)"), "{");
+    minified = std::regex_replace(minified, std::regex(R"(\s*\}\s*)"), "}");
+    
+    // 移除冒号周围的空格
+    minified = std::regex_replace(minified, std::regex(R"(\s*:\s*)"), ":");
+    
+    // 移除逗号后的空格
+    minified = std::regex_replace(minified, std::regex(R"(\s*,\s*)"), ",");
+    
+    return minified;
+}
+
+std::string CSSCompiler::MergeDuplicateRules(const std::string& cssCode) {
+    // 简化的重复规则合并
+    return cssCode; // TODO: 实现复杂的规则合并逻辑
+}
+
+std::string CSSCompiler::OptimizeSelectors(const std::string& cssCode) {
+    std::string optimized = cssCode;
+    
+    // 移除多余的通用选择器
+    optimized = std::regex_replace(optimized, std::regex(R"(\*\s+)"), "");
+    
+    // 优化子选择器
+    optimized = std::regex_replace(optimized, std::regex(R"(\s*>\s*)"), ">");
+    
+    return optimized;
 }
 
 void CSSCompiler::AddError(const std::string& error) {
@@ -256,41 +273,6 @@ void CSSCompiler::AddError(const std::string& error) {
 
 void CSSCompiler::AddWarning(const std::string& warning) {
     m_Warnings.push_back(warning);
-}
-
-// 暂时的简化实现（等待ANTLR集成）
-void CSSCompiler::InitializeANTLR() {
-    // TODO: 初始化ANTLR4组件
-    // 需要CSS.g4语法文件和生成的C++代码
-    AddWarning("ANTLR4集成待实现，当前使用简化的CSS处理");
-}
-
-bool CSSCompiler::ParseCSSTree(const std::string& cssCode) {
-    // TODO: 使用ANTLR解析CSS语法树
-    // 暂时使用简化的验证
-    
-    if (cssCode.empty()) {
-        return true; // 空CSS是有效的
-    }
-    
-    // 基础语法检查
-    int braceCount = 0;
-    for (char ch : cssCode) {
-        if (ch == '{') braceCount++;
-        else if (ch == '}') braceCount--;
-        
-        if (braceCount < 0) {
-            AddError("CSS语法错误：不匹配的大括号");
-            return false;
-        }
-    }
-    
-    if (braceCount != 0) {
-        AddError("CSS语法错误：大括号不匹配");
-        return false;
-    }
-    
-    return true;
 }
 
 } // namespace CHTL

@@ -5,6 +5,14 @@
 #include <memory>
 #include <unordered_map>
 
+// ANTLR生成的头文件
+#include "generated/CSSLexer.h"
+#include "generated/CSSParser.h"
+#include "generated/CSSBaseListener.h"
+
+// ANTLR运行时
+#include "../../thirdparty/antlr/include/antlr4-runtime.h"
+
 namespace CHTL {
 
 /**
@@ -21,14 +29,94 @@ struct CSSCompilationResult {
 };
 
 /**
- * CSS编译器（基于ANTLR4）
- * 负责CSS语法分析、优化和验证
+ * CSS监听器
+ * 用于遍历CSS AST并生成优化后的CSS
+ */
+class CSSCompilerListener : public CSSBaseListener {
+private:
+    std::string m_CompiledCSS;                          // 编译结果
+    std::vector<std::string> m_Errors;                  // 错误列表
+    std::vector<std::string> m_Warnings;               // 警告列表
+
+public:
+    /**
+     * 构造函数
+     */
+    CSSCompilerListener();
+    
+    /**
+     * 析构函数
+     */
+    ~CSSCompilerListener() override = default;
+    
+    /**
+     * 进入样式表
+     */
+    void enterStylesheet(CSSParser::StylesheetContext *ctx) override;
+    
+    /**
+     * 退出样式表
+     */
+    void exitStylesheet(CSSParser::StylesheetContext *ctx) override;
+    
+    /**
+     * 进入CSS规则
+     */
+    void enterCssRule(CSSParser::CssRuleContext *ctx) override;
+    
+    /**
+     * 退出CSS规则
+     */
+    void exitCssRule(CSSParser::CssRuleContext *ctx) override;
+    
+    /**
+     * 进入选择器
+     */
+    void enterSelector(CSSParser::SelectorContext *ctx) override;
+    
+    /**
+     * 进入声明
+     */
+    void enterDeclaration(CSSParser::DeclarationContext *ctx) override;
+    
+    /**
+     * 获取编译结果
+     */
+    const std::string& getCompiledCSS() const { return m_CompiledCSS; }
+    
+    /**
+     * 获取错误列表
+     */
+    const std::vector<std::string>& getErrors() const { return m_Errors; }
+    
+    /**
+     * 获取警告列表
+     */
+    const std::vector<std::string>& getWarnings() const { return m_Warnings; }
+
+private:
+    /**
+     * 添加错误
+     */
+    void addError(const std::string& error);
+    
+    /**
+     * 添加警告
+     */
+    void addWarning(const std::string& warning);
+};
+
+/**
+ * CSS编译器（ANTLR实现）
+ * 处理CHTL中的CSS片段
  */
 class CSSCompiler {
 private:
-    // ANTLR相关（待集成）
-    // std::unique_ptr<CSSLexer> m_AntlrLexer;
-    // std::unique_ptr<CSSParser> m_AntlrParser;
+    std::unique_ptr<antlr4::ANTLRInputStream> m_InputStream;
+    std::unique_ptr<CSSLexer> m_Lexer;
+    std::unique_ptr<antlr4::CommonTokenStream> m_TokenStream;
+    std::unique_ptr<CSSParser> m_Parser;
+    std::unique_ptr<CSSCompilerListener> m_Listener;
     
     // CSS优化选项
     bool m_MinifyCSS;                      // 是否压缩CSS
@@ -64,6 +152,13 @@ public:
      * @return 编译结果
      */
     CSSCompilationResult CompileFragments(const std::vector<std::string>& cssFragments);
+    
+    /**
+     * 编译单个CSS片段
+     * @param cssCode CSS代码
+     * @return 编译结果
+     */
+    CSSCompilationResult CompileSingleFragment(const std::string& cssCode);
     
     /**
      * 验证CSS语法
@@ -109,15 +204,15 @@ public:
 private:
     /**
      * 初始化ANTLR组件
+     * @param cssCode CSS代码
      */
-    void InitializeANTLR();
+    void initializeANTLR(const std::string& cssCode);
     
     /**
-     * 解析CSS语法树
-     * @param cssCode CSS代码
-     * @return 是否成功
+     * 执行CSS解析
+     * @return 解析是否成功
      */
-    bool ParseCSSTree(const std::string& cssCode);
+    bool parseCSS();
     
     /**
      * 应用CSS优化规则

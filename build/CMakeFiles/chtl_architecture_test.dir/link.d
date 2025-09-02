@@ -11,6 +11,7 @@ bin/chtl_architecture_test: \
   lib/libCHTLScanner.a \
   lib/libCHTLCSSCompiler.a \
   lib/libCHTLJSCompiler.a \
+  /workspace/thirdparty/antlr/lib/libantlr4-runtime.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so \
   /lib/x86_64-linux-gnu/libm.so \
   /lib/x86_64-linux-gnu/libm.so \
@@ -62,6 +63,8 @@ lib/libCHTLScanner.a:
 lib/libCHTLCSSCompiler.a:
 
 lib/libCHTLJSCompiler.a:
+
+/workspace/thirdparty/antlr/lib/libantlr4-runtime.a:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so:
 

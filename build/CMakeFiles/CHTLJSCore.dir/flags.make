@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/workspace/src -I"/workspace/src/CHTL JS"
+CXX_INCLUDES = -I/workspace/src -I"/workspace/src/CHTL JS" -I/workspace/thirdparty/antlr/include
 
 CXX_FLAGS = -std=c++17 -Wall -Wextra -Wpedantic
 
