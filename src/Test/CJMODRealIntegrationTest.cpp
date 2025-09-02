@@ -1,4 +1,4 @@
-#include "../CJMOD/CJMODIntegration.h"
+#include "../CHTL JS/CJMODSystem/CJMODIntegration.h"
 #include "../Scanner/CHTLUnifiedScanner.h"
 #include "../CHTL JS/CHTLJSLexer/CHTLJSLexer.h"
 #include "../CHTL JS/CHTLJSParser/CHTLJSParser.h"

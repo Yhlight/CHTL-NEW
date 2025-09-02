@@ -8,7 +8,7 @@
 #include "../CHTL JS/CHTLJSParser/CHTLJSParser.h"
 #include "../CHTL JS/CHTLJSGenerator/CHTLJSGenerator.h"
 #include "../CodeMerger/CHTLCodeMerger.h"
-#include "../CJMOD/CJMODIntegration.h"
+#include "../CHTL JS/CJMODSystem/CJMODIntegration.h"
 #include <string>
 #include <vector>
 #include <memory>

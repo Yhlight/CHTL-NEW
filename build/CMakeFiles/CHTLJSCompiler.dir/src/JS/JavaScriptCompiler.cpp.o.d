@@ -452,6 +452,7 @@ CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.o: \
   /workspace/thirdparty/antlr/include/tree/xpath/XPathWildcardElement.h \
   /workspace/src/JS/generated/JavaScriptLexerBase.h \
   /workspace/src/JS/generated/JavaScriptParser.h \
+  /workspace/src/JS/generated/JavaScriptParserBase.h \
   /workspace/src/JS/generated/JavaScriptParserBaseListener.h \
   /workspace/src/JS/generated/JavaScriptParserListener.h \
   /workspace/src/JS/../../thirdparty/antlr/include/antlr4-runtime.h \

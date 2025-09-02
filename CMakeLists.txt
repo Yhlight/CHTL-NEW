@@ -98,6 +98,8 @@ set(JS_SOURCES
     src/JS/generated/JavaScriptLexer.cpp
     src/JS/generated/JavaScriptParser.cpp
     src/JS/generated/JavaScriptParserBaseListener.cpp
+    src/JS/generated/JavaScriptLexerBase.cpp
+    src/JS/generated/JavaScriptParserBase.cpp
 )
 
 # CJMOD API源文件 (已移动到CHTL JS/CJMODSystem内部)
@@ -268,6 +270,9 @@ add_executable(chtl_final_strict_compliance src/Test/FinalStrictComplianceReport
 
 # 仓库清理报告可执行文件
 add_executable(chtl_repository_cleanup_report src/Test/RepositoryCleanupReport.cpp)
+
+# 最终完成验证可执行文件
+add_executable(chtl_final_completion_report src/Test/FinalCompletionVerification.cpp)
 
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)

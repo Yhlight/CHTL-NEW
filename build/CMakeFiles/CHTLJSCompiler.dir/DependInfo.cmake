@@ -10,7 +10,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/workspace/src/JS/JavaScriptCompiler.cpp" "CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.o" "gcc" "CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.o.d"
   "/workspace/src/JS/generated/JavaScriptLexer.cpp" "CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexer.cpp.o" "gcc" "CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexer.cpp.o.d"
+  "/workspace/src/JS/generated/JavaScriptLexerBase.cpp" "CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexerBase.cpp.o" "gcc" "CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexerBase.cpp.o.d"
   "/workspace/src/JS/generated/JavaScriptParser.cpp" "CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.o" "gcc" "CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.o.d"
+  "/workspace/src/JS/generated/JavaScriptParserBase.cpp" "CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBase.cpp.o" "gcc" "CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBase.cpp.o.d"
   "/workspace/src/JS/generated/JavaScriptParserBaseListener.cpp" "CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o" "gcc" "CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o.d"
   )
 

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../Scanner/CHTLUnifiedScanner.h"
-#include "../CHTL JS/CHTLJSLexer/CHTLJSLexer.h"
-#include "../CHTL JS/CHTLJSParser/CHTLJSParser.h"
+#include "../../Scanner/CHTLUnifiedScanner.h"
+#include "../CHTLJSLexer/CHTLJSLexer.h"
+#include "../CHTLJSParser/CHTLJSParser.h"
 #include "CJMODSyntax.h"
 #include "CJMODScanner.h"
 #include "CJMODGenerator.h"

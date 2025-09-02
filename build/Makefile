@@ -565,6 +565,19 @@ chtl_repository_cleanup_report/fast:
 .PHONY : chtl_repository_cleanup_report/fast
 
 #=============================================================================
+# Target rules for targets named chtl_final_completion_report
+
+# Build rule for target.
+chtl_final_completion_report: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_completion_report
+.PHONY : chtl_final_completion_report
+
+# fast build rule for target.
+chtl_final_completion_report/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_report.dir/build.make CMakeFiles/chtl_final_completion_report.dir/build
+.PHONY : chtl_final_completion_report/fast
+
+#=============================================================================
 # Target rules for targets named chtl_lexer_test
 
 # Build rule for target.
@@ -1887,6 +1900,30 @@ src/JS/generated/JavaScriptLexer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexer.cpp.s
 .PHONY : src/JS/generated/JavaScriptLexer.cpp.s
 
+src/JS/generated/JavaScriptLexerBase.o: src/JS/generated/JavaScriptLexerBase.cpp.o
+.PHONY : src/JS/generated/JavaScriptLexerBase.o
+
+# target to build an object file
+src/JS/generated/JavaScriptLexerBase.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexerBase.cpp.o
+.PHONY : src/JS/generated/JavaScriptLexerBase.cpp.o
+
+src/JS/generated/JavaScriptLexerBase.i: src/JS/generated/JavaScriptLexerBase.cpp.i
+.PHONY : src/JS/generated/JavaScriptLexerBase.i
+
+# target to preprocess a source file
+src/JS/generated/JavaScriptLexerBase.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexerBase.cpp.i
+.PHONY : src/JS/generated/JavaScriptLexerBase.cpp.i
+
+src/JS/generated/JavaScriptLexerBase.s: src/JS/generated/JavaScriptLexerBase.cpp.s
+.PHONY : src/JS/generated/JavaScriptLexerBase.s
+
+# target to generate assembly for a file
+src/JS/generated/JavaScriptLexerBase.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexerBase.cpp.s
+.PHONY : src/JS/generated/JavaScriptLexerBase.cpp.s
+
 src/JS/generated/JavaScriptParser.o: src/JS/generated/JavaScriptParser.cpp.o
 .PHONY : src/JS/generated/JavaScriptParser.o
 
@@ -1910,6 +1947,30 @@ src/JS/generated/JavaScriptParser.s: src/JS/generated/JavaScriptParser.cpp.s
 src/JS/generated/JavaScriptParser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.s
 .PHONY : src/JS/generated/JavaScriptParser.cpp.s
+
+src/JS/generated/JavaScriptParserBase.o: src/JS/generated/JavaScriptParserBase.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserBase.o
+
+# target to build an object file
+src/JS/generated/JavaScriptParserBase.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBase.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserBase.cpp.o
+
+src/JS/generated/JavaScriptParserBase.i: src/JS/generated/JavaScriptParserBase.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserBase.i
+
+# target to preprocess a source file
+src/JS/generated/JavaScriptParserBase.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBase.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserBase.cpp.i
+
+src/JS/generated/JavaScriptParserBase.s: src/JS/generated/JavaScriptParserBase.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserBase.s
+
+# target to generate assembly for a file
+src/JS/generated/JavaScriptParserBase.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBase.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserBase.cpp.s
 
 src/JS/generated/JavaScriptParserBaseListener.o: src/JS/generated/JavaScriptParserBaseListener.cpp.o
 .PHONY : src/JS/generated/JavaScriptParserBaseListener.o
@@ -2253,6 +2314,7 @@ src/Test/FinalCompletionVerification.o: src/Test/FinalCompletionVerification.cpp
 # target to build an object file
 src/Test/FinalCompletionVerification.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_verification.dir/build.make CMakeFiles/chtl_final_completion_verification.dir/src/Test/FinalCompletionVerification.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_report.dir/build.make CMakeFiles/chtl_final_completion_report.dir/src/Test/FinalCompletionVerification.cpp.o
 .PHONY : src/Test/FinalCompletionVerification.cpp.o
 
 src/Test/FinalCompletionVerification.i: src/Test/FinalCompletionVerification.cpp.i
@@ -2261,6 +2323,7 @@ src/Test/FinalCompletionVerification.i: src/Test/FinalCompletionVerification.cpp
 # target to preprocess a source file
 src/Test/FinalCompletionVerification.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_verification.dir/build.make CMakeFiles/chtl_final_completion_verification.dir/src/Test/FinalCompletionVerification.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_report.dir/build.make CMakeFiles/chtl_final_completion_report.dir/src/Test/FinalCompletionVerification.cpp.i
 .PHONY : src/Test/FinalCompletionVerification.cpp.i
 
 src/Test/FinalCompletionVerification.s: src/Test/FinalCompletionVerification.cpp.s
@@ -2269,6 +2332,7 @@ src/Test/FinalCompletionVerification.s: src/Test/FinalCompletionVerification.cpp
 # target to generate assembly for a file
 src/Test/FinalCompletionVerification.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_verification.dir/build.make CMakeFiles/chtl_final_completion_verification.dir/src/Test/FinalCompletionVerification.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_report.dir/build.make CMakeFiles/chtl_final_completion_report.dir/src/Test/FinalCompletionVerification.cpp.s
 .PHONY : src/Test/FinalCompletionVerification.cpp.s
 
 src/Test/FinalStrictComplianceReport.o: src/Test/FinalStrictComplianceReport.cpp.o
@@ -2790,6 +2854,7 @@ help:
 	@echo "... chtl_constraint_test"
 	@echo "... chtl_custom_test"
 	@echo "... chtl_document_compliance"
+	@echo "... chtl_final_completion_report"
 	@echo "... chtl_final_completion_verification"
 	@echo "... chtl_final_strict_compliance"
 	@echo "... chtl_final_system_demo"
@@ -2950,9 +3015,15 @@ help:
 	@echo "... src/JS/generated/JavaScriptLexer.o"
 	@echo "... src/JS/generated/JavaScriptLexer.i"
 	@echo "... src/JS/generated/JavaScriptLexer.s"
+	@echo "... src/JS/generated/JavaScriptLexerBase.o"
+	@echo "... src/JS/generated/JavaScriptLexerBase.i"
+	@echo "... src/JS/generated/JavaScriptLexerBase.s"
 	@echo "... src/JS/generated/JavaScriptParser.o"
 	@echo "... src/JS/generated/JavaScriptParser.i"
 	@echo "... src/JS/generated/JavaScriptParser.s"
+	@echo "... src/JS/generated/JavaScriptParserBase.o"
+	@echo "... src/JS/generated/JavaScriptParserBase.i"
+	@echo "... src/JS/generated/JavaScriptParserBase.s"
 	@echo "... src/JS/generated/JavaScriptParserBaseListener.o"
 	@echo "... src/JS/generated/JavaScriptParserBaseListener.i"
 	@echo "... src/JS/generated/JavaScriptParserBaseListener.s"
