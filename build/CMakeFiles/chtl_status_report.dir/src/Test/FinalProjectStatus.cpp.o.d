@@ -277,6 +277,7 @@ CMakeFiles/chtl_status_report.dir/src/Test/FinalProjectStatus.cpp.o: \
   /workspace/src/Test/../CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/EnhanceSelectorNode.h \
   /workspace/src/Test/../CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/VirObjectNode.h \
   /workspace/src/Test/../CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/AnimateNode.h \
+  /workspace/src/Test/../CompilerDispatcher/../CodeMerger/CHTLCodeMerger.h \
   /workspace/src/Test/../CHTL/CHTLParser/CHTLParser.h \
   /workspace/src/Test/../CHTL/CHTLGenerator/CHTLGenerator.h \
   /workspace/src/Test/../CHTL\ JS/CHTLJSParser/CHTLJSParser.h \

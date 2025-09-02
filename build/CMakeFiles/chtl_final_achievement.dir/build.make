@@ -105,6 +105,7 @@ bin/chtl_final_achievement: lib/libCHTLConstraint.a
 bin/chtl_final_achievement: lib/libCHTLCore.a
 bin/chtl_final_achievement: lib/libCHTLJSCore.a
 bin/chtl_final_achievement: lib/libCHTLScanner.a
+bin/chtl_final_achievement: lib/libCHTLCodeMerger.a
 bin/chtl_final_achievement: CMakeFiles/chtl_final_achievement.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/chtl_final_achievement"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chtl_final_achievement.dir/link.txt --verbose=$(VERBOSE)

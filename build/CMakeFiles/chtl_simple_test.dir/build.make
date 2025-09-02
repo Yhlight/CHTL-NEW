@@ -102,6 +102,7 @@ bin/chtl_simple_test: lib/libCHTLConstraint.a
 bin/chtl_simple_test: lib/libCHTLCore.a
 bin/chtl_simple_test: lib/libCHTLJSCore.a
 bin/chtl_simple_test: lib/libCHTLScanner.a
+bin/chtl_simple_test: lib/libCHTLCodeMerger.a
 bin/chtl_simple_test: lib/libCHTLCSSCompiler.a
 bin/chtl_simple_test: lib/libCHTLJSCompiler.a
 bin/chtl_simple_test: CMakeFiles/chtl_simple_test.dir/link.txt

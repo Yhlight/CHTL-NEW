@@ -59,6 +59,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/CHTLCSSCompiler.dir/DependInfo.cmake"
   "CMakeFiles/CHTLJSCompiler.dir/DependInfo.cmake"
   "CMakeFiles/CJMOD.dir/DependInfo.cmake"
+  "CMakeFiles/CHTLCodeMerger.dir/DependInfo.cmake"
   "CMakeFiles/CHTLDispatcher.dir/DependInfo.cmake"
   "CMakeFiles/chtl.dir/DependInfo.cmake"
   "CMakeFiles/chtl_test.dir/DependInfo.cmake"
@@ -78,6 +79,9 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/chtl_final_achievement.dir/DependInfo.cmake"
   "CMakeFiles/chtl_antlr_real_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_antlr_build_report.dir/DependInfo.cmake"
+  "CMakeFiles/chtl_code_merger_test.dir/DependInfo.cmake"
+  "CMakeFiles/chtl_final_system_demo.dir/DependInfo.cmake"
+  "CMakeFiles/chtl_complete_flow_test.dir/DependInfo.cmake"
   "CMakeFiles/run_tests.dir/DependInfo.cmake"
   "CMakeFiles/compile_example.dir/DependInfo.cmake"
   )

@@ -266,6 +266,19 @@ CJMOD/fast:
 .PHONY : CJMOD/fast
 
 #=============================================================================
+# Target rules for targets named CHTLCodeMerger
+
+# Build rule for target.
+CHTLCodeMerger: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLCodeMerger
+.PHONY : CHTLCodeMerger
+
+# fast build rule for target.
+CHTLCodeMerger/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCodeMerger.dir/build.make CMakeFiles/CHTLCodeMerger.dir/build
+.PHONY : CHTLCodeMerger/fast
+
+#=============================================================================
 # Target rules for targets named CHTLDispatcher
 
 # Build rule for target.
@@ -511,6 +524,45 @@ chtl_antlr_build_report: cmake_check_build_system
 chtl_antlr_build_report/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_antlr_build_report.dir/build.make CMakeFiles/chtl_antlr_build_report.dir/build
 .PHONY : chtl_antlr_build_report/fast
+
+#=============================================================================
+# Target rules for targets named chtl_code_merger_test
+
+# Build rule for target.
+chtl_code_merger_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_code_merger_test
+.PHONY : chtl_code_merger_test
+
+# fast build rule for target.
+chtl_code_merger_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_code_merger_test.dir/build.make CMakeFiles/chtl_code_merger_test.dir/build
+.PHONY : chtl_code_merger_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_final_system_demo
+
+# Build rule for target.
+chtl_final_system_demo: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_system_demo
+.PHONY : chtl_final_system_demo
+
+# fast build rule for target.
+chtl_final_system_demo/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_system_demo.dir/build.make CMakeFiles/chtl_final_system_demo.dir/build
+.PHONY : chtl_final_system_demo/fast
+
+#=============================================================================
+# Target rules for targets named chtl_complete_flow_test
+
+# Build rule for target.
+chtl_complete_flow_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_complete_flow_test
+.PHONY : chtl_complete_flow_test
+
+# fast build rule for target.
+chtl_complete_flow_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_complete_flow_test.dir/build.make CMakeFiles/chtl_complete_flow_test.dir/build
+.PHONY : chtl_complete_flow_test/fast
 
 #=============================================================================
 # Target rules for targets named run_tests
@@ -1402,6 +1454,30 @@ src/CSS/generated/CSSParser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/CSSParser.cpp.s
 .PHONY : src/CSS/generated/CSSParser.cpp.s
 
+src/CodeMerger/CHTLCodeMerger.o: src/CodeMerger/CHTLCodeMerger.cpp.o
+.PHONY : src/CodeMerger/CHTLCodeMerger.o
+
+# target to build an object file
+src/CodeMerger/CHTLCodeMerger.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCodeMerger.dir/build.make CMakeFiles/CHTLCodeMerger.dir/src/CodeMerger/CHTLCodeMerger.cpp.o
+.PHONY : src/CodeMerger/CHTLCodeMerger.cpp.o
+
+src/CodeMerger/CHTLCodeMerger.i: src/CodeMerger/CHTLCodeMerger.cpp.i
+.PHONY : src/CodeMerger/CHTLCodeMerger.i
+
+# target to preprocess a source file
+src/CodeMerger/CHTLCodeMerger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCodeMerger.dir/build.make CMakeFiles/CHTLCodeMerger.dir/src/CodeMerger/CHTLCodeMerger.cpp.i
+.PHONY : src/CodeMerger/CHTLCodeMerger.cpp.i
+
+src/CodeMerger/CHTLCodeMerger.s: src/CodeMerger/CHTLCodeMerger.cpp.s
+.PHONY : src/CodeMerger/CHTLCodeMerger.s
+
+# target to generate assembly for a file
+src/CodeMerger/CHTLCodeMerger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCodeMerger.dir/build.make CMakeFiles/CHTLCodeMerger.dir/src/CodeMerger/CHTLCodeMerger.cpp.s
+.PHONY : src/CodeMerger/CHTLCodeMerger.cpp.s
+
 src/CompilerDispatcher/CompilerDispatcher.o: src/CompilerDispatcher/CompilerDispatcher.cpp.o
 .PHONY : src/CompilerDispatcher/CompilerDispatcher.o
 
@@ -1738,6 +1814,54 @@ src/Test/CJMODTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_test.dir/build.make CMakeFiles/chtl_cjmod_test.dir/src/Test/CJMODTest.cpp.s
 .PHONY : src/Test/CJMODTest.cpp.s
 
+src/Test/CodeMergerTest.o: src/Test/CodeMergerTest.cpp.o
+.PHONY : src/Test/CodeMergerTest.o
+
+# target to build an object file
+src/Test/CodeMergerTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_code_merger_test.dir/build.make CMakeFiles/chtl_code_merger_test.dir/src/Test/CodeMergerTest.cpp.o
+.PHONY : src/Test/CodeMergerTest.cpp.o
+
+src/Test/CodeMergerTest.i: src/Test/CodeMergerTest.cpp.i
+.PHONY : src/Test/CodeMergerTest.i
+
+# target to preprocess a source file
+src/Test/CodeMergerTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_code_merger_test.dir/build.make CMakeFiles/chtl_code_merger_test.dir/src/Test/CodeMergerTest.cpp.i
+.PHONY : src/Test/CodeMergerTest.cpp.i
+
+src/Test/CodeMergerTest.s: src/Test/CodeMergerTest.cpp.s
+.PHONY : src/Test/CodeMergerTest.s
+
+# target to generate assembly for a file
+src/Test/CodeMergerTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_code_merger_test.dir/build.make CMakeFiles/chtl_code_merger_test.dir/src/Test/CodeMergerTest.cpp.s
+.PHONY : src/Test/CodeMergerTest.cpp.s
+
+src/Test/CompleteCompilationFlowTest.o: src/Test/CompleteCompilationFlowTest.cpp.o
+.PHONY : src/Test/CompleteCompilationFlowTest.o
+
+# target to build an object file
+src/Test/CompleteCompilationFlowTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_complete_flow_test.dir/build.make CMakeFiles/chtl_complete_flow_test.dir/src/Test/CompleteCompilationFlowTest.cpp.o
+.PHONY : src/Test/CompleteCompilationFlowTest.cpp.o
+
+src/Test/CompleteCompilationFlowTest.i: src/Test/CompleteCompilationFlowTest.cpp.i
+.PHONY : src/Test/CompleteCompilationFlowTest.i
+
+# target to preprocess a source file
+src/Test/CompleteCompilationFlowTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_complete_flow_test.dir/build.make CMakeFiles/chtl_complete_flow_test.dir/src/Test/CompleteCompilationFlowTest.cpp.i
+.PHONY : src/Test/CompleteCompilationFlowTest.cpp.i
+
+src/Test/CompleteCompilationFlowTest.s: src/Test/CompleteCompilationFlowTest.cpp.s
+.PHONY : src/Test/CompleteCompilationFlowTest.s
+
+# target to generate assembly for a file
+src/Test/CompleteCompilationFlowTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_complete_flow_test.dir/build.make CMakeFiles/chtl_complete_flow_test.dir/src/Test/CompleteCompilationFlowTest.cpp.s
+.PHONY : src/Test/CompleteCompilationFlowTest.cpp.s
+
 src/Test/ConstraintTest.o: src/Test/ConstraintTest.cpp.o
 .PHONY : src/Test/ConstraintTest.o
 
@@ -1857,6 +1981,30 @@ src/Test/FinalProjectSummary.s: src/Test/FinalProjectSummary.cpp.s
 src/Test/FinalProjectSummary.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_summary.dir/build.make CMakeFiles/chtl_final_summary.dir/src/Test/FinalProjectSummary.cpp.s
 .PHONY : src/Test/FinalProjectSummary.cpp.s
+
+src/Test/FinalSystemDemo.o: src/Test/FinalSystemDemo.cpp.o
+.PHONY : src/Test/FinalSystemDemo.o
+
+# target to build an object file
+src/Test/FinalSystemDemo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_system_demo.dir/build.make CMakeFiles/chtl_final_system_demo.dir/src/Test/FinalSystemDemo.cpp.o
+.PHONY : src/Test/FinalSystemDemo.cpp.o
+
+src/Test/FinalSystemDemo.i: src/Test/FinalSystemDemo.cpp.i
+.PHONY : src/Test/FinalSystemDemo.i
+
+# target to preprocess a source file
+src/Test/FinalSystemDemo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_system_demo.dir/build.make CMakeFiles/chtl_final_system_demo.dir/src/Test/FinalSystemDemo.cpp.i
+.PHONY : src/Test/FinalSystemDemo.cpp.i
+
+src/Test/FinalSystemDemo.s: src/Test/FinalSystemDemo.cpp.s
+.PHONY : src/Test/FinalSystemDemo.s
+
+# target to generate assembly for a file
+src/Test/FinalSystemDemo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_system_demo.dir/build.make CMakeFiles/chtl_final_system_demo.dir/src/Test/FinalSystemDemo.cpp.s
+.PHONY : src/Test/FinalSystemDemo.cpp.s
 
 src/Test/ImportTest.o: src/Test/ImportTest.cpp.o
 .PHONY : src/Test/ImportTest.o
@@ -2041,6 +2189,7 @@ help:
 	@echo "... compile_example"
 	@echo "... run_tests"
 	@echo "... CHTLCSSCompiler"
+	@echo "... CHTLCodeMerger"
 	@echo "... CHTLConstraint"
 	@echo "... CHTLCore"
 	@echo "... CHTLDispatcher"
@@ -2055,10 +2204,13 @@ help:
 	@echo "... chtl_antlr_test"
 	@echo "... chtl_architecture_test"
 	@echo "... chtl_cjmod_test"
+	@echo "... chtl_code_merger_test"
+	@echo "... chtl_complete_flow_test"
 	@echo "... chtl_constraint_test"
 	@echo "... chtl_custom_test"
 	@echo "... chtl_final_achievement"
 	@echo "... chtl_final_summary"
+	@echo "... chtl_final_system_demo"
 	@echo "... chtl_import_test"
 	@echo "... chtl_lexer_test"
 	@echo "... chtl_origin_config_test"
@@ -2175,6 +2327,9 @@ help:
 	@echo "... src/CSS/generated/CSSParser.o"
 	@echo "... src/CSS/generated/CSSParser.i"
 	@echo "... src/CSS/generated/CSSParser.s"
+	@echo "... src/CodeMerger/CHTLCodeMerger.o"
+	@echo "... src/CodeMerger/CHTLCodeMerger.i"
+	@echo "... src/CodeMerger/CHTLCodeMerger.s"
 	@echo "... src/CompilerDispatcher/CompilerDispatcher.o"
 	@echo "... src/CompilerDispatcher/CompilerDispatcher.i"
 	@echo "... src/CompilerDispatcher/CompilerDispatcher.s"
@@ -2217,6 +2372,12 @@ help:
 	@echo "... src/Test/CJMODTest.o"
 	@echo "... src/Test/CJMODTest.i"
 	@echo "... src/Test/CJMODTest.s"
+	@echo "... src/Test/CodeMergerTest.o"
+	@echo "... src/Test/CodeMergerTest.i"
+	@echo "... src/Test/CodeMergerTest.s"
+	@echo "... src/Test/CompleteCompilationFlowTest.o"
+	@echo "... src/Test/CompleteCompilationFlowTest.i"
+	@echo "... src/Test/CompleteCompilationFlowTest.s"
 	@echo "... src/Test/ConstraintTest.o"
 	@echo "... src/Test/ConstraintTest.i"
 	@echo "... src/Test/ConstraintTest.s"
@@ -2232,6 +2393,9 @@ help:
 	@echo "... src/Test/FinalProjectSummary.o"
 	@echo "... src/Test/FinalProjectSummary.i"
 	@echo "... src/Test/FinalProjectSummary.s"
+	@echo "... src/Test/FinalSystemDemo.o"
+	@echo "... src/Test/FinalSystemDemo.i"
+	@echo "... src/Test/FinalSystemDemo.s"
 	@echo "... src/Test/ImportTest.o"
 	@echo "... src/Test/ImportTest.i"
 	@echo "... src/Test/ImportTest.s"

@@ -107,6 +107,11 @@ set(CJMOD_SOURCES
     src/CJMOD/CJMODGenerator.cpp
 )
 
+# 代码合并器源文件
+set(CODE_MERGER_SOURCES
+    src/CodeMerger/CHTLCodeMerger.cpp
+)
+
 # 创建CHTL核心库
 add_library(CHTLCore STATIC ${CHTL_CORE_SOURCES})
 target_include_directories(CHTLCore PUBLIC src/CHTL)
@@ -148,10 +153,14 @@ target_link_libraries(CHTLJSCompiler antlr4-runtime)
 add_library(CJMOD STATIC ${CJMOD_SOURCES})
 target_include_directories(CJMOD PUBLIC src/CJMOD)
 
+# 创建代码合并器库
+add_library(CHTLCodeMerger STATIC ${CODE_MERGER_SOURCES})
+target_include_directories(CHTLCodeMerger PUBLIC src/CodeMerger)
+
 # 创建调度器库
 add_library(CHTLDispatcher STATIC ${DISPATCHER_SOURCES})
 target_include_directories(CHTLDispatcher PUBLIC src/CompilerDispatcher)
-target_link_libraries(CHTLDispatcher CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport CHTLCSSCompiler CHTLJSCompiler)
+target_link_libraries(CHTLDispatcher CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler)
 
 # 主程序可执行文件
 add_executable(chtl src/main.cpp)
@@ -223,6 +232,18 @@ target_link_libraries(chtl_antlr_real_test CHTLCSSCompiler CHTLJSCompiler antlr4
 
 # ANTLR构建报告可执行文件
 add_executable(chtl_antlr_build_report src/Test/ANTLRBuildReport.cpp)
+
+# 代码合并器测试可执行文件
+add_executable(chtl_code_merger_test src/Test/CodeMergerTest.cpp)
+target_link_libraries(chtl_code_merger_test CHTLCodeMerger)
+
+# 最终系统演示可执行文件
+add_executable(chtl_final_system_demo src/Test/FinalSystemDemo.cpp)
+target_link_libraries(chtl_final_system_demo CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler antlr4-runtime)
+
+# 完整编译流程测试可执行文件
+add_executable(chtl_complete_flow_test src/Test/CompleteCompilationFlowTest.cpp)
+target_link_libraries(chtl_complete_flow_test CHTLDispatcher CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler antlr4-runtime)
 
 # 设置调试信息
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")

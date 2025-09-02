@@ -12,6 +12,7 @@ bin/chtl_status_report: \
   lib/libCHTLJSCore.a \
   lib/libCHTLScanner.a \
   /workspace/thirdparty/antlr/lib/libantlr4-runtime.a \
+  lib/libCHTLCodeMerger.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so \
   /lib/x86_64-linux-gnu/libm.so \
   /lib/x86_64-linux-gnu/libm.so \
@@ -65,6 +66,8 @@ lib/libCHTLJSCore.a:
 lib/libCHTLScanner.a:
 
 /workspace/thirdparty/antlr/lib/libantlr4-runtime.a:
+
+lib/libCHTLCodeMerger.a:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so:
 

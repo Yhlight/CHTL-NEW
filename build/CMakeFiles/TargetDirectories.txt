@@ -6,6 +6,7 @@
 /workspace/build/CMakeFiles/CHTLCSSCompiler.dir
 /workspace/build/CMakeFiles/CHTLJSCompiler.dir
 /workspace/build/CMakeFiles/CJMOD.dir
+/workspace/build/CMakeFiles/CHTLCodeMerger.dir
 /workspace/build/CMakeFiles/CHTLDispatcher.dir
 /workspace/build/CMakeFiles/chtl.dir
 /workspace/build/CMakeFiles/chtl_test.dir
@@ -25,6 +26,9 @@
 /workspace/build/CMakeFiles/chtl_final_achievement.dir
 /workspace/build/CMakeFiles/chtl_antlr_real_test.dir
 /workspace/build/CMakeFiles/chtl_antlr_build_report.dir
+/workspace/build/CMakeFiles/chtl_code_merger_test.dir
+/workspace/build/CMakeFiles/chtl_final_system_demo.dir
+/workspace/build/CMakeFiles/chtl_complete_flow_test.dir
 /workspace/build/CMakeFiles/run_tests.dir
 /workspace/build/CMakeFiles/compile_example.dir
 /workspace/build/CMakeFiles/edit_cache.dir

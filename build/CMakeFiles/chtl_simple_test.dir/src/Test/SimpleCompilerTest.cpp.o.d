@@ -276,6 +276,7 @@ CMakeFiles/chtl_simple_test.dir/src/Test/SimpleCompilerTest.cpp.o: \
   /workspace/src/Test/../CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/EnhanceSelectorNode.h \
   /workspace/src/Test/../CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/VirObjectNode.h \
   /workspace/src/Test/../CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/AnimateNode.h \
+  /workspace/src/Test/../CompilerDispatcher/../CodeMerger/CHTLCodeMerger.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/iostream \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/ostream \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/ios \

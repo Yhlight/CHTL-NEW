@@ -102,6 +102,7 @@ bin/chtl_final_summary: lib/libCHTLConstraint.a
 bin/chtl_final_summary: lib/libCHTLCore.a
 bin/chtl_final_summary: lib/libCHTLJSCore.a
 bin/chtl_final_summary: lib/libCHTLScanner.a
+bin/chtl_final_summary: lib/libCHTLCodeMerger.a
 bin/chtl_final_summary: lib/libCHTLCSSCompiler.a
 bin/chtl_final_summary: lib/libCHTLJSCompiler.a
 bin/chtl_final_summary: CMakeFiles/chtl_final_summary.dir/link.txt

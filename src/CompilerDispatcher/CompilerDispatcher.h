@@ -7,6 +7,7 @@
 #include "../CHTL JS/CHTLJSLexer/CHTLJSLexer.h"
 #include "../CHTL JS/CHTLJSParser/CHTLJSParser.h"
 #include "../CHTL JS/CHTLJSGenerator/CHTLJSGenerator.h"
+#include "../CodeMerger/CHTLCodeMerger.h"
 #include <string>
 #include <vector>
 #include <memory>
@@ -67,10 +68,12 @@ private:
     std::unique_ptr<CHTLGenerator> m_CHTLGenerator;        // CHTL生成器
     std::unique_ptr<CHTLJS::CHTLJSParser> m_CHTLJSParser;  // CHTL JS解析器
     std::unique_ptr<CHTLJS::CHTLJSGenerator> m_CHTLJSGenerator; // CHTL JS生成器
+    std::unique_ptr<CHTLCodeMerger> m_CodeMerger;          // 代码合并器（关键组件）
     std::unique_ptr<CSSCompiler> m_CSSCompiler;            // CSS编译器（ANTLR）
     std::unique_ptr<JavaScriptCompiler> m_JSCompiler;      // JavaScript编译器（ANTLR）
     
     std::string m_SourceCode;                              // 源代码
+    std::string m_CurrentSourceFile;                       // 当前源文件路径
     std::vector<CodeFragment> m_Fragments;                 // 代码片段
     std::unordered_map<FragmentType, std::vector<CodeFragment>> m_FragmentsByType; // 按类型分组的片段
     

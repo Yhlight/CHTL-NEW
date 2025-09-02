@@ -289,4 +289,5 @@ CMakeFiles/chtl.dir/src/main.cpp.o: /workspace/src/main.cpp \
   /workspace/src/CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/CHTLJSBaseNode.h \
   /workspace/src/CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/EnhanceSelectorNode.h \
   /workspace/src/CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/VirObjectNode.h \
-  /workspace/src/CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/AnimateNode.h
+  /workspace/src/CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/AnimateNode.h \
+  /workspace/src/CompilerDispatcher/../CodeMerger/CHTLCodeMerger.h

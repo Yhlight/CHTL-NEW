@@ -9,6 +9,7 @@ bin/chtl_simple_test: \
   lib/libCHTLCore.a \
   lib/libCHTLJSCore.a \
   lib/libCHTLScanner.a \
+  lib/libCHTLCodeMerger.a \
   lib/libCHTLCSSCompiler.a \
   lib/libCHTLJSCompiler.a \
   /workspace/thirdparty/antlr/lib/libantlr4-runtime.a \
@@ -59,6 +60,8 @@ lib/libCHTLCore.a:
 lib/libCHTLJSCore.a:
 
 lib/libCHTLScanner.a:
+
+lib/libCHTLCodeMerger.a:
 
 lib/libCHTLCSSCompiler.a:
 

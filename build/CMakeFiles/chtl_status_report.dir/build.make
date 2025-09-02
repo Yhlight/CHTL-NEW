@@ -104,6 +104,7 @@ bin/chtl_status_report: lib/libCHTLConstraint.a
 bin/chtl_status_report: lib/libCHTLCore.a
 bin/chtl_status_report: lib/libCHTLJSCore.a
 bin/chtl_status_report: lib/libCHTLScanner.a
+bin/chtl_status_report: lib/libCHTLCodeMerger.a
 bin/chtl_status_report: CMakeFiles/chtl_status_report.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/chtl_status_report"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chtl_status_report.dir/link.txt --verbose=$(VERBOSE)

@@ -23,6 +23,7 @@ void CompilerDispatcher::InitializeCompilers() {
     m_CHTLGenerator = std::make_unique<CHTLGenerator>();
     m_CHTLJSParser = std::make_unique<CHTLJS::CHTLJSParser>("");
     m_CHTLJSGenerator = std::make_unique<CHTLJS::CHTLJSGenerator>();
+    m_CodeMerger = std::make_unique<CHTLCodeMerger>();     // 初始化代码合并器
     m_CSSCompiler = std::make_unique<CSSCompiler>();
     m_JSCompiler = std::make_unique<JavaScriptCompiler>();
 }
@@ -268,23 +269,24 @@ CompilationResult CompilerDispatcher::CompileJavaScriptFragments(const std::vect
 bool CompilerDispatcher::MergeCompilationResults() {
     m_MergedResult = MergedCompilationResult();
     
-    std::ostringstream htmlContent, cssContent, jsContent;
+    // 步骤1：将编译器结果添加到代码合并器
+    m_CodeMerger->ClearFragments();
     
-    // 合并各编译器的结果
     for (const auto& result : m_CompilationResults) {
         if (!result.IsSuccess) {
             m_MergedResult.Errors.push_back(result.ErrorMessage);
             continue;
         }
         
+        // 根据类型添加到代码合并器
         if (result.Type == "HTML") {
-            htmlContent << result.Content;
+            m_CodeMerger->AddHTMLFragment(result.Content, m_CurrentSourceFile);
         }
         else if (result.Type == "CSS") {
-            cssContent << result.Content;
+            m_CodeMerger->AddCSSFragment(result.Content, m_CurrentSourceFile);
         }
         else if (result.Type == "JavaScript") {
-            jsContent << result.Content;
+            m_CodeMerger->AddJavaScriptFragment(result.Content, m_CurrentSourceFile);
         }
         
         // 添加警告
@@ -292,16 +294,65 @@ bool CompilerDispatcher::MergeCompilationResults() {
                                       result.Warnings.begin(), result.Warnings.end());
     }
     
-    m_MergedResult.HTMLContent = htmlContent.str();
-    m_MergedResult.CSSContent = cssContent.str();
-    m_MergedResult.JavaScriptContent = jsContent.str();
+    // 步骤2：执行代码合并
+    auto mergeResult = m_CodeMerger->MergeCode();
     
-    // 生成完整HTML文档
-    m_MergedResult.FullHTML = GenerateHTMLDocument(
-        m_MergedResult.HTMLContent,
-        m_MergedResult.CSSContent,
-        m_MergedResult.JavaScriptContent
-    );
+    if (!mergeResult.IsSuccess) {
+        m_MergedResult.Errors.insert(m_MergedResult.Errors.end(), 
+                                    mergeResult.Errors.begin(), mergeResult.Errors.end());
+        m_MergedResult.IsSuccess = false;
+        return false;
+    }
+    
+    // 步骤3：将合并后的完整代码交给CSS和JavaScript编译器进行最终处理
+    
+    // 处理合并后的CSS（完整代码）
+    if (!mergeResult.MergedCSS.empty()) {
+        auto cssCompilationResult = m_CSSCompiler->Compile(mergeResult.MergedCSS);
+        if (cssCompilationResult.IsSuccess) {
+            m_MergedResult.CSSContent = cssCompilationResult.OptimizedCSS;
+        }
+        else {
+            m_MergedResult.CSSContent = mergeResult.MergedCSS;  // 使用原始合并结果
+            m_MergedResult.Errors.insert(m_MergedResult.Errors.end(), 
+                                        cssCompilationResult.Errors.begin(), cssCompilationResult.Errors.end());
+        }
+        
+        // 添加CSS编译警告
+        m_MergedResult.Warnings.insert(m_MergedResult.Warnings.end(), 
+                                      cssCompilationResult.Warnings.begin(), cssCompilationResult.Warnings.end());
+    }
+    else {
+        m_MergedResult.CSSContent = "";
+    }
+    
+    // 处理合并后的JavaScript（完整代码）
+    if (!mergeResult.MergedJavaScript.empty()) {
+        auto jsCompilationResult = m_JSCompiler->Compile(mergeResult.MergedJavaScript);
+        if (jsCompilationResult.IsSuccess) {
+            m_MergedResult.JavaScriptContent = jsCompilationResult.OptimizedJS;
+        }
+        else {
+            m_MergedResult.JavaScriptContent = mergeResult.MergedJavaScript;  // 使用原始合并结果
+            m_MergedResult.Errors.insert(m_MergedResult.Errors.end(), 
+                                        jsCompilationResult.Errors.begin(), jsCompilationResult.Errors.end());
+        }
+        
+        // 添加JavaScript编译警告
+        m_MergedResult.Warnings.insert(m_MergedResult.Warnings.end(), 
+                                      jsCompilationResult.Warnings.begin(), jsCompilationResult.Warnings.end());
+    }
+    else {
+        m_MergedResult.JavaScriptContent = "";
+    }
+    
+    // 步骤4：设置HTML内容和完整文档
+    m_MergedResult.HTMLContent = mergeResult.MergedHTML;
+    m_MergedResult.FullHTML = mergeResult.FullHTML;
+    
+    // 添加合并器警告
+    m_MergedResult.Warnings.insert(m_MergedResult.Warnings.end(), 
+                                  mergeResult.Warnings.begin(), mergeResult.Warnings.end());
     
     m_MergedResult.IsSuccess = m_MergedResult.Errors.empty();
     return m_MergedResult.IsSuccess;
@@ -568,6 +619,15 @@ void CompilerDispatcher::Reset() {
     }
     if (m_CHTLJSGenerator) {
         m_CHTLJSGenerator->Reset();
+    }
+    if (m_CodeMerger) {
+        m_CodeMerger->Reset();
+    }
+    if (m_CSSCompiler) {
+        m_CSSCompiler->Reset();
+    }
+    if (m_JSCompiler) {
+        m_JSCompiler->Reset();
     }
 }
 

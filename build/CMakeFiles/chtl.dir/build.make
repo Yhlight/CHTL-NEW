@@ -102,6 +102,7 @@ bin/chtl: lib/libCHTLConstraint.a
 bin/chtl: lib/libCHTLCore.a
 bin/chtl: lib/libCHTLJSCore.a
 bin/chtl: lib/libCHTLScanner.a
+bin/chtl: lib/libCHTLCodeMerger.a
 bin/chtl: lib/libCHTLCSSCompiler.a
 bin/chtl: lib/libCHTLJSCompiler.a
 bin/chtl: CMakeFiles/chtl.dir/link.txt

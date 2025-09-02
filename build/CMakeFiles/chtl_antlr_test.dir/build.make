@@ -104,6 +104,7 @@ bin/chtl_antlr_test: lib/libCHTLConstraint.a
 bin/chtl_antlr_test: lib/libCHTLCore.a
 bin/chtl_antlr_test: lib/libCHTLJSCore.a
 bin/chtl_antlr_test: lib/libCHTLScanner.a
+bin/chtl_antlr_test: lib/libCHTLCodeMerger.a
 bin/chtl_antlr_test: CMakeFiles/chtl_antlr_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/chtl_antlr_test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chtl_antlr_test.dir/link.txt --verbose=$(VERBOSE)
