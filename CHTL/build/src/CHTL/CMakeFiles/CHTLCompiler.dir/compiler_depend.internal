@@ -1318,6 +1318,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o
  /usr/include/c++/14/bits/uniform_int_dist.h
  /usr/include/c++/14/bits/unique_ptr.h
  /usr/include/c++/14/bits/unordered_map.h
+ /usr/include/c++/14/bits/unordered_set.h
  /usr/include/c++/14/bits/uses_allocator.h
  /usr/include/c++/14/bits/uses_allocator_args.h
  /usr/include/c++/14/bits/utility.h
@@ -1377,6 +1378,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o
  /usr/include/c++/14/type_traits
  /usr/include/c++/14/typeinfo
  /usr/include/c++/14/unordered_map
+ /usr/include/c++/14/unordered_set
  /usr/include/c++/14/vector
  /usr/include/x86_64-linux-gnu/c++/14/bits/atomic_word.h
  /usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h
@@ -1423,6 +1425,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o
  /workspace/CHTL/include/Common/Error.h
  /workspace/CHTL/include/Common/ICompiler.h
  /workspace/CHTL/include/Common/Logger.h
+ /workspace/CHTL/include/Common/SyntaxConstraint.h
 
 src/CHTL/CMakeFiles/CHTLCompiler.dir/Core/Context.cpp.o
  /workspace/CHTL/src/CHTL/Core/Context.cpp
@@ -3147,6 +3150,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Parser/Parser.cpp.o
  /usr/include/c++/14/bits/stringfwd.h
  /usr/include/c++/14/bits/unique_ptr.h
  /usr/include/c++/14/bits/unordered_map.h
+ /usr/include/c++/14/bits/unordered_set.h
  /usr/include/c++/14/bits/uses_allocator.h
  /usr/include/c++/14/bits/uses_allocator_args.h
  /usr/include/c++/14/bits/utility.h
@@ -3202,6 +3206,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Parser/Parser.cpp.o
  /usr/include/c++/14/type_traits
  /usr/include/c++/14/typeinfo
  /usr/include/c++/14/unordered_map
+ /usr/include/c++/14/unordered_set
  /usr/include/c++/14/vector
  /usr/include/x86_64-linux-gnu/c++/14/bits/atomic_word.h
  /usr/include/x86_64-linux-gnu/c++/14/bits/c++allocator.h
@@ -3239,6 +3244,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Parser/Parser.cpp.o
  /workspace/CHTL/include/CHTL/Parser/Parser.h
  /workspace/CHTL/include/Common/Error.h
  /workspace/CHTL/include/Common/Logger.h
+ /workspace/CHTL/include/Common/SyntaxConstraint.h
 
 src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/FileUtils.cpp.o
  /workspace/CHTL/src/CHTL/Utils/FileUtils.cpp

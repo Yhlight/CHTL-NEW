@@ -1312,6 +1312,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o: /workspace/CHTL/src/CHT
   /usr/include/c++/14/bits/uniform_int_dist.h \
   /usr/include/c++/14/bits/unique_ptr.h \
   /usr/include/c++/14/bits/unordered_map.h \
+  /usr/include/c++/14/bits/unordered_set.h \
   /usr/include/c++/14/bits/uses_allocator.h \
   /usr/include/c++/14/bits/uses_allocator_args.h \
   /usr/include/c++/14/bits/utility.h \
@@ -1371,6 +1372,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o: /workspace/CHTL/src/CHT
   /usr/include/c++/14/type_traits \
   /usr/include/c++/14/typeinfo \
   /usr/include/c++/14/unordered_map \
+  /usr/include/c++/14/unordered_set \
   /usr/include/c++/14/vector \
   /usr/include/x86_64-linux-gnu/c++/14/bits/atomic_word.h \
   /usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h \
@@ -1416,7 +1418,8 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o: /workspace/CHTL/src/CHT
   /workspace/CHTL/include/Common/CodeFragment.h \
   /workspace/CHTL/include/Common/Error.h \
   /workspace/CHTL/include/Common/ICompiler.h \
-  /workspace/CHTL/include/Common/Logger.h
+  /workspace/CHTL/include/Common/Logger.h \
+  /workspace/CHTL/include/Common/SyntaxConstraint.h
 
 src/CHTL/CMakeFiles/CHTLCompiler.dir/Core/Context.cpp.o: /workspace/CHTL/src/CHTL/Core/Context.cpp \
   /usr/include/alloca.h \
@@ -3134,6 +3137,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Parser/Parser.cpp.o: /workspace/CHTL/src/CH
   /usr/include/c++/14/bits/stringfwd.h \
   /usr/include/c++/14/bits/unique_ptr.h \
   /usr/include/c++/14/bits/unordered_map.h \
+  /usr/include/c++/14/bits/unordered_set.h \
   /usr/include/c++/14/bits/uses_allocator.h \
   /usr/include/c++/14/bits/uses_allocator_args.h \
   /usr/include/c++/14/bits/utility.h \
@@ -3189,6 +3193,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Parser/Parser.cpp.o: /workspace/CHTL/src/CH
   /usr/include/c++/14/type_traits \
   /usr/include/c++/14/typeinfo \
   /usr/include/c++/14/unordered_map \
+  /usr/include/c++/14/unordered_set \
   /usr/include/c++/14/vector \
   /usr/include/x86_64-linux-gnu/c++/14/bits/atomic_word.h \
   /usr/include/x86_64-linux-gnu/c++/14/bits/c++allocator.h \
@@ -3225,7 +3230,8 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Parser/Parser.cpp.o: /workspace/CHTL/src/CH
   /workspace/CHTL/include/CHTL/Core/Token.h \
   /workspace/CHTL/include/CHTL/Parser/Parser.h \
   /workspace/CHTL/include/Common/Error.h \
-  /workspace/CHTL/include/Common/Logger.h
+  /workspace/CHTL/include/Common/Logger.h \
+  /workspace/CHTL/include/Common/SyntaxConstraint.h
 
 src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/FileUtils.cpp.o: /workspace/CHTL/src/CHTL/Utils/FileUtils.cpp \
   /usr/include/alloca.h \
@@ -3617,6 +3623,8 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 
 /workspace/CHTL/src/CHTL/Core/Context.cpp:
 
+/workspace/CHTL/include/Common/SyntaxConstraint.h:
+
 /workspace/CHTL/include/Common/Logger.h:
 
 /workspace/CHTL/include/Common/Error.h:
@@ -3642,6 +3650,8 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 /usr/include/x86_64-linux-gnu/c++/14/bits/ctype_base.h:
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/c++io.h:
+
+/usr/include/c++/14/unordered_set:
 
 /usr/include/c++/14/system_error:
 
@@ -4020,6 +4030,8 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Utils/StringUtils.cpp.o: /workspace/CHTL/sr
 /usr/include/c++/14/bits/memory_resource.h:
 
 /workspace/CHTL/include/CHTL/AST/ASTNode.h:
+
+/usr/include/c++/14/bits/unordered_set.h:
 
 /usr/include/c++/14/bits/memoryfwd.h:
 

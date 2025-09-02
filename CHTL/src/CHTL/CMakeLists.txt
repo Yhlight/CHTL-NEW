@@ -37,4 +37,5 @@ target_include_directories(CHTLCompiler PUBLIC
 # 依赖库
 target_link_libraries(CHTLCompiler PUBLIC
     CMODHandler
+    SyntaxConstraint
 )

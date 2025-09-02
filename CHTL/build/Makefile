@@ -185,6 +185,19 @@ chtl/fast:
 .PHONY : chtl/fast
 
 #=============================================================================
+# Target rules for targets named SyntaxConstraint
+
+# Build rule for target.
+SyntaxConstraint: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 SyntaxConstraint
+.PHONY : SyntaxConstraint
+
+# fast build rule for target.
+SyntaxConstraint/fast:
+	$(MAKE) $(MAKESILENT) -f src/Common/CMakeFiles/SyntaxConstraint.dir/build.make src/Common/CMakeFiles/SyntaxConstraint.dir/build
+.PHONY : SyntaxConstraint/fast
+
+#=============================================================================
 # Target rules for targets named CHTLUnifiedScanner
 
 # Build rule for target.
@@ -359,6 +372,7 @@ help:
 	@echo "... CSSCompiler"
 	@echo "... CompilerDispatcher"
 	@echo "... JavaScriptCompiler"
+	@echo "... SyntaxConstraint"
 	@echo "... chtl"
 	@echo "... cjmod_tool"
 	@echo "... cmod_tool"

@@ -239,6 +239,9 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/Parser/Parser.cpp.o: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/istream \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/istream.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/sstream.tcc \
+  /workspace/CHTL/include/Common/SyntaxConstraint.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/unordered_set \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/unordered_set.h \
   /workspace/CHTL/include/CHTL/AST/TemplateNodes.h \
   /workspace/CHTL/include/CHTL/AST/ASTVisitor.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/map \

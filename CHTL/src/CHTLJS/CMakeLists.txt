@@ -39,5 +39,5 @@ target_include_directories(CHTLJSCompiler PUBLIC
 
 # 依赖库
 target_link_libraries(CHTLJSCompiler PUBLIC
-    # 如果需要其他库，在这里添加
+    SyntaxConstraint
 )

@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../lib/libSyntaxConstraint.a CMakeFiles/SyntaxConstraint.dir/SyntaxConstraint.cpp.o
+/usr/bin/ranlib ../../lib/libSyntaxConstraint.a

@@ -43,6 +43,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/workspace/CHTL/src/CJMOD/CMakeLists.txt"
   "/workspace/CHTL/src/CMOD/CMakeLists.txt"
   "/workspace/CHTL/src/CSS/CMakeLists.txt"
+  "/workspace/CHTL/src/Common/CMakeLists.txt"
   "/workspace/CHTL/src/Dispatcher/CMakeLists.txt"
   "/workspace/CHTL/src/JavaScript/CMakeLists.txt"
   "/workspace/CHTL/src/Scanner/CMakeLists.txt"
@@ -58,6 +59,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/Common/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/Scanner/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/Dispatcher/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/CHTL/CMakeFiles/CMakeDirectoryInformation.cmake"
@@ -72,6 +74,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/chtl.dir/DependInfo.cmake"
+  "src/Common/CMakeFiles/SyntaxConstraint.dir/DependInfo.cmake"
   "src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/DependInfo.cmake"
   "src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/DependInfo.cmake"
   "src/CHTL/CMakeFiles/CHTLCompiler.dir/DependInfo.cmake"

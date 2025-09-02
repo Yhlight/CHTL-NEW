@@ -1,0 +1,13 @@
+use html5;
+
+html {
+    body {
+        // 测试在script块中使用增强选择器
+        script {
+            // 这是合法的：在script块中可以使用{{}}
+            {{button}}.addEventListener('click', function() {
+                console.log('OK in script block');
+            });
+        }
+    }
+}

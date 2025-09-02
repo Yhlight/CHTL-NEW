@@ -33,6 +33,7 @@ set(ANTLR_LIB_DIR ${CMAKE_SOURCE_DIR}/lib/antlr4-runtime/lib)
 find_package(Java REQUIRED)
 
 # 添加子目录
+add_subdirectory(src/Common)
 add_subdirectory(src/Scanner)
 add_subdirectory(src/Dispatcher)
 add_subdirectory(src/CHTL)
@@ -55,6 +56,7 @@ target_link_libraries(chtl
     JavaScriptCompiler
     CMODHandler
     CJMODHandler
+    SyntaxConstraint
 )
 
 # 安装规则

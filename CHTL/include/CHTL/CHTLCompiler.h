@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 #include "Common/ICompiler.h"
+#include "Common/SyntaxConstraint.h"
 #include "CHTL/Core/Context.h"
 #include "CHTL/Core/CompileResult.h"
 
@@ -30,6 +31,7 @@ private:
     std::unique_ptr<Lexer> lexer;              // 词法分析器
     std::unique_ptr<Parser> parser;             // 语法分析器
     std::unique_ptr<Generator> generator;       // 代码生成器
+    std::shared_ptr<SyntaxBoundaryChecker> boundaryChecker;  // 语法边界检查器
     
     std::string moduleDirectory;                // 模块目录
     std::string sourceFile;                     // 源文件路径

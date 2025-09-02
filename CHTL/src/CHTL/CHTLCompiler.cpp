@@ -15,6 +15,7 @@ namespace CHTL {
 CHTLCompiler::CHTLCompiler() 
     : debugMode(false), hasHTML5Declaration(false) {
     InitializeComponents();
+    boundaryChecker = std::make_shared<SyntaxBoundaryChecker>();
 }
 
 CHTLCompiler::~CHTLCompiler() = default;
@@ -44,6 +45,9 @@ std::string CHTLCompiler::Compile(const CodeFragmentPtr& fragment) {
         lexer->SetSource(processedCode, fragment->sourcePath);
         lexer->Tokenize();
         
+        // 设置语法边界检查器
+        parser->SetBoundaryChecker(boundaryChecker);
+        
         // 语法分析
         auto ast = parser->Parse(lexer->GetTokens());
         
@@ -57,6 +61,13 @@ std::string CHTLCompiler::Compile(const CodeFragmentPtr& fragment) {
         
         // 代码生成
         generator->Generate(ast, lastResult);
+        
+        // 检查语法边界违规
+        if (boundaryChecker->HasViolations()) {
+            LOG_INFO("发现语法边界违规:\n" + boundaryChecker->GenerateViolationReport());
+            // 在严格模式下，可以选择返回错误
+            // 这里我们仅记录警告，仍然返回生成的代码
+        }
         
         // 后处理
         PostprocessResult(lastResult);
@@ -249,6 +260,9 @@ void CHTLCompiler::LoadAndMergeFile(const std::string& filePath, int importType,
             // 词法分析
             lexer->SetSource(processedCode, filePath);
             lexer->Tokenize();
+            
+            // 设置语法边界检查器
+            parser->SetBoundaryChecker(boundaryChecker);
             
             // 语法分析
             auto importedAst = parser->Parse(lexer->GetTokens());

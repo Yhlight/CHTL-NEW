@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 #include "Common/ICompiler.h"
+#include "Common/SyntaxConstraint.h"
 #include "CHTLJS/Core/Context.h"
 #include "CHTLJS/Lexer/Lexer.h"
 #include "CHTLJS/Parser/Parser.h"
@@ -21,6 +22,7 @@ private:
     std::unique_ptr<JS::Lexer> lexer;              // 词法分析器
     std::unique_ptr<JS::Parser> parser;             // 语法分析器
     std::unique_ptr<JS::Generator> generator;       // 代码生成器
+    std::shared_ptr<SyntaxBoundaryChecker> boundaryChecker;  // 语法边界检查器
     
     std::string moduleDirectory;                    // 模块目录
     std::string sourceFile;                         // 源文件路径

@@ -120,7 +120,24 @@ std::shared_ptr<ASTNode> Parser::ParseTopLevelDeclaration() {
     return nullptr;
 }
 
+void Parser::RecordViolation(const std::string& message) {
+    if (boundaryChecker) {
+        int line = currentIndex < tokens.size() ? tokens[currentIndex].line : -1;
+        int column = currentIndex < tokens.size() ? tokens[currentIndex].column : -1;
+        boundaryChecker->RecordViolation(message, line, column);
+    }
+}
+
 std::shared_ptr<ASTNode> Parser::ParseUseStatement() {
+    // 检查语法边界
+    if (boundaryChecker) {
+        std::string error;
+        if (!boundaryChecker->GetConstraint()->ValidateSyntax(
+                SyntaxConstraint::Feature::UseStatement, error)) {
+            RecordViolation(error);
+        }
+    }
+    
     Expect(TokenType::USE, "期望 'use'");
     
     // use html5;
@@ -871,6 +888,17 @@ std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {
 }
 
 std::shared_ptr<ASTNode> Parser::ParseLocalScript() {
+    // 检查语法边界
+    if (boundaryChecker) {
+        std::string error;
+        if (!boundaryChecker->GetConstraint()->ValidateSyntax(
+                SyntaxConstraint::Feature::LocalScriptBlock, error)) {
+            RecordViolation(error);
+        }
+        // 进入Script上下文
+        boundaryChecker->GetConstraint()->EnterContext(SyntaxConstraint::Context::Script);
+    }
+    
     Expect(TokenType::SCRIPT, "期望 'script'");
     Expect(TokenType::LEFT_BRACE, "期望 '{'");
     
@@ -883,6 +911,11 @@ std::shared_ptr<ASTNode> Parser::ParseLocalScript() {
     }
     
     Expect(TokenType::RIGHT_BRACE, "期望 '}'");
+    
+    // 退出Script上下文
+    if (boundaryChecker) {
+        boundaryChecker->GetConstraint()->ExitContext();
+    }
     
     return scriptNode;
 }

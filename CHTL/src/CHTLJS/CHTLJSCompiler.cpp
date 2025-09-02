@@ -6,6 +6,9 @@ namespace CHTL {
 CHTLJSCompiler::CHTLJSCompiler() 
     : debugMode(false) {
     InitializeComponents();
+    boundaryChecker = std::make_shared<SyntaxBoundaryChecker>();
+    // 设置为CHTL JS上下文
+    boundaryChecker->GetConstraint()->EnterContext(SyntaxConstraint::Context::CHTLJS);
 }
 
 CHTLJSCompiler::~CHTLJSCompiler() = default;

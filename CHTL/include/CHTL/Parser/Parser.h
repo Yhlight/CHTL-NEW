@@ -7,6 +7,7 @@
 #include "CHTL/Core/Token.h"
 #include "CHTL/Core/Context.h"
 #include "CHTL/AST/ASTNode.h"
+#include "Common/SyntaxConstraint.h"
 
 namespace CHTL {
 
@@ -19,6 +20,7 @@ private:
     std::vector<Token> tokens;           // Token列表
     size_t currentIndex;                 // 当前Token索引
     std::shared_ptr<CompileContext> context;  // 编译上下文
+    std::shared_ptr<SyntaxBoundaryChecker> boundaryChecker;  // 语法边界检查器
     
     /**
      * 获取当前Token
@@ -105,6 +107,11 @@ private:
     // 辅助方法
     std::string ProcessVariableReferences(const std::string& value);
     
+    /**
+     * 记录语法边界违规
+     */
+    void RecordViolation(const std::string& message);
+    
 public:
     explicit Parser(std::shared_ptr<CompileContext> ctx);
     ~Parser() = default;
@@ -120,6 +127,13 @@ public:
      * 重置解析器状态
      */
     void Reset();
+    
+    /**
+     * 设置语法边界检查器
+     */
+    void SetBoundaryChecker(std::shared_ptr<SyntaxBoundaryChecker> checker) {
+        boundaryChecker = checker;
+    }
 };
 
 } // namespace CHTL

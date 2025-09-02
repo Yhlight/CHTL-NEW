@@ -6,6 +6,14 @@
 /workspace/CHTL/build/CMakeFiles/install.dir
 /workspace/CHTL/build/CMakeFiles/install/local.dir
 /workspace/CHTL/build/CMakeFiles/install/strip.dir
+/workspace/CHTL/build/src/Common/CMakeFiles/SyntaxConstraint.dir
+/workspace/CHTL/build/src/Common/CMakeFiles/test.dir
+/workspace/CHTL/build/src/Common/CMakeFiles/edit_cache.dir
+/workspace/CHTL/build/src/Common/CMakeFiles/rebuild_cache.dir
+/workspace/CHTL/build/src/Common/CMakeFiles/list_install_components.dir
+/workspace/CHTL/build/src/Common/CMakeFiles/install.dir
+/workspace/CHTL/build/src/Common/CMakeFiles/install/local.dir
+/workspace/CHTL/build/src/Common/CMakeFiles/install/strip.dir
 /workspace/CHTL/build/src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir
 /workspace/CHTL/build/src/Scanner/CMakeFiles/test.dir
 /workspace/CHTL/build/src/Scanner/CMakeFiles/edit_cache.dir
