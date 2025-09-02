@@ -280,6 +280,9 @@ add_executable(chtl_final_compilation_success src/Test/FinalCompilationSuccessRe
 # 高级功能完善报告可执行文件
 add_executable(chtl_advanced_features_report src/Test/AdvancedFeaturesReport.cpp)
 
+# 项目最终状态报告可执行文件
+add_executable(chtl_project_final_status src/Test/ProjectFinalStatus.cpp)
+
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)
 target_link_libraries(chtl_lexer_test CHTLCore CHTLJSCore CHTLScanner)

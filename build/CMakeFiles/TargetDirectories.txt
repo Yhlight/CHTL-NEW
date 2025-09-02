@@ -32,6 +32,7 @@
 /workspace/build/CMakeFiles/chtl_final_completion_report.dir
 /workspace/build/CMakeFiles/chtl_final_compilation_success.dir
 /workspace/build/CMakeFiles/chtl_advanced_features_report.dir
+/workspace/build/CMakeFiles/chtl_project_final_status.dir
 /workspace/build/CMakeFiles/chtl_lexer_test.dir
 /workspace/build/CMakeFiles/chtl_template_test.dir
 /workspace/build/CMakeFiles/chtl_custom_test.dir

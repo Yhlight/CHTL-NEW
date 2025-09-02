@@ -604,6 +604,19 @@ chtl_advanced_features_report/fast:
 .PHONY : chtl_advanced_features_report/fast
 
 #=============================================================================
+# Target rules for targets named chtl_project_final_status
+
+# Build rule for target.
+chtl_project_final_status: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_project_final_status
+.PHONY : chtl_project_final_status
+
+# fast build rule for target.
+chtl_project_final_status/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_project_final_status.dir/build.make CMakeFiles/chtl_project_final_status.dir/build
+.PHONY : chtl_project_final_status/fast
+
+#=============================================================================
 # Target rules for targets named chtl_lexer_test
 
 # Build rule for target.
@@ -2673,6 +2686,30 @@ src/Test/ProjectCompletionAudit.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_project_audit.dir/build.make CMakeFiles/chtl_project_audit.dir/src/Test/ProjectCompletionAudit.cpp.s
 .PHONY : src/Test/ProjectCompletionAudit.cpp.s
 
+src/Test/ProjectFinalStatus.o: src/Test/ProjectFinalStatus.cpp.o
+.PHONY : src/Test/ProjectFinalStatus.o
+
+# target to build an object file
+src/Test/ProjectFinalStatus.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_project_final_status.dir/build.make CMakeFiles/chtl_project_final_status.dir/src/Test/ProjectFinalStatus.cpp.o
+.PHONY : src/Test/ProjectFinalStatus.cpp.o
+
+src/Test/ProjectFinalStatus.i: src/Test/ProjectFinalStatus.cpp.i
+.PHONY : src/Test/ProjectFinalStatus.i
+
+# target to preprocess a source file
+src/Test/ProjectFinalStatus.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_project_final_status.dir/build.make CMakeFiles/chtl_project_final_status.dir/src/Test/ProjectFinalStatus.cpp.i
+.PHONY : src/Test/ProjectFinalStatus.cpp.i
+
+src/Test/ProjectFinalStatus.s: src/Test/ProjectFinalStatus.cpp.s
+.PHONY : src/Test/ProjectFinalStatus.s
+
+# target to generate assembly for a file
+src/Test/ProjectFinalStatus.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_project_final_status.dir/build.make CMakeFiles/chtl_project_final_status.dir/src/Test/ProjectFinalStatus.cpp.s
+.PHONY : src/Test/ProjectFinalStatus.cpp.s
+
 src/Test/ProjectOptimizationReport.o: src/Test/ProjectOptimizationReport.cpp.o
 .PHONY : src/Test/ProjectOptimizationReport.o
 
@@ -2943,6 +2980,7 @@ help:
 	@echo "... chtl_parser_test"
 	@echo "... chtl_performance_benchmark"
 	@echo "... chtl_project_audit"
+	@echo "... chtl_project_final_status"
 	@echo "... chtl_project_optimization_report"
 	@echo "... chtl_repository_cleanup_report"
 	@echo "... chtl_simple_test"
@@ -3184,6 +3222,9 @@ help:
 	@echo "... src/Test/ProjectCompletionAudit.o"
 	@echo "... src/Test/ProjectCompletionAudit.i"
 	@echo "... src/Test/ProjectCompletionAudit.s"
+	@echo "... src/Test/ProjectFinalStatus.o"
+	@echo "... src/Test/ProjectFinalStatus.i"
+	@echo "... src/Test/ProjectFinalStatus.s"
 	@echo "... src/Test/ProjectOptimizationReport.o"
 	@echo "... src/Test/ProjectOptimizationReport.i"
 	@echo "... src/Test/ProjectOptimizationReport.s"
