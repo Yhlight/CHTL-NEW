@@ -4,6 +4,7 @@
 #include <sstream>
 #include <stack>
 #include <queue>
+#include <regex>
 
 namespace CHTL {
 
@@ -47,6 +48,61 @@ std::string ImportManager::GetFileExtension(const std::string& path) {
     return "";
 }
 
+std::string ImportManager::SearchInModuleDirectory(const std::string& modulePath, 
+                                                   const std::string& moduleName,
+                                                   bool preferCMOD) {
+    // 首先尝试乱序结构（直接在module目录下查找）
+    std::vector<std::string> extensions = preferCMOD ? 
+        std::vector<std::string>{".cmod", ".chtl", ".cjmod"} :
+        std::vector<std::string>{".cjmod", ".cmod", ".chtl"};
+    
+    for (const auto& ext : extensions) {
+        std::string candidate = modulePath + "/" + moduleName + ext;
+        if (FileExists(candidate)) {
+            LOG_DEBUG("在模块目录找到文件: " + candidate);
+            return candidate;
+        }
+    }
+    
+    // 然后尝试有序结构（CMOD/CJMOD分类）
+    std::vector<std::string> cmodFolders = {"CMOD", "cmod", "Cmod"};
+    std::vector<std::string> cjmodFolders = {"CJMOD", "cjmod", "CJmod"};
+    
+    // 根据偏好决定搜索顺序
+    if (preferCMOD) {
+        // 先搜索CMOD文件夹
+        for (const auto& folder : cmodFolders) {
+            for (const auto& ext : {".cmod", ".chtl"}) {
+                std::string candidate = modulePath + "/" + folder + "/" + moduleName + ext;
+                if (FileExists(candidate)) {
+                    LOG_DEBUG("在分类模块目录找到文件: " + candidate);
+                    return candidate;
+                }
+            }
+        }
+        
+        // 再搜索CJMOD文件夹
+        for (const auto& folder : cjmodFolders) {
+            std::string candidate = modulePath + "/" + folder + "/" + moduleName + ".cjmod";
+            if (FileExists(candidate)) {
+                LOG_DEBUG("在分类模块目录找到文件: " + candidate);
+                return candidate;
+            }
+        }
+    } else {
+        // 只搜索CJMOD文件夹
+        for (const auto& folder : cjmodFolders) {
+            std::string candidate = modulePath + "/" + folder + "/" + moduleName + ".cjmod";
+            if (FileExists(candidate)) {
+                LOG_DEBUG("在分类模块目录找到文件: " + candidate);
+                return candidate;
+            }
+        }
+    }
+    
+    return "";
+}
+
 std::string ImportManager::ResolvePath(const std::string& importPath, const std::string& currentFile) {
     // 检查缓存
     if (cacheResolvedPaths) {
@@ -72,28 +128,83 @@ std::string ImportManager::ResolvePath(const std::string& importPath, const std:
         fs::path currentDir = fs::path(currentFile).parent_path();
         resolvedPath = (currentDir / importPath).string();
     }
-    // 4. 在搜索路径中查找
-    else {
+    // 4. 官方模块前缀 chtl::
+    else if (importPath.substr(0, 6) == "chtl::") {
+        std::string moduleName = importPath.substr(6);
+        // 只在官方模块目录搜索
         for (const auto& searchPath : searchPaths) {
-            fs::path candidate = fs::path(searchPath) / importPath;
+            std::string result = SearchInModuleDirectory(searchPath, moduleName, true);
+            if (!result.empty()) {
+                resolvedPath = result;
+                break;
+            }
+        }
+    }
+    // 5. 在搜索路径中查找（支持module目录结构）
+    else {
+        // 首先检查是否是模块导入（无路径分隔符的名称）
+        bool isModuleImport = (importPath.find('/') == std::string::npos && 
+                              importPath.find('\\') == std::string::npos);
+        
+        if (isModuleImport) {
+            // 按优先级搜索：官方模块目录 -> 当前目录module -> 当前目录
             
-            // 尝试不同的扩展名
-            std::vector<std::string> extensions = {"", ".chtl", ".cjjs", ".css", ".js"};
-            for (const auto& ext : extensions) {
-                std::string fullPath = candidate.string() + ext;
-                if (FileExists(fullPath)) {
-                    resolvedPath = fullPath;
+            // 1. 官方模块目录
+            for (const auto& searchPath : searchPaths) {
+                std::string result = SearchInModuleDirectory(searchPath, importPath, true);
+                if (!result.empty()) {
+                    resolvedPath = result;
                     break;
                 }
             }
             
-            if (!resolvedPath.empty()) break;
-        }
-        
-        // 如果还没找到，尝试相对于当前文件
-        if (resolvedPath.empty()) {
-            fs::path currentDir = fs::path(currentFile).parent_path();
-            resolvedPath = (currentDir / importPath).string();
+            // 2. 当前目录的module文件夹
+            if (resolvedPath.empty()) {
+                fs::path currentDir = fs::path(currentFile).parent_path();
+                std::string moduleDir = (currentDir / "module").string();
+                if (fs::exists(moduleDir)) {
+                    std::string result = SearchInModuleDirectory(moduleDir, importPath, true);
+                    if (!result.empty()) {
+                        resolvedPath = result;
+                    }
+                }
+            }
+            
+            // 3. 当前目录
+            if (resolvedPath.empty()) {
+                fs::path currentDir = fs::path(currentFile).parent_path();
+                std::vector<std::string> extensions = {".cmod", ".chtl", ".cjmod"};
+                for (const auto& ext : extensions) {
+                    std::string candidate = (currentDir / (importPath + ext)).string();
+                    if (FileExists(candidate)) {
+                        resolvedPath = candidate;
+                        break;
+                    }
+                }
+            }
+        } else {
+            // 带路径的导入，按原有逻辑处理
+            for (const auto& searchPath : searchPaths) {
+                fs::path candidate = fs::path(searchPath) / importPath;
+                
+                // 尝试不同的扩展名
+                std::vector<std::string> extensions = {"", ".chtl", ".cjjs", ".css", ".js"};
+                for (const auto& ext : extensions) {
+                    std::string fullPath = candidate.string() + ext;
+                    if (FileExists(fullPath)) {
+                        resolvedPath = fullPath;
+                        break;
+                    }
+                }
+                
+                if (!resolvedPath.empty()) break;
+            }
+            
+            // 如果还没找到，尝试相对于当前文件
+            if (resolvedPath.empty()) {
+                fs::path currentDir = fs::path(currentFile).parent_path();
+                resolvedPath = (currentDir / importPath).string();
+            }
         }
     }
     
@@ -381,6 +492,79 @@ void ImportManager::Clear() {
     pathCache.clear();
     
     LOG_DEBUG("清空导入管理器状态");
+}
+
+std::vector<std::string> ImportManager::ResolveWildcardImport(const std::string& pattern, 
+                                                               const std::string& currentFile) {
+    std::vector<std::string> results;
+    
+    // 处理 ".*" 格式转换为 "/*"
+    std::string normalizedPattern = pattern;
+    size_t dotStarPos = normalizedPattern.find(".*");
+    if (dotStarPos != std::string::npos) {
+        normalizedPattern.replace(dotStarPos, 2, "/*");
+    }
+    
+    // 提取基础路径和文件模式
+    size_t lastSlash = normalizedPattern.find_last_of("/\\");
+    std::string basePath;
+    std::string filePattern;
+    
+    if (lastSlash != std::string::npos) {
+        basePath = normalizedPattern.substr(0, lastSlash);
+        filePattern = normalizedPattern.substr(lastSlash + 1);
+    } else {
+        basePath = ".";
+        filePattern = normalizedPattern;
+    }
+    
+    // 解析基础路径
+    std::string resolvedBase = ResolvePath(basePath, currentFile);
+    if (resolvedBase.empty()) {
+        LOG_ERROR("无法解析通配符导入的基础路径: " + basePath);
+        return results;
+    }
+    
+    // 构建正则表达式
+    std::string regexPattern = filePattern;
+    // 转义特殊字符
+    std::string specialChars = ".+^${}[]|()";
+    for (char c : specialChars) {
+        size_t pos = 0;
+        while ((pos = regexPattern.find(c, pos)) != std::string::npos) {
+            regexPattern.insert(pos, "\\");
+            pos += 2;
+        }
+    }
+    // 将 * 转换为 .*
+    size_t pos = 0;
+    while ((pos = regexPattern.find("*", pos)) != std::string::npos) {
+        regexPattern.replace(pos, 1, ".*");
+        pos += 2;
+    }
+    
+    std::regex fileRegex(regexPattern);
+    
+    // 遍历目录
+    try {
+        for (const auto& entry : std::filesystem::directory_iterator(resolvedBase)) {
+            if (entry.is_regular_file()) {
+                std::string filename = entry.path().filename().string();
+                
+                // 检查是否匹配模式
+                if (std::regex_match(filename, fileRegex)) {
+                    results.push_back(entry.path().string());
+                    LOG_DEBUG("通配符匹配文件: " + entry.path().string());
+                }
+            }
+        }
+    } catch (const std::filesystem::filesystem_error& e) {
+        LOG_ERROR("遍历目录失败: " + std::string(e.what()));
+    }
+    
+    LOG_INFO("通配符导入 '" + pattern + "' 匹配到 " + std::to_string(results.size()) + " 个文件");
+    
+    return results;
 }
 
 } // namespace CHTL

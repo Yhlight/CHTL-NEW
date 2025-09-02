@@ -33,6 +33,15 @@ private:
         Script
     } currentMode;
     
+    // 生成上下文（用于注释格式判断）
+    enum class GeneratorContext {
+        InHTML,
+        InCSS,
+        InStyle,
+        InJavaScript,
+        InScript
+    } currentContext;
+    
     int indentLevel;                              // 缩进级别
     bool prettyPrint;                             // 是否格式化输出
     

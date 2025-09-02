@@ -333,9 +333,27 @@ public:
 
 class CommentNode : public ASTNode {
 public:
-    CommentNode() : ASTNode(ASTNodeType::Comment) {}
+    enum class CommentType {
+        SingleLine,     // //
+        MultiLine,      // /* */
+        Generator       // --
+    };
+
+private:
+    std::string content;
+    CommentType type;
+
+public:
+    CommentNode(const std::string& text, CommentType t) 
+        : ASTNode(ASTNodeType::Comment), content(text), type(t) {}
+    
+    const std::string& GetContent() const { return content; }
+    CommentType GetCommentType() const { return type; }
+    
     void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "CommentNode"; }
+    std::string ToString() const override { 
+        return "CommentNode(" + content + ")"; 
+    }
 };
 
 class UseNode : public ASTNode {

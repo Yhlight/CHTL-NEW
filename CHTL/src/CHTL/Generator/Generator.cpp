@@ -6,7 +6,7 @@ namespace CHTL {
 
 Generator::Generator(std::shared_ptr<CompileContext> ctx) 
     : context(ctx), result(nullptr), currentMode(GenerateMode::HTML),
-      indentLevel(0), prettyPrint(true) {
+      currentContext(GeneratorContext::InHTML), indentLevel(0), prettyPrint(true) {
 }
 
 void Generator::Generate(std::shared_ptr<ProgramNode> ast, CompileResult& compileResult) {
@@ -63,6 +63,19 @@ void Generator::EmitLine(const std::string& str) {
 
 void Generator::SwitchMode(GenerateMode mode) {
     currentMode = mode;
+    
+    // 更新上下文
+    switch (mode) {
+        case GenerateMode::HTML:
+            currentContext = GeneratorContext::InHTML;
+            break;
+        case GenerateMode::Style:
+            currentContext = GeneratorContext::InCSS;
+            break;
+        case GenerateMode::Script:
+            currentContext = GeneratorContext::InJavaScript;
+            break;
+    }
 }
 
 void Generator::VisitProgram(ProgramNode* node) {
@@ -193,6 +206,27 @@ void Generator::VisitLocalScript(LocalScriptNode* node) {}
 void Generator::VisitStyleRule(StyleRuleNode* node) {}
 void Generator::VisitStyleProperty(StylePropertyNode* node) {}
 void Generator::VisitAttribute(AttributeNode* node) {}
-void Generator::VisitComment(CommentNode* node) {}
+void Generator::VisitComment(CommentNode* node) {
+    // 只处理生成器注释
+    if (node->GetCommentType() == CommentNode::CommentType::Generator) {
+        std::string content = node->GetContent();
+        
+        // 根据当前上下文决定注释格式
+        if (currentContext == GeneratorContext::InCSS || 
+            currentContext == GeneratorContext::InStyle) {
+            // CSS注释格式
+            output << "/* " << content << " */";
+        } else if (currentContext == GeneratorContext::InJavaScript || 
+                   currentContext == GeneratorContext::InScript) {
+            // JavaScript注释格式
+            output << "// " << content;
+        } else {
+            // HTML注释格式
+            output << "<!-- " << content << " -->";
+        }
+        output << "\n";
+    }
+    // 其他类型的注释（// 和 /**/）不会被生成到输出中
+}
 
 } // namespace CHTL

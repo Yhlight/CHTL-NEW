@@ -96,6 +96,14 @@ private:
      */
     bool DetectCycleDFS(const std::string& node, std::vector<std::string>& cycle);
     
+    /**
+     * 搜索module目录
+     * 支持乱序结构和有序结构（CMOD/CJMOD分类）
+     */
+    std::string SearchInModuleDirectory(const std::string& modulePath, 
+                                       const std::string& moduleName,
+                                       bool preferCMOD = true);
+    
 public:
     ImportManager();
     ~ImportManager() = default;
@@ -107,6 +115,14 @@ public:
      * @return 解析后的绝对路径
      */
     std::string ResolvePath(const std::string& importPath, const std::string& currentFile);
+    
+    /**
+     * 解析通配符导入
+     * @param pattern 通配符模式 (如 "path/*", "path/*.chtl")
+     * @param currentFile 当前文件路径
+     * @return 匹配的文件列表
+     */
+    std::vector<std::string> ResolveWildcardImport(const std::string& pattern, const std::string& currentFile);
     
     /**
      * 添加搜索路径
