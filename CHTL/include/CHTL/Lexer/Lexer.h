@@ -99,6 +99,11 @@ private:
     Token ScanUnquotedLiteral();
     
     /**
+     * 扫描十六进制颜色值
+     */
+    Token ScanHexColor();
+    
+    /**
      * 扫描@前缀关键字
      */
     Token ScanAtKeyword();

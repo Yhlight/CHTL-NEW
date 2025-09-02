@@ -31,9 +31,7 @@ void OriginNode::Accept(ASTVisitor* visitor) {
     visitor->VisitOrigin(this);
 }
 
-void ImportNode::Accept(ASTVisitor* visitor) {
-    visitor->VisitImport(this);
-}
+
 
 void NamespaceNode::Accept(ASTVisitor* visitor) {
     visitor->VisitNamespace(this);
@@ -49,6 +47,11 @@ void LocalStyleNode::Accept(ASTVisitor* visitor) {
 
 void LocalScriptNode::Accept(ASTVisitor* visitor) {
     visitor->VisitLocalScript(this);
+}
+
+void ImportNode::Accept(ASTVisitor* visitor) {
+    // visitor->VisitImport(this);
+    // TODO: 当ASTVisitor添加VisitImport方法时启用
 }
 
 void StyleRuleNode::Accept(ASTVisitor* visitor) {

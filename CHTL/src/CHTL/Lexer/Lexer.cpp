@@ -234,6 +234,30 @@ Token Lexer::ScanIdentifierOrKeyword() {
     return MakeToken(type, value, startLine, startColumn, value.length());
 }
 
+Token Lexer::ScanHexColor() {
+    size_t startLine = line;
+    size_t startColumn = column;
+    std::string value = "#";
+    
+    // 跳过 #
+    Advance();
+    
+    // 读取十六进制数字
+    while (std::isxdigit(CurrentChar())) {
+        value += CurrentChar();
+        Advance();
+    }
+    
+    // 检查是否是有效的颜色值（3位或6位）
+    size_t hexDigits = value.length() - 1;
+    if (hexDigits == 3 || hexDigits == 6) {
+        return MakeToken(TokenType::UNQUOTED_LITERAL, value, startLine, startColumn, value.length());
+    }
+    
+    // 如果不是有效的颜色值，作为无修饰字面量处理
+    return MakeToken(TokenType::UNQUOTED_LITERAL, value, startLine, startColumn, value.length());
+}
+
 Token Lexer::ScanUnquotedLiteral() {
     size_t startLine = line;
     size_t startColumn = column;
@@ -386,6 +410,11 @@ Token Lexer::NextToken() {
         return ScanAtKeyword();
     }
     
+    // 十六进制颜色值
+    if (ch == '#') {
+        return ScanHexColor();
+    }
+    
     // []关键字
     if (ch == '[') {
         // 检查是否可能是[]关键字
@@ -476,9 +505,7 @@ Token Lexer::NextToken() {
     // 包括#开头的十六进制颜色值
     if (opType == TokenType::UNKNOWN && ch != '-' && ch != '>' && ch != '<' && ch != '/' && ch != '!') {
         // 如果不是操作符，可能是无修饰字面量
-        position = startColumn - 1; // 回退
-        line = startLine;
-        column = startColumn;
+        // 注意：不需要回退，因为我们还没有advance
         return ScanUnquotedLiteral();
     }
     

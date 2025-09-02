@@ -277,9 +277,190 @@ std::shared_ptr<ASTNode> Parser::ParseOrigin() {
 }
 
 std::shared_ptr<ASTNode> Parser::ParseImport() {
-    // TODO: 实现Import解析
-    ConsumeToken(); // 暂时跳过
-    return nullptr;
+    Expect(TokenType::IMPORT, "期望 '[Import]'");
+    
+    auto importNode = std::make_shared<ImportNode>();
+    ImportNode::ImportType importType;
+    std::string itemName;
+    std::string customTypeName;
+    
+    // 检查是否是 [Custom], [Template], [Origin], [Configuration]
+    bool isCustom = false;
+    bool isTemplate = false;
+    bool isOrigin = false;
+    bool isConfiguration = false;
+    
+    if (Check(TokenType::CUSTOM)) {
+        isCustom = true;
+        ConsumeToken();
+    } else if (Check(TokenType::TEMPLATE)) {
+        isTemplate = true;
+        ConsumeToken();
+    } else if (Check(TokenType::ORIGIN)) {
+        isOrigin = true;
+        ConsumeToken();
+    } else if (Check(TokenType::CONFIGURATION)) {
+        isConfiguration = true;
+        ConsumeToken();
+    }
+    
+    // 解析@Type
+    if (Check(TokenType::AT_HTML)) {
+        ConsumeToken();
+        if (isOrigin) {
+            importType = ImportNode::ImportType::OriginHtml;
+        } else {
+            importType = ImportNode::ImportType::Html;
+        }
+    } else if (Check(TokenType::AT_STYLE)) {
+        ConsumeToken();
+        if (isCustom) {
+            importType = ImportNode::ImportType::CustomStyle;
+        } else if (isTemplate) {
+            importType = ImportNode::ImportType::TemplateStyle;
+        } else if (isOrigin) {
+            importType = ImportNode::ImportType::OriginStyle;
+        } else {
+            importType = ImportNode::ImportType::Style;
+        }
+    } else if (Check(TokenType::AT_JAVASCRIPT)) {
+        ConsumeToken();
+        if (isOrigin) {
+            importType = ImportNode::ImportType::OriginJavaScript;
+        } else {
+            importType = ImportNode::ImportType::JavaScript;
+        }
+    } else if (Check(TokenType::AT_ELEMENT)) {
+        ConsumeToken();
+        if (isCustom) {
+            importType = ImportNode::ImportType::CustomElement;
+        } else if (isTemplate) {
+            importType = ImportNode::ImportType::TemplateElement;
+        } else {
+            ReportError("@Element只能用于[Custom]或[Template]");
+            return nullptr;
+        }
+    } else if (Check(TokenType::AT_VAR)) {
+        ConsumeToken();
+        if (isCustom) {
+            importType = ImportNode::ImportType::CustomVar;
+        } else if (isTemplate) {
+            importType = ImportNode::ImportType::TemplateVar;
+        } else {
+            ReportError("@Var只能用于[Custom]或[Template]");
+            return nullptr;
+        }
+    } else if (Check(TokenType::AT_CHTL)) {
+        ConsumeToken();
+        importType = ImportNode::ImportType::Chtl;
+    } else if (Check(TokenType::AT_CJMOD)) {
+        ConsumeToken();
+        importType = ImportNode::ImportType::CJmod;
+    } else if (Check(TokenType::AT_CONFIG)) {
+        ConsumeToken();
+        importType = ImportNode::ImportType::Config;
+    } else if (Check(TokenType::AMPERSAND) && PeekToken().type == TokenType::IDENTIFIER) {
+        // 自定义Origin类型，如@Vue
+        ConsumeToken(); // 消费 @
+        if (!Check(TokenType::IDENTIFIER)) {
+            ReportError("期望自定义类型名称");
+            return nullptr;
+        }
+        customTypeName = CurrentToken().value;
+        ConsumeToken();
+        importType = ImportNode::ImportType::OriginCustom;
+        importNode->SetCustomTypeName(customTypeName);
+    } else {
+        // 批量导入
+        if (isCustom) {
+            // 检查是否指定了具体类型
+            if (Check(TokenType::FROM)) {
+                importType = ImportNode::ImportType::AllCustom;
+            } else {
+                ReportError("期望@Type或from关键字");
+                return nullptr;
+            }
+        } else if (isTemplate) {
+            if (Check(TokenType::FROM)) {
+                importType = ImportNode::ImportType::AllTemplate;
+            } else {
+                ReportError("期望@Type或from关键字");
+                return nullptr;
+            }
+        } else if (isOrigin) {
+            if (Check(TokenType::FROM)) {
+                importType = ImportNode::ImportType::AllOrigin;
+            } else {
+                ReportError("期望@Type或from关键字");
+                return nullptr;
+            }
+        } else if (isConfiguration) {
+            if (Check(TokenType::FROM)) {
+                importType = ImportNode::ImportType::AllConfiguration;
+            } else {
+                ReportError("期望@Type或from关键字");
+                return nullptr;
+            }
+        } else {
+            ReportError("期望导入类型");
+            return nullptr;
+        }
+    }
+    
+    importNode->SetImportType(importType);
+    
+    // 解析可选的项目名称
+    if (!Check(TokenType::FROM) && Check(TokenType::IDENTIFIER)) {
+        itemName = CurrentToken().value;
+        ConsumeToken();
+        importNode->SetItemName(itemName);
+    }
+    
+    // 解析from子句
+    Expect(TokenType::FROM, "期望 'from'");
+    
+    // 解析路径（可以是字符串或标识符）
+    std::string fromPath;
+    if (Check(TokenType::STRING_LITERAL)) {
+        fromPath = CurrentToken().value;
+        ConsumeToken();
+    } else if (Check(TokenType::IDENTIFIER)) {
+        // 支持点号分隔的路径
+        fromPath = CurrentToken().value;
+        ConsumeToken();
+        
+        while (Check(TokenType::DOT)) {
+            fromPath += ".";
+            ConsumeToken();
+            if (!Check(TokenType::IDENTIFIER)) {
+                ReportError("期望路径段");
+                return nullptr;
+            }
+            fromPath += CurrentToken().value;
+            ConsumeToken();
+        }
+    } else {
+        ReportError("期望导入路径");
+        return nullptr;
+    }
+    
+    importNode->SetFromPath(fromPath);
+    
+    // 解析可选的as子句
+    if (Check(TokenType::AS)) {
+        ConsumeToken();
+        if (!Check(TokenType::IDENTIFIER)) {
+            ReportError("期望标识符");
+            return nullptr;
+        }
+        std::string asName = CurrentToken().value;
+        ConsumeToken();
+        importNode->SetAsName(asName);
+    }
+    
+    Expect(TokenType::SEMICOLON, "期望 ';'");
+    
+    return importNode;
 }
 
 std::shared_ptr<ASTNode> Parser::ParseNamespace() {

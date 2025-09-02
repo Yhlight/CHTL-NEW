@@ -100,12 +100,7 @@ public:
     std::string ToString() const override { return "OriginNode"; }
 };
 
-class ImportNode : public ASTNode {
-public:
-    ImportNode() : ASTNode(ASTNodeType::Import) {}
-    void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "ImportNode"; }
-};
+
 
 class NamespaceNode : public ASTNode {
 public:
@@ -234,6 +229,122 @@ public:
         // UseNode不需要特殊的访问逻辑
     }
     std::string ToString() const override { return "UseNode(" + useType + ")"; }
+};
+
+class ImportNode : public ASTNode {
+public:
+    enum class ImportType {
+        Html,        // [Import] @Html
+        Style,       // [Import] @Style  
+        JavaScript,  // [Import] @JavaScript
+        Chtl,        // [Import] @Chtl
+        CJmod,       // [Import] @CJmod
+        Config,      // [Import] @Config
+        
+        // 自定义类型
+        CustomElement,     // [Import] [Custom] @Element
+        CustomStyle,       // [Import] [Custom] @Style
+        CustomVar,         // [Import] [Custom] @Var
+        
+        // 模板类型
+        TemplateElement,   // [Import] [Template] @Element
+        TemplateStyle,     // [Import] [Template] @Style
+        TemplateVar,       // [Import] [Template] @Var
+        
+        // 原始嵌入类型
+        OriginHtml,        // [Import] [Origin] @Html
+        OriginStyle,       // [Import] [Origin] @Style
+        OriginJavaScript,  // [Import] [Origin] @JavaScript
+        OriginCustom,      // [Import] [Origin] @CustomType
+        
+        // 批量导入
+        AllTemplate,       // [Import] [Template]
+        AllCustom,         // [Import] [Custom]
+        AllOrigin,         // [Import] [Origin]
+        AllConfiguration,  // [Import] [Configuration]
+        
+        // 特定类型的批量导入
+        AllCustomElement,     // [Import] [Custom] @Element
+        AllCustomStyle,       // [Import] [Custom] @Style
+        AllCustomVar,         // [Import] [Custom] @Var
+        AllTemplateElement,   // [Import] [Template] @Element
+        AllTemplateStyle,     // [Import] [Template] @Style
+        AllTemplateVar        // [Import] [Template] @Var
+    };
+    
+private:
+    ImportType importType;
+    std::string itemName;      // 具体要导入的项目名称（可选）
+    std::string fromPath;      // from后的路径
+    std::string asName;        // as后的重命名（可选）
+    std::string customTypeName; // 对于自定义Origin类型，如@Vue
+    
+public:
+    ImportNode() : ASTNode(ASTNodeType::Import) {}
+    
+    void SetImportType(ImportType type) { importType = type; }
+    ImportType GetImportType() const { return importType; }
+    
+    void SetItemName(const std::string& name) { itemName = name; }
+    const std::string& GetItemName() const { return itemName; }
+    
+    void SetFromPath(const std::string& path) { fromPath = path; }
+    const std::string& GetFromPath() const { return fromPath; }
+    
+    void SetAsName(const std::string& name) { asName = name; }
+    const std::string& GetAsName() const { return asName; }
+    
+    void SetCustomTypeName(const std::string& name) { customTypeName = name; }
+    const std::string& GetCustomTypeName() const { return customTypeName; }
+    
+    void Accept(ASTVisitor* visitor) override;
+    
+    std::string ToString() const override {
+        std::string result = "ImportNode(";
+        
+        // 添加导入类型
+        switch (importType) {
+            case ImportType::Html: result += "@Html"; break;
+            case ImportType::Style: result += "@Style"; break;
+            case ImportType::JavaScript: result += "@JavaScript"; break;
+            case ImportType::Chtl: result += "@Chtl"; break;
+            case ImportType::CJmod: result += "@CJmod"; break;
+            case ImportType::Config: result += "@Config"; break;
+            case ImportType::CustomElement: result += "[Custom] @Element"; break;
+            case ImportType::CustomStyle: result += "[Custom] @Style"; break;
+            case ImportType::CustomVar: result += "[Custom] @Var"; break;
+            case ImportType::TemplateElement: result += "[Template] @Element"; break;
+            case ImportType::TemplateStyle: result += "[Template] @Style"; break;
+            case ImportType::TemplateVar: result += "[Template] @Var"; break;
+            case ImportType::OriginHtml: result += "[Origin] @Html"; break;
+            case ImportType::OriginStyle: result += "[Origin] @Style"; break;
+            case ImportType::OriginJavaScript: result += "[Origin] @JavaScript"; break;
+            case ImportType::OriginCustom: result += "[Origin] @" + customTypeName; break;
+            case ImportType::AllTemplate: result += "[Template]"; break;
+            case ImportType::AllCustom: result += "[Custom]"; break;
+            case ImportType::AllOrigin: result += "[Origin]"; break;
+            case ImportType::AllConfiguration: result += "[Configuration]"; break;
+            case ImportType::AllCustomElement: result += "[Custom] @Element (all)"; break;
+            case ImportType::AllCustomStyle: result += "[Custom] @Style (all)"; break;
+            case ImportType::AllCustomVar: result += "[Custom] @Var (all)"; break;
+            case ImportType::AllTemplateElement: result += "[Template] @Element (all)"; break;
+            case ImportType::AllTemplateStyle: result += "[Template] @Style (all)"; break;
+            case ImportType::AllTemplateVar: result += "[Template] @Var (all)"; break;
+        }
+        
+        if (!itemName.empty()) {
+            result += " " + itemName;
+        }
+        
+        result += " from " + fromPath;
+        
+        if (!asName.empty()) {
+            result += " as " + asName;
+        }
+        
+        result += ")";
+        return result;
+    }
 };
 
 } // namespace CHTL

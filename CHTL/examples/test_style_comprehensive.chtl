@@ -1,0 +1,42 @@
+use html5;
+
+html
+{
+    body
+    {
+        div
+        {
+            style
+            {
+                // 十六进制颜色
+                color: #333;
+                background-color: #f0f0f0;
+                border-color: #ccc;
+                
+                // 带单位的值
+                font-size: 16px;
+                width: 100%;
+                margin: 10px;
+                padding: 20px;
+                line-height: 1.5em;
+                
+                // 颜色名称
+                border-style: solid;
+            }
+            
+            text { "综合样式测试" }
+        }
+        
+        p
+        {
+            style
+            {
+                color: red;
+                font-size: 14px;
+                background: #fff;
+            }
+            
+            text { "测试各种样式值格式" }
+        }
+    }
+}

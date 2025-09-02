@@ -1,0 +1,35 @@
+use html5;
+
+// 导入整个CHTL文件
+[Import] @Chtl from lib/styles.chtl;
+
+// 导入特定的模板
+[Import] [Template] @Style HeaderText from lib/styles.chtl;
+[Import] [Template] @Var Colors from lib/styles.chtl;
+
+html
+{
+    body
+    {
+        h1
+        {
+            style
+            {
+                @Style HeaderText;
+                color: Colors(primary);
+            }
+            text { "导入测试" }
+        }
+        
+        p
+        {
+            style
+            {
+                @Style BaseText;
+            }
+            text { "这是使用导入样式的段落" }
+        }
+        
+        @Element Card;
+    }
+}
