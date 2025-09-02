@@ -1,0 +1,18 @@
+[Info]
+Name = Yuigahama
+Version = 1.0.0
+Description = 由比滨结衣模块 - 开朗活泼的社交达人
+Author = CHTL Team
+License = MIT
+Dependencies = 
+Type = CMOD
+
+[Export]
+; 由比滨结衣CMOD模块导出
+MusicPlayer = Template:src/MusicPlayer.chtl:Yuigahama::MusicPlayer:true
+Accordion = Template:src/Accordion.chtl:Yuigahama::Accordion:true
+FourLeafAlbum = Template:src/FourLeafAlbum.chtl:Yuigahama::FourLeafAlbum:true
+Memo = Template:src/Memo.chtl:Yuigahama::Memo:true
+WarmNote = Template:src/WarmNote.chtl:Yuigahama::WarmNote:true
+SakuraRain = Custom:src/SakuraRain.chtl:Yuigahama::SakuraRain:true
+MouseEffect = Custom:src/MouseEffect.chtl:Yuigahama::MouseEffect:true

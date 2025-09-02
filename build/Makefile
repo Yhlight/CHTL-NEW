@@ -214,6 +214,19 @@ CHTLUtilSystem/fast:
 .PHONY : CHTLUtilSystem/fast
 
 #=============================================================================
+# Target rules for targets named CHTLModuleSystem
+
+# Build rule for target.
+CHTLModuleSystem: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLModuleSystem
+.PHONY : CHTLModuleSystem
+
+# fast build rule for target.
+CHTLModuleSystem/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLModuleSystem.dir/build.make CMakeFiles/CHTLModuleSystem.dir/build
+.PHONY : CHTLModuleSystem/fast
+
+#=============================================================================
 # Target rules for targets named CHTLJSCore
 
 # Build rule for target.
@@ -446,6 +459,32 @@ chtl_structure_fix_report: cmake_check_build_system
 chtl_structure_fix_report/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_structure_fix_report.dir/build.make CMakeFiles/chtl_structure_fix_report.dir/build
 .PHONY : chtl_structure_fix_report/fast
+
+#=============================================================================
+# Target rules for targets named chtl_official_module_test
+
+# Build rule for target.
+chtl_official_module_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_official_module_test
+.PHONY : chtl_official_module_test
+
+# fast build rule for target.
+chtl_official_module_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_official_module_test.dir/build.make CMakeFiles/chtl_official_module_test.dir/build
+.PHONY : chtl_official_module_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_document_compliance
+
+# Build rule for target.
+chtl_document_compliance: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_document_compliance
+.PHONY : chtl_document_compliance
+
+# fast build rule for target.
+chtl_document_compliance/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_document_compliance.dir/build.make CMakeFiles/chtl_document_compliance.dir/build
+.PHONY : chtl_document_compliance/fast
 
 #=============================================================================
 # Target rules for targets named chtl_lexer_test
@@ -1883,6 +1922,30 @@ src/JS/generated/JavaScriptParser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.s
 .PHONY : src/JS/generated/JavaScriptParser.cpp.s
 
+src/Module/ModuleLoader.o: src/Module/ModuleLoader.cpp.o
+.PHONY : src/Module/ModuleLoader.o
+
+# target to build an object file
+src/Module/ModuleLoader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLModuleSystem.dir/build.make CMakeFiles/CHTLModuleSystem.dir/src/Module/ModuleLoader.cpp.o
+.PHONY : src/Module/ModuleLoader.cpp.o
+
+src/Module/ModuleLoader.i: src/Module/ModuleLoader.cpp.i
+.PHONY : src/Module/ModuleLoader.i
+
+# target to preprocess a source file
+src/Module/ModuleLoader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLModuleSystem.dir/build.make CMakeFiles/CHTLModuleSystem.dir/src/Module/ModuleLoader.cpp.i
+.PHONY : src/Module/ModuleLoader.cpp.i
+
+src/Module/ModuleLoader.s: src/Module/ModuleLoader.cpp.s
+.PHONY : src/Module/ModuleLoader.s
+
+# target to generate assembly for a file
+src/Module/ModuleLoader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLModuleSystem.dir/build.make CMakeFiles/CHTLModuleSystem.dir/src/Module/ModuleLoader.cpp.s
+.PHONY : src/Module/ModuleLoader.cpp.s
+
 src/Scanner/CHTLUnifiedScanner.o: src/Scanner/CHTLUnifiedScanner.cpp.o
 .PHONY : src/Scanner/CHTLUnifiedScanner.o
 
@@ -2195,6 +2258,30 @@ src/Test/CustomSystemTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_custom_test.dir/build.make CMakeFiles/chtl_custom_test.dir/src/Test/CustomSystemTest.cpp.s
 .PHONY : src/Test/CustomSystemTest.cpp.s
 
+src/Test/DocumentComplianceReport.o: src/Test/DocumentComplianceReport.cpp.o
+.PHONY : src/Test/DocumentComplianceReport.o
+
+# target to build an object file
+src/Test/DocumentComplianceReport.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_document_compliance.dir/build.make CMakeFiles/chtl_document_compliance.dir/src/Test/DocumentComplianceReport.cpp.o
+.PHONY : src/Test/DocumentComplianceReport.cpp.o
+
+src/Test/DocumentComplianceReport.i: src/Test/DocumentComplianceReport.cpp.i
+.PHONY : src/Test/DocumentComplianceReport.i
+
+# target to preprocess a source file
+src/Test/DocumentComplianceReport.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_document_compliance.dir/build.make CMakeFiles/chtl_document_compliance.dir/src/Test/DocumentComplianceReport.cpp.i
+.PHONY : src/Test/DocumentComplianceReport.cpp.i
+
+src/Test/DocumentComplianceReport.s: src/Test/DocumentComplianceReport.cpp.s
+.PHONY : src/Test/DocumentComplianceReport.s
+
+# target to generate assembly for a file
+src/Test/DocumentComplianceReport.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_document_compliance.dir/build.make CMakeFiles/chtl_document_compliance.dir/src/Test/DocumentComplianceReport.cpp.s
+.PHONY : src/Test/DocumentComplianceReport.cpp.s
+
 src/Test/Final100PercentReport.o: src/Test/Final100PercentReport.cpp.o
 .PHONY : src/Test/Final100PercentReport.o
 
@@ -2362,6 +2449,30 @@ src/Test/LexerTest.s: src/Test/LexerTest.cpp.s
 src/Test/LexerTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_lexer_test.dir/build.make CMakeFiles/chtl_lexer_test.dir/src/Test/LexerTest.cpp.s
 .PHONY : src/Test/LexerTest.cpp.s
+
+src/Test/OfficialModuleTest.o: src/Test/OfficialModuleTest.cpp.o
+.PHONY : src/Test/OfficialModuleTest.o
+
+# target to build an object file
+src/Test/OfficialModuleTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_official_module_test.dir/build.make CMakeFiles/chtl_official_module_test.dir/src/Test/OfficialModuleTest.cpp.o
+.PHONY : src/Test/OfficialModuleTest.cpp.o
+
+src/Test/OfficialModuleTest.i: src/Test/OfficialModuleTest.cpp.i
+.PHONY : src/Test/OfficialModuleTest.i
+
+# target to preprocess a source file
+src/Test/OfficialModuleTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_official_module_test.dir/build.make CMakeFiles/chtl_official_module_test.dir/src/Test/OfficialModuleTest.cpp.i
+.PHONY : src/Test/OfficialModuleTest.cpp.i
+
+src/Test/OfficialModuleTest.s: src/Test/OfficialModuleTest.cpp.s
+.PHONY : src/Test/OfficialModuleTest.s
+
+# target to generate assembly for a file
+src/Test/OfficialModuleTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_official_module_test.dir/build.make CMakeFiles/chtl_official_module_test.dir/src/Test/OfficialModuleTest.cpp.s
+.PHONY : src/Test/OfficialModuleTest.cpp.s
 
 src/Test/OriginConfigTest.o: src/Test/OriginConfigTest.cpp.o
 .PHONY : src/Test/OriginConfigTest.o
@@ -2627,6 +2738,7 @@ help:
 	@echo "... CHTLImport"
 	@echo "... CHTLJSCompiler"
 	@echo "... CHTLJSCore"
+	@echo "... CHTLModuleSystem"
 	@echo "... CHTLScanner"
 	@echo "... CHTLUtilSystem"
 	@echo "... CJMOD"
@@ -2642,12 +2754,14 @@ help:
 	@echo "... chtl_complete_flow_test"
 	@echo "... chtl_constraint_test"
 	@echo "... chtl_custom_test"
+	@echo "... chtl_document_compliance"
 	@echo "... chtl_final_100_percent"
 	@echo "... chtl_final_achievement"
 	@echo "... chtl_final_project_summary"
 	@echo "... chtl_final_system_demo"
 	@echo "... chtl_import_test"
 	@echo "... chtl_lexer_test"
+	@echo "... chtl_official_module_test"
 	@echo "... chtl_origin_config_test"
 	@echo "... chtl_parser_test"
 	@echo "... chtl_performance_benchmark"
@@ -2804,6 +2918,9 @@ help:
 	@echo "... src/JS/generated/JavaScriptParser.o"
 	@echo "... src/JS/generated/JavaScriptParser.i"
 	@echo "... src/JS/generated/JavaScriptParser.s"
+	@echo "... src/Module/ModuleLoader.o"
+	@echo "... src/Module/ModuleLoader.i"
+	@echo "... src/Module/ModuleLoader.s"
 	@echo "... src/Scanner/CHTLUnifiedScanner.o"
 	@echo "... src/Scanner/CHTLUnifiedScanner.i"
 	@echo "... src/Scanner/CHTLUnifiedScanner.s"
@@ -2843,6 +2960,9 @@ help:
 	@echo "... src/Test/CustomSystemTest.o"
 	@echo "... src/Test/CustomSystemTest.i"
 	@echo "... src/Test/CustomSystemTest.s"
+	@echo "... src/Test/DocumentComplianceReport.o"
+	@echo "... src/Test/DocumentComplianceReport.i"
+	@echo "... src/Test/DocumentComplianceReport.s"
 	@echo "... src/Test/Final100PercentReport.o"
 	@echo "... src/Test/Final100PercentReport.i"
 	@echo "... src/Test/Final100PercentReport.s"
@@ -2864,6 +2984,9 @@ help:
 	@echo "... src/Test/LexerTest.o"
 	@echo "... src/Test/LexerTest.i"
 	@echo "... src/Test/LexerTest.s"
+	@echo "... src/Test/OfficialModuleTest.o"
+	@echo "... src/Test/OfficialModuleTest.i"
+	@echo "... src/Test/OfficialModuleTest.s"
 	@echo "... src/Test/OriginConfigTest.o"
 	@echo "... src/Test/OriginConfigTest.i"
 	@echo "... src/Test/OriginConfigTest.s"

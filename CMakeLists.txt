@@ -131,11 +131,17 @@ set(UTIL_SOURCES
     src/Util/FileSystem/FileSystem.cpp
 )
 
+# 官方模块加载器源文件 (新增)
+set(MODULE_SOURCES
+    src/Module/ModuleLoader.cpp
+)
+
 # 创建CHTL核心库
 add_library(CHTLCore STATIC ${CHTL_CORE_SOURCES})
 add_library(CHTLCMODSystem STATIC ${CMOD_SOURCES})
 add_library(CHTLErrorSystem STATIC ${ERROR_SOURCES})
 add_library(CHTLUtilSystem STATIC ${UTIL_SOURCES})
+add_library(CHTLModuleSystem STATIC ${MODULE_SOURCES})
 target_include_directories(CHTLCore PUBLIC src/CHTL)
 
 # 创建CHTL JS核心库（完全独立）
@@ -218,6 +224,13 @@ target_link_libraries(chtl_final_project_summary CHTLDispatcher CJMOD CHTLImport
 
 # 项目结构修正报告可执行文件
 add_executable(chtl_structure_fix_report src/Test/ProjectStructureFixReport.cpp)
+
+# 官方模块测试可执行文件
+add_executable(chtl_official_module_test src/Test/OfficialModuleTest.cpp)
+target_link_libraries(chtl_official_module_test CHTLModuleSystem CHTLCMODSystem CHTLUtilSystem CHTLErrorSystem)
+
+# 文档遵循验证报告可执行文件
+add_executable(chtl_document_compliance src/Test/DocumentComplianceReport.cpp)
 
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)

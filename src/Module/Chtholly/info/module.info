@@ -1,0 +1,26 @@
+[Info]
+Name = Chtholly
+Version = 1.0.0
+Description = 珂朵莉主题模块 - 世界上最幸福的女孩
+Author = CHTL Team
+License = MIT
+Dependencies = 
+Type = CMOD+CJMOD
+
+[Export]
+; CMOD部分导出
+Accordion = Template:src/Accordion.chtl:Chtholly::Accordion:true
+FourLeafAlbum = Template:src/FourLeafAlbum.chtl:Chtholly::FourLeafAlbum:true
+Memo = Template:src/Memo.chtl:Chtholly::Memo:true
+WarmNote = Template:src/WarmNote.chtl:Chtholly::WarmNote:true
+SakuraRain = Custom:src/SakuraRain.chtl:Chtholly::SakuraRain:true
+MouseEffect = Custom:src/MouseEffect.chtl:Chtholly::MouseEffect:true
+MouseTrail = Custom:src/MouseTrail.chtl:Chtholly::MouseTrail:true
+ParallaxBackground = Custom:src/ParallaxBackground.chtl:Chtholly::ParallaxBackground:true
+ContextMenu = Custom:src/ContextMenu.chtl:Chtholly::ContextMenu:true
+ProgressBar = Custom:src/ProgressBar.chtl:Chtholly::ProgressBar:true
+
+; CJMOD部分导出 (通过CHTL JS扩展实现)
+printMylove = CJMODFunction:cjmod/printMylove.cjmod:Chtholly::printMylove:true
+iNeverAway = CJMODFunction:cjmod/iNeverAway.cjmod:Chtholly::iNeverAway:true
+utilThen = CJMODFunction:cjmod/utilThen.cjmod:Chtholly::utilThen:true

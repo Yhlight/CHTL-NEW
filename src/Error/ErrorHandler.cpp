@@ -1,6 +1,8 @@
 #include "ErrorHandler.h"
 #include <algorithm>
 #include <chrono>
+#include <sstream>
+#include <iostream>
 
 namespace CHTL {
 

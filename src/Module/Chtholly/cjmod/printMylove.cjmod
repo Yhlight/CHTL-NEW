@@ -1,0 +1,97 @@
+;; 珂朵莉printMylove CJMOD扩展
+;; 将图片转换为字符像素块或ASCII形式并输出到控制台
+
+[CJMODInfo]
+Name = printMylove
+Version = 1.0.0
+Description = 珂朵莉爱的表达 - 图片转字符像素块
+Author = Chtholly
+Type = CJMODFunction
+
+[CJMODSyntax]
+Pattern = printMylove { url: $, mode: $?, width: $?, height: $?, scale: $? }
+ReturnType = string
+
+[CJMODImplementation]
+```cpp
+#include "CJMODApi.h"
+
+class PrintMyloveExtension : public CJMODFunction {
+public:
+    std::string ProcessSyntax(const std::vector<AtomArg>& args) override {
+        std::string url = args[0].getValue();
+        std::string mode = args[1].getValue("ASCII");  // 默认ASCII模式
+        std::string width = args[2].getValue("80");
+        std::string height = args[3].getValue("40");
+        std::string scale = args[4].getValue("1.0");
+        
+        std::ostringstream js;
+        js << "(function() {\n";
+        js << "    console.log('💖 珂朵莉的爱的表达');\n";
+        js << "    console.log('🌸 世界上最幸福的女孩');\n";
+        js << "    \n";
+        js << "    const config = {\n";
+        js << "        url: '" << url << "',\n";
+        js << "        mode: '" << mode << "',\n";
+        js << "        width: " << width << ",\n";
+        js << "        height: " << height << ",\n";
+        js << "        scale: " << scale << "\n";
+        js << "    };\n";
+        js << "    \n";
+        js << "    const canvas = document.createElement('canvas');\n";
+        js << "    const ctx = canvas.getContext('2d');\n";
+        js << "    const img = new Image();\n";
+        js << "    \n";
+        js << "    img.onload = function() {\n";
+        js << "        canvas.width = config.width;\n";
+        js << "        canvas.height = config.height;\n";
+        js << "        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);\n";
+        js << "        \n";
+        js << "        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);\n";
+        js << "        const pixels = imageData.data;\n";
+        js << "        let result = '';\n";
+        js << "        \n";
+        js << "        if (config.mode === 'ASCII') {\n";
+        js << "            const chars = ' .:-=+*#%@';\n";
+        js << "            for (let y = 0; y < canvas.height; y++) {\n";
+        js << "                for (let x = 0; x < canvas.width; x++) {\n";
+        js << "                    const offset = (y * canvas.width + x) * 4;\n";
+        js << "                    const r = pixels[offset];\n";
+        js << "                    const g = pixels[offset + 1];\n";
+        js << "                    const b = pixels[offset + 2];\n";
+        js << "                    const brightness = (r + g + b) / 3;\n";
+        js << "                    const charIndex = Math.floor((brightness / 255) * (chars.length - 1));\n";
+        js << "                    result += chars[charIndex];\n";
+        js << "                }\n";
+        js << "                result += '\\n';\n";
+        js << "            }\n";
+        js << "        } else {\n";
+        js << "            // Pixel模式\n";
+        js << "            for (let y = 0; y < canvas.height; y++) {\n";
+        js << "                for (let x = 0; x < canvas.width; x++) {\n";
+        js << "                    const offset = (y * canvas.width + x) * 4;\n";
+        js << "                    const r = pixels[offset];\n";
+        js << "                    const g = pixels[offset + 1];\n";
+        js << "                    const b = pixels[offset + 2];\n";
+        js << "                    const brightness = (r + g + b) / 3;\n";
+        js << "                    result += brightness > 128 ? '██' : '  ';\n";
+        js << "                }\n";
+        js << "                result += '\\n';\n";
+        js << "            }\n";
+        js << "        }\n";
+        js << "        \n";
+        js << "        console.log('🎨 珂朵莉的' + config.mode + '艺术:');\n";
+        js << "        console.log(result);\n";
+        js << "    };\n";
+        js << "    \n";
+        js << "    img.src = config.url;\n";
+        js << "    return '💖 Chtholly Love Forever 💖';\n";
+        js << "})()";
+        
+        return js.str();
+    }
+};
+
+REGISTER_CJMOD_FUNCTION(printMylove, PrintMyloveExtension);
+```
+[/CJMODImplementation]

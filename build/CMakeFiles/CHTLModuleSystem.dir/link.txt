@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libCHTLModuleSystem.a CMakeFiles/CHTLModuleSystem.dir/src/Module/ModuleLoader.cpp.o
+/usr/bin/ranlib lib/libCHTLModuleSystem.a
