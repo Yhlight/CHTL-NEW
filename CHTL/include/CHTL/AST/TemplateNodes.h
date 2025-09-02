@@ -119,6 +119,62 @@ public:
     }
 };
 
+class DeleteNode : public ASTNode {
+public:
+    enum class DeleteTarget {
+        Element,        // 删除元素，如 delete span; delete div[1];
+        StyleProperty,  // 删除样式属性，如 delete color, font-size;
+        Template        // 删除模板引用，如 delete @Element Line; delete @Style Theme;
+    };
+
+private:
+    DeleteTarget targetType;
+    std::vector<std::string> targets;  // 要删除的目标列表
+    
+public:
+    DeleteNode(DeleteTarget type, int line = 0, int column = 0) 
+        : ASTNode(ASTNodeType::Delete, line, column), targetType(type) {}
+    
+    void AddTarget(const std::string& target) { targets.push_back(target); }
+    const std::vector<std::string>& GetTargets() const { return targets; }
+    DeleteTarget GetTargetType() const { return targetType; }
+    
+    void Accept(ASTVisitor* visitor) override;
+    std::string ToString() const override { return "DeleteNode"; }
+};
+
+class InsertNode : public ASTNode {
+public:
+    enum class InsertPosition {
+        After,      // after selector
+        Before,     // before selector  
+        Replace,    // replace selector
+        AtTop,      // at top
+        AtBottom    // at bottom
+    };
+
+private:
+    InsertPosition position;
+    std::string selector;  // 选择器，如 div[0]
+    std::vector<std::shared_ptr<ASTNode>> content;  // 要插入的内容
+    
+public:
+    InsertNode(InsertPosition pos, int line = 0, int column = 0) 
+        : ASTNode(ASTNodeType::Insert, line, column), position(pos) {}
+    
+    void SetSelector(const std::string& sel) { selector = sel; }
+    const std::string& GetSelector() const { return selector; }
+    
+    void SetPosition(InsertPosition pos) { position = pos; }
+    InsertPosition GetPosition() const { return position; }
+    
+    void AddContent(std::shared_ptr<ASTNode> node) { content.push_back(node); }
+    const std::vector<std::shared_ptr<ASTNode>>& GetContent() const { return content; }
+    
+    void Accept(ASTVisitor* visitor) override;
+    std::string ToString() const override { return "InsertNode"; }
+};
+
 class ExceptNode : public ASTNode {
 public:
     enum class ConstraintType {
@@ -273,20 +329,6 @@ public:
     SpecializationNode() : ASTNode(ASTNodeType::Specialization) {}
     void Accept(ASTVisitor* visitor) override;
     std::string ToString() const override { return "SpecializationNode"; }
-};
-
-class DeleteNode : public ASTNode {
-public:
-    DeleteNode() : ASTNode(ASTNodeType::Delete) {}
-    void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "DeleteNode"; }
-};
-
-class InsertNode : public ASTNode {
-public:
-    InsertNode() : ASTNode(ASTNodeType::Insert) {}
-    void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "InsertNode"; }
 };
 
 class CommentNode : public ASTNode {

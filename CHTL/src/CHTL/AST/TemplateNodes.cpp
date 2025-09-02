@@ -37,6 +37,14 @@ void NamespaceNode::Accept(ASTVisitor* visitor) {
     visitor->VisitNamespace(this);
 }
 
+void DeleteNode::Accept(ASTVisitor* visitor) {
+    // TODO: 实现DeleteNode的visitor模式
+}
+
+void InsertNode::Accept(ASTVisitor* visitor) {
+    // TODO: 实现InsertNode的visitor模式
+}
+
 void ExceptNode::Accept(ASTVisitor* visitor) {
     // visitor->VisitExcept(this);
     // TODO: 当ASTVisitor添加VisitExcept方法时启用
@@ -75,13 +83,7 @@ void SpecializationNode::Accept(ASTVisitor* visitor) {
     visitor->VisitSpecialization(this);
 }
 
-void DeleteNode::Accept(ASTVisitor* visitor) {
-    visitor->VisitDelete(this);
-}
 
-void InsertNode::Accept(ASTVisitor* visitor) {
-    visitor->VisitInsert(this);
-}
 
 void CommentNode::Accept(ASTVisitor* visitor) {
     visitor->VisitComment(this);

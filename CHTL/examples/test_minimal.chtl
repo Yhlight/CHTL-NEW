@@ -1,0 +1,7 @@
+use html5;
+
+html {
+    body {
+        text { "Hello" }
+    }
+}

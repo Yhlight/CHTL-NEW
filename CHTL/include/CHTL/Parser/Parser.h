@@ -96,6 +96,8 @@ private:
     std::shared_ptr<ASTNode> ParseLocalStyle();
     std::shared_ptr<ASTNode> ParseLocalScript();
     std::shared_ptr<ASTNode> ParseExcept();
+    std::shared_ptr<ASTNode> ParseDelete();
+    std::shared_ptr<ASTNode> ParseInsert();
     std::shared_ptr<ASTNode> ParseStyleRule();
     std::shared_ptr<ASTNode> ParseStyleProperty();
     std::shared_ptr<ASTNode> ParseExpression();

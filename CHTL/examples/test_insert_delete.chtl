@@ -1,0 +1,56 @@
+use html5;
+
+// 定义自定义元素
+[Custom] @Element Box {
+    div {
+        class: "box-container";
+        div {
+            class: "box-header";
+            text { "Header" }
+        }
+        div {
+            class: "box-content";
+            text { "Content" }
+        }
+        span {
+            class: "box-note";
+            text { "Note" }
+        }
+    }
+}
+
+// 定义自定义样式
+[Custom] @Style BoxStyle {
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 5px;
+    color: black;
+}
+
+html {
+    body {
+        // 使用自定义元素并特例化
+        @Element Box {
+            // 删除span元素
+            delete span;
+            // 在第一个div后插入新内容
+            insert after div[0] {
+                div {
+                    class: "box-subtitle";
+                    text { "Subtitle" }
+                }
+            }
+        }
+        
+        // 使用自定义样式并特例化
+        div {
+            style {
+                @Style BoxStyle {
+                    delete border, margin;
+                }
+                background: lightblue;
+            }
+        }
+    }
+}

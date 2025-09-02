@@ -49,6 +49,9 @@ bool Parser::Match(TokenType type) {
 
 void Parser::Expect(TokenType type, const std::string& message) {
     if (!Check(type)) {
+        LOG_DEBUG("Expect失败: 期望类型=" + std::to_string(static_cast<int>(type)) + 
+                  ", 实际类型=" + std::to_string(static_cast<int>(CurrentToken().type)) + 
+                  ", 实际值='" + CurrentToken().value + "'");
         ReportError(message);
     }
     ConsumeToken();
@@ -747,7 +750,12 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
                 }
             }
             
-            Expect(TokenType::SEMICOLON, "期望 ';'");
+            // 检查是否有特例化块
+            bool hasSpecialization = Check(TokenType::LEFT_BRACE);
+            
+            if (!hasSpecialization) {
+                Expect(TokenType::SEMICOLON, "期望 ';' 或 '{'");
+            }
             
             // 构建完整的模板名称
             std::string fullTemplateName = templateName;
@@ -777,6 +785,36 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
                     // 深拷贝子元素
                     element->AddChild(child);
                 }
+            }
+            
+            // 解析特例化块（如果有）
+            if (hasSpecialization) {
+                ConsumeToken(); // 消费 {
+                
+                // 特例化操作列表
+                std::vector<std::shared_ptr<ASTNode>> specializations;
+                
+                while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
+                    if (Check(TokenType::DELETE)) {
+                        auto deleteNode = ParseDelete();
+                        if (deleteNode) {
+                            specializations.push_back(deleteNode);
+                        }
+                    } else if (Check(TokenType::INSERT)) {
+                        auto insertNode = ParseInsert();
+                        if (insertNode) {
+                            specializations.push_back(insertNode);
+                        }
+                    } else {
+                        ReportError("期望 'delete' 或 'insert'");
+                        ConsumeToken(); // 跳过无效token
+                    }
+                }
+                
+                Expect(TokenType::RIGHT_BRACE, "期望 '}'");
+                
+                // TODO: 应用特例化操作到元素
+                // 这需要在代码生成阶段或专门的特例化处理阶段实现
             }
         }
         // 子元素
@@ -914,7 +952,12 @@ std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {
                 }
             }
             
-            Expect(TokenType::SEMICOLON, "期望 ';'");
+            // 检查是否有特例化块
+            bool hasSpecialization = Check(TokenType::LEFT_BRACE);
+            
+            if (!hasSpecialization) {
+                Expect(TokenType::SEMICOLON, "期望 ';' 或 '{'");
+            }
             
             // 构建完整的模板名称
             std::string fullTemplateName = templateName;
@@ -951,6 +994,57 @@ std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {
                     }
                 } else {
                     ReportError("未找到样式模板: " + fullTemplateName);
+                }
+            }
+            
+            // 解析特例化块（如果有）- 仅适用于自定义样式
+            if (hasSpecialization && isCustom) {
+                ConsumeToken(); // 消费 {
+                
+                while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
+                    if (Check(TokenType::DELETE)) {
+                        // 解析删除样式属性
+                        ConsumeToken(); // 消费 delete
+                        
+                        // 收集要删除的属性名
+                        std::vector<std::string> propsToDelete;
+                        while (!Check(TokenType::SEMICOLON) && !Check(TokenType::EOF_TOKEN)) {
+                            if (Check(TokenType::IDENTIFIER)) {
+                                propsToDelete.push_back(CurrentToken().value);
+                                ConsumeToken();
+                                
+                                if (Check(TokenType::COMMA)) {
+                                    ConsumeToken();
+                                }
+                            } else {
+                                ReportError("期望属性名");
+                                ConsumeToken();
+                            }
+                        }
+                        
+                        Expect(TokenType::SEMICOLON, "期望 ';'");
+                        
+                        // TODO: 应用删除操作
+                        // 这需要在LocalStyleNode中实现RemoveProperty方法
+                    } else {
+                        ReportError("样式特例化中只支持 'delete'");
+                        ConsumeToken();
+                    }
+                }
+                
+                Expect(TokenType::RIGHT_BRACE, "期望 '}'");
+            } else if (hasSpecialization && !isCustom) {
+                ReportError("只有自定义样式支持特例化");
+                // 跳过特例化块
+                int braceLevel = 1;
+                ConsumeToken(); // 消费 {
+                while (braceLevel > 0 && !Check(TokenType::EOF_TOKEN)) {
+                    if (Check(TokenType::LEFT_BRACE)) {
+                        braceLevel++;
+                    } else if (Check(TokenType::RIGHT_BRACE)) {
+                        braceLevel--;
+                    }
+                    ConsumeToken();
                 }
             }
         }
@@ -1083,6 +1177,139 @@ std::shared_ptr<ASTNode> Parser::ParseExcept() {
     return exceptNode;
 }
 
+std::shared_ptr<ASTNode> Parser::ParseDelete() {
+    Expect(TokenType::DELETE, "期望 'delete'");
+    
+    auto deleteNode = std::make_shared<DeleteNode>(DeleteNode::DeleteTarget::Element);
+    
+    // 解析删除目标
+    while (!Check(TokenType::SEMICOLON) && !Check(TokenType::EOF_TOKEN)) {
+        if (Check(TokenType::AT_ELEMENT) || Check(TokenType::AT_STYLE) || Check(TokenType::AT_VAR)) {
+            // 删除模板引用，如 delete @Element Line;
+            deleteNode = std::make_shared<DeleteNode>(DeleteNode::DeleteTarget::Template);
+            
+            TokenType atType = CurrentToken().type;
+            ConsumeToken(); // 消费 @Element/@Style/@Var
+            
+            Expect(TokenType::IDENTIFIER, "期望标识符");
+            std::string templateName = CurrentToken().value;
+            ConsumeToken();
+            
+            // 构建完整的模板引用名称
+            if (atType == TokenType::AT_ELEMENT) {
+                deleteNode->AddTarget("@Element " + templateName);
+            } else if (atType == TokenType::AT_STYLE) {
+                deleteNode->AddTarget("@Style " + templateName);
+            } else if (atType == TokenType::AT_VAR) {
+                deleteNode->AddTarget("@Var " + templateName);
+            }
+        } else if (Check(TokenType::IDENTIFIER)) {
+            // 删除元素或属性
+            std::string target = CurrentToken().value;
+            ConsumeToken();
+            
+            // 检查是否有索引，如 div[1]
+            if (Check(TokenType::LEFT_BRACKET)) {
+                ConsumeToken(); // 消费 [
+                if (Check(TokenType::NUMBER)) {
+                    target += "[" + CurrentToken().value + "]";
+                    ConsumeToken();
+                    Expect(TokenType::RIGHT_BRACKET, "期望 ']'");
+                } else {
+                    ReportError("期望数字索引");
+                }
+            }
+            
+            deleteNode->AddTarget(target);
+        } else if (Check(TokenType::COMMA)) {
+            ConsumeToken(); // 消费逗号
+        } else {
+            ReportError("无效的删除目标");
+            ConsumeToken(); // 跳过无效token
+        }
+    }
+    
+    Expect(TokenType::SEMICOLON, "期望 ';'");
+    
+    return deleteNode;
+}
+
+std::shared_ptr<ASTNode> Parser::ParseInsert() {
+    Expect(TokenType::INSERT, "期望 'insert'");
+    
+    // 解析位置
+    InsertNode::InsertPosition position = InsertNode::InsertPosition::After;
+    
+    if (Check(TokenType::AFTER)) {
+        position = InsertNode::InsertPosition::After;
+        ConsumeToken();
+    } else if (Check(TokenType::BEFORE)) {
+        position = InsertNode::InsertPosition::Before;
+        ConsumeToken();
+    } else if (Check(TokenType::REPLACE)) {
+        position = InsertNode::InsertPosition::Replace;
+        ConsumeToken();
+    } else if (Check(TokenType::AT)) {
+        ConsumeToken(); // 消费 at
+        if (Check(TokenType::TOP)) {
+            position = InsertNode::InsertPosition::AtTop;
+            ConsumeToken();
+        } else if (Check(TokenType::BOTTOM)) {
+            position = InsertNode::InsertPosition::AtBottom;
+            ConsumeToken();
+        } else {
+            ReportError("期望 'top' 或 'bottom'");
+        }
+    }
+    
+    auto insertNode = std::make_shared<InsertNode>(position);
+    
+    // 解析选择器（如果有）
+    if (position != InsertNode::InsertPosition::AtTop && 
+        position != InsertNode::InsertPosition::AtBottom &&
+        Check(TokenType::IDENTIFIER)) {
+        
+        std::string selector = CurrentToken().value;
+        ConsumeToken();
+        
+        // 检查是否有索引，如 div[0]
+        if (Check(TokenType::LEFT_BRACKET)) {
+            ConsumeToken(); // 消费 [
+            if (Check(TokenType::NUMBER)) {
+                selector += "[" + CurrentToken().value + "]";
+                ConsumeToken();
+                Expect(TokenType::RIGHT_BRACKET, "期望 ']'");
+            } else {
+                ReportError("期望数字索引");
+            }
+        }
+        
+        insertNode->SetSelector(selector);
+    }
+    
+    // 解析要插入的内容
+    Expect(TokenType::LEFT_BRACE, "期望 '{'");
+    
+    while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
+        if (IsElementStart()) {
+            auto element = ParseElement();
+            if (element) {
+                insertNode->AddContent(element);
+            }
+        } else if (Check(TokenType::AT_ELEMENT)) {
+            // 元素模板引用
+            // TODO: 解析元素模板引用
+            ConsumeToken(); // 暂时跳过
+        } else {
+            ConsumeToken(); // 跳过未知token
+        }
+    }
+    
+    Expect(TokenType::RIGHT_BRACE, "期望 '}'");
+    
+    return insertNode;
+}
+
 std::shared_ptr<ASTNode> Parser::ParseStyleRule() {
     // TODO: 实现样式规则解析
     return nullptr;
@@ -1101,6 +1328,8 @@ std::shared_ptr<ASTNode> Parser::ParseStyleProperty() {
         // 处理变量引用
         value = ProcessVariableReferences(value);
         
+        LOG_DEBUG("ParseStyleProperty: 期望分号, 当前Token类型=" + std::to_string(static_cast<int>(CurrentToken().type)) + 
+                  ", 值='" + CurrentToken().value + "'");
         Expect(TokenType::SEMICOLON, "期望 ';'");
         
         // 创建样式属性节点
