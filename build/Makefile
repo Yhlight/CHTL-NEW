@@ -175,6 +175,45 @@ CHTLCore/fast:
 .PHONY : CHTLCore/fast
 
 #=============================================================================
+# Target rules for targets named CHTLCMODSystem
+
+# Build rule for target.
+CHTLCMODSystem: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLCMODSystem
+.PHONY : CHTLCMODSystem
+
+# fast build rule for target.
+CHTLCMODSystem/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCMODSystem.dir/build.make CMakeFiles/CHTLCMODSystem.dir/build
+.PHONY : CHTLCMODSystem/fast
+
+#=============================================================================
+# Target rules for targets named CHTLErrorSystem
+
+# Build rule for target.
+CHTLErrorSystem: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLErrorSystem
+.PHONY : CHTLErrorSystem
+
+# fast build rule for target.
+CHTLErrorSystem/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLErrorSystem.dir/build.make CMakeFiles/CHTLErrorSystem.dir/build
+.PHONY : CHTLErrorSystem/fast
+
+#=============================================================================
+# Target rules for targets named CHTLUtilSystem
+
+# Build rule for target.
+CHTLUtilSystem: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLUtilSystem
+.PHONY : CHTLUtilSystem
+
+# fast build rule for target.
+CHTLUtilSystem/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLUtilSystem.dir/build.make CMakeFiles/CHTLUtilSystem.dir/build
+.PHONY : CHTLUtilSystem/fast
+
+#=============================================================================
 # Target rules for targets named CHTLJSCore
 
 # Build rule for target.
@@ -394,6 +433,19 @@ chtl_final_project_summary: cmake_check_build_system
 chtl_final_project_summary/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_project_summary.dir/build.make CMakeFiles/chtl_final_project_summary.dir/build
 .PHONY : chtl_final_project_summary/fast
+
+#=============================================================================
+# Target rules for targets named chtl_structure_fix_report
+
+# Build rule for target.
+chtl_structure_fix_report: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_structure_fix_report
+.PHONY : chtl_structure_fix_report
+
+# fast build rule for target.
+chtl_structure_fix_report/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_structure_fix_report.dir/build.make CMakeFiles/chtl_structure_fix_report.dir/build
+.PHONY : chtl_structure_fix_report/fast
 
 #=============================================================================
 # Target rules for targets named chtl_lexer_test
@@ -1087,6 +1139,54 @@ src/CHTL/CHTLState/CHTLState.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLState/CHTLState.cpp.s
 .PHONY : src/CHTL/CHTLState/CHTLState.cpp.s
 
+src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.o: src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o
+.PHONY : src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.o
+
+# target to build an object file
+src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLImport.dir/build.make CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o
+.PHONY : src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o
+
+src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.i: src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.i
+.PHONY : src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.i
+
+# target to preprocess a source file
+src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLImport.dir/build.make CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.i
+.PHONY : src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.i
+
+src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.s: src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.s
+.PHONY : src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLImport.dir/build.make CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.s
+.PHONY : src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.s
+
+src/CHTL/CMODSystem/CMODManager.o: src/CHTL/CMODSystem/CMODManager.cpp.o
+.PHONY : src/CHTL/CMODSystem/CMODManager.o
+
+# target to build an object file
+src/CHTL/CMODSystem/CMODManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCMODSystem.dir/build.make CMakeFiles/CHTLCMODSystem.dir/src/CHTL/CMODSystem/CMODManager.cpp.o
+.PHONY : src/CHTL/CMODSystem/CMODManager.cpp.o
+
+src/CHTL/CMODSystem/CMODManager.i: src/CHTL/CMODSystem/CMODManager.cpp.i
+.PHONY : src/CHTL/CMODSystem/CMODManager.i
+
+# target to preprocess a source file
+src/CHTL/CMODSystem/CMODManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCMODSystem.dir/build.make CMakeFiles/CHTLCMODSystem.dir/src/CHTL/CMODSystem/CMODManager.cpp.i
+.PHONY : src/CHTL/CMODSystem/CMODManager.cpp.i
+
+src/CHTL/CMODSystem/CMODManager.s: src/CHTL/CMODSystem/CMODManager.cpp.s
+.PHONY : src/CHTL/CMODSystem/CMODManager.s
+
+# target to generate assembly for a file
+src/CHTL/CMODSystem/CMODManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCMODSystem.dir/build.make CMakeFiles/CHTLCMODSystem.dir/src/CHTL/CMODSystem/CMODManager.cpp.s
+.PHONY : src/CHTL/CMODSystem/CMODManager.cpp.s
+
 src/CHTL_JS/CHTLJSContext/CHTLJSContext.o: src/CHTL_JS/CHTLJSContext/CHTLJSContext.cpp.o
 .PHONY : src/CHTL_JS/CHTLJSContext/CHTLJSContext.o
 
@@ -1351,125 +1451,125 @@ src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.s
 .PHONY : src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.s
 
-src/CJMOD/CJMODGenerator.o: src/CJMOD/CJMODGenerator.cpp.o
-.PHONY : src/CJMOD/CJMODGenerator.o
+src/CHTL_JS/CJMODSystem/CJMODGenerator.o: src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODGenerator.o
 
 # target to build an object file
-src/CJMOD/CJMODGenerator.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.o
-.PHONY : src/CJMOD/CJMODGenerator.cpp.o
+src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o
 
-src/CJMOD/CJMODGenerator.i: src/CJMOD/CJMODGenerator.cpp.i
-.PHONY : src/CJMOD/CJMODGenerator.i
+src/CHTL_JS/CJMODSystem/CJMODGenerator.i: src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.i
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODGenerator.i
 
 # target to preprocess a source file
-src/CJMOD/CJMODGenerator.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.i
-.PHONY : src/CJMOD/CJMODGenerator.cpp.i
+src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.i
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.i
 
-src/CJMOD/CJMODGenerator.s: src/CJMOD/CJMODGenerator.cpp.s
-.PHONY : src/CJMOD/CJMODGenerator.s
+src/CHTL_JS/CJMODSystem/CJMODGenerator.s: src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.s
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODGenerator.s
 
 # target to generate assembly for a file
-src/CJMOD/CJMODGenerator.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.s
-.PHONY : src/CJMOD/CJMODGenerator.cpp.s
+src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.s
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.s
 
-src/CJMOD/CJMODIntegration.o: src/CJMOD/CJMODIntegration.cpp.o
-.PHONY : src/CJMOD/CJMODIntegration.o
+src/CHTL_JS/CJMODSystem/CJMODIntegration.o: src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODIntegration.o
 
 # target to build an object file
-src/CJMOD/CJMODIntegration.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o
-.PHONY : src/CJMOD/CJMODIntegration.cpp.o
+src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o
 
-src/CJMOD/CJMODIntegration.i: src/CJMOD/CJMODIntegration.cpp.i
-.PHONY : src/CJMOD/CJMODIntegration.i
+src/CHTL_JS/CJMODSystem/CJMODIntegration.i: src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.i
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODIntegration.i
 
 # target to preprocess a source file
-src/CJMOD/CJMODIntegration.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.i
-.PHONY : src/CJMOD/CJMODIntegration.cpp.i
+src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.i
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.i
 
-src/CJMOD/CJMODIntegration.s: src/CJMOD/CJMODIntegration.cpp.s
-.PHONY : src/CJMOD/CJMODIntegration.s
+src/CHTL_JS/CJMODSystem/CJMODIntegration.s: src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.s
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODIntegration.s
 
 # target to generate assembly for a file
-src/CJMOD/CJMODIntegration.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.s
-.PHONY : src/CJMOD/CJMODIntegration.cpp.s
+src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.s
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.s
 
-src/CJMOD/CJMODScanner.o: src/CJMOD/CJMODScanner.cpp.o
-.PHONY : src/CJMOD/CJMODScanner.o
+src/CHTL_JS/CJMODSystem/CJMODScanner.o: src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODScanner.o
 
 # target to build an object file
-src/CJMOD/CJMODScanner.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.o
-.PHONY : src/CJMOD/CJMODScanner.cpp.o
+src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o
 
-src/CJMOD/CJMODScanner.i: src/CJMOD/CJMODScanner.cpp.i
-.PHONY : src/CJMOD/CJMODScanner.i
+src/CHTL_JS/CJMODSystem/CJMODScanner.i: src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.i
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODScanner.i
 
 # target to preprocess a source file
-src/CJMOD/CJMODScanner.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.i
-.PHONY : src/CJMOD/CJMODScanner.cpp.i
+src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.i
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.i
 
-src/CJMOD/CJMODScanner.s: src/CJMOD/CJMODScanner.cpp.s
-.PHONY : src/CJMOD/CJMODScanner.s
+src/CHTL_JS/CJMODSystem/CJMODScanner.s: src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.s
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODScanner.s
 
 # target to generate assembly for a file
-src/CJMOD/CJMODScanner.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.s
-.PHONY : src/CJMOD/CJMODScanner.cpp.s
+src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.s
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.s
 
-src/CJMOD/CJMODSyntax.o: src/CJMOD/CJMODSyntax.cpp.o
-.PHONY : src/CJMOD/CJMODSyntax.o
+src/CHTL_JS/CJMODSystem/CJMODSyntax.o: src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODSyntax.o
 
 # target to build an object file
-src/CJMOD/CJMODSyntax.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.o
-.PHONY : src/CJMOD/CJMODSyntax.cpp.o
+src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o
 
-src/CJMOD/CJMODSyntax.i: src/CJMOD/CJMODSyntax.cpp.i
-.PHONY : src/CJMOD/CJMODSyntax.i
+src/CHTL_JS/CJMODSystem/CJMODSyntax.i: src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.i
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODSyntax.i
 
 # target to preprocess a source file
-src/CJMOD/CJMODSyntax.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.i
-.PHONY : src/CJMOD/CJMODSyntax.cpp.i
+src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.i
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.i
 
-src/CJMOD/CJMODSyntax.s: src/CJMOD/CJMODSyntax.cpp.s
-.PHONY : src/CJMOD/CJMODSyntax.s
+src/CHTL_JS/CJMODSystem/CJMODSyntax.s: src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.s
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODSyntax.s
 
 # target to generate assembly for a file
-src/CJMOD/CJMODSyntax.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.s
-.PHONY : src/CJMOD/CJMODSyntax.cpp.s
+src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.s
+.PHONY : src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.s
 
-src/CJMOD/ChthollyOfficialModule.o: src/CJMOD/ChthollyOfficialModule.cpp.o
-.PHONY : src/CJMOD/ChthollyOfficialModule.o
+src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.o: src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o
+.PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.o
 
 # target to build an object file
-src/CJMOD/ChthollyOfficialModule.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/ChthollyOfficialModule.cpp.o
-.PHONY : src/CJMOD/ChthollyOfficialModule.cpp.o
+src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o
+.PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o
 
-src/CJMOD/ChthollyOfficialModule.i: src/CJMOD/ChthollyOfficialModule.cpp.i
-.PHONY : src/CJMOD/ChthollyOfficialModule.i
+src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.i: src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.i
+.PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.i
 
 # target to preprocess a source file
-src/CJMOD/ChthollyOfficialModule.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/ChthollyOfficialModule.cpp.i
-.PHONY : src/CJMOD/ChthollyOfficialModule.cpp.i
+src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.i
+.PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.i
 
-src/CJMOD/ChthollyOfficialModule.s: src/CJMOD/ChthollyOfficialModule.cpp.s
-.PHONY : src/CJMOD/ChthollyOfficialModule.s
+src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.s: src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s
+.PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.s
 
 # target to generate assembly for a file
-src/CJMOD/ChthollyOfficialModule.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/ChthollyOfficialModule.cpp.s
-.PHONY : src/CJMOD/ChthollyOfficialModule.cpp.s
+src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s
+.PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s
 
 src/CSS/CSSCompiler.o: src/CSS/CSSCompiler.cpp.o
 .PHONY : src/CSS/CSSCompiler.o
@@ -1639,29 +1739,53 @@ src/ConstraintSystem/CHTLConstraintValidator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLConstraint.dir/build.make CMakeFiles/CHTLConstraint.dir/src/ConstraintSystem/CHTLConstraintValidator.cpp.s
 .PHONY : src/ConstraintSystem/CHTLConstraintValidator.cpp.s
 
-src/ImportSystem/CHTLImportManager.o: src/ImportSystem/CHTLImportManager.cpp.o
-.PHONY : src/ImportSystem/CHTLImportManager.o
+src/Error/Error.o: src/Error/Error.cpp.o
+.PHONY : src/Error/Error.o
 
 # target to build an object file
-src/ImportSystem/CHTLImportManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLImport.dir/build.make CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o
-.PHONY : src/ImportSystem/CHTLImportManager.cpp.o
+src/Error/Error.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLErrorSystem.dir/build.make CMakeFiles/CHTLErrorSystem.dir/src/Error/Error.cpp.o
+.PHONY : src/Error/Error.cpp.o
 
-src/ImportSystem/CHTLImportManager.i: src/ImportSystem/CHTLImportManager.cpp.i
-.PHONY : src/ImportSystem/CHTLImportManager.i
+src/Error/Error.i: src/Error/Error.cpp.i
+.PHONY : src/Error/Error.i
 
 # target to preprocess a source file
-src/ImportSystem/CHTLImportManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLImport.dir/build.make CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.i
-.PHONY : src/ImportSystem/CHTLImportManager.cpp.i
+src/Error/Error.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLErrorSystem.dir/build.make CMakeFiles/CHTLErrorSystem.dir/src/Error/Error.cpp.i
+.PHONY : src/Error/Error.cpp.i
 
-src/ImportSystem/CHTLImportManager.s: src/ImportSystem/CHTLImportManager.cpp.s
-.PHONY : src/ImportSystem/CHTLImportManager.s
+src/Error/Error.s: src/Error/Error.cpp.s
+.PHONY : src/Error/Error.s
 
 # target to generate assembly for a file
-src/ImportSystem/CHTLImportManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLImport.dir/build.make CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.s
-.PHONY : src/ImportSystem/CHTLImportManager.cpp.s
+src/Error/Error.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLErrorSystem.dir/build.make CMakeFiles/CHTLErrorSystem.dir/src/Error/Error.cpp.s
+.PHONY : src/Error/Error.cpp.s
+
+src/Error/ErrorHandler.o: src/Error/ErrorHandler.cpp.o
+.PHONY : src/Error/ErrorHandler.o
+
+# target to build an object file
+src/Error/ErrorHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLErrorSystem.dir/build.make CMakeFiles/CHTLErrorSystem.dir/src/Error/ErrorHandler.cpp.o
+.PHONY : src/Error/ErrorHandler.cpp.o
+
+src/Error/ErrorHandler.i: src/Error/ErrorHandler.cpp.i
+.PHONY : src/Error/ErrorHandler.i
+
+# target to preprocess a source file
+src/Error/ErrorHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLErrorSystem.dir/build.make CMakeFiles/CHTLErrorSystem.dir/src/Error/ErrorHandler.cpp.i
+.PHONY : src/Error/ErrorHandler.cpp.i
+
+src/Error/ErrorHandler.s: src/Error/ErrorHandler.cpp.s
+.PHONY : src/Error/ErrorHandler.s
+
+# target to generate assembly for a file
+src/Error/ErrorHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLErrorSystem.dir/build.make CMakeFiles/CHTLErrorSystem.dir/src/Error/ErrorHandler.cpp.s
+.PHONY : src/Error/ErrorHandler.cpp.s
 
 src/JS/JavaScriptCompiler.o: src/JS/JavaScriptCompiler.cpp.o
 .PHONY : src/JS/JavaScriptCompiler.o
@@ -2335,6 +2459,30 @@ src/Test/ProjectCompletionAudit.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_project_audit.dir/build.make CMakeFiles/chtl_project_audit.dir/src/Test/ProjectCompletionAudit.cpp.s
 .PHONY : src/Test/ProjectCompletionAudit.cpp.s
 
+src/Test/ProjectStructureFixReport.o: src/Test/ProjectStructureFixReport.cpp.o
+.PHONY : src/Test/ProjectStructureFixReport.o
+
+# target to build an object file
+src/Test/ProjectStructureFixReport.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_structure_fix_report.dir/build.make CMakeFiles/chtl_structure_fix_report.dir/src/Test/ProjectStructureFixReport.cpp.o
+.PHONY : src/Test/ProjectStructureFixReport.cpp.o
+
+src/Test/ProjectStructureFixReport.i: src/Test/ProjectStructureFixReport.cpp.i
+.PHONY : src/Test/ProjectStructureFixReport.i
+
+# target to preprocess a source file
+src/Test/ProjectStructureFixReport.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_structure_fix_report.dir/build.make CMakeFiles/chtl_structure_fix_report.dir/src/Test/ProjectStructureFixReport.cpp.i
+.PHONY : src/Test/ProjectStructureFixReport.cpp.i
+
+src/Test/ProjectStructureFixReport.s: src/Test/ProjectStructureFixReport.cpp.s
+.PHONY : src/Test/ProjectStructureFixReport.s
+
+# target to generate assembly for a file
+src/Test/ProjectStructureFixReport.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_structure_fix_report.dir/build.make CMakeFiles/chtl_structure_fix_report.dir/src/Test/ProjectStructureFixReport.cpp.s
+.PHONY : src/Test/ProjectStructureFixReport.cpp.s
+
 src/Test/SimpleCompilerTest.o: src/Test/SimpleCompilerTest.cpp.o
 .PHONY : src/Test/SimpleCompilerTest.o
 
@@ -2383,6 +2531,54 @@ src/Test/TemplateSystemTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_template_test.dir/build.make CMakeFiles/chtl_template_test.dir/src/Test/TemplateSystemTest.cpp.s
 .PHONY : src/Test/TemplateSystemTest.cpp.s
 
+src/Util/FileSystem/FileSystem.o: src/Util/FileSystem/FileSystem.cpp.o
+.PHONY : src/Util/FileSystem/FileSystem.o
+
+# target to build an object file
+src/Util/FileSystem/FileSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLUtilSystem.dir/build.make CMakeFiles/CHTLUtilSystem.dir/src/Util/FileSystem/FileSystem.cpp.o
+.PHONY : src/Util/FileSystem/FileSystem.cpp.o
+
+src/Util/FileSystem/FileSystem.i: src/Util/FileSystem/FileSystem.cpp.i
+.PHONY : src/Util/FileSystem/FileSystem.i
+
+# target to preprocess a source file
+src/Util/FileSystem/FileSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLUtilSystem.dir/build.make CMakeFiles/CHTLUtilSystem.dir/src/Util/FileSystem/FileSystem.cpp.i
+.PHONY : src/Util/FileSystem/FileSystem.cpp.i
+
+src/Util/FileSystem/FileSystem.s: src/Util/FileSystem/FileSystem.cpp.s
+.PHONY : src/Util/FileSystem/FileSystem.s
+
+# target to generate assembly for a file
+src/Util/FileSystem/FileSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLUtilSystem.dir/build.make CMakeFiles/CHTLUtilSystem.dir/src/Util/FileSystem/FileSystem.cpp.s
+.PHONY : src/Util/FileSystem/FileSystem.cpp.s
+
+src/Util/StringUtil/StringUtil.o: src/Util/StringUtil/StringUtil.cpp.o
+.PHONY : src/Util/StringUtil/StringUtil.o
+
+# target to build an object file
+src/Util/StringUtil/StringUtil.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLUtilSystem.dir/build.make CMakeFiles/CHTLUtilSystem.dir/src/Util/StringUtil/StringUtil.cpp.o
+.PHONY : src/Util/StringUtil/StringUtil.cpp.o
+
+src/Util/StringUtil/StringUtil.i: src/Util/StringUtil/StringUtil.cpp.i
+.PHONY : src/Util/StringUtil/StringUtil.i
+
+# target to preprocess a source file
+src/Util/StringUtil/StringUtil.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLUtilSystem.dir/build.make CMakeFiles/CHTLUtilSystem.dir/src/Util/StringUtil/StringUtil.cpp.i
+.PHONY : src/Util/StringUtil/StringUtil.cpp.i
+
+src/Util/StringUtil/StringUtil.s: src/Util/StringUtil/StringUtil.cpp.s
+.PHONY : src/Util/StringUtil/StringUtil.s
+
+# target to generate assembly for a file
+src/Util/StringUtil/StringUtil.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLUtilSystem.dir/build.make CMakeFiles/CHTLUtilSystem.dir/src/Util/StringUtil/StringUtil.cpp.s
+.PHONY : src/Util/StringUtil/StringUtil.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -2421,15 +2617,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... compile_example"
 	@echo "... run_tests"
+	@echo "... CHTLCMODSystem"
 	@echo "... CHTLCSSCompiler"
 	@echo "... CHTLCodeMerger"
 	@echo "... CHTLConstraint"
 	@echo "... CHTLCore"
 	@echo "... CHTLDispatcher"
+	@echo "... CHTLErrorSystem"
 	@echo "... CHTLImport"
 	@echo "... CHTLJSCompiler"
 	@echo "... CHTLJSCore"
 	@echo "... CHTLScanner"
+	@echo "... CHTLUtilSystem"
 	@echo "... CJMOD"
 	@echo "... chtl"
 	@echo "... chtl_antlr_build_report"
@@ -2455,6 +2654,7 @@ help:
 	@echo "... chtl_project_audit"
 	@echo "... chtl_simple_test"
 	@echo "... chtl_status_report"
+	@echo "... chtl_structure_fix_report"
 	@echo "... chtl_template_test"
 	@echo "... chtl_test"
 	@echo "... src/CHTL/CHTLContext/CHTLContext.o"
@@ -2511,6 +2711,12 @@ help:
 	@echo "... src/CHTL/CHTLState/CHTLState.o"
 	@echo "... src/CHTL/CHTLState/CHTLState.i"
 	@echo "... src/CHTL/CHTLState/CHTLState.s"
+	@echo "... src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.o"
+	@echo "... src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.i"
+	@echo "... src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.s"
+	@echo "... src/CHTL/CMODSystem/CMODManager.o"
+	@echo "... src/CHTL/CMODSystem/CMODManager.i"
+	@echo "... src/CHTL/CMODSystem/CMODManager.s"
 	@echo "... src/CHTL_JS/CHTLJSContext/CHTLJSContext.o"
 	@echo "... src/CHTL_JS/CHTLJSContext/CHTLJSContext.i"
 	@echo "... src/CHTL_JS/CHTLJSContext/CHTLJSContext.s"
@@ -2544,21 +2750,21 @@ help:
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.o"
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.i"
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.s"
-	@echo "... src/CJMOD/CJMODGenerator.o"
-	@echo "... src/CJMOD/CJMODGenerator.i"
-	@echo "... src/CJMOD/CJMODGenerator.s"
-	@echo "... src/CJMOD/CJMODIntegration.o"
-	@echo "... src/CJMOD/CJMODIntegration.i"
-	@echo "... src/CJMOD/CJMODIntegration.s"
-	@echo "... src/CJMOD/CJMODScanner.o"
-	@echo "... src/CJMOD/CJMODScanner.i"
-	@echo "... src/CJMOD/CJMODScanner.s"
-	@echo "... src/CJMOD/CJMODSyntax.o"
-	@echo "... src/CJMOD/CJMODSyntax.i"
-	@echo "... src/CJMOD/CJMODSyntax.s"
-	@echo "... src/CJMOD/ChthollyOfficialModule.o"
-	@echo "... src/CJMOD/ChthollyOfficialModule.i"
-	@echo "... src/CJMOD/ChthollyOfficialModule.s"
+	@echo "... src/CHTL_JS/CJMODSystem/CJMODGenerator.o"
+	@echo "... src/CHTL_JS/CJMODSystem/CJMODGenerator.i"
+	@echo "... src/CHTL_JS/CJMODSystem/CJMODGenerator.s"
+	@echo "... src/CHTL_JS/CJMODSystem/CJMODIntegration.o"
+	@echo "... src/CHTL_JS/CJMODSystem/CJMODIntegration.i"
+	@echo "... src/CHTL_JS/CJMODSystem/CJMODIntegration.s"
+	@echo "... src/CHTL_JS/CJMODSystem/CJMODScanner.o"
+	@echo "... src/CHTL_JS/CJMODSystem/CJMODScanner.i"
+	@echo "... src/CHTL_JS/CJMODSystem/CJMODScanner.s"
+	@echo "... src/CHTL_JS/CJMODSystem/CJMODSyntax.o"
+	@echo "... src/CHTL_JS/CJMODSystem/CJMODSyntax.i"
+	@echo "... src/CHTL_JS/CJMODSystem/CJMODSyntax.s"
+	@echo "... src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.o"
+	@echo "... src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.i"
+	@echo "... src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.s"
 	@echo "... src/CSS/CSSCompiler.o"
 	@echo "... src/CSS/CSSCompiler.i"
 	@echo "... src/CSS/CSSCompiler.s"
@@ -2580,9 +2786,12 @@ help:
 	@echo "... src/ConstraintSystem/CHTLConstraintValidator.o"
 	@echo "... src/ConstraintSystem/CHTLConstraintValidator.i"
 	@echo "... src/ConstraintSystem/CHTLConstraintValidator.s"
-	@echo "... src/ImportSystem/CHTLImportManager.o"
-	@echo "... src/ImportSystem/CHTLImportManager.i"
-	@echo "... src/ImportSystem/CHTLImportManager.s"
+	@echo "... src/Error/Error.o"
+	@echo "... src/Error/Error.i"
+	@echo "... src/Error/Error.s"
+	@echo "... src/Error/ErrorHandler.o"
+	@echo "... src/Error/ErrorHandler.i"
+	@echo "... src/Error/ErrorHandler.s"
 	@echo "... src/JS/JavaScriptCompiler.o"
 	@echo "... src/JS/JavaScriptCompiler.i"
 	@echo "... src/JS/JavaScriptCompiler.s"
@@ -2667,12 +2876,21 @@ help:
 	@echo "... src/Test/ProjectCompletionAudit.o"
 	@echo "... src/Test/ProjectCompletionAudit.i"
 	@echo "... src/Test/ProjectCompletionAudit.s"
+	@echo "... src/Test/ProjectStructureFixReport.o"
+	@echo "... src/Test/ProjectStructureFixReport.i"
+	@echo "... src/Test/ProjectStructureFixReport.s"
 	@echo "... src/Test/SimpleCompilerTest.o"
 	@echo "... src/Test/SimpleCompilerTest.i"
 	@echo "... src/Test/SimpleCompilerTest.s"
 	@echo "... src/Test/TemplateSystemTest.o"
 	@echo "... src/Test/TemplateSystemTest.i"
 	@echo "... src/Test/TemplateSystemTest.s"
+	@echo "... src/Util/FileSystem/FileSystem.o"
+	@echo "... src/Util/FileSystem/FileSystem.i"
+	@echo "... src/Util/FileSystem/FileSystem.s"
+	@echo "... src/Util/StringUtil/StringUtil.o"
+	@echo "... src/Util/StringUtil/StringUtil.i"
+	@echo "... src/Util/StringUtil/StringUtil.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

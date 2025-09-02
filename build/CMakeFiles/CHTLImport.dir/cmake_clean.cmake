@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o"
-  "CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o.d"
+  "CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o"
+  "CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o.d"
   "lib/libCHTLImport.a"
   "lib/libCHTLImport.pdb"
 )

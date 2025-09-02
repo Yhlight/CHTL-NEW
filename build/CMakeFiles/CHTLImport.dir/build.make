@@ -72,28 +72,28 @@ include CMakeFiles/CHTLImport.dir/flags.make
 CMakeFiles/CHTLImport.dir/codegen:
 .PHONY : CMakeFiles/CHTLImport.dir/codegen
 
-CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o: CMakeFiles/CHTLImport.dir/flags.make
-CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o: /workspace/src/ImportSystem/CHTLImportManager.cpp
-CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o: CMakeFiles/CHTLImport.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o -MF CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o.d -o CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o -c /workspace/src/ImportSystem/CHTLImportManager.cpp
+CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o: CMakeFiles/CHTLImport.dir/flags.make
+CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o: /workspace/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp
+CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o: CMakeFiles/CHTLImport.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o -MF CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o.d -o CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o -c /workspace/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp
 
-CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/ImportSystem/CHTLImportManager.cpp > CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.i
+CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp > CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.i
 
-CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/ImportSystem/CHTLImportManager.cpp -o CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.s
+CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp -o CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.s
 
 # Object files for target CHTLImport
 CHTLImport_OBJECTS = \
-"CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o"
+"CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o"
 
 # External object files for target CHTLImport
 CHTLImport_EXTERNAL_OBJECTS =
 
-lib/libCHTLImport.a: CMakeFiles/CHTLImport.dir/src/ImportSystem/CHTLImportManager.cpp.o
+lib/libCHTLImport.a: CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o
 lib/libCHTLImport.a: CMakeFiles/CHTLImport.dir/build.make
 lib/libCHTLImport.a: CMakeFiles/CHTLImport.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library lib/libCHTLImport.a"

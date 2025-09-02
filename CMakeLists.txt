@@ -79,9 +79,9 @@ set(CONSTRAINT_SOURCES
     src/ConstraintSystem/CHTLConstraintValidator.cpp
 )
 
-# Import导入系统源文件
+# Import导入系统源文件 (已移动到CHTL/CHTLSystem内部)
 set(IMPORT_SOURCES
-    src/ImportSystem/CHTLImportManager.cpp
+    src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp
 )
 
 # CSS编译器源文件（包含ANTLR生成的代码）
@@ -100,13 +100,18 @@ set(JS_SOURCES
     src/JS/generated/JavaScriptBaseListener.cpp
 )
 
-# CJMOD API源文件
+# CJMOD API源文件 (已移动到CHTL JS/CJMODSystem内部)
 set(CJMOD_SOURCES
-    src/CJMOD/CJMODSyntax.cpp
-    src/CJMOD/CJMODScanner.cpp
-    src/CJMOD/CJMODGenerator.cpp
-    src/CJMOD/CJMODIntegration.cpp
-    src/CJMOD/ChthollyOfficialModule.cpp
+    "src/CHTL JS/CJMODSystem/CJMODSyntax.cpp"
+    "src/CHTL JS/CJMODSystem/CJMODScanner.cpp"
+    "src/CHTL JS/CJMODSystem/CJMODGenerator.cpp"
+    "src/CHTL JS/CJMODSystem/CJMODIntegration.cpp"
+    "src/CHTL JS/CJMODSystem/ChthollyOfficialModule.cpp"
+)
+
+# CMOD模块系统源文件 (新增)
+set(CMOD_SOURCES
+    src/CHTL/CMODSystem/CMODManager.cpp
 )
 
 # 代码合并器源文件
@@ -114,8 +119,23 @@ set(CODE_MERGER_SOURCES
     src/CodeMerger/CHTLCodeMerger.cpp
 )
 
+# 错误处理系统源文件 (新增)
+set(ERROR_SOURCES
+    src/Error/Error.cpp
+    src/Error/ErrorHandler.cpp
+)
+
+# 工具模块源文件 (新增)  
+set(UTIL_SOURCES
+    src/Util/StringUtil/StringUtil.cpp
+    src/Util/FileSystem/FileSystem.cpp
+)
+
 # 创建CHTL核心库
 add_library(CHTLCore STATIC ${CHTL_CORE_SOURCES})
+add_library(CHTLCMODSystem STATIC ${CMOD_SOURCES})
+add_library(CHTLErrorSystem STATIC ${ERROR_SOURCES})
+add_library(CHTLUtilSystem STATIC ${UTIL_SOURCES})
 target_include_directories(CHTLCore PUBLIC src/CHTL)
 
 # 创建CHTL JS核心库（完全独立）
@@ -195,6 +215,9 @@ target_link_libraries(chtl_import_test CHTLImport CHTLConstraint CHTLCore CHTLJS
 # 最终项目总结可执行文件
 add_executable(chtl_final_project_summary src/Test/FinalProjectSummary.cpp)
 target_link_libraries(chtl_final_project_summary CHTLDispatcher CJMOD CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+
+# 项目结构修正报告可执行文件
+add_executable(chtl_structure_fix_report src/Test/ProjectStructureFixReport.cpp)
 
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)

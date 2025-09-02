@@ -52,6 +52,9 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/CHTLCore.dir/DependInfo.cmake"
+  "CMakeFiles/CHTLCMODSystem.dir/DependInfo.cmake"
+  "CMakeFiles/CHTLErrorSystem.dir/DependInfo.cmake"
+  "CMakeFiles/CHTLUtilSystem.dir/DependInfo.cmake"
   "CMakeFiles/CHTLJSCore.dir/DependInfo.cmake"
   "CMakeFiles/CHTLScanner.dir/DependInfo.cmake"
   "CMakeFiles/CHTLConstraint.dir/DependInfo.cmake"
@@ -69,6 +72,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/chtl_constraint_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_import_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_final_project_summary.dir/DependInfo.cmake"
+  "CMakeFiles/chtl_structure_fix_report.dir/DependInfo.cmake"
   "CMakeFiles/chtl_lexer_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_antlr_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_template_test.dir/DependInfo.cmake"
