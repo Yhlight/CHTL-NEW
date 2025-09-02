@@ -73,6 +73,16 @@ private:
     bool ProcessCMODImport(const std::string& moduleName, const std::string& namespaceName = "");
     
     /**
+     * 处理批量导入
+     */
+    void ProcessBatchImport(
+        std::shared_ptr<ProgramNode> ast,
+        ImportNode::ImportType type,
+        const std::string& itemName,
+        const std::string& asName
+    );
+    
+    /**
      * 查找CMOD模块
      */
     std::string FindCMODModule(const std::string& moduleName);

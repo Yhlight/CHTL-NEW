@@ -275,8 +275,45 @@ void CHTLCompiler::LoadAndMergeFile(const std::string& filePath, int importType,
             
             LOG_INFO("导入的AST子节点数: " + std::to_string(importedAst->GetChildren().size()));
             
+            // 检查是否需要应用默认命名空间
+            bool appliedDefaultNamespace = false;
+            if (!context->IsDefaultNamespaceDisabled()) {
+                // 检查是否有顶层命名空间
+                bool hasTopLevelNamespace = false;
+                for (const auto& child : importedAst->GetChildren()) {
+                    if (child && child->GetType() == ASTNodeType::Namespace) {
+                        hasTopLevelNamespace = true;
+                        break;
+                    }
+                }
+                
+                // 如果没有命名空间，使用文件名作为默认命名空间
+                if (!hasTopLevelNamespace) {
+                    std::string defaultNamespace = filePath;
+                    // 提取文件名（不含路径和扩展名）
+                    size_t lastSlash = defaultNamespace.find_last_of("/\\");
+                    if (lastSlash != std::string::npos) {
+                        defaultNamespace = defaultNamespace.substr(lastSlash + 1);
+                    }
+                    size_t lastDot = defaultNamespace.find_last_of('.');
+                    if (lastDot != std::string::npos) {
+                        defaultNamespace = defaultNamespace.substr(0, lastDot);
+                    }
+                    
+                    // 进入默认命名空间
+                    context->EnterNamespace(defaultNamespace);
+                    appliedDefaultNamespace = true;
+                    LOG_INFO("应用默认命名空间: " + defaultNamespace);
+                }
+            }
+            
             // 合并AST中的模板和自定义元素到全局映射表
             MergeImportedAST(importedAst, asName);
+            
+            // 如果使用了默认命名空间，退出
+            if (appliedDefaultNamespace) {
+                context->ExitNamespace();
+            }
             
             // 恢复状态
             context->SetCurrentFile(oldFile);
@@ -322,9 +359,40 @@ void CHTLCompiler::LoadAndMergeFile(const std::string& filePath, int importType,
         case ImportNode::ImportType::TemplateStyle:
         case ImportNode::ImportType::TemplateElement:
         case ImportNode::ImportType::TemplateVar:
-            // TODO: 导入特定的模板
-            LOG_INFO("模板导入尚未实现: " + itemName + " from " + filePath);
+        case ImportNode::ImportType::AllTemplate:
+        case ImportNode::ImportType::AllTemplateStyle:
+        case ImportNode::ImportType::AllTemplateElement:
+        case ImportNode::ImportType::AllTemplateVar:
+        case ImportNode::ImportType::AllCustom:
+        case ImportNode::ImportType::AllCustomStyle:
+        case ImportNode::ImportType::AllCustomElement:
+        case ImportNode::ImportType::AllCustomVar:
+        case ImportNode::ImportType::AllOrigin:
+        case ImportNode::ImportType::AllConfiguration: {
+            // 编译并处理CHTL文件以导入特定内容
+            auto fragment = std::make_shared<CodeFragment>();
+            fragment->content = content;
+            fragment->filePath = filePath;
+            fragment->type = FragmentType::CHTL;
+            
+            // 保存旧状态
+            std::string oldFile = context->GetCurrentFile();
+            context->SetCurrentFile(filePath);
+            
+            // 编译导入的文件
+            auto importedAst = ParseFragment(fragment);
+            if (importedAst) {
+                // 递归处理导入
+                ProcessImports(importedAst);
+                
+                // 根据导入类型处理内容
+                ProcessBatchImport(importedAst, type, itemName, asName);
+            }
+            
+            // 恢复状态
+            context->SetCurrentFile(oldFile);
             break;
+        }
             
         default:
             LOG_INFO("未知的导入类型: " + filePath);
@@ -486,6 +554,114 @@ bool CHTLCompiler::ProcessCMODImport(const std::string& moduleName, const std::s
     }
     
     return true;
+}
+
+void CHTLCompiler::ProcessBatchImport(
+    std::shared_ptr<ProgramNode> ast,
+    ImportNode::ImportType type,
+    const std::string& itemName,
+    const std::string& asName) {
+    
+    if (!ast) return;
+    
+    // 遍历AST并根据导入类型收集相应的节点
+    for (const auto& child : ast->GetChildren()) {
+        if (!child) continue;
+        
+        switch (type) {
+            // 导入所有模板
+            case ImportNode::ImportType::AllTemplate:
+                if (child->GetType() == ASTNodeType::TemplateStyle ||
+                    child->GetType() == ASTNodeType::TemplateElement ||
+                    child->GetType() == ASTNodeType::TemplateVar) {
+                    currentAST->AddChild(child);
+                }
+                break;
+                
+            // 导入所有模板样式
+            case ImportNode::ImportType::AllTemplateStyle:
+                if (child->GetType() == ASTNodeType::TemplateStyle) {
+                    currentAST->AddChild(child);
+                }
+                break;
+                
+            // 导入所有模板元素
+            case ImportNode::ImportType::AllTemplateElement:
+                if (child->GetType() == ASTNodeType::TemplateElement) {
+                    currentAST->AddChild(child);
+                }
+                break;
+                
+            // 导入所有模板变量
+            case ImportNode::ImportType::AllTemplateVar:
+                if (child->GetType() == ASTNodeType::TemplateVar) {
+                    currentAST->AddChild(child);
+                }
+                break;
+                
+            // 导入所有自定义
+            case ImportNode::ImportType::AllCustom:
+                if (child->GetType() == ASTNodeType::CustomStyle ||
+                    child->GetType() == ASTNodeType::CustomElement ||
+                    child->GetType() == ASTNodeType::CustomVar) {
+                    currentAST->AddChild(child);
+                }
+                break;
+                
+            // 导入所有自定义样式
+            case ImportNode::ImportType::AllCustomStyle:
+                if (child->GetType() == ASTNodeType::CustomStyle) {
+                    currentAST->AddChild(child);
+                }
+                break;
+                
+            // 导入所有自定义元素
+            case ImportNode::ImportType::AllCustomElement:
+                if (child->GetType() == ASTNodeType::CustomElement) {
+                    currentAST->AddChild(child);
+                }
+                break;
+                
+            // 导入所有自定义变量
+            case ImportNode::ImportType::AllCustomVar:
+                if (child->GetType() == ASTNodeType::CustomVar) {
+                    currentAST->AddChild(child);
+                }
+                break;
+                
+            // 导入所有原始嵌入（只导入命名的）
+            case ImportNode::ImportType::AllOrigin:
+                if (child->GetType() == ASTNodeType::Origin) {
+                    auto originNode = std::static_pointer_cast<OriginNode>(child);
+                    if (!originNode->GetName().empty()) {
+                        currentAST->AddChild(child);
+                    }
+                }
+                break;
+                
+            // 导入所有命名配置组
+            case ImportNode::ImportType::AllConfiguration:
+                if (child->GetType() == ASTNodeType::Configuration) {
+                    auto configNode = std::static_pointer_cast<ConfigurationNode>(child);
+                    if (!configNode->GetName().empty()) {
+                        currentAST->AddChild(child);
+                    }
+                }
+                break;
+                
+            // 导入特定的模板
+            case ImportNode::ImportType::TemplateStyle:
+            case ImportNode::ImportType::TemplateElement:
+            case ImportNode::ImportType::TemplateVar:
+                // 已经在全局映射表中，不需要额外处理
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    LOG_INFO("批量导入完成，类型: " + std::to_string(static_cast<int>(type)));
 }
 
 } // namespace CHTL

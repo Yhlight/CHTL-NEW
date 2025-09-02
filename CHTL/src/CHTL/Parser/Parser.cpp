@@ -1,6 +1,7 @@
 #include "CHTL/Parser/Parser.h"
 #include "CHTL/AST/ASTNode.h"
 #include "CHTL/AST/TemplateNodes.h"
+#include "CHTL/Core/SpecializationProcessor.h"
 #include "Common/Logger.h"
 
 namespace CHTL {
@@ -288,7 +289,26 @@ std::shared_ptr<ASTNode> Parser::ParseTemplateElement() {
     
     // 解析元素内容
     while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
-        if (IsElementStart()) {
+        if (Check(TokenType::INHERIT)) {
+            // 处理继承语句: inherit @Element 元素模板名;
+            ConsumeToken(); // 消费 inherit
+            Expect(TokenType::AT_ELEMENT, "期望 '@Element'");
+            Expect(TokenType::IDENTIFIER, "期望标识符");
+            std::string inheritedElementName = CurrentToken().value;
+            ConsumeToken();
+            Expect(TokenType::SEMICOLON, "期望 ';'");
+            
+            // 从全局映射表获取被继承的元素模板
+            auto inheritedElement = context->GetGlobalMap()->GetTemplateElement(inheritedElementName);
+            if (inheritedElement) {
+                // 复制被继承元素的所有子节点
+                for (const auto& child : inheritedElement->GetChildren()) {
+                    node->AddChild(child);
+                }
+            } else {
+                ReportError("未找到元素模板: " + inheritedElementName);
+            }
+        } else if (IsElementStart()) {
             auto element = ParseElement();
             if (element) {
                 node->AddChild(element);
@@ -949,8 +969,20 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
                 
                 Expect(TokenType::RIGHT_BRACE, "期望 '}'");
                 
-                // TODO: 应用特例化操作到元素
-                // 这需要在代码生成阶段或专门的特例化处理阶段实现
+                // 应用特例化操作到元素
+                if (templateNode && !specializations.empty()) {
+                    // 创建特例化处理器
+                    SpecializationProcessor processor;
+                    
+                    // 深拷贝模板元素
+                    auto clonedTemplate = std::static_pointer_cast<ElementNode>(templateNode);
+                    
+                    // 应用特例化
+                    processor.ProcessSpecializations(clonedTemplate, specializations);
+                    
+                    // 使用特例化后的元素
+                    element = clonedTemplate;
+                }
             }
         }
         // 子元素
@@ -1659,13 +1691,67 @@ std::string Parser::ParseStringOrUnquotedLiteral() {
 }
 
 void Parser::RecoverFromError() {
-    // 错误恢复：跳到下一个可能的声明开始位置
+    // 错误恢复策略：根据当前上下文智能恢复
+    
+    // 记录当前位置用于调试
+    if (currentIndex < tokens.size()) {
+        LOG_DEBUG("错误恢复开始，当前token: " + tokens[currentIndex].value + 
+                  " 类型: " + std::to_string(static_cast<int>(tokens[currentIndex].type)));
+    }
+    
+    // 策略1：如果在花括号内，尝试跳到匹配的右花括号
+    int braceDepth = 0;
+    bool inBraceContext = false;
+    
+    // 检查之前是否有未匹配的左花括号
+    for (size_t i = 0; i < currentIndex && i < tokens.size(); ++i) {
+        if (tokens[i].type == TokenType::LEFT_BRACE) {
+            braceDepth++;
+        } else if (tokens[i].type == TokenType::RIGHT_BRACE) {
+            braceDepth--;
+        }
+    }
+    
+    if (braceDepth > 0) {
+        inBraceContext = true;
+        LOG_DEBUG("在花括号内部，深度: " + std::to_string(braceDepth));
+    }
+    
+    // 错误恢复：跳到下一个合适的位置
     while (!Check(TokenType::EOF_TOKEN)) {
-        if (IsTopLevelKeyword() || IsElementStart()) {
+        TokenType currentType = CurrentToken().type;
+        
+        // 如果在花括号内，优先找到匹配的右花括号
+        if (inBraceContext) {
+            if (currentType == TokenType::LEFT_BRACE) {
+                braceDepth++;
+            } else if (currentType == TokenType::RIGHT_BRACE) {
+                braceDepth--;
+                if (braceDepth == 0) {
+                    LOG_DEBUG("找到匹配的右花括号");
+                    ConsumeToken(); // 消费右花括号
+                    break;
+                }
+            }
+        }
+        
+        // 检查是否到达了新的顶层声明
+        if (braceDepth == 0 && (IsTopLevelKeyword() || IsElementStart())) {
+            LOG_DEBUG("找到新的顶层声明");
             break;
         }
+        
+        // 检查是否到达了语句结束
+        if (currentType == TokenType::SEMICOLON && braceDepth == 0) {
+            ConsumeToken(); // 消费分号
+            LOG_DEBUG("找到语句结束");
+            break;
+        }
+        
         ConsumeToken();
     }
+    
+    LOG_DEBUG("错误恢复完成");
 }
 
 std::string Parser::ProcessVariableReferences(const std::string& value) {

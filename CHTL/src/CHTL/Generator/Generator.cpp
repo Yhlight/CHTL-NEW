@@ -224,7 +224,84 @@ void Generator::VisitTemplateVar(TemplateVarNode* node) {
 void Generator::VisitCustomStyle(CustomStyleNode* node) {}
 void Generator::VisitCustomElement(CustomElementNode* node) {}
 void Generator::VisitCustomVar(CustomVarNode* node) {}
-void Generator::VisitOrigin(OriginNode* node) {}
+void Generator::VisitOrigin(OriginNode* node) {
+    if (!node) return;
+    
+    // 获取原始嵌入内容
+    std::string content = node->GetContent();
+    std::string name = node->GetName();
+    
+    switch (node->GetType()) {
+        case OriginNode::OriginType::Html:
+            // 直接输出HTML内容
+            if (!name.empty()) {
+                output << "<!-- Origin: " << name << " -->\n";
+            }
+            output << content;
+            if (!content.empty() && content.back() != '\n') {
+                output << "\n";
+            }
+            break;
+            
+        case OriginNode::OriginType::Style:
+            // 输出为<style>标签
+            output << "<style";
+            if (!name.empty()) {
+                output << " id=\"" << name << "\"";
+            }
+            output << ">\n";
+            output << content;
+            if (!content.empty() && content.back() != '\n') {
+                output << "\n";
+            }
+            output << "</style>\n";
+            break;
+            
+        case OriginNode::OriginType::JavaScript:
+            // 输出为<script>标签
+            output << "<script";
+            if (!name.empty()) {
+                output << " id=\"" << name << "\"";
+            }
+            output << ">\n";
+            output << content;
+            if (!content.empty() && content.back() != '\n') {
+                output << "\n";
+            }
+            output << "</script>\n";
+            break;
+            
+        case OriginNode::OriginType::Custom:
+            // 自定义类型原始嵌入
+            output << "<!-- Origin " << node->GetCustomTypeName();
+            if (!name.empty()) {
+                output << ": " << name;
+            }
+            output << " -->\n";
+            
+            // 对于某些已知的自定义类型，提供特殊处理
+            if (node->GetCustomTypeName() == "Vue") {
+                // Vue组件模板
+                output << "<template";
+                if (!name.empty()) {
+                    output << " id=\"" << name << "\"";
+                }
+                output << ">\n";
+                output << content;
+                if (!content.empty() && content.back() != '\n') {
+                    output << "\n";
+                }
+                output << "</template>\n";
+            } else {
+                // 其他自定义类型，直接输出内容
+                output << content;
+                if (!content.empty() && content.back() != '\n') {
+                    output << "\n";
+                }
+            }
+            break;
+    }
+}
 void Generator::VisitLocalStyle(LocalStyleNode* node) {
     // 收集样式规则到全局样式块
     if (!node->GetRules().empty()) {

@@ -1,0 +1,30 @@
+// 基础完整测试
+
+use html5;
+
+html {
+    head {
+        title: "基础测试";
+    }
+    
+    body {
+        div {
+            class: container;
+            
+            style {
+                background: #f0f0f0;
+                padding: 20px;
+                
+                .container {
+                    border: 1px solid #ccc;
+                }
+                
+                &:hover {
+                    background: #e0e0e0;
+                }
+            }
+            
+            text { "Hello CHTL!" }
+        }
+    }
+}

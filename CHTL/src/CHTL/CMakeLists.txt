@@ -5,6 +5,8 @@ add_library(CHTLCompiler STATIC
     Core/State.cpp
     Core/Context.cpp
     Core/GlobalMap.cpp
+    Core/SpecializationProcessor.cpp
+    Core/ConstraintChecker.cpp
     
     # Lexer
     Lexer/Lexer.cpp
