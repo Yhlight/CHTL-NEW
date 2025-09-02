@@ -1,0 +1,26 @@
+use html5;
+
+html {
+    head {
+        [Origin] @Style GlobalStyles {
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+            }
+            
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+        }
+    }
+    
+    body {
+        div {
+            class: "container";
+            text { "CSS Origin块测试" }
+        }
+    }
+}
