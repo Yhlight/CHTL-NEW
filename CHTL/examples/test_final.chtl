@@ -1,0 +1,110 @@
+// CHTL编译器完整功能测试
+// 测试所有已实现的语法特性
+
+-- 这是生成器注释
+
+[Configuration] {
+    DEBUG_MODE = true;
+    DISABLE_STYLE_AUTO_ADD_CLASS: false;
+}
+
+use html5;
+
+// 导入其他文件
+[Import] @Chtl "lib/styles.chtl";
+
+// 命名空间
+[Namespace] UI {
+    [Template] @Style button {
+        background = #007bff;  // CE等价和十六进制颜色
+        color: white;          // CE等价
+        padding: 10px 20px;
+        border-radius: 4px;
+    }
+    
+    [Template] @Element Button {
+        button {
+            style {
+                @Style button;
+            }
+            text { "点击" }
+        }
+    }
+}
+
+// 变量组
+[Template] @Var theme {
+    primary = "#007bff";
+    secondary: "#6c757d";  // CE等价
+    textColor = black;
+}
+
+// 模板继承
+[Template] @Style primaryButton {
+    inherit @Style button from UI;
+    background: theme(primary);
+}
+
+// 自定义元素
+[Custom] @Element Card {
+    div {
+        class: "card";
+        div {
+            class: "card-header";
+            text { "标题" }
+        }
+        div {
+            class: "card-body";
+            text { "内容" }
+        }
+        span {
+            class: "card-footer";
+            text { "底部" }
+        }
+    }
+}
+
+// 自定义样式
+[Custom] @Style cardStyle {
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 15px;
+    background: white;
+}
+
+// 约束
+except @Html;  // 只允许HTML元素
+
+html {
+    body {
+        // 使用全缀名访问
+        [Template] @Element Button from UI;
+        
+        // 自定义元素特例化
+        [Custom] @Element Card {
+            delete span;  // 删除底部
+            insert after div[0] {
+                div {
+                    class: "card-subtitle";
+                    text { "副标题" }
+                }
+            }
+        }
+        
+        // 局部样式和脚本
+        div {
+            style {
+                [Custom] @Style cardStyle {
+                    delete border;  // 删除边框
+                }
+                background: #f8f9fa;
+            }
+            
+            script {
+                console.log("CHTL script block");
+            }
+            
+            text { "测试内容" }
+        }
+    }
+}

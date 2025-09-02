@@ -1,0 +1,286 @@
+// 珂朵莉主题模块 - CMOD主文件
+use html5;
+
+[Namespace] chtholly {
+
+    // 主题变量组
+    [Template] @Var ChthollyThemeVars {
+        // 珂朵莉的主题色 - 基于她的发色和眼色
+        primaryRed: "#FF6B6B";      // 温暖的红色
+        primaryOrange: "#FFA07A";   // 柔和的橙色
+        accentBlue: "#87CEEB";      // 天空蓝
+        lightPink: "#FFB6C1";       // 淡粉色
+        deepRed: "#CD5C5C";         // 深红色
+        
+        // 辅助色
+        bgLight: "#FFF5F5";         // 极淡的粉色背景
+        bgDark: "#2C2C2C";          // 深色背景
+        textPrimary: "#333333";     // 主文字色
+        textSecondary: "#666666";   // 次要文字色
+        
+        // 字体
+        fontPrimary: "'Noto Sans SC', 'Microsoft YaHei', sans-serif";
+        fontSerif: "'Noto Serif SC', 'SimSun', serif";
+        
+        // 间距
+        spacingUnit: "8px";
+        borderRadius: "8px";
+    }
+
+    // 基础样式组
+    [Template] @Style ChthollyBase {
+        font-family: ChthollyThemeVars(fontPrimary);
+        color: ChthollyThemeVars(textPrimary);
+        line-height: 1.6;
+        box-sizing: border-box;
+    }
+
+    // 文本样式组
+    [Template] @Style ChthollyText {
+        @Style ChthollyBase;
+        font-size: 16px;
+        letter-spacing: 0.5px;
+    }
+
+    // 自定义变量组 - 允许用户自定义
+    [Custom] @Var ChthollyColors {
+        primary,
+        secondary,
+        accent;
+    }
+
+    // 主题样式组
+    [Custom] @Style ChthollyTheme {
+        @Style ChthollyBase;
+        background-color: ChthollyThemeVars(bgLight);
+        color: ChthollyThemeVars(textPrimary);
+        min-height: 100vh;
+        transition: all 0.3s ease;
+    }
+
+    // 卡片样式组
+    [Custom] @Style ChthollyCard {
+        @Style ChthollyBase;
+        background: white;
+        border-radius: ChthollyThemeVars(borderRadius);
+        box-shadow: 0 2px 8px rgba(255, 107, 107, 0.1);
+        padding: calc(ChthollyThemeVars(spacingUnit) * 3);
+        margin: calc(ChthollyThemeVars(spacingUnit) * 2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(255, 107, 107, 0.2);
+        }
+    }
+
+    // 按钮样式组
+    [Custom] @Style ChthollyButton {
+        @Style ChthollyBase;
+        background: linear-gradient(135deg, 
+            ChthollyThemeVars(primaryRed) 0%, 
+            ChthollyThemeVars(primaryOrange) 100%);
+        color: white;
+        border: none;
+        border-radius: ChthollyThemeVars(borderRadius);
+        padding: calc(ChthollyThemeVars(spacingUnit) * 1.5) calc(ChthollyThemeVars(spacingUnit) * 3);
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3);
+        }
+        
+        &:active::before {
+            width: 300px;
+            height: 300px;
+        }
+    }
+
+    // 渐变样式组
+    [Custom] @Style ChthollyGradient {
+        background: linear-gradient(135deg, 
+            ChthollyThemeVars(primaryRed) 0%,
+            ChthollyThemeVars(primaryOrange) 50%,
+            ChthollyThemeVars(lightPink) 100%);
+        background-size: 200% 200%;
+        animation: gradientShift 8s ease infinite;
+    }
+
+    // 页面容器
+    [Template] @Element ChthollyContainer {
+        div class="chtholly-container" {
+            style {
+                @Style ChthollyBase;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 calc(ChthollyThemeVars(spacingUnit) * 2);
+            }
+        }
+    }
+
+    // 自定义页面元素
+    [Custom] @Element ChthollyPage {
+        div class="chtholly-page" {
+            style {
+                @Style ChthollyTheme;
+            }
+        }
+    }
+
+    // 樱花飘落效果元素
+    [Custom] @Element ChthollySakura {
+        div class="chtholly-sakura" {
+            style {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                overflow: hidden;
+                z-index: 9999;
+            }
+            
+            // 创建多个樱花花瓣
+            div class="sakura-petal" {
+                style {
+                    position: absolute;
+                    width: 10px;
+                    height: 10px;
+                    background: ChthollyThemeVars(lightPink);
+                    border-radius: 0 100% 0 100%;
+                    animation: sakuraFall 10s linear infinite;
+                }
+            }
+        }
+    }
+
+    // 导航栏元素
+    [Custom] @Element ChthollyNav {
+        nav class="chtholly-nav" {
+            style {
+                @Style ChthollyBase;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                padding: calc(ChthollyThemeVars(spacingUnit) * 2);
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+        }
+    }
+
+    // 模态框元素
+    [Custom] @Element ChthollyModal {
+        div class="chtholly-modal-overlay" {
+            style {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 2000;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                
+                &.active {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+            
+            div class="chtholly-modal-content" {
+                style {
+                    @Style ChthollyCard;
+                    max-width: 600px;
+                    width: 90%;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    transform: scale(0.9);
+                    transition: transform 0.3s ease;
+                }
+            }
+        }
+    }
+
+    // 图片画廊元素
+    [Custom] @Element ChthollyGallery {
+        div class="chtholly-gallery" {
+            style {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: calc(ChthollyThemeVars(spacingUnit) * 2);
+                padding: calc(ChthollyThemeVars(spacingUnit) * 2);
+            }
+            
+            div class="gallery-item" {
+                style {
+                    @Style ChthollyCard;
+                    margin: 0;
+                    overflow: hidden;
+                    cursor: pointer;
+                    
+                    img {
+                        width: 100%;
+                        height: 200px;
+                        object-fit: cover;
+                        transition: transform 0.3s ease;
+                    }
+                    
+                    &:hover img {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 全局样式定义 - 动画
+[Origin] @Style {
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes sakuraFall {
+        0% {
+            top: -10px;
+            left: calc(100% * var(--random-x));
+            transform: rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            top: 100vh;
+            left: calc(100% * var(--random-x) + 100px);
+            transform: rotate(720deg);
+            opacity: 0;
+        }
+    }
+}

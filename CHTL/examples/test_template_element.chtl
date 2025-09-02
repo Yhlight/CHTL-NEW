@@ -1,0 +1,20 @@
+// 测试模板元素
+
+[Template] @Element MyCard {
+    div {
+        class: "card";
+        text { "这是一个卡片模板" }
+    }
+}
+
+use html5;
+
+html {
+    body {
+        // 使用模板元素
+        @Element MyCard;
+        
+        // 再次使用
+        @Element MyCard;
+    }
+}

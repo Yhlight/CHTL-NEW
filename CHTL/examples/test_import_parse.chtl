@@ -1,0 +1,19 @@
+use html5;
+
+// 测试各种Import语法
+[Import] @Html from "index.html" as mainPage;
+[Import] @Style from styles.css as globalStyles;
+[Import] @JavaScript from "app.js";
+[Import] @Chtl from lib.styles;
+[Import] @CJmod from utils;
+
+html
+{
+    body
+    {
+        div
+        {
+            text { "Import解析测试" }
+        }
+    }
+}

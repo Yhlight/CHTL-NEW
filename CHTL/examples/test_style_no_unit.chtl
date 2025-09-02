@@ -1,0 +1,18 @@
+use html5;
+
+html
+{
+    body
+    {
+        div
+        {
+            style
+            {
+                color: red;
+                padding: 20;
+            }
+            
+            text { "测试样式不带单位" }
+        }
+    }
+}

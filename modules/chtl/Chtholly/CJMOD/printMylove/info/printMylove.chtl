@@ -1,0 +1,19 @@
+// printMylove CJMOD模块信息
+[Info]
+{
+    name = "printMylove";
+    version = "1.0.0";
+    description = "将图片转换为字符像素块或ASCII艺术";
+    author = "CHTL Team";
+    license = "MIT";
+    dependencies = "";
+    category = "utility";
+    minCHTLVersion = "1.0.0";
+    maxCHTLVersion = "2.0.0";
+}
+
+[Export]
+{
+    // CJMOD导出的是功能而非样式/元素
+    // printMylove函数将由C++实现
+}

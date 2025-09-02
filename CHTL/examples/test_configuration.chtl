@@ -1,0 +1,55 @@
+// 测试配置组功能
+
+[Configuration]
+{
+    // 设置调试模式
+    DEBUG_MODE = true;
+    
+    // 禁用局部样式自动添加类
+    DISABLE_STYLE_AUTO_ADD_CLASS = true;
+    
+    // 启用局部样式自动添加ID
+    DISABLE_STYLE_AUTO_ADD_ID = false;
+    
+    // 子配置组
+    [Name]
+    {
+        CUSTOM_STYLE = [@Style, @style];
+        TEMPLATE_ELEMENT = @Element;
+    }
+    
+    [OriginType]
+    {
+        ORIGINTYPE_VUE = @Vue;
+        ORIGINTYPE_REACT = @React;
+    }
+}
+
+use html5;
+
+html
+{
+    body
+    {
+        div
+        {
+            id: "test-div";
+            style
+            {
+                // 由于DISABLE_STYLE_AUTO_ADD_CLASS = true
+                // 这里不会自动添加class
+                .my-class {
+                    color: blue;
+                }
+                
+                // 由于DISABLE_STYLE_AUTO_ADD_ID = false
+                // 如果元素没有id，会自动添加
+                #test-div {
+                    background: #f0f0f0;
+                }
+            }
+            
+            text { "配置组测试" }
+        }
+    }
+}

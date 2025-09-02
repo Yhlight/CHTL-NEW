@@ -1,0 +1,37 @@
+use html5;
+
+// 测试CE对等式：:和=完全等价
+
+[Template] @Style theme {
+    background = #f0f0f0;  // 使用=
+    color: #333;           // 使用:
+    padding = 20px;
+}
+
+[Template] @Var colors {
+    primary: blue;         // 使用:
+    secondary = green;     // 使用=
+}
+
+[Configuration] {
+    DEBUG_MODE: false;     // 使用:
+    INDEX_INITIAL_COUNT = 0;  // 使用=
+}
+
+html {
+    body {
+        div {
+            id = "container";  // 使用=代替:
+            class: "main";     // 使用:
+            
+            style {
+                width = 100%;
+                height: 500px;
+                background-color = colors(primary);
+                @Style theme;
+            }
+            
+            text { "CE对等式测试" }
+        }
+    }
+}

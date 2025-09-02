@@ -1,0 +1,18 @@
+use html5;
+
+[Import] @Chtl from simple_lib;
+
+html
+{
+    body
+    {
+        p
+        {
+            style
+            {
+                @Style RedText;
+            }
+            text { "测试导入" }
+        }
+    }
+}

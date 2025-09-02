@@ -1,0 +1,35 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <script>
+// 测试CHTL语法边界
+use html5;
+
+// 这是合法的CHTL语法
+[Template] @Style button {
+    background: blue;
+    color: white;
+}
+
+html {
+    body {
+        // 测试在CHTL中错误使用CHTL JS语法
+        div {
+            // 错误：{{选择器}}是CHTL JS特有语法
+            {{button}}.addEventListener('click', function() {
+                console.log('clicked');
+            });
+            
+            // 正确：局部script块中可以使用增强选择器
+            script {
+                {{button}}.addEventListener('click', function() {
+                    console.log('This is OK in script block');
+                });
+            }
+        }
+    }
+}    </script>
+</body>
+</html>

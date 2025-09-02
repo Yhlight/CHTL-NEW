@@ -1,0 +1,19 @@
+use html5;
+
+html {
+    body {
+        div {
+            class: "box";
+            
+            style {
+                background: white;
+                
+                .box {
+                    border: 1px solid #ddd;
+                }
+            }
+            
+            text { "测试选择器" }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+use html5;
+
+// 测试增强的导入功能
+[Import] @Chtl "./lib/utils.chtl";
+[Import] @Chtl "./lib/utils" as Utils;  // 省略扩展名
+
+html {
+    head {
+        title { text { "增强导入测试" } }
+        // 使用导入的样式模板
+        style {
+            @Style button;
+            @Style card;
+        }
+    }
+    
+    body {
+        div class="container" {
+            h1 { text { "导入功能测试" } }
+            
+            // 使用导入的元素模板
+            @Element Alert {
+                type = "success";
+                content = "导入成功！";
+            }
+            
+            div class="card" {
+                button { text { "测试按钮" } }
+            }
+        }
+    }
+}

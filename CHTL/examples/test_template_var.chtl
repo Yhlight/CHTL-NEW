@@ -1,0 +1,58 @@
+use html5;
+
+[Template] @Var ThemeColors
+{
+    primary: "#007bff";
+    secondary: "#6c757d";
+    success: "#28a745";
+    danger: "#dc3545";
+    textColor: "#333";
+}
+
+[Template] @Style ButtonStyle
+{
+    padding: "10px 20px";
+    border: "none";
+    border-radius: "4px";
+    cursor: "pointer";
+}
+
+html
+{
+    body
+    {
+        button
+        {
+            style
+            {
+                @Style ButtonStyle;
+                background-color: ThemeColors(primary);
+                color: "white";
+            }
+            
+            text { "主要按钮" }
+        }
+        
+        button
+        {
+            style
+            {
+                @Style ButtonStyle;
+                background-color: ThemeColors(danger);
+                color: "white";
+            }
+            
+            text { "危险按钮" }
+        }
+        
+        p
+        {
+            style
+            {
+                color: ThemeColors(textColor);
+            }
+            
+            text { "使用主题颜色的文本" }
+        }
+    }
+}

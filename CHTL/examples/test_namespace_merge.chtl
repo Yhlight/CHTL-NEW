@@ -1,0 +1,30 @@
+// 测试同名命名空间合并
+
+[Namespace] Utils {
+    [Template] @Style button {
+        background: blue;
+        color: white;
+        padding: 10px;
+    }
+}
+
+[Namespace] Utils {
+    [Template] @Style card {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 20px;
+    }
+}
+
+use html5;
+
+html {
+    body {
+        div {
+            style {
+                @Style button from Utils;
+                @Style card from Utils;
+            }
+        }
+    }
+}

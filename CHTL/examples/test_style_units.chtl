@@ -1,0 +1,18 @@
+use html5;
+
+html
+{
+    body
+    {
+        div
+        {
+            style
+            {
+                width: 800px;
+                font-size: 16px;
+            }
+            
+            text { "测试CSS单位" }
+        }
+    }
+}

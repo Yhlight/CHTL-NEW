@@ -1,0 +1,51 @@
+[Configuration] {
+    // 启用样式块的选择器自动化
+    DISABLE_STYLE_AUTO_ADD_CLASS = false;
+    DISABLE_STYLE_AUTO_ADD_ID = false;
+    // 禁用脚本块的选择器自动化
+    DISABLE_SCRIPT_AUTO_ADD_CLASS = true;
+    DISABLE_SCRIPT_AUTO_ADD_ID = true;
+}
+
+use html5;
+
+html {
+    body {
+        // 测试样式块的类选择器自动化
+        div {
+            style {
+                .box {
+                    background: blue;
+                    padding: 20px;
+                }
+            }
+            text { "自动添加class=box" }
+        }
+        
+        // 测试样式块的ID选择器自动化
+        div {
+            style {
+                #container {
+                    width: 100%;
+                    margin: 0 auto;
+                }
+            }
+            text { "自动添加id=container" }
+        }
+        
+        // 手动指定的class/id不会被覆盖
+        div {
+            class: "manual-class";
+            id: "manual-id";
+            style {
+                .auto-class {
+                    color: red;
+                }
+                #auto-id {
+                    color: blue;
+                }
+            }
+            text { "保持手动指定的class和id" }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+use html5;
+
+html
+{
+    body
+    {
+        // 精确约束测试
+        div
+        {
+            except span, p;  // 禁止在div内使用span和p元素
+            
+            h1 { text { "约束测试" } }  // 允许
+            // span { text { "这个应该被禁止" } }  // 不允许
+            // p { text { "这个也应该被禁止" } }     // 不允许
+        }
+        
+        // 类型约束测试
+        section
+        {
+            except @Html;  // 禁止所有HTML元素
+            
+            [Template] @Element MyElement
+            {
+                div { text { "模板元素" } }
+            }
+            
+            @Element MyElement;  // 允许，因为是模板元素
+            // div { text { "这个应该被禁止" } }  // 不允许，因为是HTML元素
+        }
+        
+        // 修饰符约束测试
+        article
+        {
+            except [Template];  // 禁止所有模板
+            
+            div { text { "普通HTML元素" } }  // 允许
+            // @Element MyElement;  // 不允许，因为是模板
+        }
+    }
+}

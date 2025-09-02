@@ -1,0 +1,61 @@
+// 测试变量组功能
+
+[Template] @Var ThemeColors {
+    primary: "#007bff";
+    secondary: "#6c757d";
+    success: "#28a745";
+    danger: "#dc3545";
+    warning: "#ffc107";
+    info: "#17a2b8";
+    light: "#f8f9fa";
+    dark: "#343a40";
+}
+
+[Template] @Var Spacing {
+    small: "8px";
+    medium: "16px";
+    large: "24px";
+    xlarge: "32px";
+}
+
+use html5;
+
+html {
+    head {
+        title: "变量组测试";
+    }
+    
+    body {
+        div {
+            style {
+                background: ThemeColors(light);
+                padding: Spacing(medium);
+                margin: Spacing(small);
+            }
+            
+            text { "主容器" }
+            
+            div {
+                style {
+                    background: ThemeColors(primary);
+                    color: white;
+                    padding: Spacing(large);
+                    border-radius: 8px;
+                }
+                
+                text { "使用主题色的卡片" }
+            }
+            
+            div {
+                style {
+                    background: ThemeColors(danger);
+                    color: white;
+                    padding: Spacing(medium);
+                    margin-top: Spacing(small);
+                }
+                
+                text { "警告信息" }
+            }
+        }
+    }
+}

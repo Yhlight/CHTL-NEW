@@ -1,0 +1,7 @@
+// 循环导入测试 - 文件A
+
+[Import] @Chtl "./cycle_b.chtl";
+
+[Template] @Style fromA {
+    color: red;
+}

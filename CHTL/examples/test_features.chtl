@@ -1,0 +1,71 @@
+// 测试CHTL各种语法特征
+
+// 1. 模板定义
+[Template] @Style CardStyle {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+[Template] @Element Card {
+    div {
+        class: card;
+        style {
+            @Style CardStyle;
+            margin: 10px;
+        }
+    }
+}
+
+// 2. 自定义元素
+[Custom] @Element Alert {
+    div {
+        class: alert;
+        style {
+            padding: 10px;
+            border: 1px solid;
+        }
+    }
+}
+
+// 3. 变量组
+[Template] @Var Colors {
+    primary: "#007bff";
+    secondary: "#6c757d";
+    danger: "#dc3545";
+}
+
+use html5;
+
+html {
+    head {
+        title: "CHTL功能测试";
+    }
+    
+    body {
+        // 4. 使用模板元素
+        @Element Card;
+        
+        // 5. 局部样式与选择器
+        div {
+            style {
+                background: Colors(primary);
+                
+                .content {
+                    padding: 20px;
+                }
+                
+                &:hover {
+                    opacity: 0.9;
+                }
+            }
+            
+            // 6. 文本节点
+            text { "这是一个测试" }
+        }
+        
+        // 7. 注释
+        -- 这是生成器注释，会出现在输出中
+    }
+}

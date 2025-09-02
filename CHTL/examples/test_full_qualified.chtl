@@ -1,0 +1,52 @@
+use html5;
+
+// 测试全缀名访问
+
+[Template] @Style button {
+    background: blue;
+    color: white;
+}
+
+[Custom] @Style button {
+    background: red;
+    color: yellow;
+}
+
+[Template] @Element Box {
+    div {
+        text { "模板元素" }
+    }
+}
+
+[Custom] @Element Box {
+    div {
+        text { "自定义元素" }
+    }
+}
+
+html {
+    body {
+        // 使用全缀名明确指定要使用的版本
+        div {
+            style {
+                [Template] @Style button;  // 使用模板样式
+            }
+            [Template] @Element Box;       // 使用模板元素
+        }
+        
+        div {
+            style {
+                [Custom] @Style button;    // 使用自定义样式
+            }
+            [Custom] @Element Box;         // 使用自定义元素
+        }
+        
+        // 不使用全缀名时，默认使用模板版本
+        div {
+            style {
+                @Style button;
+            }
+            @Element Box;
+        }
+    }
+}

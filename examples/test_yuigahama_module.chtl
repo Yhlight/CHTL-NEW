@@ -1,0 +1,254 @@
+// 由比滨结衣模块使用示例
+use html5;
+
+// 导入由比滨官方模块
+[Import] @Chtl from chtl::yuigahama;
+
+// 自定义颜色方案
+[Custom] @Var MyYuigahamaColors {
+    @Var YuigahamaColors from yuigahama {
+        primary: "#FFB6C1";
+        secondary: "#FFDAB9";
+        accent: "#FFA07A";
+        bubble: "#F0E68C";
+    }
+}
+
+html {
+    head {
+        title { text { "由比滨结衣主题示例 - 温柔的团子女孩" } }
+    }
+    
+    body {
+        style {
+            @Style YuigahamaTheme from yuigahama;
+        }
+        
+        // 使用由比滨容器
+        @Element YuigahamaContainer from yuigahama {
+            // 添加樱花效果
+            @Element YuigahamaSakura from yuigahama;
+            
+            // 头部区域
+            header {
+                style {
+                    text-align: center;
+                    padding: 40px 0;
+                }
+                
+                h1 {
+                    style {
+                        @Style YuigahamaGradient from yuigahama;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        font-size: 42px;
+                        font-weight: 800;
+                        margin-bottom: 10px;
+                    }
+                    text { "由比滨结衣的小屋" }
+                }
+                
+                p {
+                    style {
+                        @Style YuigahamaText from yuigahama;
+                        font-size: 18px;
+                        color: yuigahama.YuigahamaThemeVars(textSecondary);
+                    }
+                    text { "やっはろー！欢迎来到我的世界～" }
+                }
+            }
+            
+            // 音乐播放器
+            section {
+                style {
+                    margin: 40px 0;
+                }
+                
+                h2 {
+                    style {
+                        @Style YuigahamaText from yuigahama;
+                        font-size: 24px;
+                        color: yuigahama.YuigahamaThemeVars(primaryPink);
+                        margin-bottom: 20px;
+                    }
+                    text { "🎵 最爱的音乐" }
+                }
+                
+                @Element YuigahamaMusic from yuigahama;
+            }
+            
+            // 备忘录区域
+            section {
+                style {
+                    margin: 40px 0;
+                }
+                
+                h2 {
+                    style {
+                        @Style YuigahamaText from yuigahama;
+                        font-size: 24px;
+                        color: yuigahama.YuigahamaThemeVars(primaryPeach);
+                        margin-bottom: 20px;
+                    }
+                    text { "📝 今日心情" }
+                }
+                
+                @Element YuigahamaMemo from yuigahama {
+                    div class="memo-header" {
+                        text { "团子的每日记录" }
+                    }
+                    div class="memo-content" {
+                        text { "今天和大家一起度过了美好的时光！\n虽然有时候会说错话，但是大家都很温柔呢～\n明天也要加油！💪" }
+                    }
+                }
+            }
+            
+            // 手风琴内容
+            section {
+                style {
+                    margin: 40px 0;
+                }
+                
+                h2 {
+                    style {
+                        @Style YuigahamaText from yuigahama;
+                        font-size: 24px;
+                        color: yuigahama.YuigahamaThemeVars(lightCoral);
+                        margin-bottom: 20px;
+                    }
+                    text { "🎀 关于我" }
+                }
+                
+                div {
+                    style {
+                        @Style YuigahamaAccordion from yuigahama;
+                    }
+                    
+                    div class="accordion-header" {
+                        text { "性格特点" }
+                    }
+                    div class="accordion-content" {
+                        p {
+                            style {
+                                @Style YuigahamaText from yuigahama;
+                            }
+                            text { "虽然有时候会在意别人的看法，但我会努力做真实的自己！喜欢交朋友，珍惜每一份友谊～" }
+                        }
+                    }
+                }
+                
+                div {
+                    style {
+                        @Style YuigahamaAccordion from yuigahama;
+                        margin-top: 10px;
+                    }
+                    
+                    div class="accordion-header" {
+                        text { "兴趣爱好" }
+                    }
+                    div class="accordion-content" {
+                        p {
+                            style {
+                                @Style YuigahamaText from yuigahama;
+                            }
+                            text { "喜欢做料理（虽然手艺还在进步中...）、喜欢和朋友聊天、喜欢可爱的东西！" }
+                        }
+                    }
+                }
+            }
+            
+            // 聊天界面
+            section {
+                style {
+                    margin: 40px 0;
+                }
+                
+                h2 {
+                    style {
+                        @Style YuigahamaText from yuigahama;
+                        font-size: 24px;
+                        color: yuigahama.YuigahamaThemeVars(accentOrange);
+                        margin-bottom: 20px;
+                    }
+                    text { "💬 聊天室" }
+                }
+                
+                @Element YuigahamaChat from yuigahama {
+                    div class="chat-messages" {
+                        div class="message" {
+                            text { "やっはろー！今天天气真好呢～" }
+                        }
+                        div class="message sent" {
+                            text { "是啊，很适合出去走走" }
+                        }
+                        div class="message" {
+                            text { "要不要一起去买团子？我知道一家很好吃的店！" }
+                        }
+                    }
+                }
+            }
+            
+            // 按钮展示
+            section {
+                style {
+                    text-align: center;
+                    margin: 60px 0;
+                }
+                
+                button {
+                    style {
+                        @Style YuigahamaButton from yuigahama;
+                        margin: 0 10px;
+                    }
+                    text { "和我做朋友吧！" }
+                }
+                
+                button {
+                    style {
+                        @Style YuigahamaButton from yuigahama;
+                        margin: 0 10px;
+                        background: yuigahama.YuigahamaThemeVars(lightCoral);
+                    }
+                    text { "一起吃团子！" }
+                }
+            }
+        }
+        
+        // 局部脚本
+        script {
+            // 手风琴交互
+            {{.accordion-header}}->listen {
+                click: function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    content.classList.toggle('active');
+                }
+            };
+            
+            // 音乐播放器交互
+            {{.music-controls button}}->listen {
+                click: function() {
+                    const cover = {{.music-cover}}[0];
+                    cover.classList.toggle('playing');
+                }
+            };
+            
+            // 聊天输入
+            {{.chat-input button}}->listen {
+                click: function() {
+                    const input = {{.chat-input input}}[0];
+                    const messages = {{.chat-messages}}[0];
+                    
+                    if (input.value.trim()) {
+                        const message = document.createElement('div');
+                        message.className = 'message sent';
+                        message.textContent = input.value;
+                        messages.appendChild(message);
+                        input.value = '';
+                        messages.scrollTop = messages.scrollHeight;
+                    }
+                }
+            };
+        }
+    }
+}

@@ -1,0 +1,44 @@
+use html5;
+
+html {
+    head {
+        style {
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+            }
+            
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            
+            h1 {
+                color: #333;
+                font-size: 2em;
+                margin-bottom: 1em;
+            }
+            
+            @media (max-width: 768px) {
+                .container {
+                    padding: 10px;
+                }
+                
+                h1 {
+                    font-size: 1.5em;
+                }
+            }
+        }
+    }
+    
+    body {
+        div {
+            class: "container";
+            h1 { text { "CSS编译器测试" } }
+            p { text { "测试ANTLR4 CSS解析器" } }
+        }
+    }
+}

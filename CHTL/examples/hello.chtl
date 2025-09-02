@@ -1,0 +1,50 @@
+use html5;
+
+html
+{
+    head
+    {
+        text
+        {
+            <meta charset="UTF-8">
+        }
+    }
+    
+    body
+    {
+        div
+        {
+            id: welcome-box;
+            class: container;
+            
+            style
+            {
+                width: 300px;
+                height: 200px;
+                background-color: #f0f0f0;
+                
+                .box
+                {
+                    padding: 20px;
+                }
+                
+                &:hover
+                {
+                    background-color: #e0e0e0;
+                }
+            }
+            
+            text
+            {
+                "欢迎使用CHTL编译器！"
+            }
+            
+            script
+            {
+                {{.box}}->addEventListener('click', () => {
+                    console.log('Box clicked!');
+                });
+            }
+        }
+    }
+}

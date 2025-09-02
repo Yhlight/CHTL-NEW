@@ -1,0 +1,17 @@
+use html5;
+
+[Template] @Style button {
+    background: blue;
+    color: white;
+}
+
+html {
+    body {
+        div {
+            style {
+                @Style button;
+            }
+            text { "Test" }
+        }
+    }
+}

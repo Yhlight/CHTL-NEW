@@ -1,0 +1,9 @@
+use html5;
+
+html {
+    body {
+        div {
+            text { "CHTL编译器完整实现测试成功！" }
+        }
+    }
+}

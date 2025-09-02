@@ -1,0 +1,17 @@
+use html5;
+
+html
+{
+    body
+    {
+        div
+        {
+            style
+            {
+                color: #333;
+            }
+            
+            text { "测试井号" }
+        }
+    }
+}

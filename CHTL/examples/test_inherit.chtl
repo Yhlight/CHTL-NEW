@@ -1,0 +1,25 @@
+use html5;
+
+[Template] @Style base {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+}
+
+[Template] @Style button {
+    background: blue;
+    color: white;
+    inherit @Style base;  // 继承base样式
+    cursor: pointer;
+}
+
+html {
+    body {
+        button {
+            style {
+                @Style button;
+            }
+            text { "点击我" }
+        }
+    }
+}

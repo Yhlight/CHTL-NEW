@@ -1,0 +1,36 @@
+// 样式库文件
+
+[Template] @Style BaseText
+{
+    color: black;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+[Template] @Style HeaderText
+{
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+[Template] @Var Colors
+{
+    primary: "#007bff";
+    secondary: "#6c757d";
+    success: "#28a745";
+    danger: "#dc3545";
+}
+
+[Template] @Element Card
+{
+    div {
+        class: "card";
+        style {
+            border: "1px solid #ddd";
+            border-radius: "4px";
+            padding: "20px";
+            margin: "10px";
+        }
+    }
+}

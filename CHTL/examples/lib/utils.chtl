@@ -1,0 +1,29 @@
+// 工具库
+
+[Template] @Style button {
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+[Template] @Style card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+[Template] @Element Alert {
+    div class="alert alert-{{type}}" {
+        text { AlertContent(content) }
+    }
+}
+
+[Template] @Var AlertContent {
+    type = "info";
+    content = "默认提示信息";
+}

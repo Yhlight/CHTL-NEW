@@ -1,0 +1,20 @@
+use html5;
+
+html
+{
+    head
+    {
+        
+    }
+    
+    body
+    {
+        div
+        {
+            text
+            {
+                "Hello, CHTL!"
+            }
+        }
+    }
+}

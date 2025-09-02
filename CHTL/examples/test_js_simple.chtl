@@ -1,0 +1,7 @@
+use html5;
+
+// 测试纯JavaScript代码片段
+function test() {
+    console.log("This is a JavaScript test");
+    return true;
+}

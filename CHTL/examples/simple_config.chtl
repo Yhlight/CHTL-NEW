@@ -1,0 +1,14 @@
+use html5;
+
+[Configuration] @Config MyConfig
+{
+    DEBUG_MODE = true;
+}
+
+html
+{
+    body
+    {
+        text { "简单配置测试" }
+    }
+}

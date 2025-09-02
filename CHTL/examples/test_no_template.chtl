@@ -1,0 +1,13 @@
+use html5;
+
+html {
+    body {
+        div {
+            style {
+                background: blue;
+                color: white;
+            }
+            text { "Test" }
+        }
+    }
+}
