@@ -285,10 +285,39 @@ void CHTLCompiler::LoadAndMergeFile(const std::string& filePath, int importType,
         
         case ImportNode::ImportType::Html:
         case ImportNode::ImportType::Style:
-        case ImportNode::ImportType::JavaScript:
-            // TODO: 处理其他类型的导入
-            LOG_INFO("导入类型尚未实现: " + filePath);
+        case ImportNode::ImportType::JavaScript: {
+            // 根据文档：如果没有as语法，则跳过；如果有as语法，创建带名原始嵌入节点
+            if (asName.empty()) {
+                LOG_INFO("跳过导入（无as语法）: " + filePath);
+                break;
+            }
+            
+            // 创建带名原始嵌入节点
+            auto originNode = std::make_shared<OriginNode>();
+            
+            // 设置类型
+            if (type == ImportNode::ImportType::Html) {
+                originNode->SetType(OriginNode::OriginType::Html);
+            } else if (type == ImportNode::ImportType::Style) {
+                originNode->SetType(OriginNode::OriginType::Style);
+            } else if (type == ImportNode::ImportType::JavaScript) {
+                originNode->SetType(OriginNode::OriginType::JavaScript);
+            }
+            
+            // 设置名称
+            originNode->SetName(asName);
+            
+            // 设置内容
+            originNode->SetContent(content);
+            
+            // 添加到当前AST
+            if (currentAST) {
+                currentAST->AddChild(originNode);
+            }
+            
+            LOG_INFO("创建带名原始嵌入节点: " + asName + " (类型: " + filePath + ")");
             break;
+        }
             
         case ImportNode::ImportType::TemplateStyle:
         case ImportNode::ImportType::TemplateElement:

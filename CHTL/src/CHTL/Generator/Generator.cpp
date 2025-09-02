@@ -92,6 +92,15 @@ void Generator::VisitProgram(ProgramNode* node) {
     // 访问所有子节点
     VisitChildren(node);
     
+    // 输出收集的全局样式
+    if (!globalStyleRules.empty()) {
+        output << "\n<style>\n";
+        for (const auto& rule : globalStyleRules) {
+            output << rule;
+        }
+        output << "</style>\n";
+    }
+    
     LOG_DEBUG("代码生成完成");
 }
 
@@ -151,6 +160,10 @@ void Generator::VisitElement(ElementNode* node) {
         attrs["id"] = firstIdSelector;
     }
     
+    // 记录当前元素的类名和ID（用于&引用替换）
+    currentElementClass = (attrs.find("class") != attrs.end()) ? attrs["class"] : "";
+    currentElementId = (attrs.find("id") != attrs.end()) ? attrs["id"] : "";
+    
     if (!inlineStyle.empty()) {
         // 如果已经有style属性，合并它们
         if (attrs.find("style") != attrs.end()) {
@@ -171,6 +184,10 @@ void Generator::VisitElement(ElementNode* node) {
         }
     }
     indentLevel--;
+    
+    // 清理当前元素信息
+    currentElementClass = "";
+    currentElementId = "";
     
     // 生成结束标签
     EmitLine("</" + node->GetTagName() + ">");
@@ -209,32 +226,40 @@ void Generator::VisitCustomElement(CustomElementNode* node) {}
 void Generator::VisitCustomVar(CustomVarNode* node) {}
 void Generator::VisitOrigin(OriginNode* node) {}
 void Generator::VisitLocalStyle(LocalStyleNode* node) {
-    // 将样式规则（类选择器、ID选择器等）输出到全局样式块
+    // 收集样式规则到全局样式块
     if (!node->GetRules().empty()) {
-        // 临时切换到CSS模式
-        GeneratorContext savedContext = currentContext;
-        currentContext = GeneratorContext::InStyle;
-        
-        // 输出到全局样式块（这里简化处理，实际应该收集到全局样式区域）
-        output << "<style>\n";
-        
         for (const auto& rule : node->GetRules()) {
             std::string selector = rule->GetSelector();
             
             // 处理 & 引用（替换为当前元素的类名或ID）
-            // 这需要从父元素获取信息，暂时简化处理
-            
-            output << selector << " {\n";
-            for (const auto& prop : rule->GetProperties()) {
-                output << "    " << prop->GetName() << ": " << prop->GetValue() << ";\n";
+            if (selector.find("&") != std::string::npos) {
+                // 优先使用类名
+                if (!currentElementClass.empty()) {
+                    size_t pos = 0;
+                    while ((pos = selector.find("&", pos)) != std::string::npos) {
+                        selector.replace(pos, 1, "." + currentElementClass);
+                        pos += currentElementClass.length() + 1;
+                    }
+                } else if (!currentElementId.empty()) {
+                    size_t pos = 0;
+                    while ((pos = selector.find("&", pos)) != std::string::npos) {
+                        selector.replace(pos, 1, "#" + currentElementId);
+                        pos += currentElementId.length() + 1;
+                    }
+                }
             }
-            output << "}\n";
+            
+            // 构建样式规则字符串
+            std::ostringstream ruleStr;
+            ruleStr << selector << " {\n";
+            for (const auto& prop : rule->GetProperties()) {
+                ruleStr << "    " << prop->GetName() << ": " << prop->GetValue() << ";\n";
+            }
+            ruleStr << "}\n";
+            
+            // 添加到全局样式规则集合
+            globalStyleRules.push_back(ruleStr.str());
         }
-        
-        output << "</style>\n";
-        
-        // 恢复上下文
-        currentContext = savedContext;
     }
     
     // 内联样式已经在元素生成时处理
@@ -264,6 +289,31 @@ void Generator::VisitComment(CommentNode* node) {
         output << "\n";
     }
     // 其他类型的注释（// 和 /**/）不会被生成到输出中
+}
+
+void Generator::VisitDelete(DeleteNode* node) {
+    // delete操作在解析阶段应该已经应用到AST上
+    // 这里不需要生成任何内容
+    LOG_DEBUG("处理Delete节点");
+}
+
+void Generator::VisitInsert(InsertNode* node) {
+    // insert操作也应该在解析阶段应用
+    // 这里生成插入的内容
+    LOG_DEBUG("处理Insert节点");
+    
+    // 生成插入的内容
+    for (const auto& child : node->GetContent()) {
+        child->Accept(this);
+    }
+}
+
+void Generator::VisitElementMatch(ElementMatchNode* node) {
+    // 元素匹配特例化
+    LOG_DEBUG("处理ElementMatch节点: " + node->GetElementName());
+    
+    // 生成子节点（通常是样式或属性）
+    VisitChildren(node);
 }
 
 } // namespace CHTL

@@ -45,6 +45,13 @@ private:
     int indentLevel;                              // 缩进级别
     bool prettyPrint;                             // 是否格式化输出
     
+    // 收集的全局样式规则
+    std::vector<std::string> globalStyleRules;
+    
+    // 当前元素的类名/ID（用于&引用替换）
+    std::string currentElementClass;
+    std::string currentElementId;
+    
     /**
      * 输出缩进
      */
@@ -123,6 +130,9 @@ public:
     void VisitStyleProperty(StylePropertyNode* node) override;
     void VisitAttribute(AttributeNode* node) override;
     void VisitComment(CommentNode* node) override;
+    void VisitDelete(DeleteNode* node) override;
+    void VisitInsert(InsertNode* node) override;
+    void VisitElementMatch(ElementMatchNode* node) override;
 };
 
 } // namespace CHTL
