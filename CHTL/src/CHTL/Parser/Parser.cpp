@@ -699,8 +699,23 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
             auto attrNode = std::make_shared<AttributeNode>(attrName, attrValue);
             element->AddAttributeNode(attrNode);
         }
-        // 元素模板引用
-        else if (Check(TokenType::AT_ELEMENT)) {
+        // 元素模板引用（支持全缀名）
+        else if (Check(TokenType::AT_ELEMENT) || 
+                 (Check(TokenType::CUSTOM) && PeekToken().type == TokenType::AT_ELEMENT) ||
+                 (Check(TokenType::TEMPLATE) && PeekToken().type == TokenType::AT_ELEMENT)) {
+            
+            bool isCustom = false;
+            bool isTemplate = false;
+            
+            // 检查是否有[Custom]或[Template]前缀
+            if (Check(TokenType::CUSTOM)) {
+                isCustom = true;
+                ConsumeToken(); // 消费 [Custom]
+            } else if (Check(TokenType::TEMPLATE)) {
+                isTemplate = true;
+                ConsumeToken(); // 消费 [Template]
+            }
+            
             ConsumeToken(); // 消费 @Element
             Expect(TokenType::IDENTIFIER, "期望标识符");
             std::string templateName = CurrentToken().value;
@@ -740,16 +755,28 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
                 fullTemplateName = namespacePath + "." + templateName;
             }
             
-            // 从全局映射表获取模板
-            auto templateNode = context->GetGlobalMap()->GetTemplateElement(fullTemplateName);
+            // 从全局映射表获取模板（根据全缀名选择）
+            std::shared_ptr<ASTNode> templateNode;
+            if (isCustom) {
+                // 查找自定义元素
+                templateNode = context->GetGlobalMap()->GetCustomElement(fullTemplateName);
+                if (!templateNode) {
+                    ReportError("未找到自定义元素: " + fullTemplateName);
+                }
+            } else {
+                // 查找模板元素（默认或显式指定[Template]）
+                templateNode = context->GetGlobalMap()->GetTemplateElement(fullTemplateName);
+                if (!templateNode) {
+                    ReportError("未找到元素模板: " + fullTemplateName);
+                }
+            }
+            
             if (templateNode) {
                 // 将模板中的所有元素添加到当前元素
                 for (const auto& child : templateNode->GetChildren()) {
                     // 深拷贝子元素
                     element->AddChild(child);
                 }
-            } else {
-                ReportError("未找到元素模板: " + fullTemplateName);
             }
         }
         // 子元素
@@ -839,7 +866,22 @@ std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {
     
     // 解析样式属性或样式模板引用
     while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
-        if (Check(TokenType::AT_STYLE)) {
+        if (Check(TokenType::AT_STYLE) ||
+            (Check(TokenType::CUSTOM) && PeekToken().type == TokenType::AT_STYLE) ||
+            (Check(TokenType::TEMPLATE) && PeekToken().type == TokenType::AT_STYLE)) {
+            
+            bool isCustom = false;
+            bool isTemplate = false;
+            
+            // 检查是否有[Custom]或[Template]前缀
+            if (Check(TokenType::CUSTOM)) {
+                isCustom = true;
+                ConsumeToken(); // 消费 [Custom]
+            } else if (Check(TokenType::TEMPLATE)) {
+                isTemplate = true;
+                ConsumeToken(); // 消费 [Template]
+            }
+            
             // 样式模板引用: @Style 模板名 [from 命名空间];
             ConsumeToken(); // 消费 @Style
             Expect(TokenType::IDENTIFIER, "期望标识符");
@@ -880,18 +922,36 @@ std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {
                 fullTemplateName = namespacePath + "." + templateName;
             }
             
-            // 从全局映射表获取模板
-            auto templateNode = context->GetGlobalMap()->GetTemplateStyle(fullTemplateName);
-            if (templateNode) {
-                // 将模板中的所有属性添加到当前样式节点
-                for (const auto& child : templateNode->GetChildren()) {
-                    if (child->GetType() == ASTNodeType::StyleProperty) {
-                        auto prop = std::static_pointer_cast<StylePropertyNode>(child);
-                        styleNode->AddProperty(prop->GetName(), prop->GetValue());
+            // 从全局映射表获取模板（根据全缀名选择）
+            std::shared_ptr<TemplateStyleNode> templateNode;
+            if (isCustom) {
+                // 查找自定义样式组
+                auto customStyle = context->GetGlobalMap()->GetCustomStyle(fullTemplateName);
+                if (!customStyle) {
+                    ReportError("未找到自定义样式组: " + fullTemplateName);
+                } else {
+                    // 将自定义样式组的属性添加到当前样式节点
+                    for (const auto& child : customStyle->GetChildren()) {
+                        if (child->GetType() == ASTNodeType::StyleProperty) {
+                            auto prop = std::static_pointer_cast<StylePropertyNode>(child);
+                            styleNode->AddProperty(prop->GetName(), prop->GetValue());
+                        }
                     }
                 }
             } else {
-                ReportError("未找到样式模板: " + templateName);
+                // 查找模板样式（默认或显式指定[Template]）
+                templateNode = context->GetGlobalMap()->GetTemplateStyle(fullTemplateName);
+                if (templateNode) {
+                    // 将模板中的所有属性添加到当前样式节点
+                    for (const auto& child : templateNode->GetChildren()) {
+                        if (child->GetType() == ASTNodeType::StyleProperty) {
+                            auto prop = std::static_pointer_cast<StylePropertyNode>(child);
+                            styleNode->AddProperty(prop->GetName(), prop->GetValue());
+                        }
+                    }
+                } else {
+                    ReportError("未找到样式模板: " + fullTemplateName);
+                }
             }
         }
         else if (Check(TokenType::IDENTIFIER)) {

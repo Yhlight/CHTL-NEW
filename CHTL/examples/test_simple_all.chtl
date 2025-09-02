@@ -1,0 +1,18 @@
+use html5;
+
+[Template] @Style theme {
+    color = red;     // 使用=
+    padding: 10px;   // 使用:
+}
+
+html {
+    body {
+        div {
+            id = "test";
+            style {
+                @Style theme;
+            }
+            text { "测试" }
+        }
+    }
+}

@@ -83,18 +83,51 @@ void Generator::VisitProgram(ProgramNode* node) {
 }
 
 void Generator::VisitElement(ElementNode* node) {
-    // 检查是否有局部样式
+    // 检查是否有局部样式和脚本
     std::string inlineStyle;
+    bool hasLocalStyle = false;
+    bool hasLocalScript = false;
+    std::string firstClassSelector;
+    std::string firstIdSelector;
+    
     for (const auto& child : node->GetChildren()) {
         if (child->GetType() == ASTNodeType::LocalStyle) {
+            hasLocalStyle = true;
             auto styleNode = static_cast<LocalStyleNode*>(child.get());
             inlineStyle = styleNode->GenerateInlineStyle();
-            break; // 只取第一个局部样式块
+            
+            // 查找第一个类选择器和ID选择器（用于自动化）
+            // TODO: 实现选择器解析
+        } else if (child->GetType() == ASTNodeType::LocalScript) {
+            hasLocalScript = true;
+            // TODO: 解析script中的选择器
         }
     }
     
     // 准备属性
     auto attrs = node->GetAttributes();
+    
+    // 选择器自动化：自动添加class/id
+    if (!context->IsStyleAutoAddClassDisabled() && hasLocalStyle && 
+        attrs.find("class") == attrs.end() && !firstClassSelector.empty()) {
+        attrs["class"] = firstClassSelector;
+    }
+    
+    if (!context->IsStyleAutoAddIdDisabled() && hasLocalStyle && 
+        attrs.find("id") == attrs.end() && !firstIdSelector.empty()) {
+        attrs["id"] = firstIdSelector;
+    }
+    
+    if (!context->IsScriptAutoAddClassDisabled() && hasLocalScript && !hasLocalStyle &&
+        attrs.find("class") == attrs.end() && !firstClassSelector.empty()) {
+        attrs["class"] = firstClassSelector;
+    }
+    
+    if (!context->IsScriptAutoAddIdDisabled() && hasLocalScript && !hasLocalStyle &&
+        attrs.find("id") == attrs.end() && !firstIdSelector.empty()) {
+        attrs["id"] = firstIdSelector;
+    }
+    
     if (!inlineStyle.empty()) {
         // 如果已经有style属性，合并它们
         if (attrs.find("style") != attrs.end()) {
