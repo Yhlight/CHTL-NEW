@@ -1,67 +1,46 @@
-// 综合功能测试
-// 单行注释
-
-/*
-  多行注释
-  测试所有已实现的功能
-*/
-
--- 这是生成器注释，会被输出到HTML
-
-[Configuration] {
-    DEBUG_MODE = false;              // 使用=
-    DISABLE_STYLE_AUTO_ADD_CLASS: false;  // 使用:
-}
+// CHTL编译器综合测试
 
 use html5;
 
-[Template] @Style baseStyle {
-    padding: 10px;
-    margin = 5px;    // CE对等式测试
-}
-
-[Template] @Style themeStyle {
-    color: #333;     // 六位十六进制颜色
-    background = #fff;
-    inherit @Style baseStyle;  // 继承
-}
-
-[Template] @Var colors {
-    primary = blue;
-    secondary: green;   // CE对等式
-}
-
-[Namespace] UI {
-    [Template] @Element Button {
-        button {
-            style {
-                @Style themeStyle;
-                background-color = colors(primary);
-            }
-            text { "点击" }
-        }
-    }
-}
-
 html {
+    head {
+        title: "CHTL编译器完整实现测试";
+    }
+    
     body {
-        // 测试无引号字面量
+        // 1. 基本元素和属性
         div {
-            id = container;
-            class: main-content;
+            id: "container";
+            class: "main-container";
             
-            style {
-                width = 100%;
-                font-family: Arial, sans-serif;  // 带空格的值
+            // 2. 文本节点
+            text { "欢迎使用CHTL编译器！" }
+            
+            // 3. 嵌套元素
+            p {
+                text { "这是一个功能完整的CHTL编译器。" }
             }
             
-            // 使用命名空间中的元素
-            @Element Button from UI;
-            
-            // 局部脚本块（属于CHTL）
-            script {
-                console.log("CHTL script block");
+            // 4. 局部样式块（内联样式）
+            div {
+                style {
+                    background: #f9f9f9;
+                    padding: 20px;
+                    margin: 10px;
+                }
+                
+                text { "带有内联样式的元素" }
             }
+        }
+        
+        // 5. 生成器注释
+        -- 这个注释会出现在生成的HTML中
+        
+        // 6. 列表示例
+        ul {
+            li { text { "第一项" } }
+            li { text { "第二项" } }
+            li { text { "第三项" } }
         }
     }
 }

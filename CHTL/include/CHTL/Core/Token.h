@@ -61,6 +61,7 @@ enum class TokenType {
     COMMA,               // ,
     DOT,                 // .
     EQUALS,              // =
+    HASH,                // #
     LEFT_BRACE,          // {
     RIGHT_BRACE,         // }
     LEFT_BRACKET,        // [
@@ -77,6 +78,7 @@ enum class TokenType {
     GENERATOR_COMMENT,   // --注释
     
     // 特殊
+    NEWLINE,             // 换行符
     EOF_TOKEN,           // 文件结束
     UNKNOWN              // 未知词法单元
 };

@@ -432,12 +432,7 @@ std::shared_ptr<ASTNode> Parser::ParseOrigin() {
                 if (braceDepth == 0) break;
             }
             
-            content += CurrentToken().value;
-            if (CurrentToken().type == TokenType::NEWLINE) {
-                content += "\n";
-            } else {
-                content += " ";
-            }
+            content += CurrentToken().value + " ";
             ConsumeToken();
         }
         
@@ -1655,39 +1650,88 @@ std::string Parser::ParseStringOrUnquotedLiteral() {
         std::string value = CurrentToken().value;
         ConsumeToken();
         return value;
-    } else if (Check(TokenType::UNQUOTED_LITERAL)) {
-        std::string value = CurrentToken().value;
-        ConsumeToken();
-        return value;
-    } else if (Check(TokenType::IDENTIFIER)) {
-        // 某些情况下，标识符也可以作为值
-        std::string value = CurrentToken().value;
-        ConsumeToken();
-        return value;
-    } else if (Check(TokenType::NUMBER)) {
-        std::string value = CurrentToken().value;
-        ConsumeToken();
-        
-        // 检查是否有紧跟的单位（如px, %, em等）
-        if (Check(TokenType::IDENTIFIER)) {
-            // 可能是CSS单位
-            std::string unit = CurrentToken().value;
-            // 常见的CSS单位
-            if (unit == "px" || unit == "%" || unit == "em" || unit == "rem" || 
-                unit == "vh" || unit == "vw" || unit == "pt" || unit == "pc" ||
-                unit == "cm" || unit == "mm" || unit == "in" || unit == "ex" ||
-                unit == "ch" || unit == "deg" || unit == "rad" || unit == "turn" ||
-                unit == "s" || unit == "ms" || unit == "fr") {
-                value += unit;
-                ConsumeToken();
-            }
-        }
-        
-        return value;
     }
     
-    ReportError("期望字符串或字面量值");
-    return "";
+    // 对于非字符串字面量的情况，收集所有相关的token直到遇到分隔符
+    std::string value;
+    bool hasContent = false;
+    
+    while (!Check(TokenType::SEMICOLON) && !Check(TokenType::RIGHT_BRACE) && 
+           !Check(TokenType::COMMA) && !Check(TokenType::EOF_TOKEN)) {
+        
+        if (Check(TokenType::UNQUOTED_LITERAL)) {
+            if (hasContent) value += " ";
+            value += CurrentToken().value;
+            ConsumeToken();
+            hasContent = true;
+        } else if (Check(TokenType::IDENTIFIER)) {
+            if (hasContent) value += " ";
+            value += CurrentToken().value;
+            ConsumeToken();
+            hasContent = true;
+        } else if (Check(TokenType::NUMBER)) {
+            if (hasContent) value += " ";
+            value += CurrentToken().value;
+            ConsumeToken();
+            
+            // 检查是否有紧跟的单位（如px, %, em等）
+            if (Check(TokenType::IDENTIFIER)) {
+                // 可能是CSS单位
+                std::string unit = CurrentToken().value;
+                // 常见的CSS单位
+                if (unit == "px" || unit == "%" || unit == "em" || unit == "rem" || 
+                    unit == "vh" || unit == "vw" || unit == "pt" || unit == "pc" ||
+                    unit == "cm" || unit == "mm" || unit == "in" || unit == "ex" ||
+                    unit == "ch" || unit == "deg" || unit == "rad" || unit == "turn" ||
+                    unit == "s" || unit == "ms" || unit == "fr") {
+                    value += unit;
+                    ConsumeToken();
+                }
+            }
+            hasContent = true;
+        } else if (Check(TokenType::HASH)) {
+            // 支持颜色值如 #ccc
+            if (hasContent) value += " ";
+            value += CurrentToken().value;
+            ConsumeToken();
+            if (Check(TokenType::IDENTIFIER) || Check(TokenType::NUMBER)) {
+                value += CurrentToken().value;
+                ConsumeToken();
+            }
+            hasContent = true;
+        } else if (Check(TokenType::LEFT_PAREN)) {
+            // 支持函数调用如 rgb(255, 255, 255)
+            if (hasContent) value += " ";
+            value += CurrentToken().value;
+            ConsumeToken();
+            
+            // 收集括号内的内容
+            int parenDepth = 1;
+            while (parenDepth > 0 && !Check(TokenType::EOF_TOKEN)) {
+                if (Check(TokenType::LEFT_PAREN)) {
+                    parenDepth++;
+                } else if (Check(TokenType::RIGHT_PAREN)) {
+                    parenDepth--;
+                }
+                value += CurrentToken().value;
+                ConsumeToken();
+                if (parenDepth > 0 && !Check(TokenType::RIGHT_PAREN)) {
+                    value += " ";
+                }
+            }
+            hasContent = true;
+        } else {
+            // 遇到不支持的token类型，停止收集
+            break;
+        }
+    }
+    
+    if (!hasContent) {
+        ReportError("期望字符串或字面量值");
+        return "";
+    }
+    
+    return value;
 }
 
 void Parser::RecoverFromError() {

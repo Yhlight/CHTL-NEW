@@ -5,6 +5,7 @@
 #include <memory>
 #include <sstream>
 #include <unordered_map>
+#include <vector>
 #include "CHTL/AST/ASTVisitor.h"
 #include "CHTL/Core/Context.h"
 #include "CHTL/Core/CompileResult.h"

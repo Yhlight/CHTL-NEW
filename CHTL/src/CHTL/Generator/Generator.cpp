@@ -94,11 +94,11 @@ void Generator::VisitProgram(ProgramNode* node) {
     
     // 输出收集的全局样式
     if (!globalStyleRules.empty()) {
-        output << "\n<style>\n";
+        htmlStream << "\n<style>\n";
         for (const auto& rule : globalStyleRules) {
-            output << rule;
+            htmlStream << rule;
         }
-        output << "</style>\n";
+        htmlStream << "</style>\n";
     }
     
     LOG_DEBUG("代码生成完成");
@@ -235,68 +235,68 @@ void Generator::VisitOrigin(OriginNode* node) {
         case OriginNode::OriginType::Html:
             // 直接输出HTML内容
             if (!name.empty()) {
-                output << "<!-- Origin: " << name << " -->\n";
+                htmlStream << "<!-- Origin: " << name << " -->\n";
             }
-            output << content;
+            htmlStream << content;
             if (!content.empty() && content.back() != '\n') {
-                output << "\n";
+                htmlStream << "\n";
             }
             break;
             
         case OriginNode::OriginType::Style:
             // 输出为<style>标签
-            output << "<style";
+            htmlStream << "<style";
             if (!name.empty()) {
-                output << " id=\"" << name << "\"";
+                htmlStream << " id=\"" << name << "\"";
             }
-            output << ">\n";
-            output << content;
+            htmlStream << ">\n";
+            htmlStream << content;
             if (!content.empty() && content.back() != '\n') {
-                output << "\n";
+                htmlStream << "\n";
             }
-            output << "</style>\n";
+            htmlStream << "</style>\n";
             break;
             
         case OriginNode::OriginType::JavaScript:
             // 输出为<script>标签
-            output << "<script";
+            htmlStream << "<script";
             if (!name.empty()) {
-                output << " id=\"" << name << "\"";
+                htmlStream << " id=\"" << name << "\"";
             }
-            output << ">\n";
-            output << content;
+            htmlStream << ">\n";
+            htmlStream << content;
             if (!content.empty() && content.back() != '\n') {
-                output << "\n";
+                htmlStream << "\n";
             }
-            output << "</script>\n";
+            htmlStream << "</script>\n";
             break;
             
         case OriginNode::OriginType::Custom:
             // 自定义类型原始嵌入
-            output << "<!-- Origin " << node->GetCustomTypeName();
+            htmlStream << "<!-- Origin " << node->GetCustomTypeName();
             if (!name.empty()) {
-                output << ": " << name;
+                htmlStream << ": " << name;
             }
-            output << " -->\n";
+            htmlStream << " -->\n";
             
             // 对于某些已知的自定义类型，提供特殊处理
             if (node->GetCustomTypeName() == "Vue") {
                 // Vue组件模板
-                output << "<template";
+                htmlStream << "<template";
                 if (!name.empty()) {
-                    output << " id=\"" << name << "\"";
+                    htmlStream << " id=\"" << name << "\"";
                 }
-                output << ">\n";
-                output << content;
+                htmlStream << ">\n";
+                htmlStream << content;
                 if (!content.empty() && content.back() != '\n') {
-                    output << "\n";
+                    htmlStream << "\n";
                 }
-                output << "</template>\n";
+                htmlStream << "</template>\n";
             } else {
                 // 其他自定义类型，直接输出内容
-                output << content;
+                htmlStream << content;
                 if (!content.empty() && content.back() != '\n') {
-                    output << "\n";
+                    htmlStream << "\n";
                 }
             }
             break;
@@ -354,16 +354,16 @@ void Generator::VisitComment(CommentNode* node) {
         if (currentContext == GeneratorContext::InCSS || 
             currentContext == GeneratorContext::InStyle) {
             // CSS注释格式
-            output << "/* " << content << " */";
+            htmlStream << "/* " << content << " */";
         } else if (currentContext == GeneratorContext::InJavaScript || 
                    currentContext == GeneratorContext::InScript) {
             // JavaScript注释格式
-            output << "// " << content;
+            htmlStream << "// " << content;
         } else {
             // HTML注释格式
-            output << "<!-- " << content << " -->";
+            htmlStream << "<!-- " << content << " -->";
         }
-        output << "\n";
+        htmlStream << "\n";
     }
     // 其他类型的注释（// 和 /**/）不会被生成到输出中
 }

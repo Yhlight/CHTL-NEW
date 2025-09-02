@@ -77,7 +77,7 @@ private:
      */
     void ProcessBatchImport(
         std::shared_ptr<ProgramNode> ast,
-        ImportNode::ImportType type,
+        int type,
         const std::string& itemName,
         const std::string& asName
     );

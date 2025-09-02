@@ -1,5 +1,6 @@
 #include "CHTL/Core/SpecializationProcessor.h"
 #include <algorithm>
+#include <cctype>
 
 namespace CHTL {
 
@@ -36,7 +37,7 @@ void SpecializationProcessor::ProcessSpecializations(
             }
             
             default:
-                LOG_WARN("未知的特例化操作类型: " + std::to_string(static_cast<int>(spec->GetType())));
+                LOG_INFO("未知的特例化操作类型: " + std::to_string(static_cast<int>(spec->GetType())));
                 break;
         }
     }
@@ -58,23 +59,25 @@ void SpecializationProcessor::ProcessStyleSpecializations(
         if (spec->GetType() == ASTNodeType::Delete) {
             auto deleteNode = std::static_pointer_cast<DeleteNode>(spec);
             
-            // 处理样式属性删除
-            for (const auto& target : deleteNode->GetTargets()) {
-                if (target.type == DeleteNode::DeleteTarget::StyleProperty) {
-                    // 从样式中删除指定的属性
-                    auto& children = style->GetChildren();
+            // 只处理样式属性删除
+            if (deleteNode->GetTargetType() == DeleteNode::DeleteTarget::StyleProperty) {
+                const auto& targets = deleteNode->GetTargets();
+                auto& children = style->GetChildren();
+                
+                // 删除指定的样式属性
+                for (const auto& propName : targets) {
                     children.erase(
                         std::remove_if(children.begin(), children.end(),
-                            [&target](const std::shared_ptr<ASTNode>& child) {
+                            [&propName](const std::shared_ptr<ASTNode>& child) {
                                 if (child->GetType() == ASTNodeType::StyleProperty) {
                                     auto prop = std::static_pointer_cast<StylePropertyNode>(child);
-                                    return prop->GetName() == target.name;
+                                    return prop->GetName() == propName;
                                 }
                                 return false;
                             }),
                         children.end()
                     );
-                    LOG_DEBUG("删除样式属性: " + target.name);
+                    LOG_DEBUG("删除样式属性: " + propName);
                 }
             }
         }
@@ -87,51 +90,72 @@ void SpecializationProcessor::ApplyDelete(std::shared_ptr<ASTNode> parent, const
     auto elementParent = std::dynamic_pointer_cast<ElementNode>(parent);
     if (!elementParent) return;
     
-    for (const auto& target : deleteNode->GetTargets()) {
-        switch (target.type) {
-            case DeleteNode::DeleteTarget::Element: {
-                // 删除匹配的子元素
-                auto& children = elementParent->GetChildren();
-                int deleteCount = 0;
+    auto targetType = deleteNode->GetTargetType();
+    const auto& targets = deleteNode->GetTargets();
+    
+    switch (targetType) {
+        case DeleteNode::DeleteTarget::Element: {
+            // 删除匹配的子元素
+            auto& children = elementParent->GetChildren();
+            
+            for (const auto& targetName : targets) {
+                // 解析元素名和可选的索引
+                std::string elementName = targetName;
+                int targetIndex = -1;
                 
+                // 检查是否有索引，如 "div[1]"
+                size_t bracketPos = targetName.find('[');
+                if (bracketPos != std::string::npos) {
+                    elementName = targetName.substr(0, bracketPos);
+                    size_t endBracket = targetName.find(']', bracketPos);
+                    if (endBracket != std::string::npos) {
+                        std::string indexStr = targetName.substr(bracketPos + 1, endBracket - bracketPos - 1);
+                        targetIndex = std::stoi(indexStr);
+                    }
+                }
+                
+                int currentIndex = 0;
                 children.erase(
                     std::remove_if(children.begin(), children.end(),
-                        [&target, &deleteCount](const std::shared_ptr<ASTNode>& child) {
+                        [&](const std::shared_ptr<ASTNode>& child) {
                             if (child->GetType() == ASTNodeType::Element) {
                                 auto elem = std::static_pointer_cast<ElementNode>(child);
-                                if (elem->GetTagName() == target.name) {
-                                    // 检查索引
-                                    if (target.index == -1 || target.index == deleteCount) {
-                                        deleteCount++;
-                                        LOG_DEBUG("删除元素: " + target.name);
+                                if (elem->GetTagName() == elementName) {
+                                    if (targetIndex == -1 || targetIndex == currentIndex) {
+                                        LOG_DEBUG("删除元素: " + targetName);
                                         return true;
                                     }
-                                    deleteCount++;
+                                    currentIndex++;
                                 }
                             }
                             return false;
                         }),
                     children.end()
                 );
-                break;
             }
-            
-            case DeleteNode::DeleteTarget::StyleProperty: {
-                // 在局部样式中删除属性
-                for (auto& child : elementParent->GetChildren()) {
-                    if (child->GetType() == ASTNodeType::LocalStyle) {
-                        auto styleNode = std::static_pointer_cast<LocalStyleNode>(child);
-                        // TODO: 实现从LocalStyleNode中删除属性
+            break;
+        }
+        
+        case DeleteNode::DeleteTarget::StyleProperty: {
+            // 在局部样式中删除属性
+            for (auto& child : elementParent->GetChildren()) {
+                if (child->GetType() == ASTNodeType::LocalStyle) {
+                    auto styleNode = std::static_pointer_cast<LocalStyleNode>(child);
+                    // TODO: 实现从LocalStyleNode中删除属性
+                    for (const auto& propName : targets) {
+                        LOG_DEBUG("删除样式属性: " + propName);
                     }
                 }
-                break;
             }
-            
-            case DeleteNode::DeleteTarget::Template: {
-                // 删除模板引用
-                LOG_DEBUG("删除模板引用: " + target.name);
-                break;
+            break;
+        }
+        
+        case DeleteNode::DeleteTarget::Template: {
+            // 删除模板引用
+            for (const auto& templateName : targets) {
+                LOG_DEBUG("删除模板引用: " + templateName);
             }
+            break;
         }
     }
 }
@@ -227,14 +251,14 @@ int SpecializationProcessor::FindInsertPosition(
             bool matches = false;
             if (selector == elem->GetTagName()) {
                 matches = true;
-            } else if (selector.starts_with(".")) {
+            } else if (!selector.empty() && selector[0] == '.') {
                 // 类选择器
                 auto attrs = elem->GetAttributes();
                 auto it = attrs.find("class");
                 if (it != attrs.end() && it->second == selector.substr(1)) {
                     matches = true;
                 }
-            } else if (selector.starts_with("#")) {
+            } else if (!selector.empty() && selector[0] == '#') {
                 // ID选择器
                 auto attrs = elem->GetAttributes();
                 auto it = attrs.find("id");

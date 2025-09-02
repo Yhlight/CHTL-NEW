@@ -5,24 +5,19 @@ namespace CHTL {
 void ConstraintChecker::AddConstraint(const ExceptNode* exceptNode) {
     if (!exceptNode) return;
     
-    for (const auto& target : exceptNode->GetTargets()) {
+    for (const auto& constraint : exceptNode->GetConstraints()) {
         Constraint::Type type = Constraint::Precise;
-        std::string targetName = target.name;
+        std::string targetName = constraint.value;
         bool isFullQualified = false;
         
         // 判断约束类型
-        if (target.constraintType == ExceptNode::ConstraintType::Type) {
+        if (constraint.type == ExceptNode::ConstraintType::Type) {
             type = Constraint::TypeBased;
             
-            // 处理类型约束
-            if (target.targetType == ExceptNode::TargetType::Html) {
-                targetName = "@Html";
-            } else if (target.targetType == ExceptNode::TargetType::Custom) {
-                targetName = "[Custom]";
-                isFullQualified = target.isFullQualified;
-            } else if (target.targetType == ExceptNode::TargetType::Template) {
-                targetName = "[Template]";
-                isFullQualified = target.isFullQualified;
+            // 如果有修饰符，添加到目标名称
+            if (!constraint.modifier.empty()) {
+                targetName = constraint.modifier + " " + targetName;
+                isFullQualified = true;
             }
         }
         
@@ -68,8 +63,8 @@ bool ConstraintChecker::IsNodeViolatingConstraint(const std::shared_ptr<ASTNode>
             auto element = std::static_pointer_cast<ElementNode>(node);
             return element->GetTagName() == constraint.target;
         } else if (node->GetType() == ASTNodeType::CustomElement) {
-            auto custom = std::static_pointer_cast<CustomElementNode>(node);
-            return custom->GetName() == constraint.target;
+            // CustomElement节点没有名称，精确约束不适用
+            return false;
         } else if (node->GetType() == ASTNodeType::TemplateElement) {
             auto tmpl = std::static_pointer_cast<TemplateElementNode>(node);
             return tmpl->GetName() == constraint.target;

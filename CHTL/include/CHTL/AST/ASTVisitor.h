@@ -30,6 +30,7 @@ class AttributeNode;
 class SpecializationNode;
 class DeleteNode;
 class InsertNode;
+class ElementMatchNode;
 class CommentNode;
 
 /**
@@ -64,6 +65,7 @@ public:
     virtual void VisitSpecialization(SpecializationNode* node) = 0;
     virtual void VisitDelete(DeleteNode* node) = 0;
     virtual void VisitInsert(InsertNode* node) = 0;
+    virtual void VisitElementMatch(ElementMatchNode* node) = 0;
     virtual void VisitComment(CommentNode* node) = 0;
 };
 

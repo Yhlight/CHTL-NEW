@@ -239,8 +239,18 @@ Token Lexer::ScanHexColor() {
     size_t startColumn = column;
     std::string value = "#";
     
+    // 保存当前位置
+    size_t savePos = position;
+    size_t saveLine = line;
+    size_t saveColumn = column;
+    
     // 跳过 #
     Advance();
+    
+    // 如果下一个字符不是十六进制数字，则这只是一个#符号
+    if (!std::isxdigit(CurrentChar())) {
+        return MakeToken(TokenType::HASH, "#", startLine, startColumn, 1);
+    }
     
     // 读取十六进制数字
     while (std::isxdigit(CurrentChar())) {
