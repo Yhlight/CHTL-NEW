@@ -56,8 +56,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/CHTLErrorSystem.dir/DependInfo.cmake"
   "CMakeFiles/CHTLUtilSystem.dir/DependInfo.cmake"
   "CMakeFiles/CHTLModuleSystem.dir/DependInfo.cmake"
-  "CMakeFiles/CHTLCoreSystem.dir/DependInfo.cmake"
-  "CMakeFiles/CHTLComponentSystem.dir/DependInfo.cmake"
   "CMakeFiles/CHTLJSCore.dir/DependInfo.cmake"
   "CMakeFiles/CHTLScanner.dir/DependInfo.cmake"
   "CMakeFiles/CHTLConstraint.dir/DependInfo.cmake"

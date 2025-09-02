@@ -60,14 +60,14 @@ public:
     void exitStylesheet(css3Parser::StylesheetContext *ctx) override;
     
     /**
-     * 进入CSS规则集
+     * 进入已知CSS规则集
      */
-    void enterRuleset(css3Parser::RulesetContext *ctx) override;
+    void enterKnownRuleset(css3Parser::KnownRulesetContext *ctx) override;
     
     /**
-     * 退出CSS规则集
+     * 退出已知CSS规则集
      */
-    void exitRuleset(css3Parser::RulesetContext *ctx) override;
+    void exitKnownRuleset(css3Parser::KnownRulesetContext *ctx) override;
     
     /**
      * 进入选择器
@@ -75,9 +75,9 @@ public:
     void enterSelector(css3Parser::SelectorContext *ctx) override;
     
     /**
-     * 进入声明
+     * 进入已知声明
      */
-    void enterDeclaration(css3Parser::DeclarationContext *ctx) override;
+    void enterKnownDeclaration(css3Parser::KnownDeclarationContext *ctx) override;
     
     /**
      * 获取编译结果
@@ -113,9 +113,9 @@ private:
 class CSSCompiler {
 private:
     std::unique_ptr<antlr4::ANTLRInputStream> m_InputStream;
-    std::unique_ptr<CSSLexer> m_Lexer;
+    std::unique_ptr<css3Lexer> m_Lexer;
     std::unique_ptr<antlr4::CommonTokenStream> m_TokenStream;
-    std::unique_ptr<CSSParser> m_Parser;
+    std::unique_ptr<css3Parser> m_Parser;
     std::unique_ptr<CSSCompilerListener> m_Listener;
     
     // CSS优化选项

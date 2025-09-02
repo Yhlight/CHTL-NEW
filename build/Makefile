@@ -227,32 +227,6 @@ CHTLModuleSystem/fast:
 .PHONY : CHTLModuleSystem/fast
 
 #=============================================================================
-# Target rules for targets named CHTLCoreSystem
-
-# Build rule for target.
-CHTLCoreSystem: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLCoreSystem
-.PHONY : CHTLCoreSystem
-
-# fast build rule for target.
-CHTLCoreSystem/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCoreSystem.dir/build.make CMakeFiles/CHTLCoreSystem.dir/build
-.PHONY : CHTLCoreSystem/fast
-
-#=============================================================================
-# Target rules for targets named CHTLComponentSystem
-
-# Build rule for target.
-CHTLComponentSystem: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLComponentSystem
-.PHONY : CHTLComponentSystem
-
-# fast build rule for target.
-CHTLComponentSystem/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLComponentSystem.dir/build.make CMakeFiles/CHTLComponentSystem.dir/build
-.PHONY : CHTLComponentSystem/fast
-
-#=============================================================================
 # Target rules for targets named CHTLJSCore
 
 # Build rule for target.
@@ -1793,54 +1767,6 @@ src/CompilerDispatcher/CompilerDispatcher.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLDispatcher.dir/build.make CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.s
 .PHONY : src/CompilerDispatcher/CompilerDispatcher.cpp.s
 
-src/Components/CHTLCompilerComponent.o: src/Components/CHTLCompilerComponent.cpp.o
-.PHONY : src/Components/CHTLCompilerComponent.o
-
-# target to build an object file
-src/Components/CHTLCompilerComponent.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLComponentSystem.dir/build.make CMakeFiles/CHTLComponentSystem.dir/src/Components/CHTLCompilerComponent.cpp.o
-.PHONY : src/Components/CHTLCompilerComponent.cpp.o
-
-src/Components/CHTLCompilerComponent.i: src/Components/CHTLCompilerComponent.cpp.i
-.PHONY : src/Components/CHTLCompilerComponent.i
-
-# target to preprocess a source file
-src/Components/CHTLCompilerComponent.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLComponentSystem.dir/build.make CMakeFiles/CHTLComponentSystem.dir/src/Components/CHTLCompilerComponent.cpp.i
-.PHONY : src/Components/CHTLCompilerComponent.cpp.i
-
-src/Components/CHTLCompilerComponent.s: src/Components/CHTLCompilerComponent.cpp.s
-.PHONY : src/Components/CHTLCompilerComponent.s
-
-# target to generate assembly for a file
-src/Components/CHTLCompilerComponent.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLComponentSystem.dir/build.make CMakeFiles/CHTLComponentSystem.dir/src/Components/CHTLCompilerComponent.cpp.s
-.PHONY : src/Components/CHTLCompilerComponent.cpp.s
-
-src/Components/ModularCompilerDispatcher.o: src/Components/ModularCompilerDispatcher.cpp.o
-.PHONY : src/Components/ModularCompilerDispatcher.o
-
-# target to build an object file
-src/Components/ModularCompilerDispatcher.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLComponentSystem.dir/build.make CMakeFiles/CHTLComponentSystem.dir/src/Components/ModularCompilerDispatcher.cpp.o
-.PHONY : src/Components/ModularCompilerDispatcher.cpp.o
-
-src/Components/ModularCompilerDispatcher.i: src/Components/ModularCompilerDispatcher.cpp.i
-.PHONY : src/Components/ModularCompilerDispatcher.i
-
-# target to preprocess a source file
-src/Components/ModularCompilerDispatcher.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLComponentSystem.dir/build.make CMakeFiles/CHTLComponentSystem.dir/src/Components/ModularCompilerDispatcher.cpp.i
-.PHONY : src/Components/ModularCompilerDispatcher.cpp.i
-
-src/Components/ModularCompilerDispatcher.s: src/Components/ModularCompilerDispatcher.cpp.s
-.PHONY : src/Components/ModularCompilerDispatcher.s
-
-# target to generate assembly for a file
-src/Components/ModularCompilerDispatcher.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLComponentSystem.dir/build.make CMakeFiles/CHTLComponentSystem.dir/src/Components/ModularCompilerDispatcher.cpp.s
-.PHONY : src/Components/ModularCompilerDispatcher.cpp.s
-
 src/ConstraintSystem/CHTLConstraintValidator.o: src/ConstraintSystem/CHTLConstraintValidator.cpp.o
 .PHONY : src/ConstraintSystem/CHTLConstraintValidator.o
 
@@ -1864,78 +1790,6 @@ src/ConstraintSystem/CHTLConstraintValidator.s: src/ConstraintSystem/CHTLConstra
 src/ConstraintSystem/CHTLConstraintValidator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLConstraint.dir/build.make CMakeFiles/CHTLConstraint.dir/src/ConstraintSystem/CHTLConstraintValidator.cpp.s
 .PHONY : src/ConstraintSystem/CHTLConstraintValidator.cpp.s
-
-src/Core/CompilerComponentBase.o: src/Core/CompilerComponentBase.cpp.o
-.PHONY : src/Core/CompilerComponentBase.o
-
-# target to build an object file
-src/Core/CompilerComponentBase.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCoreSystem.dir/build.make CMakeFiles/CHTLCoreSystem.dir/src/Core/CompilerComponentBase.cpp.o
-.PHONY : src/Core/CompilerComponentBase.cpp.o
-
-src/Core/CompilerComponentBase.i: src/Core/CompilerComponentBase.cpp.i
-.PHONY : src/Core/CompilerComponentBase.i
-
-# target to preprocess a source file
-src/Core/CompilerComponentBase.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCoreSystem.dir/build.make CMakeFiles/CHTLCoreSystem.dir/src/Core/CompilerComponentBase.cpp.i
-.PHONY : src/Core/CompilerComponentBase.cpp.i
-
-src/Core/CompilerComponentBase.s: src/Core/CompilerComponentBase.cpp.s
-.PHONY : src/Core/CompilerComponentBase.s
-
-# target to generate assembly for a file
-src/Core/CompilerComponentBase.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCoreSystem.dir/build.make CMakeFiles/CHTLCoreSystem.dir/src/Core/CompilerComponentBase.cpp.s
-.PHONY : src/Core/CompilerComponentBase.cpp.s
-
-src/Core/ComponentManager.o: src/Core/ComponentManager.cpp.o
-.PHONY : src/Core/ComponentManager.o
-
-# target to build an object file
-src/Core/ComponentManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCoreSystem.dir/build.make CMakeFiles/CHTLCoreSystem.dir/src/Core/ComponentManager.cpp.o
-.PHONY : src/Core/ComponentManager.cpp.o
-
-src/Core/ComponentManager.i: src/Core/ComponentManager.cpp.i
-.PHONY : src/Core/ComponentManager.i
-
-# target to preprocess a source file
-src/Core/ComponentManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCoreSystem.dir/build.make CMakeFiles/CHTLCoreSystem.dir/src/Core/ComponentManager.cpp.i
-.PHONY : src/Core/ComponentManager.cpp.i
-
-src/Core/ComponentManager.s: src/Core/ComponentManager.cpp.s
-.PHONY : src/Core/ComponentManager.s
-
-# target to generate assembly for a file
-src/Core/ComponentManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCoreSystem.dir/build.make CMakeFiles/CHTLCoreSystem.dir/src/Core/ComponentManager.cpp.s
-.PHONY : src/Core/ComponentManager.cpp.s
-
-src/Core/ServiceLocator.o: src/Core/ServiceLocator.cpp.o
-.PHONY : src/Core/ServiceLocator.o
-
-# target to build an object file
-src/Core/ServiceLocator.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCoreSystem.dir/build.make CMakeFiles/CHTLCoreSystem.dir/src/Core/ServiceLocator.cpp.o
-.PHONY : src/Core/ServiceLocator.cpp.o
-
-src/Core/ServiceLocator.i: src/Core/ServiceLocator.cpp.i
-.PHONY : src/Core/ServiceLocator.i
-
-# target to preprocess a source file
-src/Core/ServiceLocator.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCoreSystem.dir/build.make CMakeFiles/CHTLCoreSystem.dir/src/Core/ServiceLocator.cpp.i
-.PHONY : src/Core/ServiceLocator.cpp.i
-
-src/Core/ServiceLocator.s: src/Core/ServiceLocator.cpp.s
-.PHONY : src/Core/ServiceLocator.s
-
-# target to generate assembly for a file
-src/Core/ServiceLocator.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCoreSystem.dir/build.make CMakeFiles/CHTLCoreSystem.dir/src/Core/ServiceLocator.cpp.s
-.PHONY : src/Core/ServiceLocator.cpp.s
 
 src/Error/Error.o: src/Error/Error.cpp.o
 .PHONY : src/Error/Error.o
@@ -2914,10 +2768,8 @@ help:
 	@echo "... CHTLCMODSystem"
 	@echo "... CHTLCSSCompiler"
 	@echo "... CHTLCodeMerger"
-	@echo "... CHTLComponentSystem"
 	@echo "... CHTLConstraint"
 	@echo "... CHTLCore"
-	@echo "... CHTLCoreSystem"
 	@echo "... CHTLDispatcher"
 	@echo "... CHTLErrorSystem"
 	@echo "... CHTLImport"
@@ -3083,24 +2935,9 @@ help:
 	@echo "... src/CompilerDispatcher/CompilerDispatcher.o"
 	@echo "... src/CompilerDispatcher/CompilerDispatcher.i"
 	@echo "... src/CompilerDispatcher/CompilerDispatcher.s"
-	@echo "... src/Components/CHTLCompilerComponent.o"
-	@echo "... src/Components/CHTLCompilerComponent.i"
-	@echo "... src/Components/CHTLCompilerComponent.s"
-	@echo "... src/Components/ModularCompilerDispatcher.o"
-	@echo "... src/Components/ModularCompilerDispatcher.i"
-	@echo "... src/Components/ModularCompilerDispatcher.s"
 	@echo "... src/ConstraintSystem/CHTLConstraintValidator.o"
 	@echo "... src/ConstraintSystem/CHTLConstraintValidator.i"
 	@echo "... src/ConstraintSystem/CHTLConstraintValidator.s"
-	@echo "... src/Core/CompilerComponentBase.o"
-	@echo "... src/Core/CompilerComponentBase.i"
-	@echo "... src/Core/CompilerComponentBase.s"
-	@echo "... src/Core/ComponentManager.o"
-	@echo "... src/Core/ComponentManager.i"
-	@echo "... src/Core/ComponentManager.s"
-	@echo "... src/Core/ServiceLocator.o"
-	@echo "... src/Core/ServiceLocator.i"
-	@echo "... src/Core/ServiceLocator.s"
 	@echo "... src/Error/Error.o"
 	@echo "... src/Error/Error.i"
 	@echo "... src/Error/Error.s"

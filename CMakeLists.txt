@@ -155,8 +155,9 @@ add_library(CHTLCMODSystem STATIC ${CMOD_SOURCES})
 add_library(CHTLErrorSystem STATIC ${ERROR_SOURCES})
 add_library(CHTLUtilSystem STATIC ${UTIL_SOURCES})
 add_library(CHTLModuleSystem STATIC ${MODULE_SOURCES})
-add_library(CHTLCoreSystem STATIC ${CORE_SOURCES})
-add_library(CHTLComponentSystem STATIC ${COMPONENT_SOURCES})
+# 暂时隔离核心组件系统和模块化组件 - 等待后续完善
+# add_library(CHTLCoreSystem STATIC ${CORE_SOURCES})
+# add_library(CHTLComponentSystem STATIC ${COMPONENT_SOURCES})
 target_include_directories(CHTLCore PUBLIC src/CHTL)
 
 # 创建CHTL JS核心库（完全独立）

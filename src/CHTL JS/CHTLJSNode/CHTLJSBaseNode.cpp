@@ -1,5 +1,4 @@
 #include "CHTLJSBaseNode.h"
-#include "Visitor.h"
 #include <algorithm>
 #include <sstream>
 

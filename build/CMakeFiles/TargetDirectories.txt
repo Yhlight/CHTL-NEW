@@ -3,8 +3,6 @@
 /workspace/build/CMakeFiles/CHTLErrorSystem.dir
 /workspace/build/CMakeFiles/CHTLUtilSystem.dir
 /workspace/build/CMakeFiles/CHTLModuleSystem.dir
-/workspace/build/CMakeFiles/CHTLCoreSystem.dir
-/workspace/build/CMakeFiles/CHTLComponentSystem.dir
 /workspace/build/CMakeFiles/CHTLJSCore.dir
 /workspace/build/CMakeFiles/CHTLScanner.dir
 /workspace/build/CMakeFiles/CHTLConstraint.dir

@@ -1,5 +1,4 @@
 #include "VirObjectNode.h"
-#include "Visitor.h"
 #include <regex>
 #include <sstream>
 #include <algorithm>

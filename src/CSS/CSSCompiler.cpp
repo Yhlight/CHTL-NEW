@@ -21,14 +21,14 @@ void CSSCompilerListener::exitStylesheet(css3Parser::StylesheetContext *ctx) {
     m_CompiledCSS += "\n/* 官方ANTLR CSS3编译器结束 */";
 }
 
-void CSSCompilerListener::enterRuleset(css3Parser::RulesetContext *ctx) {
+void CSSCompilerListener::enterKnownRuleset(css3Parser::KnownRulesetContext *ctx) {
     // 处理CSS规则集
     if (ctx->getText().length() > 0) {
         m_CompiledCSS += ctx->getText() + "\n";
     }
 }
 
-void CSSCompilerListener::exitRuleset(css3Parser::RulesetContext *ctx) {
+void CSSCompilerListener::exitKnownRuleset(css3Parser::KnownRulesetContext *ctx) {
     // 规则集处理完成
 }
 
@@ -42,7 +42,7 @@ void CSSCompilerListener::enterSelector(css3Parser::SelectorContext *ctx) {
     }
 }
 
-void CSSCompilerListener::enterDeclaration(css3Parser::DeclarationContext *ctx) {
+void CSSCompilerListener::enterKnownDeclaration(css3Parser::KnownDeclarationContext *ctx) {
     // 处理CSS声明
     std::string declarationText = ctx->getText();
     
@@ -179,13 +179,13 @@ void CSSCompiler::initializeANTLR(const std::string& cssCode) {
     m_InputStream = std::make_unique<antlr4::ANTLRInputStream>(cssCode);
     
     // 创建词法分析器
-    m_Lexer = std::make_unique<CSSLexer>(m_InputStream.get());
+    m_Lexer = std::make_unique<css3Lexer>(m_InputStream.get());
     
     // 创建令牌流
     m_TokenStream = std::make_unique<antlr4::CommonTokenStream>(m_Lexer.get());
     
     // 创建解析器
-    m_Parser = std::make_unique<CSSParser>(m_TokenStream.get());
+    m_Parser = std::make_unique<css3Parser>(m_TokenStream.get());
     
     // 创建监听器
     m_Listener = std::make_unique<CSSCompilerListener>();
