@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../lib/libImportManager.a CMakeFiles/ImportManager.dir/ImportManager.cpp.o
+/usr/bin/ranlib ../../lib/libImportManager.a

@@ -198,6 +198,19 @@ SyntaxConstraint/fast:
 .PHONY : SyntaxConstraint/fast
 
 #=============================================================================
+# Target rules for targets named ImportManager
+
+# Build rule for target.
+ImportManager: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ImportManager
+.PHONY : ImportManager
+
+# fast build rule for target.
+ImportManager/fast:
+	$(MAKE) $(MAKESILENT) -f src/Common/CMakeFiles/ImportManager.dir/build.make src/Common/CMakeFiles/ImportManager.dir/build
+.PHONY : ImportManager/fast
+
+#=============================================================================
 # Target rules for targets named CHTLUnifiedScanner
 
 # Build rule for target.
@@ -371,6 +384,7 @@ help:
 	@echo "... CMODHandler"
 	@echo "... CSSCompiler"
 	@echo "... CompilerDispatcher"
+	@echo "... ImportManager"
 	@echo "... JavaScriptCompiler"
 	@echo "... SyntaxConstraint"
 	@echo "... chtl"

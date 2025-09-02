@@ -254,6 +254,13 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: \
   /workspace/CHTL/include/Common/SyntaxConstraint.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/unordered_set \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/unordered_set.h \
+  /workspace/CHTL/include/Common/ImportManager.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/filesystem \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/fs_fwd.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/fs_path.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/codecvt \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/fs_dir.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/fs_ops.h \
   /workspace/CHTL/include/CHTL/Core/Context.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/stack \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/deque \
@@ -272,10 +279,4 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: \
   /workspace/CHTL/include/CHTLJS/Parser/Parser.h \
   /workspace/CHTL/include/CHTLJS/Generator/Generator.h \
   /workspace/CHTL/include/CSS/CSSCompiler.h \
-  /workspace/CHTL/include/JavaScript/JavaScriptCompiler.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/filesystem \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/fs_fwd.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/fs_path.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/codecvt \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/fs_dir.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/fs_ops.h
+  /workspace/CHTL/include/JavaScript/JavaScriptCompiler.h

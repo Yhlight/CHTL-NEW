@@ -304,8 +304,11 @@ bin/chtl: /lib/x86_64-linux-gnu/Scrt1.o \
   lib/libCMODHandler.a \
   lib/libCSSCompiler.a \
   lib/libCompilerDispatcher.a \
-  lib/libJavaScriptCompiler.a
+  lib/libJavaScriptCompiler.a \
+  lib/libSyntaxConstraint.a
 
+
+lib/libSyntaxConstraint.a:
 
 lib/libCompilerDispatcher.a:
 

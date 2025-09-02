@@ -75,6 +75,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/chtl.dir/DependInfo.cmake"
   "src/Common/CMakeFiles/SyntaxConstraint.dir/DependInfo.cmake"
+  "src/Common/CMakeFiles/ImportManager.dir/DependInfo.cmake"
   "src/Scanner/CMakeFiles/CHTLUnifiedScanner.dir/DependInfo.cmake"
   "src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/DependInfo.cmake"
   "src/CHTL/CMakeFiles/CHTLCompiler.dir/DependInfo.cmake"

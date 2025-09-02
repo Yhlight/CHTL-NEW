@@ -38,4 +38,5 @@ target_include_directories(CHTLCompiler PUBLIC
 target_link_libraries(CHTLCompiler PUBLIC
     CMODHandler
     SyntaxConstraint
+    ImportManager
 )

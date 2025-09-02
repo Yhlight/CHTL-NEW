@@ -7,6 +7,7 @@
 /workspace/CHTL/build/CMakeFiles/install/local.dir
 /workspace/CHTL/build/CMakeFiles/install/strip.dir
 /workspace/CHTL/build/src/Common/CMakeFiles/SyntaxConstraint.dir
+/workspace/CHTL/build/src/Common/CMakeFiles/ImportManager.dir
 /workspace/CHTL/build/src/Common/CMakeFiles/test.dir
 /workspace/CHTL/build/src/Common/CMakeFiles/edit_cache.dir
 /workspace/CHTL/build/src/Common/CMakeFiles/rebuild_cache.dir

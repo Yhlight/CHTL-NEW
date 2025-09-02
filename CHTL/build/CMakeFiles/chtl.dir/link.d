@@ -12,6 +12,7 @@ bin/chtl: \
   lib/libCMODHandler.a \
   lib/libCJMODHandler.a \
   lib/libSyntaxConstraint.a \
+  lib/libImportManager.a \
   /workspace/CHTL/../src/ThirdParty/ANTLR4/lib/libantlr4-runtime-static.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so \
   /lib/x86_64-linux-gnu/libm.so \
@@ -65,6 +66,8 @@ lib/libCMODHandler.a:
 lib/libCJMODHandler.a:
 
 lib/libSyntaxConstraint.a:
+
+lib/libImportManager.a:
 
 /workspace/CHTL/../src/ThirdParty/ANTLR4/lib/libantlr4-runtime-static.a:
 

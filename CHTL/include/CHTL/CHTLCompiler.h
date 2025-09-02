@@ -5,6 +5,7 @@
 #include <memory>
 #include "Common/ICompiler.h"
 #include "Common/SyntaxConstraint.h"
+#include "Common/ImportManager.h"
 #include "CHTL/Core/Context.h"
 #include "CHTL/Core/CompileResult.h"
 
@@ -32,6 +33,7 @@ private:
     std::unique_ptr<Parser> parser;             // 语法分析器
     std::unique_ptr<Generator> generator;       // 代码生成器
     std::shared_ptr<SyntaxBoundaryChecker> boundaryChecker;  // 语法边界检查器
+    std::shared_ptr<ImportManager> importManager;  // 导入管理器
     
     std::string moduleDirectory;                // 模块目录
     std::string sourceFile;                     // 源文件路径
@@ -60,7 +62,7 @@ private:
      */
     void ProcessImports(std::shared_ptr<ProgramNode> ast);
     void ProcessImportNode(std::shared_ptr<ImportNode> importNode);
-    std::string ResolveImportPath(const std::string& importPath, const std::string& currentFile);
+
     void LoadAndMergeFile(const std::string& filePath, int importType, 
                           const std::string& itemName, const std::string& asName);
     void MergeImportedAST(std::shared_ptr<ProgramNode> importedAst, const std::string& namespaceName = "");

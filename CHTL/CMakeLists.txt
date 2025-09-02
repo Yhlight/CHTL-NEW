@@ -57,6 +57,7 @@ target_link_libraries(chtl
     CMODHandler
     CJMODHandler
     SyntaxConstraint
+    ImportManager
 )
 
 # 安装规则

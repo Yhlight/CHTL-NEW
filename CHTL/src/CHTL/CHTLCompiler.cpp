@@ -16,6 +16,7 @@ CHTLCompiler::CHTLCompiler()
     : debugMode(false), hasHTML5Declaration(false) {
     InitializeComponents();
     boundaryChecker = std::make_shared<SyntaxBoundaryChecker>();
+    importManager = std::make_shared<ImportManager>();
 }
 
 CHTLCompiler::~CHTLCompiler() = default;
@@ -69,6 +70,11 @@ std::string CHTLCompiler::Compile(const CodeFragmentPtr& fragment) {
             // 这里我们仅记录警告，仍然返回生成的代码
         }
         
+        // 生成导入报告（调试模式下）
+        if (debugMode) {
+            LOG_DEBUG("导入报告:\n" + importManager->GenerateImportReport());
+        }
+        
         // 后处理
         PostprocessResult(lastResult);
         
@@ -97,6 +103,8 @@ void CHTLCompiler::Reset() {
     parser->Reset();
     hasHTML5Declaration = false;
     lastResult.Clear();
+    importManager->Clear();
+    boundaryChecker->ClearViolations();
 }
 
 void CHTLCompiler::SetSourceFile(const std::string& file) {
@@ -156,7 +164,7 @@ void CHTLCompiler::ProcessImportNode(std::shared_ptr<ImportNode> importNode) {
     }
     
     // 解析导入路径
-    std::string resolvedPath = ResolveImportPath(
+    std::string resolvedPath = importManager->ResolvePath(
         importNode->GetFromPath(), 
         context->GetCurrentFile()
     );
@@ -164,20 +172,42 @@ void CHTLCompiler::ProcessImportNode(std::shared_ptr<ImportNode> importNode) {
     LOG_INFO("导入路径: " + importNode->GetFromPath() + " -> " + resolvedPath);
     
     // 检查循环导入
-    if (context->IsInImportCycle(resolvedPath)) {
+    if (importManager->IsInImportCycle(resolvedPath)) {
         LOG_ERROR("检测到循环导入: " + resolvedPath);
+        
+        // 显示导入栈
+        auto stack = importManager->GetImportStack();
+        LOG_ERROR("导入栈:");
+        for (const auto& path : stack) {
+            LOG_ERROR("  -> " + path);
+        }
         return;
     }
     
     // 检查是否已经导入
-    if (context->IsFileImported(resolvedPath)) {
+    if (importManager->IsImported(resolvedPath)) {
         LOG_INFO("文件已导入，跳过: " + resolvedPath);
         return;
     }
     
-    // 标记文件为已导入
-    context->MarkFileImported(resolvedPath);
-    context->PushImportPath(resolvedPath);
+    // 创建导入信息
+    ImportInfo info;
+    info.originalPath = importNode->GetFromPath();
+    info.resolvedPath = resolvedPath;
+    info.asName = importNode->GetAsName();
+    info.itemName = importNode->GetItemName();
+    info.type = static_cast<ImportInfo::Type>(static_cast<int>(importType));
+    
+    // 标记文件已导入
+    importManager->MarkImported(info);
+    
+    // 添加依赖关系
+    if (!context->GetCurrentFile().empty()) {
+        importManager->AddDependency(context->GetCurrentFile(), resolvedPath);
+    }
+    
+    // 压入导入栈
+    importManager->EnterImport(resolvedPath);
     
     try {
         // 加载并合并文件
@@ -191,37 +221,10 @@ void CHTLCompiler::ProcessImportNode(std::shared_ptr<ImportNode> importNode) {
         LOG_ERROR("导入文件失败 " + resolvedPath + ": " + e.what());
     }
     
-    context->PopImportPath();
+    importManager->ExitImport();
 }
 
-std::string CHTLCompiler::ResolveImportPath(const std::string& importPath, const std::string& currentFile) {
-    // 如果是绝对路径，直接返回
-    if (!importPath.empty() && importPath[0] == '/') {
-        return importPath;
-    }
-    
-    // 获取当前文件的目录
-    std::string currentDir;
-    size_t lastSlash = currentFile.find_last_of("/\\");
-    if (lastSlash != std::string::npos) {
-        currentDir = currentFile.substr(0, lastSlash + 1);
-    } else {
-        currentDir = "./";
-    }
-    
-    // 处理点号分隔的路径（转换为斜杠）
-    std::string normalizedPath = importPath;
-    std::replace(normalizedPath.begin(), normalizedPath.end(), '.', '/');
-    
-    // 根据导入类型添加后缀
-    if (normalizedPath.find('.') == std::string::npos) {
-        // 没有后缀，根据上下文添加
-        normalizedPath += ".chtl";
-    }
-    
-    // 组合路径
-    return currentDir + normalizedPath;
-}
+
 
 void CHTLCompiler::LoadAndMergeFile(const std::string& filePath, int importType,
                                     const std::string& itemName, const std::string& asName) {

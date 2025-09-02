@@ -190,6 +190,7 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: /work
   /usr/include/c++/14/bits/stringfwd.h \
   /usr/include/c++/14/bits/unique_ptr.h \
   /usr/include/c++/14/bits/unordered_map.h \
+  /usr/include/c++/14/bits/unordered_set.h \
   /usr/include/c++/14/bits/uses_allocator.h \
   /usr/include/c++/14/bits/uses_allocator_args.h \
   /usr/include/c++/14/bits/utility.h \
@@ -246,6 +247,7 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: /work
   /usr/include/c++/14/type_traits \
   /usr/include/c++/14/typeinfo \
   /usr/include/c++/14/unordered_map \
+  /usr/include/c++/14/unordered_set \
   /usr/include/c++/14/vector \
   /usr/include/x86_64-linux-gnu/c++/14/bits/atomic_word.h \
   /usr/include/x86_64-linux-gnu/c++/14/bits/c++allocator.h \
@@ -291,6 +293,7 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: /work
   /workspace/CHTL/include/Common/Error.h \
   /workspace/CHTL/include/Common/ICompiler.h \
   /workspace/CHTL/include/Common/Logger.h \
+  /workspace/CHTL/include/Common/SyntaxConstraint.h \
   /workspace/CHTL/include/Dispatcher/CompilerDispatcher.h \
   /workspace/CHTL/include/JavaScript/JavaScriptCompiler.h
 
@@ -298,6 +301,8 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: /work
 /workspace/CHTL/include/JavaScript/JavaScriptCompiler.h:
 
 /workspace/CHTL/include/Dispatcher/CompilerDispatcher.h:
+
+/workspace/CHTL/include/Common/SyntaxConstraint.h:
 
 /workspace/CHTL/include/Common/Logger.h:
 
@@ -343,6 +348,8 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: /work
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/os_defines.h:
 
+/usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h:
+
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
 /usr/include/c++/14/cctype:
@@ -376,8 +383,6 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: /work
 /usr/include/c++/14/backward/binders.h:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/messages_members.h:
 
 /usr/include/x86_64-linux-gnu/sys/single_threaded.h:
 
@@ -555,6 +560,10 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: /work
 
 /usr/include/c++/14/bits/stl_iterator.h:
 
+/usr/include/x86_64-linux-gnu/c++/14/bits/gthr.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
 /usr/include/x86_64-linux-gnu/bits/timex.h:
@@ -695,10 +704,6 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: /work
 
 /usr/include/c++/14/bits/fs_ops.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/include/x86_64-linux-gnu/c++/14/bits/gthr.h:
-
 /usr/include/c++/14/bits/hashtable.h:
 
 /usr/include/c++/14/bits/invoke.h:
@@ -706,6 +711,8 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: /work
 /usr/include/c++/14/bits/ios_base.h:
 
 /usr/include/c++/14/bits/istream.tcc:
+
+/usr/include/c++/14/unordered_set:
 
 /usr/include/c++/14/bits/locale_conv.h:
 
@@ -720,6 +727,8 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: /work
 /usr/include/c++/14/bits/locale_facets_nonio.tcc:
 
 /usr/include/c++/14/bits/memory_resource.h:
+
+/usr/include/c++/14/bits/unordered_set.h:
 
 /usr/include/c++/14/bits/memoryfwd.h:
 

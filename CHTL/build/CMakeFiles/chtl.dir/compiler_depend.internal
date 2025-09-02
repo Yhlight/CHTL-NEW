@@ -307,4 +307,5 @@ bin/chtl
  /workspace/CHTL/build/lib/libCSSCompiler.a
  /workspace/CHTL/build/lib/libCompilerDispatcher.a
  /workspace/CHTL/build/lib/libJavaScriptCompiler.a
+ /workspace/CHTL/build/lib/libSyntaxConstraint.a
 

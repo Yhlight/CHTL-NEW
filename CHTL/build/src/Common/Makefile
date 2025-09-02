@@ -185,6 +185,44 @@ SyntaxConstraint/fast:
 	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/Common/CMakeFiles/SyntaxConstraint.dir/build.make src/Common/CMakeFiles/SyntaxConstraint.dir/build
 .PHONY : SyntaxConstraint/fast
 
+# Convenience name for target.
+src/Common/CMakeFiles/ImportManager.dir/rule:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/Common/CMakeFiles/ImportManager.dir/rule
+.PHONY : src/Common/CMakeFiles/ImportManager.dir/rule
+
+# Convenience name for target.
+ImportManager: src/Common/CMakeFiles/ImportManager.dir/rule
+.PHONY : ImportManager
+
+# fast build rule for target.
+ImportManager/fast:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/Common/CMakeFiles/ImportManager.dir/build.make src/Common/CMakeFiles/ImportManager.dir/build
+.PHONY : ImportManager/fast
+
+ImportManager.o: ImportManager.cpp.o
+.PHONY : ImportManager.o
+
+# target to build an object file
+ImportManager.cpp.o:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/Common/CMakeFiles/ImportManager.dir/build.make src/Common/CMakeFiles/ImportManager.dir/ImportManager.cpp.o
+.PHONY : ImportManager.cpp.o
+
+ImportManager.i: ImportManager.cpp.i
+.PHONY : ImportManager.i
+
+# target to preprocess a source file
+ImportManager.cpp.i:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/Common/CMakeFiles/ImportManager.dir/build.make src/Common/CMakeFiles/ImportManager.dir/ImportManager.cpp.i
+.PHONY : ImportManager.cpp.i
+
+ImportManager.s: ImportManager.cpp.s
+.PHONY : ImportManager.s
+
+# target to generate assembly for a file
+ImportManager.cpp.s:
+	cd /workspace/CHTL/build && $(MAKE) $(MAKESILENT) -f src/Common/CMakeFiles/ImportManager.dir/build.make src/Common/CMakeFiles/ImportManager.dir/ImportManager.cpp.s
+.PHONY : ImportManager.cpp.s
+
 SyntaxConstraint.o: SyntaxConstraint.cpp.o
 .PHONY : SyntaxConstraint.o
 
@@ -222,7 +260,11 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... ImportManager"
 	@echo "... SyntaxConstraint"
+	@echo "... ImportManager.o"
+	@echo "... ImportManager.i"
+	@echo "... ImportManager.s"
 	@echo "... SyntaxConstraint.o"
 	@echo "... SyntaxConstraint.i"
 	@echo "... SyntaxConstraint.s"
