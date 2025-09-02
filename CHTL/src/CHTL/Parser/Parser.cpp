@@ -432,11 +432,16 @@ std::shared_ptr<ASTNode> Parser::ParseOrigin() {
     if (Check(TokenType::LEFT_BRACE)) {
         ConsumeToken(); // 消费 {
         
-        // 收集原始内容直到遇到 }
+        // 对于Origin块，我们需要保留原始格式
+        // 重建原始内容的近似值
         std::string content;
         int braceDepth = 1;
+        Token prevToken;
+        bool firstToken = true;
         
         while (braceDepth > 0 && !Check(TokenType::EOF_TOKEN)) {
+            Token currentTok = CurrentToken();
+            
             if (Check(TokenType::LEFT_BRACE)) {
                 braceDepth++;
             } else if (Check(TokenType::RIGHT_BRACE)) {
@@ -444,14 +449,42 @@ std::shared_ptr<ASTNode> Parser::ParseOrigin() {
                 if (braceDepth == 0) break;
             }
             
-            // 简单地收集所有内容
-            content += CurrentToken().value;
-            
-            // 添加空格（除了右花括号之前）
-            if (PeekToken().type != TokenType::RIGHT_BRACE) {
-                content += " ";
+            // 智能添加空格
+            if (!firstToken) {
+                // 根据token类型决定是否需要空格
+                bool needSpace = true;
+                
+                // 这些情况不需要空格
+                if (prevToken.value == "<" || prevToken.value == ">" || 
+                    prevToken.value == "/" || prevToken.value == "=" ||
+                    currentTok.value == ">" || currentTok.value == "/" ||
+                    currentTok.value == "=" || currentTok.value == ";" ||
+                    currentTok.value == "," || currentTok.value == ":" ||
+                    currentTok.value == "(" || currentTok.value == ")" ||
+                    prevToken.value == "(" || prevToken.value == "\"" ||
+                    currentTok.value == "\"" || prevToken.value == "'" ||
+                    currentTok.value == "'") {
+                    needSpace = false;
+                }
+                
+                // 检查是否是HTML标签的一部分
+                if (prevToken.value == "<" && currentTok.type == TokenType::IDENTIFIER) {
+                    needSpace = false;
+                }
+                if (prevToken.type == TokenType::IDENTIFIER && currentTok.value == ">") {
+                    needSpace = false;
+                }
+                
+                if (needSpace && !content.empty()) {
+                    content += " ";
+                }
             }
             
+            // 添加当前token的值
+            content += currentTok.value;
+            
+            prevToken = currentTok;
+            firstToken = false;
             ConsumeToken();
         }
         

@@ -39,6 +39,7 @@ enum class TokenType {
     TEMPLATE,            // [Template]
     CUSTOM,              // [Custom]
     ORIGIN,              // [Origin]
+    ORIGIN_CONTENT,      // Origin块的原始内容
     IMPORT,              // [Import]
     NAMESPACE,           // [Namespace]
     CONFIGURATION,       // [Configuration]

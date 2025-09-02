@@ -183,6 +183,24 @@ public:
      * 设置源代码
      */
     void SetSource(const std::string& src, const std::string& fname = "");
+    
+    /**
+     * 获取原始内容（用于Origin块）
+     * @param startPos 开始位置
+     * @param endPos 结束位置
+     * @return 原始字符串
+     */
+    std::string GetRawContent(size_t startPos, size_t endPos) const {
+        if (startPos >= source.length() || endPos > source.length() || startPos >= endPos) {
+            return "";
+        }
+        return source.substr(startPos, endPos - startPos);
+    }
+    
+    /**
+     * 获取当前位置
+     */
+    size_t GetPosition() const { return position; }
 };
 
 } // namespace CHTL
