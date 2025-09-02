@@ -1,0 +1,268 @@
+;; 由比滨结衣CMOD主模块文件
+;; 严格按照CHTL语法文档的CMOD标准格式
+;; 包含由比滨结衣主题的所有CHTL组件
+
+;; 由比滨结衣主题色彩变量组
+[Custom] @Var YuigahamaColors
+{
+    primary-pink = "#FFB6C1";        // 由比滨结衣的粉色长发
+    warm-coral = "#FFC0CB";          // 温暖的珊瑚色
+    soft-peach = "#FFEBE9";          // 柔和的桃色
+    gentle-white = "#FFF0F5";        // 温柔的白色
+    light-gray = "#F8F8F8";          // 浅灰色
+}
+
+;; 由比滨结衣字体变量组
+[Custom] @Var YuigahamaFonts
+{
+    primary-font = "Microsoft YaHei, Hiragino Sans GB, Arial, sans-serif";
+    title-font = "Georgia, serif";
+    cute-font = "Comic Sans MS, cursive";
+}
+
+;; 由比滨结衣间距变量组
+[Custom] @Var YuigahamaSpacing
+{
+    tiny = "4px";
+    small = "8px";
+    medium = "16px";
+    large = "24px";
+    xlarge = "32px";
+}
+
+;; 由比滨结衣音乐播放器模板元素
+[Template] @Element YuigahaMusicPlayer
+{
+    div
+    {
+        class: yuigahama-music-player;
+        
+        style
+        {
+            .yuigahama-music-player
+            {
+                background: linear-gradient(135deg, @Var YuigahamaColors.primary-pink 0%, @Var YuigahamaColors.warm-coral 50%, @Var YuigahamaColors.soft-peach 100%);
+                border-radius: 20px;
+                padding: @Var YuigahamaSpacing.large;
+                box-shadow: 0 8px 25px rgba(255, 182, 193, 0.4);
+                border: 2px solid @Var YuigahamaColors.primary-pink;
+                max-width: 350px;
+                margin: @Var YuigahamaSpacing.large auto;
+                font-family: @Var YuigahamaFonts.primary-font;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .player-header
+            {
+                text-align: center;
+                margin-bottom: @Var YuigahamaSpacing.medium;
+                color: #8B4B8B;
+                font-weight: bold;
+                font-size: 18px;
+            }
+            
+            .player-display
+            {
+                background: rgba(255, 255, 255, 0.8);
+                border-radius: 12px;
+                padding: @Var YuigahamaSpacing.medium;
+                margin-bottom: @Var YuigahamaSpacing.medium;
+                text-align: center;
+                color: #8B4B8B;
+                min-height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+            
+            .track-title
+            {
+                font-weight: bold;
+                margin-bottom: @Var YuigahamaSpacing.tiny;
+            }
+            
+            .track-artist
+            {
+                font-size: 12px;
+                opacity: 0.8;
+            }
+            
+            .player-controls
+            {
+                display: flex;
+                justify-content: center;
+                gap: @Var YuigahamaSpacing.medium;
+                margin-bottom: @Var YuigahamaSpacing.medium;
+            }
+            
+            .control-btn
+            {
+                background: linear-gradient(45deg, #FF69B4, @Var YuigahamaColors.primary-pink);
+                border: none;
+                border-radius: 50%;
+                width: 45px;
+                height: 45px;
+                color: white;
+                font-size: 18px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 8px rgba(255, 105, 180, 0.3);
+            }
+            
+            .control-btn:hover
+            {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(255, 105, 180, 0.4);
+            }
+        }
+        
+        script
+        {
+            ;; 由比滨结衣音乐播放器逻辑
+            console.log('🌸 雅哈喽～由比滨结衣的音乐播放器启动！');
+            
+            const player = {{.yuigahama-music-player}};
+            let isPlaying = false;
+            
+            ;; 创建播放器界面
+            const header = player.querySelector('.player-header') || (() => {
+                const h = document.createElement('div');
+                h.className = 'player-header';
+                h.textContent = '🎵 雅哈喽音乐播放器 🎵';
+                player.appendChild(h);
+                return h;
+            })();
+            
+            const display = player.querySelector('.player-display') || (() => {
+                const d = document.createElement('div');
+                d.className = 'player-display';
+                d.innerHTML = '<div class="track-title">青春恋爱物语</div><div class="track-artist">由比滨结衣</div>';
+                player.appendChild(d);
+                return d;
+            })();
+            
+            const controls = player.querySelector('.player-controls') || (() => {
+                const c = document.createElement('div');
+                c.className = 'player-controls';
+                c.innerHTML = '<button class="control-btn">⏮</button><button class="control-btn play-pause">▶</button><button class="control-btn">⏭</button>';
+                player.appendChild(c);
+                return c;
+            })();
+            
+            ;; 播放控制逻辑
+            {{.play-pause}} &-> click {
+                isPlaying = !isPlaying;
+                this.textContent = isPlaying ? '⏸' : '▶';
+                console.log('🎶 ' + (isPlaying ? '开始播放' : '暂停播放'));
+            };
+            
+            ;; 导出控制接口
+            window.YuigahamaPlayer = {
+                play: () => { isPlaying = true; console.log('🎵 雅哈喽～开始播放！'); },
+                pause: () => { isPlaying = false; console.log('⏸️ 暂停播放～'); }
+            };
+        }
+        
+        div
+        {
+            class: player-header;
+        }
+        
+        div
+        {
+            class: player-display;
+        }
+        
+        div
+        {
+            class: player-controls;
+        }
+    }
+}
+
+;; 由比滨结衣手风琴模板元素
+[Template] @Element YuigahamaAccordion
+{
+    div
+    {
+        class: yuigahama-accordion;
+        
+        style
+        {
+            .yuigahama-accordion
+            {
+                border: 2px solid @Var YuigahamaColors.primary-pink;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 6px 20px rgba(255, 182, 193, 0.3);
+                background: linear-gradient(135deg, @Var YuigahamaColors.gentle-white 0%, @Var YuigahamaColors.soft-peach 100%);
+                margin: @Var YuigahamaSpacing.medium 0;
+                font-family: @Var YuigahamaFonts.primary-font;
+            }
+            
+            .accordion-header
+            {
+                background: linear-gradient(45deg, @Var YuigahamaColors.primary-pink, @Var YuigahamaColors.warm-coral);
+                color: #8B4B8B;
+                padding: @Var YuigahamaSpacing.large;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-weight: bold;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            
+            .accordion-header:hover
+            {
+                background: linear-gradient(45deg, #FF91A4, @Var YuigahamaColors.primary-pink);
+                transform: translateY(-1px);
+            }
+            
+            .accordion-content
+            {
+                padding: 0 @Var YuigahamaSpacing.large;
+                background: @Var YuigahamaColors.light-gray;
+                max-height: 0;
+                overflow: hidden;
+                transition: all 0.4s ease;
+            }
+            
+            .accordion-content.active
+            {
+                max-height: 600px;
+                padding: @Var YuigahamaSpacing.large;
+            }
+        }
+        
+        script
+        {
+            ;; 由比滨结衣手风琴交互逻辑
+            console.log('🌸 雅哈喽～由比滨结衣的手风琴准备就绪！');
+            
+            {{.accordion-header}} &-> click {
+                const isActive = this.classList.contains('active');
+                
+                console.log(isActive ? '👋 再见～收起内容！' : '🎵 雅哈喽～展开内容！');
+                
+                this.classList.toggle('active');
+                this.nextElementSibling.classList.toggle('active');
+            };
+        }
+        
+        div
+        {
+            class: accordion-header;
+            @Title
+        }
+        
+        div
+        {
+            class: accordion-content;
+            @Content
+        }
+    }
+}

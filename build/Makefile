@@ -552,6 +552,19 @@ chtl_project_optimization_report/fast:
 .PHONY : chtl_project_optimization_report/fast
 
 #=============================================================================
+# Target rules for targets named chtl_strict_module_compliance_test
+
+# Build rule for target.
+chtl_strict_module_compliance_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_strict_module_compliance_test
+.PHONY : chtl_strict_module_compliance_test
+
+# fast build rule for target.
+chtl_strict_module_compliance_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_strict_module_compliance_test.dir/build.make CMakeFiles/chtl_strict_module_compliance_test.dir/build
+.PHONY : chtl_strict_module_compliance_test/fast
+
+#=============================================================================
 # Target rules for targets named chtl_lexer_test
 
 # Build rule for target.
@@ -2875,6 +2888,30 @@ src/Test/SimpleCompilerTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_simple_test.dir/build.make CMakeFiles/chtl_simple_test.dir/src/Test/SimpleCompilerTest.cpp.s
 .PHONY : src/Test/SimpleCompilerTest.cpp.s
 
+src/Test/StrictModuleComplianceTest.o: src/Test/StrictModuleComplianceTest.cpp.o
+.PHONY : src/Test/StrictModuleComplianceTest.o
+
+# target to build an object file
+src/Test/StrictModuleComplianceTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_strict_module_compliance_test.dir/build.make CMakeFiles/chtl_strict_module_compliance_test.dir/src/Test/StrictModuleComplianceTest.cpp.o
+.PHONY : src/Test/StrictModuleComplianceTest.cpp.o
+
+src/Test/StrictModuleComplianceTest.i: src/Test/StrictModuleComplianceTest.cpp.i
+.PHONY : src/Test/StrictModuleComplianceTest.i
+
+# target to preprocess a source file
+src/Test/StrictModuleComplianceTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_strict_module_compliance_test.dir/build.make CMakeFiles/chtl_strict_module_compliance_test.dir/src/Test/StrictModuleComplianceTest.cpp.i
+.PHONY : src/Test/StrictModuleComplianceTest.cpp.i
+
+src/Test/StrictModuleComplianceTest.s: src/Test/StrictModuleComplianceTest.cpp.s
+.PHONY : src/Test/StrictModuleComplianceTest.s
+
+# target to generate assembly for a file
+src/Test/StrictModuleComplianceTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_strict_module_compliance_test.dir/build.make CMakeFiles/chtl_strict_module_compliance_test.dir/src/Test/StrictModuleComplianceTest.cpp.s
+.PHONY : src/Test/StrictModuleComplianceTest.cpp.s
+
 src/Test/TemplateSystemTest.o: src/Test/TemplateSystemTest.cpp.o
 .PHONY : src/Test/TemplateSystemTest.o
 
@@ -3030,6 +3067,7 @@ help:
 	@echo "... chtl_project_optimization_report"
 	@echo "... chtl_simple_test"
 	@echo "... chtl_status_report"
+	@echo "... chtl_strict_module_compliance_test"
 	@echo "... chtl_structure_fix_report"
 	@echo "... chtl_template_test"
 	@echo "... chtl_test"
@@ -3291,6 +3329,9 @@ help:
 	@echo "... src/Test/SimpleCompilerTest.o"
 	@echo "... src/Test/SimpleCompilerTest.i"
 	@echo "... src/Test/SimpleCompilerTest.s"
+	@echo "... src/Test/StrictModuleComplianceTest.o"
+	@echo "... src/Test/StrictModuleComplianceTest.i"
+	@echo "... src/Test/StrictModuleComplianceTest.s"
 	@echo "... src/Test/TemplateSystemTest.o"
 	@echo "... src/Test/TemplateSystemTest.i"
 	@echo "... src/Test/TemplateSystemTest.s"

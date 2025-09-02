@@ -256,6 +256,10 @@ add_executable(chtl_final_completion_verification src/Test/FinalCompletionVerifi
 # 项目结构优化报告可执行文件
 add_executable(chtl_project_optimization_report src/Test/ProjectOptimizationReport.cpp)
 
+# 严格模块文档遵循验证测试可执行文件
+add_executable(chtl_strict_module_compliance_test src/Test/StrictModuleComplianceTest.cpp)
+target_link_libraries(chtl_strict_module_compliance_test CHTLUtilSystem)
+
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)
 target_link_libraries(chtl_lexer_test CHTLCore CHTLJSCore CHTLScanner)

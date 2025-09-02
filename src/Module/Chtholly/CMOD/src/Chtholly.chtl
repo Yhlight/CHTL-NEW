@@ -1,0 +1,244 @@
+;; 珂朵莉CMOD主模块文件
+;; 严格按照CHTL语法文档的CMOD标准格式
+;; 包含珂朵莉主题的所有CHTL组件
+
+;; 珂朵莉主题色彩变量组
+[Custom] @Var ChthollyColors
+{
+    primary-red = "#FF6B6B";      // 珂朵莉的红色长发
+    emerald-green = "#4ECDC4";    // 珂朵莉的翠绿眼眸
+    warm-pink = "#FFB6C1";        // 温暖的粉色
+    soft-white = "#FFF0F5";       // 柔和的白色
+    gentle-gray = "#F5F5F5";      // 温柔的灰色
+}
+
+;; 珂朵莉字体变量组
+[Custom] @Var ChthollyFonts
+{
+    primary-font = "Microsoft YaHei, Arial, sans-serif";
+    title-font = "Georgia, serif";
+    code-font = "Consolas, Monaco, monospace";
+}
+
+;; 珂朵莉间距变量组
+[Custom] @Var ChthollySpacing
+{
+    small = "8px";
+    medium = "16px";
+    large = "24px";
+    xlarge = "32px";
+}
+
+;; 珂朵莉手风琴模板元素
+[Template] @Element ChthollyAccordion
+{
+    div
+    {
+        class: chtholly-accordion;
+        
+        style
+        {
+            .chtholly-accordion
+            {
+                border: 2px solid @Var ChthollyColors.primary-red;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+                background: linear-gradient(135deg, @Var ChthollyColors.soft-white 0%, @Var ChthollyColors.warm-pink 100%);
+                margin: @Var ChthollySpacing.medium 0;
+                font-family: @Var ChthollyFonts.primary-font;
+            }
+            
+            .accordion-header
+            {
+                background: linear-gradient(45deg, @Var ChthollyColors.primary-red, @Var ChthollyColors.emerald-green);
+                color: white;
+                padding: @Var ChthollySpacing.large;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-weight: bold;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            
+            .accordion-header:hover
+            {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+            }
+            
+            .accordion-content
+            {
+                padding: 0 @Var ChthollySpacing.large;
+                background: @Var ChthollyColors.gentle-gray;
+                max-height: 0;
+                overflow: hidden;
+                transition: all 0.4s ease;
+            }
+            
+            .accordion-content.active
+            {
+                max-height: 500px;
+                padding: @Var ChthollySpacing.large;
+            }
+        }
+        
+        script
+        {
+            ;; 珂朵莉手风琴交互逻辑
+            {{.accordion-header}} &-> click {
+                const header = this;
+                const content = header.nextElementSibling;
+                const isActive = header.classList.contains('active');
+                
+                ;; 切换状态
+                header.classList.toggle('active');
+                content.classList.toggle('active');
+                
+                console.log('💖 珂朵莉手风琴：', isActive ? '收起' : '展开');
+            };
+        }
+        
+        div
+        {
+            class: accordion-header;
+            @Title
+        }
+        
+        div
+        {
+            class: accordion-content;
+            @Content
+        }
+    }
+}
+
+;; 珂朵莉樱花雨效果
+[Custom] @Element ChthollySakura
+{
+    div
+    {
+        class: chtholly-sakura-container;
+        
+        style
+        {
+            .chtholly-sakura-container
+            {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 1000;
+                overflow: hidden;
+            }
+            
+            .sakura-petal
+            {
+                position: absolute;
+                width: 12px;
+                height: 12px;
+                background: radial-gradient(circle, @Var ChthollyColors.warm-pink 0%, @Var ChthollyColors.primary-red 100%);
+                border-radius: 50% 0 50% 0;
+                opacity: 0.8;
+                animation: sakuraFall 8s linear infinite;
+            }
+            
+            @keyframes sakuraFall
+            {
+                0% {
+                    transform: translateY(-100px) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 0.8;
+                }
+                90% {
+                    opacity: 0.8;
+                }
+                100% {
+                    transform: translateY(calc(100vh + 100px)) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        }
+        
+        script
+        {
+            ;; 珂朵莉樱花雨效果脚本
+            const container = {{.chtholly-sakura-container}};
+            
+            function createSakuraPetal() {
+                const petal = document.createElement('div');
+                petal.className = 'sakura-petal';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                petal.style.animationDelay = Math.random() * 2 + 's';
+                
+                container.appendChild(petal);
+                
+                setTimeout(() => {
+                    if (petal.parentElement) {
+                        petal.remove();
+                    }
+                }, 10000);
+            }
+            
+            ;; 启动樱花雨
+            console.log('🌸 珂朵莉的樱花雨开始飘落...');
+            setInterval(createSakuraPetal, 500);
+        }
+    }
+}
+
+;; 珂朵莉进度条
+[Template] @Element ChthollyProgress
+{
+    div
+    {
+        class: chtholly-progress;
+        
+        style
+        {
+            .chtholly-progress
+            {
+                width: 100%;
+                height: 20px;
+                background: @Var ChthollyColors.gentle-gray;
+                border-radius: 10px;
+                overflow: hidden;
+                border: 2px solid @Var ChthollyColors.primary-red;
+            }
+            
+            .progress-bar
+            {
+                height: 100%;
+                background: linear-gradient(45deg, @Var ChthollyColors.primary-red, @Var ChthollyColors.emerald-green);
+                width: 0%;
+                transition: width 0.5s ease;
+                border-radius: 8px;
+            }
+        }
+        
+        script
+        {
+            ;; 珂朵莉进度条逻辑
+            const progressBar = {{.progress-bar}};
+            
+            window.ChthollyProgress = {
+                update: function(percentage) {
+                    progressBar.style.width = percentage + '%';
+                    console.log('💖 珂朵莉进度：' + percentage + '%');
+                }
+            };
+        }
+        
+        div
+        {
+            class: progress-bar;
+        }
+    }
+}
