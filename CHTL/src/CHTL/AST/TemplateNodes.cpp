@@ -45,6 +45,10 @@ void InsertNode::Accept(ASTVisitor* visitor) {
     // TODO: 实现InsertNode的visitor模式
 }
 
+void ElementMatchNode::Accept(ASTVisitor* visitor) {
+    // TODO: 实现ElementMatchNode的visitor模式
+}
+
 void ExceptNode::Accept(ASTVisitor* visitor) {
     // visitor->VisitExcept(this);
     // TODO: 当ASTVisitor添加VisitExcept方法时启用

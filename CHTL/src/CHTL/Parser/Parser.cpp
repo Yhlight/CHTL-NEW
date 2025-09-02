@@ -531,14 +531,34 @@ std::shared_ptr<ASTNode> Parser::ParseImport() {
         // 批量导入
         if (isCustom) {
             // 检查是否指定了具体类型
-            if (Check(TokenType::FROM)) {
+            if (Match(TokenType::AT_ELEMENT)) {
+                // [Import] [Custom] @Element from path
+                importType = ImportNode::ImportType::AllCustomElement;
+            } else if (Match(TokenType::AT_STYLE)) {
+                // [Import] [Custom] @Style from path
+                importType = ImportNode::ImportType::AllCustomStyle;
+            } else if (Match(TokenType::AT_VAR)) {
+                // [Import] [Custom] @Var from path
+                importType = ImportNode::ImportType::AllCustomVar;
+            } else if (Check(TokenType::FROM)) {
+                // [Import] [Custom] from path
                 importType = ImportNode::ImportType::AllCustom;
             } else {
                 ReportError("期望@Type或from关键字");
                 return nullptr;
             }
         } else if (isTemplate) {
-            if (Check(TokenType::FROM)) {
+            if (Match(TokenType::AT_ELEMENT)) {
+                // [Import] [Template] @Element from path
+                importType = ImportNode::ImportType::AllTemplateElement;
+            } else if (Match(TokenType::AT_STYLE)) {
+                // [Import] [Template] @Style from path
+                importType = ImportNode::ImportType::AllTemplateStyle;
+            } else if (Match(TokenType::AT_VAR)) {
+                // [Import] [Template] @Var from path
+                importType = ImportNode::ImportType::AllTemplateVar;
+            } else if (Check(TokenType::FROM)) {
+                // [Import] [Template] from path
                 importType = ImportNode::ImportType::AllTemplate;
             } else {
                 ReportError("期望@Type或from关键字");
@@ -877,8 +897,52 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
                         if (insertNode) {
                             specializations.push_back(insertNode);
                         }
+                    } else if (Check(TokenType::IDENTIFIER)) {
+                        // 元素名称匹配特例化
+                        std::string elementName = CurrentToken().value;
+                        ConsumeToken();
+                        
+                        // 检查是否有索引 [n]
+                        int index = -1;  // -1 表示匹配所有同名元素
+                        if (Check(TokenType::LEFT_BRACKET)) {
+                            ConsumeToken(); // 消费 [
+                            if (Check(TokenType::NUMBER)) {
+                                index = std::stoi(CurrentToken().value);
+                                ConsumeToken();
+                                Expect(TokenType::RIGHT_BRACKET, "期望 ']'");
+                            } else {
+                                ReportError("期望数字索引");
+                            }
+                        }
+                        
+                        // 解析特例化内容块
+                        Expect(TokenType::LEFT_BRACE, "期望 '{'");
+                        
+                        // 创建一个特殊的特例化节点来记录元素匹配
+                        auto matchNode = std::make_shared<ElementMatchNode>(elementName, index);
+                        
+                        while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
+                            // 可以添加属性或样式
+                            if (Check(TokenType::STYLE)) {
+                                auto style = ParseLocalStyle();
+                                if (style) {
+                                    matchNode->AddChild(style);
+                                }
+                            } else if (Check(TokenType::IDENTIFIER)) {
+                                // 属性
+                                auto attr = ParseAttribute();
+                                if (attr) {
+                                    matchNode->AddChild(attr);
+                                }
+                            } else {
+                                ConsumeToken(); // 跳过未知token
+                            }
+                        }
+                        
+                        Expect(TokenType::RIGHT_BRACE, "期望 '}'");
+                        specializations.push_back(matchNode);
                     } else {
-                        ReportError("期望 'delete' 或 'insert'");
+                        ReportError("期望 'delete'、'insert' 或元素名");
                         ConsumeToken(); // 跳过无效token
                     }
                 }
@@ -1118,6 +1182,13 @@ std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {
                     }
                     ConsumeToken();
                 }
+            }
+        }
+        else if (Check(TokenType::DOT) || Check(TokenType::HASH) || Check(TokenType::AMPERSAND)) {
+            // 样式规则（类选择器、ID选择器、& 引用）
+            auto rule = std::dynamic_pointer_cast<StyleRuleNode>(ParseStyleRule());
+            if (rule) {
+                styleNode->AddRule(rule);
             }
         }
         else if (Check(TokenType::IDENTIFIER)) {
@@ -1383,29 +1454,114 @@ std::shared_ptr<ASTNode> Parser::ParseInsert() {
 }
 
 std::shared_ptr<ASTNode> Parser::ParseStyleRule() {
-    // TODO: 实现样式规则解析
-    return nullptr;
+    auto rule = std::make_shared<StyleRuleNode>();
+    
+    // 解析选择器
+    if (Check(TokenType::DOT)) {
+        // 类选择器 .classname
+        ConsumeToken(); // 消费 .
+        if (!Check(TokenType::IDENTIFIER)) {
+            ReportError("期望类名");
+            return nullptr;
+        }
+        rule->SetType(StyleRuleNode::SelectorType::Class);
+        rule->SetSelector("." + CurrentToken().value);
+        ConsumeToken();
+    } else if (Check(TokenType::HASH)) {
+        // ID选择器 #id
+        ConsumeToken(); // 消费 #
+        if (!Check(TokenType::IDENTIFIER)) {
+            ReportError("期望ID名");
+            return nullptr;
+        }
+        rule->SetType(StyleRuleNode::SelectorType::Id);
+        rule->SetSelector("#" + CurrentToken().value);
+        ConsumeToken();
+    } else if (Check(TokenType::AMPERSAND)) {
+        // & 引用选择器
+        ConsumeToken(); // 消费 &
+        rule->SetType(StyleRuleNode::SelectorType::Reference);
+        
+        // 检查是否是伪类或伪元素
+        if (Check(TokenType::COLON)) {
+            ConsumeToken(); // 消费 :
+            
+            // 检查是否是伪元素 ::
+            if (Check(TokenType::COLON)) {
+                ConsumeToken(); // 消费第二个 :
+                rule->SetType(StyleRuleNode::SelectorType::PseudoElement);
+                if (!Check(TokenType::IDENTIFIER)) {
+                    ReportError("期望伪元素名");
+                    return nullptr;
+                }
+                rule->SetSelector("&::" + CurrentToken().value);
+                ConsumeToken();
+            } else {
+                // 伪类
+                rule->SetType(StyleRuleNode::SelectorType::PseudoClass);
+                if (!Check(TokenType::IDENTIFIER)) {
+                    ReportError("期望伪类名");
+                    return nullptr;
+                }
+                rule->SetSelector("&:" + CurrentToken().value);
+                ConsumeToken();
+            }
+        } else {
+            rule->SetSelector("&");
+        }
+    } else {
+        ReportError("期望选择器 (., #, 或 &)");
+        return nullptr;
+    }
+    
+    // 解析样式块
+    Expect(TokenType::LEFT_BRACE, "期望 '{'");
+    
+    while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
+        auto prop = std::dynamic_pointer_cast<StylePropertyNode>(ParseStyleProperty());
+        if (prop) {
+            rule->AddProperty(prop);
+        }
+    }
+    
+    Expect(TokenType::RIGHT_BRACE, "期望 '}'");
+    
+    return rule;
 }
 
 std::shared_ptr<ASTNode> Parser::ParseStyleProperty() {
-    // 解析样式属性: 名称: 值;
+    // 解析样式属性: 名称: 值; 或 名称, (无值属性)
     if (Check(TokenType::IDENTIFIER)) {
         std::string propName = CurrentToken().value;
         ConsumeToken();
         
-        ExpectColonOrEquals("期望 ':' 或 '='");
-        
-        std::string value = ParseStringOrUnquotedLiteral();
-        
-        // 处理变量引用
-        value = ProcessVariableReferences(value);
-        
-        LOG_DEBUG("ParseStyleProperty: 期望分号, 当前Token类型=" + std::to_string(static_cast<int>(CurrentToken().type)) + 
-                  ", 值='" + CurrentToken().value + "'");
-        Expect(TokenType::SEMICOLON, "期望 ';'");
-        
-        // 创建样式属性节点
-        return std::make_shared<StylePropertyNode>(propName, value);
+        // 检查是否是无值属性（后面跟逗号或分号）
+        if (Check(TokenType::COMMA) || Check(TokenType::SEMICOLON)) {
+            // 无值属性
+            if (Check(TokenType::COMMA)) {
+                ConsumeToken(); // 消费逗号
+            } else {
+                ConsumeToken(); // 消费分号
+            }
+            
+            // 创建无值样式属性节点（值为空字符串表示无值）
+            return std::make_shared<StylePropertyNode>(propName, "");
+        } else {
+            // 有值属性
+            ExpectColonOrEquals("期望 ':' 或 '='");
+            
+            std::string value = ParseStringOrUnquotedLiteral();
+            
+            // 处理变量引用
+            value = ProcessVariableReferences(value);
+            
+            LOG_DEBUG("ParseStyleProperty: 期望分号, 当前Token类型=" + std::to_string(static_cast<int>(CurrentToken().type)) + 
+                      ", 值='" + CurrentToken().value + "'");
+            Expect(TokenType::SEMICOLON, "期望 ';'");
+            
+            // 创建样式属性节点
+            return std::make_shared<StylePropertyNode>(propName, value);
+        }
     }
     
     return nullptr;
@@ -1544,20 +1700,50 @@ std::string Parser::ProcessVariableReferences(const std::string& value) {
                 varName = varName.substr(first, last - first + 1);
             }
             
+            // 检查是否包含特例化语法 varName = newValue
+            size_t equalPos = varName.find('=');
+            std::string actualVarName = varName;
+            std::string overrideValue;
+            bool hasOverride = false;
+            
+            if (equalPos != std::string::npos) {
+                // 提取实际变量名和覆盖值
+                actualVarName = varName.substr(0, equalPos);
+                overrideValue = varName.substr(equalPos + 1);
+                
+                // 去除空格
+                actualVarName.erase(0, actualVarName.find_first_not_of(" \t"));
+                actualVarName.erase(actualVarName.find_last_not_of(" \t") + 1);
+                overrideValue.erase(0, overrideValue.find_first_not_of(" \t"));
+                overrideValue.erase(overrideValue.find_last_not_of(" \t") + 1);
+                
+                hasOverride = true;
+            }
+            
             // 从全局映射表获取变量组
-            LOG_DEBUG("查找变量组: " + varGroupName + ", 变量名: " + varName);
-            auto varGroup = context->GetGlobalMap()->GetTemplateVar(varGroupName);
-            if (varGroup) {
-                std::string varValue = varGroup->GetVariable(varName);
-                LOG_DEBUG("找到变量值: " + varValue);
-                if (!varValue.empty()) {
-                    // 替换整个变量引用
-                    result.replace(startPos, endPos - startPos + 1, varValue);
-                    pos = startPos + varValue.length();
-                    continue;
-                }
+            LOG_DEBUG("查找变量组: " + varGroupName + ", 变量名: " + actualVarName);
+            
+            if (hasOverride) {
+                // 使用覆盖值
+                LOG_DEBUG("使用特例化值: " + overrideValue);
+                result.replace(startPos, endPos - startPos + 1, overrideValue);
+                pos = startPos + overrideValue.length();
+                continue;
             } else {
-                LOG_DEBUG("未找到变量组: " + varGroupName);
+                // 使用原始值
+                auto varGroup = context->GetGlobalMap()->GetTemplateVar(varGroupName);
+                if (varGroup) {
+                    std::string varValue = varGroup->GetVariable(actualVarName);
+                    LOG_DEBUG("找到变量值: " + varValue);
+                    if (!varValue.empty()) {
+                        // 替换整个变量引用
+                        result.replace(startPos, endPos - startPos + 1, varValue);
+                        pos = startPos + varValue.length();
+                        continue;
+                    }
+                } else {
+                    LOG_DEBUG("未找到变量组: " + varGroupName);
+                }
             }
         }
         
@@ -1587,7 +1773,19 @@ std::shared_ptr<ASTNode> Parser::ParseConfigSubGroup(const std::string& groupNam
                 ConsumeToken(); // 消费 [
                 value = "[";
                 bool first = true;
+                int optionCount = 0;
                 while (!Check(TokenType::RIGHT_BRACKET) && !Check(TokenType::EOF_TOKEN)) {
+                    // 检查组选项数量限制
+                    if (optionCount >= context->GetOptionCount()) {
+                        ReportError("组选项数量超过限制 OPTION_COUNT=" + 
+                                   std::to_string(context->GetOptionCount()));
+                        // 跳过剩余的选项
+                        while (!Check(TokenType::RIGHT_BRACKET) && !Check(TokenType::EOF_TOKEN)) {
+                            ConsumeToken();
+                        }
+                        break;
+                    }
+                    
                     if (!first) value += ", ";
                     first = false;
                     
@@ -1598,6 +1796,7 @@ std::shared_ptr<ASTNode> Parser::ParseConfigSubGroup(const std::string& groupNam
                     if (Check(TokenType::IDENTIFIER)) {
                         value += CurrentToken().value;
                         ConsumeToken();
+                        optionCount++;
                     }
                     if (Check(TokenType::COMMA)) {
                         ConsumeToken();
@@ -1691,6 +1890,15 @@ void Parser::ApplyConfiguration(std::shared_ptr<ConfigurationNode> config) {
     it = options.find("DISABLE_CUSTOM_ORIGIN_TYPE");
     if (it != options.end()) {
         context->SetDisableCustomOriginType(it->second == "true");
+    }
+    
+    it = options.find("OPTION_COUNT");
+    if (it != options.end()) {
+        try {
+            context->SetOptionCount(std::stoi(it->second));
+        } catch (...) {
+            LOG_ERROR("无效的OPTION_COUNT值: " + it->second);
+        }
     }
     
     // 配置已经通过各个选项应用到上下文了

@@ -174,6 +174,25 @@ public:
     std::string ToString() const override { return "DeleteNode"; }
 };
 
+class ElementMatchNode : public ASTNode {
+private:
+    std::string elementName;  // 要匹配的元素名
+    int index;               // 索引，-1表示匹配所有
+    
+public:
+    ElementMatchNode(const std::string& name, int idx = -1) 
+        : ASTNode(ASTNodeType::ElementMatch), elementName(name), index(idx) {}
+    
+    const std::string& GetElementName() const { return elementName; }
+    int GetIndex() const { return index; }
+    
+    void Accept(ASTVisitor* visitor) override;
+    std::string ToString() const override { 
+        return "ElementMatchNode(" + elementName + 
+               (index >= 0 ? "[" + std::to_string(index) + "]" : "") + ")"; 
+    }
+};
+
 class InsertNode : public ASTNode {
 public:
     enum class InsertPosition {
@@ -285,8 +304,11 @@ public:
 
 class LocalStyleNode : public ASTNode {
 private:
-    // 存储CSS样式属性
+    // 存储内联CSS样式属性
     std::map<std::string, std::string> properties;
+    
+    // 存储样式规则（类选择器、ID选择器等）
+    std::vector<std::shared_ptr<StyleRuleNode>> rules;
     
 public:
     LocalStyleNode(int line = 0, int column = 0) 
@@ -300,6 +322,16 @@ public:
     // 获取所有属性
     const std::map<std::string, std::string>& GetProperties() const {
         return properties;
+    }
+    
+    // 添加样式规则
+    void AddRule(std::shared_ptr<StyleRuleNode> rule) {
+        rules.push_back(rule);
+    }
+    
+    // 获取所有样式规则
+    const std::vector<std::shared_ptr<StyleRuleNode>>& GetRules() const {
+        return rules;
     }
     
     // 生成内联样式字符串
@@ -327,25 +359,66 @@ public:
 
 class StyleRuleNode : public ASTNode {
 public:
-    StyleRuleNode() : ASTNode(ASTNodeType::StyleRule) {}
+    enum class SelectorType {
+        Class,          // .classname
+        Id,             // #id
+        PseudoClass,    // :hover, :active等
+        PseudoElement,  // ::before, ::after等
+        Reference       // & 引用
+    };
+
+private:
+    SelectorType type;
+    std::string selector;  // 选择器名称
+    std::vector<std::shared_ptr<StylePropertyNode>> properties;
+    bool isNested;  // 是否是嵌套规则
+
+public:
+    StyleRuleNode(SelectorType t = SelectorType::Class) 
+        : ASTNode(ASTNodeType::StyleRule), type(t), isNested(false) {}
+    
+    void SetType(SelectorType t) { type = t; }
+    SelectorType GetType() const { return type; }
+    
+    void SetSelector(const std::string& sel) { selector = sel; }
+    const std::string& GetSelector() const { return selector; }
+    
+    void AddProperty(std::shared_ptr<StylePropertyNode> prop) { 
+        properties.push_back(prop); 
+    }
+    const std::vector<std::shared_ptr<StylePropertyNode>>& GetProperties() const { 
+        return properties; 
+    }
+    
+    void SetNested(bool nested) { isNested = nested; }
+    bool IsNested() const { return isNested; }
+    
     void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "StyleRuleNode"; }
+    std::string ToString() const override { 
+        return "StyleRuleNode(" + selector + ")"; 
+    }
 };
 
 class StylePropertyNode : public ASTNode {
 private:
     std::string propertyName;
     std::string propertyValue;
+    bool isNoValue;  // 标记是否是无值属性
     
 public:
     StylePropertyNode(const std::string& name = "", const std::string& value = "") 
-        : ASTNode(ASTNodeType::StyleProperty), propertyName(name), propertyValue(value) {}
+        : ASTNode(ASTNodeType::StyleProperty), propertyName(name), propertyValue(value),
+          isNoValue(value.empty()) {}
     
     const std::string& GetName() const { return propertyName; }
     const std::string& GetValue() const { return propertyValue; }
+    bool IsNoValue() const { return isNoValue; }
     
     void SetName(const std::string& name) { propertyName = name; }
-    void SetValue(const std::string& value) { propertyValue = value; }
+    void SetValue(const std::string& value) { 
+        propertyValue = value; 
+        isNoValue = false;
+    }
     
     void Accept(ASTVisitor* visitor) override;
     std::string ToString() const override { 

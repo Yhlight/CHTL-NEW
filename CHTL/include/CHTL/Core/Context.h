@@ -58,6 +58,7 @@ private:
         int indexInitialCount;
         bool disableNameGroup;
         bool disableCustomOriginType;
+        int optionCount;  // 组选项数量限制
         
         CompileOptions() : debugMode(false), useHTML5(false),
                           disableStyleAutoAddClass(false),
@@ -67,7 +68,8 @@ private:
                           disableDefaultNamespace(false),
                           indexInitialCount(0),
                           disableNameGroup(false),
-                          disableCustomOriginType(false) {}
+                          disableCustomOriginType(false),
+                          optionCount(3) {}  // 默认值为3
     } options;
     
     // 导入管理
@@ -152,6 +154,9 @@ public:
     bool IsNameGroupDisabled() const { return options.disableNameGroup; }
     bool IsCustomOriginTypeDisabled() const { return options.disableCustomOriginType; }
     bool IsDefaultNamespaceDisabled() const { return options.disableDefaultNamespace; }
+    
+    void SetOptionCount(int count) { options.optionCount = count; }
+    int GetOptionCount() const { return options.optionCount; }
     
     // 导入管理
     bool IsFileImported(const std::string& filePath) const;

@@ -147,14 +147,56 @@ std::string ImportManager::ResolvePath(const std::string& importPath, const std:
                               importPath.find('\\') == std::string::npos);
         
         if (isModuleImport) {
-            // 按优先级搜索：官方模块目录 -> 当前目录module -> 当前目录
-            
-            // 1. 官方模块目录
-            for (const auto& searchPath : searchPaths) {
-                std::string result = SearchInModuleDirectory(searchPath, importPath, true);
-                if (!result.empty()) {
-                    resolvedPath = result;
-                    break;
+            // 检查是否是子模块导入（包含点号）
+            size_t dotPos = importPath.find('.');
+            if (dotPos != std::string::npos) {
+                // 子模块导入，如 Chtholly.Space
+                std::string mainModule = importPath.substr(0, dotPos);
+                std::string subModule = importPath.substr(dotPos + 1);
+                
+                // 先找到主模块
+                std::string mainModulePath;
+                for (const auto& searchPath : searchPaths) {
+                    mainModulePath = SearchInModuleDirectory(searchPath, mainModule, true);
+                    if (!mainModulePath.empty()) {
+                        break;
+                    }
+                }
+                
+                if (mainModulePath.empty()) {
+                    // 在当前目录的module文件夹查找
+                    fs::path currentDir = fs::path(currentFile).parent_path();
+                    std::string moduleDir = (currentDir / "module").string();
+                    if (fs::exists(moduleDir)) {
+                        mainModulePath = SearchInModuleDirectory(moduleDir, mainModule, true);
+                    }
+                }
+                
+                if (!mainModulePath.empty()) {
+                    // 检查是否是通配符子模块导入
+                    if (subModule == "*") {
+                        // 返回主模块路径，让调用者处理通配符展开
+                        resolvedPath = mainModulePath;
+                    } else {
+                        // 在主模块目录下查找子模块
+                        fs::path mainModuleDir = fs::path(mainModulePath).parent_path();
+                        std::string subModulePath = SearchInModuleDirectory(mainModuleDir.string(), subModule, true);
+                        if (!subModulePath.empty()) {
+                            resolvedPath = subModulePath;
+                        }
+                    }
+                }
+            } else {
+                // 普通模块导入
+                // 按优先级搜索：官方模块目录 -> 当前目录module -> 当前目录
+                
+                // 1. 官方模块目录
+                for (const auto& searchPath : searchPaths) {
+                    std::string result = SearchInModuleDirectory(searchPath, importPath, true);
+                    if (!result.empty()) {
+                        resolvedPath = result;
+                        break;
+                    }
                 }
             }
             

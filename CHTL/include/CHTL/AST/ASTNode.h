@@ -54,6 +54,7 @@ enum class ASTNodeType {
     Specialization,
     Delete,
     Insert,
+    ElementMatch,
     
     // 其他
     Comment,
