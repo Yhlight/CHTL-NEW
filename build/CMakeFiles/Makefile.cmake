@@ -84,6 +84,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/chtl_repository_cleanup_report.dir/DependInfo.cmake"
   "CMakeFiles/chtl_final_completion_report.dir/DependInfo.cmake"
   "CMakeFiles/chtl_final_compilation_success.dir/DependInfo.cmake"
+  "CMakeFiles/chtl_advanced_features_report.dir/DependInfo.cmake"
   "CMakeFiles/chtl_lexer_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_template_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_custom_test.dir/DependInfo.cmake"

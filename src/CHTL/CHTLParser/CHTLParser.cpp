@@ -79,6 +79,75 @@ std::unique_ptr<CHTLBaseNode> CHTLParser::ParseDocument() {
     
     SkipWhitespaceAndComments();
     
+    // 解析文档级别的特殊语法块
+    while (m_CurrentTokenIndex < m_Tokens.size()) {
+        const auto& currentToken = CurrentToken();
+        
+        if (currentToken.Type == CHTLTokenType::LEFT_BRACKET) {
+            // 处理特殊语法块：[Import], [Namespace], [Configuration]等
+            if (PeekToken().Value == "Import") {
+                auto importNode = ParseImportStatement();
+                if (importNode) {
+                    documentNode->AddChild(std::move(importNode));
+                }
+            }
+            else if (PeekToken().Value == "Namespace") {
+                auto namespaceNode = ParseNamespaceDefinition();
+                if (namespaceNode) {
+                    documentNode->AddChild(std::move(namespaceNode));
+                }
+            }
+            else if (PeekToken().Value == "Configuration") {
+                auto configNode = ParseConfiguration();
+                if (configNode) {
+                    documentNode->AddChild(std::move(configNode));
+                }
+            }
+            else if (PeekToken().Value == "Template") {
+                auto templateNode = ParseTemplateDefinition();
+                if (templateNode) {
+                    documentNode->AddChild(std::move(templateNode));
+                }
+            }
+            else if (PeekToken().Value == "Custom") {
+                auto customNode = ParseCustomDefinition();
+                if (customNode) {
+                    documentNode->AddChild(std::move(customNode));
+                }
+            }
+            else if (PeekToken().Value == "Origin") {
+                auto originNode = ParseOriginDefinition();
+                if (originNode) {
+                    documentNode->AddChild(std::move(originNode));
+                }
+            }
+            else {
+                SetParseError("未知的特殊语法块: " + PeekToken().Value, &currentToken);
+                return nullptr;
+            }
+        }
+        else if (currentToken.Type == CHTLTokenType::IDENTIFIER) {
+            // 处理HTML元素
+            auto elementNode = ParseElement();
+            if (elementNode) {
+                documentNode->AddChild(std::move(elementNode));
+            } else if (m_HasError) {
+                return nullptr;
+            }
+        }
+        else if (currentToken.Type == CHTLTokenType::EOF_TOKEN) {
+            break;
+        }
+        else {
+            // 跳过不认识的令牌
+            AdvanceToken();
+        }
+        
+        SkipWhitespaceAndComments();
+    }
+    
+    return documentNode;
+    
     // 检查use语句（必须在文件开头）
     if (MatchToken(CHTLTokenType::USE)) {
         auto useNode = ParseUseStatement();
@@ -1005,18 +1074,201 @@ std::unique_ptr<CHTLBaseNode> CHTLParser::ParseConfiguration() {
 }
 
 std::unique_ptr<CHTLBaseNode> CHTLParser::ParseImportStatement() {
-    // 暂时返回基础实现
-    return CHTLNodeFactory::CreateNode(CHTLNodeType::IMPORT_NODE, "import");
+    // 消费 [Import] 关键字
+    if (!ConsumeToken(CHTLTokenType::LEFT_BRACKET, "Expected '[' for import")) {
+        return nullptr;
+    }
+    
+    if (!ConsumeToken(CHTLTokenType::IDENTIFIER, "Expected 'Import' keyword")) {
+        return nullptr;
+    }
+    
+    if (!ConsumeToken(CHTLTokenType::RIGHT_BRACKET, "Expected ']' after 'Import'")) {
+        return nullptr;
+    }
+    
+    SkipWhitespaceAndComments();
+    
+    auto importNode = CHTLNodeFactory::CreateNode(CHTLNodeType::IMPORT_NODE, "import", "", 0, 0);
+    
+    // 解析导入类型 - 简化处理
+    const CHTLToken& typeToken = CurrentToken();
+    std::string importType;
+    
+    if (typeToken.Type == CHTLTokenType::AT_CHTL || 
+        typeToken.Type == CHTLTokenType::AT_CJMOD ||
+        typeToken.Type == CHTLTokenType::AT_HTML ||
+        typeToken.Type == CHTLTokenType::AT_JAVASCRIPT ||
+        typeToken.Type == CHTLTokenType::AT_STYLE) {
+        importType = typeToken.Value;
+        AdvanceToken();
+    }
+    else if (typeToken.Type == CHTLTokenType::LEFT_BRACKET && PeekToken().Value == "Origin") {
+        // [Origin] 原始嵌入导入
+        AdvanceToken();
+        importType = "[Origin]";
+        AdvanceToken();
+        if (!ConsumeToken(CHTLTokenType::RIGHT_BRACKET, "Expected ']' after 'Origin'")) {
+            return nullptr;
+        }
+        
+        // 继续解析@类型
+        SkipWhitespaceAndComments();
+        const CHTLToken& nextToken = CurrentToken();
+        if (nextToken.Type == CHTLTokenType::AT_CHTL || 
+            nextToken.Type == CHTLTokenType::AT_CJMOD ||
+            nextToken.Type == CHTLTokenType::AT_HTML ||
+            nextToken.Type == CHTLTokenType::AT_JAVASCRIPT ||
+            nextToken.Type == CHTLTokenType::AT_STYLE) {
+            importType += " " + nextToken.Value;
+            AdvanceToken();
+        }
+    }
+    else {
+        SetParseError("Expected import type (@Chtl, @CJmod, @Html, etc.)", &typeToken);
+        return nullptr;
+    }
+    
+    importNode->SetProperty("type", importType);
+    
+    SkipWhitespaceAndComments();
+    
+    // 解析 from 关键字
+    if (!ConsumeToken(CHTLTokenType::IDENTIFIER, "Expected 'from' keyword")) {
+        return nullptr;
+    }
+    
+    SkipWhitespaceAndComments();
+    
+    // 解析导入路径
+    std::string importPath;
+    if (CurrentToken().Type == CHTLTokenType::STRING_LITERAL) {
+        importPath = ParseStringLiteral();
+    }
+    else if (CurrentToken().Type == CHTLTokenType::IDENTIFIER) {
+        importPath = ParseUnquotedLiteral();
+    }
+    else {
+        SetParseError("Expected import path (string or identifier)");
+        return nullptr;
+    }
+    
+    importNode->SetProperty("path", importPath);
+    
+    SkipWhitespaceAndComments();
+    
+    // 解析可选的 as 关键字
+    if (MatchToken(CHTLTokenType::IDENTIFIER) && CurrentToken().Value == "as") {
+        AdvanceToken();
+        SkipWhitespaceAndComments();
+        
+        if (CurrentToken().Type == CHTLTokenType::IDENTIFIER) {
+            std::string aliasName = CurrentToken().Value;
+            importNode->SetProperty("alias", aliasName);
+            AdvanceToken();
+        } else {
+            SetParseError("Expected alias name after 'as'");
+            return nullptr;
+        }
+    }
+    
+    return importNode;
 }
 
 std::unique_ptr<CHTLBaseNode> CHTLParser::ParseNamespaceDefinition() {
-    // 暂时返回基础实现
-    return CHTLNodeFactory::CreateNode(CHTLNodeType::NAMESPACE_NODE, "namespace");
+    // 消费 [Namespace] 关键字
+    if (!ConsumeToken(CHTLTokenType::LEFT_BRACKET, "Expected '[' for namespace")) {
+        return nullptr;
+    }
+    
+    if (!ConsumeToken(CHTLTokenType::IDENTIFIER, "Expected 'Namespace' keyword")) {
+        return nullptr;
+    }
+    
+    if (!ConsumeToken(CHTLTokenType::RIGHT_BRACKET, "Expected ']' after 'Namespace'")) {
+        return nullptr;
+    }
+    
+    SkipWhitespaceAndComments();
+    
+    if (!ConsumeToken(CHTLTokenType::LEFT_BRACE, "Expected '{' after namespace declaration")) {
+        return nullptr;
+    }
+    
+    auto namespaceNode = CHTLNodeFactory::CreateNode(CHTLNodeType::NAMESPACE_NODE, "namespace", "", 0, 0);
+    
+    // 解析命名空间名称
+    SkipWhitespaceAndComments();
+    if (CurrentToken().Type == CHTLTokenType::IDENTIFIER) {
+        std::string namespaceName = CurrentToken().Value;
+        AdvanceToken();
+        
+        // 暂时简化，不支持嵌套命名空间 (后续可扩展)
+        // TODO: 支持嵌套命名空间 A::B::C 语法
+        
+        namespaceNode->SetProperty("name", namespaceName);
+        
+        // 消费分号
+        SkipWhitespaceAndComments();
+        if (MatchToken(CHTLTokenType::SEMICOLON)) {
+            AdvanceToken();
+        }
+    }
+    
+    if (!ConsumeToken(CHTLTokenType::RIGHT_BRACE, "Expected '}' to close namespace block")) {
+        return nullptr;
+    }
+    
+    return namespaceNode;
 }
 
 std::unique_ptr<CHTLBaseNode> CHTLParser::ParseConstraintStatement() {
-    // 暂时返回基础实现
-    return CHTLNodeFactory::CreateNode(CHTLNodeType::EXCEPT_NODE, "except");
+    // 消费 [Constraint] 或 except 关键字
+    const CHTLToken& startToken = CurrentToken();
+    
+    std::string constraintType;
+    if (startToken.Type == CHTLTokenType::LEFT_BRACKET) {
+        // [Constraint] 语法
+        AdvanceToken();
+        if (CurrentToken().Value == "Constraint") {
+            constraintType = "Constraint";
+            AdvanceToken();
+            if (!ConsumeToken(CHTLTokenType::RIGHT_BRACKET, "Expected ']' after 'Constraint'")) {
+                return nullptr;
+            }
+        }
+    }
+    else if (startToken.Value == "except") {
+        // except 语法
+        constraintType = "except";
+        AdvanceToken();
+    }
+    else {
+        SetParseError("Expected constraint keyword", &startToken);
+        return nullptr;
+    }
+    
+    auto constraintNode = CHTLNodeFactory::CreateNode(CHTLNodeType::EXCEPT_NODE, constraintType, "", 
+                                                     startToken.Line, startToken.Column);
+    
+    SkipWhitespaceAndComments();
+    
+    // 解析约束表达式
+    if (ConsumeToken(CHTLTokenType::LEFT_PAREN, "Expected '(' after constraint keyword")) {
+        std::string constraintExpression;
+        
+        // 解析约束表达式内容
+        while (!IsAtEnd() && !MatchToken(CHTLTokenType::RIGHT_PAREN)) {
+            constraintExpression += CurrentToken().Value;
+            AdvanceToken();
+        }
+        
+        if (ConsumeToken(CHTLTokenType::RIGHT_PAREN, "Expected ')' to close constraint expression")) {
+            constraintNode->SetProperty("expression", constraintExpression);
+        }
+    }
+    
+    return constraintNode;
 }
 
 void CHTLParser::ParseInheritance(CHTLBaseNode* parentNode) {

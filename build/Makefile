@@ -591,6 +591,19 @@ chtl_final_compilation_success/fast:
 .PHONY : chtl_final_compilation_success/fast
 
 #=============================================================================
+# Target rules for targets named chtl_advanced_features_report
+
+# Build rule for target.
+chtl_advanced_features_report: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_advanced_features_report
+.PHONY : chtl_advanced_features_report
+
+# fast build rule for target.
+chtl_advanced_features_report/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_advanced_features_report.dir/build.make CMakeFiles/chtl_advanced_features_report.dir/build
+.PHONY : chtl_advanced_features_report/fast
+
+#=============================================================================
 # Target rules for targets named chtl_lexer_test
 
 # Build rule for target.
@@ -2105,6 +2118,30 @@ src/Test/ANTLRRealIntegrationTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_antlr_real_test.dir/build.make CMakeFiles/chtl_antlr_real_test.dir/src/Test/ANTLRRealIntegrationTest.cpp.s
 .PHONY : src/Test/ANTLRRealIntegrationTest.cpp.s
 
+src/Test/AdvancedFeaturesReport.o: src/Test/AdvancedFeaturesReport.cpp.o
+.PHONY : src/Test/AdvancedFeaturesReport.o
+
+# target to build an object file
+src/Test/AdvancedFeaturesReport.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_advanced_features_report.dir/build.make CMakeFiles/chtl_advanced_features_report.dir/src/Test/AdvancedFeaturesReport.cpp.o
+.PHONY : src/Test/AdvancedFeaturesReport.cpp.o
+
+src/Test/AdvancedFeaturesReport.i: src/Test/AdvancedFeaturesReport.cpp.i
+.PHONY : src/Test/AdvancedFeaturesReport.i
+
+# target to preprocess a source file
+src/Test/AdvancedFeaturesReport.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_advanced_features_report.dir/build.make CMakeFiles/chtl_advanced_features_report.dir/src/Test/AdvancedFeaturesReport.cpp.i
+.PHONY : src/Test/AdvancedFeaturesReport.cpp.i
+
+src/Test/AdvancedFeaturesReport.s: src/Test/AdvancedFeaturesReport.cpp.s
+.PHONY : src/Test/AdvancedFeaturesReport.s
+
+# target to generate assembly for a file
+src/Test/AdvancedFeaturesReport.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_advanced_features_report.dir/build.make CMakeFiles/chtl_advanced_features_report.dir/src/Test/AdvancedFeaturesReport.cpp.s
+.PHONY : src/Test/AdvancedFeaturesReport.cpp.s
+
 src/Test/ArchitectureTest.o: src/Test/ArchitectureTest.cpp.o
 .PHONY : src/Test/ArchitectureTest.o
 
@@ -2881,6 +2918,7 @@ help:
 	@echo "... CHTLUtilSystem"
 	@echo "... CJMOD"
 	@echo "... chtl"
+	@echo "... chtl_advanced_features_report"
 	@echo "... chtl_antlr_build_report"
 	@echo "... chtl_antlr_real_test"
 	@echo "... chtl_architecture_test"
@@ -3077,6 +3115,9 @@ help:
 	@echo "... src/Test/ANTLRRealIntegrationTest.o"
 	@echo "... src/Test/ANTLRRealIntegrationTest.i"
 	@echo "... src/Test/ANTLRRealIntegrationTest.s"
+	@echo "... src/Test/AdvancedFeaturesReport.o"
+	@echo "... src/Test/AdvancedFeaturesReport.i"
+	@echo "... src/Test/AdvancedFeaturesReport.s"
 	@echo "... src/Test/ArchitectureTest.o"
 	@echo "... src/Test/ArchitectureTest.i"
 	@echo "... src/Test/ArchitectureTest.s"
