@@ -320,8 +320,9 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
             
             Expect(TokenType::SEMICOLON, "期望 ';'");
             
-            // 将属性添加到元素
-            element->SetAttribute(attrName, attrValue);
+            // 创建属性节点并添加到元素
+            auto attrNode = std::make_shared<AttributeNode>(attrName, attrValue);
+            element->AddAttributeNode(attrNode);
         }
         // 元素模板引用
         else if (Check(TokenType::AT_ELEMENT)) {
@@ -406,10 +407,13 @@ std::shared_ptr<ASTNode> Parser::ParseAttribute() {
     
     std::string value = ParseStringOrUnquotedLiteral();
     
+    // 处理变量引用
+    value = ProcessVariableReferences(value);
+    
     Expect(TokenType::SEMICOLON, "期望 ';'");
     
-    // TODO: 创建属性节点
-    return nullptr;
+    // 创建属性节点
+    return std::make_shared<AttributeNode>(name, value);
 }
 
 std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {

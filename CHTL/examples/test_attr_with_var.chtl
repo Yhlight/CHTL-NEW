@@ -1,0 +1,29 @@
+use html5;
+
+[Template] @Var Config
+{
+    containerID: "main-container";
+    contentClass: "content-wrapper";
+    primaryColor: "#007bff";
+}
+
+html
+{
+    body
+    {
+        div
+        {
+            id: Config(containerID);
+            class: Config(contentClass);
+            
+            style
+            {
+                border: "2px solid";
+                border-color: Config(primaryColor);
+                padding: "20px";
+            }
+            
+            text { "使用变量组的属性" }
+        }
+    }
+}

@@ -166,12 +166,37 @@ public:
 };
 
 /**
+ * 属性节点
+ */
+class AttributeNode : public ASTNode {
+private:
+    std::string attributeName;
+    std::string attributeValue;
+    
+public:
+    AttributeNode(const std::string& name = "", const std::string& value = "") 
+        : ASTNode(ASTNodeType::Attribute), attributeName(name), attributeValue(value) {}
+    
+    const std::string& GetName() const { return attributeName; }
+    const std::string& GetValue() const { return attributeValue; }
+    
+    void SetName(const std::string& name) { attributeName = name; }
+    void SetValue(const std::string& value) { attributeValue = value; }
+    
+    void Accept(ASTVisitor* visitor) override;
+    std::string ToString() const override { 
+        return "AttributeNode(" + attributeName + "=\"" + attributeValue + "\")"; 
+    }
+};
+
+/**
  * 元素节点
  */
 class ElementNode : public ASTNode {
 private:
     std::string tagName;
-    std::unordered_map<std::string, std::string> attributes;
+    std::vector<std::shared_ptr<AttributeNode>> attributeNodes;
+    std::unordered_map<std::string, std::string> attributes; // 保留用于快速查找
     std::string id;
     std::string className;
     
@@ -181,13 +206,23 @@ public:
     
     const std::string& GetTagName() const { return tagName; }
     
-    void SetAttribute(const std::string& name, const std::string& value) {
-        attributes[name] = value;
-        if (name == "id") {
-            id = value;
-        } else if (name == "class") {
-            className = value;
+    void AddAttributeNode(std::shared_ptr<AttributeNode> attrNode) {
+        if (attrNode) {
+            attributeNodes.push_back(attrNode);
+            const std::string& name = attrNode->GetName();
+            const std::string& value = attrNode->GetValue();
+            attributes[name] = value;
+            if (name == "id") {
+                id = value;
+            } else if (name == "class") {
+                className = value;
+            }
         }
+    }
+    
+    void SetAttribute(const std::string& name, const std::string& value) {
+        auto attrNode = std::make_shared<AttributeNode>(name, value);
+        AddAttributeNode(attrNode);
     }
     
     std::string GetAttribute(const std::string& name) const {
@@ -197,6 +232,10 @@ public:
     
     const std::unordered_map<std::string, std::string>& GetAttributes() const {
         return attributes;
+    }
+    
+    const std::vector<std::shared_ptr<AttributeNode>>& GetAttributeNodes() const {
+        return attributeNodes;
     }
     
     const std::string& GetId() const { return id; }

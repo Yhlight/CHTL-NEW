@@ -191,12 +191,7 @@ public:
     }
 };
 
-class AttributeNode : public ASTNode {
-public:
-    AttributeNode() : ASTNode(ASTNodeType::Attribute) {}
-    void Accept(ASTVisitor* visitor) override;
-    std::string ToString() const override { return "AttributeNode"; }
-};
+
 
 class SpecializationNode : public ASTNode {
 public:
