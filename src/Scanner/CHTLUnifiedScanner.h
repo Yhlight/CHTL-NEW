@@ -120,6 +120,20 @@ public:
      * @return 错误信息字符串
      */
     std::string GetErrorMessage() const;
+    
+    /**
+     * 更新片段内容 (供CJMOD使用)
+     * @param fragmentIndex 片段索引
+     * @param newContent 新内容
+     * @return 是否成功
+     */
+    bool UpdateFragmentContent(size_t fragmentIndex, const std::string& newContent);
+    
+    /**
+     * 获取片段数量
+     * @return 片段数量
+     */
+    size_t GetFragmentCount() const;
 
 private:
     /**

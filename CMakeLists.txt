@@ -105,6 +105,7 @@ set(CJMOD_SOURCES
     src/CJMOD/CJMODSyntax.cpp
     src/CJMOD/CJMODScanner.cpp
     src/CJMOD/CJMODGenerator.cpp
+    src/CJMOD/CJMODIntegration.cpp
 )
 
 # 代码合并器源文件
@@ -254,6 +255,10 @@ target_link_libraries(chtl_performance_benchmark CHTLDispatcher CHTLCodeMerger C
 
 # 最终100%完成报告可执行文件
 add_executable(chtl_final_100_percent src/Test/Final100PercentReport.cpp)
+
+# CJMOD真实集成测试可执行文件
+add_executable(chtl_cjmod_real_test src/Test/CJMODRealIntegrationTest.cpp)
+target_link_libraries(chtl_cjmod_real_test CJMOD CHTLJSCore CHTLScanner)
 
 # 设置调试信息
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")

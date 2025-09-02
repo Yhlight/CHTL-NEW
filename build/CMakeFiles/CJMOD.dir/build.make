@@ -114,11 +114,26 @@ CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/CJMOD/CJMODGenerator.cpp -o CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.s
 
+CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o: CMakeFiles/CJMOD.dir/flags.make
+CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o: /workspace/src/CJMOD/CJMODIntegration.cpp
+CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o: CMakeFiles/CJMOD.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o -MF CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o.d -o CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o -c /workspace/src/CJMOD/CJMODIntegration.cpp
+
+CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/CJMOD/CJMODIntegration.cpp > CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.i
+
+CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/CJMOD/CJMODIntegration.cpp -o CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.s
+
 # Object files for target CJMOD
 CJMOD_OBJECTS = \
 "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.o" \
 "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.o" \
-"CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.o"
+"CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.o" \
+"CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o"
 
 # External object files for target CJMOD
 CJMOD_EXTERNAL_OBJECTS =
@@ -126,9 +141,10 @@ CJMOD_EXTERNAL_OBJECTS =
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.o
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.o
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.o
+lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/build.make
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library lib/libCJMOD.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library lib/libCJMOD.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/CJMOD.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CJMOD.dir/link.txt --verbose=$(VERBOSE)
 

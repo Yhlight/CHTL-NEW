@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.o"
   "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.o.d"
+  "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o"
+  "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o.d"
   "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.o"
   "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.o.d"
   "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.o"

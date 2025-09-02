@@ -24,8 +24,29 @@ void CompilerDispatcher::InitializeCompilers() {
     m_CHTLJSParser = std::make_unique<CHTLJS::CHTLJSParser>("");
     m_CHTLJSGenerator = std::make_unique<CHTLJS::CHTLJSGenerator>();
     m_CodeMerger = std::make_unique<CHTLCodeMerger>();     // 初始化代码合并器
+    m_CJMODManager = std::make_unique<CJMOD::CJMODManager>(); // 初始化CJMOD管理器
     m_CSSCompiler = std::make_unique<CSSCompiler>();
     m_JSCompiler = std::make_unique<JavaScriptCompiler>();
+}
+
+bool CompilerDispatcher::InitializeCJMODIntegration() {
+    if (!m_CJMODManager || !m_Scanner || !m_CHTLJSParser) {
+        return false;
+    }
+    
+    // 初始化CJMOD管理器，传入编译器引用
+    bool success = m_CJMODManager->Initialize(
+        m_Scanner.get(),
+        // 注意：这里需要获取CHTL JS词法分析器的引用
+        nullptr, // 暂时传nullptr，因为CHTLJSParser不直接暴露词法分析器
+        m_CHTLJSParser.get()
+    );
+    
+    if (success) {
+        AddCompilationWarning("CJMOD集成已初始化，支持语法扩展");
+    }
+    
+    return success;
 }
 
 bool CompilerDispatcher::Compile(const std::string& sourceCode) {
@@ -35,6 +56,12 @@ bool CompilerDispatcher::Compile(const std::string& sourceCode) {
     // 步骤1：执行代码扫描和切割
     if (!PerformScanning()) {
         SetCompilationError("Failed to scan source code");
+        return false;
+    }
+    
+    // 步骤1.5：初始化CJMOD集成
+    if (!InitializeCJMODIntegration()) {
+        SetCompilationError("Failed to initialize CJMOD integration");
         return false;
     }
     
@@ -184,12 +211,28 @@ CompilationResult CompilerDispatcher::CompileCHTLFragments(const std::vector<Cod
 CompilationResult CompilerDispatcher::CompileCHTLJSFragments(const std::vector<CodeFragment>& fragments) {
     std::ostringstream combinedContent;
     
-    // 合并所有CHTL JS片段
-    for (const auto& fragment : fragments) {
-        combinedContent << fragment.Content << "\n";
+    // 步骤1：处理CJMOD扩展 (关键新增)
+    std::vector<CodeFragment> processedFragments;
+    
+    for (size_t i = 0; i < fragments.size(); ++i) {
+        const auto& fragment = fragments[i];
+        
+        // 使用CJMOD管理器处理片段
+        std::string processedContent = fragment.Content;
+        
+        if (m_CJMODManager && m_CJMODManager->IsInitialized()) {
+            processedContent = m_CJMODManager->ProcessCodeFragment(fragment.Content, i);
+        }
+        
+        // 创建处理后的片段
+        CodeFragment processedFragment = fragment;
+        processedFragment.Content = processedContent;
+        processedFragments.push_back(processedFragment);
+        
+        combinedContent << processedContent << "\n";
     }
     
-    // 使用CHTL JS解析器进行解析
+    // 步骤2：使用CHTL JS解析器进行解析
     m_CHTLJSParser->SetSourceCode(combinedContent.str());
     
     auto parseResult = m_CHTLJSParser->Parse();
@@ -201,7 +244,7 @@ CompilationResult CompilerDispatcher::CompileCHTLJSFragments(const std::vector<C
         return result;
     }
     
-    // 使用CHTL JS生成器生成代码
+    // 步骤3：使用CHTL JS生成器生成代码
     auto generateResult = m_CHTLJSGenerator->Generate(std::move(parseResult.RootNode));
     if (!generateResult.IsSuccess) {
         CompilationResult result;
@@ -211,9 +254,24 @@ CompilationResult CompilerDispatcher::CompileCHTLJSFragments(const std::vector<C
         return result;
     }
     
-    // 返回生成结果
-    CompilationResult result(generateResult.JavaScriptContent, "JavaScript");
+    // 步骤4：应用CJMOD后处理 (如果有扩展语法)
+    std::string finalJavaScript = generateResult.JavaScriptContent;
+    
+    if (m_CJMODManager && m_CJMODManager->IsInitialized()) {
+        auto integration = m_CJMODManager->GetIntegration();
+        if (integration) {
+            finalJavaScript = integration->ProcessCHTLJSExtensions(finalJavaScript);
+        }
+    }
+    
+    // 返回最终结果
+    CompilationResult result(finalJavaScript, "JavaScript");
     result.Warnings = generateResult.Warnings;
+    
+    // 添加CJMOD处理信息
+    if (m_CJMODManager && m_CJMODManager->GetLoadedExtensionCount() > 0) {
+        result.Warnings.push_back("CJMOD扩展已处理: " + std::to_string(m_CJMODManager->GetLoadedExtensionCount()) + " 个扩展");
+    }
     
     return result;
 }
@@ -628,6 +686,9 @@ void CompilerDispatcher::Reset() {
     }
     if (m_JSCompiler) {
         m_JSCompiler->Reset();
+    }
+    if (m_CJMODManager) {
+        m_CJMODManager->Reset();
     }
 }
 

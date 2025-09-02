@@ -604,6 +604,19 @@ chtl_final_100_percent/fast:
 .PHONY : chtl_final_100_percent/fast
 
 #=============================================================================
+# Target rules for targets named chtl_cjmod_real_test
+
+# Build rule for target.
+chtl_cjmod_real_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_cjmod_real_test
+.PHONY : chtl_cjmod_real_test
+
+# fast build rule for target.
+chtl_cjmod_real_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_test.dir/build.make CMakeFiles/chtl_cjmod_real_test.dir/build
+.PHONY : chtl_cjmod_real_test/fast
+
+#=============================================================================
 # Target rules for targets named run_tests
 
 # Build rule for target.
@@ -1349,6 +1362,30 @@ src/CJMOD/CJMODGenerator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.s
 .PHONY : src/CJMOD/CJMODGenerator.cpp.s
 
+src/CJMOD/CJMODIntegration.o: src/CJMOD/CJMODIntegration.cpp.o
+.PHONY : src/CJMOD/CJMODIntegration.o
+
+# target to build an object file
+src/CJMOD/CJMODIntegration.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o
+.PHONY : src/CJMOD/CJMODIntegration.cpp.o
+
+src/CJMOD/CJMODIntegration.i: src/CJMOD/CJMODIntegration.cpp.i
+.PHONY : src/CJMOD/CJMODIntegration.i
+
+# target to preprocess a source file
+src/CJMOD/CJMODIntegration.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.i
+.PHONY : src/CJMOD/CJMODIntegration.cpp.i
+
+src/CJMOD/CJMODIntegration.s: src/CJMOD/CJMODIntegration.cpp.s
+.PHONY : src/CJMOD/CJMODIntegration.s
+
+# target to generate assembly for a file
+src/CJMOD/CJMODIntegration.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.s
+.PHONY : src/CJMOD/CJMODIntegration.cpp.s
+
 src/CJMOD/CJMODScanner.o: src/CJMOD/CJMODScanner.cpp.o
 .PHONY : src/CJMOD/CJMODScanner.o
 
@@ -1828,6 +1865,30 @@ src/Test/BasicCompilationTest.s: src/Test/BasicCompilationTest.cpp.s
 src/Test/BasicCompilationTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_test.dir/build.make CMakeFiles/chtl_test.dir/src/Test/BasicCompilationTest.cpp.s
 .PHONY : src/Test/BasicCompilationTest.cpp.s
+
+src/Test/CJMODRealIntegrationTest.o: src/Test/CJMODRealIntegrationTest.cpp.o
+.PHONY : src/Test/CJMODRealIntegrationTest.o
+
+# target to build an object file
+src/Test/CJMODRealIntegrationTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_test.dir/build.make CMakeFiles/chtl_cjmod_real_test.dir/src/Test/CJMODRealIntegrationTest.cpp.o
+.PHONY : src/Test/CJMODRealIntegrationTest.cpp.o
+
+src/Test/CJMODRealIntegrationTest.i: src/Test/CJMODRealIntegrationTest.cpp.i
+.PHONY : src/Test/CJMODRealIntegrationTest.i
+
+# target to preprocess a source file
+src/Test/CJMODRealIntegrationTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_test.dir/build.make CMakeFiles/chtl_cjmod_real_test.dir/src/Test/CJMODRealIntegrationTest.cpp.i
+.PHONY : src/Test/CJMODRealIntegrationTest.cpp.i
+
+src/Test/CJMODRealIntegrationTest.s: src/Test/CJMODRealIntegrationTest.cpp.s
+.PHONY : src/Test/CJMODRealIntegrationTest.s
+
+# target to generate assembly for a file
+src/Test/CJMODRealIntegrationTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_test.dir/build.make CMakeFiles/chtl_cjmod_real_test.dir/src/Test/CJMODRealIntegrationTest.cpp.s
+.PHONY : src/Test/CJMODRealIntegrationTest.cpp.s
 
 src/Test/CJMODTest.o: src/Test/CJMODTest.cpp.o
 .PHONY : src/Test/CJMODTest.o
@@ -2314,6 +2375,7 @@ help:
 	@echo "... chtl_antlr_real_test"
 	@echo "... chtl_antlr_test"
 	@echo "... chtl_architecture_test"
+	@echo "... chtl_cjmod_real_test"
 	@echo "... chtl_cjmod_test"
 	@echo "... chtl_code_merger_test"
 	@echo "... chtl_complete_flow_test"
@@ -2423,6 +2485,9 @@ help:
 	@echo "... src/CJMOD/CJMODGenerator.o"
 	@echo "... src/CJMOD/CJMODGenerator.i"
 	@echo "... src/CJMOD/CJMODGenerator.s"
+	@echo "... src/CJMOD/CJMODIntegration.o"
+	@echo "... src/CJMOD/CJMODIntegration.i"
+	@echo "... src/CJMOD/CJMODIntegration.s"
 	@echo "... src/CJMOD/CJMODScanner.o"
 	@echo "... src/CJMOD/CJMODScanner.i"
 	@echo "... src/CJMOD/CJMODScanner.s"
@@ -2483,6 +2548,9 @@ help:
 	@echo "... src/Test/BasicCompilationTest.o"
 	@echo "... src/Test/BasicCompilationTest.i"
 	@echo "... src/Test/BasicCompilationTest.s"
+	@echo "... src/Test/CJMODRealIntegrationTest.o"
+	@echo "... src/Test/CJMODRealIntegrationTest.i"
+	@echo "... src/Test/CJMODRealIntegrationTest.s"
 	@echo "... src/Test/CJMODTest.o"
 	@echo "... src/Test/CJMODTest.i"
 	@echo "... src/Test/CJMODTest.s"

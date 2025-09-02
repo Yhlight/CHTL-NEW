@@ -706,6 +706,24 @@ std::string CHTLUnifiedScanner::GetErrorMessage() const {
     return m_ErrorMessage;
 }
 
+bool CHTLUnifiedScanner::UpdateFragmentContent(size_t fragmentIndex, const std::string& newContent) {
+    if (fragmentIndex >= m_Fragments.size()) {
+        return false;
+    }
+    
+    // 更新片段内容
+    m_Fragments[fragmentIndex].Content = newContent;
+    
+    // 可选：更新片段的其他信息
+    m_Fragments[fragmentIndex].IsComplete = true;
+    
+    return true;
+}
+
+size_t CHTLUnifiedScanner::GetFragmentCount() const {
+    return m_Fragments.size();
+}
+
 // 辅助方法实现
 bool CHTLUnifiedScanner::IsIncompleteCHTLBlock(const std::string& current, const std::string& next) {
     // 检查CHTL块是否完整

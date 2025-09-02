@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/workspace/src/CJMOD/CJMODGenerator.cpp" "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.o" "gcc" "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODGenerator.cpp.o.d"
+  "/workspace/src/CJMOD/CJMODIntegration.cpp" "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o" "gcc" "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODIntegration.cpp.o.d"
   "/workspace/src/CJMOD/CJMODScanner.cpp" "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.o" "gcc" "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODScanner.cpp.o.d"
   "/workspace/src/CJMOD/CJMODSyntax.cpp" "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.o" "gcc" "CMakeFiles/CJMOD.dir/src/CJMOD/CJMODSyntax.cpp.o.d"
   )
