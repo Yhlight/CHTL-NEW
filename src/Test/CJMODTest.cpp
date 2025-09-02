@@ -1,6 +1,6 @@
-#include "../CJMOD/CJMODSyntax.h"
-#include "../CJMOD/CJMODScanner.h"
-#include "../CJMOD/CJMODGenerator.h"
+#include "../CHTL JS/CJMODSystem/CJMODSyntax.h"
+#include "../CHTL JS/CJMODSystem/CJMODScanner.h"
+#include "../CHTL JS/CJMODSystem/CJMODGenerator.h"
 #include <iostream>
 
 int main() {

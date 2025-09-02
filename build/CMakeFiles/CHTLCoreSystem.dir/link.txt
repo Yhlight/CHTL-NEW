@@ -1,2 +1,0 @@
-/usr/bin/ar qc lib/libCHTLCoreSystem.a CMakeFiles/CHTLCoreSystem.dir/src/Core/ComponentManager.cpp.o CMakeFiles/CHTLCoreSystem.dir/src/Core/CompilerComponentBase.cpp.o CMakeFiles/CHTLCoreSystem.dir/src/Core/ServiceLocator.cpp.o
-/usr/bin/ranlib lib/libCHTLCoreSystem.a

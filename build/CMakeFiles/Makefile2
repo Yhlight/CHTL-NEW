@@ -440,8 +440,8 @@ CMakeFiles/CHTLScanner.dir/clean:
 # Target rules for target CMakeFiles/CHTLConstraint.dir
 
 # All Build rule for target.
-CMakeFiles/CHTLConstraint.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/CHTLConstraint.dir/all: CMakeFiles/CHTLJSCore.dir/all
+CMakeFiles/CHTLConstraint.dir/all: CMakeFiles/CHTLCore.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLConstraint.dir/build.make CMakeFiles/CHTLConstraint.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLConstraint.dir/build.make CMakeFiles/CHTLConstraint.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/CMakeFiles --progress-num=7,8 "Built target CHTLConstraint"
@@ -633,10 +633,10 @@ CMakeFiles/CHTLCodeMerger.dir/clean:
 # Target rules for target CMakeFiles/CHTLDispatcher.dir
 
 # All Build rule for target.
-CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLImport.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
@@ -672,10 +672,10 @@ CMakeFiles/CHTLDispatcher.dir/clean:
 # Target rules for target CMakeFiles/chtl.dir
 
 # All Build rule for target.
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLImport.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
@@ -712,10 +712,10 @@ CMakeFiles/chtl.dir/clean:
 # Target rules for target CMakeFiles/chtl_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_test.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_test.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl_test.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_test.dir/all: CMakeFiles/CHTLImport.dir/all
 CMakeFiles/chtl_test.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
 CMakeFiles/chtl_test.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
@@ -752,10 +752,10 @@ CMakeFiles/chtl_test.dir/clean:
 # Target rules for target CMakeFiles/chtl_simple_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_simple_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_simple_test.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_simple_test.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl_simple_test.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl_simple_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_simple_test.dir/all: CMakeFiles/CHTLImport.dir/all
 CMakeFiles/chtl_simple_test.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
 CMakeFiles/chtl_simple_test.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
@@ -792,10 +792,10 @@ CMakeFiles/chtl_simple_test.dir/clean:
 # Target rules for target CMakeFiles/chtl_parser_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_parser_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_parser_test.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_parser_test.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl_parser_test.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl_parser_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_parser_test.dir/all: CMakeFiles/CHTLImport.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_parser_test.dir/build.make CMakeFiles/chtl_parser_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_parser_test.dir/build.make CMakeFiles/chtl_parser_test.dir/build
@@ -828,10 +828,10 @@ CMakeFiles/chtl_parser_test.dir/clean:
 # Target rules for target CMakeFiles/chtl_architecture_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_architecture_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_architecture_test.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_architecture_test.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl_architecture_test.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl_architecture_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_architecture_test.dir/all: CMakeFiles/CHTLImport.dir/all
 CMakeFiles/chtl_architecture_test.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
 CMakeFiles/chtl_architecture_test.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
@@ -868,10 +868,10 @@ CMakeFiles/chtl_architecture_test.dir/clean:
 # Target rules for target CMakeFiles/chtl_constraint_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_constraint_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_constraint_test.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_constraint_test.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl_constraint_test.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl_constraint_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_constraint_test.dir/all: CMakeFiles/CHTLImport.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_constraint_test.dir/build.make CMakeFiles/chtl_constraint_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_constraint_test.dir/build.make CMakeFiles/chtl_constraint_test.dir/build
@@ -904,10 +904,10 @@ CMakeFiles/chtl_constraint_test.dir/clean:
 # Target rules for target CMakeFiles/chtl_import_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_import_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_import_test.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_import_test.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl_import_test.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl_import_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_import_test.dir/all: CMakeFiles/CHTLImport.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_import_test.dir/build.make CMakeFiles/chtl_import_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_import_test.dir/build.make CMakeFiles/chtl_import_test.dir/build
@@ -972,10 +972,10 @@ CMakeFiles/chtl_structure_fix_report.dir/clean:
 # Target rules for target CMakeFiles/chtl_official_module_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_official_module_test.dir/all: CMakeFiles/CHTLCMODSystem.dir/all
 CMakeFiles/chtl_official_module_test.dir/all: CMakeFiles/CHTLErrorSystem.dir/all
 CMakeFiles/chtl_official_module_test.dir/all: CMakeFiles/CHTLUtilSystem.dir/all
 CMakeFiles/chtl_official_module_test.dir/all: CMakeFiles/CHTLModuleSystem.dir/all
+CMakeFiles/chtl_official_module_test.dir/all: CMakeFiles/CHTLCMODSystem.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_official_module_test.dir/build.make CMakeFiles/chtl_official_module_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_official_module_test.dir/build.make CMakeFiles/chtl_official_module_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/CMakeFiles --progress-num=81 "Built target chtl_official_module_test"
@@ -1295,9 +1295,9 @@ CMakeFiles/chtl_final_completion_report.dir/clean:
 # Target rules for target CMakeFiles/chtl_lexer_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_lexer_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_lexer_test.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_lexer_test.dir/all: CMakeFiles/CHTLScanner.dir/all
+CMakeFiles/chtl_lexer_test.dir/all: CMakeFiles/CHTLCore.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_lexer_test.dir/build.make CMakeFiles/chtl_lexer_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_lexer_test.dir/build.make CMakeFiles/chtl_lexer_test.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/CMakeFiles --progress-num=76,77 "Built target chtl_lexer_test"
@@ -1329,10 +1329,10 @@ CMakeFiles/chtl_lexer_test.dir/clean:
 # Target rules for target CMakeFiles/chtl_template_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_template_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_template_test.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_template_test.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl_template_test.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl_template_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_template_test.dir/all: CMakeFiles/CHTLImport.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_template_test.dir/build.make CMakeFiles/chtl_template_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_template_test.dir/build.make CMakeFiles/chtl_template_test.dir/build
@@ -1365,10 +1365,10 @@ CMakeFiles/chtl_template_test.dir/clean:
 # Target rules for target CMakeFiles/chtl_custom_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_custom_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_custom_test.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_custom_test.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl_custom_test.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl_custom_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_custom_test.dir/all: CMakeFiles/CHTLImport.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_custom_test.dir/build.make CMakeFiles/chtl_custom_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_custom_test.dir/build.make CMakeFiles/chtl_custom_test.dir/build
@@ -1401,10 +1401,10 @@ CMakeFiles/chtl_custom_test.dir/clean:
 # Target rules for target CMakeFiles/chtl_origin_config_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_origin_config_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_origin_config_test.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_origin_config_test.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl_origin_config_test.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl_origin_config_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_origin_config_test.dir/all: CMakeFiles/CHTLImport.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_origin_config_test.dir/build.make CMakeFiles/chtl_origin_config_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_origin_config_test.dir/build.make CMakeFiles/chtl_origin_config_test.dir/build
@@ -1437,10 +1437,10 @@ CMakeFiles/chtl_origin_config_test.dir/clean:
 # Target rules for target CMakeFiles/chtl_cjmod_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_cjmod_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_cjmod_test.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_cjmod_test.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl_cjmod_test.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl_cjmod_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_cjmod_test.dir/all: CMakeFiles/CHTLImport.dir/all
 CMakeFiles/chtl_cjmod_test.dir/all: CMakeFiles/CJMOD.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_test.dir/build.make CMakeFiles/chtl_cjmod_test.dir/depend
@@ -1605,10 +1605,10 @@ CMakeFiles/chtl_final_system_demo.dir/clean:
 # Target rules for target CMakeFiles/chtl_complete_flow_test.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_complete_flow_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_complete_flow_test.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_complete_flow_test.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl_complete_flow_test.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl_complete_flow_test.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_complete_flow_test.dir/all: CMakeFiles/CHTLImport.dir/all
 CMakeFiles/chtl_complete_flow_test.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
 CMakeFiles/chtl_complete_flow_test.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
@@ -1677,10 +1677,10 @@ CMakeFiles/chtl_project_audit.dir/clean:
 # Target rules for target CMakeFiles/chtl_performance_benchmark.dir
 
 # All Build rule for target.
-CMakeFiles/chtl_performance_benchmark.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_performance_benchmark.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl_performance_benchmark.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl_performance_benchmark.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl_performance_benchmark.dir/all: CMakeFiles/CHTLCore.dir/all
 CMakeFiles/chtl_performance_benchmark.dir/all: CMakeFiles/CHTLImport.dir/all
 CMakeFiles/chtl_performance_benchmark.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
 CMakeFiles/chtl_performance_benchmark.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
