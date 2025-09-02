@@ -260,6 +260,13 @@ add_executable(chtl_project_optimization_report src/Test/ProjectOptimizationRepo
 add_executable(chtl_strict_module_compliance_test src/Test/StrictModuleComplianceTest.cpp)
 target_link_libraries(chtl_strict_module_compliance_test CHTLUtilSystem)
 
+# Module分类结构验证测试可执行文件
+add_executable(chtl_module_classification_test src/Test/ModuleClassificationTest.cpp)
+target_link_libraries(chtl_module_classification_test CHTLUtilSystem)
+
+# 最终严格文档遵循验证报告可执行文件
+add_executable(chtl_final_strict_compliance src/Test/FinalStrictComplianceReport.cpp)
+
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)
 target_link_libraries(chtl_lexer_test CHTLCore CHTLJSCore CHTLScanner)

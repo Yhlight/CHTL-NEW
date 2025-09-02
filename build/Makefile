@@ -565,6 +565,32 @@ chtl_strict_module_compliance_test/fast:
 .PHONY : chtl_strict_module_compliance_test/fast
 
 #=============================================================================
+# Target rules for targets named chtl_module_classification_test
+
+# Build rule for target.
+chtl_module_classification_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_module_classification_test
+.PHONY : chtl_module_classification_test
+
+# fast build rule for target.
+chtl_module_classification_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_module_classification_test.dir/build.make CMakeFiles/chtl_module_classification_test.dir/build
+.PHONY : chtl_module_classification_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_final_strict_compliance
+
+# Build rule for target.
+chtl_final_strict_compliance: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_strict_compliance
+.PHONY : chtl_final_strict_compliance
+
+# fast build rule for target.
+chtl_final_strict_compliance/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_strict_compliance.dir/build.make CMakeFiles/chtl_final_strict_compliance.dir/build
+.PHONY : chtl_final_strict_compliance/fast
+
+#=============================================================================
 # Target rules for targets named chtl_lexer_test
 
 # Build rule for target.
@@ -2600,6 +2626,30 @@ src/Test/FinalProjectSummary.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_project_summary.dir/build.make CMakeFiles/chtl_final_project_summary.dir/src/Test/FinalProjectSummary.cpp.s
 .PHONY : src/Test/FinalProjectSummary.cpp.s
 
+src/Test/FinalStrictComplianceReport.o: src/Test/FinalStrictComplianceReport.cpp.o
+.PHONY : src/Test/FinalStrictComplianceReport.o
+
+# target to build an object file
+src/Test/FinalStrictComplianceReport.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_strict_compliance.dir/build.make CMakeFiles/chtl_final_strict_compliance.dir/src/Test/FinalStrictComplianceReport.cpp.o
+.PHONY : src/Test/FinalStrictComplianceReport.cpp.o
+
+src/Test/FinalStrictComplianceReport.i: src/Test/FinalStrictComplianceReport.cpp.i
+.PHONY : src/Test/FinalStrictComplianceReport.i
+
+# target to preprocess a source file
+src/Test/FinalStrictComplianceReport.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_strict_compliance.dir/build.make CMakeFiles/chtl_final_strict_compliance.dir/src/Test/FinalStrictComplianceReport.cpp.i
+.PHONY : src/Test/FinalStrictComplianceReport.cpp.i
+
+src/Test/FinalStrictComplianceReport.s: src/Test/FinalStrictComplianceReport.cpp.s
+.PHONY : src/Test/FinalStrictComplianceReport.s
+
+# target to generate assembly for a file
+src/Test/FinalStrictComplianceReport.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_strict_compliance.dir/build.make CMakeFiles/chtl_final_strict_compliance.dir/src/Test/FinalStrictComplianceReport.cpp.s
+.PHONY : src/Test/FinalStrictComplianceReport.cpp.s
+
 src/Test/FinalSystemDemo.o: src/Test/FinalSystemDemo.cpp.o
 .PHONY : src/Test/FinalSystemDemo.o
 
@@ -2671,6 +2721,30 @@ src/Test/LexerTest.s: src/Test/LexerTest.cpp.s
 src/Test/LexerTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_lexer_test.dir/build.make CMakeFiles/chtl_lexer_test.dir/src/Test/LexerTest.cpp.s
 .PHONY : src/Test/LexerTest.cpp.s
+
+src/Test/ModuleClassificationTest.o: src/Test/ModuleClassificationTest.cpp.o
+.PHONY : src/Test/ModuleClassificationTest.o
+
+# target to build an object file
+src/Test/ModuleClassificationTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_module_classification_test.dir/build.make CMakeFiles/chtl_module_classification_test.dir/src/Test/ModuleClassificationTest.cpp.o
+.PHONY : src/Test/ModuleClassificationTest.cpp.o
+
+src/Test/ModuleClassificationTest.i: src/Test/ModuleClassificationTest.cpp.i
+.PHONY : src/Test/ModuleClassificationTest.i
+
+# target to preprocess a source file
+src/Test/ModuleClassificationTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_module_classification_test.dir/build.make CMakeFiles/chtl_module_classification_test.dir/src/Test/ModuleClassificationTest.cpp.i
+.PHONY : src/Test/ModuleClassificationTest.cpp.i
+
+src/Test/ModuleClassificationTest.s: src/Test/ModuleClassificationTest.cpp.s
+.PHONY : src/Test/ModuleClassificationTest.s
+
+# target to generate assembly for a file
+src/Test/ModuleClassificationTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_module_classification_test.dir/build.make CMakeFiles/chtl_module_classification_test.dir/src/Test/ModuleClassificationTest.cpp.s
+.PHONY : src/Test/ModuleClassificationTest.cpp.s
 
 src/Test/OfficialANTLRTest.o: src/Test/OfficialANTLRTest.cpp.o
 .PHONY : src/Test/OfficialANTLRTest.o
@@ -3055,9 +3129,11 @@ help:
 	@echo "... chtl_final_achievement"
 	@echo "... chtl_final_completion_verification"
 	@echo "... chtl_final_project_summary"
+	@echo "... chtl_final_strict_compliance"
 	@echo "... chtl_final_system_demo"
 	@echo "... chtl_import_test"
 	@echo "... chtl_lexer_test"
+	@echo "... chtl_module_classification_test"
 	@echo "... chtl_official_antlr_test"
 	@echo "... chtl_official_module_test"
 	@echo "... chtl_origin_config_test"
@@ -3293,6 +3369,9 @@ help:
 	@echo "... src/Test/FinalProjectSummary.o"
 	@echo "... src/Test/FinalProjectSummary.i"
 	@echo "... src/Test/FinalProjectSummary.s"
+	@echo "... src/Test/FinalStrictComplianceReport.o"
+	@echo "... src/Test/FinalStrictComplianceReport.i"
+	@echo "... src/Test/FinalStrictComplianceReport.s"
 	@echo "... src/Test/FinalSystemDemo.o"
 	@echo "... src/Test/FinalSystemDemo.i"
 	@echo "... src/Test/FinalSystemDemo.s"
@@ -3302,6 +3381,9 @@ help:
 	@echo "... src/Test/LexerTest.o"
 	@echo "... src/Test/LexerTest.i"
 	@echo "... src/Test/LexerTest.s"
+	@echo "... src/Test/ModuleClassificationTest.o"
+	@echo "... src/Test/ModuleClassificationTest.i"
+	@echo "... src/Test/ModuleClassificationTest.s"
 	@echo "... src/Test/OfficialANTLRTest.o"
 	@echo "... src/Test/OfficialANTLRTest.i"
 	@echo "... src/Test/OfficialANTLRTest.s"

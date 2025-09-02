@@ -1,0 +1,173 @@
+;; 珂朵莉暖色笔记
+;; 严格按照CHTL语法文档要求实现
+
+[Template] @Element ChthollyWarmNote
+{
+    div
+    {
+        class: chtholly-warm-note;
+        
+        style
+        {
+            .chtholly-warm-note
+            {
+                background: linear-gradient(135deg, #FFF8DC 0%, #FFEBCD 50%, @Var ChthollyColors.warm-pink 100%);
+                border: 2px solid @Var ChthollyColors.primary-red;
+                border-radius: 15px;
+                padding: @Var ChthollySpacing.large;
+                box-shadow: 0 8px 25px rgba(255, 107, 107, 0.2);
+                font-family: @Var ChthollyFonts.primary-font;
+                position: relative;
+                max-width: 400px;
+                margin: @Var ChthollySpacing.medium auto;
+            }
+            
+            .note-header
+            {
+                background: linear-gradient(45deg, @Var ChthollyColors.primary-red, @Var ChthollyColors.emerald-green);
+                color: white;
+                padding: @Var ChthollySpacing.medium;
+                margin: -@Var ChthollySpacing.large -@Var ChthollySpacing.large @Var ChthollySpacing.medium -@Var ChthollySpacing.large;
+                border-radius: 13px 13px 0 0;
+                text-align: center;
+                font-weight: bold;
+            }
+            
+            .note-editor
+            {
+                background: transparent;
+                border: none;
+                width: 100%;
+                min-height: 200px;
+                font-family: @Var ChthollyFonts.primary-font;
+                font-size: 14px;
+                line-height: 1.6;
+                color: #8B4B8B;
+                resize: vertical;
+                outline: none;
+            }
+            
+            .note-toolbar
+            {
+                display: flex;
+                gap: @Var ChthollySpacing.small;
+                margin-top: @Var ChthollySpacing.medium;
+                padding-top: @Var ChthollySpacing.medium;
+                border-top: 1px solid @Var ChthollyColors.primary-red;
+            }
+            
+            .note-btn
+            {
+                background: @Var ChthollyColors.emerald-green;
+                color: white;
+                border: none;
+                border-radius: 15px;
+                padding: @Var ChthollySpacing.small @Var ChthollySpacing.medium;
+                cursor: pointer;
+                font-size: 12px;
+                transition: all 0.3s ease;
+            }
+            
+            .note-btn:hover
+            {
+                background: @Var ChthollyColors.primary-red;
+                transform: translateY(-1px);
+            }
+        }
+        
+        script
+        {
+            ;; 珂朵莉暖色笔记逻辑
+            console.log('📔 珂朵莉的暖色笔记准备就绪');
+            
+            const note = {{.chtholly-warm-note}};
+            const noteId = 'chtholly_note_' + (@NoteId || Date.now());
+            
+            ;; 创建笔记界面
+            note.innerHTML = `
+                <div class="note-header">🌸 珂朵莉的暖色笔记 🌸</div>
+                <textarea class="note-editor" placeholder="记录珂朵莉的温暖时光..."></textarea>
+                <div class="note-toolbar">
+                    <button class="note-btn save-btn">💾 保存</button>
+                    <button class="note-btn format-btn">✨ 格式化</button>
+                    <button class="note-btn clear-btn">🧹 清空</button>
+                    <button class="note-btn export-btn">📤 导出</button>
+                </div>
+            `;
+            
+            const editor = note.querySelector('.note-editor');
+            const saveBtn = note.querySelector('.save-btn');
+            const formatBtn = note.querySelector('.format-btn');
+            const clearBtn = note.querySelector('.clear-btn');
+            const exportBtn = note.querySelector('.export-btn');
+            
+            ;; 保存功能
+            saveBtn &-> click {
+                localStorage.setItem(noteId, editor.value);
+                console.log('💖 珂朵莉暖色笔记已保存');
+                
+                ;; 保存反馈
+                saveBtn.textContent = '✅ 已保存';
+                setTimeout(() => {
+                    saveBtn.textContent = '💾 保存';
+                }, 1500);
+            };
+            
+            ;; 格式化功能
+            formatBtn &-> click {
+                const content = editor.value;
+                const formatted = content
+                    .split('\n')
+                    .map(line => line.trim())
+                    .filter(line => line.length > 0)
+                    .join('\n\n');
+                
+                editor.value = formatted;
+                console.log('✨ 珂朵莉笔记已格式化');
+            };
+            
+            ;; 清空功能
+            clearBtn &-> click {
+                if (confirm('确定要清空珂朵莉的暖色笔记吗？')) {
+                    editor.value = '';
+                    localStorage.removeItem(noteId);
+                    console.log('🧹 珂朵莉暖色笔记已清空');
+                }
+            };
+            
+            ;; 导出功能
+            exportBtn &-> click {
+                const content = editor.value;
+                if (content.trim()) {
+                    const blob = new Blob([content], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'chtholly_note_' + new Date().toISOString().slice(0, 10) + '.txt';
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    
+                    console.log('📤 珂朵莉暖色笔记已导出');
+                } else {
+                    console.log('📝 笔记内容为空，无法导出');
+                }
+            };
+            
+            ;; 加载已保存的笔记
+            const savedNote = localStorage.getItem(noteId);
+            if (savedNote) {
+                editor.value = savedNote;
+                console.log('📖 加载珂朵莉的暖色笔记');
+            }
+            
+            ;; 自动保存
+            let autoSaveTimer;
+            editor &-> input {
+                clearTimeout(autoSaveTimer);
+                autoSaveTimer = setTimeout(() => {
+                    localStorage.setItem(noteId, editor.value);
+                }, 3000);
+            };
+        }
+    }
+}
