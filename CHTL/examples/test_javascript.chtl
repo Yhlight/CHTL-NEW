@@ -1,0 +1,43 @@
+use html5;
+
+html {
+    head {
+        script {
+            // JavaScript测试代码
+            function greet(name) {
+                console.log("Hello, " + name + "!");
+                return "Greeting sent";
+            }
+            
+            // 箭头函数测试
+            const add = (a, b) => a + b;
+            
+            // 对象和数组
+            let user = {
+                name: "Test User",
+                age: 25,
+                hobbies: ["coding", "reading", "gaming"]
+            };
+            
+            // 条件语句
+            if (user.age >= 18) {
+                console.log(user.name + " is an adult");
+            } else {
+                console.log(user.name + " is a minor");
+            }
+            
+            // 循环
+            for (let i = 0; i < user.hobbies.length; i++) {
+                console.log("Hobby: " + user.hobbies[i]);
+            }
+            
+            // 调用函数
+            greet(user.name);
+        }
+    }
+    
+    body {
+        h1 { text { "JavaScript编译器测试" } }
+        p { text { "查看控制台输出" } }
+    }
+}

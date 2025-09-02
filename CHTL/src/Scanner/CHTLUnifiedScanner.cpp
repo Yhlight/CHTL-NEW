@@ -312,12 +312,16 @@ CodeFragmentList CHTLUnifiedScanner::Scan(const std::string& content) {
     
     // 日志输出
     if (debugMode) {
-        LOG_DEBUG("扫描完成，共生成 " + std::to_string(fragments.size()) + " 个代码片段");
+        LOG_INFO("扫描完成，共生成 " + std::to_string(fragments.size()) + " 个代码片段");
         for (size_t i = 0; i < fragments.size(); ++i) {
-            LOG_DEBUG("片段 " + std::to_string(i + 1) + ": 类型=" + 
+            LOG_INFO("片段 " + std::to_string(i + 1) + ": 类型=" + 
                      fragments[i]->GetTypeString() + 
                      ", 行=" + std::to_string(fragments[i]->startLine) + "-" + 
-                     std::to_string(fragments[i]->endLine));
+                     std::to_string(fragments[i]->endLine) +
+                     ", 长度=" + std::to_string(fragments[i]->content.length()));
+            if (debugMode) {
+                LOG_DEBUG("片段内容预览: " + fragments[i]->content.substr(0, 100) + "...");
+            }
         }
     }
     

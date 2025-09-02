@@ -192,15 +192,8 @@ src/JavaScript/CMakeFiles/JavaScriptCompiler.dir/JavaScriptCompiler.cpp.o: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/backward/auto_ptr.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/pstl/glue_memory_defs.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/pstl/execution_defs.h \
-  /workspace/CHTL/include/Common/ICompiler.h \
-  /workspace/CHTL/include/Common/CodeFragment.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/vector \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_vector.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_bvector.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/vector.tcc \
-  /workspace/CHTL/include/Common/Logger.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/iostream \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/ostream \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/sstream \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/istream \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/ios \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/ios_base.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_classes.h \
@@ -220,25 +213,274 @@ src/JavaScript/CMakeFiles/JavaScriptCompiler.dir/JavaScriptCompiler.cpp.o: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/x86_64-linux-gnu/c++/14/bits/ctype_inline.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_facets.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/basic_ios.tcc \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/ostream \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/ostream.tcc \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/istream \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/istream.tcc \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/sstream \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/sstream.tcc \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/chrono \
+  /workspace/CHTL/include/Common/ICompiler.h \
+  /workspace/CHTL/include/Common/CodeFragment.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/vector \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_vector.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_bvector.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/vector.tcc \
+  /workspace/CHTL/include/JavaScript/JavaScriptErrorListener.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/antlr4-runtime.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/antlr4-common.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/algorithm \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_algo.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/algorithmfwd.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_heap.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/uniform_int_dist.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/pstl/glue_algorithm_defs.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/any \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/atomic \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bitset \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/cassert \
+  /usr/include/assert.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/climits \
+  /usr/lib/llvm-20/lib/clang/20/include/limits.h /usr/include/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+  /usr/include/linux/limits.h \
+  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/cstdint \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/fstream \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/codecvt.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/x86_64-linux-gnu/c++/14/bits/basic_file.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/x86_64-linux-gnu/c++/14/bits/c++io.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/fstream.tcc \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/iostream \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/iterator \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stream_iterator.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/limits \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/map \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_tree.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/node_handle.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_map.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_multimap.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/erase_if.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/set \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_set.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_multiset.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/stack \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/deque \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_deque.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/deque.tcc \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_stack.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/unordered_map \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/unordered_map.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/hashtable.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/hashtable_policy.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/enable_special_members.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/unordered_set \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/unordered_set.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/utility \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_relops.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/support/Declarations.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/ANTLRErrorListener.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/Token.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/IntStream.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/RecognitionException.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/misc/IntervalSet.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/misc/Interval.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/Exceptions.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/ANTLRErrorStrategy.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/ANTLRFileStream.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/ANTLRInputStream.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/CharStream.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/BailErrorStrategy.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/DefaultErrorStrategy.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/BaseErrorListener.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/BufferedTokenStream.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/TokenStream.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/CommonToken.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/WritableToken.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/CommonTokenFactory.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/TokenFactory.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/CommonTokenStream.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/ConsoleErrorListener.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/DiagnosticErrorListener.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/FailedPredicateException.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/InputMismatchException.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/InterpreterRuleContext.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/ParserRuleContext.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/RuleContext.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/ParseTreeType.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/ParseTree.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/support/Any.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/support/CPPUtils.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/Lexer.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/Recognizer.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/ProxyErrorListener.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/support/Casts.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/SerializedATNView.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/cstring \
+  /usr/include/string.h /usr/include/strings.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/misc/MurmurHash.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/internal/Synchronization.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/mutex \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/chrono.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/ratio \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/cstdint \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/limits \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/ctime \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/parse_numbers.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/std_mutex.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/unique_lock.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/shared_mutex \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/TokenSource.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/LexerInterpreter.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/PredictionContext.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ATN.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ATNState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/Transition.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/TransitionType.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ATNStateType.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/PredictionContextType.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/PredictionContextCache.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/FlatHashSet.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/Vocabulary.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/LexerNoViableAltException.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ATNConfigSet.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/support/BitSet.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ATNConfig.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/SemanticContext.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/SemanticContextType.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/ListTokenSource.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/NoViableAltException.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/Parser.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/ParseTreeListener.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/ParserInterpreter.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/RuleContextWithAltNum.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/RuntimeMetaData.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/TokenStreamRewriter.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/UnbufferedCharStream.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/UnbufferedTokenStream.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/Version.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ATNDeserializationOptions.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ATNDeserializer.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerAction.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerActionType.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ATNSimulator.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ATNType.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ActionTransition.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/AmbiguityInfo.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/DecisionEventInfo.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ArrayPredictionContext.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/AtomTransition.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/BasicBlockStartState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/BlockStartState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/DecisionState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/BasicState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/BlockEndState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ContextSensitivityInfo.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/DecisionInfo.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/PredicateEvalInfo.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ErrorInfo.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/EpsilonTransition.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LL1Analyzer.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerATNConfig.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerATNSimulator.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerActionExecutor.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerChannelAction.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerCustomAction.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerIndexedCustomAction.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerModeAction.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerMoreAction.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerPopModeAction.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerPushModeAction.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerSkipAction.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LexerTypeAction.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LookaheadEventInfo.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/LoopEndState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/NotSetTransition.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/SetTransition.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/OrderedATNConfigSet.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ParseInfo.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ParserATNSimulator.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/PredictionMode.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/dfa/DFAState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/FlatHashMap.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/PredictionContextMergeCache.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/PredictionContextMergeCacheOptions.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ParserATNSimulatorOptions.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/PlusBlockStartState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/PlusLoopbackState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/PrecedencePredicateTransition.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/PredicateTransition.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/ProfilingATNSimulator.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/RangeTransition.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/RuleStartState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/RuleStopState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/RuleTransition.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/SingletonPredictionContext.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/StarBlockStartState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/StarLoopEntryState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/StarLoopbackState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/TokensStartState.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/atn/WildcardTransition.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/dfa/DFA.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/dfa/DFASerializer.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/dfa/LexerDFASerializer.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/misc/InterpreterDataReader.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/misc/Predicate.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/support/Arrays.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/AbstractParseTreeVisitor.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/ParseTreeVisitor.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/ErrorNode.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/TerminalNode.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/ErrorNodeImpl.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/TerminalNodeImpl.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/ParseTreeProperty.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/ParseTreeWalker.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/Trees.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/pattern/Chunk.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/pattern/ParseTreeMatch.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/pattern/ParseTreePattern.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/pattern/ParseTreePatternMatcher.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/pattern/RuleTagToken.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/pattern/TagChunk.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/pattern/TextChunk.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/pattern/TokenTagToken.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/xpath/XPath.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/xpath/XPathElement.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/xpath/XPathLexer.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/xpath/XPathLexerErrorListener.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/xpath/XPathRuleAnywhereElement.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/xpath/XPathRuleElement.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/xpath/XPathTokenAnywhereElement.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/xpath/XPathTokenElement.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/xpath/XPathWildcardAnywhereElement.h \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/include/tree/xpath/XPathWildcardElement.h \
+  /workspace/CHTL/include/JavaScript/JavaScriptVisitor.h \
+  /workspace/CHTL/../src/ThirdParty/JS/JavaScriptParserBaseListener.h \
+  /workspace/CHTL/../src/ThirdParty/JS/JavaScriptParserListener.h \
+  /workspace/CHTL/../src/ThirdParty/JS/JavaScriptParser.h \
+  /workspace/CHTL/../src/ThirdParty/JS/JavaScriptParserBase.h \
+  /workspace/CHTL/include/Common/Logger.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/chrono \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/iomanip \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/locale \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_facets_nonio.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/x86_64-linux-gnu/c++/14/bits/time_members.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
   /usr/include/libintl.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/codecvt.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_facets_nonio.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_conv.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/quoted_string.h
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/quoted_string.h \
+  /workspace/CHTL/../src/ThirdParty/JS/JavaScriptLexer.h \
+  /workspace/CHTL/../src/ThirdParty/JS/JavaScriptLexerBase.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/regex \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/std_function.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_constants.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_error.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_automaton.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_automaton.tcc \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_scanner.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_scanner.tcc \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_compiler.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_compiler.tcc \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex.tcc \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_executor.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_executor.tcc

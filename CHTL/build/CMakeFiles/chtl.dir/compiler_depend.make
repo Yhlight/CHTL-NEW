@@ -295,6 +295,7 @@ bin/chtl: /lib/x86_64-linux-gnu/Scrt1.o \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so \
   /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so \
   /usr/lib/x86_64-linux-gnu/libc_nonshared.a \
+  /workspace/src/ThirdParty/ANTLR4/lib/libantlr4-runtime-static.a \
   CMakeFiles/chtl.dir/src/main.cpp.o \
   lib/libCHTLCompiler.a \
   lib/libCHTLJSCompiler.a \
@@ -891,6 +892,8 @@ lib/libJavaScriptCompiler.a:
 /usr/include/x86_64-linux-gnu/c++/14/bits/gthr.h:
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/basic_file.h:
+
+/workspace/src/ThirdParty/ANTLR4/lib/libantlr4-runtime-static.a:
 
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
