@@ -54,6 +54,17 @@ void Parser::Expect(TokenType type, const std::string& message) {
     ConsumeToken();
 }
 
+void Parser::ExpectColonOrEquals(const std::string& message) {
+    if (!CheckColonOrEquals()) {
+        ReportError(message);
+    }
+    ConsumeToken();
+}
+
+bool Parser::CheckColonOrEquals() {
+    return Check(TokenType::COLON) || Check(TokenType::EQUALS);
+}
+
 void Parser::ReportError(const std::string& message) {
     const Token& token = CurrentToken();
     throw SyntaxError(message, context->GetCurrentFile(), token.line, token.column);
@@ -217,11 +228,34 @@ std::shared_ptr<ASTNode> Parser::ParseTemplateStyle() {
     
     Expect(TokenType::LEFT_BRACE, "期望 '{'");
     
-    // 解析样式属性
+    // 解析样式属性和继承语句
     while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
-        auto property = ParseStyleProperty();
-        if (property) {
-            node->AddChild(property);
+        if (Check(TokenType::INHERIT)) {
+            // 处理继承语句: inherit @Style 样式组名;
+            ConsumeToken(); // 消费 inherit
+            Expect(TokenType::AT_STYLE, "期望 '@Style'");
+            Expect(TokenType::IDENTIFIER, "期望标识符");
+            std::string inheritedStyleName = CurrentToken().value;
+            ConsumeToken();
+            Expect(TokenType::SEMICOLON, "期望 ';'");
+            
+            // 从全局映射表获取被继承的样式模板
+            auto inheritedStyle = context->GetGlobalMap()->GetTemplateStyle(inheritedStyleName);
+            if (inheritedStyle) {
+                // 复制被继承样式的所有属性
+                for (const auto& child : inheritedStyle->GetChildren()) {
+                    if (child->GetType() == ASTNodeType::StyleProperty) {
+                        node->AddChild(child);
+                    }
+                }
+            } else {
+                ReportError("未找到样式模板: " + inheritedStyleName);
+            }
+        } else {
+            auto property = ParseStyleProperty();
+            if (property) {
+                node->AddChild(property);
+            }
         }
     }
     
@@ -292,7 +326,7 @@ std::shared_ptr<ASTNode> Parser::ParseTemplateVar() {
             std::string varName = CurrentToken().value;
             ConsumeToken();
             
-            Expect(TokenType::COLON, "期望 ':'");
+            ExpectColonOrEquals("期望 ':' 或 '='");
             
             std::string value = ParseStringOrUnquotedLiteral();
             
@@ -596,7 +630,7 @@ std::shared_ptr<ASTNode> Parser::ParseConfiguration() {
             std::string optionName = CurrentToken().value;
             ConsumeToken();
             
-            Expect(TokenType::EQUALS, "期望 '='");
+            ExpectColonOrEquals("期望 ':' 或 '='");
             
             std::string optionValue;
             if (Check(TokenType::STRING_LITERAL)) {
@@ -650,10 +684,10 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
     // 解析元素内容
     while (!Check(TokenType::RIGHT_BRACE) && !Check(TokenType::EOF_TOKEN)) {
         // 属性
-        if (Check(TokenType::IDENTIFIER) && PeekToken().type == TokenType::COLON) {
+        if (Check(TokenType::IDENTIFIER) && (PeekToken().type == TokenType::COLON || PeekToken().type == TokenType::EQUALS)) {
             std::string attrName = CurrentToken().value;
             ConsumeToken();
-            Expect(TokenType::COLON, "期望 ':'");
+            ExpectColonOrEquals("期望 ':' 或 '='");
             std::string attrValue = ParseStringOrUnquotedLiteral();
             
             // 处理变量引用
@@ -784,7 +818,7 @@ std::shared_ptr<ASTNode> Parser::ParseAttribute() {
     std::string name = CurrentToken().value;
     ConsumeToken();
     
-    Expect(TokenType::COLON, "期望 ':'");
+    ExpectColonOrEquals("期望 ':' 或 '='");
     
     std::string value = ParseStringOrUnquotedLiteral();
     
@@ -865,7 +899,7 @@ std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {
             std::string propName = CurrentToken().value;
             ConsumeToken();
             
-            Expect(TokenType::COLON, "期望 ':'");
+            ExpectColonOrEquals("期望 ':' 或 '='");
             
             // 样式属性值
             std::string propValue = ParseStringOrUnquotedLiteral();
@@ -1000,7 +1034,7 @@ std::shared_ptr<ASTNode> Parser::ParseStyleProperty() {
         std::string propName = CurrentToken().value;
         ConsumeToken();
         
-        Expect(TokenType::COLON, "期望 ':'");
+        ExpectColonOrEquals("期望 ':' 或 '='");
         
         std::string value = ParseStringOrUnquotedLiteral();
         
@@ -1184,7 +1218,7 @@ std::shared_ptr<ASTNode> Parser::ParseConfigSubGroup(const std::string& groupNam
             std::string key = CurrentToken().value;
             ConsumeToken();
             
-            Expect(TokenType::EQUALS, "期望 '='");
+            ExpectColonOrEquals("期望 ':' 或 '='");
             
             std::string value;
             // 支持组选项语法，如 [@Style, @style, @CSS]

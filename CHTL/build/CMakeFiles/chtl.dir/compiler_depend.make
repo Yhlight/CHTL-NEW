@@ -304,6 +304,7 @@ bin/chtl: /lib/x86_64-linux-gnu/Scrt1.o \
   lib/libCMODHandler.a \
   lib/libCSSCompiler.a \
   lib/libCompilerDispatcher.a \
+  lib/libImportManager.a \
   lib/libJavaScriptCompiler.a \
   lib/libSyntaxConstraint.a
 
@@ -729,6 +730,8 @@ lib/libCSSCompiler.a:
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
 /usr/include/c++/14/bits/fs_ops.h:
+
+lib/libImportManager.a:
 
 /usr/include/c++/14/bits/fstream.tcc:
 

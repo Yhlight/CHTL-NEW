@@ -1424,6 +1424,7 @@ src/CHTL/CMakeFiles/CHTLCompiler.dir/CHTLCompiler.cpp.o
  /workspace/CHTL/include/Common/CodeFragment.h
  /workspace/CHTL/include/Common/Error.h
  /workspace/CHTL/include/Common/ICompiler.h
+ /workspace/CHTL/include/Common/ImportManager.h
  /workspace/CHTL/include/Common/Logger.h
  /workspace/CHTL/include/Common/SyntaxConstraint.h
 

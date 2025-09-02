@@ -292,6 +292,7 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: /work
   /workspace/CHTL/include/Common/CodeFragment.h \
   /workspace/CHTL/include/Common/Error.h \
   /workspace/CHTL/include/Common/ICompiler.h \
+  /workspace/CHTL/include/Common/ImportManager.h \
   /workspace/CHTL/include/Common/Logger.h \
   /workspace/CHTL/include/Common/SyntaxConstraint.h \
   /workspace/CHTL/include/Dispatcher/CompilerDispatcher.h \
@@ -497,6 +498,8 @@ src/Dispatcher/CMakeFiles/CompilerDispatcher.dir/CompilerDispatcher.cpp.o: /work
 /usr/include/c++/14/string_view:
 
 /usr/include/errno.h:
+
+/workspace/CHTL/include/Common/ImportManager.h:
 
 /usr/include/c++/14/debug/debug.h:
 

@@ -133,7 +133,7 @@ std::string SyntaxConstraint::GetFeatureError(Feature feature) const {
             
         case Feature::LocalScriptBlock:
             if (currentContext == Context::CHTLJS) {
-                error += "\n提示: script {}块是CHTL语法，虽然文档中描述在CHTL JS部分，但实际属于CHTL";
+                error += "\n提示: script {}块是CHTL语法，不能在CHTL JS中使用";
             }
             break;
             

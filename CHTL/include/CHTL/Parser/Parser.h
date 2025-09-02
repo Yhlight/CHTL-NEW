@@ -57,6 +57,16 @@ private:
     void Expect(TokenType type, const std::string& message);
     
     /**
+     * CE对等式：期望:或=
+     */
+    void ExpectColonOrEquals(const std::string& message);
+    
+    /**
+     * 检查是否为:或=
+     */
+    bool CheckColonOrEquals();
+    
+    /**
      * 检查是否为特定Token类型
      */
     bool Check(TokenType type) const {

@@ -1,0 +1,12 @@
+use html5;
+
+html {
+    body {
+        div {
+            id = "test";
+            class: "box";
+            
+            text { "测试" }
+        }
+    }
+}
