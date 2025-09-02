@@ -75,9 +75,21 @@ void Parser::ReportError(const std::string& message) {
 }
 
 std::shared_ptr<ASTNode> Parser::ParseTopLevelDeclaration() {
-    // 跳过注释
-    while (CurrentToken().IsComment()) {
-        ConsumeToken();
+    // 处理注释
+    if (CurrentToken().IsComment()) {
+        // 如果是生成器注释，创建注释节点
+        if (CurrentToken().type == TokenType::GENERATOR_COMMENT) {
+            auto commentNode = std::make_shared<CommentNode>(
+                CurrentToken().value,
+                CommentNode::CommentType::Generator
+            );
+            ConsumeToken();
+            return commentNode;
+        } else {
+            // 其他注释类型跳过
+            ConsumeToken();
+            return nullptr;  // 返回nullptr表示继续解析下一个
+        }
     }
     
     // 检查EOF
@@ -987,6 +999,17 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
                 element->AddChild(child);
             }
         }
+        // 模板元素引用（作为子元素）
+        else if (Check(TokenType::AT_ELEMENT) || 
+                 (Check(TokenType::CUSTOM) && PeekToken().type == TokenType::AT_ELEMENT) ||
+                 (Check(TokenType::TEMPLATE) && PeekToken().type == TokenType::AT_ELEMENT)) {
+            
+            // 解析模板元素引用并创建实例
+            auto templateInstance = ParseTemplateElementReference();
+            if (templateInstance) {
+                element->AddChild(templateInstance);
+            }
+        }
         // text节点
         else if (Check(TokenType::TEXT)) {
             auto text = ParseText();
@@ -1015,6 +1038,19 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
                 element->AddChild(except);
             }
         }
+        // 生成器注释
+        else if (Check(TokenType::GENERATOR_COMMENT)) {
+            auto commentNode = std::make_shared<CommentNode>(
+                CurrentToken().value,
+                CommentNode::CommentType::Generator
+            );
+            ConsumeToken();
+            element->AddChild(commentNode);
+        }
+        // 跳过其他类型的注释
+        else if (CurrentToken().IsComment()) {
+            ConsumeToken();
+        }
         else {
             ConsumeToken(); // 跳过未知token
         }
@@ -1023,6 +1059,104 @@ std::shared_ptr<ElementNode> Parser::ParseElement() {
     Expect(TokenType::RIGHT_BRACE, "期望 '}'");
     
     return element;
+}
+
+std::shared_ptr<ASTNode> Parser::ParseTemplateElementReference() {
+    bool isCustom = false;
+    bool isTemplate = false;
+    
+    // 检查是否有[Custom]或[Template]前缀
+    if (Check(TokenType::CUSTOM)) {
+        isCustom = true;
+        ConsumeToken(); // 消费 [Custom]
+    } else if (Check(TokenType::TEMPLATE)) {
+        isTemplate = true;
+        ConsumeToken(); // 消费 [Template]
+    }
+    
+    ConsumeToken(); // 消费 @Element
+    
+    if (!Check(TokenType::IDENTIFIER)) {
+        ReportError("期望模板元素名称");
+        return nullptr;
+    }
+    
+    std::string templateName = CurrentToken().value;
+    ConsumeToken();
+    
+    // 检查是否有 from 子句
+    std::string namespacePath;
+    if (Check(TokenType::FROM)) {
+        ConsumeToken(); // 消费 from
+        
+        // 解析命名空间路径
+        if (!Check(TokenType::IDENTIFIER)) {
+            ReportError("期望命名空间名称");
+        } else {
+            namespacePath = CurrentToken().value;
+            ConsumeToken();
+            
+            // 支持点号分隔的命名空间路径
+            while (Check(TokenType::DOT)) {
+                namespacePath += ".";
+                ConsumeToken();
+                if (!Check(TokenType::IDENTIFIER)) {
+                    ReportError("期望命名空间段");
+                    break;
+                }
+                namespacePath += CurrentToken().value;
+                ConsumeToken();
+            }
+        }
+    }
+    
+    // 期望分号
+    Expect(TokenType::SEMICOLON, "期望 ';'");
+    
+    // 构建完整的模板名称
+    std::string fullTemplateName = templateName;
+    if (!namespacePath.empty()) {
+        fullTemplateName = namespacePath + "." + templateName;
+    } else if (!context->GetCurrentNamespace().empty()) {
+        // 如果没有指定命名空间，使用当前命名空间
+        fullTemplateName = context->GetFullNamespacePath() + "." + templateName;
+    }
+    
+    // 从全局映射表获取模板
+    std::shared_ptr<ASTNode> templateNode;
+    if (isCustom) {
+        // 查找自定义元素
+        templateNode = context->GetGlobalMap()->GetCustomElement(fullTemplateName);
+        if (!templateNode) {
+            // 尝试不带命名空间的名称
+            templateNode = context->GetGlobalMap()->GetCustomElement(templateName);
+        }
+        if (!templateNode) {
+            ReportError("未找到自定义元素: " + fullTemplateName);
+            return nullptr;
+        }
+    } else {
+        // 查找模板元素（默认或显式指定[Template]）
+        templateNode = context->GetGlobalMap()->GetTemplateElement(fullTemplateName);
+        if (!templateNode) {
+            // 尝试不带命名空间的名称
+            templateNode = context->GetGlobalMap()->GetTemplateElement(templateName);
+        }
+        if (!templateNode) {
+            ReportError("未找到元素模板: " + fullTemplateName);
+            return nullptr;
+        }
+    }
+    
+    // 返回模板中定义的元素
+    // TemplateElementNode应该包含一个元素作为其子节点
+    if (templateNode && !templateNode->GetChildren().empty()) {
+        // 返回第一个子节点（应该是定义的元素）
+        // TODO: 应该进行深拷贝以避免共享同一个AST节点
+        return templateNode->GetChildren()[0];
+    }
+    
+    return nullptr;
 }
 
 std::shared_ptr<TextNode> Parser::ParseText() {
@@ -1216,6 +1350,7 @@ std::shared_ptr<ASTNode> Parser::ParseLocalStyle() {
             auto rule = std::dynamic_pointer_cast<StyleRuleNode>(ParseStyleRule());
             if (rule) {
                 styleNode->AddRule(rule);
+                LOG_DEBUG("添加样式规则: " + rule->GetSelector());
             }
         }
         else if (Check(TokenType::IDENTIFIER)) {

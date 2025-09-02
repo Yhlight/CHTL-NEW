@@ -1,0 +1,17 @@
+// 调试模板元素
+
+use html5;
+
+html {
+    body {
+        div {
+            class: "test";
+            text { "开始" }
+        }
+        
+        // 这里应该插入模板内容
+        div {
+            text { "结束" }
+        }
+    }
+}

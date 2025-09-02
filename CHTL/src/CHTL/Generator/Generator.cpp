@@ -176,7 +176,14 @@ void Generator::VisitElement(ElementNode* node) {
     // 生成开始标签
     EmitLine("<" + node->GetTagName() + GenerateAttributesString(attrs) + ">");
     
-    // 访问子节点（跳过LocalStyle节点）
+    // 访问LocalStyle节点以收集样式规则
+    for (const auto& child : node->GetChildren()) {
+        if (child->GetType() == ASTNodeType::LocalStyle) {
+            child->Accept(this);
+        }
+    }
+    
+    // 访问其他子节点
     indentLevel++;
     for (const auto& child : node->GetChildren()) {
         if (child->GetType() != ASTNodeType::LocalStyle) {
@@ -303,6 +310,9 @@ void Generator::VisitOrigin(OriginNode* node) {
     }
 }
 void Generator::VisitLocalStyle(LocalStyleNode* node) {
+    LOG_DEBUG("VisitLocalStyle: 规则数量=" + std::to_string(node->GetRules().size()) + 
+              ", 属性数量=" + std::to_string(node->GetProperties().size()));
+    
     // 收集样式规则到全局样式块
     if (!node->GetRules().empty()) {
         for (const auto& rule : node->GetRules()) {

@@ -91,6 +91,7 @@ private:
     std::shared_ptr<ASTNode> ParseConfigSubGroup(const std::string& groupName);
     void ApplyConfiguration(std::shared_ptr<ConfigurationNode> config);
     std::shared_ptr<ElementNode> ParseElement();
+    std::shared_ptr<ASTNode> ParseTemplateElementReference();
     std::shared_ptr<TextNode> ParseText();
     std::shared_ptr<ASTNode> ParseAttribute();
     std::shared_ptr<ASTNode> ParseLocalStyle();

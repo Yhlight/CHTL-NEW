@@ -1,36 +1,20 @@
-use html5;
+// 测试模板元素
 
-[Template] @Element Card
-{
-    div
-    {
+[Template] @Element MyCard {
+    div {
         class: "card";
-        
-        style
-        {
-            border: "1px solid #ccc";
-            padding: "20px";
-            margin: "10px";
-        }
-        
-        h3
-        {
-            text { "卡片标题" }
-        }
-        
-        p
-        {
-            text { "这是卡片内容" }
-        }
+        text { "这是一个卡片模板" }
     }
 }
 
-html
-{
-    body
-    {
-        @Element Card;
+use html5;
+
+html {
+    body {
+        // 使用模板元素
+        @Element MyCard;
         
-        @Element Card;
+        // 再次使用
+        @Element MyCard;
     }
 }
