@@ -1,0 +1,16 @@
+use html5;
+
+html {
+    head {
+        style {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+    
+    body {
+        h1 { text { "CSS测试" } }
+    }
+}

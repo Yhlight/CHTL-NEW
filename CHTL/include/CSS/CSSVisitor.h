@@ -48,8 +48,8 @@ public:
         // 结束处理样式表
     }
     
-    // 规则集处理
-    void enterRuleset(css3Parser::RulesetContext* ctx) override {
+    // 规则集处理 - 使用KnownRuleset
+    void enterKnownRuleset(css3Parser::KnownRulesetContext* ctx) override {
         inRule = true;
         // 输出选择器
         if (ctx->selectorGroup()) {
@@ -59,17 +59,17 @@ public:
         }
     }
     
-    void exitRuleset(css3Parser::RulesetContext* ctx) override {
+    void exitKnownRuleset(css3Parser::KnownRulesetContext* ctx) override {
         indentLevel--;
         output << GetIndent() << "}" << (prettyPrint ? "\n\n" : "");
         inRule = false;
     }
     
-    // 属性声明处理
-    void enterDeclaration(css3Parser::DeclarationContext* ctx) override {
-        if (ctx->property() && ctx->expr()) {
+    // 属性声明处理 - 使用KnownDeclaration
+    void enterKnownDeclaration(css3Parser::KnownDeclarationContext* ctx) override {
+        if (ctx->property_() && ctx->expr()) {
             output << GetIndent();
-            output << ctx->property()->getText() << ":";
+            output << ctx->property_()->getText() << ":";
             output << (prettyPrint ? " " : "");
             output << ctx->expr()->getText();
             
@@ -80,7 +80,7 @@ public:
         }
     }
     
-    void exitDeclaration(css3Parser::DeclarationContext* ctx) override {
+    void exitKnownDeclaration(css3Parser::KnownDeclarationContext* ctx) override {
         output << ";";
         if (prettyPrint) output << "\n";
     }
@@ -108,19 +108,15 @@ public:
         output << GetIndent() << "}" << (prettyPrint ? "\n\n" : "");
     }
     
-    // @import处理
-    void enterImportRule(css3Parser::ImportRuleContext* ctx) override {
-        output << GetIndent() << "@import ";
-        if (ctx->ws()) {
-            output << ctx->ws()->getText();
-        }
-        output << ";";
+    // @import处理 - 使用GoodImport
+    void enterGoodImport(css3Parser::GoodImportContext* ctx) override {
+        output << GetIndent() << ctx->getText();
         if (prettyPrint) output << "\n";
     }
     
-    // @charset处理
-    void enterCharset(css3Parser::CharsetContext* ctx) override {
-        output << "@charset " << ctx->String_()->getText() << ";";
+    // @charset处理 - 使用GoodCharset
+    void enterGoodCharset(css3Parser::GoodCharsetContext* ctx) override {
+        output << ctx->getText();
         if (prettyPrint) output << "\n\n";
     }
 };

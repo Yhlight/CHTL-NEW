@@ -11,6 +11,7 @@ bin/chtl: \
   lib/libJavaScriptCompiler.a \
   lib/libCMODHandler.a \
   lib/libCJMODHandler.a \
+  /workspace/CHTL/../src/ThirdParty/ANTLR4/lib/libantlr4-runtime-static.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so \
   /lib/x86_64-linux-gnu/libm.so \
   /lib/x86_64-linux-gnu/libm.so \
@@ -36,8 +37,7 @@ bin/chtl: \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o \
-  /lib/x86_64-linux-gnu/crtn.o \
-  /lib64/ld-linux-x86-64.so.2
+  /lib/x86_64-linux-gnu/crtn.o
 
 /lib/x86_64-linux-gnu/Scrt1.o:
 
@@ -62,6 +62,8 @@ lib/libJavaScriptCompiler.a:
 lib/libCMODHandler.a:
 
 lib/libCJMODHandler.a:
+
+/workspace/CHTL/../src/ThirdParty/ANTLR4/lib/libantlr4-runtime-static.a:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so:
 
@@ -114,5 +116,3 @@ lib/libCJMODHandler.a:
 /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o:
 
 /lib/x86_64-linux-gnu/crtn.o:
-
-/lib64/ld-linux-x86-64.so.2:
