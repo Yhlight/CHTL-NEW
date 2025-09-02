@@ -110,7 +110,17 @@ void Generator::VisitElement(ElementNode* node) {
             inlineStyle = styleNode->GenerateInlineStyle();
             
             // 查找第一个类选择器和ID选择器（用于自动化）
-            // TODO: 实现选择器解析
+            for (const auto& rule : styleNode->GetRules()) {
+                if (rule->GetType() == StyleRuleNode::SelectorType::Class && 
+                    firstClassSelector.empty()) {
+                    // 去掉点号前缀
+                    firstClassSelector = rule->GetSelector().substr(1);
+                } else if (rule->GetType() == StyleRuleNode::SelectorType::Id && 
+                           firstIdSelector.empty()) {
+                    // 去掉井号前缀
+                    firstIdSelector = rule->GetSelector().substr(1);
+                }
+            }
         } else if (child->GetType() == ASTNodeType::LocalScript) {
             hasLocalScript = true;
             // TODO: 解析script中的选择器
@@ -199,8 +209,35 @@ void Generator::VisitCustomElement(CustomElementNode* node) {}
 void Generator::VisitCustomVar(CustomVarNode* node) {}
 void Generator::VisitOrigin(OriginNode* node) {}
 void Generator::VisitLocalStyle(LocalStyleNode* node) {
-    // 局部样式不生成单独的元素，而是作为元素的style属性处理
-    // 样式属性已经在元素生成时处理
+    // 将样式规则（类选择器、ID选择器等）输出到全局样式块
+    if (!node->GetRules().empty()) {
+        // 临时切换到CSS模式
+        GeneratorContext savedContext = currentContext;
+        currentContext = GeneratorContext::InStyle;
+        
+        // 输出到全局样式块（这里简化处理，实际应该收集到全局样式区域）
+        output << "<style>\n";
+        
+        for (const auto& rule : node->GetRules()) {
+            std::string selector = rule->GetSelector();
+            
+            // 处理 & 引用（替换为当前元素的类名或ID）
+            // 这需要从父元素获取信息，暂时简化处理
+            
+            output << selector << " {\n";
+            for (const auto& prop : rule->GetProperties()) {
+                output << "    " << prop->GetName() << ": " << prop->GetValue() << ";\n";
+            }
+            output << "}\n";
+        }
+        
+        output << "</style>\n";
+        
+        // 恢复上下文
+        currentContext = savedContext;
+    }
+    
+    // 内联样式已经在元素生成时处理
 }
 void Generator::VisitLocalScript(LocalScriptNode* node) {}
 void Generator::VisitStyleRule(StyleRuleNode* node) {}
