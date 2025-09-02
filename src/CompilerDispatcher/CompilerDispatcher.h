@@ -2,7 +2,11 @@
 
 #include "../Scanner/CHTLUnifiedScanner.h"
 #include "../CHTL/CHTLLexer/CHTLLexer.h"
+#include "../CHTL/CHTLParser/CHTLParser.h"
+#include "../CHTL/CHTLGenerator/CHTLGenerator.h"
 #include "../CHTL JS/CHTLJSLexer/CHTLJSLexer.h"
+#include "../CHTL JS/CHTLJSParser/CHTLJSParser.h"
+#include "../CHTL JS/CHTLJSGenerator/CHTLJSGenerator.h"
 #include <string>
 #include <vector>
 #include <memory>
@@ -59,8 +63,10 @@ struct MergedCompilationResult {
 class CompilerDispatcher {
 private:
     std::unique_ptr<CHTLUnifiedScanner> m_Scanner;          // 统一扫描器
-    std::unique_ptr<CHTLLexer> m_CHTLCompiler;             // CHTL编译器
-    std::unique_ptr<CHTLJS::CHTLJSLexer> m_CHTLJSCompiler;         // CHTL JS编译器
+    std::unique_ptr<CHTLParser> m_CHTLParser;              // CHTL解析器
+    std::unique_ptr<CHTLGenerator> m_CHTLGenerator;        // CHTL生成器
+    std::unique_ptr<CHTLJS::CHTLJSParser> m_CHTLJSParser;  // CHTL JS解析器
+    std::unique_ptr<CHTLJS::CHTLJSGenerator> m_CHTLJSGenerator; // CHTL JS生成器
     std::unique_ptr<CSSCompiler> m_CSSCompiler;            // CSS编译器（ANTLR）
     std::unique_ptr<JavaScriptCompiler> m_JSCompiler;      // JavaScript编译器（ANTLR）
     

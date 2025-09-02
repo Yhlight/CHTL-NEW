@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/workspace/src/CHTL/CHTLContext/CHTLContext.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLContext/CHTLContext.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLContext/CHTLContext.cpp.o.d"
+  "/workspace/src/CHTL/CHTLGenerator/CHTLGenerator.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/CHTLGenerator.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/CHTLGenerator.cpp.o.d"
   "/workspace/src/CHTL/CHTLLexer/CHTLGlobalMap.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLGlobalMap.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLGlobalMap.cpp.o.d"
   "/workspace/src/CHTL/CHTLLexer/CHTLLexer.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLLexer.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLLexer.cpp.o.d"
   "/workspace/src/CHTL/CHTLLexer/CHTLToken.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLToken.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLToken.cpp.o.d"
@@ -19,6 +20,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/workspace/src/CHTL/CHTLNode/StyleNode.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/StyleNode.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/StyleNode.cpp.o.d"
   "/workspace/src/CHTL/CHTLNode/TemplateNode.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/TemplateNode.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/TemplateNode.cpp.o.d"
   "/workspace/src/CHTL/CHTLNode/TextNode.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/TextNode.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/TextNode.cpp.o.d"
+  "/workspace/src/CHTL/CHTLNode/Visitor.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/Visitor.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/Visitor.cpp.o.d"
+  "/workspace/src/CHTL/CHTLParser/CHTLParser.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLParser/CHTLParser.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLParser/CHTLParser.cpp.o.d"
   "/workspace/src/CHTL/CHTLState/CHTLState.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLState/CHTLState.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLState/CHTLState.cpp.o.d"
   )
 

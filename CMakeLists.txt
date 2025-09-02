@@ -41,6 +41,9 @@ set(CHTL_CORE_SOURCES
     src/CHTL/CHTLNode/ScriptNode.cpp
     src/CHTL/CHTLNode/TemplateNode.cpp
     src/CHTL/CHTLNode/CustomNode.cpp
+    src/CHTL/CHTLNode/Visitor.cpp
+    src/CHTL/CHTLParser/CHTLParser.cpp
+    src/CHTL/CHTLGenerator/CHTLGenerator.cpp
 )
 
 # CHTL JS核心组件源文件（完全独立）
@@ -54,6 +57,8 @@ set(CHTLJS_CORE_SOURCES
     "src/CHTL JS/CHTLJSNode/EnhanceSelectorNode.cpp"
     "src/CHTL JS/CHTLJSNode/VirObjectNode.cpp"
     "src/CHTL JS/CHTLJSNode/AnimateNode.cpp"
+    "src/CHTL JS/CHTLJSParser/CHTLJSParser.cpp"
+    "src/CHTL JS/CHTLJSGenerator/CHTLJSGenerator.cpp"
 )
 
 # 扫描器源文件
