@@ -3,7 +3,21 @@
 
 #include <string>
 #include <memory>
+#include <sstream>
 #include "Common/ICompiler.h"
+
+// 前向声明ANTLR类
+namespace antlr4 {
+    class ANTLRInputStream;
+    class CommonTokenStream;
+    namespace tree {
+        class ParseTree;
+    }
+}
+
+// 前向声明CSS解析器类
+class css3Lexer;
+class css3Parser;
 
 namespace CHTL {
 
@@ -15,6 +29,16 @@ class CSSCompiler : public ICompiler {
 private:
     std::string moduleDirectory;
     bool debugMode;
+    
+    /**
+     * 处理CSS解析树
+     */
+    std::string ProcessParseTree(antlr4::tree::ParseTree* tree);
+    
+    /**
+     * 处理CSS错误
+     */
+    void HandleCSSError(const std::string& error);
     
 public:
     CSSCompiler();
