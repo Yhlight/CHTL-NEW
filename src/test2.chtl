@@ -1,0 +1,33 @@
+// CHTL测试文件
+
+[Template] @Style DefaultButton
+{
+    background-color: blue;
+    color: white;
+    padding: 10px;
+}
+
+div
+{
+    id: container;
+    class: main-content;
+    
+    style
+    {
+        .container
+        {
+            width: 100%;
+            height: 400px;
+        }
+        
+        &:hover
+        {
+            background-color: lightgray;
+        }
+    }
+    
+    text
+    {
+        欢迎使用CHTL编译器！
+    }
+}

@@ -21,7 +21,7 @@ const char* CodeTypeToString(CHTL::CodeType type)
 }
 
 int main() {
-    std::string filePath = "src/test2.chtl"; // 使用包含多种块的测试文件
+    std::string filePath = "../src/test2.chtl"; // 使用包含多种块的测试文件
     std::ifstream fileStream(filePath);
     if (!fileStream) {
         std::cerr << "错误: 无法打开文件 " << filePath << std::endl;
@@ -61,7 +61,7 @@ int main() {
         // 3. 最终输出
         std::cout << R"(
 --- 最终生成的 HTML ---
-)" << std::endl;
+)" << final_html << std::endl;
 
     } catch (const std::exception& e) {
         std::cerr << "编译错误: " << e.what() << std::endl;
