@@ -86,17 +86,33 @@ CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/Scanner/CHTLUnifiedScanner.cpp -o CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.s
 
+CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o: CMakeFiles/CHTLScanner.dir/flags.make
+CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o: /workspace/src/Scanner/CJMODScannerPlugin.cpp
+CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o: CMakeFiles/CHTLScanner.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o -MF CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o.d -o CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o -c /workspace/src/Scanner/CJMODScannerPlugin.cpp
+
+CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/Scanner/CJMODScannerPlugin.cpp > CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.i
+
+CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/Scanner/CJMODScannerPlugin.cpp -o CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.s
+
 # Object files for target CHTLScanner
 CHTLScanner_OBJECTS = \
-"CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.o"
+"CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.o" \
+"CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o"
 
 # External object files for target CHTLScanner
 CHTLScanner_EXTERNAL_OBJECTS =
 
 lib/libCHTLScanner.a: CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.o
+lib/libCHTLScanner.a: CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o
 lib/libCHTLScanner.a: CMakeFiles/CHTLScanner.dir/build.make
 lib/libCHTLScanner.a: CMakeFiles/CHTLScanner.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library lib/libCHTLScanner.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library lib/libCHTLScanner.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/CHTLScanner.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CHTLScanner.dir/link.txt --verbose=$(VERBOSE)
 

@@ -1,91 +1,173 @@
-#include "utilThen.h"
-#include <sstream>
-#include <regex>
+/**
+ * 珂朵莉模块CJMOD部分 - utilThen工具功能
+ * 使用CJMOD API实现强大的工具链功能
+ * 严格按照CJMOD.md规范
+ */
 
-namespace CJMOD {
+#include "utilThen.h"
+#include "../../../CHTL JS/CJMODSystem/CJMODCore.h"
+#include "../../../CHTL JS/CJMODSystem/CHTLJSFunction.h"
+
 namespace Chtholly {
 
-std::string UtilThenProcessor::ProcessUtilThen(const std::string& chainCode) {
-    auto operations = ParseChainOperations(chainCode);
-    return GenerateAsyncChain(operations);
+void utilThen::setupCJMODUtilities() {
+    std::cout << "🔧 珂朵莉模块：设置utilThen CJMOD工具" << std::endl;
+    
+    // 1. 创建链式操作语法 - 使用CJMOD强大的占位符系统
+    CJMOD::Arg chainPattern = CJMOD::Syntax::analyze("$ then $ then $");
+    
+    // 绑定链式处理函数
+    chainPattern.bind("$", [](const std::string& operation) {
+        return "await " + operation;
+    });
+    
+    chainPattern.bind("then", [](const std::string& connector) {
+        return ".then";
+    });
+    
+    // 2. 创建条件执行语法 - 使用可选和必须占位符
+    CJMOD::Arg conditionalPattern = CJMOD::Syntax::analyze("if $! then $!_ else $?_");
+    
+    conditionalPattern.bind("$!", [](const std::string& condition) {
+        return "(" + condition + ")";
+    });
+    
+    conditionalPattern.bind("$!_", [](const std::string& thenAction) {
+        return thenAction.empty() ? "console.log('条件为真')" : thenAction;
+    });
+    
+    conditionalPattern.bind("$?_", [](const std::string& elseAction) {
+        return elseAction.empty() ? "console.log('条件为假')" : elseAction;
+    });
+    
+    // 3. 创建批处理语法 - 使用不定参数
+    CJMOD::Arg batchPattern = CJMOD::Syntax::analyze("batch ...");
+    
+    batchPattern.bind("...", [](const std::string& operations) {
+        return "[" + operations + "].forEach(op => op())";
+    });
+    
+    // 4. 创建CHTL JS工具函数，天然支持vir
+    CJMOD::CHTLJSFunction thenFunc = CJMOD::CHTLJSFunction::CreateCHTLJSFunction(
+        "utilThen {operation: $!_, callback: $?_, error: $?_}"
+    );
+    
+    CJMOD::CHTLJSFunction chainFunc = CJMOD::CHTLJSFunction::CreateCHTLJSFunction(
+        "chainOperations {operations: ..., final: $?_}"
+    );
+    
+    CJMOD::CHTLJSFunction conditionalFunc = CJMOD::CHTLJSFunction::CreateCHTLJSFunction(
+        "conditionalExecute {condition: $!, then: $!_, else: $?_}"
+    );
+    
+    std::cout << "   ✅ utilThen函数创建: " << thenFunc.getFunctionName() << "（支持vir: " << (thenFunc.supportsVir() ? "是" : "否") << "）" << std::endl;
+    std::cout << "   ✅ chainOperations函数创建: " << chainFunc.getFunctionName() << "（支持vir: " << (chainFunc.supportsVir() ? "是" : "否") << "）" << std::endl;
+    std::cout << "   ✅ conditionalExecute函数创建: " << conditionalFunc.getFunctionName() << "（支持vir: " << (conditionalFunc.supportsVir() ? "是" : "否") << "）" << std::endl;
 }
 
-std::string UtilThenProcessor::GenerateAsyncChain(const std::vector<ChainOperation>& operations) {
-    std::ostringstream chain;
+void utilThen::demonstrateChainOperations() {
+    std::cout << "\n⛓️  演示链式操作功能：" << std::endl;
     
-    chain << "// 珂朵莉util...then异步链式操作\n";
-    chain << "const util = {\n";
-    chain << "    fadeIn: function(element) {\n";
-    chain << "        return new Promise(resolve => {\n";
-    chain << "            if (element) {\n";
-    chain << "                element.style.transition = 'opacity 0.5s ease';\n";
-    chain << "                element.style.opacity = '1';\n";
-    chain << "                setTimeout(() => resolve(element), 500);\n";
-    chain << "            } else {\n";
-    chain << "                resolve(null);\n";
-    chain << "            }\n";
-    chain << "        });\n";
-    chain << "    },\n";
-    chain << "    \n";
-    chain << "    slideDown: function() {\n";
-    chain << "        return function(element) {\n";
-    chain << "            return new Promise(resolve => {\n";
-    chain << "                if (element) {\n";
-    chain << "                    element.style.transform = 'translateY(0)';\n";
-    chain << "                    setTimeout(() => resolve(element), 300);\n";
-    chain << "                } else {\n";
-    chain << "                    resolve(null);\n";
-    chain << "                }\n";
-    chain << "            });\n";
-    chain << "        };\n";
-    chain << "    },\n";
-    chain << "    \n";
-    chain << "    addSparkles: function() {\n";
-    chain << "        return function(element) {\n";
-    chain << "            return new Promise(resolve => {\n";
-    chain << "                if (element) {\n";
-    chain << "                    element.style.boxShadow = '0 0 20px rgba(255, 107, 107, 0.6)';\n";
-    chain << "                    setTimeout(() => resolve(element), 200);\n";
-    chain << "                } else {\n";
-    chain << "                    resolve(null);\n";
-    chain << "                }\n";
-    chain << "            });\n";
-    chain << "        };\n";
-    chain << "    },\n";
-    chain << "    \n";
-    chain << "    then: function(nextOperation) {\n";
-    chain << "        return function(element) {\n";
-    chain << "            if (typeof nextOperation === 'function') {\n";
-    chain << "                return nextOperation(element);\n";
-    chain << "            }\n";
-    chain << "            return Promise.resolve(element);\n";
-    chain << "        };\n";
-    chain << "    }\n";
-    chain << "};\n";
+    // 使用CJMOD API创建复杂的链式操作
+    CJMOD::Arg chainSyntax = CJMOD::Syntax::analyze("$ -> $ -> $ -> $");
     
-    return chain.str();
+    // 绑定每个步骤
+    chainSyntax.bind("$", [](const std::string& step) {
+        return step.empty() ? "defaultStep" : step;
+    });
+    
+    chainSyntax.bind("->", [](const std::string& arrow) {
+        return ".then";
+    });
+    
+    // 使用CJMODScanner扫描链式结构
+    CJMOD::Arg scanResult = CJMOD::CJMODScanner::scan(chainSyntax, "->");
+    
+    // 填充扫描结果
+    chainSyntax.fillValue(scanResult);
+    
+    // 转换为JavaScript链式调用
+    chainSyntax.transform(
+        chainSyntax[0].getValue() + "()" +
+        chainSyntax[1].getValue() + "(" + chainSyntax[2].getValue() + ")" +
+        chainSyntax[3].getValue() + "(" + chainSyntax[4].getValue() + ")" +
+        chainSyntax[5].getValue() + "(" + chainSyntax[6].getValue() + ")"
+    );
+    
+    // 导出链式操作代码
+    std::string chainCode = CJMOD::CJMODGenerator::exportResult(chainSyntax);
+    
+    std::cout << "   🔗 生成的链式代码: " << chainCode << std::endl;
 }
 
-std::vector<ChainOperation> UtilThenProcessor::ParseChainOperations(const std::string& code) {
-    std::vector<ChainOperation> operations;
+void utilThen::demonstrateConditionalLogic() {
+    std::cout << "\n🤔 演示条件逻辑功能：" << std::endl;
     
-    // 解析util链式操作
-    std::regex operationRegex(R"(util\.(\w+)\s*\([^)]*\))");
-    std::sregex_iterator iter(code.begin(), code.end(), operationRegex);
-    std::sregex_iterator end;
+    // 创建复杂的条件语法
+    CJMOD::Arg ifThenElse = CJMOD::Syntax::analyze("if $! then $!_ else $?_ finally $?_");
     
-    for (; iter != end; ++iter) {
-        ChainOperation op;
-        op.operationType = (*iter)[1].str();
-        operations.push_back(op);
-    }
+    // 绑定条件处理
+    ifThenElse.bind("$!", [](const std::string& condition) {
+        return condition.empty() ? "true" : condition;
+    });
     
-    return operations;
+    ifThenElse.bind("$!_", [](const std::string& thenBlock) {
+        return thenBlock.empty() ? "console.log('Then executed')" : thenBlock;
+    });
+    
+    ifThenElse.bind("$?_", [](const std::string& elseBlock) {
+        return elseBlock.empty() ? "console.log('Else executed')" : elseBlock;
+    });
+    
+    // 转换为JavaScript条件语句
+    ifThenElse.transform(
+        "if " + ifThenElse[0].getValue() + " { " +
+        ifThenElse[1].getValue() + " } else { " +
+        ifThenElse[2].getValue() + " } finally { " +
+        ifThenElse[3].getValue() + " }"
+    );
+    
+    std::string conditionalCode = CJMOD::CJMODGenerator::exportResult(ifThenElse);
+    
+    std::cout << "   🧠 生成的条件代码: " << conditionalCode << std::endl;
 }
 
-std::string UtilThenProcessor::CreateUtilObject() {
-    return GenerateAsyncChain({});
+void utilThen::createAdvancedUtilities() {
+    std::cout << "\n🚀 创建高级工具功能：" << std::endl;
+    
+    // 使用CJMOD创建多种高级工具
+    
+    // 1. 异步工具
+    CJMOD::CHTLJSFunction asyncUtil = CJMOD::CHTLJSFunction::CreateCHTLJSFunction(
+        "asyncThen {promise: $!_, success: $?_, error: $?_, finally: $?_}"
+    );
+    
+    // 2. 数据处理工具
+    CJMOD::CHTLJSFunction dataUtil = CJMOD::CHTLJSFunction::CreateCHTLJSFunction(
+        "processData {input: $!_, transform: $?_, validate: $?_, output: $?_}"
+    );
+    
+    // 3. 事件工具
+    CJMOD::CHTLJSFunction eventUtil = CJMOD::CHTLJSFunction::CreateCHTLJSFunction(
+        "handleEvent {target: $!_, events: ..., options: $?_}"
+    );
+    
+    // 4. 动画工具
+    CJMOD::CHTLJSFunction animateUtil = CJMOD::CHTLJSFunction::CreateCHTLJSFunction(
+        "animateThen {element: $!_, animation: $!_, duration: $?_, easing: $?_, complete: $?_}"
+    );
+    
+    std::cout << "   ✅ asyncThen: " << asyncUtil.getFunctionName() << "（vir支持: " << (asyncUtil.supportsVir() ? "是" : "否") << "）" << std::endl;
+    std::cout << "   ✅ processData: " << dataUtil.getFunctionName() << "（vir支持: " << (dataUtil.supportsVir() ? "是" : "否") << "）" << std::endl;
+    std::cout << "   ✅ handleEvent: " << eventUtil.getFunctionName() << "（vir支持: " << (eventUtil.supportsVir() ? "是" : "否") << "）" << std::endl;
+    std::cout << "   ✅ animateThen: " << animateUtil.getFunctionName() << "（vir支持: " << (animateUtil.supportsVir() ? "是" : "否") << "）" << std::endl;
+    
+    // 手动绑定更多虚对象支持
+    CJMOD::CHTLJSFunction::bindVirtualObject("thenChain");
+    CJMOD::CHTLJSFunction::bindVirtualObject("conditionalFlow");
+    CJMOD::CHTLJSFunction::bindVirtualObject("batchProcess");
+    
+    std::cout << "   🌟 所有工具函数现在都支持虚对象vir！" << std::endl;
 }
 
 } // namespace Chtholly
-} // namespace CJMOD

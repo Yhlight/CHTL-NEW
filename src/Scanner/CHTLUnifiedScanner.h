@@ -7,6 +7,9 @@
 #include <codecvt>
 #include <locale>
 
+// 前向声明
+class CJMODScannerPlugin;
+
 namespace CHTL {
 
 /**
@@ -79,6 +82,10 @@ private:
     
     // CHTL JS语法特征映射表
     std::unordered_map<std::string, bool> m_CHTLJSKeywords;
+    
+    // CJMOD扫描挂件（只有Import CJMOD后才启用）
+    bool m_CJMODEnabled;                                    // 是否启用CJMOD扫描
+    std::unique_ptr<CJMODScannerPlugin> m_CJMODPlugin; // CJMOD扫描插件
 
 public:
     /**
@@ -113,6 +120,23 @@ public:
      * 重置扫描器状态
      */
     void Reset();
+    
+    /**
+     * 启用CJMOD扫描挂件
+     * 只有Import CJMOD后才会调用此方法
+     */
+    void EnableCJMODScanning();
+    
+    /**
+     * 禁用CJMOD扫描挂件
+     */
+    void DisableCJMODScanning();
+    
+    /**
+     * 检查是否启用了CJMOD扫描
+     * @return 是否启用CJMOD
+     */
+    bool IsCJMODEnabled() const { return m_CJMODEnabled; }
     
     /**
      * 设置新的源代码

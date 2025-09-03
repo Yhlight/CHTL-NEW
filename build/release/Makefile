@@ -1702,6 +1702,30 @@ src/Scanner/CHTLUnifiedScanner.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLScanner.dir/build.make CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.s
 .PHONY : src/Scanner/CHTLUnifiedScanner.cpp.s
 
+src/Scanner/CJMODScannerPlugin.o: src/Scanner/CJMODScannerPlugin.cpp.o
+.PHONY : src/Scanner/CJMODScannerPlugin.o
+
+# target to build an object file
+src/Scanner/CJMODScannerPlugin.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLScanner.dir/build.make CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o
+.PHONY : src/Scanner/CJMODScannerPlugin.cpp.o
+
+src/Scanner/CJMODScannerPlugin.i: src/Scanner/CJMODScannerPlugin.cpp.i
+.PHONY : src/Scanner/CJMODScannerPlugin.i
+
+# target to preprocess a source file
+src/Scanner/CJMODScannerPlugin.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLScanner.dir/build.make CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.i
+.PHONY : src/Scanner/CJMODScannerPlugin.cpp.i
+
+src/Scanner/CJMODScannerPlugin.s: src/Scanner/CJMODScannerPlugin.cpp.s
+.PHONY : src/Scanner/CJMODScannerPlugin.s
+
+# target to generate assembly for a file
+src/Scanner/CJMODScannerPlugin.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLScanner.dir/build.make CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.s
+.PHONY : src/Scanner/CJMODScannerPlugin.cpp.s
+
 src/Test/CJMODRealAPITest.o: src/Test/CJMODRealAPITest.cpp.o
 .PHONY : src/Test/CJMODRealAPITest.o
 
@@ -2064,6 +2088,9 @@ help:
 	@echo "... src/Scanner/CHTLUnifiedScanner.o"
 	@echo "... src/Scanner/CHTLUnifiedScanner.i"
 	@echo "... src/Scanner/CHTLUnifiedScanner.s"
+	@echo "... src/Scanner/CJMODScannerPlugin.o"
+	@echo "... src/Scanner/CJMODScannerPlugin.i"
+	@echo "... src/Scanner/CJMODScannerPlugin.s"
 	@echo "... src/Test/CJMODRealAPITest.o"
 	@echo "... src/Test/CJMODRealAPITest.i"
 	@echo "... src/Test/CJMODRealAPITest.s"

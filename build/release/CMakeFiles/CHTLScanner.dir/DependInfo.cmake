@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/workspace/src/Scanner/CHTLUnifiedScanner.cpp" "CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.o" "gcc" "CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.o.d"
+  "/workspace/src/Scanner/CJMODScannerPlugin.cpp" "CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o" "gcc" "CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

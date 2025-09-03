@@ -1,20 +1,24 @@
 #include "CHTLUnifiedScanner.h"
+#include "CJMODScannerPlugin.h"
 #include <algorithm>
 #include <regex>
 #include <sstream>
+#include <iostream>
 
 namespace CHTL {
 
 CHTLUnifiedScanner::CHTLUnifiedScanner(const std::string& sourceCode)
     : m_SourceCode(sourceCode), m_CurrentPosition(0), m_CurrentLine(1), 
-      m_CurrentColumn(1), m_HasError(false) {
+      m_CurrentColumn(1), m_HasError(false), m_CJMODEnabled(false) {
     InitializeKeywordMaps();
+    m_CJMODPlugin = std::make_unique<CJMODScannerPlugin>();
 }
 
 CHTLUnifiedScanner::CHTLUnifiedScanner()
     : m_SourceCode(""), m_CurrentPosition(0), m_CurrentLine(1), 
-      m_CurrentColumn(1), m_HasError(false) {
+      m_CurrentColumn(1), m_HasError(false), m_CJMODEnabled(false) {
     InitializeKeywordMaps();
+    m_CJMODPlugin = std::make_unique<CJMODScannerPlugin>();
 }
 
 void CHTLUnifiedScanner::InitializeKeywordMaps() {
@@ -913,6 +917,21 @@ std::string CHTLUnifiedScanner::ReadUntilDelimiter() {
     return result;
 }
 
+void CHTLUnifiedScanner::EnableCJMODScanning() {
+    m_CJMODEnabled = true;
+    if (m_CJMODPlugin) {
+        m_CJMODPlugin->SetSourceCode(m_SourceCode);
+        m_CJMODPlugin->Activate();
+    }
+    std::cout << "🔥 统一扫描器：启用CJMOD扫描挂件" << std::endl;
+}
 
+void CHTLUnifiedScanner::DisableCJMODScanning() {
+    m_CJMODEnabled = false;
+    if (m_CJMODPlugin) {
+        m_CJMODPlugin->Deactivate();
+    }
+    std::cout << "⚪ 统一扫描器：禁用CJMOD扫描挂件" << std::endl;
+}
 
 } // namespace CHTL

@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.o"
   "CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.o.d"
+  "CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o"
+  "CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.o.d"
   "lib/libCHTLScanner.a"
   "lib/libCHTLScanner.pdb"
 )

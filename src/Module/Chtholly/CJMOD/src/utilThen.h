@@ -1,29 +1,39 @@
 #pragma once
 
 #include <string>
-#include <vector>
 
-namespace CJMOD {
 namespace Chtholly {
 
 /**
- * util...then功能头文件
- * 异步链式操作功能
+ * 珂朵莉模块CJMOD部分 - utilThen工具功能
+ * 使用CJMOD API实现强大的工具链和条件逻辑
+ * 严格按照CJMOD.md规范
  */
-
-struct ChainOperation {
-    std::string operationType;
-    std::string target;
-    std::unordered_map<std::string, std::string> parameters;
-};
-
-class UtilThenProcessor {
+class utilThen {
 public:
-    static std::string ProcessUtilThen(const std::string& chainCode);
-    static std::string GenerateAsyncChain(const std::vector<ChainOperation>& operations);
-    static std::vector<ChainOperation> ParseChainOperations(const std::string& code);
-    static std::string CreateUtilObject();
+    /**
+     * 设置CJMOD工具
+     * 使用CJMOD API创建强大的工具函数
+     */
+    static void setupCJMODUtilities();
+    
+    /**
+     * 演示链式操作功能
+     * 展示CJMOD的扫描和转换能力
+     */
+    static void demonstrateChainOperations();
+    
+    /**
+     * 演示条件逻辑功能
+     * 展示CJMOD的复杂语法处理能力
+     */
+    static void demonstrateConditionalLogic();
+    
+    /**
+     * 创建高级工具功能
+     * 使用CJMOD创建各种高级工具函数
+     */
+    static void createAdvancedUtilities();
 };
 
 } // namespace Chtholly
-} // namespace CJMOD

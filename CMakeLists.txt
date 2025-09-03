@@ -154,6 +154,7 @@ set(CJMOD_SOURCES
 
 set(SCANNER_SOURCES
     src/Scanner/CHTLUnifiedScanner.cpp
+    src/Scanner/CJMODScannerPlugin.cpp
 )
 
 set(CODE_MERGER_SOURCES
