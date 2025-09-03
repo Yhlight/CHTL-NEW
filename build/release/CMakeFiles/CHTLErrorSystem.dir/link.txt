@@ -1,2 +1,0 @@
-/usr/bin/ar qc lib/libCHTLErrorSystem.a CMakeFiles/CHTLErrorSystem.dir/src/Error/Error.cpp.o CMakeFiles/CHTLErrorSystem.dir/src/Error/ErrorHandler.cpp.o
-/usr/bin/ranlib lib/libCHTLErrorSystem.a

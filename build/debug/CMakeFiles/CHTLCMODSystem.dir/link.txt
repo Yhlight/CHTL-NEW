@@ -1,2 +1,0 @@
-/usr/bin/ar qc lib/libCHTLCMODSystem.a CMakeFiles/CHTLCMODSystem.dir/src/CHTL/CMODSystem/CMODManager.cpp.o
-/usr/bin/ranlib lib/libCHTLCMODSystem.a

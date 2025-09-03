@@ -1,2 +1,0 @@
-/usr/bin/ar qc lib/libCHTLUtilSystem.a CMakeFiles/CHTLUtilSystem.dir/src/Util/StringUtil/StringUtil.cpp.o CMakeFiles/CHTLUtilSystem.dir/src/Util/FileSystem/FileSystem.cpp.o
-/usr/bin/ranlib lib/libCHTLUtilSystem.a

@@ -1,1 +1,0 @@
-/usr/bin/clang++ -g -fsanitize=address -Xlinker --dependency-file=CMakeFiles/chtl_official_module_test.dir/link.d CMakeFiles/chtl_official_module_test.dir/src/Test/OfficialModuleCompleteTest.cpp.o -o bin/chtl_official_module_test  lib/libCJMOD.a lib/libCHTLModuleSystem.a lib/libCHTLUtilSystem.a lib/libCHTLJSCore.a lib/libCHTLScanner.a

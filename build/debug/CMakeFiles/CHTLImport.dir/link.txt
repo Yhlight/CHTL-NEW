@@ -1,2 +1,0 @@
-/usr/bin/ar qc lib/libCHTLImport.a CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o
-/usr/bin/ranlib lib/libCHTLImport.a

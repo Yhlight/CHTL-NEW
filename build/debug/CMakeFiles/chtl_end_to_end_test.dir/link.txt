@@ -1,1 +1,0 @@
-/usr/bin/clang++ -g -fsanitize=address -Xlinker --dependency-file=CMakeFiles/chtl_end_to_end_test.dir/link.d CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.o -o bin/chtl_end_to_end_test  lib/libCJMOD.a lib/libCHTLJSCore.a lib/libCHTLScanner.a

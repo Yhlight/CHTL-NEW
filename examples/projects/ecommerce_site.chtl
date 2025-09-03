@@ -1,0 +1,787 @@
+// 电商网站 - 展示CHTL在实际商业项目中的应用
+[Import] @Chtl from Chtholly
+[Import] @Chtl from Yuigahama
+
+[Namespace] EcommerceSite::Frontend
+
+[Configuration]
+{
+    DISABLE_STYLE_AUTO_ADD_CLASS = false;
+    DISABLE_STYLE_AUTO_ADD_ID = false;
+    DISABLE_SCRIPT_AUTO_ADD_CLASS = false;
+    DISABLE_SCRIPT_AUTO_ADD_ID = false;
+    ENABLE_CONTEXT_DEDUCTION = true;
+    SITE_NAME = "珂朵莉的幸福小店";
+    CURRENCY = "¥";
+    SHIPPING_FREE_THRESHOLD = 99;
+}
+
+[Template] @Style ProductLayout
+{
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+[Template] @Style ProductCard
+{
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+[Template] @Style PriceTag
+{
+    color: #e74c3c;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+[Template] @Var ShopColors
+{
+    brandPrimary: "#ff6b6b";
+    brandSecondary: "#4ecdc4";
+    priceColor: "#e74c3c";
+    saleColor: "#27ae60";
+    textDark: "#2c3e50";
+    bgLight: "#f8f9fa";
+}
+
+[Custom] @Style HotProduct
+{
+    @Style ProductCard;
+    // 特例化操作
+    border: 2px solid ShopColors(saleColor);
+    position: relative;
+}
+
+[Custom] @Style SaleTag
+{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: ShopColors(saleColor);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+[Custom] @Style ShoppingCart
+{
+    @Style ChthollyCard;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    z-index: 1000;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+html
+{
+    head
+    {
+        title
+        {
+            珂朵莉的幸福小店 - 传递温暖的商品
+        }
+        
+        meta
+        {
+            charset: "UTF-8";
+        }
+        
+        meta
+        {
+            name: "viewport";
+            content: "width=device-width, initial-scale=1.0";
+        }
+        
+        meta
+        {
+            name: "keywords";
+            content: "珂朵莉,幸福,商品,温暖,CHTL";
+        }
+    }
+    
+    body
+    {
+        // 页面头部
+        header
+        {
+            style
+            {
+                @Style ChthollyHeader;
+                position: relative;
+            }
+            
+            div
+            {
+                style
+                {
+                    @Style ProductLayout;
+                }
+                
+                h1
+                {
+                    text { 🌸 珂朵莉的幸福小店 }
+                }
+                
+                p
+                {
+                    text { 用心挑选每一件商品，为你带来温暖和幸福 }
+                }
+                
+                nav
+                {
+                    style
+                    {
+                        .main-nav
+                        {
+                            display: flex;
+                            justify-content: center;
+                            gap: 30px;
+                            margin-top: 20px;
+                        }
+                    }
+                    
+                    a
+                    {
+                        href: "#products";
+                        
+                        style
+                        {
+                            @Style ChthollyButton;
+                            text-decoration: none;
+                        }
+                        
+                        text { 🛍️ 浏览商品 }
+                    }
+                    
+                    a
+                    {
+                        href: "#about";
+                        
+                        style
+                        {
+                            @Style ChthollyButton;
+                            background: ShopColors(brandSecondary);
+                            text-decoration: none;
+                        }
+                        
+                        text { 💝 关于小店 }
+                    }
+                }
+            }
+        }
+        
+        // 购物车
+        div
+        {
+            id: shopping-cart;
+            
+            style
+            {
+                @Style ShoppingCart;
+                display: none;
+            }
+            
+            h3
+            {
+                style
+                {
+                    margin: 0 0 20px 0;
+                    color: ShopColors(textDark);
+                }
+                
+                text { 🛒 购物车 }
+            }
+            
+            div
+            {
+                id: cart-items;
+                
+                style
+                {
+                    margin-bottom: 20px;
+                }
+                
+                text { 购物车是空的 }
+            }
+            
+            div
+            {
+                style
+                {
+                    .cart-total
+                    {
+                        border-top: 2px solid ShopColors(brandPrimary);
+                        padding-top: 15px;
+                        font-weight: bold;
+                    }
+                }
+                
+                text { 总计: ¥0.00 }
+            }
+            
+            button
+            {
+                id: checkout-btn;
+                
+                style
+                {
+                    @Style ChthollyButton;
+                    width: 100%;
+                    margin-top: 15px;
+                }
+                
+                text { 💳 结算 }
+            }
+        }
+        
+        // 商品展示区域
+        main
+        {
+            id: products;
+            
+            style
+            {
+                @Style ProductLayout;
+                padding-top: 40px;
+            }
+            
+            h2
+            {
+                style
+                {
+                    text-align: center;
+                    margin-bottom: 40px;
+                    color: ShopColors(textDark);
+                }
+                
+                text { 🌟 精选商品 }
+            }
+            
+            div
+            {
+                style
+                {
+                    .products-grid
+                    {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                        gap: 30px;
+                    }
+                }
+                
+                // 热销商品
+                div
+                {
+                    class: product-item;
+                    data-product: "chtholly-charm";
+                    data-price: "299";
+                    
+                    style
+                    {
+                        @Style HotProduct;
+                    }
+                    
+                    div
+                    {
+                        style
+                        {
+                            @Style SaleTag;
+                        }
+                        
+                        text { 🔥 热销 }
+                    }
+                    
+                    img
+                    {
+                        src: "chtholly-charm.jpg";
+                        alt: "珂朵莉护身符";
+                        
+                        style
+                        {
+                            width: 100%;
+                            height: 200px;
+                            object-fit: cover;
+                        }
+                    }
+                    
+                    div
+                    {
+                        style
+                        {
+                            padding: 20px;
+                        }
+                        
+                        h3
+                        {
+                            style
+                            {
+                                margin: 0 0 10px 0;
+                                color: ShopColors(textDark);
+                            }
+                            
+                            text { 💎 珂朵莉护身符 }
+                        }
+                        
+                        p
+                        {
+                            style
+                            {
+                                color: #666;
+                                margin-bottom: 15px;
+                                line-height: 1.5;
+                            }
+                            
+                            text { 蕴含珂朵莉守护力量的精美护身符，为你带来幸福和平安。 }
+                        }
+                        
+                        div
+                        {
+                            style
+                            {
+                                @Style PriceTag;
+                            }
+                            
+                            text { ¥299.00 }
+                        }
+                        
+                        button
+                        {
+                            class: add-to-cart-btn;
+                            
+                            style
+                            {
+                                @Style ChthollyButton;
+                                width: 100%;
+                            }
+                            
+                            text { 🛒 加入购物车 }
+                        }
+                    }
+                }
+                
+                // 普通商品
+                div
+                {
+                    class: product-item;
+                    data-product: "yui-diary";
+                    data-price: "89";
+                    
+                    style
+                    {
+                        @Style ProductCard;
+                    }
+                    
+                    img
+                    {
+                        src: "yui-diary.jpg";
+                        alt: "由比滨日记本";
+                        
+                        style
+                        {
+                            width: 100%;
+                            height: 200px;
+                            object-fit: cover;
+                        }
+                    }
+                    
+                    div
+                    {
+                        style
+                        {
+                            padding: 20px;
+                        }
+                        
+                        h3
+                        {
+                            text { 📔 由比滨友情日记本 }
+                        }
+                        
+                        p
+                        {
+                            style
+                            {
+                                color: #666;
+                                margin-bottom: 15px;
+                            }
+                            
+                            text { 记录美好友情时光的精美日记本，每一页都充满温暖。 }
+                        }
+                        
+                        div
+                        {
+                            style
+                            {
+                                @Style PriceTag;
+                            }
+                            
+                            text { ¥89.00 }
+                        }
+                        
+                        button
+                        {
+                            class: add-to-cart-btn;
+                            
+                            style
+                            {
+                                @Style YuigahamaButton;
+                                width: 100%;
+                            }
+                            
+                            text { 🛒 加入购物车 }
+                        }
+                    }
+                }
+                
+                div
+                {
+                    class: product-item;
+                    data-product: "happiness-tea";
+                    data-price: "158";
+                    
+                    style
+                    {
+                        @Style ProductCard;
+                    }
+                    
+                    div
+                    {
+                        style
+                        {
+                            padding: 20px;
+                        }
+                        
+                        h3
+                        {
+                            text { 🍵 幸福花茶礼盒 }
+                        }
+                        
+                        p
+                        {
+                            text { 精选花茶，每一口都是幸福的味道，温暖你的心田。 }
+                        }
+                        
+                        div
+                        {
+                            style
+                            {
+                                @Style PriceTag;
+                            }
+                            
+                            text { ¥158.00 }
+                        }
+                        
+                        button
+                        {
+                            class: add-to-cart-btn;
+                            text { 🛒 加入购物车 }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 页脚
+        footer
+        {
+            style
+            {
+                background: ShopColors(textDark);
+                color: white;
+                text-align: center;
+                padding: 40px 20px;
+                margin-top: 60px;
+            }
+            
+            p
+            {
+                text { 🌸 珂朵莉的幸福小店 - 用心传递每一份温暖 }
+            }
+            
+            p
+            {
+                style
+                {
+                    margin-top: 20px;
+                    font-size: 0.9em;
+                    opacity: 0.8;
+                }
+                
+                text { 客服电话: 400-CHTL-LOVE | 营业时间: 每天 9:00-21:00 }
+            }
+        }
+        
+        // 全局样式
+        style
+        {
+            body
+            {
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                font-family: 'Microsoft YaHei', sans-serif;
+            }
+            
+            .product-item:hover
+            {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            }
+            
+            .main-nav a:hover
+            {
+                transform: scale(1.05);
+            }
+        }
+        
+        // 局部script - 电商功能
+        script
+        {
+            console.log('🛍️ 珂朵莉的幸福小店加载完成');
+            
+            // 购物车数据
+            let cartItems = [];
+            let cartTotal = 0;
+            
+            // 显示购物车
+            function showCart() {
+                {{#shopping-cart}}->style.display = 'block';
+            }
+            
+            // 隐藏购物车
+            function hideCart() {
+                {{#shopping-cart}}->style.display = 'none';
+            }
+            
+            // 更新购物车显示
+            function updateCartDisplay() {
+                const cartItemsContainer = {{#cart-items}};
+                const cartTotalElement = {{.cart-total}};
+                
+                if (cartItems.length === 0) {
+                    cartItemsContainer->innerHTML = '购物车是空的';
+                } else {
+                    let itemsHtml = '';
+                    cartItems.forEach(item => {
+                        itemsHtml += `
+                            <div class="cart-item">
+                                <span>${item.name}</span>
+                                <span>¥${item.price}</span>
+                            </div>
+                        `;
+                    });
+                    cartItemsContainer->innerHTML = itemsHtml;
+                }
+                
+                cartTotalElement->textContent = `总计: ¥${cartTotal.toFixed(2)}`;
+            }
+            
+            // &->事件绑定操作符 - 添加到购物车
+            {{.add-to-cart-btn}} &-> click {
+                const productItem = this.closest('.product-item');
+                const productName = productItem.querySelector('h3')->textContent;
+                const productPrice = parseFloat(productItem.dataset.price);
+                
+                // 添加到购物车
+                cartItems.push({
+                    name: productName,
+                    price: productPrice
+                });
+                
+                cartTotal += productPrice;
+                updateCartDisplay();
+                showCart();
+                
+                console.log('🛒 商品已添加到购物车:', productName);
+                
+                // 添加成功动画
+                this.textContent = '✅ 已添加';
+                this.style.background = ShopColors(saleColor);
+                
+                setTimeout(() => {
+                    this.textContent = '🛒 加入购物车';
+                    this.style.background = '';
+                }, 1500);
+            }
+            
+            // listen增强监听器 - 商品悬停效果
+            {{.product-item}}->listen {
+                mouseenter: function() {
+                    console.log('👀 查看商品:', this.dataset.product);
+                    
+                    // 显示商品详情提示
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'product-tooltip';
+                    tooltip.innerHTML = '点击查看详情';
+                    tooltip.style.cssText = `
+                        position: absolute;
+                        background: rgba(0,0,0,0.8);
+                        color: white;
+                        padding: 8px 12px;
+                        border-radius: 4px;
+                        font-size: 0.9em;
+                        z-index: 100;
+                        top: 10px;
+                        left: 10px;
+                    `;
+                    this.appendChild(tooltip);
+                },
+                
+                mouseleave: function() {
+                    const tooltip = this.querySelector('.product-tooltip');
+                    if (tooltip) {
+                        tooltip.remove();
+                    }
+                },
+                
+                click: function() {
+                    const productName = this.querySelector('h3')->textContent;
+                    const productPrice = this.dataset.price;
+                    
+                    alert(`📱 商品详情\n\n${productName}\n价格: ¥${productPrice}\n\n✨ 这是珂朵莉精心挑选的商品，每一件都承载着满满的爱意和祝福。`);
+                }
+            };
+            
+            // delegate事件委托 - 购物车管理
+            {{#shopping-cart}}->delegate {
+                target: {{.cart-item}},
+                dblclick: function(event) {
+                    if (confirm('确定要从购物车中移除这件商品吗？')) {
+                        const itemElement = event.target.closest('.cart-item');
+                        const itemName = itemElement.querySelector('span')->textContent;
+                        
+                        // 从购物车数组中移除
+                        const itemIndex = cartItems.findIndex(item => item.name === itemName);
+                        if (itemIndex !== -1) {
+                            cartTotal -= cartItems[itemIndex].price;
+                            cartItems.splice(itemIndex, 1);
+                            updateCartDisplay();
+                            console.log('🗑️ 商品已从购物车移除:', itemName);
+                        }
+                    }
+                }
+            };
+            
+            // animate动画 - 页面加载动画
+            const pageLoadAnim = animate {
+                target: {{.products-grid}},
+                duration: 1200,
+                easing: ease-out,
+                delay: 300,
+                
+                begin: {
+                    opacity: 0,
+                    transform: 'translateY(80px)'
+                },
+                
+                when: [
+                    {
+                        at: 0.4;
+                        opacity: 0.4,
+                        transform: 'translateY(40px)'
+                    },
+                    {
+                        at: 0.8;
+                        opacity: 0.8,
+                        transform: 'translateY(10px)'
+                    }
+                ],
+                
+                end: {
+                    opacity: 1,
+                    transform: 'translateY(0)'
+                },
+                
+                callback: function() {
+                    console.log('🎨 商品展示动画完成');
+                }
+            };
+            
+            // vir虚对象 - 商店控制器
+            vir ShopController = listen {
+                showCart: function() {
+                    showCart();
+                },
+                
+                hideCart: function() {
+                    hideCart();
+                },
+                
+                clearCart: function() {
+                    cartItems = [];
+                    cartTotal = 0;
+                    updateCartDisplay();
+                    console.log('🧹 购物车已清空');
+                },
+                
+                getCartInfo: {
+                    items: cartItems,
+                    total: cartTotal,
+                    count: cartItems.length
+                },
+                
+                checkout: function() {
+                    if (cartItems.length === 0) {
+                        alert('🛒 购物车是空的，请先添加商品');
+                        return;
+                    }
+                    
+                    const orderSummary = cartItems.map(item => 
+                        `${item.name} - ¥${item.price}`
+                    ).join('\n');
+                    
+                    const shippingFee = cartTotal >= SHIPPING_FREE_THRESHOLD ? 0 : 15;
+                    const finalTotal = cartTotal + shippingFee;
+                    
+                    const message = `🛍️ 订单确认\n\n${orderSummary}\n\n商品总计: ¥${cartTotal.toFixed(2)}\n运费: ¥${shippingFee.toFixed(2)}\n最终总计: ¥${finalTotal.toFixed(2)}\n\n💝 珂朵莉说：谢谢你的购买，愿这些商品为你带来幸福！`;
+                    
+                    if (confirm(message + '\n\n确定要提交订单吗？')) {
+                        alert('✅ 订单提交成功！\n订单号: CHTL' + Date.now());
+                        ShopController->clearCart();
+                        hideCart();
+                    }
+                }
+            };
+            
+            // 结算按钮事件
+            {{#checkout-btn}}->addEventListener('click', () => {
+                ShopController->checkout();
+            });
+            
+            // 购物车切换
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    hideCart();
+                }
+                
+                if (event.ctrlKey && event.key === 'c') {
+                    event.preventDefault();
+                    ShopController->showCart();
+                }
+            });
+            
+            // 页面初始化
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('🏪 电商网站初始化完成');
+                console.log('🛒 购物车功能已就绪');
+                console.log('💳 支付系统已连接');
+                
+                // 欢迎消息
+                setTimeout(() => {
+                    alert('🌸 欢迎来到珂朵莉的幸福小店！\n\n在这里，每一件商品都承载着满满的爱意。\n按Ctrl+C打开购物车，ESC关闭购物车。');
+                }, 1000);
+            });
+        }
+    }
+}

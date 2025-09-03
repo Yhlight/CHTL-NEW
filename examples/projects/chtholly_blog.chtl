@@ -1,0 +1,771 @@
+// 珂朵莉个人博客 - 大型项目演示，使用所有语法特征
+[Import] @Chtl from Chtholly
+
+[Namespace] ChthollyBlog
+
+[Configuration]
+{
+    DISABLE_STYLE_AUTO_ADD_CLASS = false;
+    DISABLE_STYLE_AUTO_ADD_ID = false;
+    DISABLE_SCRIPT_AUTO_ADD_CLASS = true;
+    DISABLE_SCRIPT_AUTO_ADD_ID = true;
+    THEME_COLOR = "#ff6b6b";
+    ENABLE_ANIMATIONS = true;
+    BLOG_TITLE = "珂朵莉的心语世界";
+}
+
+[Template] @Style BlogLayout
+{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+    line-height: 1.6;
+}
+
+[Template] @Style ArticleCard
+{
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 30px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    border-left: 4px solid ChthollyColors(primaryColor);
+    transition: all 0.3s ease;
+}
+
+[Template] @Var BlogColors
+{
+    headerBg: "linear-gradient(135deg, #ff6b6b, #4ecdc4, #ffd93d)";
+    cardBg: "#ffffff";
+    textPrimary: "#2c3e50";
+    textSecondary: "#7f8c8d";
+    accentColor: "#e74c3c";
+}
+
+[Custom] @Style FeaturedArticle
+{
+    @Style ArticleCard;
+    // 特例化操作 - 删除和修改
+    delete margin;
+    border-left: 6px solid BlogColors(accentColor);
+    background: linear-gradient(135deg, #fff 0%, #ffe8e8 100%);
+    transform: scale(1.02);
+}
+
+[Custom] @Style NavigationMenu
+{
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+// 无值样式组
+[Custom] @Style ResetStyles
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html
+{
+    head
+    {
+        title
+        {
+            珂朵莉的心语世界 - 个人博客
+        }
+        
+        meta
+        {
+            charset: "UTF-8";
+        }
+        
+        meta
+        {
+            name: "viewport";
+            content: "width=device-width, initial-scale=1.0";
+        }
+        
+        meta
+        {
+            name: "description";
+            content: "珂朵莉·诺塔·塞尼欧里斯的个人博客，分享关于爱、守护和幸福的思考";
+        }
+    }
+    
+    body
+    {
+        style
+        {
+            @Style ResetStyles;
+        }
+        
+        // 导航栏
+        nav
+        {
+            style
+            {
+                @Style NavigationMenu;
+            }
+            
+            div
+            {
+                style
+                {
+                    @Style BlogLayout;
+                    .nav-content
+                    {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    }
+                }
+                
+                div
+                {
+                    class: nav-brand;
+                    
+                    h1
+                    {
+                        style
+                        {
+                            color: ChthollyColors(primaryColor);
+                            font-size: 1.5em;
+                            margin: 0;
+                        }
+                        
+                        text { 🌸 珂朵莉的心语世界 }
+                    }
+                }
+                
+                ul
+                {
+                    style
+                    {
+                        .nav-links
+                        {
+                            display: flex;
+                            list-style: none;
+                            gap: 30px;
+                            margin: 0;
+                            padding: 0;
+                        }
+                    }
+                    
+                    li
+                    {
+                        a
+                        {
+                            href: "#home";
+                            
+                            style
+                            {
+                                color: BlogColors(textPrimary);
+                                text-decoration: none;
+                                font-weight: 500;
+                                transition: color 0.3s ease;
+                            }
+                            
+                            text { 首页 }
+                        }
+                    }
+                    
+                    li
+                    {
+                        a
+                        {
+                            href: "#articles";
+                            text { 文章 }
+                        }
+                    }
+                    
+                    li
+                    {
+                        a
+                        {
+                            href: "#memories";
+                            text { 回忆 }
+                        }
+                    }
+                    
+                    li
+                    {
+                        a
+                        {
+                            href: "#about";
+                            text { 关于我 }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 主要内容区域
+        main
+        {
+            style
+            {
+                @Style BlogLayout;
+                margin-top: 100px;
+            }
+            
+            // 博客头部
+            header
+            {
+                id: home;
+                
+                style
+                {
+                    @Style ChthollyHeader;
+                    margin-bottom: 50px;
+                }
+                
+                h1
+                {
+                    text { 💝 欢迎来到我的心语世界 }
+                }
+                
+                p
+                {
+                    text { 我是珂朵莉·诺塔·塞尼欧里斯，在这里分享我的思考、回忆和对幸福的追求 }
+                }
+                
+                button
+                {
+                    id: love-message-btn;
+                    
+                    style
+                    {
+                        @Style ChthollyButton;
+                    }
+                    
+                    text { 💌 给你的爱意留言 }
+                }
+            }
+            
+            // 特色文章
+            section
+            {
+                id: featured;
+                
+                h2
+                {
+                    style
+                    {
+                        color: BlogColors(textPrimary);
+                        text-align: center;
+                        margin-bottom: 40px;
+                    }
+                    
+                    text { ✨ 特色文章 }
+                }
+                
+                article
+                {
+                    style
+                    {
+                        @Style FeaturedArticle;
+                    }
+                    
+                    h3
+                    {
+                        text { 🌸 关于成为世界上最幸福的女孩 }
+                    }
+                    
+                    p
+                    {
+                        text { 幸福不是拥有多少，而是珍惜当下的每一个瞬间。当我看到重要的人们安全快乐地生活着，我就觉得自己是世界上最幸福的女孩。 }
+                    }
+                    
+                    p
+                    {
+                        text { 即使明天充满未知，即使前路布满荆棘，只要心中有爱，就能找到属于自己的幸福。 }
+                    }
+                    
+                    div
+                    {
+                        style
+                        {
+                            text-align: right;
+                            margin-top: 20px;
+                            font-style: italic;
+                            color: BlogColors(textSecondary);
+                        }
+                        
+                        text { — 珂朵莉 }
+                    }
+                }
+            }
+            
+            // 文章列表
+            section
+            {
+                id: articles;
+                
+                h2
+                {
+                    style
+                    {
+                        color: BlogColors(textPrimary);
+                        margin-bottom: 30px;
+                    }
+                    
+                    text { 📚 最新文章 }
+                }
+                
+                article
+                {
+                    style
+                    {
+                        @Style ArticleCard;
+                    }
+                    
+                    h3
+                    {
+                        text { 🛡️ 关于守护的意义 }
+                    }
+                    
+                    p
+                    {
+                        text { 守护不是占有，而是默默地在背后支撑。真正的守护是让被守护的人能够自由地追求自己的幸福。 }
+                    }
+                    
+                    div
+                    {
+                        style
+                        {
+                            .article-meta
+                            {
+                                display: flex;
+                                justify-content: space-between;
+                                margin-top: 20px;
+                                font-size: 0.9em;
+                                color: BlogColors(textSecondary);
+                            }
+                        }
+                        
+                        span
+                        {
+                            text { 2024年1月15日 }
+                        }
+                        
+                        span
+                        {
+                            text { #守护 #爱意 #幸福 }
+                        }
+                    }
+                }
+                
+                article
+                {
+                    style
+                    {
+                        @Style ArticleCard;
+                    }
+                    
+                    h3
+                    {
+                        text { ☀️ 黄油蛋糕的回忆 }
+                    }
+                    
+                    p
+                    {
+                        text { 那是我第一次品尝到如此美味的黄油蛋糕。甜腻的味道在舌尖绽放，就像幸福的感觉一样温暖。 }
+                    }
+                    
+                    p
+                    {
+                        text { 威廉说，这是他为我特制的。那一刻，我真的觉得自己是世界上最幸福的女孩。 }
+                    }
+                }
+            }
+            
+            // 回忆相册
+            section
+            {
+                id: memories;
+                
+                h2
+                {
+                    style
+                    {
+                        color: BlogColors(textPrimary);
+                        margin-bottom: 30px;
+                    }
+                    
+                    text { 📸 珍贵回忆 }
+                }
+                
+                div
+                {
+                    @Element FourLeafAlbum;
+                    
+                    style
+                    {
+                        margin: 40px auto;
+                    }
+                    
+                    div
+                    {
+                        class: memory-item;
+                        
+                        style
+                        {
+                            .memory-caption
+                            {
+                                position: absolute;
+                                bottom: 10px;
+                                left: 10px;
+                                right: 10px;
+                                background: rgba(0,0,0,0.7);
+                                color: white;
+                                padding: 8px;
+                                border-radius: 4px;
+                                font-size: 0.9em;
+                                text-align: center;
+                            }
+                        }
+                        
+                        div
+                        {
+                            class: memory-caption;
+                            
+                            text { 初遇的天空 }
+                        }
+                    }
+                    
+                    div
+                    {
+                        class: memory-item;
+                        
+                        div
+                        {
+                            class: memory-caption;
+                            
+                            text { 黄油蛋糕 }
+                        }
+                    }
+                    
+                    div
+                    {
+                        class: memory-item;
+                        
+                        div
+                        {
+                            class: memory-caption;
+                            
+                            text { 天空的约定 }
+                        }
+                    }
+                    
+                    div
+                    {
+                        class: memory-item;
+                        
+                        div
+                        {
+                            class: memory-caption;
+                            
+                            text { 最后的微笑 }
+                        }
+                    }
+                }
+            }
+            
+            // 关于我
+            section
+            {
+                id: about;
+                
+                style
+                {
+                    @Style ArticleCard;
+                }
+                
+                h2
+                {
+                    text { 💫 关于珂朵莉 }
+                }
+                
+                p
+                {
+                    text { 我是珂朵莉·诺塔·塞尼欧里斯，妖精兵器第68号。虽然拥有强大的力量，但我更愿意用这力量来保护重要的人。 }
+                }
+                
+                p
+                {
+                    text { 我的梦想很简单：成为世界上最幸福的女孩。不是因为拥有什么，而是因为能够爱着，能够被爱着。 }
+                }
+                
+                div
+                {
+                    style
+                    {
+                        .character-info
+                        {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                            gap: 20px;
+                            margin: 30px 0;
+                        }
+                    }
+                    
+                    div
+                    {
+                        style
+                        {
+                            .info-item
+                            {
+                                background: #f8f9fa;
+                                padding: 15px;
+                                border-radius: 8px;
+                                border-left: 3px solid ChthollyColors(secondaryColor);
+                            }
+                        }
+                        
+                        strong
+                        {
+                            text { 外貌特征： }
+                        }
+                        
+                        text { 美丽的红色长发，翠绿色眼睛 }
+                    }
+                    
+                    div
+                    {
+                        style
+                        {
+                            .info-item
+                            {
+                                border-left-color: ChthollyColors(accentColor);
+                            }
+                        }
+                        
+                        strong
+                        {
+                            text { 性格特点： }
+                        }
+                        
+                        text { 温柔善良，勇敢坚强，充满爱心 }
+                    }
+                    
+                    div
+                    {
+                        style
+                        {
+                            .info-item
+                            {
+                                border-left-color: ChthollyColors(primaryColor);
+                            }
+                        }
+                        
+                        strong
+                        {
+                            text { 最大愿望： }
+                        }
+                        
+                        text { 成为世界上最幸福的女孩 }
+                    }
+                }
+            }
+        }
+        
+        // 页脚
+        footer
+        {
+            style
+            {
+                background: BlogColors(headerBg);
+                color: white;
+                text-align: center;
+                padding: 40px 20px;
+                margin-top: 60px;
+            }
+            
+            p
+            {
+                text { 💝 "愿所有人都能找到属于自己的幸福" }
+            }
+            
+            p
+            {
+                style
+                {
+                    font-size: 0.9em;
+                    margin-top: 20px;
+                    opacity: 0.8;
+                }
+                
+                text { © 2024 珂朵莉·诺塔·塞尼欧里斯 | 由CHTL编译器强力驱动 }
+            }
+        }
+        
+        // 全局样式
+        style
+        {
+            body
+            {
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                min-height: 100vh;
+            }
+            
+            .nav-links a:hover
+            {
+                color: ChthollyColors(primaryColor);
+            }
+            
+            .memory-item
+            {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .memory-item:hover .memory-caption
+            {
+                background: rgba(255, 107, 107, 0.9);
+            }
+        }
+        
+        // 局部script - 严格按文档语法
+        script
+        {
+            console.log('🌸 珂朵莉博客加载完成');
+            
+            // 使用增强选择器
+            {{#love-message-btn}}->addEventListener('click', () => {
+                console.log('💌 爱意留言功能');
+                const message = prompt('请写下你想对珂朵莉说的话：', '');
+                if (message) {
+                    alert(`💝 珂朵莉收到了你的留言：\n"${message}"\n\n珂朵莉说：谢谢你的话语，愿你也能找到属于自己的幸福！`);
+                }
+            });
+            
+            // &->事件绑定操作符
+            {{.nav-links a}} &-> click {
+                // 平滑滚动到对应section
+                const target = this.getAttribute('href');
+                if (target.startsWith('#')) {
+                    const element = document.querySelector(target);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }
+            
+            // listen增强监听器
+            {{.article-card}}->listen {
+                mouseenter: function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 8px 30px rgba(0,0,0,0.15)';
+                },
+                
+                mouseleave: function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+                }
+            };
+            
+            // delegate事件委托
+            {{main}}->delegate {
+                target: {{.memory-item}},
+                click: function(event) {
+                    const caption = event.currentTarget.querySelector('.memory-caption');
+                    if (caption) {
+                        alert(`📸 ${caption.textContent}\n\n这是珂朵莉珍贵的回忆之一...`);
+                    }
+                },
+                
+                mouseenter: function(event) {
+                    console.log('🖼️ 悬停在回忆上:', event.currentTarget);
+                }
+            };
+            
+            // animate动画系统
+            const headerAnim = animate {
+                target: {{header}},
+                duration: 1500,
+                easing: ease-out,
+                
+                begin: {
+                    opacity: 0,
+                    transform: 'translateY(-50px)'
+                },
+                
+                when: [
+                    {
+                        at: 0.5;
+                        opacity: 0.7,
+                        transform: 'translateY(-20px)'
+                    }
+                ],
+                
+                end: {
+                    opacity: 1,
+                    transform: 'translateY(0)'
+                },
+                
+                callback: function() {
+                    console.log('🎭 头部动画完成');
+                    
+                    // 链式动画 - 文章卡片
+                    const articleAnim = animate {
+                        target: {{.article-card}},
+                        duration: 800,
+                        delay: 200,
+                        
+                        begin: {
+                            opacity: 0,
+                            transform: 'scale(0.95)'
+                        },
+                        
+                        end: {
+                            opacity: 1,
+                            transform: 'scale(1)'
+                        }
+                    };
+                }
+            };
+            
+            // vir虚对象演示
+            vir BlogController = listen {
+                scrollToTop: function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                },
+                
+                toggleTheme: function() {
+                    document.body.classList.toggle('dark-theme');
+                },
+                
+                showLoveMessage: function() {
+                    alert('💝 珂朵莉说：谢谢你访问我的博客，愿你每天都充满幸福！');
+                }
+            };
+            
+            // 页面加载完成后的初始化
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('📄 珂朵莉博客页面加载完成');
+                
+                // 显示欢迎消息
+                setTimeout(() => {
+                    BlogController->showLoveMessage();
+                }, 2000);
+                
+                // 添加返回顶部功能
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 500) {
+                        // 显示返回顶部按钮的逻辑
+                        console.log('📜 滚动超过500px，可显示返回顶部按钮');
+                    }
+                });
+            });
+        }
+    }
+}
