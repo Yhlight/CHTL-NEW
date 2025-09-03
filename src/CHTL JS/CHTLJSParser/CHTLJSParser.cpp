@@ -12,6 +12,13 @@ CHTLJSParser::CHTLJSParser(const std::string& sourceCode)
     m_Lexer = std::make_unique<CHTLJSLexer>(sourceCode);
 }
 
+CHTLJSParser::CHTLJSParser()
+    : m_CurrentTokenIndex(0), m_HasError(false), m_StrictCHTLJSMode(true), 
+      m_ValidateSelectors(true), m_ProcessVirtualObjects(true) {
+    
+    m_Lexer = std::make_unique<CHTLJSLexer>("");
+}
+
 CHTLJSParseResult CHTLJSParser::Parse() {
     CHTLJSParseResult result;
     Reset();

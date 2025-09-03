@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/workspace/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp" "CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o" "gcc" "CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o.d"
+  "/workspace/src/CompilerDispatcher/CompilerDispatcher.cpp" "CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o" "gcc" "CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

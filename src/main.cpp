@@ -255,7 +255,7 @@ int main(int argc, char* argv[]) {
         std::cout << "步骤3: 生成输出文件..." << std::endl;
         std::cout << "  HTML内容长度: " << result.HTMLContent.length() << " 字符" << std::endl;
         std::cout << "  CSS内容长度: " << result.CSSContent.length() << " 字符" << std::endl;
-        std::cout << "  JavaScript内容长度: " << result.JavaScriptContent.length() << " 字符" << std::endl;
+        std::cout << "  JavaScript内容长度: " << result.JSContent.length() << " 字符" << std::endl;
         
         // 4. 写入输出文件
         WriteFileUTF8(outputFile, result.FullHTML);

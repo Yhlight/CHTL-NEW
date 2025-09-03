@@ -104,6 +104,11 @@ bin/chtl: lib/libCHTLConstraint.a
 bin/chtl: lib/libCHTLCore.a
 bin/chtl: lib/libCHTLJSCore.a
 bin/chtl: lib/libCHTLScanner.a
+bin/chtl: lib/libCHTLErrorSystem.a
+bin/chtl: lib/libCHTLUtilSystem.a
+bin/chtl: lib/libCHTLCSSCompiler.a
+bin/chtl: lib/libCHTLJSCompiler.a
+bin/chtl: /workspace/thirdparty/antlr/antlr4-4.13.2/runtime/Cpp/build/runtime/libantlr4-runtime.so
 bin/chtl: CMakeFiles/chtl.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/chtl"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chtl.dir/link.txt --verbose=$(VERBOSE)

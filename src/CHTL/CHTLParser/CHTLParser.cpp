@@ -15,6 +15,13 @@ CHTLParser::CHTLParser(const std::string& sourceCode)
     m_Lexer = std::make_unique<CHTLLexer>(sourceCode);
 }
 
+CHTLParser::CHTLParser()
+    : m_CurrentTokenIndex(0), m_HasError(false), m_StrictMode(true), 
+      m_ValidateConstraints(true), m_ProcessInheritance(true) {
+    
+    m_Lexer = std::make_unique<CHTLLexer>("");
+}
+
 ParseResult CHTLParser::Parse() {
     ParseResult result;
     Reset();

@@ -17,9 +17,11 @@
 
 namespace CHTL {
 
-// 前向声明
+// 条件前向声明 - 仅在ANTLR可用时包含
+#ifdef CHTL_WITH_ANTLR
 class CSSCompiler;
 class JavaScriptCompiler;
+#endif
 
 /**
  * 编译结果结构
@@ -38,24 +40,29 @@ struct CompilationResult {
 };
 
 /**
- * 合并后的编译结果
- * 存储最终的HTML输出结果
+ * 合并编译结果
+ * 包含最终的HTML、CSS、JavaScript内容
  */
 struct MergedCompilationResult {
     std::string HTMLContent;            // HTML内容
-    std::string CSSContent;             // CSS内容
-    std::string JavaScriptContent;      // JavaScript内容
+    std::string CSSContent;             // CSS内容  
+    std::string JSContent;              // JavaScript内容
     std::string FullHTML;               // 完整的HTML文档
-    bool IsSuccess;                     // 是否编译成功
-    std::vector<std::string> Errors;    // 错误列表
-    std::vector<std::string> Warnings;  // 警告列表
+    bool IsSuccess;                     // 是否成功
+    std::string ErrorMessage;           // 错误信息
+    std::vector<std::string> Warnings;  // 警告信息
     
     MergedCompilationResult() : IsSuccess(false) {}
 };
 
 /**
- * 编译器调度器
- * 协调CHTLUnifiedScanner和四个编译器的工作
+ * CHTL编译器调度器
+ * 
+ * 负责协调多个编译器的工作，包括：
+ * - CHTL编译器（手写）
+ * - CHTL JS编译器（手写）
+ * - CSS编译器（ANTLR）
+ * - JavaScript编译器（ANTLR）
  * 
  * 工作流程：
  * 1. 使用CHTLUnifiedScanner切割代码片段
@@ -71,10 +78,13 @@ private:
     std::unique_ptr<CHTLJS::CHTLJSParser> m_CHTLJSParser;  // CHTL JS解析器
     std::unique_ptr<CHTLJS::CHTLJSGenerator> m_CHTLJSGenerator; // CHTL JS生成器
     std::unique_ptr<CHTLCodeMerger> m_CodeMerger;          // 代码合并器（关键组件）
-    // 暂时注释CJMOD管理器
     std::unique_ptr<CJMOD::CJMODManager> m_CJMODManager;   // CJMOD管理器（扩展处理）
+    
+    // 条件编译的ANTLR编译器
+#ifdef CHTL_WITH_ANTLR
     std::unique_ptr<CSSCompiler> m_CSSCompiler;            // CSS编译器（ANTLR）
     std::unique_ptr<JavaScriptCompiler> m_JSCompiler;      // JavaScript编译器（ANTLR）
+#endif
     
     std::string m_SourceCode;                              // 源代码
     std::string m_CurrentSourceFile;                       // 当前源文件路径
@@ -96,7 +106,7 @@ public:
     /**
      * 析构函数
      */
-    ~CompilerDispatcher();
+    ~CompilerDispatcher() = default;
     
     /**
      * 编译CHTL源代码
@@ -131,19 +141,19 @@ public:
     
     /**
      * 获取完整的HTML文档
-     * @return 完整HTML文档字符串
+     * @return 完整HTML字符串
      */
-    std::string GetFullHTMLDocument() const;
+    std::string GetFullHTML() const;
     
     /**
      * 检查是否有编译错误
-     * @return 是否有错误
+     * @return true表示有错误
      */
     bool HasError() const;
     
     /**
      * 获取错误信息
-     * @return 错误信息
+     * @return 错误信息字符串
      */
     std::string GetErrorMessage() const;
     
@@ -154,21 +164,64 @@ public:
     std::vector<std::string> GetWarnings() const;
     
     /**
-     * 重置调度器状态
-     */
-    void Reset();
-    
-    /**
      * 获取编译统计信息
      * @return 统计信息字符串
      */
     std::string GetCompilationStatistics() const;
+    
+    /**
+     * 重置编译器状态
+     */
+    void Reset();
+    
+    /**
+     * 设置源文件路径
+     * @param filePath 源文件路径
+     */
+    void SetSourceFile(const std::string& filePath);
+    
+    /**
+     * 获取当前源文件路径
+     * @return 源文件路径
+     */
+    std::string GetSourceFile() const;
 
 private:
     /**
-     * 初始化编译器
+     * 执行代码扫描
+     * @return 是否成功
      */
-    void InitializeCompilers();
+    bool PerformScanning();
+    
+    /**
+     * 编译CHTL片段
+     * @param fragments CHTL代码片段
+     * @return 编译结果
+     */
+    CompilationResult CompileCHTLFragments(const std::vector<CodeFragment>& fragments);
+    
+    /**
+     * 编译CHTL JS片段
+     * @param fragments CHTL JS代码片段
+     * @return 编译结果
+     */
+    CompilationResult CompileCHTLJSFragments(const std::vector<CodeFragment>& fragments);
+
+#ifdef CHTL_WITH_ANTLR
+    /**
+     * 编译CSS片段
+     * @param fragments CSS代码片段
+     * @return 编译结果
+     */
+    CompilationResult CompileCSSFragments(const std::vector<CodeFragment>& fragments);
+    
+    /**
+     * 编译JavaScript片段
+     * @param fragments JavaScript代码片段
+     * @return 编译结果
+     */
+    CompilationResult CompileJavaScriptFragments(const std::vector<CodeFragment>& fragments);
+#endif
     
     /**
      * 初始化CJMOD集成
@@ -177,183 +230,43 @@ private:
     bool InitializeCJMODIntegration();
     
     /**
-     * 执行代码扫描和切割
-     * @return 是否成功
-     */
-    bool PerformScanning();
-    
-    /**
-     * 按类型分组片段
-     */
-    void GroupFragmentsByType();
-    
-    /**
-     * 分发片段给对应编译器
-     * @return 是否成功分发
-     */
-    bool DispatchFragments();
-    
-    /**
-     * 编译CHTL片段
-     * @param fragments CHTL片段列表
-     * @return 编译结果
-     */
-    CompilationResult CompileCHTLFragments(const std::vector<CodeFragment>& fragments);
-    
-    /**
-     * 编译CHTL JS片段
-     * @param fragments CHTL JS片段列表
-     * @return 编译结果
-     */
-    CompilationResult CompileCHTLJSFragments(const std::vector<CodeFragment>& fragments);
-    
-    /**
-     * 编译CSS片段
-     * @param fragments CSS片段列表
-     * @return 编译结果
-     */
-    CompilationResult CompileCSSFragments(const std::vector<CodeFragment>& fragments);
-    
-    /**
-     * 编译JavaScript片段
-     * @param fragments JavaScript片段列表
-     * @return 编译结果
-     */
-    CompilationResult CompileJavaScriptFragments(const std::vector<CodeFragment>& fragments);
-    
-    /**
      * 合并编译结果
-     * @return 是否成功合并
+     * @return 是否成功
      */
     bool MergeCompilationResults();
     
     /**
-     * 处理局部样式块
-     * 局部样式（style）→ CHTL编译器
-     * @param styleBlocks 样式块列表
-     * @return 处理后的CSS代码
-     */
-    std::string ProcessLocalStyleBlocks(const std::vector<std::string>& styleBlocks);
-    
-    /**
-     * 处理全局样式块
-     * 全局样式（style）→ CSS编译器
-     * @param globalStyles 全局样式列表
-     * @return 处理后的CSS代码
-     */
-    std::string ProcessGlobalStyleBlocks(const std::vector<std::string>& globalStyles);
-    
-    /**
-     * 处理脚本块
-     * 脚本（script）→ 由CHTL编译器、CHTL JS编译器及JS编译器共同管理
-     * @param scriptBlocks 脚本块列表
-     * @return 处理后的JavaScript代码
-     */
-    std::string ProcessScriptBlocks(const std::vector<std::string>& scriptBlocks);
-    
-    /**
-     * 生成HTML文档结构
-     * @param htmlContent HTML内容
-     * @param cssContent CSS内容
-     * @param jsContent JavaScript内容
-     * @return 完整HTML文档
-     */
-    std::string GenerateHTMLDocument(const std::string& htmlContent, 
-                                   const std::string& cssContent, 
-                                   const std::string& jsContent);
-    
-    /**
-     * 处理自动化类名和ID生成
-     * @param chtlResult CHTL编译结果
-     * @return 处理后的HTML
-     */
-    std::string ProcessAutoGeneratedSelectors(const std::string& chtlResult);
-    
-    /**
-     * 处理CHTL JS增强选择器转换
-     * @param chtljsResult CHTL JS编译结果
-     * @return 转换后的JavaScript代码
-     */
-    std::string ProcessEnhancedSelectors(const std::string& chtljsResult);
-    
-    /**
-     * 验证编译结果一致性
-     * @return 是否一致
-     */
-    bool ValidateCompilationConsistency();
-    
-    /**
      * 设置编译错误
-     * @param message 错误信息
+     * @param error 错误信息
      */
-    void SetCompilationError(const std::string& message);
+    void SetCompilationError(const std::string& error);
     
     /**
-     * 添加编译警告
-     * @param message 警告信息
+     * 分组代码片段
+     * 将代码片段按类型分组以便批量处理
      */
-    void AddCompilationWarning(const std::string& message);
+    void GroupFragmentsByType();
     
     /**
-     * 处理UTF-8编码
-     * @param content 内容
-     * @return 处理后的内容
+     * 验证编译结果
+     * @return 是否所有结果都有效
      */
-    std::string ProcessUTF8Encoding(const std::string& content);
+    bool ValidateCompilationResults();
     
     /**
-     * 检查是否为HTML元素
-     * @param name 元素名称
-     * @return 是否为HTML元素
+     * 生成编译统计
+     * @return 统计信息
      */
-    bool IsHTMLElement(const std::string& name);
-    
+    std::string GenerateStatistics();
+
+#ifndef CHTL_WITH_ANTLR
     /**
-     * 检查是否包含CHTL JS语法
-     * @param block 代码块
-     * @return 是否包含CHTL JS语法
+     * HTML转义函数（简化版本使用）
+     * @param input 输入字符串
+     * @return 转义后的字符串
      */
-    bool ContainsCHTLJSSyntax(const std::string& block);
-    
-    /**
-     * 处理CHTL JS脚本块
-     * @param block 脚本块
-     * @return 处理后的代码
-     */
-    std::string ProcessCHTLJSScriptBlock(const std::string& block);
-    
-    /**
-     * 解析上下文引用
-     * @return 解析后的选择器
-     */
-    std::string ResolveContextReference();
-    
-    /**
-     * 验证HTML结构
-     * @param html HTML内容
-     * @return 是否有效
-     */
-    bool ValidateHTMLStructure(const std::string& html);
-    
-    /**
-     * 验证CSS内容
-     * @param css CSS内容
-     * @return 是否有效
-     */
-    bool ValidateCSSContent(const std::string& css);
-    
-    /**
-     * 验证JavaScript内容
-     * @param js JavaScript内容
-     * @return 是否有效
-     */
-    bool ValidateJavaScriptContent(const std::string& js);
-    
-    /**
-     * 验证选择器引用
-     * @return 是否有效
-     */
-    bool ValidateSelectorReferences();
+    std::string escapeHtml(const std::string& input);
+#endif
 };
 
 } // namespace CHTL

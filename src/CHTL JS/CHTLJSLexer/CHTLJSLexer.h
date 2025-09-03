@@ -41,6 +41,11 @@ public:
     explicit CHTLJSLexer(const std::string& sourceCode);
     
     /**
+     * 默认构造函数
+     */
+    CHTLJSLexer();
+    
+    /**
      * 析构函数
      */
     ~CHTLJSLexer() = default;

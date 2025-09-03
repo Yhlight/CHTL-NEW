@@ -15,6 +15,16 @@ CHTLLexer::CHTLLexer(const std::string& sourceCode)
     m_ContextManager = std::make_unique<CHTLContextManager>();
 }
 
+CHTLLexer::CHTLLexer()
+    : m_SourceCode(""), m_CurrentPosition(0), m_CurrentLine(1), 
+      m_CurrentColumn(1), m_HasError(false) {
+    
+    m_TokenManager = std::make_unique<CHTLTokenManager>();
+    m_GlobalMap = std::make_unique<CHTLGlobalMap>();
+    m_StateMachine = std::make_unique<CHTLStateMachine>();
+    m_ContextManager = std::make_unique<CHTLContextManager>();
+}
+
 bool CHTLLexer::Tokenize() {
     Reset();
     

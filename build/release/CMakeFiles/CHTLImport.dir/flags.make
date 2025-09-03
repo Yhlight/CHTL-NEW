@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/clang++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/workspace/src -I/workspace/src/CHTL/CHTLSystem/ImportSystem
+CXX_INCLUDES = -I/workspace/src -I/workspace/thirdparty/antlr/antlr4-4.13.2/runtime/Cpp/runtime/src -I/workspace/src/CHTL/CHTLSystem/ImportSystem
 
 CXX_FLAGS = -O3 -DNDEBUG -std=c++17 -finput-charset=UTF-8 -fexec-charset=UTF-8 -O3 -DNDEBUG
 

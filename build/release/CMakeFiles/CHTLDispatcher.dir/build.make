@@ -72,28 +72,28 @@ include CMakeFiles/CHTLDispatcher.dir/flags.make
 CMakeFiles/CHTLDispatcher.dir/codegen:
 .PHONY : CMakeFiles/CHTLDispatcher.dir/codegen
 
-CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o: CMakeFiles/CHTLDispatcher.dir/flags.make
-CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o: /workspace/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp
-CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o: CMakeFiles/CHTLDispatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o -MF CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o.d -o CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o -c /workspace/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp
+CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: CMakeFiles/CHTLDispatcher.dir/flags.make
+CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /workspace/src/CompilerDispatcher/CompilerDispatcher.cpp
+CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: CMakeFiles/CHTLDispatcher.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o -MF CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o.d -o CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o -c /workspace/src/CompilerDispatcher/CompilerDispatcher.cpp
 
-CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp > CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.i
+CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/CompilerDispatcher/CompilerDispatcher.cpp > CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.i
 
-CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp -o CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.s
+CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/CompilerDispatcher/CompilerDispatcher.cpp -o CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.s
 
 # Object files for target CHTLDispatcher
 CHTLDispatcher_OBJECTS = \
-"CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o"
+"CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o"
 
 # External object files for target CHTLDispatcher
 CHTLDispatcher_EXTERNAL_OBJECTS =
 
-lib/libCHTLDispatcher.a: CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o
+lib/libCHTLDispatcher.a: CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o
 lib/libCHTLDispatcher.a: CMakeFiles/CHTLDispatcher.dir/build.make
 lib/libCHTLDispatcher.a: CMakeFiles/CHTLDispatcher.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library lib/libCHTLDispatcher.a"

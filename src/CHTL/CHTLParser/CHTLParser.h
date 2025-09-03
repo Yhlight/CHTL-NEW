@@ -62,6 +62,11 @@ public:
     explicit CHTLParser(const std::string& sourceCode);
     
     /**
+     * 默认构造函数
+     */
+    CHTLParser();
+    
+    /**
      * 析构函数
      */
     ~CHTLParser() = default;

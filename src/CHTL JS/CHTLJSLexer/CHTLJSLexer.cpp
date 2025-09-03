@@ -15,6 +15,16 @@ CHTLJSLexer::CHTLJSLexer(const std::string& sourceCode)
     m_ContextManager = std::make_unique<CHTLJSContextManager>();
 }
 
+CHTLJSLexer::CHTLJSLexer()
+    : m_SourceCode(""), m_CurrentPosition(0), m_CurrentLine(1), 
+      m_CurrentColumn(1), m_HasError(false) {
+    
+    m_TokenManager = std::make_unique<CHTLJSTokenManager>();
+    m_GlobalMap = std::make_unique<CHTLJSGlobalMap>();
+    m_StateMachine = std::make_unique<CHTLJSStateMachine>();
+    m_ContextManager = std::make_unique<CHTLJSContextManager>();
+}
+
 bool CHTLJSLexer::Tokenize() {
     Reset();
     

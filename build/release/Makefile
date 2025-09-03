@@ -279,6 +279,32 @@ CHTLImport/fast:
 .PHONY : CHTLImport/fast
 
 #=============================================================================
+# Target rules for targets named CHTLCSSCompiler
+
+# Build rule for target.
+CHTLCSSCompiler: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLCSSCompiler
+.PHONY : CHTLCSSCompiler
+
+# fast build rule for target.
+CHTLCSSCompiler/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/build
+.PHONY : CHTLCSSCompiler/fast
+
+#=============================================================================
+# Target rules for targets named CHTLJSCompiler
+
+# Build rule for target.
+CHTLJSCompiler: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLJSCompiler
+.PHONY : CHTLJSCompiler
+
+# fast build rule for target.
+CHTLJSCompiler/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/build
+.PHONY : CHTLJSCompiler/fast
+
+#=============================================================================
 # Target rules for targets named CHTLDispatcher
 
 # Build rule for target.
@@ -303,6 +329,19 @@ chtl: cmake_check_build_system
 chtl/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl.dir/build.make CMakeFiles/chtl.dir/build
 .PHONY : chtl/fast
+
+#=============================================================================
+# Target rules for targets named chtl-professional
+
+# Build rule for target.
+chtl-professional: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl-professional
+.PHONY : chtl-professional
+
+# fast build rule for target.
+chtl-professional/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl-professional.dir/build.make CMakeFiles/chtl-professional.dir/build
+.PHONY : chtl-professional/fast
 
 src/CHTL/CHTLContext/CHTLContext.o: src/CHTL/CHTLContext/CHTLContext.cpp.o
 .PHONY : src/CHTL/CHTLContext/CHTLContext.o
@@ -1096,6 +1135,174 @@ src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s
 .PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s
 
+src/CSS/CSSCompiler.o: src/CSS/CSSCompiler.cpp.o
+.PHONY : src/CSS/CSSCompiler.o
+
+# target to build an object file
+src/CSS/CSSCompiler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/CSSCompiler.cpp.o
+.PHONY : src/CSS/CSSCompiler.cpp.o
+
+src/CSS/CSSCompiler.i: src/CSS/CSSCompiler.cpp.i
+.PHONY : src/CSS/CSSCompiler.i
+
+# target to preprocess a source file
+src/CSS/CSSCompiler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/CSSCompiler.cpp.i
+.PHONY : src/CSS/CSSCompiler.cpp.i
+
+src/CSS/CSSCompiler.s: src/CSS/CSSCompiler.cpp.s
+.PHONY : src/CSS/CSSCompiler.s
+
+# target to generate assembly for a file
+src/CSS/CSSCompiler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/CSSCompiler.cpp.s
+.PHONY : src/CSS/CSSCompiler.cpp.s
+
+src/CSS/generated/css3Lexer.o: src/CSS/generated/css3Lexer.cpp.o
+.PHONY : src/CSS/generated/css3Lexer.o
+
+# target to build an object file
+src/CSS/generated/css3Lexer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3Lexer.cpp.o
+.PHONY : src/CSS/generated/css3Lexer.cpp.o
+
+src/CSS/generated/css3Lexer.i: src/CSS/generated/css3Lexer.cpp.i
+.PHONY : src/CSS/generated/css3Lexer.i
+
+# target to preprocess a source file
+src/CSS/generated/css3Lexer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3Lexer.cpp.i
+.PHONY : src/CSS/generated/css3Lexer.cpp.i
+
+src/CSS/generated/css3Lexer.s: src/CSS/generated/css3Lexer.cpp.s
+.PHONY : src/CSS/generated/css3Lexer.s
+
+# target to generate assembly for a file
+src/CSS/generated/css3Lexer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3Lexer.cpp.s
+.PHONY : src/CSS/generated/css3Lexer.cpp.s
+
+src/CSS/generated/css3Parser.o: src/CSS/generated/css3Parser.cpp.o
+.PHONY : src/CSS/generated/css3Parser.o
+
+# target to build an object file
+src/CSS/generated/css3Parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3Parser.cpp.o
+.PHONY : src/CSS/generated/css3Parser.cpp.o
+
+src/CSS/generated/css3Parser.i: src/CSS/generated/css3Parser.cpp.i
+.PHONY : src/CSS/generated/css3Parser.i
+
+# target to preprocess a source file
+src/CSS/generated/css3Parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3Parser.cpp.i
+.PHONY : src/CSS/generated/css3Parser.cpp.i
+
+src/CSS/generated/css3Parser.s: src/CSS/generated/css3Parser.cpp.s
+.PHONY : src/CSS/generated/css3Parser.s
+
+# target to generate assembly for a file
+src/CSS/generated/css3Parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3Parser.cpp.s
+.PHONY : src/CSS/generated/css3Parser.cpp.s
+
+src/CSS/generated/css3ParserBaseListener.o: src/CSS/generated/css3ParserBaseListener.cpp.o
+.PHONY : src/CSS/generated/css3ParserBaseListener.o
+
+# target to build an object file
+src/CSS/generated/css3ParserBaseListener.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserBaseListener.cpp.o
+.PHONY : src/CSS/generated/css3ParserBaseListener.cpp.o
+
+src/CSS/generated/css3ParserBaseListener.i: src/CSS/generated/css3ParserBaseListener.cpp.i
+.PHONY : src/CSS/generated/css3ParserBaseListener.i
+
+# target to preprocess a source file
+src/CSS/generated/css3ParserBaseListener.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserBaseListener.cpp.i
+.PHONY : src/CSS/generated/css3ParserBaseListener.cpp.i
+
+src/CSS/generated/css3ParserBaseListener.s: src/CSS/generated/css3ParserBaseListener.cpp.s
+.PHONY : src/CSS/generated/css3ParserBaseListener.s
+
+# target to generate assembly for a file
+src/CSS/generated/css3ParserBaseListener.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserBaseListener.cpp.s
+.PHONY : src/CSS/generated/css3ParserBaseListener.cpp.s
+
+src/CSS/generated/css3ParserBaseVisitor.o: src/CSS/generated/css3ParserBaseVisitor.cpp.o
+.PHONY : src/CSS/generated/css3ParserBaseVisitor.o
+
+# target to build an object file
+src/CSS/generated/css3ParserBaseVisitor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserBaseVisitor.cpp.o
+.PHONY : src/CSS/generated/css3ParserBaseVisitor.cpp.o
+
+src/CSS/generated/css3ParserBaseVisitor.i: src/CSS/generated/css3ParserBaseVisitor.cpp.i
+.PHONY : src/CSS/generated/css3ParserBaseVisitor.i
+
+# target to preprocess a source file
+src/CSS/generated/css3ParserBaseVisitor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserBaseVisitor.cpp.i
+.PHONY : src/CSS/generated/css3ParserBaseVisitor.cpp.i
+
+src/CSS/generated/css3ParserBaseVisitor.s: src/CSS/generated/css3ParserBaseVisitor.cpp.s
+.PHONY : src/CSS/generated/css3ParserBaseVisitor.s
+
+# target to generate assembly for a file
+src/CSS/generated/css3ParserBaseVisitor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserBaseVisitor.cpp.s
+.PHONY : src/CSS/generated/css3ParserBaseVisitor.cpp.s
+
+src/CSS/generated/css3ParserListener.o: src/CSS/generated/css3ParserListener.cpp.o
+.PHONY : src/CSS/generated/css3ParserListener.o
+
+# target to build an object file
+src/CSS/generated/css3ParserListener.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserListener.cpp.o
+.PHONY : src/CSS/generated/css3ParserListener.cpp.o
+
+src/CSS/generated/css3ParserListener.i: src/CSS/generated/css3ParserListener.cpp.i
+.PHONY : src/CSS/generated/css3ParserListener.i
+
+# target to preprocess a source file
+src/CSS/generated/css3ParserListener.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserListener.cpp.i
+.PHONY : src/CSS/generated/css3ParserListener.cpp.i
+
+src/CSS/generated/css3ParserListener.s: src/CSS/generated/css3ParserListener.cpp.s
+.PHONY : src/CSS/generated/css3ParserListener.s
+
+# target to generate assembly for a file
+src/CSS/generated/css3ParserListener.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserListener.cpp.s
+.PHONY : src/CSS/generated/css3ParserListener.cpp.s
+
+src/CSS/generated/css3ParserVisitor.o: src/CSS/generated/css3ParserVisitor.cpp.o
+.PHONY : src/CSS/generated/css3ParserVisitor.o
+
+# target to build an object file
+src/CSS/generated/css3ParserVisitor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserVisitor.cpp.o
+.PHONY : src/CSS/generated/css3ParserVisitor.cpp.o
+
+src/CSS/generated/css3ParserVisitor.i: src/CSS/generated/css3ParserVisitor.cpp.i
+.PHONY : src/CSS/generated/css3ParserVisitor.i
+
+# target to preprocess a source file
+src/CSS/generated/css3ParserVisitor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserVisitor.cpp.i
+.PHONY : src/CSS/generated/css3ParserVisitor.cpp.i
+
+src/CSS/generated/css3ParserVisitor.s: src/CSS/generated/css3ParserVisitor.cpp.s
+.PHONY : src/CSS/generated/css3ParserVisitor.s
+
+# target to generate assembly for a file
+src/CSS/generated/css3ParserVisitor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCSSCompiler.dir/build.make CMakeFiles/CHTLCSSCompiler.dir/src/CSS/generated/css3ParserVisitor.cpp.s
+.PHONY : src/CSS/generated/css3ParserVisitor.cpp.s
+
 src/CodeMerger/CHTLCodeMerger.o: src/CodeMerger/CHTLCodeMerger.cpp.o
 .PHONY : src/CodeMerger/CHTLCodeMerger.o
 
@@ -1120,29 +1327,29 @@ src/CodeMerger/CHTLCodeMerger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCodeMerger.dir/build.make CMakeFiles/CHTLCodeMerger.dir/src/CodeMerger/CHTLCodeMerger.cpp.s
 .PHONY : src/CodeMerger/CHTLCodeMerger.cpp.s
 
-src/CompilerDispatcher/CompilerDispatcher_Simple.o: src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o
-.PHONY : src/CompilerDispatcher/CompilerDispatcher_Simple.o
+src/CompilerDispatcher/CompilerDispatcher.o: src/CompilerDispatcher/CompilerDispatcher.cpp.o
+.PHONY : src/CompilerDispatcher/CompilerDispatcher.o
 
 # target to build an object file
-src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLDispatcher.dir/build.make CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o
-.PHONY : src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.o
+src/CompilerDispatcher/CompilerDispatcher.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLDispatcher.dir/build.make CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o
+.PHONY : src/CompilerDispatcher/CompilerDispatcher.cpp.o
 
-src/CompilerDispatcher/CompilerDispatcher_Simple.i: src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.i
-.PHONY : src/CompilerDispatcher/CompilerDispatcher_Simple.i
+src/CompilerDispatcher/CompilerDispatcher.i: src/CompilerDispatcher/CompilerDispatcher.cpp.i
+.PHONY : src/CompilerDispatcher/CompilerDispatcher.i
 
 # target to preprocess a source file
-src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLDispatcher.dir/build.make CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.i
-.PHONY : src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.i
+src/CompilerDispatcher/CompilerDispatcher.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLDispatcher.dir/build.make CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.i
+.PHONY : src/CompilerDispatcher/CompilerDispatcher.cpp.i
 
-src/CompilerDispatcher/CompilerDispatcher_Simple.s: src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.s
-.PHONY : src/CompilerDispatcher/CompilerDispatcher_Simple.s
+src/CompilerDispatcher/CompilerDispatcher.s: src/CompilerDispatcher/CompilerDispatcher.cpp.s
+.PHONY : src/CompilerDispatcher/CompilerDispatcher.s
 
 # target to generate assembly for a file
-src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLDispatcher.dir/build.make CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.s
-.PHONY : src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.s
+src/CompilerDispatcher/CompilerDispatcher.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLDispatcher.dir/build.make CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.s
+.PHONY : src/CompilerDispatcher/CompilerDispatcher.cpp.s
 
 src/ConstraintSystem/CHTLConstraintValidator.o: src/ConstraintSystem/CHTLConstraintValidator.cpp.o
 .PHONY : src/ConstraintSystem/CHTLConstraintValidator.o
@@ -1215,6 +1422,222 @@ src/Error/ErrorHandler.s: src/Error/ErrorHandler.cpp.s
 src/Error/ErrorHandler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLErrorSystem.dir/build.make CMakeFiles/CHTLErrorSystem.dir/src/Error/ErrorHandler.cpp.s
 .PHONY : src/Error/ErrorHandler.cpp.s
+
+src/JS/JavaScriptCompiler.o: src/JS/JavaScriptCompiler.cpp.o
+.PHONY : src/JS/JavaScriptCompiler.o
+
+# target to build an object file
+src/JS/JavaScriptCompiler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.o
+.PHONY : src/JS/JavaScriptCompiler.cpp.o
+
+src/JS/JavaScriptCompiler.i: src/JS/JavaScriptCompiler.cpp.i
+.PHONY : src/JS/JavaScriptCompiler.i
+
+# target to preprocess a source file
+src/JS/JavaScriptCompiler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.i
+.PHONY : src/JS/JavaScriptCompiler.cpp.i
+
+src/JS/JavaScriptCompiler.s: src/JS/JavaScriptCompiler.cpp.s
+.PHONY : src/JS/JavaScriptCompiler.s
+
+# target to generate assembly for a file
+src/JS/JavaScriptCompiler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/JavaScriptCompiler.cpp.s
+.PHONY : src/JS/JavaScriptCompiler.cpp.s
+
+src/JS/generated/JavaScriptLexer.o: src/JS/generated/JavaScriptLexer.cpp.o
+.PHONY : src/JS/generated/JavaScriptLexer.o
+
+# target to build an object file
+src/JS/generated/JavaScriptLexer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexer.cpp.o
+.PHONY : src/JS/generated/JavaScriptLexer.cpp.o
+
+src/JS/generated/JavaScriptLexer.i: src/JS/generated/JavaScriptLexer.cpp.i
+.PHONY : src/JS/generated/JavaScriptLexer.i
+
+# target to preprocess a source file
+src/JS/generated/JavaScriptLexer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexer.cpp.i
+.PHONY : src/JS/generated/JavaScriptLexer.cpp.i
+
+src/JS/generated/JavaScriptLexer.s: src/JS/generated/JavaScriptLexer.cpp.s
+.PHONY : src/JS/generated/JavaScriptLexer.s
+
+# target to generate assembly for a file
+src/JS/generated/JavaScriptLexer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexer.cpp.s
+.PHONY : src/JS/generated/JavaScriptLexer.cpp.s
+
+src/JS/generated/JavaScriptLexerBase.o: src/JS/generated/JavaScriptLexerBase.cpp.o
+.PHONY : src/JS/generated/JavaScriptLexerBase.o
+
+# target to build an object file
+src/JS/generated/JavaScriptLexerBase.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexerBase.cpp.o
+.PHONY : src/JS/generated/JavaScriptLexerBase.cpp.o
+
+src/JS/generated/JavaScriptLexerBase.i: src/JS/generated/JavaScriptLexerBase.cpp.i
+.PHONY : src/JS/generated/JavaScriptLexerBase.i
+
+# target to preprocess a source file
+src/JS/generated/JavaScriptLexerBase.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexerBase.cpp.i
+.PHONY : src/JS/generated/JavaScriptLexerBase.cpp.i
+
+src/JS/generated/JavaScriptLexerBase.s: src/JS/generated/JavaScriptLexerBase.cpp.s
+.PHONY : src/JS/generated/JavaScriptLexerBase.s
+
+# target to generate assembly for a file
+src/JS/generated/JavaScriptLexerBase.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptLexerBase.cpp.s
+.PHONY : src/JS/generated/JavaScriptLexerBase.cpp.s
+
+src/JS/generated/JavaScriptParser.o: src/JS/generated/JavaScriptParser.cpp.o
+.PHONY : src/JS/generated/JavaScriptParser.o
+
+# target to build an object file
+src/JS/generated/JavaScriptParser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.o
+.PHONY : src/JS/generated/JavaScriptParser.cpp.o
+
+src/JS/generated/JavaScriptParser.i: src/JS/generated/JavaScriptParser.cpp.i
+.PHONY : src/JS/generated/JavaScriptParser.i
+
+# target to preprocess a source file
+src/JS/generated/JavaScriptParser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.i
+.PHONY : src/JS/generated/JavaScriptParser.cpp.i
+
+src/JS/generated/JavaScriptParser.s: src/JS/generated/JavaScriptParser.cpp.s
+.PHONY : src/JS/generated/JavaScriptParser.s
+
+# target to generate assembly for a file
+src/JS/generated/JavaScriptParser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParser.cpp.s
+.PHONY : src/JS/generated/JavaScriptParser.cpp.s
+
+src/JS/generated/JavaScriptParserBase.o: src/JS/generated/JavaScriptParserBase.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserBase.o
+
+# target to build an object file
+src/JS/generated/JavaScriptParserBase.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBase.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserBase.cpp.o
+
+src/JS/generated/JavaScriptParserBase.i: src/JS/generated/JavaScriptParserBase.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserBase.i
+
+# target to preprocess a source file
+src/JS/generated/JavaScriptParserBase.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBase.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserBase.cpp.i
+
+src/JS/generated/JavaScriptParserBase.s: src/JS/generated/JavaScriptParserBase.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserBase.s
+
+# target to generate assembly for a file
+src/JS/generated/JavaScriptParserBase.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBase.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserBase.cpp.s
+
+src/JS/generated/JavaScriptParserBaseListener.o: src/JS/generated/JavaScriptParserBaseListener.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserBaseListener.o
+
+# target to build an object file
+src/JS/generated/JavaScriptParserBaseListener.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserBaseListener.cpp.o
+
+src/JS/generated/JavaScriptParserBaseListener.i: src/JS/generated/JavaScriptParserBaseListener.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserBaseListener.i
+
+# target to preprocess a source file
+src/JS/generated/JavaScriptParserBaseListener.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserBaseListener.cpp.i
+
+src/JS/generated/JavaScriptParserBaseListener.s: src/JS/generated/JavaScriptParserBaseListener.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserBaseListener.s
+
+# target to generate assembly for a file
+src/JS/generated/JavaScriptParserBaseListener.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseListener.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserBaseListener.cpp.s
+
+src/JS/generated/JavaScriptParserBaseVisitor.o: src/JS/generated/JavaScriptParserBaseVisitor.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserBaseVisitor.o
+
+# target to build an object file
+src/JS/generated/JavaScriptParserBaseVisitor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseVisitor.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserBaseVisitor.cpp.o
+
+src/JS/generated/JavaScriptParserBaseVisitor.i: src/JS/generated/JavaScriptParserBaseVisitor.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserBaseVisitor.i
+
+# target to preprocess a source file
+src/JS/generated/JavaScriptParserBaseVisitor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseVisitor.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserBaseVisitor.cpp.i
+
+src/JS/generated/JavaScriptParserBaseVisitor.s: src/JS/generated/JavaScriptParserBaseVisitor.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserBaseVisitor.s
+
+# target to generate assembly for a file
+src/JS/generated/JavaScriptParserBaseVisitor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserBaseVisitor.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserBaseVisitor.cpp.s
+
+src/JS/generated/JavaScriptParserListener.o: src/JS/generated/JavaScriptParserListener.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserListener.o
+
+# target to build an object file
+src/JS/generated/JavaScriptParserListener.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserListener.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserListener.cpp.o
+
+src/JS/generated/JavaScriptParserListener.i: src/JS/generated/JavaScriptParserListener.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserListener.i
+
+# target to preprocess a source file
+src/JS/generated/JavaScriptParserListener.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserListener.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserListener.cpp.i
+
+src/JS/generated/JavaScriptParserListener.s: src/JS/generated/JavaScriptParserListener.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserListener.s
+
+# target to generate assembly for a file
+src/JS/generated/JavaScriptParserListener.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserListener.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserListener.cpp.s
+
+src/JS/generated/JavaScriptParserVisitor.o: src/JS/generated/JavaScriptParserVisitor.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserVisitor.o
+
+# target to build an object file
+src/JS/generated/JavaScriptParserVisitor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserVisitor.cpp.o
+.PHONY : src/JS/generated/JavaScriptParserVisitor.cpp.o
+
+src/JS/generated/JavaScriptParserVisitor.i: src/JS/generated/JavaScriptParserVisitor.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserVisitor.i
+
+# target to preprocess a source file
+src/JS/generated/JavaScriptParserVisitor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserVisitor.cpp.i
+.PHONY : src/JS/generated/JavaScriptParserVisitor.cpp.i
+
+src/JS/generated/JavaScriptParserVisitor.s: src/JS/generated/JavaScriptParserVisitor.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserVisitor.s
+
+# target to generate assembly for a file
+src/JS/generated/JavaScriptParserVisitor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCompiler.dir/build.make CMakeFiles/CHTLJSCompiler.dir/src/JS/generated/JavaScriptParserVisitor.cpp.s
+.PHONY : src/JS/generated/JavaScriptParserVisitor.cpp.s
 
 src/Scanner/CHTLUnifiedScanner.o: src/Scanner/CHTLUnifiedScanner.cpp.o
 .PHONY : src/Scanner/CHTLUnifiedScanner.o
@@ -1312,6 +1735,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl.dir/build.make CMakeFiles/chtl.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/main_professional.o: src/main_professional.cpp.o
+.PHONY : src/main_professional.o
+
+# target to build an object file
+src/main_professional.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl-professional.dir/build.make CMakeFiles/chtl-professional.dir/src/main_professional.cpp.o
+.PHONY : src/main_professional.cpp.o
+
+src/main_professional.i: src/main_professional.cpp.i
+.PHONY : src/main_professional.i
+
+# target to preprocess a source file
+src/main_professional.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl-professional.dir/build.make CMakeFiles/chtl-professional.dir/src/main_professional.cpp.i
+.PHONY : src/main_professional.cpp.i
+
+src/main_professional.s: src/main_professional.cpp.s
+.PHONY : src/main_professional.s
+
+# target to generate assembly for a file
+src/main_professional.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl-professional.dir/build.make CMakeFiles/chtl-professional.dir/src/main_professional.cpp.s
+.PHONY : src/main_professional.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1324,17 +1771,20 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... CHTLCSSCompiler"
 	@echo "... CHTLCodeMerger"
 	@echo "... CHTLConstraint"
 	@echo "... CHTLCore"
 	@echo "... CHTLDispatcher"
 	@echo "... CHTLErrorSystem"
 	@echo "... CHTLImport"
+	@echo "... CHTLJSCompiler"
 	@echo "... CHTLJSCore"
 	@echo "... CHTLScanner"
 	@echo "... CHTLUtilSystem"
 	@echo "... CJMOD"
 	@echo "... chtl"
+	@echo "... chtl-professional"
 	@echo "... src/CHTL/CHTLContext/CHTLContext.o"
 	@echo "... src/CHTL/CHTLContext/CHTLContext.i"
 	@echo "... src/CHTL/CHTLContext/CHTLContext.s"
@@ -1434,12 +1884,33 @@ help:
 	@echo "... src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.o"
 	@echo "... src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.i"
 	@echo "... src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.s"
+	@echo "... src/CSS/CSSCompiler.o"
+	@echo "... src/CSS/CSSCompiler.i"
+	@echo "... src/CSS/CSSCompiler.s"
+	@echo "... src/CSS/generated/css3Lexer.o"
+	@echo "... src/CSS/generated/css3Lexer.i"
+	@echo "... src/CSS/generated/css3Lexer.s"
+	@echo "... src/CSS/generated/css3Parser.o"
+	@echo "... src/CSS/generated/css3Parser.i"
+	@echo "... src/CSS/generated/css3Parser.s"
+	@echo "... src/CSS/generated/css3ParserBaseListener.o"
+	@echo "... src/CSS/generated/css3ParserBaseListener.i"
+	@echo "... src/CSS/generated/css3ParserBaseListener.s"
+	@echo "... src/CSS/generated/css3ParserBaseVisitor.o"
+	@echo "... src/CSS/generated/css3ParserBaseVisitor.i"
+	@echo "... src/CSS/generated/css3ParserBaseVisitor.s"
+	@echo "... src/CSS/generated/css3ParserListener.o"
+	@echo "... src/CSS/generated/css3ParserListener.i"
+	@echo "... src/CSS/generated/css3ParserListener.s"
+	@echo "... src/CSS/generated/css3ParserVisitor.o"
+	@echo "... src/CSS/generated/css3ParserVisitor.i"
+	@echo "... src/CSS/generated/css3ParserVisitor.s"
 	@echo "... src/CodeMerger/CHTLCodeMerger.o"
 	@echo "... src/CodeMerger/CHTLCodeMerger.i"
 	@echo "... src/CodeMerger/CHTLCodeMerger.s"
-	@echo "... src/CompilerDispatcher/CompilerDispatcher_Simple.o"
-	@echo "... src/CompilerDispatcher/CompilerDispatcher_Simple.i"
-	@echo "... src/CompilerDispatcher/CompilerDispatcher_Simple.s"
+	@echo "... src/CompilerDispatcher/CompilerDispatcher.o"
+	@echo "... src/CompilerDispatcher/CompilerDispatcher.i"
+	@echo "... src/CompilerDispatcher/CompilerDispatcher.s"
 	@echo "... src/ConstraintSystem/CHTLConstraintValidator.o"
 	@echo "... src/ConstraintSystem/CHTLConstraintValidator.i"
 	@echo "... src/ConstraintSystem/CHTLConstraintValidator.s"
@@ -1449,6 +1920,33 @@ help:
 	@echo "... src/Error/ErrorHandler.o"
 	@echo "... src/Error/ErrorHandler.i"
 	@echo "... src/Error/ErrorHandler.s"
+	@echo "... src/JS/JavaScriptCompiler.o"
+	@echo "... src/JS/JavaScriptCompiler.i"
+	@echo "... src/JS/JavaScriptCompiler.s"
+	@echo "... src/JS/generated/JavaScriptLexer.o"
+	@echo "... src/JS/generated/JavaScriptLexer.i"
+	@echo "... src/JS/generated/JavaScriptLexer.s"
+	@echo "... src/JS/generated/JavaScriptLexerBase.o"
+	@echo "... src/JS/generated/JavaScriptLexerBase.i"
+	@echo "... src/JS/generated/JavaScriptLexerBase.s"
+	@echo "... src/JS/generated/JavaScriptParser.o"
+	@echo "... src/JS/generated/JavaScriptParser.i"
+	@echo "... src/JS/generated/JavaScriptParser.s"
+	@echo "... src/JS/generated/JavaScriptParserBase.o"
+	@echo "... src/JS/generated/JavaScriptParserBase.i"
+	@echo "... src/JS/generated/JavaScriptParserBase.s"
+	@echo "... src/JS/generated/JavaScriptParserBaseListener.o"
+	@echo "... src/JS/generated/JavaScriptParserBaseListener.i"
+	@echo "... src/JS/generated/JavaScriptParserBaseListener.s"
+	@echo "... src/JS/generated/JavaScriptParserBaseVisitor.o"
+	@echo "... src/JS/generated/JavaScriptParserBaseVisitor.i"
+	@echo "... src/JS/generated/JavaScriptParserBaseVisitor.s"
+	@echo "... src/JS/generated/JavaScriptParserListener.o"
+	@echo "... src/JS/generated/JavaScriptParserListener.i"
+	@echo "... src/JS/generated/JavaScriptParserListener.s"
+	@echo "... src/JS/generated/JavaScriptParserVisitor.o"
+	@echo "... src/JS/generated/JavaScriptParserVisitor.i"
+	@echo "... src/JS/generated/JavaScriptParserVisitor.s"
 	@echo "... src/Scanner/CHTLUnifiedScanner.o"
 	@echo "... src/Scanner/CHTLUnifiedScanner.i"
 	@echo "... src/Scanner/CHTLUnifiedScanner.s"
@@ -1461,6 +1959,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/main_professional.o"
+	@echo "... src/main_professional.i"
+	@echo "... src/main_professional.s"
 .PHONY : help
 
 

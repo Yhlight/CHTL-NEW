@@ -41,6 +41,11 @@ public:
     explicit CHTLLexer(const std::string& sourceCode);
     
     /**
+     * 默认构造函数
+     */
+    CHTLLexer();
+    
+    /**
      * 析构函数
      */
     ~CHTLLexer() = default;

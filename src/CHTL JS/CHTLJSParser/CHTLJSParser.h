@@ -58,6 +58,11 @@ public:
     explicit CHTLJSParser(const std::string& sourceCode);
     
     /**
+     * 默认构造函数
+     */
+    CHTLJSParser();
+    
+    /**
      * 析构函数
      */
     ~CHTLJSParser() = default;

@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//Path to a file.
+ANTLR4_INCLUDE_DIR:PATH=/workspace/thirdparty/antlr/antlr4-4.13.2/runtime/Cpp/runtime/src
+
+//Path to a library.
+ANTLR4_LIBRARY:FILEPATH=/workspace/thirdparty/antlr/antlr4-4.13.2/runtime/Cpp/build/runtime/libantlr4-runtime.so
+
 //Value Computed by CMake
 CHTL_Compiler_BINARY_DIR:STATIC=/workspace/build/release
 
@@ -283,6 +289,8 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Test CMAKE_HAVE_LIBC_PTHREAD
+CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/workspace
@@ -350,6 +358,8 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Threads
+FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //linker supports push/pop state
 _CMAKE_CXX_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //linker supports push/pop state

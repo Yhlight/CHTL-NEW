@@ -88,6 +88,11 @@ public:
     explicit CHTLUnifiedScanner(const std::string& sourceCode);
     
     /**
+     * 默认构造函数
+     */
+    CHTLUnifiedScanner();
+    
+    /**
      * 析构函数
      */
     ~CHTLUnifiedScanner() = default;

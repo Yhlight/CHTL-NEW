@@ -11,6 +11,12 @@ CHTLUnifiedScanner::CHTLUnifiedScanner(const std::string& sourceCode)
     InitializeKeywordMaps();
 }
 
+CHTLUnifiedScanner::CHTLUnifiedScanner()
+    : m_SourceCode(""), m_CurrentPosition(0), m_CurrentLine(1), 
+      m_CurrentColumn(1), m_HasError(false) {
+    InitializeKeywordMaps();
+}
+
 void CHTLUnifiedScanner::InitializeKeywordMaps() {
     // CHTL核心关键字
     m_CHTLKeywords["text"] = true;
