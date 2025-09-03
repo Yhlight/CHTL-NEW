@@ -239,6 +239,19 @@ token_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/token_test.dir/build.make CMakeFiles/token_test.dir/build
 .PHONY : token_test/fast
 
+#=============================================================================
+# Target rules for targets named ast_test
+
+# Build rule for target.
+ast_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ast_test
+.PHONY : ast_test
+
+# fast build rule for target.
+ast_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ast_test.dir/build.make CMakeFiles/ast_test.dir/build
+.PHONY : ast_test/fast
+
 src/CHTL/CHTLLexer/CHTLGlobalMap.o: src/CHTL/CHTLLexer/CHTLGlobalMap.cpp.o
 .PHONY : src/CHTL/CHTLLexer/CHTLGlobalMap.o
 
@@ -319,6 +332,102 @@ src/CHTL/CHTLLexer/CHTLToken.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLLexer/CHTLToken.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/token_test.dir/build.make CMakeFiles/token_test.dir/src/CHTL/CHTLLexer/CHTLToken.cpp.s
 .PHONY : src/CHTL/CHTLLexer/CHTLToken.cpp.s
+
+src/CHTL/CHTLNode/BaseNode.o: src/CHTL/CHTLNode/BaseNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/BaseNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/BaseNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/BaseNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/BaseNode.cpp.o
+
+src/CHTL/CHTLNode/BaseNode.i: src/CHTL/CHTLNode/BaseNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/BaseNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/BaseNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/BaseNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/BaseNode.cpp.i
+
+src/CHTL/CHTLNode/BaseNode.s: src/CHTL/CHTLNode/BaseNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/BaseNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/BaseNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/BaseNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/BaseNode.cpp.s
+
+src/CHTL/CHTLNode/CommentNode.o: src/CHTL/CHTLNode/CommentNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/CommentNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/CommentNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/CommentNode.cpp.o
+
+src/CHTL/CHTLNode/CommentNode.i: src/CHTL/CHTLNode/CommentNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/CommentNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/CommentNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/CommentNode.cpp.i
+
+src/CHTL/CHTLNode/CommentNode.s: src/CHTL/CHTLNode/CommentNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/CommentNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/CommentNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/CommentNode.cpp.s
+
+src/CHTL/CHTLNode/ElementNode.o: src/CHTL/CHTLNode/ElementNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/ElementNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/ElementNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/ElementNode.cpp.o
+
+src/CHTL/CHTLNode/ElementNode.i: src/CHTL/CHTLNode/ElementNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/ElementNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/ElementNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/ElementNode.cpp.i
+
+src/CHTL/CHTLNode/ElementNode.s: src/CHTL/CHTLNode/ElementNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/ElementNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/ElementNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/ElementNode.cpp.s
+
+src/CHTL/CHTLNode/TextNode.o: src/CHTL/CHTLNode/TextNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/TextNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/TextNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/TextNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/TextNode.cpp.o
+
+src/CHTL/CHTLNode/TextNode.i: src/CHTL/CHTLNode/TextNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/TextNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/TextNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/TextNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/TextNode.cpp.i
+
+src/CHTL/CHTLNode/TextNode.s: src/CHTL/CHTLNode/TextNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/TextNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/TextNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/TextNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/TextNode.cpp.s
 
 src/CHTL/CHTLState/CHTLState.o: src/CHTL/CHTLState/CHTLState.cpp.o
 .PHONY : src/CHTL/CHTLState/CHTLState.o
@@ -497,6 +606,30 @@ src/Scanner/CHTLUnifiedScanner.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Scanner_Lib.dir/build.make CMakeFiles/Scanner_Lib.dir/src/Scanner/CHTLUnifiedScanner.cpp.s
 .PHONY : src/Scanner/CHTLUnifiedScanner.cpp.s
 
+src/Test/AstTest/ASTTest.o: src/Test/AstTest/ASTTest.cpp.o
+.PHONY : src/Test/AstTest/ASTTest.o
+
+# target to build an object file
+src/Test/AstTest/ASTTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ast_test.dir/build.make CMakeFiles/ast_test.dir/src/Test/AstTest/ASTTest.cpp.o
+.PHONY : src/Test/AstTest/ASTTest.cpp.o
+
+src/Test/AstTest/ASTTest.i: src/Test/AstTest/ASTTest.cpp.i
+.PHONY : src/Test/AstTest/ASTTest.i
+
+# target to preprocess a source file
+src/Test/AstTest/ASTTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ast_test.dir/build.make CMakeFiles/ast_test.dir/src/Test/AstTest/ASTTest.cpp.i
+.PHONY : src/Test/AstTest/ASTTest.cpp.i
+
+src/Test/AstTest/ASTTest.s: src/Test/AstTest/ASTTest.cpp.s
+.PHONY : src/Test/AstTest/ASTTest.s
+
+# target to generate assembly for a file
+src/Test/AstTest/ASTTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ast_test.dir/build.make CMakeFiles/ast_test.dir/src/Test/AstTest/ASTTest.cpp.s
+.PHONY : src/Test/AstTest/ASTTest.cpp.s
+
 src/Test/TokenTest/TokenTest.o: src/Test/TokenTest/TokenTest.cpp.o
 .PHONY : src/Test/TokenTest/TokenTest.o
 
@@ -561,6 +694,7 @@ help:
 	@echo "... CHTL_Lib"
 	@echo "... Dispatcher_Lib"
 	@echo "... Scanner_Lib"
+	@echo "... ast_test"
 	@echo "... chtl_compiler"
 	@echo "... token_test"
 	@echo "... src/CHTL/CHTLLexer/CHTLGlobalMap.o"
@@ -572,6 +706,18 @@ help:
 	@echo "... src/CHTL/CHTLLexer/CHTLToken.o"
 	@echo "... src/CHTL/CHTLLexer/CHTLToken.i"
 	@echo "... src/CHTL/CHTLLexer/CHTLToken.s"
+	@echo "... src/CHTL/CHTLNode/BaseNode.o"
+	@echo "... src/CHTL/CHTLNode/BaseNode.i"
+	@echo "... src/CHTL/CHTLNode/BaseNode.s"
+	@echo "... src/CHTL/CHTLNode/CommentNode.o"
+	@echo "... src/CHTL/CHTLNode/CommentNode.i"
+	@echo "... src/CHTL/CHTLNode/CommentNode.s"
+	@echo "... src/CHTL/CHTLNode/ElementNode.o"
+	@echo "... src/CHTL/CHTLNode/ElementNode.i"
+	@echo "... src/CHTL/CHTLNode/ElementNode.s"
+	@echo "... src/CHTL/CHTLNode/TextNode.o"
+	@echo "... src/CHTL/CHTLNode/TextNode.i"
+	@echo "... src/CHTL/CHTLNode/TextNode.s"
 	@echo "... src/CHTL/CHTLState/CHTLState.o"
 	@echo "... src/CHTL/CHTLState/CHTLState.i"
 	@echo "... src/CHTL/CHTLState/CHTLState.s"
@@ -593,6 +739,9 @@ help:
 	@echo "... src/Scanner/CHTLUnifiedScanner.o"
 	@echo "... src/Scanner/CHTLUnifiedScanner.i"
 	@echo "... src/Scanner/CHTLUnifiedScanner.s"
+	@echo "... src/Test/AstTest/ASTTest.o"
+	@echo "... src/Test/AstTest/ASTTest.i"
+	@echo "... src/Test/AstTest/ASTTest.s"
 	@echo "... src/Test/TokenTest/TokenTest.o"
 	@echo "... src/Test/TokenTest/TokenTest.i"
 	@echo "... src/Test/TokenTest/TokenTest.s"

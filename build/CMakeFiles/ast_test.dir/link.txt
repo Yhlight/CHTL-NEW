@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG -Xlinker --dependency-file=CMakeFiles/ast_test.dir/link.d CMakeFiles/ast_test.dir/src/Test/AstTest/ASTTest.cpp.o -o bin/ast_test   -L/workspace/src/ThirdParty/ANTLR4/lib  -Wl,-rpath,/workspace/src/ThirdParty/ANTLR4/lib lib/libCHTL_Lib.a

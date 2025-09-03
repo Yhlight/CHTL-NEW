@@ -40,6 +40,10 @@ set(CHTL_SOURCES
     src/CHTL/CHTLLexer/CHTLGlobalMap.cpp
     src/CHTL/CHTLLexer/CHTLLexer.cpp
     src/CHTL/CHTLState/CHTLState.cpp
+    src/CHTL/CHTLNode/BaseNode.cpp
+    src/CHTL/CHTLNode/ElementNode.cpp
+    src/CHTL/CHTLNode/TextNode.cpp
+    src/CHTL/CHTLNode/CommentNode.cpp
 )
 
 add_library(CHTL_Lib STATIC ${CHTL_SOURCES})
@@ -112,6 +116,14 @@ if(BUILD_TESTS)
         "src/CHTL JS"
         src/Test/TokenTest
     )
+    
+    # AST测试
+    add_executable(ast_test
+        src/Test/AstTest/ASTTest.cpp
+    )
+    
+    target_link_libraries(ast_test CHTL_Lib)
+    target_include_directories(ast_test PRIVATE src/CHTL src/Test/AstTest)
 endif()
 
 # 安装规则

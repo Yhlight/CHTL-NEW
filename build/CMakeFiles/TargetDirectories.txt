@@ -4,6 +4,7 @@
 /workspace/build/CMakeFiles/Dispatcher_Lib.dir
 /workspace/build/CMakeFiles/chtl_compiler.dir
 /workspace/build/CMakeFiles/token_test.dir
+/workspace/build/CMakeFiles/ast_test.dir
 /workspace/build/CMakeFiles/edit_cache.dir
 /workspace/build/CMakeFiles/rebuild_cache.dir
 /workspace/build/CMakeFiles/list_install_components.dir

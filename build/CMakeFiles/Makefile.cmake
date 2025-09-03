@@ -55,4 +55,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Dispatcher_Lib.dir/DependInfo.cmake"
   "CMakeFiles/chtl_compiler.dir/DependInfo.cmake"
   "CMakeFiles/token_test.dir/DependInfo.cmake"
+  "CMakeFiles/ast_test.dir/DependInfo.cmake"
   )
