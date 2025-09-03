@@ -134,4 +134,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/chtl.dir/DependInfo.cmake"
   "CMakeFiles/chtl-professional.dir/DependInfo.cmake"
   "CMakeFiles/chtl_minimal_test.dir/DependInfo.cmake"
+  "CMakeFiles/chtl_safe_test.dir/DependInfo.cmake"
   )

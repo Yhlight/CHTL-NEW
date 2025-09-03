@@ -67,6 +67,9 @@ private:
     bool m_AddCHTLJSComments;                          // 是否添加CHTL JS注释
     bool m_OptimizeSelectors;                          // 是否优化选择器
     bool m_MergeEventDelegates;                        // 是否合并事件委托
+    
+    // AST根节点
+    std::shared_ptr<CHTLJSBaseNode> m_ASTRoot;          // 当前AST根节点
 
 public:
     /**
@@ -85,6 +88,18 @@ public:
      * @return CHTL JS生成结果
      */
     CHTLJSGenerationResult Generate(std::unique_ptr<CHTLJSBaseNode> rootNode);
+    
+    /**
+     * 设置AST根节点
+     * @param rootNode AST根节点
+     */
+    void SetAST(std::shared_ptr<CHTLJSBaseNode> rootNode);
+    
+    /**
+     * 生成JavaScript内容
+     * @return JavaScript字符串
+     */
+    std::string GenerateJavaScript();
     
     /**
      * 获取生成的JavaScript内容

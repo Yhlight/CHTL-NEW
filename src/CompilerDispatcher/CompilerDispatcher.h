@@ -206,6 +206,20 @@ private:
      * @return 编译结果
      */
     CompilationResult CompileCHTLJSFragments(const std::vector<CodeFragment>& fragments);
+    
+    /**
+     * 安全编译CHTL片段（完整实现）
+     * @param fragments CHTL代码片段
+     * @return 编译结果
+     */
+    CompilationResult CompileCHTLFragmentsSafe(const std::vector<CodeFragment>& fragments);
+    
+    /**
+     * 安全编译CHTL JS片段（完整实现）
+     * @param fragments CHTL JS代码片段
+     * @return 编译结果
+     */
+    CompilationResult CompileCHTLJSFragmentsSafe(const std::vector<CodeFragment>& fragments);
 
 #ifdef CHTL_WITH_ANTLR
     /**

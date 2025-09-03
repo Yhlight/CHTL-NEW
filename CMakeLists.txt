@@ -341,6 +341,9 @@ endif()
 add_executable(chtl_minimal_test src/main_minimal_test.cpp)
 target_link_libraries(chtl_minimal_test CHTLCore)
 
+add_executable(chtl_safe_test src/main_safe_test.cpp)
+target_link_libraries(chtl_safe_test CHTLCore)
+
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_executable(chtl_cjmod_test src/Test/CJMODCompleteTest.cpp)
     target_link_libraries(chtl_cjmod_test CJMOD CHTLJSCore CHTLScanner)

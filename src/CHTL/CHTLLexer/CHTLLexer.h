@@ -30,6 +30,11 @@ private:
     std::unique_ptr<CHTLContextManager> m_ContextManager; // 上下文管理器
     std::wstring_convert<std::codecvt_utf8<wchar_t>> m_UTF8Converter; // UTF-8转换器
     
+    // 关键字映射表
+    std::unordered_map<std::string, CHTLTokenType> m_Keywords;     // CHTL关键字
+    std::unordered_map<std::string, CHTLTokenType> m_AtTypes;      // @类型关键字
+    std::unordered_map<std::string, CHTLTokenType> m_BlockKeywords; // 块关键字
+    
     bool m_HasError;                                  // 是否有错误
     std::string m_ErrorMessage;                       // 错误信息
 
@@ -252,6 +257,82 @@ private:
      * @return 是否成功处理
      */
     bool HandleDeleteSyntax();
+    
+    /**
+     * 初始化关键字映射表
+     */
+    void InitializeKeywords();
+    
+    /**
+     * 扫描单字符令牌
+     */
+    bool ScanSingleCharToken(CHTLTokenType type, char ch);
+    
+    /**
+     * 扫描块结构令牌
+     */
+    bool ScanBlockStructureToken();
+    
+    /**
+     * 扫描标识符或关键字令牌
+     */
+    bool ScanIdentifierOrKeywordToken();
+    
+    /**
+     * 扫描字符串字面量令牌
+     */
+    bool ScanStringLiteralToken(char quote, CHTLTokenType type);
+    
+    /**
+     * 扫描数字令牌
+     */
+    bool ScanNumberToken();
+    
+    /**
+     * 扫描行注释令牌
+     */
+    bool ScanLineCommentToken();
+    
+    /**
+     * 扫描块注释令牌
+     */
+    bool ScanBlockCommentToken();
+    
+    /**
+     * 扫描生成器注释令牌
+     */
+    bool ScanGeneratorCommentToken();
+    
+    /**
+     * 扫描@类型令牌
+     */
+    bool ScanAtTypeToken();
+    
+    /**
+     * 扫描点或类选择器
+     */
+    bool ScanDotOrClassSelector();
+    
+    /**
+     * 扫描ID选择器
+     */
+    bool ScanIdSelector();
+    
+    /**
+     * 扫描冒号或伪类
+     */
+    bool ScanColonOrPseudo();
+    
+    /**
+     * 扫描换行令牌
+     */
+    bool ScanNewlineToken();
+    
+    /**
+     * 扫描伪元素
+     * @return 伪元素令牌
+     */
+    CHTLToken ScanPseudoElement();
     
     /**
      * 处理插入语法

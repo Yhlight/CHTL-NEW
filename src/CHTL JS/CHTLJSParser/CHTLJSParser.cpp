@@ -556,6 +556,13 @@ CHTLJSBaseNode* CHTLJSParser::GetRootNode() {
     return m_RootNode.get();
 }
 
+std::shared_ptr<CHTLJSBaseNode> CHTLJSParser::GetAST() {
+    if (m_RootNode) {
+        return std::shared_ptr<CHTLJSBaseNode>(m_RootNode.get(), [](CHTLJSBaseNode*){});
+    }
+    return nullptr;
+}
+
 void CHTLJSParser::Reset() {
     m_CurrentTokenIndex = 0;
     m_RootNode.reset();

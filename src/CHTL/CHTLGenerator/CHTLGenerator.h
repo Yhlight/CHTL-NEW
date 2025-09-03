@@ -75,6 +75,9 @@ private:
     bool m_AddSourceComments;                           // 是否添加源码注释
     int m_IndentLevel;                                  // 当前缩进级别
     
+    // AST根节点
+    std::shared_ptr<CHTLBaseNode> m_ASTRoot;            // 当前AST根节点
+    
     // 暂时注释高级功能引擎
     // std::unique_ptr<SelectorAutomationEngine> m_SelectorEngine;     // 选择器自动化引擎
     // std::unique_ptr<TemplateEngine> m_TemplateEngine;               // 模板引擎
@@ -97,6 +100,18 @@ public:
      * @return 生成结果
      */
     GenerationResult Generate(std::unique_ptr<CHTLBaseNode> rootNode);
+    
+    /**
+     * 设置AST根节点
+     * @param rootNode AST根节点
+     */
+    void SetAST(std::shared_ptr<CHTLBaseNode> rootNode);
+    
+    /**
+     * 生成HTML内容
+     * @return HTML字符串
+     */
+    std::string GenerateHTML();
     
     /**
      * 获取生成的HTML内容
@@ -354,6 +369,12 @@ private:
      * 优化生成的HTML
      */
     void OptimizeGeneratedHTML();
+    
+    /**
+     * 设置错误信息
+     * @param message 错误信息
+     */
+    void SetError(const std::string& message);
     
     /**
      * 设置生成错误

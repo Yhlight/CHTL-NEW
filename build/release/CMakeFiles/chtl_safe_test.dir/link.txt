@@ -1,0 +1,1 @@
+/usr/bin/clang++ -O3 -DNDEBUG -Xlinker --dependency-file=CMakeFiles/chtl_safe_test.dir/link.d CMakeFiles/chtl_safe_test.dir/src/main_safe_test.cpp.o -o bin/chtl_safe_test  lib/libCHTLCore.a

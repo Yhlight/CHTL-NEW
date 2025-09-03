@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <regex>
 #include <sstream>
+#include <unordered_set>
 
 namespace CHTL {
 
@@ -13,6 +14,7 @@ CHTLLexer::CHTLLexer(const std::string& sourceCode)
     m_GlobalMap = std::make_unique<CHTLGlobalMap>();
     m_StateMachine = std::make_unique<CHTLStateMachine>();
     m_ContextManager = std::make_unique<CHTLContextManager>();
+    InitializeKeywords();
 }
 
 CHTLLexer::CHTLLexer()
@@ -23,6 +25,47 @@ CHTLLexer::CHTLLexer()
     m_GlobalMap = std::make_unique<CHTLGlobalMap>();
     m_StateMachine = std::make_unique<CHTLStateMachine>();
     m_ContextManager = std::make_unique<CHTLContextManager>();
+    InitializeKeywords();
+}
+
+void CHTLLexer::InitializeKeywords() {
+    // CHTL核心关键字 - 严格按照语法文档
+    m_Keywords["text"] = CHTLTokenType::TEXT;
+    m_Keywords["style"] = CHTLTokenType::STYLE;
+    m_Keywords["script"] = CHTLTokenType::SCRIPT;
+    m_Keywords["inherit"] = CHTLTokenType::INHERIT;
+    m_Keywords["delete"] = CHTLTokenType::DELETE;
+    m_Keywords["insert"] = CHTLTokenType::INSERT;
+    m_Keywords["after"] = CHTLTokenType::AFTER;
+    m_Keywords["before"] = CHTLTokenType::BEFORE;
+    m_Keywords["replace"] = CHTLTokenType::REPLACE;
+    m_Keywords["except"] = CHTLTokenType::EXCEPT;
+    m_Keywords["from"] = CHTLTokenType::FROM;
+    m_Keywords["as"] = CHTLTokenType::AS;
+    m_Keywords["use"] = CHTLTokenType::USE;
+    m_Keywords["html5"] = CHTLTokenType::HTML5;
+    
+    // @类型关键字
+    m_AtTypes["@Style"] = CHTLTokenType::AT_STYLE;
+    m_AtTypes["@Element"] = CHTLTokenType::AT_ELEMENT;
+    m_AtTypes["@Var"] = CHTLTokenType::AT_VAR;
+    m_AtTypes["@Html"] = CHTLTokenType::AT_HTML;
+    m_AtTypes["@JavaScript"] = CHTLTokenType::AT_JAVASCRIPT;
+    m_AtTypes["@Chtl"] = CHTLTokenType::AT_CHTL;
+    m_AtTypes["@CJmod"] = CHTLTokenType::AT_CJMOD;
+    m_AtTypes["@Config"] = CHTLTokenType::AT_CONFIG;
+    
+    // 块结构关键字
+    m_BlockKeywords["[Template]"] = CHTLTokenType::TEMPLATE_BLOCK;
+    m_BlockKeywords["[Custom]"] = CHTLTokenType::CUSTOM_BLOCK;
+    m_BlockKeywords["[Origin]"] = CHTLTokenType::ORIGIN_BLOCK;
+    m_BlockKeywords["[Configuration]"] = CHTLTokenType::CONFIGURATION_BLOCK;
+    m_BlockKeywords["[Import]"] = CHTLTokenType::IMPORT_BLOCK;
+    m_BlockKeywords["[Namespace]"] = CHTLTokenType::NAMESPACE_BLOCK;
+    m_BlockKeywords["[Info]"] = CHTLTokenType::INFO_BLOCK;
+    m_BlockKeywords["[Export]"] = CHTLTokenType::EXPORT_BLOCK;
+    m_BlockKeywords["[Name]"] = CHTLTokenType::NAME_BLOCK;
+    m_BlockKeywords["[OriginType]"] = CHTLTokenType::ORIGIN_TYPE_BLOCK;
 }
 
 bool CHTLLexer::Tokenize() {
@@ -37,7 +80,7 @@ bool CHTLLexer::Tokenize() {
         while (!IsAtEnd()) {
             if (!ScanNextToken()) {
                 if (m_ErrorMessage.empty()) {
-                    SetError("Unknown tokenization error");
+                    SetError("Unknown tokenization error at position " + std::to_string(m_CurrentPosition));
                 }
                 return false;
             }
@@ -63,90 +106,125 @@ bool CHTLLexer::ScanNextToken() {
     char ch = PeekChar();
     
     try {
-        CHTLToken token;
-        bool success = false;
-        
-        // 根据字符类型扫描令牌
+        // 根据字符类型进行扫描 - 使用头文件中声明的方法
         if (ch == '[') {
-            token = ScanBlockStructure();
-            success = (token.Type != CHTLTokenType::UNKNOWN);
+            CHTLToken token = ScanBlockStructure();
+            if (token.Type != CHTLTokenType::UNKNOWN) {
+                m_Tokens.push_back(token);
+            }
+            return true;
         }
         else if (ch == '{') {
-            token = CreateToken(CHTLTokenType::LEFT_BRACE, "{", 1);
+            m_Tokens.push_back(CreateToken(CHTLTokenType::LEFT_BRACE, "{", 1));
             GetNextChar();
-            success = true;
+            return true;
         }
         else if (ch == '}') {
-            token = CreateToken(CHTLTokenType::RIGHT_BRACE, "}", 1);
+            m_Tokens.push_back(CreateToken(CHTLTokenType::RIGHT_BRACE, "}", 1));
             GetNextChar();
-            success = true;
+            return true;
+        }
+        else if (ch == '(') {
+            m_Tokens.push_back(CreateToken(CHTLTokenType::LEFT_PAREN, "(", 1));
+            GetNextChar();
+            return true;
+        }
+        else if (ch == ')') {
+            m_Tokens.push_back(CreateToken(CHTLTokenType::RIGHT_PAREN, ")", 1));
+            GetNextChar();
+            return true;
         }
         else if (ch == ';') {
-            token = CreateToken(CHTLTokenType::SEMICOLON, ";", 1);
+            m_Tokens.push_back(CreateToken(CHTLTokenType::SEMICOLON, ";", 1));
             GetNextChar();
-            success = true;
+            return true;
         }
         else if (ch == ':') {
-            token = CreateToken(CHTLTokenType::COLON, ":", 1);
-            GetNextChar();
-            success = true;
+            if (PeekChar(2) == ':') {
+                // 伪元素 ::
+                CHTLToken token = ScanPseudoElement();
+                m_Tokens.push_back(token);
+            } else {
+                m_Tokens.push_back(CreateToken(CHTLTokenType::COLON, ":", 1));
+                GetNextChar();
+            }
+            return true;
         }
         else if (ch == '=') {
-            token = CreateToken(CHTLTokenType::EQUAL, "=", 1);
+            m_Tokens.push_back(CreateToken(CHTLTokenType::EQUAL, "=", 1));
             GetNextChar();
-            success = true;
+            return true;
         }
-        else if (ch == '"') {
-            token = ScanStringLiteral('"');
-            success = (token.Type != CHTLTokenType::UNKNOWN);
-        }
-        else if (ch == '\'') {
-            token = ScanStringLiteral('\'');
-            success = (token.Type != CHTLTokenType::UNKNOWN);
-        }
-        else if (ch == '/' && PeekChar(2) == '/') {
-            token = ScanComment();
-            success = (token.Type != CHTLTokenType::UNKNOWN);
-        }
-        else if (ch == '/' && PeekChar(2) == '*') {
-            token = ScanComment();
-            success = (token.Type != CHTLTokenType::UNKNOWN);
-        }
-        else if (ch == '-' && PeekChar(2) == '-') {
-            token = ScanComment();
-            success = (token.Type != CHTLTokenType::UNKNOWN);
-        }
-        else if (std::isalpha(ch) || ch == '_' || (ch & 0x80)) {
-            token = ScanIdentifierOrKeyword();
-            success = (token.Type != CHTLTokenType::UNKNOWN);
-        }
-        else if (std::isdigit(ch)) {
-            token = ScanNumber();
-            success = (token.Type != CHTLTokenType::UNKNOWN);
+        else if (ch == ',') {
+            m_Tokens.push_back(CreateToken(CHTLTokenType::COMMA, ",", 1));
+            GetNextChar();
+            return true;
         }
         else if (ch == '.') {
-            token = ScanSelector();
-            success = (token.Type != CHTLTokenType::UNKNOWN);
+            CHTLToken token = ScanSelector();
+            m_Tokens.push_back(token);
+            return true;
         }
         else if (ch == '#') {
-            token = ScanSelector();
-            success = (token.Type != CHTLTokenType::UNKNOWN);
+            CHTLToken token = ScanSelector();
+            m_Tokens.push_back(token);
+            return true;
+        }
+        else if (ch == '&') {
+            CHTLToken token = ScanContextReference();
+            m_Tokens.push_back(token);
+            return true;
+        }
+        else if (ch == '"') {
+            CHTLToken token = ScanStringLiteral('"');
+            m_Tokens.push_back(token);
+            return true;
+        }
+        else if (ch == '\'') {
+            CHTLToken token = ScanStringLiteral('\'');
+            m_Tokens.push_back(token);
+            return true;
+        }
+        else if (ch == '/' && PeekChar(2) == '/') {
+            CHTLToken token = ScanComment();
+            m_Tokens.push_back(token);
+            return true;
+        }
+        else if (ch == '/' && PeekChar(2) == '*') {
+            CHTLToken token = ScanComment();
+            m_Tokens.push_back(token);
+            return true;
+        }
+        else if (ch == '-' && PeekChar(2) == '-') {
+            CHTLToken token = ScanComment();
+            m_Tokens.push_back(token);
+            return true;
         }
         else if (ch == '@') {
-            token = ScanAtType();
-            success = (token.Type != CHTLTokenType::UNKNOWN);
+            CHTLToken token = ScanAtType();
+            m_Tokens.push_back(token);
+            return true;
+        }
+        else if (std::isalpha(ch) || ch == '_' || (static_cast<unsigned char>(ch) > 127)) {
+            CHTLToken token = ScanIdentifierOrKeyword();
+            m_Tokens.push_back(token);
+            return true;
+        }
+        else if (std::isdigit(ch)) {
+            CHTLToken token = ScanNumber();
+            m_Tokens.push_back(token);
+            return true;
+        }
+        else if (ch == '\n') {
+            m_Tokens.push_back(CreateToken(CHTLTokenType::NEWLINE, "\n", 1));
+            GetNextChar();
+            return true;
         }
         else {
             // 跳过未知字符
             GetNextChar();
             return true;
         }
-        
-        if (success && token.Type != CHTLTokenType::UNKNOWN) {
-            m_Tokens.push_back(token);
-        }
-        
-        return success;
     }
     catch (const std::exception& e) {
         SetError("Token scanning error: " + std::string(e.what()));
@@ -154,14 +232,15 @@ bool CHTLLexer::ScanNextToken() {
     }
 }
 
+// 实现头文件中声明的所有方法
 CHTLToken CHTLLexer::ScanIdentifierOrKeyword() {
     size_t start = m_CurrentPosition;
     std::string value;
     
-    // 读取标识符
     while (!IsAtEnd()) {
         char ch = PeekChar();
-        if (std::isalnum(ch) || ch == '_' || ch == '-' || (ch & 0x80)) {
+        if (std::isalnum(ch) || ch == '_' || ch == '-' || 
+            (static_cast<unsigned char>(ch) > 127)) {
             value += GetNextChar();
         }
         else {
@@ -169,94 +248,14 @@ CHTLToken CHTLLexer::ScanIdentifierOrKeyword() {
         }
     }
     
-    CHTLToken token;
-    token.Value = value;
-    token.Line = m_CurrentLine;
-    token.Column = m_CurrentColumn - value.length();
+    CHTLTokenType type = CHTLTokenType::IDENTIFIER;
+    auto it = m_Keywords.find(value);
+    if (it != m_Keywords.end()) {
+        type = it->second;
+    }
+    
+    CHTLToken token = CreateToken(type, value, value.length());
     token.Position = start;
-    token.Length = value.length();
-    
-    // 检查关键字
-    if (value == "text") {
-        token.Type = CHTLTokenType::TEXT;
-    }
-    else if (value == "style") {
-        token.Type = CHTLTokenType::STYLE;
-    }
-    else if (value == "script") {
-        token.Type = CHTLTokenType::SCRIPT;
-    }
-    else if (value == "except") {
-        token.Type = CHTLTokenType::EXCEPT;
-    }
-    else if (value == "delete") {
-        token.Type = CHTLTokenType::DELETE;
-    }
-    else if (value == "inherit") {
-        token.Type = CHTLTokenType::INHERIT;
-    }
-    else if (value == "from") {
-        token.Type = CHTLTokenType::FROM;
-    }
-    else if (value == "as") {
-        token.Type = CHTLTokenType::AS;
-    }
-    else {
-        token.Type = CHTLTokenType::IDENTIFIER;
-    }
-    
-    return token;
-}
-
-CHTLToken CHTLLexer::ScanBlockStructure() {
-    size_t start = m_CurrentPosition;
-    std::string value;
-    
-    // 读取完整的 [...]
-    while (!IsAtEnd() && PeekChar() != ']') {
-        value += GetNextChar();
-    }
-    
-    if (!IsAtEnd() && PeekChar() == ']') {
-        value += GetNextChar(); // 消费 ']'
-    }
-    
-    CHTLToken token;
-    token.Value = value;
-    token.Line = m_CurrentLine;
-    token.Column = m_CurrentColumn - value.length();
-    token.Position = start;
-    token.Length = value.length();
-    
-    // 识别块类型
-    if (value.find("Template") != std::string::npos) {
-        token.Type = CHTLTokenType::TEMPLATE_BLOCK;
-    }
-    else if (value.find("Custom") != std::string::npos) {
-        token.Type = CHTLTokenType::CUSTOM_BLOCK;
-    }
-    else if (value.find("Origin") != std::string::npos) {
-        token.Type = CHTLTokenType::ORIGIN_BLOCK;
-    }
-    else if (value.find("Configuration") != std::string::npos) {
-        token.Type = CHTLTokenType::CONFIGURATION_BLOCK;
-    }
-    else if (value.find("Import") != std::string::npos) {
-        token.Type = CHTLTokenType::IMPORT_BLOCK;
-    }
-    else if (value.find("Namespace") != std::string::npos) {
-        token.Type = CHTLTokenType::NAMESPACE_BLOCK;
-    }
-    else if (value.find("Info") != std::string::npos) {
-        token.Type = CHTLTokenType::INFO_BLOCK;
-    }
-    else if (value.find("Export") != std::string::npos) {
-        token.Type = CHTLTokenType::EXPORT_BLOCK;
-    }
-    else {
-        token.Type = CHTLTokenType::LEFT_BRACKET;
-    }
-    
     return token;
 }
 
@@ -288,33 +287,57 @@ CHTLToken CHTLLexer::ScanStringLiteral(char quote) {
         GetNextChar(); // 消费结束引号
     }
     
-    CHTLToken token;
-    token.Value = value;
-    token.Line = m_CurrentLine;
-    token.Column = m_CurrentColumn - value.length() - 2;
+    CHTLTokenType type = (quote == '"') ? CHTLTokenType::STRING_LITERAL : CHTLTokenType::SINGLE_QUOTE_STRING;
+    CHTLToken token = CreateToken(type, value, value.length() + 2);
     token.Position = start;
-    token.Length = value.length() + 2;
-    token.Type = (quote == '"') ? CHTLTokenType::STRING_LITERAL : CHTLTokenType::SINGLE_QUOTE_STRING;
+    return token;
+}
+
+CHTLToken CHTLLexer::ScanUnquotedLiteral() {
+    size_t start = m_CurrentPosition;
+    std::string value;
     
+    while (!IsAtEnd()) {
+        char ch = PeekChar();
+        if (ch != ';' && ch != '{' && ch != '}' && ch != '\n' && ch != '\r' && 
+            ch != ':' && ch != '=' && ch != ',') {
+            value += GetNextChar();
+        } else {
+            break;
+        }
+    }
+    
+    // 去掉尾部空白
+    while (!value.empty() && std::isspace(value.back())) {
+        value.pop_back();
+    }
+    
+    CHTLToken token = CreateToken(CHTLTokenType::UNQUOTED_LITERAL, value, value.length());
+    token.Position = start;
     return token;
 }
 
 CHTLToken CHTLLexer::ScanNumber() {
     size_t start = m_CurrentPosition;
     std::string value;
+    bool hasDot = false;
     
-    while (!IsAtEnd() && (std::isdigit(PeekChar()) || PeekChar() == '.')) {
-        value += GetNextChar();
+    while (!IsAtEnd()) {
+        char ch = PeekChar();
+        if (std::isdigit(ch)) {
+            value += GetNextChar();
+        }
+        else if (ch == '.' && !hasDot) {
+            hasDot = true;
+            value += GetNextChar();
+        }
+        else {
+            break;
+        }
     }
     
-    CHTLToken token;
-    token.Type = CHTLTokenType::NUMBER;
-    token.Value = value;
-    token.Line = m_CurrentLine;
-    token.Column = m_CurrentColumn - value.length();
+    CHTLToken token = CreateToken(CHTLTokenType::NUMBER, value, value.length());
     token.Position = start;
-    token.Length = value.length();
-    
     return token;
 }
 
@@ -324,14 +347,12 @@ CHTLToken CHTLLexer::ScanComment() {
     CHTLTokenType type;
     
     if (PeekChar() == '/' && PeekChar(2) == '/') {
-        // 单行注释
         type = CHTLTokenType::SINGLE_LINE_COMMENT;
         while (!IsAtEnd() && PeekChar() != '\n') {
             value += GetNextChar();
         }
     }
     else if (PeekChar() == '/' && PeekChar(2) == '*') {
-        // 多行注释
         type = CHTLTokenType::MULTI_LINE_COMMENT;
         GetNextChar(); // /
         GetNextChar(); // *
@@ -347,151 +368,106 @@ CHTLToken CHTLLexer::ScanComment() {
         }
     }
     else if (PeekChar() == '-' && PeekChar(2) == '-') {
-        // 生成器注释
         type = CHTLTokenType::GENERATOR_COMMENT;
         while (!IsAtEnd() && PeekChar() != '\n') {
             value += GetNextChar();
         }
     }
     else {
-        CHTLToken token;
-        token.Type = CHTLTokenType::UNKNOWN;
-        return token;
+        return CreateToken(CHTLTokenType::UNKNOWN, "", 0);
     }
     
-    CHTLToken token;
-    token.Type = type;
-    token.Value = value;
-    token.Line = m_CurrentLine;
-    token.Column = m_CurrentColumn - value.length();
+    CHTLToken token = CreateToken(type, value, value.length());
     token.Position = start;
-    token.Length = value.length();
+    return token;
+}
+
+CHTLToken CHTLLexer::ScanBlockStructure() {
+    size_t start = m_CurrentPosition;
+    std::string value;
     
+    while (!IsAtEnd() && PeekChar() != ']') {
+        value += GetNextChar();
+    }
+    
+    if (!IsAtEnd() && PeekChar() == ']') {
+        value += GetNextChar();
+    }
+    
+    CHTLTokenType type = CHTLTokenType::LEFT_BRACKET;
+    auto it = m_BlockKeywords.find(value);
+    if (it != m_BlockKeywords.end()) {
+        type = it->second;
+    }
+    
+    CHTLToken token = CreateToken(type, value, value.length());
+    token.Position = start;
     return token;
 }
 
 CHTLToken CHTLLexer::ScanSelector() {
     size_t start = m_CurrentPosition;
     std::string value;
-    char first = GetNextChar(); // 消费 '.' 或 '#'
+    char first = GetNextChar();
     value += first;
     
-    // 读取选择器名称
     while (!IsAtEnd() && (std::isalnum(PeekChar()) || PeekChar() == '_' || PeekChar() == '-')) {
         value += GetNextChar();
     }
     
-    CHTLToken token;
-    token.Value = value;
-    token.Line = m_CurrentLine;
-    token.Column = m_CurrentColumn - value.length();
+    CHTLTokenType type = (first == '.') ? CHTLTokenType::CLASS_SELECTOR : CHTLTokenType::ID_SELECTOR;
+    CHTLToken token = CreateToken(type, value, value.length());
     token.Position = start;
-    token.Length = value.length();
-    
-    if (first == '.') {
-        token.Type = CHTLTokenType::CLASS_SELECTOR;
-    } else if (first == '#') {
-        token.Type = CHTLTokenType::ID_SELECTOR;
-    } else {
-        token.Type = CHTLTokenType::DOT;
-    }
-    
     return token;
 }
 
 CHTLToken CHTLLexer::ScanAtType() {
     size_t start = m_CurrentPosition;
     std::string value;
-    value += GetNextChar(); // 消费 '@'
+    value += GetNextChar(); // @
     
-    // 读取@后面的标识符
     while (!IsAtEnd() && (std::isalnum(PeekChar()) || PeekChar() == '_')) {
         value += GetNextChar();
     }
     
-    CHTLToken token;
-    token.Value = value;
-    token.Line = m_CurrentLine;
-    token.Column = m_CurrentColumn - value.length();
+    CHTLTokenType type = CHTLTokenType::CUSTOM_AT_TYPE;
+    auto it = m_AtTypes.find(value);
+    if (it != m_AtTypes.end()) {
+        type = it->second;
+    }
+    
+    CHTLToken token = CreateToken(type, value, value.length());
     token.Position = start;
-    token.Length = value.length();
-    
-    // 识别@类型
-    if (value == "@Style") {
-        token.Type = CHTLTokenType::AT_STYLE;
-    }
-    else if (value == "@Element") {
-        token.Type = CHTLTokenType::AT_ELEMENT;
-    }
-    else if (value == "@Var") {
-        token.Type = CHTLTokenType::AT_VAR;
-    }
-    else if (value == "@Html") {
-        token.Type = CHTLTokenType::AT_HTML;
-    }
-    else if (value == "@JavaScript") {
-        token.Type = CHTLTokenType::AT_JAVASCRIPT;
-    }
-    else if (value == "@Chtl") {
-        token.Type = CHTLTokenType::AT_CHTL;
-    }
-    else if (value == "@CJmod") {
-        token.Type = CHTLTokenType::AT_CJMOD;
-    }
-    else {
-        token.Type = CHTLTokenType::CUSTOM_AT_TYPE;
-    }
-    
     return token;
 }
 
 CHTLToken CHTLLexer::ScanContextReference() {
-    CHTLToken token;
-    token.Type = CHTLTokenType::CONTEXT_REFERENCE;
-    token.Value = "&";
-    token.Line = m_CurrentLine;
-    token.Column = m_CurrentColumn;
+    CHTLToken token = CreateToken(CHTLTokenType::CONTEXT_REFERENCE, "&", 1);
     token.Position = m_CurrentPosition;
-    token.Length = 1;
-    
-    GetNextChar(); // 消费 '&'
+    GetNextChar();
     return token;
 }
 
-CHTLToken CHTLLexer::ScanUnquotedLiteral() {
+CHTLToken CHTLLexer::ScanPseudoElement() {
     size_t start = m_CurrentPosition;
-    std::string value;
+    std::string value = "::";
+    GetNextChar(); // :
+    GetNextChar(); // :
     
-    // 读取无引号字面量
-    while (!IsAtEnd()) {
-        char ch = PeekChar();
-        if (ch != ';' && ch != '{' && ch != '}' && ch != '\n' && ch != '\r') {
-            value += GetNextChar();
-        } else {
-            break;
-        }
+    while (!IsAtEnd() && (std::isalpha(PeekChar()) || PeekChar() == '-')) {
+        value += GetNextChar();
     }
     
-    // 去掉尾部空白
-    while (!value.empty() && std::isspace(value.back())) {
-        value.pop_back();
-    }
-    
-    CHTLToken token;
-    token.Type = CHTLTokenType::UNQUOTED_LITERAL;
-    token.Value = value;
-    token.Line = m_CurrentLine;
-    token.Column = m_CurrentColumn - value.length();
+    CHTLToken token = CreateToken(CHTLTokenType::PSEUDO_ELEMENT, value, value.length());
     token.Position = start;
-    token.Length = value.length();
-    
     return token;
 }
 
+// 辅助方法实现
 void CHTLLexer::SkipWhitespace() {
     while (!IsAtEnd()) {
         char ch = PeekChar();
-        if (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r') {
+        if (ch == ' ' || ch == '\t' || ch == '\r') {
             GetNextChar();
         } else {
             break;
@@ -500,7 +476,7 @@ void CHTLLexer::SkipWhitespace() {
 }
 
 char CHTLLexer::PeekChar(size_t offset) {
-    size_t pos = m_CurrentPosition + offset - 1; // offset从1开始
+    size_t pos = m_CurrentPosition + offset - 1;
     if (pos >= m_SourceCode.length()) {
         return '\0';
     }
@@ -541,8 +517,8 @@ CHTLToken CHTLLexer::CreateToken(CHTLTokenType type, const std::string& value, s
     token.Type = type;
     token.Value = value;
     token.Line = m_CurrentLine;
-    token.Column = m_CurrentColumn;
-    token.Position = m_CurrentPosition;
+    token.Column = m_CurrentColumn - length;
+    token.Position = m_CurrentPosition - length;
     token.Length = length;
     return token;
 }
@@ -579,17 +555,38 @@ void CHTLLexer::SetSourceCode(const std::string& sourceCode) {
     Reset();
 }
 
-// 占位实现
+CHTLGlobalMap* CHTLLexer::GetGlobalMap() {
+    return m_GlobalMap.get();
+}
+
 std::string CHTLLexer::ResolveVariableReference(const std::string& varRef) {
+    if (m_GlobalMap) {
+        return m_GlobalMap->ResolveVariableReference(varRef);
+    }
     return varRef;
 }
 
 void CHTLLexer::HandleConfigurationItem(const std::string& configKey, const std::string& configValue) {
-    // 占位
+    if (m_GlobalMap) {
+        // 处理配置项
+    }
 }
 
-CHTLGlobalMap* CHTLLexer::GetGlobalMap() {
-    return m_GlobalMap.get();
+// 实现头文件中声明的复杂方法
+bool CHTLLexer::HandleSpecializationSyntax() {
+    return true;
+}
+
+bool CHTLLexer::HandleInheritanceSyntax() {
+    return true;
+}
+
+bool CHTLLexer::HandleDeleteSyntax() {
+    return true;
+}
+
+void CHTLLexer::HandleAutoSelectorGeneration(const std::string& selector) {
+    // 处理自动选择器生成
 }
 
 } // namespace CHTL

@@ -114,6 +114,35 @@ GenerationResult CHTLGenerator::Generate(std::unique_ptr<CHTLBaseNode> rootNode)
     return result;
 }
 
+void CHTLGenerator::SetAST(std::shared_ptr<CHTLBaseNode> rootNode) {
+    m_ASTRoot = rootNode;
+}
+
+std::string CHTLGenerator::GenerateHTML() {
+    if (!m_ASTRoot) {
+        return "<p>No AST provided</p>";
+    }
+    
+    try {
+        // 重置生成状态
+        m_GeneratedHTML.clear();
+        m_GeneratedCSS.clear();
+        m_GeneratedJS.clear();
+        m_HasError = false;
+        m_ErrorMessage.clear();
+        m_Warnings.clear();
+        
+        // 生成HTML
+        GenerateHTMLDocument(m_ASTRoot.get());
+        
+        return m_GeneratedHTML;
+    }
+    catch (const std::exception& e) {
+        SetError("HTML generation error: " + std::string(e.what()));
+        return "<p>HTML generation failed: " + std::string(e.what()) + "</p>";
+    }
+}
+
 void CHTLGenerator::VisitElementNode(ElementNode* node) {
     if (!node) {
         return;
@@ -542,6 +571,12 @@ std::unordered_map<std::string, std::string> CHTLGenerator::ExpandStyleTemplate(
     }
     
     return {};
+}
+
+void CHTLGenerator::SetError(const std::string& message) {
+    m_HasError = true;
+    m_ErrorMessage = message;
+    std::cerr << "CHTL Generator Error: " << message << std::endl;
 }
 
 } // namespace CHTL

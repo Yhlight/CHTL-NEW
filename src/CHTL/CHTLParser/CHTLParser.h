@@ -84,6 +84,12 @@ public:
     CHTLBaseNode* GetRootNode();
     
     /**
+     * 获取AST根节点（智能指针）
+     * @return AST根节点智能指针
+     */
+    std::shared_ptr<CHTLBaseNode> GetAST();
+    
+    /**
      * 检查是否有解析错误
      * @return 是否有错误
      */
@@ -168,6 +174,12 @@ private:
      * @return 文档根节点
      */
     std::unique_ptr<CHTLBaseNode> ParseDocument();
+    
+    /**
+     * 安全解析CHTL文档
+     * @return 文档根节点
+     */
+    std::unique_ptr<CHTLBaseNode> ParseDocumentSafe();
     
     /**
      * 解析use语句

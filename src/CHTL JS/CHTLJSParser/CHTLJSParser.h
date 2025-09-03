@@ -80,6 +80,12 @@ public:
     CHTLJSBaseNode* GetRootNode();
     
     /**
+     * 获取AST根节点（智能指针）
+     * @return AST根节点智能指针
+     */
+    std::shared_ptr<CHTLJSBaseNode> GetAST();
+    
+    /**
      * 检查是否有解析错误
      * @return 是否有错误
      */
