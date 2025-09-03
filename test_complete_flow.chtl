@@ -1,0 +1,48 @@
+html
+{
+    head
+    {
+        title
+        {
+            text
+            {
+                CHTL完整编译流程测试
+            }
+        }
+    }
+    
+    body
+    {
+        div
+        {
+            id: main-container;
+            class: test-container;
+            
+            text
+            {
+                🔥 测试CHTL完整编译流程
+            }
+            
+            style
+            {
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                padding: 20px;
+                border-radius: 10px;
+                color: white;
+                text-align: center;
+                font-size: 18px;
+                margin: 20px;
+            }
+            
+            script
+            {
+                console.log('🚀 CHTL局部脚本正常工作！');
+                console.log('这是CHTL编译器生成的JavaScript代码');
+                
+                document.addEventListener('DOMContentLoaded', function() {
+                    console.log('✅ CHTL编译流程：CHTL → HTML + CSS + JS');
+                });
+            }
+        }
+    }
+}

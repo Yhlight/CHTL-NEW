@@ -19,6 +19,7 @@ namespace CHTL {
 
 // 条件前向声明 - 仅在ANTLR可用时包含
 #ifdef CHTL_WITH_ANTLR
+// 前向声明ANTLR编译器（暂时禁用直接包含以避免编译错误）
 class CSSCompiler;
 class JavaScriptCompiler;
 #endif
@@ -106,7 +107,7 @@ public:
     /**
      * 析构函数
      */
-    ~CompilerDispatcher() = default;
+    ~CompilerDispatcher();
     
     /**
      * 编译CHTL源代码

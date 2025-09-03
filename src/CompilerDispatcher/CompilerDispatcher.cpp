@@ -34,6 +34,14 @@ CompilerDispatcher::CompilerDispatcher()
 #endif
 }
 
+CompilerDispatcher::~CompilerDispatcher() {
+    // 手动清理，避免前向声明问题
+#ifdef CHTL_WITH_ANTLR
+    m_CSSCompiler.reset();
+    m_JSCompiler.reset();
+#endif
+}
+
 bool CompilerDispatcher::Compile(const std::string& sourceCode) {
     Reset();
     m_SourceCode = sourceCode;
@@ -54,17 +62,14 @@ bool CompilerDispatcher::Compile(const std::string& sourceCode) {
         // 3. 分组片段
         GroupFragmentsByType();
         
-        // 4. 使用简单HTML生成器进行快速修复
+        // 4. 使用真正的CHTL编译器进行正确编译
         if (m_FragmentsByType.count(FragmentType::CHTL_FRAGMENT) > 0) {
-            // 使用快速修复生成器
-            std::string generatedHTML = SimpleHTMLGenerator::GenerateHTML(sourceCode);
-            
-            CompilationResult result;
-            result.IsSuccess = true;
-            result.Content = generatedHTML;
-            result.Type = "HTML";
-            
+            auto result = CompileCHTLFragments(m_FragmentsByType[FragmentType::CHTL_FRAGMENT]);
             m_CompilationResults.push_back(result);
+            if (!result.IsSuccess) {
+                SetCompilationError("CHTL编译失败: " + result.ErrorMessage);
+                return false;
+            }
         }
         
         if (m_FragmentsByType.count(FragmentType::CHTL_JS_FRAGMENT) > 0) {
@@ -76,6 +81,9 @@ bool CompilerDispatcher::Compile(const std::string& sourceCode) {
             }
         }
 
+        // 暂时禁用ANTLR编译器，专注于CHTL核心功能
+        // TODO: 修复ANTLR编译器集成
+        /*
 #ifdef CHTL_WITH_ANTLR
         if (m_FragmentsByType.count(FragmentType::CSS_FRAGMENT) > 0) {
             auto result = CompileCSSFragments(m_FragmentsByType[FragmentType::CSS_FRAGMENT]);
@@ -95,6 +103,7 @@ bool CompilerDispatcher::Compile(const std::string& sourceCode) {
             }
         }
 #endif
+        */
         
         // 5. 合并编译结果
         if (!MergeCompilationResults()) {
@@ -123,7 +132,7 @@ CompilationResult CompilerDispatcher::CompileCHTLFragments(const std::vector<Cod
     }
     
     try {
-        std::ostringstream html;
+        std::ostringstream html, css, js;
         
         for (const auto& fragment : fragments) {
             // 设置解析器源代码
@@ -132,10 +141,12 @@ CompilationResult CompilerDispatcher::CompileCHTLFragments(const std::vector<Cod
             // 执行解析
             auto parseResult = m_CHTLParser->Parse();
             if (parseResult.IsSuccess && parseResult.RootNode) {
-                // 使用生成器生成真正的HTML
+                // 使用生成器生成真正的HTML、CSS、JS
                 auto genResult = m_CHTLGenerator->Generate(std::move(parseResult.RootNode));
                 if (genResult.IsSuccess) {
                     html << genResult.HTMLContent;
+                    css << genResult.CSSContent;
+                    js << genResult.JavaScriptContent;
                 } else {
                     CompilationResult failResult;
                     failResult.IsSuccess = false;
@@ -150,11 +161,31 @@ CompilationResult CompilerDispatcher::CompileCHTLFragments(const std::vector<Cod
             }
         }
         
-        CompilationResult result;
-        result.IsSuccess = true;
-        result.Content = html.str();
-        result.Type = "HTML";
-        return result;
+        // 创建HTML结果
+        CompilationResult htmlResult;
+        htmlResult.IsSuccess = true;
+        htmlResult.Content = html.str();
+        htmlResult.Type = "HTML";
+        
+        // 如果有CSS内容，创建CSS结果
+        if (!css.str().empty()) {
+            CompilationResult cssResult;
+            cssResult.IsSuccess = true;
+            cssResult.Content = css.str();
+            cssResult.Type = "CSS";
+            m_CompilationResults.push_back(cssResult);
+        }
+        
+        // 如果有JavaScript内容，创建JS结果
+        if (!js.str().empty()) {
+            CompilationResult jsResult;
+            jsResult.IsSuccess = true;
+            jsResult.Content = js.str();
+            jsResult.Type = "JavaScript";
+            m_CompilationResults.push_back(jsResult);
+        }
+        
+        return htmlResult;
         
     } catch (const std::exception& e) {
         CompilationResult failResult;
@@ -419,11 +450,11 @@ CompilationResult CompilerDispatcher::CompileCSSFragments(const std::vector<Code
     for (const auto& fragment : fragments) {
         auto result = m_CSSCompiler->Compile(fragment.Content);
         if (result.IsSuccess) {
-            css << result.GeneratedCSS << "\n";
+            css << result.OptimizedCSS << "\n";
         } else {
             CompilationResult failResult;
             failResult.IsSuccess = false;
-            failResult.ErrorMessage = result.ErrorMessage;
+            failResult.ErrorMessage = result.Errors.empty() ? "CSS编译失败" : result.Errors[0];
             return failResult;
         }
     }
@@ -441,11 +472,11 @@ CompilationResult CompilerDispatcher::CompileJavaScriptFragments(const std::vect
     for (const auto& fragment : fragments) {
         auto result = m_JSCompiler->Compile(fragment.Content);
         if (result.IsSuccess) {
-            js << result.GeneratedJavaScript << "\n";
+            js << result.OptimizedJS << "\n";
         } else {
             CompilationResult failResult;
             failResult.IsSuccess = false;
-            failResult.ErrorMessage = result.ErrorMessage;
+            failResult.ErrorMessage = result.Errors.empty() ? "JavaScript编译失败" : result.Errors[0];
             return failResult;
         }
     }

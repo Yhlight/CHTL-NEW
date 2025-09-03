@@ -281,6 +281,7 @@ if(ANTLR4_INCLUDE_DIR AND ANTLR4_LIBRARY)
     )
     
     set(CHTL_FULL_SUPPORT ON)
+    add_compile_definitions(CHTL_WITH_ANTLR)
     message(STATUS "✅ Full CHTL compiler with ANTLR support enabled")
 else()
     # Simplified dispatcher without ANTLR

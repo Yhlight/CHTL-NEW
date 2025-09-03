@@ -29,6 +29,9 @@ CHTL_Compiler_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 CHTL_Compiler_SOURCE_DIR:STATIC=/workspace
 
+//No help, variable specified on the command line.
+CHTL_WITH_ANTLR:UNINITIALIZED=ON
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 
