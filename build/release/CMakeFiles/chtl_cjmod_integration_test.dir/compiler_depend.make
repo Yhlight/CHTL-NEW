@@ -257,10 +257,52 @@ CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegratio
   /usr/lib/llvm-20/lib/clang/20/include/stddef.h \
   /usr/lib/llvm-20/lib/clang/20/include/stdint.h \
   /workspace/src/CHTL\ JS/CJMODSystem/CHTLJSFunction.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/CJMODCore.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/CJMODCore.h \
-  /workspace/src/Scanner/CJMODScannerPlugin.h
+  /workspace/src/CHTL\ JS/CJMODSystem/CJMODCore.h
 
+bin/chtl_cjmod_integration_test: /lib/x86_64-linux-gnu/Scrt1.o \
+  /lib/x86_64-linux-gnu/crti.o \
+  /lib/x86_64-linux-gnu/crtn.o \
+  /lib/x86_64-linux-gnu/libc.so \
+  /lib/x86_64-linux-gnu/libc.so.6 \
+  /lib/x86_64-linux-gnu/libgcc_s.so.1 \
+  /lib/x86_64-linux-gnu/libm.so \
+  /lib/x86_64-linux-gnu/libm.so.6 \
+  /lib/x86_64-linux-gnu/libmvec.so.1 \
+  /lib64/ld-linux-x86-64.so.2 \
+  /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
+  /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o \
+  /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a \
+  /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so \
+  /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so \
+  /usr/lib/x86_64-linux-gnu/libc_nonshared.a \
+  CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegrationTest.cpp.o \
+  lib/libCHTLScanner.a \
+  lib/libCJMOD.a
+
+
+lib/libCJMOD.a:
+
+lib/libCHTLScanner.a:
+
+/usr/lib/x86_64-linux-gnu/libc_nonshared.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o:
+
+/lib64/ld-linux-x86-64.so.2:
+
+/lib/x86_64-linux-gnu/libgcc_s.so.1:
+
+/lib/x86_64-linux-gnu/libc.so:
+
+/lib/x86_64-linux-gnu/crtn.o:
+
+/lib/x86_64-linux-gnu/crti.o:
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
@@ -280,13 +322,19 @@ CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegratio
 
 /usr/include/c++/14/bits/basic_ios.tcc:
 
+/lib/x86_64-linux-gnu/libc.so.6:
+
 /usr/include/c++/14/pstl/glue_memory_defs.h:
 
 /usr/include/c++/14/bits/alloc_traits.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so:
+
 /usr/include/c++/14/bits/chrono.h:
 
 /usr/include/c++/14/bit:
+
+CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegrationTest.cpp.o:
 
 /usr/include/c++/14/backward/binders.h:
 
@@ -368,8 +416,6 @@ CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegratio
 
 /usr/include/c++/14/bits/ptr_traits.h:
 
-/workspace/src/Scanner/CJMODScannerPlugin.h:
-
 /usr/include/c++/14/bits/allocated_ptr.h:
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
@@ -419,6 +465,8 @@ CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegratio
 /usr/include/errno.h:
 
 /usr/include/c++/14/debug/debug.h:
+
+/lib/x86_64-linux-gnu/libmvec.so.1:
 
 /usr/include/stdlib.h:
 
@@ -496,6 +544,8 @@ CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegratio
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
+/lib/x86_64-linux-gnu/libm.so:
+
 /usr/include/linux/sched/types.h:
 
 /usr/include/c++/14/bits/std_abs.h:
@@ -559,6 +609,8 @@ CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegratio
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
+
+/lib/x86_64-linux-gnu/Scrt1.o:
 
 /usr/include/c++/14/bits/locale_classes.h:
 
@@ -711,6 +763,8 @@ CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegratio
 /usr/include/c++/14/bits/postypes.h:
 
 /usr/include/c++/14/initializer_list:
+
+/lib/x86_64-linux-gnu/libm.so.6:
 
 /usr/include/c++/14/iosfwd:
 

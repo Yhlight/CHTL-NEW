@@ -486,14 +486,14 @@ CMakeFiles/CHTLJSCompiler.dir/clean:
 
 # All Build rule for target.
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLCore.dir/all
-CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLConstraint.dir/all
-CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLImport.dir/all
-CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
-CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CJMOD.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLCodeMerger.dir/all
+CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLImport.dir/all
+CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
+CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLDispatcher.dir/build.make CMakeFiles/CHTLDispatcher.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLDispatcher.dir/build.make CMakeFiles/CHTLDispatcher.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=32,33 "Built target CHTLDispatcher"
@@ -525,18 +525,18 @@ CMakeFiles/CHTLDispatcher.dir/clean:
 # Target rules for target CMakeFiles/chtl.dir
 
 # All Build rule for target.
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLDispatcher.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLErrorSystem.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLUtilSystem.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLCore.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLConstraint.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLImport.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CJMOD.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLCodeMerger.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLErrorSystem.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLUtilSystem.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLImport.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLDispatcher.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl.dir/build.make CMakeFiles/chtl.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl.dir/build.make CMakeFiles/chtl.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=71,72 "Built target chtl"
@@ -568,18 +568,18 @@ CMakeFiles/chtl.dir/clean:
 # Target rules for target CMakeFiles/chtl-professional.dir
 
 # All Build rule for target.
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLDispatcher.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLErrorSystem.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLUtilSystem.dir/all
 CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLCore.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLConstraint.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLImport.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
 CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLJSCore.dir/all
 CMakeFiles/chtl-professional.dir/all: CMakeFiles/CJMOD.dir/all
 CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLScanner.dir/all
 CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLCodeMerger.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLErrorSystem.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLUtilSystem.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLConstraint.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLImport.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLDispatcher.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl-professional.dir/build.make CMakeFiles/chtl-professional.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl-professional.dir/build.make CMakeFiles/chtl-professional.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=73,74 "Built target chtl-professional"

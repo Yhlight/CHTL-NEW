@@ -259,6 +259,25 @@ CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegratio
  /usr/lib/llvm-20/lib/clang/20/include/stdint.h
  /workspace/src/CHTL JS/CJMODSystem/CHTLJSFunction.h
  /workspace/src/CHTL JS/CJMODSystem/CJMODCore.h
- /workspace/src/CHTL JS/CJMODSystem/CJMODCore.h
- /workspace/src/Scanner/CJMODScannerPlugin.h
+
+bin/chtl_cjmod_integration_test
+ /lib/x86_64-linux-gnu/Scrt1.o
+ /lib/x86_64-linux-gnu/crti.o
+ /lib/x86_64-linux-gnu/crtn.o
+ /lib/x86_64-linux-gnu/libc.so
+ /lib/x86_64-linux-gnu/libc.so.6
+ /lib/x86_64-linux-gnu/libgcc_s.so.1
+ /lib/x86_64-linux-gnu/libm.so
+ /lib/x86_64-linux-gnu/libm.so.6
+ /lib/x86_64-linux-gnu/libmvec.so.1
+ /lib64/ld-linux-x86-64.so.2
+ /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o
+ /usr/lib/gcc/x86_64-linux-gnu/14/crtendS.o
+ /usr/lib/gcc/x86_64-linux-gnu/14/libgcc.a
+ /usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so
+ /usr/lib/gcc/x86_64-linux-gnu/14/libstdc++.so
+ /usr/lib/x86_64-linux-gnu/libc_nonshared.a
+ /workspace/build/release/CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegrationTest.cpp.o
+ /workspace/build/release/lib/libCHTLScanner.a
+ /workspace/build/release/lib/libCJMOD.a
 

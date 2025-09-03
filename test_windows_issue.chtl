@@ -1,0 +1,35 @@
+html
+{
+    head
+    {
+        title
+        {
+            text
+            {
+                测试Windows编译器问题
+            }
+        }
+    }
+    
+    body
+    {
+        div
+        {
+            id: test;
+            class: main;
+            
+            text
+            {
+                🔥 这是测试页面，如果Windows编译器正常工作，应该看到这个内容
+            }
+            
+            style
+            {
+                background: red;
+                color: white;
+                padding: 20px;
+                text-align: center;
+            }
+        }
+    }
+}

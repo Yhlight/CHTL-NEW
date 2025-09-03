@@ -211,15 +211,32 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.obj:
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/stl_heap.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/uniform_int_dist.h \
  /workspace/src/CompilerDispatcher/../CodeMerger/CHTLCodeMerger.h \
- /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/iostream \
- /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/ostream \
+ /workspace/src/CompilerDispatcher/../QuickFix/SimpleHTMLGenerator.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/sstream \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/istream \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/ios \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/basic_ios.h \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/basic_ios.tcc \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/ostream \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/ostream.tcc \
- /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/istream \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/istream.tcc \
- /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/sstream \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/sstream.tcc \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/regex \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bitset \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/stl_tree.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/stl_map.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/regex_constants.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/regex_error.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/regex_automaton.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/regex_automaton.tcc \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/regex_scanner.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/regex_scanner.tcc \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/regex_compiler.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/regex_compiler.tcc \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/regex.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/regex.tcc \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/regex_executor.h \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/bits/regex_executor.tcc \
+ /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/iostream \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/algorithm \
  /usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/pstl/glue_algorithm_defs.h

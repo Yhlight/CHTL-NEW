@@ -44,7 +44,7 @@ GenerationResult CHTLGenerator::Generate(std::unique_ptr<CHTLBaseNode> rootNode)
         // 生成HTML文档
         GenerateHTMLDocument(m_RootNode.get());
         
-        // 生成CSS样式表
+        // 生成CSS样式表  
         GenerateCSSStylesheet(m_RootNode.get());
         
         // 生成JavaScript代码（来自局部script）
@@ -578,5 +578,7 @@ void CHTLGenerator::SetError(const std::string& message) {
     m_ErrorMessage = message;
     std::cerr << "CHTL Generator Error: " << message << std::endl;
 }
+
+
 
 } // namespace CHTL
