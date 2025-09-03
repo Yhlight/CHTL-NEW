@@ -1,0 +1,13 @@
+// 由比滨结衣CJMOD模块信息文件
+[Info]
+{
+    name = "yuigahama";
+    version = "1.0.0";
+    description = "由比滨结衣CJMOD扩展 - 友好交互功能";
+    author = "CHTL Team";
+    license = "MIT";
+    dependencies = "";
+    category = "cjmod-extension";
+    minCHTLVersion = "1.0.0";
+    maxCHTLVersion = "2.0.0";
+}

@@ -1,0 +1,34 @@
+// 由比滨结衣CMOD主模块文件
+
+[Template] @Style YuigahamaCard
+{
+    background: linear-gradient(135deg, #fff 0%, #fff0f5 100%);
+    border-radius: 12px;
+    border-left: 4px solid #ff69b4;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.2);
+    transition: all 0.3s ease;
+}
+
+[Template] @Style YuigahamaButton
+{
+    background: linear-gradient(45deg, #ff69b4, #ffc0cb);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+}
+
+[Template] @Var YuigahamaColors
+{
+    primaryColor: "#ff69b4";      // 由比滨的粉色
+    secondaryColor: "#ffa726";    // 温暖橙色
+    accentColor: "#42a5f5";       // 友善蓝色
+    textColor: "#333";            // 文字色
+    backgroundColor: "#fff0f8";   // 淡粉背景
+}
