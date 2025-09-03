@@ -1,0 +1,97 @@
+// 珂朵莉四叶相册组件（CMOD部分）
+
+[Template] @Element FourLeafAlbum
+{
+    div
+    {
+        style
+        {
+            .four-leaf-container
+            {
+                display: grid;
+                grid-template-areas: 
+                    "top-left top-right"
+                    "bottom-left bottom-right";
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                gap: 10px;
+                width: 400px;
+                height: 400px;
+                border-radius: 50%;
+                overflow: hidden;
+                position: relative;
+                box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
+            }
+        }
+        
+        div
+        {
+            style
+            {
+                .album-item
+                {
+                    background-size: cover;
+                    background-position: center;
+                    transition: all 0.5s ease;
+                    cursor: pointer;
+                }
+                
+                .album-item:hover
+                {
+                    transform: scale(1.1);
+                    z-index: 10;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                }
+            }
+        }
+        
+        div
+        {
+            style
+            {
+                .top-left
+                {
+                    grid-area: top-left;
+                    border-radius: 100% 0 0 0;
+                }
+            }
+        }
+        
+        div
+        {
+            style
+            {
+                .top-right
+                {
+                    grid-area: top-right;
+                    border-radius: 0 100% 0 0;
+                }
+            }
+        }
+        
+        div
+        {
+            style
+            {
+                .bottom-left
+                {
+                    grid-area: bottom-left;
+                    border-radius: 0 0 0 100%;
+                }
+            }
+        }
+        
+        div
+        {
+            style
+            {
+                .bottom-right
+                {
+                    grid-area: bottom-right;
+                    border-radius: 0 0 100% 0;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,297 @@
+// 珂朵莉完整功能演示 - 严格按CHTL语法文档
+[Import] @Chtl from Chtholly
+
+[Configuration]
+{
+    THEME_COLOR = "#ff6b6b";
+    ENABLE_ANIMATIONS = true;
+    CHTHOLLY_MODE = true;
+}
+
+html
+{
+    head
+    {
+        title
+        {
+            珂朵莉·诺塔·塞尼欧里斯 - 世界上最幸福的女孩
+        }
+        
+        meta
+        {
+            charset: "UTF-8";
+        }
+        
+        meta
+        {
+            name: "viewport";
+            content: "width=device-width, initial-scale=1.0";
+        }
+    }
+    
+    body
+    {
+        style
+        {
+            @Style ChthollyReset;
+        }
+        
+        // 页面标题
+        header
+        {
+            style
+            {
+                @Style ChthollyHeader;
+            }
+            
+            h1
+            {
+                text { 🌸 珂朵莉·诺塔·塞尼欧里斯 }
+            }
+            
+            p
+            {
+                text { 世界上最幸福的女孩 - CHTL官方模块演示 }
+            }
+        }
+        
+        main
+        {
+            class: main-content;
+            
+            // 角色介绍卡片
+            section
+            {
+                style
+                {
+                    @Style ChthollyCard;
+                }
+                
+                h2
+                {
+                    text { 💝 关于珂朵莉 }
+                }
+                
+                p
+                {
+                    text { 珂朵莉·诺塔·塞尼欧里斯是妖精兵器，拥有美丽的红色长发和翠绿色眼睛。 }
+                }
+                
+                p
+                {
+                    text { 她温柔善良，充满爱心，愿意为了保护重要的人而牺牲一切。 }
+                }
+                
+                p
+                {
+                    text { 她的愿望很简单：成为世界上最幸福的女孩。 }
+                }
+                
+                button
+                {
+                    style
+                    {
+                        @Style ChthollyButton;
+                    }
+                    
+                    id: love-button;
+                    
+                    text { 💝 传达爱意 }
+                }
+            }
+            
+            // 四叶相册展示
+            section
+            {
+                style
+                {
+                    @Style ChthollyCard;
+                }
+                
+                h2
+                {
+                    text { 📸 珂朵莉的美好回忆 }
+                }
+                
+                div
+                {
+                    @Element FourLeafAlbum;
+                    
+                    div
+                    {
+                        class: memory-item;
+                        
+                        text { 与威廉的初遇 }
+                    }
+                    
+                    div
+                    {
+                        class: memory-item;
+                        
+                        text { 黄油蛋糕的味道 }
+                    }
+                    
+                    div
+                    {
+                        class: memory-item;
+                        
+                        text { 天空中的约定 }
+                    }
+                    
+                    div
+                    {
+                        class: memory-item;
+                        
+                        text { 最后的微笑 }
+                    }
+                }
+            }
+            
+            // 手风琴组件展示
+            section
+            {
+                style
+                {
+                    @Style ChthollyCard;
+                }
+                
+                h2
+                {
+                    text { 🎵 珂朵莉的故事 }
+                }
+                
+                div
+                {
+                    @Element Accordion;
+                    
+                    div
+                    {
+                        class: accordion-item;
+                        
+                        h3
+                        {
+                            class: accordion-header;
+                            
+                            text { 妖精兵器的使命 }
+                        }
+                        
+                        div
+                        {
+                            class: accordion-content;
+                            
+                            p
+                            {
+                                text { 在浮游大陆群的天空中，生活着被称为'妖精'的少女们。她们是最后的守护者，承担着保护世界的重任。 }
+                            }
+                        }
+                    }
+                    
+                    div
+                    {
+                        class: accordion-item;
+                        
+                        h3
+                        {
+                            class: accordion-header;
+                            
+                            text { 珂朵莉的力量 }
+                        }
+                        
+                        div
+                        {
+                            class: accordion-content;
+                            
+                            p
+                            {
+                                text { 珂朵莉是最强的妖精兵器，拥有毁灭一切的力量。但她选择用这力量来保护，而不是毁灭。 }
+                            }
+                        }
+                    }
+                    
+                    div
+                    {
+                        class: accordion-item;
+                        
+                        h3
+                        {
+                            class: accordion-header;
+                            
+                            text { 最后的选择 }
+                        }
+                        
+                        div
+                        {
+                            class: accordion-content;
+                            
+                            p
+                            {
+                                text { 为了保护重要的人，珂朵莉做出了最终的选择。她的爱和牺牲将永远被铭记。 }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 全局样式
+        style
+        {
+            .main-content
+            {
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            
+            .memory-item
+            {
+                background: rgba(255, 107, 107, 0.1);
+                padding: 15px;
+                border-radius: 8px;
+                margin: 10px 0;
+                text-align: center;
+                font-weight: bold;
+                color: ChthollyColors(textColor);
+            }
+        }
+        
+        // 局部脚本块
+        script
+        {
+            console.log('🌸 珂朵莉模块演示加载完成');
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                // 手风琴交互
+                const headers = document.querySelectorAll('.accordion-header');
+                headers.forEach(header => {
+                    header.addEventListener('click', function() {
+                        const content = this.nextElementSibling;
+                        const isActive = content.classList.contains('active');
+                        
+                        // 关闭所有其他项
+                        document.querySelectorAll('.accordion-content.active').forEach(item => {
+                            item.classList.remove('active');
+                            item.previousElementSibling.classList.remove('active');
+                        });
+                        
+                        // 切换当前项
+                        if (!isActive) {
+                            content.classList.add('active');
+                            this.classList.add('active');
+                        }
+                    });
+                });
+                
+                // 爱意按钮
+                const loveButton = document.getElementById('love-button');
+                if (loveButton) {
+                    loveButton.addEventListener('click', function() {
+                        alert('💝 珂朵莉的爱意已传达！\n🌸 愿你成为世界上最幸福的人');
+                    });
+                }
+                
+                console.log('✨ 珂朵莉模块所有功能已就绪');
+            });
+        }
+    }
+}

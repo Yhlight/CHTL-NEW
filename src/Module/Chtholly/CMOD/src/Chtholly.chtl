@@ -1,0 +1,65 @@
+// 珂朵莉CMOD主模块文件
+// 基于《末日时在做什么？有没有空？可不可以来拯救？》角色设计
+
+[Template] @Style ChthollyCard
+{
+    background: linear-gradient(135deg, #fff 0%, #ffe8e8 100%);
+    border-radius: 12px;
+    border-left: 4px solid #ff6b6b;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 4px 20px rgba(255, 107, 107, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+[Template] @Style ChthollyButton
+{
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+[Template] @Style ChthollyHeader
+{
+    background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #ffd93d);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+[Template] @Var ChthollyColors
+{
+    primaryColor: "#ff6b6b";      // 珂朵莉的红发色
+    secondaryColor: "#4ecdc4";    // 珂朵莉的眼睛色
+    accentColor: "#ffd93d";       // 温暖的黄色
+    textColor: "#2c3e50";         // 深色文字
+    backgroundColor: "#fff5f5";   // 淡粉背景
+}
+
+[Custom] @Style ChthollySpecialCard
+{
+    @Style ChthollyCard;
+    // 特例化操作
+    box-shadow: 0 8px 32px rgba(255, 107, 107, 0.4);
+    transform: scale(1.02);
+}
+
+// 无值样式组（用于重置）
+[Custom] @Style ChthollyReset
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Microsoft YaHei', sans-serif;
+}

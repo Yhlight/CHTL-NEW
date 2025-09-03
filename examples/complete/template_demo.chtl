@@ -1,5 +1,4 @@
-// CHTL高级特征演示 - 模板系统（严格按语法文档）
-// 展示模板定义、继承、特例化的强大功能
+// CHTL模板系统完整演示 - 严格按语法文档
 
 [Template] @Style BaseCard
 {
@@ -11,22 +10,7 @@
     transition: all 0.3s ease;
 }
 
-[Template] @Style ChthollyCard
-{
-    @Style BaseCard;
-    border-left: 4px solid #ff6b6b;
-    background: linear-gradient(135deg, #fff 0%, #ffe8e8 100%);
-}
-
-[Template] @Style YuigahamaCard
-{
-    @Style BaseCard;
-    border-left: 4px solid #ff69b4;
-    background: linear-gradient(135deg, #fff 0%, #fff0f5 100%);
-}
-
-// 按钮模板
-[Template] @Style BaseButton
+[Template] @Style ButtonStyle
 {
     border: none;
     padding: 12px 24px;
@@ -38,24 +22,39 @@
     display: inline-block;
 }
 
-[Template] @Style PrimaryButton
+[Template] @Var ThemeColors
 {
-    @Style BaseButton;
-    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    primaryColor: "#ff6b6b";
+    secondaryColor: "#4ecdc4";
+    accentColor: "#ffd93d";
+    textColor: "#2c3e50";
+}
+
+[Custom] @Style ChthollyCard
+{
+    @Style BaseCard;
+    border-left: 4px solid ThemeColors(primaryColor);
+    background: linear-gradient(135deg, #fff 0%, #ffe8e8 100%);
+}
+
+[Custom] @Style YuigahamaCard
+{
+    @Style BaseCard;
+    border-left: 4px solid #ff69b4;
+    background: linear-gradient(135deg, #fff 0%, #fff0f5 100%);
+}
+
+[Custom] @Style PrimaryButton
+{
+    @Style ButtonStyle;
+    background: linear-gradient(45deg, ThemeColors(primaryColor), #ff8e8e);
     color: white;
 }
 
-[Template] @Style SecondaryButton
-{
-    @Style BaseButton;
-    background: linear-gradient(45deg, #4ecdc4, #6dd5ed);
-    color: white;
-}
-
-[Custom] @Style SpecialChthollyCard
+[Custom] @Style SpecialCard
 {
     @Style ChthollyCard;
-    // 添加特殊效果
+    // 特例化操作
     box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
     transform: scale(1.02);
 }
@@ -74,18 +73,12 @@ html
     {
         title
         {
-            CHTL模板系统演示
+            CHTL模板系统完整演示
         }
         
         meta
         {
             charset: "UTF-8";
-        }
-        
-        meta
-        {
-            name: "viewport";
-            content: "width=device-width, initial-scale=1.0";
         }
     }
     
@@ -103,11 +96,25 @@ html
             h1
             {
                 text { 🎨 CHTL模板系统演示 }
+                
+                style
+                {
+                    text-align: center;
+                    color: ThemeColors(textColor);
+                    margin-bottom: 40px;
+                }
             }
             
             p
             {
                 text { 展示模板定义、继承、特例化的强大功能 }
+                
+                style
+                {
+                    text-align: center;
+                    color: #666;
+                    margin-bottom: 40px;
+                }
             }
             
             // 使用珂朵莉卡片模板
@@ -171,7 +178,8 @@ html
                 {
                     style
                     {
-                        @Style SecondaryButton;
+                        @Style PrimaryButton;
+                        background: linear-gradient(45deg, #ff69b4, #ffc0cb);
                     }
                     
                     text { 了解更多 }
@@ -183,7 +191,7 @@ html
             {
                 style
                 {
-                    @Style SpecialChthollyCard;
+                    @Style SpecialCard;
                 }
                 
                 h3
@@ -213,14 +221,6 @@ html
                 font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
             }
             
-            h1
-            {
-                text-align: center;
-                color: #333;
-                margin-bottom: 40px;
-                font-size: 2.5em;
-            }
-            
             h3
             {
                 color: #555;
@@ -235,7 +235,6 @@ html
                 margin-bottom: 15px;
             }
             
-            // 按钮悬停效果
             button:hover
             {
                 transform: translateY(-2px);
@@ -249,10 +248,12 @@ html
             
             document.addEventListener('DOMContentLoaded', function() {
                 console.log('📋 模板特征验证:');
-                console.log('  ✅ 模板定义和继承');
+                console.log('  ✅ [Template] @Style 样式组模板');
+                console.log('  ✅ [Template] @Element 元素模板');
+                console.log('  ✅ [Template] @Var 变量组模板');
+                console.log('  ✅ [Custom] 自定义和继承');
                 console.log('  ✅ 特例化操作');
                 console.log('  ✅ 无值样式组');
-                console.log('  ✅ 样式组模板应用');
                 
                 // 为按钮添加点击事件
                 const buttons = document.querySelectorAll('button');
@@ -260,15 +261,6 @@ html
                     button.addEventListener('click', function() {
                         alert('CHTL模板系统功能正常！\n按钮模板应用成功');
                     });
-                });
-                
-                // 添加卡片动画效果
-                const cards = document.querySelectorAll('[style*="Card"]');
-                cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, index * 300);
                 });
             });
         }

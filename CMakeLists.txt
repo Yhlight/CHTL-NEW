@@ -115,9 +115,7 @@ set(UTIL_SOURCES
     src/Util/FileSystem/FileSystem.cpp
 )
 
-set(MODULE_SOURCES
-    src/Module/ModuleLoader.cpp
-)
+# MODULE_SOURCES removed - ModuleLoader not used in core system
 
 set(CMOD_SOURCES
     src/CHTL/CMODSystem/CMODManager.cpp
@@ -160,9 +158,7 @@ add_library(CHTLUtilSystem STATIC ${UTIL_SOURCES})
 target_include_directories(CHTLUtilSystem PUBLIC src/Util)
 target_compile_features(CHTLUtilSystem PUBLIC cxx_std_17)
 
-add_library(CHTLModuleSystem STATIC ${MODULE_SOURCES})
-target_include_directories(CHTLModuleSystem PUBLIC src/Module)
-target_compile_features(CHTLModuleSystem PUBLIC cxx_std_17)
+# CHTLModuleSystem removed - ModuleLoader not used
 
 add_library(CHTLCMODSystem STATIC ${CMOD_SOURCES})
 target_include_directories(CHTLCMODSystem PUBLIC src/CHTL/CMODSystem)
@@ -207,7 +203,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     
     # Official module tests
     add_executable(chtl_official_module_test src/Test/OfficialModuleCompleteTest.cpp)
-    target_link_libraries(chtl_official_module_test CJMOD CHTLModuleSystem CHTLUtilSystem CHTLJSCore CHTLScanner)
+    target_link_libraries(chtl_official_module_test CJMOD CHTLUtilSystem CHTLJSCore CHTLScanner)
 endif()
 
 # Installation configuration
