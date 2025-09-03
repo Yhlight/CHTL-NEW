@@ -44,6 +44,7 @@ set(CHTL_SOURCES
     src/CHTL/CHTLNode/ElementNode.cpp
     src/CHTL/CHTLNode/TextNode.cpp
     src/CHTL/CHTLNode/CommentNode.cpp
+    src/CHTL/CHTLNode/StyleNode.cpp
 )
 
 add_library(CHTL_Lib STATIC ${CHTL_SOURCES})
@@ -124,6 +125,14 @@ if(BUILD_TESTS)
     
     target_link_libraries(ast_test CHTL_Lib)
     target_include_directories(ast_test PRIVATE src/CHTL src/Test/AstTest)
+    
+    # 样式测试
+    add_executable(style_test
+        src/Test/AstTest/StyleTest.cpp
+    )
+    
+    target_link_libraries(style_test CHTL_Lib)
+    target_include_directories(style_test PRIVATE src/CHTL src/Test/AstTest)
 endif()
 
 # 安装规则

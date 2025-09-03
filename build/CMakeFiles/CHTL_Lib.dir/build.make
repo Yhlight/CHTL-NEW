@@ -184,6 +184,20 @@ CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/CHTL/CHTLNode/CommentNode.cpp -o CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.s
 
+CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o: CMakeFiles/CHTL_Lib.dir/flags.make
+CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o: /workspace/src/CHTL/CHTLNode/StyleNode.cpp
+CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o: CMakeFiles/CHTL_Lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o -MF CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o.d -o CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o -c /workspace/src/CHTL/CHTLNode/StyleNode.cpp
+
+CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/CHTL/CHTLNode/StyleNode.cpp > CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.i
+
+CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/CHTL/CHTLNode/StyleNode.cpp -o CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.s
+
 # Object files for target CHTL_Lib
 CHTL_Lib_OBJECTS = \
 "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLLexer/CHTLToken.cpp.o" \
@@ -193,7 +207,8 @@ CHTL_Lib_OBJECTS = \
 "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/BaseNode.cpp.o" \
 "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.o" \
 "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/TextNode.cpp.o" \
-"CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.o"
+"CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.o" \
+"CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o"
 
 # External object files for target CHTL_Lib
 CHTL_Lib_EXTERNAL_OBJECTS =
@@ -206,9 +221,10 @@ lib/libCHTL_Lib.a: CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/BaseNode.cpp.o
 lib/libCHTL_Lib.a: CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.o
 lib/libCHTL_Lib.a: CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/TextNode.cpp.o
 lib/libCHTL_Lib.a: CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.o
+lib/libCHTL_Lib.a: CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o
 lib/libCHTL_Lib.a: CMakeFiles/CHTL_Lib.dir/build.make
 lib/libCHTL_Lib.a: CMakeFiles/CHTL_Lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library lib/libCHTL_Lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX static library lib/libCHTL_Lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/CHTL_Lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CHTL_Lib.dir/link.txt --verbose=$(VERBOSE)
 

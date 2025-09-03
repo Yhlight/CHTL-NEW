@@ -24,7 +24,10 @@ void TestElementNode() {
     
     // 创建div元素
     auto divElement = CHTL::CHTLNodeFactory::CreateElementNode("div");
+    std::cout << "创建div元素，节点类型: " << CHTL::CHTLBaseNode::NodeTypeToString(divElement->GetNodeType()) << std::endl;
+    
     auto divElementPtr = std::dynamic_pointer_cast<CHTL::CHTLElementNode>(divElement);
+    std::cout << "dynamic_pointer_cast结果: " << (divElementPtr ? "成功" : "失败") << std::endl;
     
     if (divElementPtr) {
         // 设置属性
@@ -63,7 +66,10 @@ void TestTextNode() {
     
     // 创建文本节点
     auto textNode = CHTL::CHTLNodeFactory::CreateTextNode("这是一段测试文本");
+    std::cout << "创建文本节点，节点类型: " << CHTL::CHTLBaseNode::NodeTypeToString(textNode->GetNodeType()) << std::endl;
+    
     auto textNodePtr = std::dynamic_pointer_cast<CHTL::CHTLTextNode>(textNode);
+    std::cout << "文本节点dynamic_pointer_cast结果: " << (textNodePtr ? "成功" : "失败") << std::endl;
     
     if (textNodePtr) {
         std::cout << "文本节点信息: " << textNodePtr->ToString() << std::endl;

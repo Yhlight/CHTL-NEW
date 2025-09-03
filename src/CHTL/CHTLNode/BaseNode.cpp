@@ -1,4 +1,7 @@
 #include "BaseNode.h"
+#include "ElementNode.h"
+#include "TextNode.h"
+#include "CommentNode.h"
 #include <iostream>
 #include <algorithm>
 #include <sstream>
@@ -305,17 +308,17 @@ namespace CHTL {
 
     // CHTLNodeFactory实现
     std::shared_ptr<CHTLBaseNode> CHTLNodeFactory::CreateElementNode(const std::string& tagName) {
-        auto node = std::make_shared<CHTLBaseNode>(CHTLNodeType::ELEMENT, tagName);
+        auto node = std::make_shared<CHTLElementNode>(tagName);
         return node;
     }
 
     std::shared_ptr<CHTLBaseNode> CHTLNodeFactory::CreateTextNode(const std::string& text) {
-        auto node = std::make_shared<CHTLBaseNode>(CHTLNodeType::TEXT, "text", text);
+        auto node = std::make_shared<CHTLTextNode>(text);
         return node;
     }
 
     std::shared_ptr<CHTLBaseNode> CHTLNodeFactory::CreateCommentNode(const std::string& comment) {
-        auto node = std::make_shared<CHTLBaseNode>(CHTLNodeType::COMMENT, "comment", comment);
+        auto node = std::make_shared<CHTLCommentNode>(CHTLCommentType::SINGLE_LINE, comment);
         return node;
     }
 

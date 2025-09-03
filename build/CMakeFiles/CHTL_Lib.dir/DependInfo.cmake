@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/workspace/src/CHTL/CHTLNode/BaseNode.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/BaseNode.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/BaseNode.cpp.o.d"
   "/workspace/src/CHTL/CHTLNode/CommentNode.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.o.d"
   "/workspace/src/CHTL/CHTLNode/ElementNode.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.o.d"
+  "/workspace/src/CHTL/CHTLNode/StyleNode.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o.d"
   "/workspace/src/CHTL/CHTLNode/TextNode.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/TextNode.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/TextNode.cpp.o.d"
   "/workspace/src/CHTL/CHTLState/CHTLState.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLState/CHTLState.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLState/CHTLState.cpp.o.d"
   )

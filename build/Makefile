@@ -252,6 +252,19 @@ ast_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ast_test.dir/build.make CMakeFiles/ast_test.dir/build
 .PHONY : ast_test/fast
 
+#=============================================================================
+# Target rules for targets named style_test
+
+# Build rule for target.
+style_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 style_test
+.PHONY : style_test
+
+# fast build rule for target.
+style_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/style_test.dir/build.make CMakeFiles/style_test.dir/build
+.PHONY : style_test/fast
+
 src/CHTL/CHTLLexer/CHTLGlobalMap.o: src/CHTL/CHTLLexer/CHTLGlobalMap.cpp.o
 .PHONY : src/CHTL/CHTLLexer/CHTLGlobalMap.o
 
@@ -404,6 +417,30 @@ src/CHTL/CHTLNode/ElementNode.s: src/CHTL/CHTLNode/ElementNode.cpp.s
 src/CHTL/CHTLNode/ElementNode.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.s
 .PHONY : src/CHTL/CHTLNode/ElementNode.cpp.s
+
+src/CHTL/CHTLNode/StyleNode.o: src/CHTL/CHTLNode/StyleNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/StyleNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/StyleNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/StyleNode.cpp.o
+
+src/CHTL/CHTLNode/StyleNode.i: src/CHTL/CHTLNode/StyleNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/StyleNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/StyleNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/StyleNode.cpp.i
+
+src/CHTL/CHTLNode/StyleNode.s: src/CHTL/CHTLNode/StyleNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/StyleNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/StyleNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/StyleNode.cpp.s
 
 src/CHTL/CHTLNode/TextNode.o: src/CHTL/CHTLNode/TextNode.cpp.o
 .PHONY : src/CHTL/CHTLNode/TextNode.o
@@ -630,6 +667,30 @@ src/Test/AstTest/ASTTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ast_test.dir/build.make CMakeFiles/ast_test.dir/src/Test/AstTest/ASTTest.cpp.s
 .PHONY : src/Test/AstTest/ASTTest.cpp.s
 
+src/Test/AstTest/StyleTest.o: src/Test/AstTest/StyleTest.cpp.o
+.PHONY : src/Test/AstTest/StyleTest.o
+
+# target to build an object file
+src/Test/AstTest/StyleTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/style_test.dir/build.make CMakeFiles/style_test.dir/src/Test/AstTest/StyleTest.cpp.o
+.PHONY : src/Test/AstTest/StyleTest.cpp.o
+
+src/Test/AstTest/StyleTest.i: src/Test/AstTest/StyleTest.cpp.i
+.PHONY : src/Test/AstTest/StyleTest.i
+
+# target to preprocess a source file
+src/Test/AstTest/StyleTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/style_test.dir/build.make CMakeFiles/style_test.dir/src/Test/AstTest/StyleTest.cpp.i
+.PHONY : src/Test/AstTest/StyleTest.cpp.i
+
+src/Test/AstTest/StyleTest.s: src/Test/AstTest/StyleTest.cpp.s
+.PHONY : src/Test/AstTest/StyleTest.s
+
+# target to generate assembly for a file
+src/Test/AstTest/StyleTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/style_test.dir/build.make CMakeFiles/style_test.dir/src/Test/AstTest/StyleTest.cpp.s
+.PHONY : src/Test/AstTest/StyleTest.cpp.s
+
 src/Test/TokenTest/TokenTest.o: src/Test/TokenTest/TokenTest.cpp.o
 .PHONY : src/Test/TokenTest/TokenTest.o
 
@@ -696,6 +757,7 @@ help:
 	@echo "... Scanner_Lib"
 	@echo "... ast_test"
 	@echo "... chtl_compiler"
+	@echo "... style_test"
 	@echo "... token_test"
 	@echo "... src/CHTL/CHTLLexer/CHTLGlobalMap.o"
 	@echo "... src/CHTL/CHTLLexer/CHTLGlobalMap.i"
@@ -715,6 +777,9 @@ help:
 	@echo "... src/CHTL/CHTLNode/ElementNode.o"
 	@echo "... src/CHTL/CHTLNode/ElementNode.i"
 	@echo "... src/CHTL/CHTLNode/ElementNode.s"
+	@echo "... src/CHTL/CHTLNode/StyleNode.o"
+	@echo "... src/CHTL/CHTLNode/StyleNode.i"
+	@echo "... src/CHTL/CHTLNode/StyleNode.s"
 	@echo "... src/CHTL/CHTLNode/TextNode.o"
 	@echo "... src/CHTL/CHTLNode/TextNode.i"
 	@echo "... src/CHTL/CHTLNode/TextNode.s"
@@ -742,6 +807,9 @@ help:
 	@echo "... src/Test/AstTest/ASTTest.o"
 	@echo "... src/Test/AstTest/ASTTest.i"
 	@echo "... src/Test/AstTest/ASTTest.s"
+	@echo "... src/Test/AstTest/StyleTest.o"
+	@echo "... src/Test/AstTest/StyleTest.i"
+	@echo "... src/Test/AstTest/StyleTest.s"
 	@echo "... src/Test/TokenTest/TokenTest.o"
 	@echo "... src/Test/TokenTest/TokenTest.i"
 	@echo "... src/Test/TokenTest/TokenTest.s"
