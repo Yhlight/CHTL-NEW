@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libCHTLCodeMerger.a CMakeFiles/CHTLCodeMerger.dir/src/CodeMerger/CHTLCodeMerger.cpp.o
+/usr/bin/ranlib lib/libCHTLCodeMerger.a

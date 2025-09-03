@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libCJMOD.a CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o
+/usr/bin/ranlib lib/libCJMOD.a
