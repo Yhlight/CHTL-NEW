@@ -1,0 +1,245 @@
+{
+  "name": "chtl-language-support",
+  "displayName": "CHTL Language Support",
+  "description": "CHTL (Chtholly HyperText Language) 官方IDE支持插件",
+  "version": "1.0.0",
+  "publisher": "CHTL-Official",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CHTL-Official/chtl-compiler"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Formatters",
+    "Snippets",
+    "Other"
+  ],
+  "keywords": [
+    "chtl",
+    "chtl-js",
+    "hypertext",
+    "web-development",
+    "template"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:chtl",
+    "onLanguage:chtl-js",
+    "onCommand:chtl.compile",
+    "onCommand:chtl.preview",
+    "onCommand:chtl.format",
+    "onCommand:chtl.openInBrowser",
+    "onCommand:chtl.exportHTML",
+    "onCommand:chtl.exportCSS",
+    "onCommand:chtl.exportJS",
+    "onCommand:chtl.openDocumentation"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "chtl",
+        "aliases": [
+          "CHTL",
+          "chtl"
+        ],
+        "extensions": [
+          ".chtl"
+        ],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "chtl-js",
+        "aliases": [
+          "CHTL JS",
+          "chtl-js"
+        ],
+        "extensions": [
+          ".cjjs"
+        ],
+        "configuration": "./language-configuration-js.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "chtl",
+        "scopeName": "source.chtl",
+        "path": "./syntaxes/chtl.tmLanguage.json"
+      },
+      {
+        "language": "chtl-js",
+        "scopeName": "source.chtl-js",
+        "path": "./syntaxes/chtl-js.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "chtl.compile",
+        "title": "编译CHTL文件",
+        "category": "CHTL"
+      },
+      {
+        "command": "chtl.openInBrowser",
+        "title": "在浏览器中打开",
+        "category": "CHTL"
+      },
+      {
+        "command": "chtl.format",
+        "title": "格式化代码",
+        "category": "CHTL"
+      },
+      {
+        "command": "chtl.exportHTML",
+        "title": "导出HTML",
+        "category": "CHTL"
+      },
+      {
+        "command": "chtl.exportCSS",
+        "title": "导出CSS",
+        "category": "CHTL"
+      },
+      {
+        "command": "chtl.exportJS",
+        "title": "导出JavaScript",
+        "category": "CHTL"
+      },
+      {
+        "command": "chtl.openDocumentation",
+        "title": "打开语法文档",
+        "category": "CHTL"
+      },
+      {
+        "command": "chtl.previewToggle",
+        "title": "切换实时预览",
+        "category": "CHTL"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceExtname == .chtl || resourceExtname == .cjjs",
+          "command": "chtl.compile",
+          "group": "chtl@1"
+        },
+        {
+          "when": "resourceExtname == .chtl || resourceExtname == .cjjs",
+          "command": "chtl.format",
+          "group": "chtl@2"
+        },
+        {
+          "when": "resourceExtname == .chtl",
+          "command": "chtl.openInBrowser",
+          "group": "chtl@3"
+        },
+        {
+          "when": "resourceExtname == .chtl || resourceExtname == .cjjs",
+          "command": "chtl.openDocumentation",
+          "group": "chtl@4"
+        },
+        {
+          "when": "resourceExtname == .chtl",
+          "command": "chtl.exportHTML",
+          "group": "chtl-export@1"
+        },
+        {
+          "when": "resourceExtname == .chtl",
+          "command": "chtl.exportCSS",
+          "group": "chtl-export@2"
+        },
+        {
+          "when": "resourceExtname == .chtl || resourceExtname == .cjjs",
+          "command": "chtl.exportJS",
+          "group": "chtl-export@3"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .chtl",
+          "command": "chtl.openInBrowser",
+          "group": "chtl@1"
+        },
+        {
+          "when": "resourceExtname == .chtl || resourceExtname == .cjjs",
+          "command": "chtl.compile",
+          "group": "chtl@2"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "chtl.compile",
+        "key": "ctrl+shift+c",
+        "when": "resourceExtname == .chtl || resourceExtname == .cjjs"
+      },
+      {
+        "command": "chtl.format",
+        "key": "ctrl+shift+f",
+        "when": "resourceExtname == .chtl || resourceExtname == .cjjs"
+      },
+      {
+        "command": "chtl.previewToggle",
+        "key": "ctrl+shift+p",
+        "when": "resourceExtname == .chtl"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "CHTL配置",
+      "properties": {
+        "chtl.compilerPath": {
+          "type": "string",
+          "default": "",
+          "description": "CHTL编译器可执行文件路径"
+        },
+        "chtl.enableRealTimePreview": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用实时预览"
+        },
+        "chtl.previewPort": {
+          "type": "number",
+          "default": 3000,
+          "description": "预览服务器端口"
+        },
+        "chtl.formatStyle": {
+          "type": "string",
+          "enum": [
+            "cpp",
+            "js"
+          ],
+          "default": "cpp",
+          "description": "代码格式化风格"
+        },
+        "chtl.enableIntelliSense": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用智能提示"
+        },
+        "chtl.officialModulesPath": {
+          "type": "string",
+          "default": "",
+          "description": "官方模块路径"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/chokidar": "^1.7.5",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@types/ws": "^8.18.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "express": "^4.18.2",
+    "ws": "^8.13.0"
+  }
+}

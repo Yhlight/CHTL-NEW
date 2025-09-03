@@ -395,6 +395,10 @@ target_link_libraries(chtl_final_cjmod_test CJMOD CHTLDispatcher CHTLJSCore CHTL
 add_executable(chtl_complete_implementation_report src/Test/CHTLCompleteImplementationReport.cpp)
 target_link_libraries(chtl_complete_implementation_report CHTLDispatcher)
 
+# 最终完成检查报告
+add_executable(chtl_final_completion_check src/Test/FinalCompletionCheckReport.cpp)
+target_link_libraries(chtl_final_completion_check CHTLDispatcher)
+
 
 
 # 设置调试信息

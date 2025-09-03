@@ -890,6 +890,19 @@ chtl_complete_implementation_report/fast:
 .PHONY : chtl_complete_implementation_report/fast
 
 #=============================================================================
+# Target rules for targets named chtl_final_completion_check
+
+# Build rule for target.
+chtl_final_completion_check: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_completion_check
+.PHONY : chtl_final_completion_check
+
+# fast build rule for target.
+chtl_final_completion_check/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_check.dir/build.make CMakeFiles/chtl_final_completion_check.dir/build
+.PHONY : chtl_final_completion_check/fast
+
+#=============================================================================
 # Target rules for targets named run_tests
 
 # Build rule for target.
@@ -2571,6 +2584,30 @@ src/Test/FinalCompilationSuccessReport.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_compilation_success.dir/build.make CMakeFiles/chtl_final_compilation_success.dir/src/Test/FinalCompilationSuccessReport.cpp.s
 .PHONY : src/Test/FinalCompilationSuccessReport.cpp.s
 
+src/Test/FinalCompletionCheckReport.o: src/Test/FinalCompletionCheckReport.cpp.o
+.PHONY : src/Test/FinalCompletionCheckReport.o
+
+# target to build an object file
+src/Test/FinalCompletionCheckReport.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_check.dir/build.make CMakeFiles/chtl_final_completion_check.dir/src/Test/FinalCompletionCheckReport.cpp.o
+.PHONY : src/Test/FinalCompletionCheckReport.cpp.o
+
+src/Test/FinalCompletionCheckReport.i: src/Test/FinalCompletionCheckReport.cpp.i
+.PHONY : src/Test/FinalCompletionCheckReport.i
+
+# target to preprocess a source file
+src/Test/FinalCompletionCheckReport.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_check.dir/build.make CMakeFiles/chtl_final_completion_check.dir/src/Test/FinalCompletionCheckReport.cpp.i
+.PHONY : src/Test/FinalCompletionCheckReport.cpp.i
+
+src/Test/FinalCompletionCheckReport.s: src/Test/FinalCompletionCheckReport.cpp.s
+.PHONY : src/Test/FinalCompletionCheckReport.s
+
+# target to generate assembly for a file
+src/Test/FinalCompletionCheckReport.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_check.dir/build.make CMakeFiles/chtl_final_completion_check.dir/src/Test/FinalCompletionCheckReport.cpp.s
+.PHONY : src/Test/FinalCompletionCheckReport.cpp.s
+
 src/Test/FinalCompletionVerification.o: src/Test/FinalCompletionVerification.cpp.o
 .PHONY : src/Test/FinalCompletionVerification.o
 
@@ -3221,6 +3258,7 @@ help:
 	@echo "... chtl_final_cjmod_test"
 	@echo "... chtl_final_compilation_success"
 	@echo "... chtl_final_completion"
+	@echo "... chtl_final_completion_check"
 	@echo "... chtl_final_completion_report"
 	@echo "... chtl_final_completion_verification"
 	@echo "... chtl_final_strict_compliance"
@@ -3451,6 +3489,9 @@ help:
 	@echo "... src/Test/FinalCompilationSuccessReport.o"
 	@echo "... src/Test/FinalCompilationSuccessReport.i"
 	@echo "... src/Test/FinalCompilationSuccessReport.s"
+	@echo "... src/Test/FinalCompletionCheckReport.o"
+	@echo "... src/Test/FinalCompletionCheckReport.i"
+	@echo "... src/Test/FinalCompletionCheckReport.s"
 	@echo "... src/Test/FinalCompletionVerification.o"
 	@echo "... src/Test/FinalCompletionVerification.i"
 	@echo "... src/Test/FinalCompletionVerification.s"

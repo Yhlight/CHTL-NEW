@@ -1,0 +1,186 @@
+;; 由比滨结衣备忘录
+;; 严格按照CHTL语法文档要求实现
+
+[Template] @Element YuigahamaMemo
+{
+    div
+    {
+        class: yuigahama-memo;
+        
+        style
+        {
+            .yuigahama-memo
+            {
+                background: linear-gradient(135deg, @Var YuigahamaColors.gentle-white 0%, @Var YuigahamaColors.soft-peach 100%);
+                border: 2px solid @Var YuigahamaColors.primary-pink;
+                border-radius: 18px;
+                padding: @Var YuigahamaSpacing.large;
+                box-shadow: 0 8px 25px rgba(255, 182, 193, 0.3);
+                font-family: @Var YuigahamaFonts.primary-font;
+                position: relative;
+                max-width: 380px;
+                margin: @Var YuigahamaSpacing.medium auto;
+            }
+            
+            .memo-header
+            {
+                background: linear-gradient(45deg, @Var YuigahamaColors.primary-pink, @Var YuigahamaColors.warm-coral);
+                color: white;
+                padding: @Var YuigahamaSpacing.medium;
+                margin: -@Var YuigahamaSpacing.large -@Var YuigahamaSpacing.large @Var YuigahamaSpacing.medium -@Var YuigahamaSpacing.large;
+                border-radius: 16px 16px 0 0;
+                text-align: center;
+                font-weight: bold;
+                position: relative;
+            }
+            
+            .memo-header::after
+            {
+                content: "🌸";
+                position: absolute;
+                right: @Var YuigahamaSpacing.medium;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 20px;
+            }
+            
+            .memo-content
+            {
+                background: rgba(255, 255, 255, 0.9);
+                border-radius: 10px;
+                padding: @Var YuigahamaSpacing.medium;
+                min-height: 180px;
+                border: 1px solid @Var YuigahamaColors.warm-coral;
+                font-family: @Var YuigahamaFonts.cute-font;
+                resize: vertical;
+                outline: none;
+                color: #8B4B8B;
+            }
+            
+            .memo-footer
+            {
+                margin-top: @Var YuigahamaSpacing.medium;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .memo-save-btn
+            {
+                background: linear-gradient(45deg, @Var YuigahamaColors.warm-coral, @Var YuigahamaColors.primary-pink);
+                color: white;
+                border: none;
+                border-radius: 25px;
+                padding: @Var YuigahamaSpacing.small @Var YuigahamaSpacing.large;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-weight: bold;
+            }
+            
+            .memo-save-btn:hover
+            {
+                transform: translateY(-2px) scale(1.05);
+                box-shadow: 0 6px 15px rgba(255, 182, 193, 0.4);
+            }
+            
+            .memo-timestamp
+            {
+                font-size: 11px;
+                color: @Var YuigahamaColors.primary-pink;
+                opacity: 0.8;
+            }
+        }
+        
+        script
+        {
+            ;; 由比滨结衣备忘录逻辑
+            console.log('📝 雅哈喽～由比滨结衣的备忘录准备就绪！');
+            
+            const memo = {{.yuigahama-memo}};
+            const memoKey = 'yuigahama_memo_' + Date.now();
+            
+            ;; 创建备忘录界面
+            memo.innerHTML = `
+                <div class="memo-header">🌸 雅哈喽～结衣的备忘录 🌸</div>
+                <textarea class="memo-content" placeholder="雅哈喽～在这里记录重要的事情吧！"></textarea>
+                <div class="memo-footer">
+                    <div class="memo-timestamp">最后更新: 刚刚</div>
+                    <button class="memo-save-btn">💾 保存</button>
+                </div>
+            `;
+            
+            const textarea = memo.querySelector('.memo-content');
+            const saveBtn = memo.querySelector('.memo-save-btn');
+            const timestamp = memo.querySelector('.memo-timestamp');
+            
+            ;; 更新时间戳
+            function updateTimestamp() {
+                const now = new Date();
+                timestamp.textContent = `最后更新: ${now.toLocaleTimeString()}`;
+            }
+            
+            ;; 自动保存功能
+            let autoSaveTimer;
+            textarea &-> input {
+                clearTimeout(autoSaveTimer);
+                autoSaveTimer = setTimeout(() => {
+                    localStorage.setItem(memoKey, textarea.value);
+                    updateTimestamp();
+                    console.log('💖 雅哈喽～自动保存完成');
+                }, 2000);
+            };
+            
+            ;; 手动保存
+            saveBtn &-> click {
+                localStorage.setItem(memoKey, textarea.value);
+                updateTimestamp();
+                console.log('💾 雅哈喽～备忘录已保存');
+                
+                ;; 可爱的保存动画
+                saveBtn.textContent = '✅ 已保存';
+                saveBtn.style.background = 'linear-gradient(45deg, #98FB98, #90EE90)';
+                
+                setTimeout(() => {
+                    saveBtn.textContent = '💾 保存';
+                    saveBtn.style.background = 'linear-gradient(45deg, #FFC0CB, #FFB6C1)';
+                }, 1500);
+            };
+            
+            ;; 加载已保存的内容
+            const savedContent = localStorage.getItem(memoKey);
+            if (savedContent) {
+                textarea.value = savedContent;
+                updateTimestamp();
+                console.log('📖 雅哈喽～加载之前的备忘录');
+            }
+            
+            ;; 导出控制接口
+            window.YuigahamaMemo = {
+                save: () => {
+                    localStorage.setItem(memoKey, textarea.value);
+                    updateTimestamp();
+                    console.log('💖 雅哈喽～备忘录已保存');
+                },
+                load: () => {
+                    const content = localStorage.getItem(memoKey);
+                    if (content) {
+                        textarea.value = content;
+                        updateTimestamp();
+                    }
+                    return content;
+                },
+                clear: () => {
+                    if (confirm('雅哈喽～确定要清空备忘录吗？')) {
+                        textarea.value = '';
+                        localStorage.removeItem(memoKey);
+                        updateTimestamp();
+                        console.log('🧹 雅哈喽～备忘录已清空');
+                    }
+                },
+                greet: () => {
+                    console.log('🌸 雅哈喽～这是结衣的备忘录哦！');
+                }
+            };
+        }
+    }
+}

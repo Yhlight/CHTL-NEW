@@ -1,0 +1,243 @@
+cmake_minimum_required(VERSION 3.16)
+project(CHTL_Compiler_Windows)
+
+# Windows环境配置
+message(STATUS "配置Windows编译环境")
+message(STATUS "C++标准: 17")
+message(STATUS "编译器: MSVC")
+message(STATUS "构建类型: Release")
+message(STATUS "UTF-8支持: 已启用")
+message(STATUS "架构设计: CHTL和CHTL JS完全分离")
+
+# 设置C++标准
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Windows特定设置
+if(WIN32)
+    # 启用UTF-8支持
+    add_compile_options(/utf-8)
+    add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
+    add_compile_definitions(UNICODE _UNICODE)
+    
+    # 设置Release模式
+    set(CMAKE_BUILD_TYPE Release)
+    
+    # 设置运行时库
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+endif()
+
+# 设置输出目录
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
+# ANTLR4 Windows库配置
+set(ANTLR4_ROOT ${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4)
+set(ANTLR4_INCLUDE_DIRS ${ANTLR4_ROOT}/include)
+set(ANTLR4_LIBRARIES ${ANTLR4_ROOT}/lib/antlr4-runtime-static.lib)
+
+# 包含目录
+include_directories(${ANTLR4_INCLUDE_DIRS})
+include_directories(src)
+
+# CHTL核心源文件
+set(CHTL_CORE_SOURCES
+    src/CHTL/CHTLLexer/CHTLToken.cpp
+    src/CHTL/CHTLLexer/CHTLGlobalMap.cpp
+    src/CHTL/CHTLLexer/CHTLLexer.cpp
+    src/CHTL/CHTLState/CHTLState.cpp
+    src/CHTL/CHTLContext/CHTLContext.cpp
+    src/CHTL/CHTLNode/CHTLBaseNode.cpp
+    src/CHTL/CHTLNode/ElementNode.cpp
+    src/CHTL/CHTLNode/TextNode.cpp
+    src/CHTL/CHTLNode/StyleNode.cpp
+    src/CHTL/CHTLNode/ScriptNode.cpp
+    src/CHTL/CHTLNode/TemplateNode.cpp
+    src/CHTL/CHTLNode/CustomNode.cpp
+    src/CHTL/CHTLNode/OriginNode.cpp
+    src/CHTL/CHTLNode/ConfigNode.cpp
+    src/CHTL/CHTLNode/NamespaceNode.cpp
+    src/CHTL/CHTLNode/Visitor.cpp
+    src/CHTL/CHTLParser/CHTLParser.cpp
+    src/CHTL/CHTLGenerator/CHTLGenerator.cpp
+)
+
+# CHTL JS核心源文件
+set(CHTLJS_CORE_SOURCES
+    "src/CHTL JS/CHTLJSLexer/CHTLJSToken.cpp"
+    "src/CHTL JS/CHTLJSLexer/CHTLJSGlobalMap.cpp"
+    "src/CHTL JS/CHTLJSLexer/CHTLJSLexer.cpp"
+    "src/CHTL JS/CHTLJSState/CHTLJSState.cpp"
+    "src/CHTL JS/CHTLJSContext/CHTLJSContext.cpp"
+    "src/CHTL JS/CHTLJSNode/CHTLJSBaseNode.cpp"
+    "src/CHTL JS/CHTLJSNode/EnhanceSelectorNode.cpp"
+    "src/CHTL JS/CHTLJSNode/VirObjectNode.cpp"
+    "src/CHTL JS/CHTLJSNode/AnimateNode.cpp"
+    "src/CHTL JS/CHTLJSParser/CHTLJSParser.cpp"
+    "src/CHTL JS/CHTLJSGenerator/CHTLJSGenerator.cpp"
+)
+
+# 扫描器源文件
+set(SCANNER_SOURCES
+    src/Scanner/CHTLUnifiedScanner.cpp
+)
+
+# 编译器调度器源文件
+set(DISPATCHER_SOURCES
+    src/CompilerDispatcher/CompilerDispatcher.cpp
+)
+
+# CSS编译器源文件
+set(CSS_SOURCES
+    src/CSS/CSSCompiler.cpp
+    src/CSS/generated/css3Lexer.cpp
+    src/CSS/generated/css3Parser.cpp
+    src/CSS/generated/css3ParserBaseListener.cpp
+)
+
+# JavaScript编译器源文件
+set(JS_SOURCES
+    src/JS/JavaScriptCompiler.cpp
+    src/JS/generated/JavaScriptLexer.cpp
+    src/JS/generated/JavaScriptParser.cpp
+    src/JS/generated/JavaScriptParserBaseListener.cpp
+    src/JS/generated/JavaScriptLexerBase.cpp
+    src/JS/generated/JavaScriptParserBase.cpp
+)
+
+# CJMOD源文件
+set(CJMOD_SOURCES
+    "src/CHTL JS/CJMODSystem/CJMODCore.cpp"
+    "src/CHTL JS/CJMODSystem/CJMODIntegration.cpp"
+    "src/CHTL JS/CJMODSystem/ChthollyOfficialModule.cpp"
+)
+
+# 代码合并器源文件
+set(CODE_MERGER_SOURCES
+    src/CodeMerger/CHTLCodeMerger.cpp
+)
+
+# 错误处理源文件
+set(ERROR_SOURCES
+    src/Error/Error.cpp
+    src/Error/ErrorHandler.cpp
+)
+
+# 工具源文件
+set(UTIL_SOURCES
+    src/Util/StringUtil/StringUtil.cpp
+    src/Util/FileSystem/FileSystem.cpp
+)
+
+# 模块系统源文件
+set(MODULE_SOURCES
+    src/Module/ModuleLoader.cpp
+)
+
+# CMOD系统源文件
+set(CMOD_SOURCES
+    src/CHTL/CMODSystem/CMODManager.cpp
+)
+
+# 约束系统源文件
+set(CONSTRAINT_SOURCES
+    src/ConstraintSystem/CHTLConstraintValidator.cpp
+)
+
+# 导入系统源文件
+set(IMPORT_SOURCES
+    src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp
+)
+
+# 创建静态库
+add_library(CHTLCore STATIC ${CHTL_CORE_SOURCES})
+target_include_directories(CHTLCore PUBLIC src/CHTL)
+
+add_library(CHTLJSCore STATIC ${CHTLJS_CORE_SOURCES})
+target_include_directories(CHTLJSCore PUBLIC "src/CHTL JS")
+
+add_library(CHTLScanner STATIC ${SCANNER_SOURCES})
+target_include_directories(CHTLScanner PUBLIC src/Scanner)
+
+add_library(CJMOD STATIC ${CJMOD_SOURCES})
+target_include_directories(CJMOD PUBLIC "src/CHTL JS/CJMODSystem")
+
+add_library(CHTLCodeMerger STATIC ${CODE_MERGER_SOURCES})
+target_include_directories(CHTLCodeMerger PUBLIC src/CodeMerger)
+
+add_library(CHTLCSSCompiler STATIC ${CSS_SOURCES})
+target_include_directories(CHTLCSSCompiler PUBLIC src/CSS)
+
+add_library(CHTLJSCompiler STATIC ${JS_SOURCES})
+target_include_directories(CHTLJSCompiler PUBLIC src/JS)
+
+add_library(CHTLErrorSystem STATIC ${ERROR_SOURCES})
+target_include_directories(CHTLErrorSystem PUBLIC src/Error)
+
+add_library(CHTLUtilSystem STATIC ${UTIL_SOURCES})
+target_include_directories(CHTLUtilSystem PUBLIC src/Util)
+
+add_library(CHTLModuleSystem STATIC ${MODULE_SOURCES})
+target_include_directories(CHTLModuleSystem PUBLIC src/Module)
+
+add_library(CHTLCMODSystem STATIC ${CMOD_SOURCES})
+target_include_directories(CHTLCMODSystem PUBLIC src/CHTL/CMODSystem)
+
+add_library(CHTLConstraint STATIC ${CONSTRAINT_SOURCES})
+target_include_directories(CHTLConstraint PUBLIC src/ConstraintSystem)
+
+add_library(CHTLImport STATIC ${IMPORT_SOURCES})
+target_include_directories(CHTLImport PUBLIC src/CHTL/CHTLSystem/ImportSystem)
+
+# 创建调度器库
+add_library(CHTLDispatcher STATIC ${DISPATCHER_SOURCES})
+target_include_directories(CHTLDispatcher PUBLIC src/CompilerDispatcher)
+target_link_libraries(CHTLDispatcher CJMOD CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler)
+
+# 主程序可执行文件
+add_executable(chtl src/main.cpp)
+target_link_libraries(chtl CHTLDispatcher CJMOD CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner ${ANTLR4_LIBRARIES})
+
+# Windows特定配置
+if(WIN32)
+    # 设置控制台应用程序
+    set_target_properties(chtl PROPERTIES
+        WIN32_EXECUTABLE FALSE
+        LINK_FLAGS "/SUBSYSTEM:CONSOLE"
+    )
+    
+    # 复制DLL到输出目录
+    add_custom_command(TARGET chtl POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4/lib/antlr4-runtime.dll"
+        $<TARGET_FILE_DIR:chtl>
+    )
+endif()
+
+# 测试可执行文件
+add_executable(chtl_cjmod_complete_test src/Test/CJMODCompleteTest.cpp)
+target_link_libraries(chtl_cjmod_complete_test CJMOD CHTLJSCore CHTLScanner)
+
+add_executable(chtl_final_cjmod_test src/Test/FinalCJMODIntegrationTest.cpp)
+target_link_libraries(chtl_final_cjmod_test CJMOD CHTLDispatcher CHTLJSCore CHTLScanner)
+
+add_executable(chtl_complete_implementation_report src/Test/CHTLCompleteImplementationReport.cpp)
+target_link_libraries(chtl_complete_implementation_report CHTLDispatcher)
+
+# 安装配置
+install(TARGETS chtl DESTINATION bin)
+install(FILES "${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4/lib/antlr4-runtime.dll" DESTINATION bin)
+
+# 打包配置
+set(CPACK_PACKAGE_NAME "CHTL-Compiler")
+set(CPACK_PACKAGE_VERSION "1.0.0")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "CHTL (Chtholly HyperText Language) 编译器")
+set(CPACK_PACKAGE_VENDOR "CHTL Official")
+set(CPACK_GENERATOR "ZIP")
+
+include(CPack)
+
+message(STATUS "Windows编译环境配置完成")
+message(STATUS "ANTLR4库: ${ANTLR4_LIBRARIES}")
+message(STATUS "输出目录: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
