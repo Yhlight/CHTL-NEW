@@ -1,0 +1,215 @@
+// CHTL综合功能演示 - 严格按4个基本文档
+
+[Import] @Chtl from Chtholly
+[Import] @Chtl from Yuigahama
+
+[Configuration]
+{
+    DISABLE_STYLE_AUTO_ADD_CLASS = false;
+    DISABLE_STYLE_AUTO_ADD_ID = false;
+    DISABLE_SCRIPT_AUTO_ADD_CLASS = true;
+    DISABLE_SCRIPT_AUTO_ADD_ID = true;
+    THEME_COLOR = "#ff6b6b";
+    ENABLE_ANIMATIONS = true;
+}
+
+[Template] @Style MainContainer
+{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Microsoft YaHei', sans-serif;
+}
+
+[Custom] @Style HeaderStyle
+{
+    @Style ChthollyHeader;
+    // 特例化操作
+    font-size: 3em;
+    padding: 60px 20px;
+}
+
+html
+{
+    head
+    {
+        title
+        {
+            CHTL综合功能演示 - 严格按文档
+        }
+        
+        meta
+        {
+            charset: "UTF-8";
+        }
+    }
+    
+    body
+    {
+        div
+        {
+            style
+            {
+                @Style MainContainer;
+            }
+            
+            // 主标题
+            header
+            {
+                style
+                {
+                    @Style HeaderStyle;
+                }
+                
+                h1
+                {
+                    text { 🌟 CHTL综合功能演示 }
+                }
+                
+                p
+                {
+                    text { 严格按照4个基本文档实现 }
+                }
+            }
+            
+            // 珂朵莉模块展示
+            section
+            {
+                style
+                {
+                    @Style ChthollyCard;
+                }
+                
+                h2
+                {
+                    text { 🌸 珂朵莉模块（CMOD + CJMOD） }
+                }
+                
+                p
+                {
+                    text { 珂朵莉模块采用CMOD + CJMOD的混合模块 }
+                }
+                
+                div
+                {
+                    @Element FourLeafAlbum;
+                    
+                    text { 珂朵莉的四叶相册 }
+                }
+                
+                button
+                {
+                    id: printmylove-btn;
+                    
+                    style
+                    {
+                        @Style ChthollyButton;
+                    }
+                    
+                    text { 💝 printMylove演示 }
+                }
+            }
+            
+            // 由比滨结衣模块展示
+            section
+            {
+                style
+                {
+                    @Style YuigahamaCard;
+                }
+                
+                h2
+                {
+                    text { 🎀 由比滨结衣模块（纯CMOD） }
+                }
+                
+                p
+                {
+                    text { 由比滨结衣模块使用CMOD }
+                }
+                
+                div
+                {
+                    @Element YuiFourLeafAlbum;
+                    
+                    text { 由比滨的四叶相册 }
+                }
+                
+                div
+                {
+                    @Element YuiMemo;
+                    
+                    text { 由比滨的备忘录 }
+                }
+                
+                button
+                {
+                    style
+                    {
+                        @Style YuigahamaButton;
+                    }
+                    
+                    text { 🎀 友好问候 }
+                }
+            }
+        }
+        
+        // 局部script演示
+        script
+        {
+            console.log('🎉 CHTL综合功能演示加载');
+            
+            // 增强选择器使用
+            {{#printmylove-btn}}->addEventListener('click', () => {
+                console.log('💝 printMylove功能演示');
+                alert('printMylove功能：将图片转换为字符像素块');
+            });
+            
+            // &->事件绑定操作符
+            {{.yuigahama-button}} &-> click {
+                console.log('🎀 由比滨问候功能');
+                alert('嗨！你好呀～ 我是由比滨结衣！');
+            }
+            
+            // listen增强监听器
+            {{.chtholly-card}}->listen {
+                mouseenter: () => {
+                    console.log('🌸 珂朵莉卡片悬停');
+                },
+                
+                mouseleave: () => {
+                    console.log('🌸 珂朵莉卡片离开');
+                }
+            };
+            
+            // delegate事件委托
+            {{body}}->delegate {
+                target: {{.interactive-element}},
+                click: function(event) {
+                    console.log('📱 委托事件触发:', event.target);
+                }
+            };
+            
+            // animate动画
+            const anim = animate {
+                target: {{.chtholly-card}},
+                duration: 1000,
+                easing: ease-in-out,
+                
+                begin: {
+                    opacity: 0,
+                    transform: 'translateY(20px)'
+                },
+                
+                end: {
+                    opacity: 1,
+                    transform: 'translateY(0)'
+                },
+                
+                callback: function() {
+                    console.log('✨ 动画完成');
+                }
+            };
+        }
+    }
+}

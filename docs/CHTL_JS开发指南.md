@@ -1,913 +1,342 @@
-# CHTL JS开发指南
+# CHTL JS开发指南（严格按文档）
 
-## 🌟 CHTL JS简介
+## 📝 CHTL JS概述
 
-**CHTL JS** 是CHTL项目中的脚本语言部分，采用**双语言分离架构**设计，与CHTL完全独立。CHTL JS不是JavaScript的超集，而是一种专门为CHTL设计的增强脚本语言，最终编译为JavaScript。
-
-### 🎯 设计理念
-
-- **完全分离** - 与CHTL语言完全独立的编译体系
-- **增强功能** - 提供比传统JavaScript更强大的Web开发功能
-- **优雅语法** - 更直观、更易用的脚本编写方式
-- **性能优化** - 编译时优化，运行时高效
+**重要说明**: 局部script严格上属于CHTL，由CHTL编译器处理，不是独立的CHTL JS语言。
 
 ---
 
-## 🏗️ 核心架构
+## 📜 局部script语法
 
-### 🔧 独立编译体系
+### 🔧 基本语法
 
-CHTL JS拥有完全独立的编译组件：
-- **CHTLJSToken** - 专用词法单元
-- **CHTLJSGlobalMap** - 独立全局映射
-- **CHTLJSState** - 专用状态机
-- **CHTLJSContext** - 独立上下文管理
-- **CHTLJSLexer** - 专用词法分析器
-- **CHTLJSParser** - 专用语法解析器
-- **CHTLJSGenerator** - 专用代码生成器
+CHTL允许在元素中使用script{}来编写JS代码。局部script会被添加到一个不会全局污染，具有高优先级的全局script块之中。
 
-### 📁 文件扩展名
+```chtl
+div
+{
+    style
+    {
+        .box
+        {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    }
 
-```
-.cjjs - CHTL JS源文件扩展名
-```
+    script
+    {
+        {{box}}.addEventListener('click', () => {
+            console.log('Box clicked!');
+        });
 
----
-
-## 📝 基础语法
-
-### 🎵 模块系统 (AMD风格)
-
-```chtljs
-// module{}块用于AMD风格模块加载
-module {
-    name: "MyModule",
-    version: "1.0.0",
-    dependencies: ["chtl::Chtholly", "jquery"],
-    exports: {
-        myFunction: myFunction,
-        MyClass: MyClass
+        // 引用功能
+        {{&}}->addEventListener('click', () => {
+            console.log('Box clicked!');
+        });
     }
 }
 ```
-
-### 📜 局部脚本块
-
-```chtljs
-// script{}块属于CHTL，由CHTL编译器处理
-script {
-    console.log('这是局部脚本');
-    // 这部分代码由CHTL编译器处理，不是CHTL JS
-}
-```
-
-**注意**: `script{}`块虽然在CHTL JS文档中提到，但**严格上属于CHTL**，由CHTL编译器处理。
 
 ---
 
 ## 🎯 增强选择器
 
-### 🔍 CSS选择器增强
+### 🔍 选择器语法
 
-```chtljs
-// 使用{{}}包围CSS选择器进行增强
-{{.button[data-active="true"]}} -> textContent -> "激活状态";
+你可以使用{{CSS选择器}}来创建一个DOM对象。
 
-// 索引访问
-{{.item}}[0] -> style.color -> "red";
-{{.item}}[1] -> style.color -> "blue";
+```chtl
+button
+{
+    style
+    {
+        .box
+        {
+            
+        }
+    }
+}
 
-// 智能推导
-{{.container .item}} -> forEach(item => {
-    item.style.transition = "all 0.3s ease";
-});
+script
+{
+    {{box}}.textContent()  // 先判断是否为tag，然后查找类名 / id = box(id优先)的元素，并创建DOM对象
+    {{.box}}  // 查找类名为box的元素，并创建DOM对象
+    {{#box}}  // 查找id为box的元素，并创建DOM对象
+    {{button}}  // 所有的button元素
+    {{.box button}}  // 查找类名为box的元素的所有的button后代，并创建DOM对象  
+    
+    // 精确访问
+    {{button[0]}}  // 第一个button元素
+}
 ```
 
-### 🎨 选择器自动化
-
-```chtljs
-// 自动推导上下文
-{{.current-page .navigation}} -> addClass("active");
-
-// 智能索引
-{{.gallery img}}[currentIndex] -> src -> newImageUrl;
-```
+**重要限制**: 增强选择器仅支持上述的种类，这是出于性能与复杂性之间的考虑。.boxbutton这种交集选择器会消耗很多性能，因此这里不得不放弃支持。
 
 ---
 
-## ⚡ 操作符系统
+## ⚡ -> 操作符
 
-### 🔗 -> 操作符
+### 🔗 明确使用CHTL语法
 
-```chtljs
-// 属性设置
-{{.title}} -> textContent -> "新标题";
-{{.image}} -> src -> "new-image.jpg";
+使用到CHTL JS语法时，推荐使用->代替.，以便明确使用了CHTL JS语法。->与.是完全等价的，因此你可以直接使用->进行链式访问。
 
-// 样式设置
-{{.element}} -> style.background -> "linear-gradient(45deg, red, blue)";
+```chtl
+button
+{
+    style
+    {
+        .box
+        {
+            
+        }
+    }
+}
 
-// 方法调用
-{{.animation}} -> classList.add("fadeIn");
-```
-
-### 🎮 &-> 事件绑定操作符
-
-```chtljs
-// 事件绑定
-{{.button}} &-> 'click' &-> function(event) {
-    console.log('按钮被点击');
-    event.target.style.background = 'green';
-};
-
-// 多事件绑定
-{{.input}} &-> 'focus' &-> handleFocus
-           &-> 'blur' &-> handleBlur
-           &-> 'change' &-> handleChange;
+script
+{
+    {{box}}->textContent();
+}
 ```
 
 ---
 
 ## 🎧 增强监听器
 
-### 📡 listen功能
+### 📡 listen语法
 
-```chtljs
-// 基础监听
-listen {
-    selector: ".button",
-    event: "click",
-    callback: function(event) {
-        console.log('监听器触发');
+你现在可以使用listen来快捷绑定事件监听器。
+
+```chtl
+button
+{
+    style
+    {
+        .box
+        {
+
+        }
     }
 }
 
-// 高级配置
-listen {
-    selector: ".dynamic-element",
-    event: "custom:chtl-event",
-    once: true,
-    passive: true,
-    capture: false,
-    callback: handleCustomEvent
-}
+script
+{
+    // 声明式
+    {{box}}->listen {
+        click: () => {
 
-// 条件监听
-listen {
-    selector: ".conditional",
-    event: "click",
-    condition: function(element) {
-        return element.dataset.enabled === "true";
-    },
-    callback: conditionalHandler
+        },
+
+        mouseenter: mouseEnterEvent,  // 已经存在的函数
+
+        mousemove: function() {
+
+        }
+    };
 }
 ```
 
-### 🎭 delegate事件委托
+---
 
-```chtljs
-// 基础委托
-delegate {
-    parent: ".container",
-    target: ".dynamic-button",
-    event: "click",
-    callback: function(event) {
-        console.log('委托事件触发');
-    }
-}
+## 🎭 事件委托
 
-// 高级委托
-delegate {
-    parent: document.body,
-    target: "[data-action]",
-    event: "click",
-    filter: function(target) {
-        return target.dataset.action !== "disabled";
-    },
-    callback: function(event, target) {
-        const action = target.dataset.action;
-        executeAction(action, target);
-    }
+### 🔄 delegate语法
+
+为了解决SPA页面中元素动态更新导致事件监听丢失的问题，提供了基于事件委托的增强语法。通过将事件绑定到不会销毁的父元素，监听冒泡阶段的事件，从而实现稳定的事件绑定。
+
+```chtl
+script
+{
+    {{父元素选择器}}->delegate {
+        target: {{选择器}} | [{{选择器1}}, {{选择器2}},...], // 要代理的子元素对象 / 子元素对象数组
+        click: 函数,  // 绑定的事件类型及对应回调函数
+        mouseenter: 函数,
+        mouseleave: 函数,
+    };
 }
 ```
+
+需要创建一个全局注册表，管理所有事件委托的父元素，重复绑定父元素的子元素会作为分支合并在同一个事件委托之中，避免创建多个相同的事件委托。
 
 ---
 
 ## 🎬 动画系统
 
-### ✨ animate功能
+### ✨ animate语法
 
-```chtljs
-// 基础动画
-animate {
-    target: ".element",
-    keyframes: {
-        "0%": { opacity: 0, transform: "translateY(-20px)" },
-        "100%": { opacity: 1, transform: "translateY(0)" }
-    },
-    duration: 500,
-    easing: "ease-out"
-}
+CHTL JS简化了动画的使用，封装了requestAnimationFrame。
 
-// 高级动画配置
-animate {
-    target: ".complex-animation",
-    keyframes: [
-        { offset: 0, opacity: 0, transform: "scale(0.8)" },
-        { offset: 0.5, opacity: 0.7, transform: "scale(1.1)" },
-        { offset: 1, opacity: 1, transform: "scale(1)" }
-    ],
-    duration: 1000,
-    easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-    delay: 200,
-    iterations: 1,
-    direction: "normal",
-    fill: "forwards",
-    callback: function() {
-        console.log('动画完成');
-    }
-}
+```chtl
+script
+{
+    const anim = animate {
+        target: {{选择器}} || [{{选择器1}}, {{选择器2}}] || DOM对象
+        duration: 100,  // 动画持续时间，ms
+        easing: ease-in-out,  // 缓慢函数
 
-// 链式动画
-animate {
-    target: ".first",
-    keyframes: { /* ... */ },
-    duration: 500
-} -> then(animate {
-    target: ".second", 
-    keyframes: { /* ... */ },
-    duration: 300
-});
-```
+        begin: {  // 起始状态，写css代码
 
----
-
-## 🌟 虚拟对象系统
-
-### 👻 vir虚对象
-
-```chtljs
-// 创建虚拟对象
-vir MyHandler = listen {
-    selector: ".interactive",
-    event: "click",
-    callback: function(event) {
-        this.handleClick(event);
-    },
-    
-    methods: {
-        handleClick: function(event) {
-            console.log('虚拟对象方法调用');
-        },
-        
-        initialize: function() {
-            console.log('虚拟对象初始化');
         }
-    }
-};
 
-// 使用虚拟对象
-MyHandler.initialize();
+        when: [
+            {
+                at: 0.4;  // 动画播放到什么时刻
 
-// 虚拟对象继承
-vir ExtendedHandler = MyHandler {
-    extend: true,
-    methods: {
-        handleClick: function(event) {
-            super.handleClick(event);
-            console.log('扩展处理');
+                // css代码
+                opacity: 0.5,
+                transform: 'scale(1.1)'
+            },
+            {
+                at: 0.8;  // 动画播放到什么时刻
+                // css代码
+            }
+        ]
+
+        end: {  // 终止状态，写css代码
+
         }
+
+        loop: -1,  // 循环次数
+        direction: ,  // 播放的方向
+        delay:  ,  // 开始播放的延迟，ms
+        callback: function,  // 播放完毕后做什么
+    };
+}
+```
+
+---
+
+## 👻 虚对象
+
+### 🌟 vir语法
+
+虚对象是CHTL JS重要的特征之一，虚对象提供了访问CHTL JS函数的元信息能力。虚对象能够获取CHTL JS函数的任意键的键值。
+
+```chtl
+vir test = listen {
+    click: () => {
+
+    }
+
+    other: {
+
+    }
+};
+
+test->click();  // 解析click为函数引用
+test->other;  // 解析other为对象
+```
+
+**重要说明**: 
+- vir是CHTL JS层面的语法糖，不涉及JS
+- listen会按原样生成JS代码
+- vir本身就不存在，是编译期间的语法糖
+
+### 🔧 vir实现原理
+
+```chtl
+vir Test = listen {
+    click: ()=>{
+
     }
 };
 ```
 
----
+编译器扫描到vir时，会创建一个C++对象，这个C++对象负责vir的解析。假设这个对象为View，View对象需要做两件事情：
+1. 记录vir虚对象的名称
+2. 解析CHTL JS函数中的键，并创建对应表
 
-## 🔍 键类型分析
-
-### 🔑 类型检测
-
-```chtljs
-// 自动类型分析
-let data = {
-    string: "text",
-    number: 42,
-    boolean: true,
-    array: [1, 2, 3],
-    object: { key: "value" },
-    function: function() { return "result"; }
-};
-
-// CHTL JS会自动分析键类型
-analyzeTypes(data) -> {
-    string: "string",
-    number: "number", 
-    boolean: "boolean",
-    array: "array",
-    object: "object",
-    function: "function"
-};
-```
-
-### 🗺️ 函数引用映射
-
-```chtljs
-// 函数引用映射
-const functionMap = {
-    "handleClick": handleClick,
-    "handleSubmit": handleSubmit,
-    "handleChange": handleChange
-};
-
-// 动态函数调用
-executeFunction("handleClick", event) -> functionMap["handleClick"](event);
-```
+后续在解析时，遇到Test->click;时，会根据键值的类型，转换成不同的内容，比如函数引用，对象，数组等，并且这些结果会缓存在View之中，以便后续的解析。
 
 ---
 
-## 🚀 异步操作
+## ⚡ 事件绑定操作符
 
-### ⏰ Promise增强
+### 🎮 &-> 操作符
 
-```chtljs
-// 增强的Promise语法
-async function loadData() {
-    const result = await fetch("/api/data") 
-                  -> json() 
-                  -> processData()
-                  -> validateData();
-    
-    return result;
-}
+现在你可以使用&->来绑定事件。
 
-// 并行处理
-parallel {
-    task1: loadUserData(),
-    task2: loadConfigData(),
-    task3: loadModuleData()
-} -> then(results => {
-    console.log('所有任务完成:', results);
-});
-```
-
-### 🔄 异步链式
-
-```chtljs
-// 异步链式操作
-chain()
-    .step(loadInitialData)
-    .step(processData)
-    .step(validateResults)
-    .step(updateUI)
-    .catch(handleError)
-    .finally(cleanup);
-```
-
----
-
-## 🎮 事件系统
-
-### 📢 自定义事件
-
-```chtljs
-// 创建自定义事件
-createEvent {
-    name: "chtl:dataLoaded",
-    detail: { timestamp: Date.now(), source: "api" },
-    bubbles: true,
-    cancelable: true
-} -> dispatchOn(document);
-
-// 监听自定义事件
-listen {
-    selector: document,
-    event: "chtl:dataLoaded",
-    callback: function(event) {
-        console.log('数据加载事件:', event.detail);
-    }
-}
-```
-
-### 🎯 事件流控制
-
-```chtljs
-// 事件流控制
-eventFlow {
-    capture: listen {
-        selector: ".parent",
-        event: "click",
-        phase: "capture",
-        callback: captureHandler
-    },
-    
-    target: listen {
-        selector: ".target",
-        event: "click", 
-        phase: "target",
-        callback: targetHandler
-    },
-    
-    bubble: listen {
-        selector: ".parent",
-        event: "click",
-        phase: "bubble", 
-        callback: bubbleHandler
+```chtl
+script
+{
+    {{.box}} &-> click {
+        console.log('Box clicked!');
     }
 }
 ```
 
 ---
 
-## 🔧 DOM操作增强
+## 🎯 CJMOD功能
 
-### 🎨 样式操作
+### 💝 printMylove
 
-```chtljs
-// 批量样式操作
-{{.elements}} -> applyStyles({
-    background: "linear-gradient(45deg, red, blue)",
-    transform: "translateY(0)",
-    opacity: 1,
-    transition: "all 0.3s ease"
-});
-
-// 条件样式
-{{.conditional}} -> when(element => element.dataset.active === "true")
-                 -> applyStyles({ background: "green" })
-                 -> else()
-                 -> applyStyles({ background: "gray" });
-```
-
-### 🏗️ 元素操作
-
-```chtljs
-// 元素创建和操作
-createElement {
-    tag: "div",
-    className: "dynamic-element",
-    attributes: {
-        "data-id": generateId(),
-        "data-created": Date.now()
-    },
-    styles: {
-        background: "white",
-        padding: "20px"
-    },
-    children: [
-        createElement {
-            tag: "h3",
-            textContent: "动态标题"
-        },
-        createElement {
-            tag: "p", 
-            textContent: "动态内容"
-        }
-    ]
-} -> appendTo(".container");
-```
-
----
-
-## 📦 模块导入导出
-
-### 📥 导入模块
-
-```chtljs
-// 导入CHTL JS模块
-import { MyFunction, MyClass } from "./myModule.cjjs";
-
-// 导入官方模块
-import { printMylove, iNeverAway } from "chtl::Chtholly";
-
-// 条件导入
-import("./conditionalModule.cjjs")
-    .then(module => {
-        module.initialize();
-    });
-```
-
-### 📤 导出功能
-
-```chtljs
-// 导出函数
-export function myUtility(param) {
-    return processParam(param);
-}
-
-// 导出类
-export class MyComponent {
-    constructor(config) {
-        this.config = config;
-    }
-    
-    render() {
-        return this.generateHTML();
-    }
-}
-
-// 默认导出
-export default {
-    version: "1.0.0",
-    name: "MyModule",
-    utilities: { myUtility },
-    components: { MyComponent }
+```chtl
+const str = printMylove {
+    url: ,
+    mode: ,  // 模式可以选择ASCII或Pixel
+    width: ,  // 宽度，支持的单位有CSS单位以及百分比，小数，纯数字(像素)
+    height: ,  // 高度
+    scale:  ,  // 缩放倍数，限定为等比缩放策略
 };
 ```
 
----
+### 🌟 iNeverAway
 
-## 🎭 高级特征
+iNeverAway用于创建一组标记函数。iNeverAway与其他CHTL JS功能不同，它允许开发者定义键，而不是使用键，并可以使用状态区分同名的键。iNeverAway需要与虚对象共用。
 
-### 🎪 函数重载
+```chtl
+vir Test = iNeverAway {
+    Void<A>: function(int, int) {
 
-```chtljs
-// 基于参数类型的函数重载
-function process(data) {
-    switch(typeof data) {
-        case "string":
-            return processString(data);
-        case "number":
-            return processNumber(data);
-        case "object":
-            return processObject(data);
-        default:
-            return processDefault(data);
-    }
-}
-
-// 参数个数重载
-function create(...args) {
-    if (args.length === 1) {
-        return createSingle(args[0]);
-    } else if (args.length === 2) {
-        return createPair(args[0], args[1]);
-    } else {
-        return createMultiple(args);
-    }
-}
-```
-
-### 🔮 装饰器模式
-
-```chtljs
-// 函数装饰器
-@memoize
-@validate
-function expensiveFunction(param) {
-    // 昂贵的计算
-    return complexCalculation(param);
-}
-
-// 类装饰器
-@component
-@singleton
-class MyService {
-    @inject("dataService")
-    private dataService;
-    
-    @async
-    @retry(3)
-    async fetchData() {
-        return await this.dataService.getData();
-    }
-}
-```
-
-### 🌊 响应式编程
-
-```chtljs
-// 响应式数据
-reactive {
-    data: {
-        count: 0,
-        message: "Hello"
     },
-    
-    computed: {
-        displayMessage() {
-            return `${this.message} (${this.count})`;
-        }
+
+    Void<B>: funtion(int, int) {  // 通过状态同名同参重载
+
     },
-    
-    watch: {
-        count(newValue, oldValue) {
-            console.log(`计数从 ${oldValue} 变为 ${newValue}`);
-        }
+
+    Void: {
+
     },
-    
-    methods: {
-        increment() {
-            this.count++;
-        }
-    }
-}
-```
 
----
+    Ax: {
 
-## 🎨 实际应用示例
-
-### 🌸 珂朵莉主题应用
-
-```chtljs
-// 使用珂朵莉模块功能
-import { printMylove, iNeverAway } from "chtl::Chtholly";
-
-// 爱的表达功能
-vir LoveExpression = printMylove {
-    target: "世界",
-    message: "珂朵莉的爱意",
-    style: "romantic",
-    animation: "heartbeat"
-};
-
-// 永恒守护功能
-vir EternalGuardian = iNeverAway {
-    Void<Promise>: function(target, duration) {
-        console.log(`💝 永恒的承诺: 我将永远守护${target}`);
-        return new Promise(resolve => {
-            setTimeout(() => {
-                console.log(`⭐ 守护时间: ${duration}ms 完成`);
-                resolve(`守护${target}的承诺已实现`);
-            }, duration);
-        });
-    },
-    
-    Void<Protect>: function(target, threat) {
-        console.log(`🛡️ 保护${target}免受${threat}的伤害`);
-        return {
-            status: "protected",
-            target: target,
-            threat: threat,
-            guardian: "珂朵莉"
-        };
     }
 };
 
-// 异步链式操作
-util.fadeIn({{.chtholly-card}})
-    .then(util.slideDown())
-    .then(util.addSparkles())
-    .then(() => {
-        console.log('✨ 珂朵莉特效序列完成');
-    });
-
-// 综合应用
-listen {
-    selector: {{.chtholly-button[data-action="love"]}},
-    event: "click",
-    callback: function(event) {
-        const target = event.target.dataset.target || "你";
-        
-        // 使用printMylove功能
-        LoveExpression.express(target).then(result => {
-            console.log('💕 爱的表达结果:', result);
-            
-            // 触发永恒守护
-            return EternalGuardian.Promise(target, 2000);
-        }).then(guardResult => {
-            console.log('🌟 守护完成:', guardResult);
-            
-            // 显示特效
-            event.target -> style.background -> 'linear-gradient(45deg, #ff6b6b, #ffd93d)';
-            event.target -> textContent -> '💝 爱已传达';
-        });
-    }
-}
+Test->Void<A>();
 ```
 
-### 🎀 由比滨结衣应用
+Test是虚拟对象，是不存在的对象，这里并没有创建一个对象。
 
-```chtljs
-// 使用由比滨结衣模块
-import { FourLeafAlbum, Memo } from "chtl::Yuigahama";
+**实现原理**: 
+- iNeverAway -> 创建一组JS全局函数，名称由CHTL编译器统一管理，在调用时才生成对应的JS函数代码
+- vir对象本身不存在，最终转变成相对应的函数的引用
 
-// 相册组件
-vir PhotoGallery = FourLeafAlbum {
-    images: [
-        "spring-sakura.jpg",
-        "summer-beach.jpg", 
-        "autumn-leaves.jpg",
-        "winter-snow.jpg"
-    ],
-    layout: "clover",
-    transition: "fade",
-    autoplay: true,
-    interval: 3000
-};
+### ⚡ util...then表达式
 
-// 备忘录系统
-vir PersonalMemo = Memo {
-    entries: [],
-    
-    add: function(content, mood) {
-        const entry = {
-            id: generateId(),
-            content: content,
-            mood: mood,
-            timestamp: new Date(),
-            tags: extractTags(content)
-        };
-        
-        this.entries.push(entry);
-        this.save();
-        return entry;
-    },
-    
-    filter: function(criteria) {
-        return this.entries.filter(entry => 
-            criteria.mood ? entry.mood === criteria.mood : true &&
-            criteria.tags ? criteria.tags.some(tag => entry.tags.includes(tag)) : true
-        );
-    }
-};
+```chtl
+util 表达式 -> change { 条件变化时 } -> then { 条件完成时 }
 
-// 交互系统
-delegate {
-    parent: ".yuigahama-container",
-    target: ".memo-item",
-    event: "click",
-    callback: function(event, target) {
-        const memoId = target.dataset.memoId;
-        const memo = PersonalMemo.findById(memoId);
-        
-        if (memo) {
-            displayMemoDetail(memo);
-        }
-    }
-}
-```
-
----
-
-## 🔧 调试和优化
-
-### 🐛 调试技巧
-
-```chtljs
-// 调试模式
-debug {
-    enabled: true,
-    level: "verbose",
-    output: "console"
-}
-
-// 性能监控
-performance {
-    monitor: [
-        "listen.callback.duration",
-        "animate.frame.time",
-        "delegate.lookup.time"
-    ],
-    
-    threshold: {
-        warning: 16, // 16ms (60fps)
-        error: 33    // 33ms (30fps)
-    },
-    
-    callback: function(metrics) {
-        if (metrics.duration > this.threshold.error) {
-            console.warn('性能警告:', metrics);
-        }
-    }
-}
-```
-
-### ⚡ 性能优化
-
-```chtljs
-// 批量DOM操作
-batch {
-    operations: [
-        () => {{.item1}} -> style.color -> "red",
-        () => {{.item2}} -> style.color -> "blue", 
-        () => {{.item3}} -> style.color -> "green"
-    ],
-    
-    // 使用requestAnimationFrame批量执行
-    strategy: "raf"
-}
-
-// 虚拟滚动
-virtualScroll {
-    container: ".large-list",
-    itemHeight: 50,
-    buffer: 10,
-    renderItem: function(data, index) {
-        return createElement {
-            tag: "div",
-            className: "list-item",
-            textContent: data.title
-        };
-    }
-}
-```
-
----
-
-## 📚 最佳实践
-
-### 🎯 代码组织
-
-```chtljs
-// 推荐的文件结构
-// main.cjjs - 主入口文件
-module {
-    name: "MyApp",
-    dependencies: ["chtl::Chtholly"],
-    
-    initialize: function() {
-        this.setupEventListeners();
-        this.loadModules();
-        this.startApplication();
-    },
-    
-    setupEventListeners: function() {
-        // 设置全局事件监听
-    },
-    
-    loadModules: function() {
-        // 加载必要模块
-    }
-}
-
-// components/ - 组件文件
-// utils/ - 工具函数
-// services/ - 服务类
-```
-
-### 🔒 错误处理
-
-```chtljs
-// 全局错误处理
-errorHandler {
-    global: true,
-    
-    catch: function(error, context) {
-        console.error('CHTL JS错误:', error);
-        
-        // 发送错误报告
-        reportError(error, context);
-        
-        // 用户友好的错误提示
-        showUserError("操作失败，请稍后重试");
-    },
-    
-    types: {
-        "TypeError": handleTypeError,
-        "ReferenceError": handleReferenceError,
-        "SyntaxError": handleSyntaxError
-    }
-}
-```
-
-### 🎪 性能最佳实践
-
-```chtljs
-// 1. 使用事件委托而不是大量监听器
-delegate {
-    parent: ".app",
-    target: "[data-action]",
-    event: "click",
-    callback: handleAction
-}
-
-// 2. 批量DOM操作
-batch {
-    operations: domOperations,
-    strategy: "raf"
-}
-
-// 3. 虚拟对象复用
-vir ReusableComponent = {
-    pool: [],
-    
-    acquire: function() {
-        return this.pool.pop() || this.create();
-    },
-    
-    release: function(instance) {
-        instance.reset();
-        this.pool.push(instance);
-    }
-}
+util a > b -> change print("发生变化") -> then print("a > b");  // 单行语句情况下，change条件可以不写分号
+util a > b -> change print("发生变化"); -> then print("a > b");
+util a < b -> change {print("发生变化");} -> then {print("a < b");}  // 多行代码下，无论如何都要以分号结束
 ```
 
 ---
 
 ## 🎊 总结
 
-CHTL JS作为CHTL项目的脚本语言部分，提供了：
+CHTL JS的语法特征（严格按文档）：
 
-- 🔥 **完全独立的编译体系** - 与CHTL完全分离
-- 🔥 **增强的选择器系统** - 更强大的DOM操作
-- 🔥 **丰富的操作符** - 简化常见操作
-- 🔥 **强大的事件系统** - 监听器和委托
-- 🔥 **完整的动画支持** - 声明式动画
-- 🔥 **虚拟对象系统** - 面向对象增强
-- 🔥 **异步操作支持** - 现代异步编程
-- 🔥 **模块化设计** - AMD风格模块系统
+- 🔥 **局部script** - 属于CHTL，由CHTL编译器处理
+- 🔥 **增强选择器** - {{CSS选择器}}语法
+- 🔥 **-> 操作符** - 明确CHTL语法使用
+- 🔥 **listen监听器** - 声明式事件绑定
+- 🔥 **delegate委托** - 事件委托机制
+- 🔥 **animate动画** - 简化的动画API
+- 🔥 **vir虚对象** - 编译期语法糖
+- 🔥 **&-> 事件绑定操作符** - 快捷事件绑定
 
-通过CHTL JS，开发者可以用更优雅、更直观的方式编写Web应用的交互逻辑，同时享受现代JavaScript的所有优势。
-
-**🌟 开始您的CHTL JS开发之旅，体验增强的脚本编程体验！**
+**重要**: 严格按照CHTL语法文档实现，不私自扩展语法！

@@ -38,24 +38,45 @@ export PATH="/path/to/chtl/bin:$PATH"
 ### 🏷️ HTML元素
 
 ```chtl
-// 基础元素
-div {
-    class = "container";
-    id = "main";
+// 基础元素（严格按文档语法）
+div
+{
+    class: container;
+    id: main;
     
-    h1 { "欢迎使用CHTL" }
-    p { "这是一个段落" }
+    h1
+    {
+        text { 欢迎使用CHTL }
+    }
+    
+    p
+    {
+        text { 这是一个段落 }
+    }
 }
 
 // 嵌套结构
-html {
-    head {
-        title { "CHTL页面" }
-        meta { charset="UTF-8" }
+html
+{
+    head
+    {
+        title
+        {
+            CHTL页面
+        }
+        
+        meta
+        {
+            charset: "UTF-8";
+        }
     }
     
-    body {
-        div { class = "content"; }
+    body
+    {
+        div
+        {
+            class: content;
+        }
     }
 }
 ```
@@ -63,15 +84,18 @@ html {
 ### 🎨 样式系统
 
 ```chtl
-// 局部样式块
-style {
-    .container {
+// 局部样式块（严格按文档语法）
+style
+{
+    .container
+    {
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
     }
     
-    h1 {
+    h1
+    {
         color: #333;
         font-size: 2em;
     }
@@ -81,13 +105,20 @@ style {
 ### 📜 脚本系统
 
 ```chtl
-// 局部脚本块
-script {
+// 局部脚本块（严格按文档语法）
+script
+{
     console.log('CHTL脚本运行');
     
-    document.addEventListener('DOMContentLoaded', function() {
+    // 使用增强选择器
+    {{.container}}->addEventListener('DOMContentLoaded', function() {
         console.log('页面加载完成');
     });
+    
+    // 使用&->事件绑定操作符
+    {{.button}} &-> click {
+        console.log('按钮被点击');
+    }
 }
 ```
 
@@ -95,11 +126,11 @@ script {
 
 ## 🎯 模板系统
 
-### 📋 模板定义
+### 📋 模板定义（严格按文档语法）
 
 ```chtl
-[Template]
-<ButtonStyle> {
+[Template] @Style ButtonStyle
+{
     background: #007bff;
     color: white;
     border: none;
@@ -108,47 +139,80 @@ script {
     cursor: pointer;
 }
 
-<CardStyle> {
+[Template] @Style CardStyle
+{
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     padding: 20px;
 }
+
+[Template] @Var ThemeColors
+{
+    primaryColor: "#007bff";
+    secondaryColor: "#6c757d";
+}
 ```
 
-### 🔗 模板继承
+### 🔗 模板继承（严格按文档语法）
 
 ```chtl
-[Custom]
-<PrimaryButton inherit="ButtonStyle"> {
+[Custom] @Style PrimaryButton
+{
+    @Style ButtonStyle;
     background: #28a745;
     font-weight: bold;
 }
 
-<SpecialCard inherit="CardStyle"> {
+[Custom] @Style SpecialCard
+{
+    @Style CardStyle;
     border-left: 4px solid #007bff;
     background: #f8f9fa;
 }
 ```
 
-### 🎨 模板使用
+### 🎨 模板使用（严格按文档语法）
 
 ```chtl
-<button use="PrimaryButton">点击我</button>
-<div use="SpecialCard">
-    <h3>特殊卡片</h3>
-    <p>使用了模板的卡片内容</p>
-</div>
+button
+{
+    style
+    {
+        @Style PrimaryButton;
+    }
+    
+    text { 点击我 }
+}
+
+div
+{
+    style
+    {
+        @Style SpecialCard;
+    }
+    
+    h3
+    {
+        text { 特殊卡片 }
+    }
+    
+    p
+    {
+        text { 使用了模板的卡片内容 }
+    }
+}
 ```
 
 ---
 
 ## ⚙️ 配置系统
 
-### 🔧 全局配置
+### 🔧 全局配置（严格按文档语法）
 
 ```chtl
-[Configuration] {
+[Configuration]
+{
     DISABLE_STYLE_AUTO_ADD_CLASS = false;
     DISABLE_STYLE_AUTO_ADD_ID = false;
     DISABLE_SCRIPT_AUTO_ADD_CLASS = false;
