@@ -62,7 +62,6 @@ namespace CHTL {
         AT_CHTL,                // @Chtl
         AT_CJMOD,               // @CJmod
         AT_CONFIG,              // @Config
-        AT_VUE,                 // @Vue (自定义类型示例)
         
         // 操作关键字Token
         INHERIT,                // inherit
