@@ -114,7 +114,7 @@ private:
     static std::string ExtractAndGenerateBodyContent(const std::string& chtlCode) {
         std::ostringstream html;
         
-        // 查找div元素
+        // 回到简单但有效的方法
         std::regex divRegex(R"(div\s*\{([^{}]*(?:\{[^}]*\}[^{}]*)*)\})");
         std::sregex_iterator iter(chtlCode.begin(), chtlCode.end(), divRegex);
         std::sregex_iterator end;
@@ -145,6 +145,8 @@ private:
         
         return html.str();
     }
+    
+
     
     static std::string ExtractAttributes(const std::string& content) {
         std::ostringstream attrs;

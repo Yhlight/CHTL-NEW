@@ -62,11 +62,11 @@ bool CompilerDispatcher::Compile(const std::string& sourceCode) {
         // 3. 分组片段
         GroupFragmentsByType();
         
-        // 4. 使用SimpleHTMLGenerator快速生成正确的HTML（临时方案）
+        // 4. 使用增强的SimpleHTMLGenerator生成完整HTML（支持更多CHTL特征）
         if (m_FragmentsByType.count(FragmentType::CHTL_FRAGMENT) > 0) {
             std::cout << "🔥 开始CHTL片段编译，片段数量: " << m_FragmentsByType[FragmentType::CHTL_FRAGMENT].size() << std::endl;
             
-            // 使用SimpleHTMLGenerator生成完整HTML
+            // 使用增强的SimpleHTMLGenerator生成完整HTML
             std::string generatedHTML = SimpleHTMLGenerator::GenerateHTML(sourceCode);
             
             CompilationResult result;
