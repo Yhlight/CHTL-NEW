@@ -430,4 +430,24 @@ std::string ElementNode::ProcessContextReference(const std::string& styleContent
     return result;
 }
 
+void ElementNode::AddInlineStyle(const std::string& property, const std::string& value) {
+    if (!property.empty() && !value.empty()) {
+        m_InlineStyles[property] = value;
+    }
+}
+
+void ElementNode::InsertChild(size_t position, std::unique_ptr<CHTLBaseNode> child) {
+    if (!child) {
+        return;
+    }
+    
+    auto& children = const_cast<std::vector<std::unique_ptr<CHTLBaseNode>>&>(GetChildren());
+    
+    if (position >= children.size()) {
+        children.push_back(std::move(child));
+    } else {
+        children.insert(children.begin() + position, std::move(child));
+    }
+}
+
 } // namespace CHTL

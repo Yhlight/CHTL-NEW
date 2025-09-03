@@ -44,7 +44,15 @@ public:
     virtual ~CJMODScanner() = default;
     
     /**
-     * 扫描CJMOD语法
+     * 静态方法 - scan() 扫描语法片段
+     * @param args Arg对象 (包含语法模式)
+     * @param keyword 扫描的关键字
+     * @return 扫描结果Arg对象
+     */
+    static Arg scan(const Arg& args, const std::string& keyword);
+    
+    /**
+     * 实例方法 - 扫描CJMOD语法
      * @param code 代码片段
      * @return 扫描结果
      */

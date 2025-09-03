@@ -279,6 +279,32 @@ CHTLImport/fast:
 .PHONY : CHTLImport/fast
 
 #=============================================================================
+# Target rules for targets named CHTLConfiguration
+
+# Build rule for target.
+CHTLConfiguration: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLConfiguration
+.PHONY : CHTLConfiguration
+
+# fast build rule for target.
+CHTLConfiguration/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLConfiguration.dir/build.make CMakeFiles/CHTLConfiguration.dir/build
+.PHONY : CHTLConfiguration/fast
+
+#=============================================================================
+# Target rules for targets named CHTLNamespace
+
+# Build rule for target.
+CHTLNamespace: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CHTLNamespace
+.PHONY : CHTLNamespace
+
+# fast build rule for target.
+CHTLNamespace/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLNamespace.dir/build.make CMakeFiles/CHTLNamespace.dir/build
+.PHONY : CHTLNamespace/fast
+
+#=============================================================================
 # Target rules for targets named CHTLCSSCompiler
 
 # Build rule for target.
@@ -617,6 +643,19 @@ chtl_project_final_status/fast:
 .PHONY : chtl_project_final_status/fast
 
 #=============================================================================
+# Target rules for targets named chtl_complete_feature_implementation
+
+# Build rule for target.
+chtl_complete_feature_implementation: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_complete_feature_implementation
+.PHONY : chtl_complete_feature_implementation
+
+# fast build rule for target.
+chtl_complete_feature_implementation/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_complete_feature_implementation.dir/build.make CMakeFiles/chtl_complete_feature_implementation.dir/build
+.PHONY : chtl_complete_feature_implementation/fast
+
+#=============================================================================
 # Target rules for targets named chtl_lexer_test
 
 # Build rule for target.
@@ -858,6 +897,54 @@ src/CHTL/CHTLGenerator/CHTLGenerator.s: src/CHTL/CHTLGenerator/CHTLGenerator.cpp
 src/CHTL/CHTLGenerator/CHTLGenerator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/CHTLGenerator.cpp.s
 .PHONY : src/CHTL/CHTLGenerator/CHTLGenerator.cpp.s
+
+src/CHTL/CHTLGenerator/SelectorAutomation.o: src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o
+.PHONY : src/CHTL/CHTLGenerator/SelectorAutomation.o
+
+# target to build an object file
+src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o
+.PHONY : src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o
+
+src/CHTL/CHTLGenerator/SelectorAutomation.i: src/CHTL/CHTLGenerator/SelectorAutomation.cpp.i
+.PHONY : src/CHTL/CHTLGenerator/SelectorAutomation.i
+
+# target to preprocess a source file
+src/CHTL/CHTLGenerator/SelectorAutomation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.i
+.PHONY : src/CHTL/CHTLGenerator/SelectorAutomation.cpp.i
+
+src/CHTL/CHTLGenerator/SelectorAutomation.s: src/CHTL/CHTLGenerator/SelectorAutomation.cpp.s
+.PHONY : src/CHTL/CHTLGenerator/SelectorAutomation.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLGenerator/SelectorAutomation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.s
+.PHONY : src/CHTL/CHTLGenerator/SelectorAutomation.cpp.s
+
+src/CHTL/CHTLGenerator/TemplateEngine.o: src/CHTL/CHTLGenerator/TemplateEngine.cpp.o
+.PHONY : src/CHTL/CHTLGenerator/TemplateEngine.o
+
+# target to build an object file
+src/CHTL/CHTLGenerator/TemplateEngine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.o
+.PHONY : src/CHTL/CHTLGenerator/TemplateEngine.cpp.o
+
+src/CHTL/CHTLGenerator/TemplateEngine.i: src/CHTL/CHTLGenerator/TemplateEngine.cpp.i
+.PHONY : src/CHTL/CHTLGenerator/TemplateEngine.i
+
+# target to preprocess a source file
+src/CHTL/CHTLGenerator/TemplateEngine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.i
+.PHONY : src/CHTL/CHTLGenerator/TemplateEngine.cpp.i
+
+src/CHTL/CHTLGenerator/TemplateEngine.s: src/CHTL/CHTLGenerator/TemplateEngine.cpp.s
+.PHONY : src/CHTL/CHTLGenerator/TemplateEngine.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLGenerator/TemplateEngine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.s
+.PHONY : src/CHTL/CHTLGenerator/TemplateEngine.cpp.s
 
 src/CHTL/CHTLLexer/CHTLGlobalMap.o: src/CHTL/CHTLLexer/CHTLGlobalMap.cpp.o
 .PHONY : src/CHTL/CHTLLexer/CHTLGlobalMap.o
@@ -1243,6 +1330,30 @@ src/CHTL/CHTLState/CHTLState.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLCore.dir/build.make CMakeFiles/CHTLCore.dir/src/CHTL/CHTLState/CHTLState.cpp.s
 .PHONY : src/CHTL/CHTLState/CHTLState.cpp.s
 
+src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.o: src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.o
+.PHONY : src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.o
+
+# target to build an object file
+src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLConfiguration.dir/build.make CMakeFiles/CHTLConfiguration.dir/src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.o
+.PHONY : src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.o
+
+src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.i: src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.i
+.PHONY : src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.i
+
+# target to preprocess a source file
+src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLConfiguration.dir/build.make CMakeFiles/CHTLConfiguration.dir/src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.i
+.PHONY : src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.i
+
+src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.s: src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.s
+.PHONY : src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLConfiguration.dir/build.make CMakeFiles/CHTLConfiguration.dir/src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.s
+.PHONY : src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.s
+
 src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.o: src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.o
 .PHONY : src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.o
 
@@ -1266,6 +1377,30 @@ src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.s: src/CHTL/CHTLSystem/Import
 src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLImport.dir/build.make CMakeFiles/CHTLImport.dir/src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.s
 .PHONY : src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp.s
+
+src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.o: src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.o
+.PHONY : src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.o
+
+# target to build an object file
+src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLNamespace.dir/build.make CMakeFiles/CHTLNamespace.dir/src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.o
+.PHONY : src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.o
+
+src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.i: src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.i
+.PHONY : src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.i
+
+# target to preprocess a source file
+src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLNamespace.dir/build.make CMakeFiles/CHTLNamespace.dir/src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.i
+.PHONY : src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.i
+
+src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.s: src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.s
+.PHONY : src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLNamespace.dir/build.make CMakeFiles/CHTLNamespace.dir/src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.s
+.PHONY : src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.s
 
 src/CHTL/CMODSystem/CMODManager.o: src/CHTL/CMODSystem/CMODManager.cpp.o
 .PHONY : src/CHTL/CMODSystem/CMODManager.o
@@ -1338,6 +1473,30 @@ src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.s: src/CHTL_JS/CHTLJSGenerator/CHTLJ
 src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.s
 .PHONY : src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.s
+
+src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.o: src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o
+.PHONY : src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.o
+
+# target to build an object file
+src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o
+.PHONY : src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o
+
+src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.i: src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.i
+.PHONY : src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.i
+
+# target to preprocess a source file
+src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.i
+.PHONY : src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.i
+
+src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.s: src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.s
+.PHONY : src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.s
+
+# target to generate assembly for a file
+src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.s
+.PHONY : src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.s
 
 src/CHTL_JS/CHTLJSLexer/CHTLJSGlobalMap.o: src/CHTL_JS/CHTLJSLexer/CHTLJSGlobalMap.cpp.o
 .PHONY : src/CHTL_JS/CHTLJSLexer/CHTLJSGlobalMap.o
@@ -2299,6 +2458,30 @@ src/Test/CompleteCompilationFlowTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_complete_flow_test.dir/build.make CMakeFiles/chtl_complete_flow_test.dir/src/Test/CompleteCompilationFlowTest.cpp.s
 .PHONY : src/Test/CompleteCompilationFlowTest.cpp.s
 
+src/Test/CompleteFeatureImplementation.o: src/Test/CompleteFeatureImplementation.cpp.o
+.PHONY : src/Test/CompleteFeatureImplementation.o
+
+# target to build an object file
+src/Test/CompleteFeatureImplementation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_complete_feature_implementation.dir/build.make CMakeFiles/chtl_complete_feature_implementation.dir/src/Test/CompleteFeatureImplementation.cpp.o
+.PHONY : src/Test/CompleteFeatureImplementation.cpp.o
+
+src/Test/CompleteFeatureImplementation.i: src/Test/CompleteFeatureImplementation.cpp.i
+.PHONY : src/Test/CompleteFeatureImplementation.i
+
+# target to preprocess a source file
+src/Test/CompleteFeatureImplementation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_complete_feature_implementation.dir/build.make CMakeFiles/chtl_complete_feature_implementation.dir/src/Test/CompleteFeatureImplementation.cpp.i
+.PHONY : src/Test/CompleteFeatureImplementation.cpp.i
+
+src/Test/CompleteFeatureImplementation.s: src/Test/CompleteFeatureImplementation.cpp.s
+.PHONY : src/Test/CompleteFeatureImplementation.s
+
+# target to generate assembly for a file
+src/Test/CompleteFeatureImplementation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_complete_feature_implementation.dir/build.make CMakeFiles/chtl_complete_feature_implementation.dir/src/Test/CompleteFeatureImplementation.cpp.s
+.PHONY : src/Test/CompleteFeatureImplementation.cpp.s
+
 src/Test/ConstraintTest.o: src/Test/ConstraintTest.cpp.o
 .PHONY : src/Test/ConstraintTest.o
 
@@ -2943,6 +3126,7 @@ help:
 	@echo "... CHTLCMODSystem"
 	@echo "... CHTLCSSCompiler"
 	@echo "... CHTLCodeMerger"
+	@echo "... CHTLConfiguration"
 	@echo "... CHTLConstraint"
 	@echo "... CHTLCore"
 	@echo "... CHTLDispatcher"
@@ -2951,6 +3135,7 @@ help:
 	@echo "... CHTLJSCompiler"
 	@echo "... CHTLJSCore"
 	@echo "... CHTLModuleSystem"
+	@echo "... CHTLNamespace"
 	@echo "... CHTLScanner"
 	@echo "... CHTLUtilSystem"
 	@echo "... CJMOD"
@@ -2962,6 +3147,7 @@ help:
 	@echo "... chtl_cjmod_real_test"
 	@echo "... chtl_cjmod_test"
 	@echo "... chtl_code_merger_test"
+	@echo "... chtl_complete_feature_implementation"
 	@echo "... chtl_complete_flow_test"
 	@echo "... chtl_constraint_test"
 	@echo "... chtl_custom_test"
@@ -2994,6 +3180,12 @@ help:
 	@echo "... src/CHTL/CHTLGenerator/CHTLGenerator.o"
 	@echo "... src/CHTL/CHTLGenerator/CHTLGenerator.i"
 	@echo "... src/CHTL/CHTLGenerator/CHTLGenerator.s"
+	@echo "... src/CHTL/CHTLGenerator/SelectorAutomation.o"
+	@echo "... src/CHTL/CHTLGenerator/SelectorAutomation.i"
+	@echo "... src/CHTL/CHTLGenerator/SelectorAutomation.s"
+	@echo "... src/CHTL/CHTLGenerator/TemplateEngine.o"
+	@echo "... src/CHTL/CHTLGenerator/TemplateEngine.i"
+	@echo "... src/CHTL/CHTLGenerator/TemplateEngine.s"
 	@echo "... src/CHTL/CHTLLexer/CHTLGlobalMap.o"
 	@echo "... src/CHTL/CHTLLexer/CHTLGlobalMap.i"
 	@echo "... src/CHTL/CHTLLexer/CHTLGlobalMap.s"
@@ -3042,9 +3234,15 @@ help:
 	@echo "... src/CHTL/CHTLState/CHTLState.o"
 	@echo "... src/CHTL/CHTLState/CHTLState.i"
 	@echo "... src/CHTL/CHTLState/CHTLState.s"
+	@echo "... src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.o"
+	@echo "... src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.i"
+	@echo "... src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.s"
 	@echo "... src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.o"
 	@echo "... src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.i"
 	@echo "... src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.s"
+	@echo "... src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.o"
+	@echo "... src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.i"
+	@echo "... src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.s"
 	@echo "... src/CHTL/CMODSystem/CMODManager.o"
 	@echo "... src/CHTL/CMODSystem/CMODManager.i"
 	@echo "... src/CHTL/CMODSystem/CMODManager.s"
@@ -3054,6 +3252,9 @@ help:
 	@echo "... src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.o"
 	@echo "... src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.i"
 	@echo "... src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.s"
+	@echo "... src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.o"
+	@echo "... src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.i"
+	@echo "... src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.s"
 	@echo "... src/CHTL_JS/CHTLJSLexer/CHTLJSGlobalMap.o"
 	@echo "... src/CHTL_JS/CHTLJSLexer/CHTLJSGlobalMap.i"
 	@echo "... src/CHTL_JS/CHTLJSLexer/CHTLJSGlobalMap.s"
@@ -3174,6 +3375,9 @@ help:
 	@echo "... src/Test/CompleteCompilationFlowTest.o"
 	@echo "... src/Test/CompleteCompilationFlowTest.i"
 	@echo "... src/Test/CompleteCompilationFlowTest.s"
+	@echo "... src/Test/CompleteFeatureImplementation.o"
+	@echo "... src/Test/CompleteFeatureImplementation.i"
+	@echo "... src/Test/CompleteFeatureImplementation.s"
 	@echo "... src/Test/ConstraintTest.o"
 	@echo "... src/Test/ConstraintTest.i"
 	@echo "... src/Test/ConstraintTest.s"

@@ -47,11 +47,46 @@ public:
     ~Syntax() = default;
     
     /**
-     * 分析语法
+     * 静态方法 - analyze() 语法分析
+     * @param syntaxPattern 语法模式 (如: "$ ** $")
+     * @return Arg对象，包含解析出的参数列表
+     */
+    static Arg analyze(const std::string& syntaxPattern);
+    
+    /**
+     * 静态方法 - isObject() 判断是否是JS对象
+     * @param code 代码片段
+     * @return 是否是对象
+     */
+    static bool isObject(const std::string& code);
+    
+    /**
+     * 静态方法 - isFunction() 判断是否是JS函数
+     * @param code 代码片段
+     * @return 是否是函数
+     */
+    static bool isFunction(const std::string& code);
+    
+    /**
+     * 静态方法 - isArray() 判断是否是JS数组
+     * @param code 代码片段
+     * @return 是否是数组
+     */
+    static bool isArray(const std::string& code);
+    
+    /**
+     * 静态方法 - isCHTLJSFunction() 判断是否是CHTL JS函数
+     * @param code 代码片段
+     * @return 是否是CHTL JS函数
+     */
+    static bool isCHTLJSFunction(const std::string& code);
+    
+    /**
+     * 实例方法 - 分析代码片段
      * @param code 代码片段
      * @return 分析结果
      */
-    SyntaxAnalysisResult analyze(const std::string& code);
+    SyntaxAnalysisResult analyzeCode(const std::string& code);
     
     /**
      * 检查是否为对象
@@ -307,6 +342,160 @@ private:
      * @return 转换后的值
      */
     std::string applyTransform(const std::string& value);
+};
+
+/**
+ * AtomArg类 - 原子参数
+ * CJMOD API的基础参数单元，支持$和$?占位符
+ */
+class AtomArg {
+private:
+    std::string m_Pattern;                      // 参数模式
+    std::string m_Value;                        // 参数值
+    bool m_IsOptional;                          // 是否可选 ($?)
+    bool m_HasValue;                            // 是否已设置值
+    std::function<std::string(const std::string&)> m_BindFunction; // 绑定的处理函数
+
+public:
+    /**
+     * 构造函数
+     * @param pattern 参数模式 ("$" 或 "$?")
+     */
+    explicit AtomArg(const std::string& pattern);
+    
+    /**
+     * 析构函数
+     */
+    ~AtomArg() = default;
+    
+    /**
+     * 绑定处理函数
+     * @param func 处理函数
+     */
+    void bind(std::function<std::string(const std::string&)> func);
+    
+    /**
+     * 设置值
+     * @param value 值
+     */
+    void setValue(const std::string& value);
+    
+    /**
+     * 获取值
+     * @return 值
+     */
+    std::string getValue() const;
+    
+    /**
+     * 是否是可选参数
+     * @return 是否可选
+     */
+    bool isOptional() const { return m_IsOptional; }
+    
+    /**
+     * 是否已有值
+     * @return 是否已有值
+     */
+    bool hasValue() const { return m_HasValue; }
+    
+    /**
+     * 处理值 (应用绑定函数)
+     * @param inputValue 输入值
+     * @return 处理后的值
+     */
+    std::string process(const std::string& inputValue);
+};
+
+/**
+ * CHTLJSFunction类 - CHTL JS函数封装
+ * 用于CJMOD中处理CHTL JS函数的元信息
+ */
+class CHTLJSFunction {
+private:
+    std::string m_FunctionName;                                 // 函数名称
+    std::string m_FunctionContent;                              // 函数内容
+    std::unordered_map<std::string, std::string> m_KeyValues;   // 键值对
+    std::vector<std::string> m_Keys;                            // 键列表
+    bool m_IsValid;                                             // 是否有效
+
+public:
+    /**
+     * 构造函数
+     * @param functionContent CHTL JS函数内容
+     */
+    explicit CHTLJSFunction(const std::string& functionContent);
+    
+    /**
+     * 析构函数
+     */
+    ~CHTLJSFunction() = default;
+    
+    /**
+     * 获取函数名称
+     * @return 函数名称
+     */
+    std::string getFunctionName() const { return m_FunctionName; }
+    
+    /**
+     * 获取键列表
+     * @return 键列表
+     */
+    std::vector<std::string> getKeys() const { return m_Keys; }
+    
+    /**
+     * 获取键值
+     * @param key 键名
+     * @return 键值
+     */
+    std::string getKeyValue(const std::string& key) const;
+    
+    /**
+     * 检查键是否存在
+     * @param key 键名
+     * @return 是否存在
+     */
+    bool hasKey(const std::string& key) const;
+    
+    /**
+     * 获取键的类型
+     * @param key 键名
+     * @return 类型 ("function", "object", "array", "literal")
+     */
+    std::string getKeyType(const std::string& key) const;
+    
+    /**
+     * 是否是有效的CHTL JS函数
+     * @return 是否有效
+     */
+    bool isValid() const { return m_IsValid; }
+    
+    /**
+     * 生成JavaScript函数引用
+     * @param key 键名
+     * @return JavaScript代码
+     */
+    std::string generateFunctionReference(const std::string& key) const;
+    
+    /**
+     * 生成JavaScript对象引用
+     * @param key 键名
+     * @return JavaScript代码
+     */
+    std::string generateObjectReference(const std::string& key) const;
+
+private:
+    /**
+     * 解析CHTL JS函数内容
+     * @param content 函数内容
+     */
+    void parseCHTLJSFunction(const std::string& content);
+    
+    /**
+     * 检测值的类型
+     * @param value 值
+     * @return 类型
+     */
+    std::string detectValueType(const std::string& value) const;
 };
 
 } // namespace CJMOD

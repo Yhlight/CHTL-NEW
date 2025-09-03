@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/workspace/src/CHTL JS/CHTLJSContext/CHTLJSContext.cpp" "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSContext/CHTLJSContext.cpp.o" "gcc" "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSContext/CHTLJSContext.cpp.o.d"
   "/workspace/src/CHTL JS/CHTLJSGenerator/CHTLJSGenerator.cpp" "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.o" "gcc" "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.o.d"
+  "/workspace/src/CHTL JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp" "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o" "gcc" "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o.d"
   "/workspace/src/CHTL JS/CHTLJSLexer/CHTLJSGlobalMap.cpp" "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSGlobalMap.cpp.o" "gcc" "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSGlobalMap.cpp.o.d"
   "/workspace/src/CHTL JS/CHTLJSLexer/CHTLJSLexer.cpp" "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSLexer.cpp.o" "gcc" "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSLexer.cpp.o.d"
   "/workspace/src/CHTL JS/CHTLJSLexer/CHTLJSToken.cpp" "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSToken.cpp.o" "gcc" "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSToken.cpp.o.d"

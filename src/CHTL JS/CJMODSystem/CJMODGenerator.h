@@ -58,7 +58,14 @@ public:
     virtual ~CJMODGenerator() = default;
     
     /**
-     * 导出CJMOD结果
+     * 静态方法 - exportResult() 导出最终JS代码
+     * @param args Arg对象 (包含处理后的参数)
+     * @return 最终的JavaScript代码
+     */
+    static std::string exportResult(const Arg& args);
+    
+    /**
+     * 实例方法 - 导出CJMOD结果
      * @param scanResult 扫描结果
      * @return 生成结果
      */

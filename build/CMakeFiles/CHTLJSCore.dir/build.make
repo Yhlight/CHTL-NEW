@@ -226,6 +226,20 @@ CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.s: cma
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CHTLJSGenerator/CHTLJSGenerator.cpp" -o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.s
 
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o: CMakeFiles/CHTLJSCore.dir/flags.make
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o: /workspace/src/CHTL\ JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o: CMakeFiles/CHTLJSCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o -MF CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o.d -o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o -c "/workspace/src/CHTL JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp"
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/workspace/src/CHTL JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp" > CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.i
+
+CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp" -o CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.s
+
 # Object files for target CHTLJSCore
 CHTLJSCore_OBJECTS = \
 "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSToken.cpp.o" \
@@ -238,7 +252,8 @@ CHTLJSCore_OBJECTS = \
 "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectNode.cpp.o" \
 "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o" \
 "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSParser/CHTLJSParser.cpp.o" \
-"CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.o"
+"CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.o" \
+"CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o"
 
 # External object files for target CHTLJSCore
 CHTLJSCore_EXTERNAL_OBJECTS =
@@ -254,9 +269,10 @@ lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/VirObjectN
 lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSNode/AnimateNode.cpp.o
 lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSParser/CHTLJSParser.cpp.o
 lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.o
+lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o
 lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/build.make
 lib/libCHTLJSCore.a: CMakeFiles/CHTLJSCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX static library lib/libCHTLJSCore.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX static library lib/libCHTLJSCore.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/CHTLJSCore.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CHTLJSCore.dir/link.txt --verbose=$(VERBOSE)
 

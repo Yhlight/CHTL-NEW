@@ -1,0 +1,2 @@
+/usr/bin/ar qc lib/libCHTLNamespace.a CMakeFiles/CHTLNamespace.dir/src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp.o
+/usr/bin/ranlib lib/libCHTLNamespace.a

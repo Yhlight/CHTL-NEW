@@ -324,6 +324,34 @@ CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/CHTLGenerator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/CHTLGenerator.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/CHTL/CHTLGenerator/CHTLGenerator.cpp -o CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/CHTLGenerator.cpp.s
 
+CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o: CMakeFiles/CHTLCore.dir/flags.make
+CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o: /workspace/src/CHTL/CHTLGenerator/SelectorAutomation.cpp
+CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o: CMakeFiles/CHTLCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o -MF CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o.d -o CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o -c /workspace/src/CHTL/CHTLGenerator/SelectorAutomation.cpp
+
+CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/CHTL/CHTLGenerator/SelectorAutomation.cpp > CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.i
+
+CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/CHTL/CHTLGenerator/SelectorAutomation.cpp -o CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.s
+
+CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.o: CMakeFiles/CHTLCore.dir/flags.make
+CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.o: /workspace/src/CHTL/CHTLGenerator/TemplateEngine.cpp
+CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.o: CMakeFiles/CHTLCore.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.o -MF CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.o.d -o CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.o -c /workspace/src/CHTL/CHTLGenerator/TemplateEngine.cpp
+
+CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/CHTL/CHTLGenerator/TemplateEngine.cpp > CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.i
+
+CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/CHTL/CHTLGenerator/TemplateEngine.cpp -o CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.s
+
 # Object files for target CHTLCore
 CHTLCore_OBJECTS = \
 "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLToken.cpp.o" \
@@ -343,7 +371,9 @@ CHTLCore_OBJECTS = \
 "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/NamespaceNode.cpp.o" \
 "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/Visitor.cpp.o" \
 "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLParser/CHTLParser.cpp.o" \
-"CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/CHTLGenerator.cpp.o"
+"CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/CHTLGenerator.cpp.o" \
+"CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o" \
+"CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.o"
 
 # External object files for target CHTLCore
 CHTLCore_EXTERNAL_OBJECTS =
@@ -366,9 +396,11 @@ lib/libCHTLCore.a: CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/NamespaceNode.cpp.o
 lib/libCHTLCore.a: CMakeFiles/CHTLCore.dir/src/CHTL/CHTLNode/Visitor.cpp.o
 lib/libCHTLCore.a: CMakeFiles/CHTLCore.dir/src/CHTL/CHTLParser/CHTLParser.cpp.o
 lib/libCHTLCore.a: CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/CHTLGenerator.cpp.o
+lib/libCHTLCore.a: CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o
+lib/libCHTLCore.a: CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.o
 lib/libCHTLCore.a: CMakeFiles/CHTLCore.dir/build.make
 lib/libCHTLCore.a: CMakeFiles/CHTLCore.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX static library lib/libCHTLCore.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Linking CXX static library lib/libCHTLCore.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/CHTLCore.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CHTLCore.dir/link.txt --verbose=$(VERBOSE)
 

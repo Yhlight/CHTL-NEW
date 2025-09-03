@@ -47,6 +47,8 @@ set(CHTL_CORE_SOURCES
     src/CHTL/CHTLNode/Visitor.cpp
     src/CHTL/CHTLParser/CHTLParser.cpp
     src/CHTL/CHTLGenerator/CHTLGenerator.cpp
+    src/CHTL/CHTLGenerator/SelectorAutomation.cpp
+    src/CHTL/CHTLGenerator/TemplateEngine.cpp
 )
 
 # CHTL JS核心组件源文件（完全独立）
@@ -62,6 +64,7 @@ set(CHTLJS_CORE_SOURCES
     "src/CHTL JS/CHTLJSNode/AnimateNode.cpp"
     "src/CHTL JS/CHTLJSParser/CHTLJSParser.cpp"
     "src/CHTL JS/CHTLJSGenerator/CHTLJSGenerator.cpp"
+    "src/CHTL JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp"
 )
 
 # 扫描器源文件
@@ -82,6 +85,16 @@ set(CONSTRAINT_SOURCES
 # Import导入系统源文件 (已移动到CHTL/CHTLSystem内部)
 set(IMPORT_SOURCES
     src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp
+)
+
+# 配置系统源文件
+set(CONFIGURATION_SOURCES
+    src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp
+)
+
+# 命名空间系统源文件
+set(NAMESPACE_SOURCES
+    src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp
 )
 
 # CSS编译器源文件（包含官方ANTLR生成的代码）
@@ -177,7 +190,15 @@ target_link_libraries(CHTLConstraint CHTLCore CHTLJSCore)
 
 # 创建Import导入系统库
 add_library(CHTLImport STATIC ${IMPORT_SOURCES})
-target_include_directories(CHTLImport PUBLIC src/ImportSystem)
+target_include_directories(CHTLImport PUBLIC src/CHTL/CHTLSystem/ImportSystem)
+
+# 创建配置系统库
+add_library(CHTLConfiguration STATIC ${CONFIGURATION_SOURCES})
+target_include_directories(CHTLConfiguration PUBLIC src/CHTL/CHTLSystem/ConfigurationSystem)
+
+# 创建命名空间系统库
+add_library(CHTLNamespace STATIC ${NAMESPACE_SOURCES})
+target_include_directories(CHTLNamespace PUBLIC src/CHTL/CHTLSystem/NamespaceSystem)
 
 # 添加ANTLR库路径
 link_directories(${CMAKE_SOURCE_DIR}/thirdparty/antlr/lib)
@@ -282,6 +303,9 @@ add_executable(chtl_advanced_features_report src/Test/AdvancedFeaturesReport.cpp
 
 # 项目最终状态报告可执行文件
 add_executable(chtl_project_final_status src/Test/ProjectFinalStatus.cpp)
+
+# 完整特征实现清单可执行文件
+add_executable(chtl_complete_feature_implementation src/Test/CompleteFeatureImplementation.cpp)
 
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)

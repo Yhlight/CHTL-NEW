@@ -111,6 +111,27 @@ public:
      */
     bool HasLocalScript() const { return !m_ScriptNodes.empty(); }
     
+    // 内联样式管理
+    /**
+     * 添加内联样式
+     * @param property CSS属性名
+     * @param value CSS属性值
+     */
+    void AddInlineStyle(const std::string& property, const std::string& value);
+    
+    /**
+     * 获取内联样式
+     * @return 内联样式映射
+     */
+    const std::unordered_map<std::string, std::string>& GetInlineStyles() const { return m_InlineStyles; }
+    
+    /**
+     * 插入子元素到指定位置
+     * @param position 插入位置
+     * @param child 子元素
+     */
+    void InsertChild(size_t position, std::unique_ptr<CHTLBaseNode> child);
+    
     // 约束管理
     /**
      * 添加约束
@@ -236,6 +257,10 @@ private:
      * @return 处理后的样式内容
      */
     std::string ProcessContextReference(const std::string& styleContent);
+
+private:
+    // 内联样式存储
+    std::unordered_map<std::string, std::string> m_InlineStyles;
 };
 
 } // namespace CHTL

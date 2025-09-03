@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSContext/CHTLJSContext.cpp.o.d"
   "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.o"
   "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/CHTLJSGenerator.cpp.o.d"
+  "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o"
+  "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp.o.d"
   "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSGlobalMap.cpp.o"
   "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSGlobalMap.cpp.o.d"
   "CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSLexer/CHTLJSLexer.cpp.o"
