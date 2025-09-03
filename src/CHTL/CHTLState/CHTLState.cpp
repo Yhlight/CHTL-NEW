@@ -1,6 +1,7 @@
 #include "CHTLState.h"
 #include <iostream>
 #include <stdexcept>
+#include <algorithm>
 
 namespace CHTL {
 

@@ -63,6 +63,13 @@ namespace CHTL {
         // 边界检测方法
         bool IsBlockBoundary(size_t pos) const;                // 检测块边界
         bool IsStatementBoundary(size_t pos) const;            // 检测语句边界
+        
+        // 块结束查找方法
+        size_t FindNextBlockBoundary();                        // 查找下一个块边界
+        size_t FindCHTLBlockEnd();                             // 查找CHTL块结束
+        size_t FindCHTLJSBlockEnd();                           // 查找CHTL JS块结束
+        size_t FindCSSBlockEnd();                              // 查找CSS块结束
+        size_t FindJSBlockEnd();                               // 查找JS块结束
 
     public:
         explicit CHTLUnifiedScanner(const std::string& source);
