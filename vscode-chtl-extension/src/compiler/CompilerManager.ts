@@ -29,6 +29,9 @@ export class CHTLCompilerManager {
         // 获取配置的编译器路径
         const config = vscode.workspace.getConfiguration('chtl');
         this.compilerPath = config.get('compilerPath', '');
+        
+        // 设置内置编译器路径（包含CJMOD支持）
+        this.builtinCompilerPath = path.join(this.context.extensionPath, 'bin', 'chtl-professional');
 
         // 设置内置编译器路径（使用工作区编译器）
         const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || '';

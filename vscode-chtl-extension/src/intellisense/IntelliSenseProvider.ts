@@ -25,6 +25,26 @@ export class CHTLIntelliSenseProvider implements
         'if', 'else', 'for', 'while', 'do', 'switch', 'case', 'default', 'break', 'continue',
         'return', 'try', 'catch', 'finally', 'throw', 'new', 'this', 'super', 'class', 'extends'
     ];
+    
+    // CJMOD语法关键字（CHTL极为强大的特征）
+    private cjmodKeywords = [
+        'then', 'when', 'with', 'using', 'via', 'from', 'to', 'for', 'of', 'in', 'as'
+    ];
+    
+    // CJMOD操作符
+    private cjmodOperators = [
+        '**', '->', '&->', '|>', '<|', '=>', '<=>'
+    ];
+    
+    // CJMOD占位符类型
+    private cjmodPlaceholders = [
+        { symbol: '$', description: '基本占位符' },
+        { symbol: '$?', description: '可选占位符' },
+        { symbol: '$!', description: '必须占位符' },
+        { symbol: '$_', description: '无序占位符' },
+        { symbol: '$!_', description: '必须无序占位符' },
+        { symbol: '...', description: '不定参数占位符' }
+    ];
 
     // CHTL属性
     private chtlAttributes = [
@@ -66,6 +86,11 @@ export class CHTLIntelliSenseProvider implements
         } else if (this.isInScriptBlock(document, position)) {
             // 在脚本块中提供CHTL JS补全
             completions.push(...this.getCHTLJSCompletions());
+            
+            // 检查是否导入了CJMOD，如果是则提供CJMOD语法提示
+            if (this.hasCJMODImport(document)) {
+                completions.push(...this.getCJMODCompletions(document, beforeCursor));
+            }
         } else if (beforeCursor.includes('[Import]')) {
             // Import语句补全
             completions.push(...this.getImportCompletions());
@@ -363,5 +388,145 @@ export class CHTLIntelliSenseProvider implements
             'height': '设置高度'
         };
         return descriptions[property] || `CSS ${property} 属性`;
+    }
+    
+    /**
+     * 检查是否导入了CJMOD
+     */
+    private hasCJMODImport(document: vscode.TextDocument): boolean {
+        const text = document.getText();
+        return text.includes('[Import] @CJmod') || text.includes('Import @CJmod');
+    }
+    
+    /**
+     * 获取CJMOD补全项
+     * 依靠CJMOD的scan、CreateCHTLJSFunction、语法分析方法获取语法提示
+     */
+    private getCJMODCompletions(document: vscode.TextDocument, beforeCursor: string): vscode.CompletionItem[] {
+        const completions: vscode.CompletionItem[] = [];
+        
+        console.log('🔥 生成CJMOD语法提示...');
+        
+        // 1. CJMOD关键字补全
+        for (const keyword of this.cjmodKeywords) {
+            const item = new vscode.CompletionItem(keyword, vscode.CompletionItemKind.Keyword);
+            item.detail = 'CJMOD关键字';
+            item.documentation = new vscode.MarkdownString(`**CJMOD关键字**: \`${keyword}\`\n\nCJMOD是CHTL极为强大的特征之一`);
+            item.insertText = keyword;
+            completions.push(item);
+        }
+        
+        // 2. CJMOD操作符补全
+        for (const operator of this.cjmodOperators) {
+            const item = new vscode.CompletionItem(operator, vscode.CompletionItemKind.Operator);
+            item.detail = 'CJMOD操作符';
+            item.documentation = new vscode.MarkdownString(`**CJMOD操作符**: \`${operator}\`\n\n使用双指针扫描法处理`);
+            item.insertText = operator;
+            completions.push(item);
+        }
+        
+        // 3. CJMOD占位符补全
+        for (const placeholder of this.cjmodPlaceholders) {
+            const item = new vscode.CompletionItem(placeholder.symbol, vscode.CompletionItemKind.Variable);
+            item.detail = 'CJMOD占位符';
+            item.documentation = new vscode.MarkdownString(
+                `**CJMOD占位符**: \`${placeholder.symbol}\`\n\n${placeholder.description}\n\n` +
+                `- 类型: ${placeholder.symbol}\n` +
+                `- 说明: ${placeholder.description}\n` +
+                `- 使用: 在CJMOD语法模式中使用`
+            );
+            item.insertText = placeholder.symbol;
+            completions.push(item);
+        }
+        
+        // 4. 从模块管理器获取CJMOD函数补全
+        const cjmodFunctions = this.getCJMODFunctionCompletions();
+        completions.push(...cjmodFunctions);
+        
+        // 5. CJMOD语法模式补全
+        const syntaxPatterns = this.getCJMODSyntaxPatterns();
+        completions.push(...syntaxPatterns);
+        
+        return completions;
+    }
+    
+    /**
+     * 获取CJMOD函数补全（使用CreateCHTLJSFunction分析的结果）
+     */
+    private getCJMODFunctionCompletions(): vscode.CompletionItem[] {
+        const completions: vscode.CompletionItem[] = [];
+        
+        // 从模块管理器获取CJMOD函数
+        const queryTable = this.moduleManager.getQueryTable();
+        
+        for (const [key, value] of Object.entries(queryTable)) {
+            if (key.startsWith('cjmod_function_')) {
+                const funcInfo = value as any;
+                
+                const item = new vscode.CompletionItem(funcInfo.name, vscode.CompletionItemKind.Function);
+                item.detail = `CJMOD函数（天然支持vir）`;
+                item.documentation = new vscode.MarkdownString(
+                    `**CJMOD函数**: \`${funcInfo.name}\`\n\n` +
+                    `${funcInfo.description}\n\n` +
+                    `**语法**: \`${funcInfo.syntax}\`\n\n` +
+                    `**天然支持vir**: ${funcInfo.supportsVir ? '✅' : '❌'}\n\n` +
+                    `**模块**: ${funcInfo.module}`
+                );
+                
+                // 生成函数调用片段
+                let snippet = `${funcInfo.name} {`;
+                if (funcInfo.placeholders && funcInfo.placeholders.length > 0) {
+                    const placeholderSnippets = funcInfo.placeholders.map((p: any, i: number) => 
+                        `\${${i + 1}:${p.type}}`
+                    ).join(', ');
+                    snippet += placeholderSnippets;
+                }
+                snippet += '}';
+                
+                item.insertText = new vscode.SnippetString(snippet);
+                completions.push(item);
+            }
+        }
+        
+        return completions;
+    }
+    
+    /**
+     * 获取CJMOD语法模式补全
+     */
+    private getCJMODSyntaxPatterns(): vscode.CompletionItem[] {
+        const completions: vscode.CompletionItem[] = [];
+        
+        const patterns = [
+            { pattern: '$ ** $', description: '数学幂运算（双指针扫描）' },
+            { pattern: '$ -> $', description: '链式操作（前置截取）' },
+            { pattern: 'if $ then $', description: '条件语句（前置截取）' },
+            { pattern: '$ + $ * $', description: '数学表达式（双指针扫描）' },
+            { pattern: 'vir $ = $', description: '虚对象声明' },
+            { pattern: '$ with $ using ...', description: '复杂参数模式' },
+            { pattern: 'process $!_ then $?_', description: '处理流程模式' }
+        ];
+        
+        for (const { pattern, description } of patterns) {
+            const item = new vscode.CompletionItem(pattern, vscode.CompletionItemKind.Snippet);
+            item.detail = 'CJMOD语法模式';
+            item.documentation = new vscode.MarkdownString(
+                `**CJMOD语法模式**: \`${pattern}\`\n\n` +
+                `${description}\n\n` +
+                `**扫描方法**: 自动选择双指针扫描法或前置截取法\n` +
+                `**说明**: CJMOD是CHTL极为强大的特征之一`
+            );
+            
+            // 转换为代码片段
+            let snippet = pattern;
+            let placeholderIndex = 1;
+            snippet = snippet.replace(/\$/g, () => `\${${placeholderIndex++}:value}`);
+            snippet = snippet.replace(/\.\.\./g, `\${${placeholderIndex++}:...args}`);
+            
+            item.insertText = new vscode.SnippetString(snippet);
+            completions.push(item);
+        }
+        
+        return completions;
     }
 }
