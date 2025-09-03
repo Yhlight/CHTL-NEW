@@ -74,7 +74,10 @@ html
     {
         title
         {
-            CHTL模板系统演示
+            text
+            {
+                CHTL模板系统演示
+            }
         }
         
         meta

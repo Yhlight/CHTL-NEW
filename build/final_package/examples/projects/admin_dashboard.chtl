@@ -2,7 +2,10 @@
 [Import] @Chtl from Chtholly
 [Import] @Chtl from Yuigahama
 
-[Namespace] AdminDashboard::Components
+[Namespace] AdminDashboard
+{
+    [Namespace] Components
+}
 
 [Configuration]
 {
@@ -70,8 +73,6 @@
 [Custom] @Style MetricCard
 {
     @Style YuigahamaCard;
-    // 特例化操作
-    delete border-left;
     background: white;
     border-radius: 8px;
     padding: 25px;
@@ -112,7 +113,10 @@ html
     {
         title
         {
-            CHTL企业级管理后台
+            text
+            {
+                CHTL企业级管理后台
+            }
         }
         
         meta

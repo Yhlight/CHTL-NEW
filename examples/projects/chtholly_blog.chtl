@@ -46,8 +46,6 @@
 [Custom] @Style FeaturedArticle
 {
     @Style ArticleCard;
-    // 特例化操作 - 删除和修改
-    delete margin;
     border-left: 6px solid BlogColors(accentColor);
     background: linear-gradient(135deg, #fff 0%, #ffe8e8 100%);
     transform: scale(1.02);
@@ -80,7 +78,10 @@ html
     {
         title
         {
-            珂朵莉的心语世界 - 个人博客
+            text
+            {
+                珂朵莉的心语世界 - 个人博客
+            }
         }
         
         meta

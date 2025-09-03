@@ -2,7 +2,10 @@
 [Import] @Chtl from Chtholly
 [Import] @Chtl from Yuigahama
 
-[Namespace] EcommerceSite::Frontend
+[Namespace] EcommerceSite
+{
+    [Namespace] Frontend
+}
 
 [Configuration]
 {
@@ -90,7 +93,10 @@ html
     {
         title
         {
-            珂朵莉的幸福小店 - 传递温暖的商品
+            text
+            {
+                珂朵莉的幸福小店 - 传递温暖的商品
+            }
         }
         
         meta

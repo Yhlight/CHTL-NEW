@@ -7,7 +7,10 @@ html
     {
         title
         {
-            欢迎使用CHTL - 珂朵莉超文本语言
+            text
+            {
+                欢迎使用CHTL - 珂朵莉超文本语言
+            }
         }
         
         meta

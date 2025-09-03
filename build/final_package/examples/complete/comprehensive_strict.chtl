@@ -35,7 +35,10 @@ html
     {
         title
         {
-            CHTL综合功能演示 - 严格按文档
+            text
+            {
+                CHTL综合功能演示 - 严格按文档
+            }
         }
         
         meta
