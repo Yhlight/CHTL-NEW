@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.obj"
-  "CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.obj.d"
+  "CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.obj"
+  "CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher_Simple.cpp.obj.d"
   "lib/libCHTLDispatcher.a"
   "lib/libCHTLDispatcher.pdb"
 )

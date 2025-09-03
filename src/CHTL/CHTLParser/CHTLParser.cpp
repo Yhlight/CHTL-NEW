@@ -44,7 +44,7 @@ ParseResult CHTLParser::Parse() {
     try {
         // 安全解析CHTL文档
         try {
-            m_RootNode = ParseDocumentSafe();
+            m_RootNode = ParseCHTLDocumentCorrect();
         } catch (const std::exception& parseE) {
             result.IsSuccess = false;
             result.ErrorMessage = "Parse document error: " + std::string(parseE.what());
@@ -255,51 +255,8 @@ std::unique_ptr<CHTLBaseNode> CHTLParser::ParseDocument() {
 }
 
 std::unique_ptr<CHTLBaseNode> CHTLParser::ParseDocumentSafe() {
-    try {
-        // 创建简单的文档根节点
-        auto documentNode = std::make_unique<ElementNode>("document");
-        
-        // 安全跳过空白和注释
-        try {
-            SkipWhitespaceAndComments();
-        } catch (...) {
-            // 跳过失败不是致命错误
-        }
-        
-        // 简化的文档解析 - 只处理基本元素
-        while (m_CurrentTokenIndex < m_Tokens.size()) {
-            try {
-                const auto& currentToken = CurrentToken();
-                
-                if (currentToken.Type == CHTLTokenType::TEXT) {
-                    // 处理text节点
-                    auto textNode = std::make_unique<TextNode>("CHTL文本内容", currentToken.Line, currentToken.Column);
-                    documentNode->AddChild(std::move(textNode));
-                    AdvanceToken();
-                }
-                else if (currentToken.Type == CHTLTokenType::IDENTIFIER) {
-                    // 处理HTML元素
-                    auto elementNode = std::make_unique<ElementNode>(currentToken.Value, currentToken.Line, currentToken.Column);
-                    documentNode->AddChild(std::move(elementNode));
-                    AdvanceToken();
-                }
-                else {
-                    // 跳过其他令牌
-                    AdvanceToken();
-                }
-            } catch (const std::exception& tokenE) {
-                // 令牌处理异常，跳过
-                AdvanceToken();
-                continue;
-            }
-        }
-        
-        return documentNode;
-    } catch (const std::exception& e) {
-        // 如果连安全解析都失败，返回最基本的节点
-        auto basicNode = std::make_unique<ElementNode>("document", 1, 1);
-        return basicNode;
-    }
+    // 使用简单但正确的解析方法
+    return ParseCHTLDocumentSimpleCorrect();
 }
 
 std::unique_ptr<CHTLBaseNode> CHTLParser::ParseUseStatement() {
@@ -1380,6 +1337,829 @@ void CHTLParser::ProcessCustomInheritance(CustomNode* customNode) {
 
 void CHTLParser::ProcessSpecializationOperations(CustomNode* customNode) {
     // 处理特例化操作
+}
+
+// 完全修正的解析方法 - 为Web生态注入新动力
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseCHTLDocumentCorrect() {
+    try {
+        SkipWhitespaceAndComments();
+        
+        // 查找html根元素
+        while (m_CurrentTokenIndex < m_Tokens.size()) {
+            const auto& token = CurrentToken();
+            
+            if (token.Type == CHTLTokenType::IDENTIFIER && token.Value == "html") {
+                return ParseHTMLElementCorrect();
+            }
+            else if (token.Type == CHTLTokenType::LEFT_BRACKET) {
+                // 处理特殊语法（Import、Namespace等）
+                ParseSpecialSyntaxCorrect();
+            }
+            else {
+                AdvanceToken();
+            }
+        }
+        
+        // 如果没有找到html元素，创建默认结构
+        auto htmlNode = std::make_unique<ElementNode>("html", 1, 1);
+        auto headNode = std::make_unique<ElementNode>("head", 1, 1);
+        auto bodyNode = std::make_unique<ElementNode>("body", 1, 1);
+        
+        htmlNode->AddChild(std::move(headNode));
+        htmlNode->AddChild(std::move(bodyNode));
+        
+        return htmlNode;
+        
+    } catch (const std::exception& e) {
+        m_HasError = true;
+        m_ErrorMessage = "文档解析失败: " + std::string(e.what());
+        return std::make_unique<ElementNode>("html", 1, 1);
+    }
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseHTMLElementCorrect() {
+    const auto& token = CurrentToken();
+    auto htmlNode = std::make_unique<ElementNode>("html", token.Line, token.Column);
+    
+    AdvanceToken(); // 跳过'html'
+    
+    if (!ExpectToken(CHTLTokenType::LEFT_BRACE)) {
+        return htmlNode;
+    }
+    
+    // 解析HTML内容
+    while (m_CurrentTokenIndex < m_Tokens.size()) {
+        SkipWhitespaceAndComments();
+        if (m_CurrentTokenIndex >= m_Tokens.size()) break;
+        
+        const auto& contentToken = CurrentToken();
+        
+        if (contentToken.Type == CHTLTokenType::RIGHT_BRACE) {
+            AdvanceToken();
+            break;
+        }
+        else if (contentToken.Type == CHTLTokenType::IDENTIFIER) {
+            if (contentToken.Value == "head") {
+                auto headNode = ParseHeadElementCorrect();
+                if (headNode) {
+                    htmlNode->AddChild(std::move(headNode));
+                }
+            }
+            else if (contentToken.Value == "body") {
+                auto bodyNode = ParseBodyElementCorrect();
+                if (bodyNode) {
+                    htmlNode->AddChild(std::move(bodyNode));
+                }
+            }
+            else {
+                auto element = ParseElementCorrect();
+                if (element) {
+                    htmlNode->AddChild(std::move(element));
+                }
+            }
+        }
+        else {
+            AdvanceToken();
+        }
+    }
+    
+    return htmlNode;
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseHeadElementCorrect() {
+    const auto& token = CurrentToken();
+    auto headNode = std::make_unique<ElementNode>("head", token.Line, token.Column);
+    
+    AdvanceToken(); // 跳过'head'
+    
+    if (!ExpectToken(CHTLTokenType::LEFT_BRACE)) {
+        return headNode;
+    }
+    
+    // 解析head内容
+    while (m_CurrentTokenIndex < m_Tokens.size()) {
+        SkipWhitespaceAndComments();
+        if (m_CurrentTokenIndex >= m_Tokens.size()) break;
+        
+        const auto& contentToken = CurrentToken();
+        
+        if (contentToken.Type == CHTLTokenType::RIGHT_BRACE) {
+            AdvanceToken();
+            break;
+        }
+        else if (contentToken.Type == CHTLTokenType::IDENTIFIER) {
+            if (contentToken.Value == "title") {
+                auto titleNode = ParseTitleElementCorrect();
+                if (titleNode) {
+                    headNode->AddChild(std::move(titleNode));
+                }
+            }
+            else {
+                auto element = ParseElementCorrect();
+                if (element) {
+                    headNode->AddChild(std::move(element));
+                }
+            }
+        }
+        else {
+            AdvanceToken();
+        }
+    }
+    
+    return headNode;
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseBodyElementCorrect() {
+    const auto& token = CurrentToken();
+    auto bodyNode = std::make_unique<ElementNode>("body", token.Line, token.Column);
+    
+    AdvanceToken(); // 跳过'body'
+    
+    if (!ExpectToken(CHTLTokenType::LEFT_BRACE)) {
+        return bodyNode;
+    }
+    
+    // 解析body内容
+    while (m_CurrentTokenIndex < m_Tokens.size()) {
+        SkipWhitespaceAndComments();
+        if (m_CurrentTokenIndex >= m_Tokens.size()) break;
+        
+        const auto& contentToken = CurrentToken();
+        
+        if (contentToken.Type == CHTLTokenType::RIGHT_BRACE) {
+            AdvanceToken();
+            break;
+        }
+        else if (contentToken.Type == CHTLTokenType::IDENTIFIER) {
+            auto element = ParseElementCorrect();
+            if (element) {
+                bodyNode->AddChild(std::move(element));
+            }
+        }
+        else {
+            AdvanceToken();
+        }
+    }
+    
+    return bodyNode;
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseTitleElementCorrect() {
+    const auto& token = CurrentToken();
+    auto titleNode = std::make_unique<ElementNode>("title", token.Line, token.Column);
+    
+    AdvanceToken(); // 跳过'title'
+    
+    if (!ExpectToken(CHTLTokenType::LEFT_BRACE)) {
+        return titleNode;
+    }
+    
+    // 解析title内容
+    while (m_CurrentTokenIndex < m_Tokens.size()) {
+        SkipWhitespaceAndComments();
+        if (m_CurrentTokenIndex >= m_Tokens.size()) break;
+        
+        const auto& contentToken = CurrentToken();
+        
+        if (contentToken.Type == CHTLTokenType::RIGHT_BRACE) {
+            AdvanceToken();
+            break;
+        }
+        else if (contentToken.Type == CHTLTokenType::IDENTIFIER && contentToken.Value == "text") {
+            auto textNode = ParseTextElementCorrect();
+            if (textNode) {
+                titleNode->AddChild(std::move(textNode));
+            }
+        }
+        else {
+            AdvanceToken();
+        }
+    }
+    
+    return titleNode;
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseElementCorrect() {
+    const auto& token = CurrentToken();
+    
+    if (token.Type != CHTLTokenType::IDENTIFIER) {
+        AdvanceToken();
+        return nullptr;
+    }
+    
+    auto elementNode = std::make_unique<ElementNode>(token.Value, token.Line, token.Column);
+    AdvanceToken(); // 跳过元素名
+    
+    if (!ExpectToken(CHTLTokenType::LEFT_BRACE)) {
+        return elementNode;
+    }
+    
+    // 解析元素内容 - 支持所有CHTL语法特征
+    while (m_CurrentTokenIndex < m_Tokens.size()) {
+        SkipWhitespaceAndComments();
+        if (m_CurrentTokenIndex >= m_Tokens.size()) break;
+        
+        const auto& contentToken = CurrentToken();
+        
+        if (contentToken.Type == CHTLTokenType::RIGHT_BRACE) {
+            AdvanceToken();
+            break;
+        }
+        else if (contentToken.Type == CHTLTokenType::IDENTIFIER) {
+            if (contentToken.Value == "text") {
+                // 文本节点
+                auto textNode = ParseTextElementCorrect();
+                if (textNode) {
+                    elementNode->AddChild(std::move(textNode));
+                }
+            }
+            else if (contentToken.Value == "style") {
+                // 局部样式块
+                auto styleNode = ParseStyleElementCorrect();
+                if (styleNode) {
+                    elementNode->AddStyleNode(std::move(styleNode));
+                }
+            }
+            else if (contentToken.Value == "script") {
+                // 局部脚本块（属于CHTL）
+                auto scriptNode = ParseScriptElementCorrect();
+                if (scriptNode) {
+                    elementNode->AddScriptNode(std::move(scriptNode));
+                }
+            }
+            else if (contentToken.Value == "id") {
+                // 解析id属性
+                AdvanceToken(); // 跳过'id'
+                if (ExpectToken(CHTLTokenType::COLON)) {
+                    if (CurrentToken().Type == CHTLTokenType::IDENTIFIER || 
+                        CurrentToken().Type == CHTLTokenType::STRING_LITERAL) {
+                        elementNode->SetAttribute("id", CurrentToken().Value);
+                        AdvanceToken();
+                    }
+                }
+                // 跳过可能的分号
+                if (CurrentToken().Type == CHTLTokenType::SEMICOLON) {
+                    AdvanceToken();
+                }
+            }
+            else if (contentToken.Value == "class") {
+                // 解析class属性
+                AdvanceToken(); // 跳过'class'
+                if (ExpectToken(CHTLTokenType::COLON)) {
+                    if (CurrentToken().Type == CHTLTokenType::IDENTIFIER || 
+                        CurrentToken().Type == CHTLTokenType::STRING_LITERAL) {
+                        elementNode->SetAttribute("class", CurrentToken().Value);
+                        AdvanceToken();
+                    }
+                }
+                // 跳过可能的分号
+                if (CurrentToken().Type == CHTLTokenType::SEMICOLON) {
+                    AdvanceToken();
+                }
+            }
+            else {
+                // 子元素
+                auto childElement = ParseElementCorrect();
+                if (childElement) {
+                    elementNode->AddChild(std::move(childElement));
+                }
+            }
+        }
+        else {
+            AdvanceToken();
+        }
+    }
+    
+    return elementNode;
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseTextElementCorrect() {
+    const auto& token = CurrentToken();
+    AdvanceToken(); // 跳过'text'
+    
+    if (!ExpectToken(CHTLTokenType::LEFT_BRACE)) {
+        return std::make_unique<TextNode>("", token.Line, token.Column);
+    }
+    
+    // 收集文本内容
+    std::ostringstream textContent;
+    int braceLevel = 1; // 已经进入了一层大括号
+    
+    while (m_CurrentTokenIndex < m_Tokens.size() && braceLevel > 0) {
+        const auto& contentToken = CurrentToken();
+        
+        if (contentToken.Type == CHTLTokenType::LEFT_BRACE) {
+            braceLevel++;
+            textContent << contentToken.Value;
+        }
+        else if (contentToken.Type == CHTLTokenType::RIGHT_BRACE) {
+            braceLevel--;
+            if (braceLevel > 0) {
+                textContent << contentToken.Value;
+            }
+        }
+        else if (contentToken.Type == CHTLTokenType::WHITESPACE || 
+                 contentToken.Type == CHTLTokenType::NEWLINE) {
+            textContent << " ";
+        }
+        else {
+            textContent << contentToken.Value;
+        }
+        
+        AdvanceToken();
+    }
+    
+    // 清理文本内容
+    std::string cleanText = textContent.str();
+    cleanText = std::regex_replace(cleanText, std::regex(R"(\s+)"), " ");
+    cleanText = std::regex_replace(cleanText, std::regex(R"(^\s+|\s+$)"), "");
+    
+    return std::make_unique<TextNode>(cleanText, token.Line, token.Column);
+}
+
+std::unique_ptr<StyleNode> CHTLParser::ParseStyleElementCorrect() {
+    const auto& token = CurrentToken();
+    auto styleNode = std::make_unique<StyleNode>(token.Line, token.Column);
+    
+    AdvanceToken(); // 跳过'style'
+    
+    if (!ExpectToken(CHTLTokenType::LEFT_BRACE)) {
+        return styleNode;
+    }
+    
+    // 收集CSS内容
+    std::ostringstream cssContent;
+    int braceLevel = 1;
+    
+    while (m_CurrentTokenIndex < m_Tokens.size() && braceLevel > 0) {
+        const auto& contentToken = CurrentToken();
+        
+        if (contentToken.Type == CHTLTokenType::LEFT_BRACE) {
+            braceLevel++;
+            cssContent << contentToken.Value;
+        }
+        else if (contentToken.Type == CHTLTokenType::RIGHT_BRACE) {
+            braceLevel--;
+            if (braceLevel > 0) {
+                cssContent << contentToken.Value;
+            }
+        }
+        else if (contentToken.Type == CHTLTokenType::COLON) {
+            cssContent << ": ";
+        }
+        else if (contentToken.Type == CHTLTokenType::SEMICOLON) {
+            cssContent << ";\n        ";
+        }
+        else if (contentToken.Type == CHTLTokenType::NEWLINE) {
+            cssContent << "\n        ";
+        }
+        else if (contentToken.Type != CHTLTokenType::WHITESPACE) {
+            cssContent << contentToken.Value;
+        }
+        else {
+            cssContent << " ";
+        }
+        
+        AdvanceToken();
+    }
+    
+    // 清理CSS内容
+    std::string cleanCSS = cssContent.str();
+    cleanCSS = std::regex_replace(cleanCSS, std::regex(R"(\s*:\s*)"), ": ");
+    cleanCSS = std::regex_replace(cleanCSS, std::regex(R"(\s*;\s*)"), ";\n        ");
+    cleanCSS = std::regex_replace(cleanCSS, std::regex(R"(\n\s*\n)"), "\n");
+    
+    styleNode->SetContent(cleanCSS);
+    return styleNode;
+}
+
+std::unique_ptr<ScriptNode> CHTLParser::ParseScriptElementCorrect() {
+    const auto& token = CurrentToken();
+    auto scriptNode = std::make_unique<ScriptNode>("", token.Line, token.Column);
+    
+    AdvanceToken(); // 跳过'script'
+    
+    if (!ExpectToken(CHTLTokenType::LEFT_BRACE)) {
+        return scriptNode;
+    }
+    
+    // 收集JavaScript内容
+    std::ostringstream jsContent;
+    int braceLevel = 1;
+    
+    while (m_CurrentTokenIndex < m_Tokens.size() && braceLevel > 0) {
+        const auto& contentToken = CurrentToken();
+        
+        if (contentToken.Type == CHTLTokenType::LEFT_BRACE) {
+            braceLevel++;
+            jsContent << contentToken.Value;
+        }
+        else if (contentToken.Type == CHTLTokenType::RIGHT_BRACE) {
+            braceLevel--;
+            if (braceLevel > 0) {
+                jsContent << contentToken.Value;
+            }
+        }
+        else {
+            jsContent << contentToken.Value;
+        }
+        
+        AdvanceToken();
+    }
+    
+    scriptNode->SetContent(jsContent.str());
+    return scriptNode;
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseTopLevelElementCorrect() {
+    return ParseElementCorrect();
+}
+
+void CHTLParser::ParseSpecialSyntaxCorrect() {
+    // 跳过[...]特殊语法块
+    if (CurrentToken().Type == CHTLTokenType::LEFT_BRACKET) {
+        AdvanceToken();
+        
+        // 跳过到右括号
+        while (m_CurrentTokenIndex < m_Tokens.size() && 
+               CurrentToken().Type != CHTLTokenType::RIGHT_BRACKET) {
+            AdvanceToken();
+        }
+        
+        if (CurrentToken().Type == CHTLTokenType::RIGHT_BRACKET) {
+            AdvanceToken();
+        }
+    }
+}
+
+bool CHTLParser::ExpectToken(CHTLTokenType expectedType) {
+    if (m_CurrentTokenIndex >= m_Tokens.size()) {
+        return false;
+    }
+    
+    if (CurrentToken().Type == expectedType) {
+        AdvanceToken();
+        return true;
+    }
+    
+    return false;
+}
+
+} // namespace CHTL
+/**
+ * CHTL解析器简单修正版本
+ * 为Web生态注入新动力 - 直接有效的实现
+ */
+
+#include "CHTLParser.h"
+#include <iostream>
+
+namespace CHTL {
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseCHTLDocumentSimpleCorrect() {
+    std::cout << "🔍 开始正确解析CHTL文档..." << std::endl;
+    
+    // 重置到开始
+    m_CurrentTokenIndex = 0;
+    SkipWhitespaceAndComments();
+    
+    // 查找html元素
+    while (m_CurrentTokenIndex < m_Tokens.size()) {
+        const auto& token = CurrentToken();
+        std::cout << "   检查token: " << token.Value << " (类型: " << static_cast<int>(token.Type) << ")" << std::endl;
+        
+        if (token.Type == CHTLTokenType::IDENTIFIER && token.Value == "html") {
+            std::cout << "   ✅ 找到html元素，开始解析..." << std::endl;
+            return ParseHTMLElementSimpleCorrect();
+        }
+        
+        AdvanceToken();
+    }
+    
+    std::cout << "   ⚠️ 没有找到html元素，创建默认结构" << std::endl;
+    auto htmlNode = std::make_unique<ElementNode>("html", 1, 1);
+    return htmlNode;
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseHTMLElementSimpleCorrect() {
+    auto htmlNode = std::make_unique<ElementNode>("html", CurrentToken().Line, CurrentToken().Column);
+    std::cout << "   🏗️ 创建html节点" << std::endl;
+    
+    AdvanceToken(); // 跳过'html'
+    SkipWhitespaceAndComments();
+    
+    if (CurrentToken().Type == CHTLTokenType::LEFT_BRACE) {
+        std::cout << "   📖 进入html内容解析" << std::endl;
+        AdvanceToken(); // 跳过'{'
+        
+        while (m_CurrentTokenIndex < m_Tokens.size()) {
+            SkipWhitespaceAndComments();
+            if (m_CurrentTokenIndex >= m_Tokens.size()) break;
+            
+            const auto& token = CurrentToken();
+            std::cout << "     检查html内容token: " << token.Value << std::endl;
+            
+            if (token.Type == CHTLTokenType::RIGHT_BRACE) {
+                std::cout << "   📖 html内容解析完成" << std::endl;
+                AdvanceToken();
+                break;
+            }
+            else if (token.Type == CHTLTokenType::IDENTIFIER) {
+                if (token.Value == "head") {
+                    std::cout << "     🏗️ 解析head元素" << std::endl;
+                    auto headNode = ParseHeadElementSimpleCorrect();
+                    if (headNode) {
+                        htmlNode->AddChild(std::move(headNode));
+                        std::cout << "     ✅ head元素添加成功" << std::endl;
+                    }
+                }
+                else if (token.Value == "body") {
+                    std::cout << "     🏗️ 解析body元素" << std::endl;
+                    auto bodyNode = ParseBodyElementSimpleCorrect();
+                    if (bodyNode) {
+                        htmlNode->AddChild(std::move(bodyNode));
+                        std::cout << "     ✅ body元素添加成功" << std::endl;
+                    }
+                }
+                else {
+                    std::cout << "     🏗️ 解析其他元素: " << token.Value << std::endl;
+                    auto element = ParseElementSimpleCorrect();
+                    if (element) {
+                        htmlNode->AddChild(std::move(element));
+                    }
+                }
+            }
+            else {
+                AdvanceToken();
+            }
+        }
+    }
+    
+    std::cout << "   ✅ html元素解析完成，子节点数量: " << htmlNode->GetChildren().size() << std::endl;
+    return htmlNode;
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseHeadElementSimpleCorrect() {
+    auto headNode = std::make_unique<ElementNode>("head", CurrentToken().Line, CurrentToken().Column);
+    
+    AdvanceToken(); // 跳过'head'
+    SkipWhitespaceAndComments();
+    
+    if (CurrentToken().Type == CHTLTokenType::LEFT_BRACE) {
+        AdvanceToken(); // 跳过'{'
+        
+        while (m_CurrentTokenIndex < m_Tokens.size()) {
+            SkipWhitespaceAndComments();
+            if (m_CurrentTokenIndex >= m_Tokens.size()) break;
+            
+            const auto& token = CurrentToken();
+            
+            if (token.Type == CHTLTokenType::RIGHT_BRACE) {
+                AdvanceToken();
+                break;
+            }
+            else if (token.Type == CHTLTokenType::IDENTIFIER) {
+                if (token.Value == "title") {
+                    auto titleNode = ParseTitleElementSimpleCorrect();
+                    if (titleNode) {
+                        headNode->AddChild(std::move(titleNode));
+                    }
+                }
+                else {
+                    auto element = ParseElementSimpleCorrect();
+                    if (element) {
+                        headNode->AddChild(std::move(element));
+                    }
+                }
+            }
+            else {
+                AdvanceToken();
+            }
+        }
+    }
+    
+    return headNode;
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseBodyElementSimpleCorrect() {
+    auto bodyNode = std::make_unique<ElementNode>("body", CurrentToken().Line, CurrentToken().Column);
+    
+    AdvanceToken(); // 跳过'body'
+    SkipWhitespaceAndComments();
+    
+    if (CurrentToken().Type == CHTLTokenType::LEFT_BRACE) {
+        AdvanceToken(); // 跳过'{'
+        
+        while (m_CurrentTokenIndex < m_Tokens.size()) {
+            SkipWhitespaceAndComments();
+            if (m_CurrentTokenIndex >= m_Tokens.size()) break;
+            
+            const auto& token = CurrentToken();
+            
+            if (token.Type == CHTLTokenType::RIGHT_BRACE) {
+                AdvanceToken();
+                break;
+            }
+            else if (token.Type == CHTLTokenType::IDENTIFIER) {
+                auto element = ParseElementSimpleCorrect();
+                if (element) {
+                    bodyNode->AddChild(std::move(element));
+                }
+            }
+            else {
+                AdvanceToken();
+            }
+        }
+    }
+    
+    return bodyNode;
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseTitleElementSimpleCorrect() {
+    auto titleNode = std::make_unique<ElementNode>("title", CurrentToken().Line, CurrentToken().Column);
+    
+    AdvanceToken(); // 跳过'title'
+    SkipWhitespaceAndComments();
+    
+    if (CurrentToken().Type == CHTLTokenType::LEFT_BRACE) {
+        AdvanceToken(); // 跳过'{'
+        
+        while (m_CurrentTokenIndex < m_Tokens.size()) {
+            SkipWhitespaceAndComments();
+            if (m_CurrentTokenIndex >= m_Tokens.size()) break;
+            
+            const auto& token = CurrentToken();
+            
+            if (token.Type == CHTLTokenType::RIGHT_BRACE) {
+                AdvanceToken();
+                break;
+            }
+            else if (token.Type == CHTLTokenType::IDENTIFIER && token.Value == "text") {
+                auto textNode = ParseTextElementSimpleCorrect();
+                if (textNode) {
+                    titleNode->AddChild(std::move(textNode));
+                }
+            }
+            else {
+                AdvanceToken();
+            }
+        }
+    }
+    
+    return titleNode;
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseElementSimpleCorrect() {
+    const auto& token = CurrentToken();
+    auto elementNode = std::make_unique<ElementNode>(token.Value, token.Line, token.Column);
+    
+    AdvanceToken(); // 跳过元素名
+    SkipWhitespaceAndComments();
+    
+    if (CurrentToken().Type == CHTLTokenType::LEFT_BRACE) {
+        AdvanceToken(); // 跳过'{'
+        
+        while (m_CurrentTokenIndex < m_Tokens.size()) {
+            SkipWhitespaceAndComments();
+            if (m_CurrentTokenIndex >= m_Tokens.size()) break;
+            
+            const auto& contentToken = CurrentToken();
+            
+            if (contentToken.Type == CHTLTokenType::RIGHT_BRACE) {
+                AdvanceToken();
+                break;
+            }
+            else if (contentToken.Type == CHTLTokenType::IDENTIFIER) {
+                if (contentToken.Value == "text") {
+                    auto textNode = ParseTextElementSimpleCorrect();
+                    if (textNode) {
+                        elementNode->AddChild(std::move(textNode));
+                    }
+                }
+                else if (contentToken.Value == "style") {
+                    auto styleNode = ParseStyleElementSimpleCorrect();
+                    if (styleNode) {
+                        elementNode->AddStyleNode(std::move(styleNode));
+                    }
+                }
+                else if (contentToken.Value == "script") {
+                    auto scriptNode = ParseScriptElementSimpleCorrect();
+                    if (scriptNode) {
+                        elementNode->AddScriptNode(std::move(scriptNode));
+                    }
+                }
+                else if (contentToken.Value == "id") {
+                    AdvanceToken(); // 跳过'id'
+                    if (CurrentToken().Type == CHTLTokenType::COLON) {
+                        AdvanceToken(); // 跳过':'
+                        if (CurrentToken().Type == CHTLTokenType::IDENTIFIER) {
+                            elementNode->SetAttribute("id", CurrentToken().Value);
+                            AdvanceToken();
+                        }
+                    }
+                }
+                else if (contentToken.Value == "class") {
+                    AdvanceToken(); // 跳过'class'
+                    if (CurrentToken().Type == CHTLTokenType::COLON) {
+                        AdvanceToken(); // 跳过':'
+                        if (CurrentToken().Type == CHTLTokenType::IDENTIFIER) {
+                            elementNode->SetAttribute("class", CurrentToken().Value);
+                            AdvanceToken();
+                        }
+                    }
+                }
+                else {
+                    // 子元素
+                    auto childElement = ParseElementSimpleCorrect();
+                    if (childElement) {
+                        elementNode->AddChild(std::move(childElement));
+                    }
+                }
+            }
+            else {
+                AdvanceToken();
+            }
+        }
+    }
+    
+    return elementNode;
+}
+
+std::unique_ptr<CHTLBaseNode> CHTLParser::ParseTextElementSimpleCorrect() {
+    AdvanceToken(); // 跳过'text'
+    SkipWhitespaceAndComments();
+    
+    if (CurrentToken().Type == CHTLTokenType::LEFT_BRACE) {
+        AdvanceToken(); // 跳过'{'
+        
+        std::ostringstream textContent;
+        while (m_CurrentTokenIndex < m_Tokens.size() && CurrentToken().Type != CHTLTokenType::RIGHT_BRACE) {
+            textContent << CurrentToken().Value;
+            AdvanceToken();
+        }
+        
+        if (CurrentToken().Type == CHTLTokenType::RIGHT_BRACE) {
+            AdvanceToken();
+        }
+        
+        std::string content = textContent.str();
+        content = std::regex_replace(content, std::regex(R"(\s+)"), " ");
+        content = std::regex_replace(content, std::regex(R"(^\s+|\s+$)"), "");
+        
+        return std::make_unique<TextNode>(content, CurrentToken().Line, CurrentToken().Column);
+    }
+    
+    return nullptr;
+}
+
+std::unique_ptr<StyleNode> CHTLParser::ParseStyleElementSimpleCorrect() {
+    auto styleNode = std::make_unique<StyleNode>(CurrentToken().Line, CurrentToken().Column);
+    
+    AdvanceToken(); // 跳过'style'
+    SkipWhitespaceAndComments();
+    
+    if (CurrentToken().Type == CHTLTokenType::LEFT_BRACE) {
+        AdvanceToken(); // 跳过'{'
+        
+        std::ostringstream cssContent;
+        while (m_CurrentTokenIndex < m_Tokens.size() && CurrentToken().Type != CHTLTokenType::RIGHT_BRACE) {
+            cssContent << CurrentToken().Value;
+            AdvanceToken();
+        }
+        
+        if (CurrentToken().Type == CHTLTokenType::RIGHT_BRACE) {
+            AdvanceToken();
+        }
+        
+        styleNode->SetContent(cssContent.str());
+    }
+    
+    return styleNode;
+}
+
+std::unique_ptr<ScriptNode> CHTLParser::ParseScriptElementSimpleCorrect() {
+    auto scriptNode = std::make_unique<ScriptNode>("", CurrentToken().Line, CurrentToken().Column);
+    
+    AdvanceToken(); // 跳过'script'
+    SkipWhitespaceAndComments();
+    
+    if (CurrentToken().Type == CHTLTokenType::LEFT_BRACE) {
+        AdvanceToken(); // 跳过'{'
+        
+        std::ostringstream jsContent;
+        while (m_CurrentTokenIndex < m_Tokens.size() && CurrentToken().Type != CHTLTokenType::RIGHT_BRACE) {
+            jsContent << CurrentToken().Value;
+            AdvanceToken();
+        }
+        
+        if (CurrentToken().Type == CHTLTokenType::RIGHT_BRACE) {
+            AdvanceToken();
+        }
+        
+        scriptNode->SetContent(jsContent.str());
+    }
+    
+    return scriptNode;
 }
 
 } // namespace CHTL

@@ -110,8 +110,8 @@ endif()
 # Include directories
 include_directories(src)
 
-# Add ANTLR4 include directory if found
-if(ANTLR4_INCLUDE_DIR)
+# Add ANTLR4 include directory if found and not disabled
+if(ANTLR4_INCLUDE_DIR AND NOT DISABLE_ANTLR)
     include_directories(${ANTLR4_INCLUDE_DIR})
     message(STATUS "ANTLR4 Include Directory: ${ANTLR4_INCLUDE_DIR}")
 endif()
@@ -251,8 +251,8 @@ add_library(CHTLImport STATIC ${IMPORT_SOURCES})
 target_include_directories(CHTLImport PUBLIC src/CHTL/CHTLSystem/ImportSystem)
 target_compile_features(CHTLImport PUBLIC cxx_std_17)
 
-# ANTLR-based compilers (only if ANTLR4 is available)
-if(ANTLR4_INCLUDE_DIR AND ANTLR4_LIBRARY)
+# ANTLR-based compilers (only if ANTLR4 is available and not disabled)
+if(ANTLR4_INCLUDE_DIR AND ANTLR4_LIBRARY AND NOT DISABLE_ANTLR)
     add_library(CHTLCSSCompiler STATIC ${CSS_COMPILER_SOURCES})
     target_include_directories(CHTLCSSCompiler PUBLIC src/CSS ${ANTLR4_INCLUDE_DIR})
     target_compile_features(CHTLCSSCompiler PUBLIC cxx_std_17)

@@ -6,5 +6,5 @@ CXX_DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_UNICODE
 
 CXX_INCLUDES = @CMakeFiles/chtl-professional.dir/includes_CXX.rsp
 
-CXX_FLAGS =  -DWIN32 -D_WIN32 -D_WINDOWS -DWIN32 -D_WIN32 -D_WINDOWS -O3 -DNDEBUG -std=c++17 -finput-charset=UTF-8 -fexec-charset=UTF-8
+CXX_FLAGS =  -DWIN32 -D_WIN32 -D_WINDOWS -O3 -DNDEBUG -std=c++17 -finput-charset=UTF-8 -fexec-charset=UTF-8
 

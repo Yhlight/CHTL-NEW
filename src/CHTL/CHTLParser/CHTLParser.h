@@ -596,6 +596,90 @@ private:
      * @return 是否有效
      */
     bool ValidateASTIntegrity();
+    
+    // 完全修正的解析方法 - 为Web生态注入新动力
+    /**
+     * 正确解析CHTL文档
+     * @return 文档根节点
+     */
+    std::unique_ptr<CHTLBaseNode> ParseCHTLDocumentCorrect();
+    
+    /**
+     * 正确解析HTML元素
+     * @return HTML元素节点
+     */
+    std::unique_ptr<CHTLBaseNode> ParseHTMLElementCorrect();
+    
+    /**
+     * 正确解析head元素
+     * @return head元素节点
+     */
+    std::unique_ptr<CHTLBaseNode> ParseHeadElementCorrect();
+    
+    /**
+     * 正确解析body元素
+     * @return body元素节点
+     */
+    std::unique_ptr<CHTLBaseNode> ParseBodyElementCorrect();
+    
+    /**
+     * 正确解析title元素
+     * @return title元素节点
+     */
+    std::unique_ptr<CHTLBaseNode> ParseTitleElementCorrect();
+    
+    /**
+     * 正确解析通用元素
+     * @return 元素节点
+     */
+    std::unique_ptr<CHTLBaseNode> ParseElementCorrect();
+    
+    /**
+     * 正确解析text元素
+     * @return 文本节点
+     */
+    std::unique_ptr<CHTLBaseNode> ParseTextElementCorrect();
+    
+    /**
+     * 正确解析style元素
+     * @return 样式节点
+     */
+    std::unique_ptr<StyleNode> ParseStyleElementCorrect();
+    
+    /**
+     * 正确解析script元素
+     * @return 脚本节点
+     */
+    std::unique_ptr<ScriptNode> ParseScriptElementCorrect();
+    
+    /**
+     * 正确解析顶级元素
+     * @return 元素节点
+     */
+    std::unique_ptr<CHTLBaseNode> ParseTopLevelElementCorrect();
+    
+    /**
+     * 正确解析特殊语法
+     */
+    void ParseSpecialSyntaxCorrect();
+    
+    /**
+     * 期望特定类型的token
+     * @param expectedType 期望的token类型
+     * @return 是否匹配
+     */
+    bool ExpectToken(CHTLTokenType expectedType);
+    
+    // 简单但正确的解析方法
+    std::unique_ptr<CHTLBaseNode> ParseCHTLDocumentSimpleCorrect();
+    std::unique_ptr<CHTLBaseNode> ParseHTMLElementSimpleCorrect();
+    std::unique_ptr<CHTLBaseNode> ParseHeadElementSimpleCorrect();
+    std::unique_ptr<CHTLBaseNode> ParseBodyElementSimpleCorrect();
+    std::unique_ptr<CHTLBaseNode> ParseTitleElementSimpleCorrect();
+    std::unique_ptr<CHTLBaseNode> ParseElementSimpleCorrect();
+    std::unique_ptr<CHTLBaseNode> ParseTextElementSimpleCorrect();
+    std::unique_ptr<StyleNode> ParseStyleElementSimpleCorrect();
+    std::unique_ptr<ScriptNode> ParseScriptElementSimpleCorrect();
 };
 
 } // namespace CHTL

@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include <regex>
+#include <iostream>
 
 namespace CHTL {
 
@@ -13,13 +14,10 @@ namespace CHTL {
 class SimpleHTMLGenerator {
 public:
     static std::string GenerateHTML(const std::string& chtlCode) {
-        std::ostringstream html;
+        std::cout << "🔥 SimpleHTMLGenerator: 开始生成HTML..." << std::endl;
+        std::cout << "   📝 源代码长度: " << chtlCode.length() << std::endl;
         
-        // 解析基本结构
-        bool hasHtml = chtlCode.find("html") != std::string::npos;
-        bool hasHead = chtlCode.find("head") != std::string::npos;
-        bool hasBody = chtlCode.find("body") != std::string::npos;
-        bool hasTitle = chtlCode.find("title") != std::string::npos;
+        std::ostringstream html;
         
         html << "<!DOCTYPE html>\n";
         html << "<html lang=\"zh-CN\">\n";
@@ -30,13 +28,15 @@ public:
         // 提取标题
         std::string title = ExtractTitle(chtlCode);
         html << "    <title>" << title << "</title>\n";
+        std::cout << "   📋 提取标题: " << title << std::endl;
         
         // 提取并生成CSS
         std::string css = ExtractAndGenerateCSS(chtlCode);
         if (!css.empty()) {
             html << "    <style>\n";
-            html << css;
+            html << "        " << css;
             html << "    </style>\n";
+            std::cout << "   🎨 提取CSS，长度: " << css.length() << std::endl;
         }
         
         html << "</head>\n";
@@ -45,19 +45,24 @@ public:
         // 提取并生成HTML内容
         std::string bodyContent = ExtractAndGenerateBodyContent(chtlCode);
         html << bodyContent;
+        std::cout << "   📄 提取body内容，长度: " << bodyContent.length() << std::endl;
         
         // 提取并生成JavaScript
         std::string js = ExtractAndGenerateJavaScript(chtlCode);
         if (!js.empty()) {
             html << "    <script>\n";
-            html << js;
+            html << "        " << js;
             html << "    </script>\n";
+            std::cout << "   ⚡ 提取JS，长度: " << js.length() << std::endl;
         }
         
         html << "</body>\n";
         html << "</html>\n";
         
-        return html.str();
+        std::string result = html.str();
+        std::cout << "   ✅ HTML生成完成，总长度: " << result.length() << std::endl;
+        
+        return result;
     }
 
 private:

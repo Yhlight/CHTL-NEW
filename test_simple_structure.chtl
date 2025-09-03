@@ -1,0 +1,24 @@
+html
+{
+    head
+    {
+        title
+        {
+            text
+            {
+                Simple Test
+            }
+        }
+    }
+    
+    body
+    {
+        div
+        {
+            text
+            {
+                Hello CHTL!
+            }
+        }
+    }
+}

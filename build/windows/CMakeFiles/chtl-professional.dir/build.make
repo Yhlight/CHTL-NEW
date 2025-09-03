@@ -106,9 +106,6 @@ bin/chtl-professional.exe: lib/libCHTLJSCore.a
 bin/chtl-professional.exe: lib/libCHTLScanner.a
 bin/chtl-professional.exe: lib/libCHTLErrorSystem.a
 bin/chtl-professional.exe: lib/libCHTLUtilSystem.a
-bin/chtl-professional.exe: lib/libCHTLCSSCompiler.a
-bin/chtl-professional.exe: lib/libCHTLJSCompiler.a
-bin/chtl-professional.exe: /workspace/thirdparty/antlr/antlr4-4.13.2/runtime/Cpp/build/runtime/libantlr4-runtime.a
 bin/chtl-professional.exe: CMakeFiles/chtl-professional.dir/linkLibs.rsp
 bin/chtl-professional.exe: CMakeFiles/chtl-professional.dir/objects1.rsp
 bin/chtl-professional.exe: CMakeFiles/chtl-professional.dir/link.txt

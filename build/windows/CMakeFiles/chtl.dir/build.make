@@ -106,9 +106,6 @@ bin/chtl.exe: lib/libCHTLJSCore.a
 bin/chtl.exe: lib/libCHTLScanner.a
 bin/chtl.exe: lib/libCHTLErrorSystem.a
 bin/chtl.exe: lib/libCHTLUtilSystem.a
-bin/chtl.exe: lib/libCHTLCSSCompiler.a
-bin/chtl.exe: lib/libCHTLJSCompiler.a
-bin/chtl.exe: /workspace/thirdparty/antlr/antlr4-4.13.2/runtime/Cpp/build/runtime/libantlr4-runtime.a
 bin/chtl.exe: CMakeFiles/chtl.dir/linkLibs.rsp
 bin/chtl.exe: CMakeFiles/chtl.dir/objects1.rsp
 bin/chtl.exe: CMakeFiles/chtl.dir/link.txt

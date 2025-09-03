@@ -7,8 +7,6 @@
 /workspace/build/windows/CMakeFiles/CHTLUtilSystem.dir
 /workspace/build/windows/CMakeFiles/CHTLConstraint.dir
 /workspace/build/windows/CMakeFiles/CHTLImport.dir
-/workspace/build/windows/CMakeFiles/CHTLCSSCompiler.dir
-/workspace/build/windows/CMakeFiles/CHTLJSCompiler.dir
 /workspace/build/windows/CMakeFiles/CHTLDispatcher.dir
 /workspace/build/windows/CMakeFiles/chtl.dir
 /workspace/build/windows/CMakeFiles/chtl-professional.dir
