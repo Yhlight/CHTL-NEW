@@ -1,32 +1,35 @@
 #pragma once
 
 #include <string>
-#include <unordered_map>
 
-namespace CJMOD {
 namespace Chtholly {
 
 /**
- * printMylove功能头文件
- * 爱的表达功能，将图片转换为字符像素块
+ * 珂朵莉模块CJMOD部分 - printMylove功能
+ * 展示CJMOD API的强大能力
+ * 严格按照CJMOD.md实现
  */
-
-struct PrintMyloveConfig {
-    std::string url;
-    std::string target;
-    std::string message;
-    std::string mode;     // ASCII或Pixel
-    int width;
-    int height;
-    double scale;
-};
-
-class PrintMyloveProcessor {
+class printMylove {
 public:
-    static std::string ProcessPrintMylove(const std::string& config);
-    static std::string GenerateCharacterArt(const PrintMyloveConfig& config);
-    static PrintMyloveConfig ParseConfig(const std::string& configStr);
+    /**
+     * 注册CJMOD API
+     * 使用Syntax::analyze、Arg::bind、CJMODScanner::scan等强大功能
+     */
+    static void registerCJMODAPI();
+    
+    /**
+     * 演示CJMOD强大功能
+     * 展示语法分析、扫描、转换、导出等能力
+     */
+    static void demonstrateCJMODPower();
+    
+    /**
+     * 生成爱的消息
+     * @param url 目标URL
+     * @param mode 模式
+     * @return 爱的消息
+     */
+    static std::string generateLoveMessage(const std::string& url, const std::string& mode = "");
 };
 
 } // namespace Chtholly
-} // namespace CJMOD

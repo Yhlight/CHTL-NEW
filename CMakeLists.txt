@@ -149,7 +149,7 @@ set(CHTLJS_CORE_SOURCES
 set(CJMOD_SOURCES
     "src/CHTL JS/CJMODSystem/CJMODCore.cpp"
     "src/CHTL JS/CJMODSystem/CJMODIntegration.cpp"
-    "src/CHTL JS/CJMODSystem/ChthollyOfficialModule.cpp"
+    "src/CHTL JS/CJMODSystem/CHTLJSFunction.cpp"
 )
 
 set(SCANNER_SOURCES
@@ -343,6 +343,9 @@ target_link_libraries(chtl_minimal_test CHTLCore)
 
 add_executable(chtl_safe_test src/main_safe_test.cpp)
 target_link_libraries(chtl_safe_test CHTLCore)
+
+add_executable(chtl_cjmod_real_api_test src/Test/CJMODRealAPITest.cpp)
+target_link_libraries(chtl_cjmod_real_api_test CJMOD)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_executable(chtl_cjmod_test src/Test/CJMODCompleteTest.cpp)

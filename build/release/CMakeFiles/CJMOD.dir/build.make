@@ -100,32 +100,32 @@ CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CJMODSystem/CJMODIntegration.cpp" -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.s
 
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o: CMakeFiles/CJMOD.dir/flags.make
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o: /workspace/src/CHTL\ JS/CJMODSystem/ChthollyOfficialModule.cpp
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o: CMakeFiles/CJMOD.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o -MF CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o.d -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o -c "/workspace/src/CHTL JS/CJMODSystem/ChthollyOfficialModule.cpp"
+CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o: CMakeFiles/CJMOD.dir/flags.make
+CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o: /workspace/src/CHTL\ JS/CJMODSystem/CHTLJSFunction.cpp
+CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o: CMakeFiles/CJMOD.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o -MF CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o.d -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o -c "/workspace/src/CHTL JS/CJMODSystem/CHTLJSFunction.cpp"
 
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/workspace/src/CHTL JS/CJMODSystem/ChthollyOfficialModule.cpp" > CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.i
+CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/workspace/src/CHTL JS/CJMODSystem/CHTLJSFunction.cpp" > CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.i
 
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CJMODSystem/ChthollyOfficialModule.cpp" -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s
+CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CJMODSystem/CHTLJSFunction.cpp" -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.s
 
 # Object files for target CJMOD
 CJMOD_OBJECTS = \
 "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o" \
 "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o" \
-"CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o"
+"CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o"
 
 # External object files for target CJMOD
 CJMOD_EXTERNAL_OBJECTS =
 
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o
-lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o
+lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/build.make
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library lib/libCJMOD.a"

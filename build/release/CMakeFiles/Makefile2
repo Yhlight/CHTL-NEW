@@ -79,6 +79,7 @@ all: CMakeFiles/chtl.dir/all
 all: CMakeFiles/chtl-professional.dir/all
 all: CMakeFiles/chtl_minimal_test.dir/all
 all: CMakeFiles/chtl_safe_test.dir/all
+all: CMakeFiles/chtl_cjmod_real_api_test.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
@@ -98,6 +99,7 @@ codegen: CMakeFiles/chtl.dir/codegen
 codegen: CMakeFiles/chtl-professional.dir/codegen
 codegen: CMakeFiles/chtl_minimal_test.dir/codegen
 codegen: CMakeFiles/chtl_safe_test.dir/codegen
+codegen: CMakeFiles/chtl_cjmod_real_api_test.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -121,6 +123,7 @@ clean: CMakeFiles/chtl.dir/clean
 clean: CMakeFiles/chtl-professional.dir/clean
 clean: CMakeFiles/chtl_minimal_test.dir/clean
 clean: CMakeFiles/chtl_safe_test.dir/clean
+clean: CMakeFiles/chtl_cjmod_real_api_test.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -479,15 +482,15 @@ CMakeFiles/CHTLJSCompiler.dir/clean:
 # Target rules for target CMakeFiles/CHTLDispatcher.dir
 
 # All Build rule for target.
-CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
-CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CJMOD.dir/all
-CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLScanner.dir/all
-CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLCore.dir/all
-CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLJSCore.dir/all
-CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLCodeMerger.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLConstraint.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLImport.dir/all
+CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLCore.dir/all
+CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLJSCore.dir/all
+CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CJMOD.dir/all
+CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLScanner.dir/all
+CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLCodeMerger.dir/all
 CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
+CMakeFiles/CHTLDispatcher.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLDispatcher.dir/build.make CMakeFiles/CHTLDispatcher.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLDispatcher.dir/build.make CMakeFiles/CHTLDispatcher.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=32,33 "Built target CHTLDispatcher"
@@ -519,18 +522,18 @@ CMakeFiles/CHTLDispatcher.dir/clean:
 # Target rules for target CMakeFiles/chtl.dir
 
 # All Build rule for target.
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLDispatcher.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CJMOD.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLScanner.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLCore.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLJSCore.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLCodeMerger.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLErrorSystem.dir/all
-CMakeFiles/chtl.dir/all: CMakeFiles/CHTLUtilSystem.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLConstraint.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLImport.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLDispatcher.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLCore.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLErrorSystem.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLUtilSystem.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLJSCore.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CJMOD.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLScanner.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLCodeMerger.dir/all
 CMakeFiles/chtl.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
+CMakeFiles/chtl.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl.dir/build.make CMakeFiles/chtl.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl.dir/build.make CMakeFiles/chtl.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=70,71 "Built target chtl"
@@ -562,18 +565,18 @@ CMakeFiles/chtl.dir/clean:
 # Target rules for target CMakeFiles/chtl-professional.dir
 
 # All Build rule for target.
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLDispatcher.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CJMOD.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLScanner.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLCore.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLJSCore.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLCodeMerger.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLErrorSystem.dir/all
-CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLUtilSystem.dir/all
 CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLConstraint.dir/all
 CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLImport.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLDispatcher.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLCore.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLErrorSystem.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLUtilSystem.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLJSCore.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CJMOD.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLScanner.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLCodeMerger.dir/all
 CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLCSSCompiler.dir/all
+CMakeFiles/chtl-professional.dir/all: CMakeFiles/CHTLJSCompiler.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl-professional.dir/build.make CMakeFiles/chtl-professional.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl-professional.dir/build.make CMakeFiles/chtl-professional.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=72,73 "Built target chtl-professional"
@@ -608,7 +611,7 @@ CMakeFiles/chtl-professional.dir/clean:
 CMakeFiles/chtl_minimal_test.dir/all: CMakeFiles/CHTLCore.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_minimal_test.dir/build.make CMakeFiles/chtl_minimal_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_minimal_test.dir/build.make CMakeFiles/chtl_minimal_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=74,75 "Built target chtl_minimal_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=76,77 "Built target chtl_minimal_test"
 .PHONY : CMakeFiles/chtl_minimal_test.dir/all
 
 # Build rule for subdir invocation for target.
@@ -625,7 +628,7 @@ chtl_minimal_test: CMakeFiles/chtl_minimal_test.dir/rule
 # codegen rule for target.
 CMakeFiles/chtl_minimal_test.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_minimal_test.dir/build.make CMakeFiles/chtl_minimal_test.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=74,75 "Finished codegen for target chtl_minimal_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=76,77 "Finished codegen for target chtl_minimal_test"
 .PHONY : CMakeFiles/chtl_minimal_test.dir/codegen
 
 # clean rule for target.
@@ -640,7 +643,7 @@ CMakeFiles/chtl_minimal_test.dir/clean:
 CMakeFiles/chtl_safe_test.dir/all: CMakeFiles/CHTLCore.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_safe_test.dir/build.make CMakeFiles/chtl_safe_test.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_safe_test.dir/build.make CMakeFiles/chtl_safe_test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=76,77 "Built target chtl_safe_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=78,79 "Built target chtl_safe_test"
 .PHONY : CMakeFiles/chtl_safe_test.dir/all
 
 # Build rule for subdir invocation for target.
@@ -657,13 +660,45 @@ chtl_safe_test: CMakeFiles/chtl_safe_test.dir/rule
 # codegen rule for target.
 CMakeFiles/chtl_safe_test.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_safe_test.dir/build.make CMakeFiles/chtl_safe_test.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=76,77 "Finished codegen for target chtl_safe_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=78,79 "Finished codegen for target chtl_safe_test"
 .PHONY : CMakeFiles/chtl_safe_test.dir/codegen
 
 # clean rule for target.
 CMakeFiles/chtl_safe_test.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_safe_test.dir/build.make CMakeFiles/chtl_safe_test.dir/clean
 .PHONY : CMakeFiles/chtl_safe_test.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/chtl_cjmod_real_api_test.dir
+
+# All Build rule for target.
+CMakeFiles/chtl_cjmod_real_api_test.dir/all: CMakeFiles/CJMOD.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_api_test.dir/build.make CMakeFiles/chtl_cjmod_real_api_test.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_api_test.dir/build.make CMakeFiles/chtl_cjmod_real_api_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=74,75 "Built target chtl_cjmod_real_api_test"
+.PHONY : CMakeFiles/chtl_cjmod_real_api_test.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/chtl_cjmod_real_api_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/build/release/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/chtl_cjmod_real_api_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/build/release/CMakeFiles 0
+.PHONY : CMakeFiles/chtl_cjmod_real_api_test.dir/rule
+
+# Convenience name for target.
+chtl_cjmod_real_api_test: CMakeFiles/chtl_cjmod_real_api_test.dir/rule
+.PHONY : chtl_cjmod_real_api_test
+
+# codegen rule for target.
+CMakeFiles/chtl_cjmod_real_api_test.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_api_test.dir/build.make CMakeFiles/chtl_cjmod_real_api_test.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/workspace/build/release/CMakeFiles --progress-num=74,75 "Finished codegen for target chtl_cjmod_real_api_test"
+.PHONY : CMakeFiles/chtl_cjmod_real_api_test.dir/codegen
+
+# clean rule for target.
+CMakeFiles/chtl_cjmod_real_api_test.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_api_test.dir/build.make CMakeFiles/chtl_cjmod_real_api_test.dir/clean
+.PHONY : CMakeFiles/chtl_cjmod_real_api_test.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

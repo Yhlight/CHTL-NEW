@@ -13,6 +13,21 @@
 
 namespace CJMOD {
 
+/**
+ * 原子参数类型枚举
+ * 按照CJMOD.md规范定义
+ */
+enum class AtomArgType {
+    PLACEHOLDER,                    // $ 占位符
+    OPTIONAL_PLACEHOLDER,           // $? 可选占位符
+    REQUIRED_PLACEHOLDER,           // $! 必须占位符
+    UNORDERED_PLACEHOLDER,          // $_ 无序占位符
+    REQUIRED_UNORDERED_PLACEHOLDER, // $!_ 必须无序占位符
+    VARIADIC_PLACEHOLDER,           // ... 不定参数占位符
+    OPERATOR,                       // 操作符（如 **）
+    LITERAL                         // 字面量
+};
+
 // 前向声明
 class AtomArg;
 class Arg;
@@ -28,6 +43,7 @@ class AtomArg {
 private:
     std::string m_Pattern;                      // 参数模式
     std::string m_Value;                        // 参数值
+    AtomArgType m_Type;                         // 参数类型
     bool m_IsOptional;                          // 是否可选 ($?)
     bool m_HasValue;                            // 是否已设置值
     std::function<std::string(const std::string&)> m_BindFunction; // 绑定的处理函数
@@ -38,6 +54,13 @@ public:
      * @param pattern 参数模式 ("$" 或 "$?" 或 "$!" 或 "$_" 或 "...")
      */
     explicit AtomArg(const std::string& pattern = "$");
+    
+    /**
+     * 构造函数（带类型）
+     * @param pattern 参数模式
+     * @param type 参数类型
+     */
+    AtomArg(const std::string& pattern, AtomArgType type);
     
     /**
      * 拷贝构造函数
@@ -80,6 +103,12 @@ public:
     bool hasValue() const { return m_HasValue; }
     
     /**
+     * 获取参数类型
+     * @return 参数类型
+     */
+    AtomArgType getType() const { return m_Type; }
+    
+    /**
      * 处理值 (应用绑定函数)
      * @param inputValue 输入值
      * @return 处理后的值
@@ -109,6 +138,8 @@ private:
     std::string m_Pattern;                      // 参数模式
     std::vector<std::unique_ptr<AtomArg>> m_Args; // 原子参数列表
     std::string m_TransformResult;              // 转换结果
+    std::string m_TransformExpression;          // 转换表达式
+    std::unordered_map<std::string, std::function<std::string(const std::string&)>> m_BindFunctions; // 绑定函数映射
 
 public:
     /**
@@ -172,6 +203,36 @@ public:
      * @param transformExpression 转换表达式
      */
     void transform(const std::string& transformExpression);
+    
+    /**
+     * 绑定获取值的函数
+     * @param placeholder 占位符
+     * @param bindFunc 绑定函数
+     */
+    void bind(const std::string& placeholder, std::function<std::string(const std::string&)> bindFunc);
+    
+    /**
+     * 打印参数列表（调试用）
+     */
+    void print() const;
+    
+    /**
+     * 检查是否有转换
+     * @return 是否有转换
+     */
+    bool hasTransformation() const;
+    
+    /**
+     * 获取转换表达式
+     * @return 转换表达式
+     */
+    std::string getTransformation() const;
+    
+    /**
+     * 添加原子参数
+     * @param atom 原子参数
+     */
+    void addAtomArg(const AtomArg& atom);
     
     /**
      * 获取参数数量
@@ -238,6 +299,13 @@ public:
      * @return 分析结果
      */
     static Arg analyzeCode(const std::string& code);
+    
+    /**
+     * 分析语法模式（CJMOD.md要求）
+     * @param pattern 语法模式
+     * @return 解析出的Arg对象
+     */
+    static Arg analyze(const std::string& pattern);
     
     /**
      * 检查是否为对象
@@ -311,6 +379,14 @@ public:
     static Arg scan(const std::string& code, const std::string& pattern);
     
     /**
+     * 扫描语法片段（CJMOD.md要求）
+     * @param args 参数对象
+     * @param keyword 扫描的关键字
+     * @return 扫描结果
+     */
+    static Arg scan(const Arg& args, const std::string& keyword = "");
+    
+    /**
      * 处理占位符替换
      * @param code 代码
      * @param placeholders 占位符映射
@@ -348,6 +424,13 @@ public:
      * @return 导出的代码
      */
     static std::string exportResult(const std::string& result);
+    
+    /**
+     * 导出最终的JS代码（CJMOD.md要求）
+     * @param args 参数对象
+     * @return 导出的JavaScript代码
+     */
+    static std::string exportResult(const Arg& args);
     
     /**
      * 处理占位符绑定

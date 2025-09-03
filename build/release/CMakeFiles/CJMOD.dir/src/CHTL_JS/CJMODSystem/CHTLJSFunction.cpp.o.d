@@ -1,8 +1,7 @@
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o: \
-  /workspace/src/CHTL\ JS/CJMODSystem/ChthollyOfficialModule.cpp \
-  /workspace/src/CHTL\ JS/CJMODSystem/ChthollyOfficialModule.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/CJMODIntegration.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/../../Scanner/CHTLUnifiedScanner.h \
+CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o: \
+  /workspace/src/CHTL\ JS/CJMODSystem/CHTLJSFunction.cpp \
+  /workspace/src/CHTL\ JS/CJMODSystem/CHTLJSFunction.h \
+  /workspace/src/CHTL\ JS/CJMODSystem/CJMODCore.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/string \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/requires_hosted.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/x86_64-linux-gnu/c++/14/bits/c++config.h \
@@ -207,11 +206,15 @@ CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/enable_special_members.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/node_handle.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/erase_if.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/codecvt \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/functional \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/std_function.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/array \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/compare \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/regex \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bitset \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/locale \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_classes.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_classes.tcc \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/codecvt.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/locale \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_facets.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/cwctype \
   /usr/include/wctype.h \
@@ -231,31 +234,9 @@ CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/x86_64-linux-gnu/c++/14/bits/time_members.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/x86_64-linux-gnu/c++/14/bits/messages_members.h \
   /usr/include/libintl.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/codecvt.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_facets_nonio.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/locale_conv.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSLexer/CHTLJSLexer.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSLexer/CHTLJSToken.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSLexer/CHTLJSGlobalMap.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSLexer/../CHTLJSState/CHTLJSState.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/stack \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/deque \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_deque.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/deque.tcc \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_stack.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSLexer/../CHTLJSContext/CHTLJSContext.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSParser/CHTLJSParser.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSParser/../CHTLJSLexer/CHTLJSLexer.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSParser/../CHTLJSNode/CHTLJSBaseNode.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSParser/../CHTLJSNode/EnhanceSelectorNode.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSParser/../CHTLJSNode/VirObjectNode.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSParser/../CHTLJSNode/AnimateNode.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/CJMODCore.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/functional \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/std_function.h \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/array \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/compare \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/regex \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bitset \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/sstream \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/istream \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/ios \
@@ -265,6 +246,11 @@ CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o: \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/ostream.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/istream.tcc \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/sstream.tcc \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/stack \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/deque \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_deque.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/deque.tcc \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_stack.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_algo.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/algorithmfwd.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/stl_heap.h \

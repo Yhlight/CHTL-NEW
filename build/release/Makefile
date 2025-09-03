@@ -369,6 +369,19 @@ chtl_safe_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_safe_test.dir/build.make CMakeFiles/chtl_safe_test.dir/build
 .PHONY : chtl_safe_test/fast
 
+#=============================================================================
+# Target rules for targets named chtl_cjmod_real_api_test
+
+# Build rule for target.
+chtl_cjmod_real_api_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_cjmod_real_api_test
+.PHONY : chtl_cjmod_real_api_test
+
+# fast build rule for target.
+chtl_cjmod_real_api_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_api_test.dir/build.make CMakeFiles/chtl_cjmod_real_api_test.dir/build
+.PHONY : chtl_cjmod_real_api_test/fast
+
 src/CHTL/CHTLContext/CHTLContext.o: src/CHTL/CHTLContext/CHTLContext.cpp.o
 .PHONY : src/CHTL/CHTLContext/CHTLContext.o
 
@@ -1089,6 +1102,30 @@ src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLJSCore.dir/build.make CMakeFiles/CHTLJSCore.dir/src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.s
 .PHONY : src/CHTL_JS/CHTLJSState/CHTLJSState.cpp.s
 
+src/CHTL_JS/CJMODSystem/CHTLJSFunction.o: src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o
+.PHONY : src/CHTL_JS/CJMODSystem/CHTLJSFunction.o
+
+# target to build an object file
+src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o
+.PHONY : src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.o
+
+src/CHTL_JS/CJMODSystem/CHTLJSFunction.i: src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.i
+.PHONY : src/CHTL_JS/CJMODSystem/CHTLJSFunction.i
+
+# target to preprocess a source file
+src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.i
+.PHONY : src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.i
+
+src/CHTL_JS/CJMODSystem/CHTLJSFunction.s: src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.s
+.PHONY : src/CHTL_JS/CJMODSystem/CHTLJSFunction.s
+
+# target to generate assembly for a file
+src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.s
+.PHONY : src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.s
+
 src/CHTL_JS/CJMODSystem/CJMODCore.o: src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o
 .PHONY : src/CHTL_JS/CJMODSystem/CJMODCore.o
 
@@ -1136,30 +1173,6 @@ src/CHTL_JS/CJMODSystem/CJMODIntegration.s: src/CHTL_JS/CJMODSystem/CJMODIntegra
 src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.s
 .PHONY : src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.s
-
-src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.o: src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o
-.PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.o
-
-# target to build an object file
-src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o
-.PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o
-
-src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.i: src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.i
-.PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.i
-
-# target to preprocess a source file
-src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.i
-.PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.i
-
-src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.s: src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s
-.PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.s
-
-# target to generate assembly for a file
-src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CJMOD.dir/build.make CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s
-.PHONY : src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s
 
 src/CSS/CSSCompiler.o: src/CSS/CSSCompiler.cpp.o
 .PHONY : src/CSS/CSSCompiler.o
@@ -1689,6 +1702,30 @@ src/Scanner/CHTLUnifiedScanner.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLScanner.dir/build.make CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.s
 .PHONY : src/Scanner/CHTLUnifiedScanner.cpp.s
 
+src/Test/CJMODRealAPITest.o: src/Test/CJMODRealAPITest.cpp.o
+.PHONY : src/Test/CJMODRealAPITest.o
+
+# target to build an object file
+src/Test/CJMODRealAPITest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_api_test.dir/build.make CMakeFiles/chtl_cjmod_real_api_test.dir/src/Test/CJMODRealAPITest.cpp.o
+.PHONY : src/Test/CJMODRealAPITest.cpp.o
+
+src/Test/CJMODRealAPITest.i: src/Test/CJMODRealAPITest.cpp.i
+.PHONY : src/Test/CJMODRealAPITest.i
+
+# target to preprocess a source file
+src/Test/CJMODRealAPITest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_api_test.dir/build.make CMakeFiles/chtl_cjmod_real_api_test.dir/src/Test/CJMODRealAPITest.cpp.i
+.PHONY : src/Test/CJMODRealAPITest.cpp.i
+
+src/Test/CJMODRealAPITest.s: src/Test/CJMODRealAPITest.cpp.s
+.PHONY : src/Test/CJMODRealAPITest.s
+
+# target to generate assembly for a file
+src/Test/CJMODRealAPITest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_api_test.dir/build.make CMakeFiles/chtl_cjmod_real_api_test.dir/src/Test/CJMODRealAPITest.cpp.s
+.PHONY : src/Test/CJMODRealAPITest.cpp.s
+
 src/Util/FileSystem/FileSystem.o: src/Util/FileSystem/FileSystem.cpp.o
 .PHONY : src/Util/FileSystem/FileSystem.o
 
@@ -1859,6 +1896,7 @@ help:
 	@echo "... CJMOD"
 	@echo "... chtl"
 	@echo "... chtl-professional"
+	@echo "... chtl_cjmod_real_api_test"
 	@echo "... chtl_minimal_test"
 	@echo "... chtl_safe_test"
 	@echo "... src/CHTL/CHTLContext/CHTLContext.o"
@@ -1951,15 +1989,15 @@ help:
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.o"
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.i"
 	@echo "... src/CHTL_JS/CHTLJSState/CHTLJSState.s"
+	@echo "... src/CHTL_JS/CJMODSystem/CHTLJSFunction.o"
+	@echo "... src/CHTL_JS/CJMODSystem/CHTLJSFunction.i"
+	@echo "... src/CHTL_JS/CJMODSystem/CHTLJSFunction.s"
 	@echo "... src/CHTL_JS/CJMODSystem/CJMODCore.o"
 	@echo "... src/CHTL_JS/CJMODSystem/CJMODCore.i"
 	@echo "... src/CHTL_JS/CJMODSystem/CJMODCore.s"
 	@echo "... src/CHTL_JS/CJMODSystem/CJMODIntegration.o"
 	@echo "... src/CHTL_JS/CJMODSystem/CJMODIntegration.i"
 	@echo "... src/CHTL_JS/CJMODSystem/CJMODIntegration.s"
-	@echo "... src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.o"
-	@echo "... src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.i"
-	@echo "... src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.s"
 	@echo "... src/CSS/CSSCompiler.o"
 	@echo "... src/CSS/CSSCompiler.i"
 	@echo "... src/CSS/CSSCompiler.s"
@@ -2026,6 +2064,9 @@ help:
 	@echo "... src/Scanner/CHTLUnifiedScanner.o"
 	@echo "... src/Scanner/CHTLUnifiedScanner.i"
 	@echo "... src/Scanner/CHTLUnifiedScanner.s"
+	@echo "... src/Test/CJMODRealAPITest.o"
+	@echo "... src/Test/CJMODRealAPITest.i"
+	@echo "... src/Test/CJMODRealAPITest.s"
 	@echo "... src/Util/FileSystem/FileSystem.o"
 	@echo "... src/Util/FileSystem/FileSystem.i"
 	@echo "... src/Util/FileSystem/FileSystem.s"
