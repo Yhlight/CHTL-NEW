@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/workspace/src/CHTL/CHTLLexer/CHTLToken.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLLexer/CHTLToken.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLLexer/CHTLToken.cpp.o.d"
   "/workspace/src/CHTL/CHTLNode/BaseNode.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/BaseNode.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/BaseNode.cpp.o.d"
   "/workspace/src/CHTL/CHTLNode/CommentNode.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.o.d"
+  "/workspace/src/CHTL/CHTLNode/CustomNode.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CustomNode.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CustomNode.cpp.o.d"
   "/workspace/src/CHTL/CHTLNode/ElementNode.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.o.d"
   "/workspace/src/CHTL/CHTLNode/StyleNode.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o.d"
   "/workspace/src/CHTL/CHTLNode/TemplateNode.cpp" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/TemplateNode.cpp.o" "gcc" "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/TemplateNode.cpp.o.d"

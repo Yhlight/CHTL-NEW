@@ -58,4 +58,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/ast_test.dir/DependInfo.cmake"
   "CMakeFiles/style_test.dir/DependInfo.cmake"
   "CMakeFiles/template_test.dir/DependInfo.cmake"
+  "CMakeFiles/custom_test.dir/DependInfo.cmake"
   )

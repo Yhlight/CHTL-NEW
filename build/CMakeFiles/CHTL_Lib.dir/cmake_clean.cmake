@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/BaseNode.cpp.o.d"
   "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.o"
   "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.o.d"
+  "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CustomNode.cpp.o"
+  "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CustomNode.cpp.o.d"
   "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.o"
   "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.o.d"
   "CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/StyleNode.cpp.o"
