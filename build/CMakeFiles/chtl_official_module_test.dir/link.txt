@@ -1,1 +1,0 @@
-/usr/bin/c++ -Xlinker --dependency-file=CMakeFiles/chtl_official_module_test.dir/link.d CMakeFiles/chtl_official_module_test.dir/src/Test/OfficialModuleTest.cpp.o -o bin/chtl_official_module_test   -L/workspace/thirdparty/antlr/lib  -Wl,-rpath,/workspace/thirdparty/antlr/lib lib/libCHTLModuleSystem.a lib/libCHTLCMODSystem.a lib/libCHTLUtilSystem.a lib/libCHTLErrorSystem.a

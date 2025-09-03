@@ -1,1 +1,0 @@
-/usr/bin/c++ -Xlinker --dependency-file=CMakeFiles/chtl_production_standard_validator.dir/link.d CMakeFiles/chtl_production_standard_validator.dir/src/Test/ProductionStandardValidator.cpp.o -o bin/chtl_production_standard_validator   -L/workspace/thirdparty/antlr/lib

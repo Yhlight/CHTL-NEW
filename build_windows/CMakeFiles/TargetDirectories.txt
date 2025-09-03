@@ -1,3 +1,0 @@
-/workspace/build_windows/CMakeFiles/chtl_windows.dir
-/workspace/build_windows/CMakeFiles/edit_cache.dir
-/workspace/build_windows/CMakeFiles/rebuild_cache.dir

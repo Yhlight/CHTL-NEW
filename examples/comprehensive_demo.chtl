@@ -1,0 +1,614 @@
+// CHTL综合功能演示
+// 展示CHTL、CHTL JS、CMOD、CJMOD的强大功能
+
+[Import] @chtl::Chtholly as Chtholly
+[Import] @chtl::Yuigahama as Yui
+
+[Namespace] CHTLComprehensiveDemo
+
+[Configuration] {
+    ENABLE_ALL_FEATURES = true;
+    THEME = "dual_character";
+    PERFORMANCE_MODE = "optimized";
+    DEBUG_LEVEL = "info";
+}
+
+[Template]
+<CharacterCard> {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+<ActionButton> {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+[Custom]
+<ChthollyCard inherit="CharacterCard"> {
+    border-left: 6px solid #ff6b6b;
+    background: linear-gradient(135deg, 
+        rgba(255, 107, 107, 0.05) 0%, 
+        rgba(78, 205, 196, 0.05) 100%);
+}
+
+<YuigahamaCard inherit="CharacterCard"> {
+    border-left: 6px solid #ff69b4;
+    background: linear-gradient(135deg, 
+        rgba(255, 105, 180, 0.05) 0%, 
+        rgba(255, 192, 203, 0.05) 100%);
+}
+
+<ChthollyButton inherit="ActionButton"> {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+}
+
+<YuigahamaButton inherit="ActionButton"> {
+    background: linear-gradient(45deg, #ff69b4, #ffc0cb);
+}
+
+html {
+    head {
+        title { "CHTL综合功能演示 - 双角色系统" }
+        meta { charset="UTF-8" }
+        meta { name="viewport", content="width=device-width, initial-scale=1.0" }
+    }
+    
+    body {
+        div {
+            class = "comprehensive-demo";
+            
+            // 主标题
+            header {
+                class = "demo-header";
+                
+                h1 { "🌟 CHTL综合功能演示" }
+                p { "展示CHTL、CHTL JS、CMOD、CJMOD的强大功能" }
+                
+                div {
+                    class = "feature-badges";
+                    
+                    span { class = "badge chtl"; "CHTL核心" }
+                    span { class = "badge chtljs"; "CHTL JS" }
+                    span { class = "badge cmod"; "CMOD模块" }
+                    span { class = "badge cjmod"; "CJMOD扩展" }
+                }
+            }
+            
+            // 双角色展示区域
+            div {
+                class = "character-showcase";
+                
+                // 珂朵莉区域
+                div {
+                    use = "ChthollyCard";
+                    class = "character-section";
+                    data-character = "chtholly";
+                    
+                    div {
+                        class = "character-info";
+                        
+                        h2 { "🌸 珂朵莉·诺塔·塞尼欧里斯" }
+                        p { "妖精兵器，温柔善良，红发翠眼的美丽女孩" }
+                        
+                        div {
+                            class = "character-features";
+                            
+                            h4 { "CJMOD强大功能:" }
+                            ul {
+                                li { "💝 printMylove - 爱的表达与图像处理" }
+                                li { "🌟 iNeverAway - 永恒守护与状态管理" }
+                                li { "⚡ util...then - 异步链式操作" }
+                            }
+                        }
+                        
+                        button {
+                            use = "ChthollyButton";
+                            class = "character-demo-btn";
+                            data-character = "chtholly";
+                            "体验珂朵莉功能"
+                        }
+                    }
+                    
+                    // 珂朵莉四叶相册
+                    div {
+                        use = "Chtholly::FourLeafAlbum";
+                        class = "mini-album";
+                        data-theme = "chtholly";
+                    }
+                }
+                
+                // 由比滨区域
+                div {
+                    use = "YuigahamaCard";
+                    class = "character-section";
+                    data-character = "yuigahama";
+                    
+                    div {
+                        class = "character-info";
+                        
+                        h2 { "🎀 由比滨结衣" }
+                        p { "活泼开朗，善于察言观色，温暖真诚的女孩" }
+                        
+                        div {
+                            class = "character-features";
+                            
+                            h4 { "CMOD功能模块:" }
+                            ul {
+                                li { "📷 四叶相册 - 美好回忆展示" }
+                                li { "📝 备忘录 - 日常记录系统" }
+                                li { "🎮 交互系统 - 智能对话功能" }
+                            }
+                        }
+                        
+                        button {
+                            use = "YuigahamaButton";
+                            class = "character-demo-btn";
+                            data-character = "yuigahama";
+                            "体验由比滨功能"
+                        }
+                    }
+                    
+                    // 由比滨备忘录
+                    div {
+                        use = "Yui::Memo";
+                        class = "mini-memo";
+                        data-theme = "yuigahama";
+                    }
+                }
+            }
+            
+            // 综合功能演示区域
+            div {
+                class = "integrated-demo";
+                
+                h2 { "🔥 综合功能演示" }
+                p { "体验CHTL四大核心技术的协同工作" }
+                
+                div {
+                    class = "demo-grid";
+                    
+                    // CHTL核心演示
+                    div {
+                        class = "demo-card chtl-demo";
+                        
+                        h3 { "🏗️ CHTL核心架构" }
+                        p { "双语言分离，模板继承，选择器自动化" }
+                        
+                        button {
+                            class = "demo-action-btn";
+                            data-demo = "chtl";
+                            "演示CHTL核心"
+                        }
+                    }
+                    
+                    // CHTL JS演示
+                    div {
+                        class = "demo-card chtljs-demo";
+                        
+                        h3 { "⚡ CHTL JS增强" }
+                        p { "增强选择器，事件委托，动画系统" }
+                        
+                        button {
+                            class = "demo-action-btn";
+                            data-demo = "chtljs";
+                            "演示CHTL JS"
+                        }
+                    }
+                    
+                    // CMOD演示
+                    div {
+                        class = "demo-card cmod-demo";
+                        
+                        h3 { "📦 CMOD模块" }
+                        p { "模块化组件，官方角色模块" }
+                        
+                        button {
+                            class = "demo-action-btn";
+                            data-demo = "cmod";
+                            "演示CMOD"
+                        }
+                    }
+                    
+                    // CJMOD演示
+                    div {
+                        class = "demo-card cjmod-demo";
+                        
+                        h3 { "🔧 CJMOD扩展" }
+                        p { "C++ API扩展，极为强大的特征" }
+                        
+                        button {
+                            class = "demo-action-btn";
+                            data-demo = "cjmod";
+                            "演示CJMOD"
+                        }
+                    }
+                }
+            }
+            
+            // 结果展示区域
+            div {
+                class = "comprehensive-results";
+                id = "demo-results";
+                
+                h3 { "🎯 综合演示结果" }
+                div {
+                    class = "results-content";
+                    "选择上方功能进行演示..."
+                }
+            }
+        }
+        
+        style {
+            .comprehensive-demo {
+                font-family: 'Microsoft YaHei', sans-serif;
+                line-height: 1.6;
+                color: #333;
+            }
+            
+            .demo-header {
+                text-align: center;
+                padding: 60px 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+                color: white;
+            }
+            
+            .demo-header h1 {
+                font-size: 3.5em;
+                margin: 0 0 20px 0;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            }
+            
+            .feature-badges {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 30px;
+                flex-wrap: wrap;
+            }
+            
+            .badge {
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+            
+            .badge.chtl { background: #ff6b6b; }
+            .badge.chtljs { background: #4ecdc4; }
+            .badge.cmod { background: #ffd93d; color: #333; }
+            .badge.cjmod { background: #a8e6cf; color: #333; }
+            
+            .character-showcase {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                max-width: 1200px;
+                margin: 40px auto;
+                padding: 0 20px;
+            }
+            
+            .integrated-demo {
+                max-width: 1000px;
+                margin: 60px auto;
+                padding: 0 20px;
+            }
+            
+            .demo-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 25px;
+                margin: 30px 0;
+            }
+            
+            .demo-card {
+                background: white;
+                padding: 25px;
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+                text-align: center;
+                transition: all 0.3s ease;
+            }
+            
+            .demo-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            }
+            
+            .chtl-demo { border-top: 4px solid #ff6b6b; }
+            .chtljs-demo { border-top: 4px solid #4ecdc4; }
+            .cmod-demo { border-top: 4px solid #ffd93d; }
+            .cjmod-demo { border-top: 4px solid #a8e6cf; }
+            
+            .demo-action-btn {
+                background: #6c5ce7;
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                border-radius: 25px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-top: 15px;
+            }
+            
+            .demo-action-btn:hover {
+                background: #5f3dc4;
+                transform: scale(1.05);
+            }
+            
+            .comprehensive-results {
+                max-width: 1000px;
+                margin: 40px auto;
+                padding: 0 20px;
+            }
+            
+            .results-content {
+                background: #2d3748;
+                color: #e2e8f0;
+                padding: 25px;
+                border-radius: 10px;
+                font-family: 'Consolas', monospace;
+                white-space: pre-wrap;
+                min-height: 200px;
+                border: 3px solid #4299e1;
+            }
+            
+            @media (max-width: 768px) {
+                .character-showcase {
+                    grid-template-columns: 1fr;
+                }
+                
+                .demo-header h1 {
+                    font-size: 2.5em;
+                }
+            }
+        }
+        
+        // 综合功能脚本
+        script {
+            console.log('🚀 CHTL综合功能演示初始化');
+            console.log('🔥 加载核心特征: CHTL + CHTL JS + CMOD + CJMOD');
+            
+            // 综合演示功能
+            const CHTLComprehensiveDemo = {
+                // CHTL核心功能演示
+                demonstrateCHTL: function() {
+                    console.log('🏗️ CHTL核心架构演示');
+                    
+                    return {
+                        architecture: '双语言分离架构',
+                        features: [
+                            '模板定义和继承',
+                            '自定义元素和样式',
+                            '选择器自动化',
+                            '命名空间系统',
+                            '约束验证',
+                            '配置管理',
+                            '导入系统'
+                        ],
+                        advantages: [
+                            'UTF-8中文字符完整支持',
+                            '更符合开发者编写习惯',
+                            '强大的模板系统',
+                            '智能的选择器处理'
+                        ],
+                        demo_result: '✅ CHTL核心功能演示完成'
+                    };
+                },
+                
+                // CHTL JS功能演示
+                demonstrateCHTLJS: function() {
+                    console.log('⚡ CHTL JS增强功能演示');
+                    
+                    // 模拟增强选择器
+                    const enhancedSelector = '{{.demo-element[data-active="true"]}}';
+                    
+                    // 模拟listen功能
+                    const listenDemo = {
+                        selector: '.comprehensive-demo',
+                        event: 'custom:chtljs-demo',
+                        callback: function() {
+                            console.log('🎧 CHTL JS监听器触发');
+                        }
+                    };
+                    
+                    // 模拟delegate功能
+                    const delegateDemo = {
+                        parent: '.character-showcase',
+                        target: '.character-section',
+                        event: 'interaction'
+                    };
+                    
+                    return {
+                        enhanced_selectors: enhancedSelector,
+                        listen_system: listenDemo,
+                        delegate_system: delegateDemo,
+                        operators: ['-> 操作符', '&-> 事件绑定操作符'],
+                        advanced_features: ['animate动画', 'vir虚对象', 'module模块'],
+                        demo_result: '✅ CHTL JS增强功能演示完成'
+                    };
+                },
+                
+                // CMOD功能演示
+                demonstrateCMOD: function() {
+                    console.log('📦 CMOD模块系统演示');
+                    
+                    const modules = [
+                        {
+                            name: 'Chtholly',
+                            components: ['FourLeafAlbum', 'Accordion'],
+                            theme: 'romantic',
+                            character: '珂朵莉·诺塔·塞尼欧里斯'
+                        },
+                        {
+                            name: 'Yuigahama',
+                            components: ['FourLeafAlbum', 'Memo'],
+                            theme: 'cheerful',
+                            character: '由比滨结衣'
+                        }
+                    ];
+                    
+                    return {
+                        module_system: 'CMOD官方模块',
+                        loaded_modules: modules,
+                        features: [
+                            '角色化设计',
+                            '组件复用',
+                            '主题系统',
+                            '模块导入'
+                        ],
+                        demo_result: '✅ CMOD模块系统演示完成'
+                    };
+                },
+                
+                // CJMOD功能演示
+                demonstrateCJMOD: function() {
+                    console.log('🔧 CJMOD极为强大特征演示');
+                    
+                    // 模拟CJMOD API功能
+                    const cjmodAPIs = {
+                        Syntax: '智能语法分析和类型检测',
+                        Arg: '参数管理和动态绑定',
+                        AtomArg: '5种占位符类型处理',
+                        Scanner: '代码扫描和占位符检测',
+                        Generator: 'JavaScript导出和代码生成',
+                        CHTLJSFunction: '函数包装器生成'
+                    };
+                    
+                    // 模拟代码片段处理
+                    const fragmentProcessing = {
+                        input: 'listen { selector: ".test", callback: printMylove { target: "world" } }',
+                        analysis: 'CHTL JS函数检测',
+                        processing: 'CJMOD API处理',
+                        output: '包装器生成的JavaScript代码'
+                    };
+                    
+                    return {
+                        api_system: cjmodAPIs,
+                        fragment_processing: fragmentProcessing,
+                        extension_capability: 'C++ API扩展',
+                        power_level: '极为强大',
+                        integration: '与编译器深度集成',
+                        demo_result: '✅ CJMOD极为强大特征演示完成'
+                    };
+                }
+            };
+            
+            // 页面交互逻辑
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('📄 综合演示页面加载完成');
+                
+                const resultsElement = document.querySelector('.results-content');
+                
+                // 角色演示按钮
+                document.querySelectorAll('.character-demo-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const character = this.dataset.character;
+                        
+                        if (character === 'chtholly') {
+                            // 珂朵莉功能演示
+                            resultsElement.textContent = `🌸 珂朵莉功能演示结果:
+
+💝 printMylove功能:
+  - 图像转字符像素块
+  - 爱意表达系统
+  - 浪漫主题效果
+
+🌟 iNeverAway功能:
+  - 永恒守护承诺
+  - 状态管理系统
+  - 保护机制
+
+⚡ util...then功能:
+  - 异步链式操作
+  - 优雅的代码流
+  - 效果组合
+
+✨ 珂朵莉的特色: 温柔、善良、强大的力量`;
+                        } else if (character === 'yuigahama') {
+                            // 由比滨功能演示
+                            resultsElement.textContent = `🎀 由比滨结衣功能演示结果:
+
+📷 四叶相册功能:
+  - 美好回忆展示
+  - 四叶草布局
+  - 动画过渡效果
+
+📝 备忘录功能:
+  - 日常记录系统
+  - 心情状态管理
+  - 智能分类
+
+🎮 交互系统:
+  - 智能对话功能
+  - 情感识别
+  - 个性化响应
+
+✨ 由比滨的特色: 活泼、开朗、善于理解他人`;
+                        }
+                    });
+                });
+                
+                // 综合功能演示按钮
+                document.querySelectorAll('.demo-action-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const demoType = this.dataset.demo;
+                        let result;
+                        
+                        switch(demoType) {
+                            case 'chtl':
+                                result = CHTLComprehensiveDemo.demonstrateCHTL();
+                                break;
+                            case 'chtljs':
+                                result = CHTLComprehensiveDemo.demonstrateCHTLJS();
+                                break;
+                            case 'cmod':
+                                result = CHTLComprehensiveDemo.demonstrateCMOD();
+                                break;
+                            case 'cjmod':
+                                result = CHTLComprehensiveDemo.demonstrateCJMOD();
+                                break;
+                        }
+                        
+                        if (result) {
+                            resultsElement.textContent = `${demoType.toUpperCase()}功能演示结果:\n\n${JSON.stringify(result, null, 2)}`;
+                        }
+                    });
+                });
+                
+                // 初始化动画
+                console.log('🎨 初始化页面动画效果');
+                setTimeout(() => {
+                    document.querySelectorAll('.character-section').forEach((section, index) => {
+                        section.style.opacity = '0';
+                        section.style.transform = 'translateY(30px)';
+                        
+                        setTimeout(() => {
+                            section.style.transition = 'all 0.6s ease';
+                            section.style.opacity = '1';
+                            section.style.transform = 'translateY(0)';
+                        }, index * 300);
+                    });
+                }, 500);
+                
+                console.log('🎊 CHTL综合功能演示准备完成');
+                console.log('🔥 可演示功能: CHTL核心、CHTL JS、CMOD模块、CJMOD扩展');
+            });
+        }
+    }
+}

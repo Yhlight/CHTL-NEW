@@ -1,33 +1,121 @@
-cmake_minimum_required(VERSION 3.16)
-project(CHTLCompiler VERSION 1.0.0 LANGUAGES CXX)
+# CHTL Compiler Professional Build Configuration
+# Version: 1.0.0
+# Architecture: Dual-language separation (CHTL + CHTL JS)
+# Features: CJMOD powerful extension system
 
-# 设置C++17标准
+cmake_minimum_required(VERSION 3.16)
+
+# Project configuration
+project(CHTL_Compiler 
+    VERSION 1.0.0
+    DESCRIPTION "CHTL (Chtholly HyperText Language) Compiler with CJMOD powerful features"
+    LANGUAGES CXX
+)
+
+# Build type configuration
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+# C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# 设置UTF-8编码支持
-if(MSVC)
+# Platform-specific configurations
+if(WIN32)
+    # Windows configuration (VS2019/VS2022)
+    message(STATUS "Configuring for Windows (Visual Studio)")
+    
+    # UTF-8 support
     add_compile_options(/utf-8)
-    add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
+    add_compile_definitions(_CRT_SECURE_NO_WARNINGS UNICODE _UNICODE WIN32_LEAN_AND_MEAN)
+    
+    # Runtime library configuration
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    
+    # Optimization flags
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        add_compile_options(/O2 /GL /DNDEBUG)
+        add_link_options(/LTCG /OPT:REF /OPT:ICF)
+    elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        add_compile_options(/Od /Zi /RTC1)
+        add_link_options(/DEBUG)
+    endif()
+    
+elseif(UNIX AND NOT APPLE)
+    # Linux configuration
+    message(STATUS "Configuring for Linux (GCC/Clang)")
+    
+    # UTF-8 support
+    add_compile_options(-finput-charset=UTF-8 -fexec-charset=UTF-8)
+    
+    # Optimization flags
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        add_compile_options(-O3 -DNDEBUG -flto)
+        add_link_options(-flto)
+    elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        add_compile_options(-O0 -g -fsanitize=address)
+        add_link_options(-fsanitize=address)
+    endif()
+    
+    # Additional flags
+    add_compile_options(-Wall -Wextra -pedantic)
+    
+elseif(APPLE)
+    # macOS configuration
+    message(STATUS "Configuring for macOS (Clang)")
+    
+    # UTF-8 support
+    add_compile_options(-finput-charset=UTF-8 -fexec-charset=UTF-8)
+    
+    # Optimization flags
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        add_compile_options(-O3 -DNDEBUG)
+    elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        add_compile_options(-O0 -g)
+    endif()
+    
+    # Additional flags
+    add_compile_options(-Wall -Wextra -pedantic)
 endif()
 
-# 设置编译器警告
-if(MSVC)
-    add_compile_options(/W4)
-else()
-    add_compile_options(-Wall -Wextra -Wpedantic)
-endif()
-
-# 设置输出目录
+# Output directories
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
-# 包含目录
+# ANTLR4 configuration
+if(WIN32)
+    # Windows ANTLR4 (user provided)
+    set(ANTLR4_ROOT ${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4)
+    set(ANTLR4_INCLUDE_DIRS ${ANTLR4_ROOT}/include)
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        set(ANTLR4_LIBRARIES ${ANTLR4_ROOT}/lib/antlr4-runtime.lib)
+    else()
+        set(ANTLR4_LIBRARIES ${ANTLR4_ROOT}/lib/antlr4-runtime-static.lib)
+    endif()
+else()
+    # Linux/macOS ANTLR4 - use built runtime
+    set(ANTLR4_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/src/ThirdParty/antlr/include)
+    set(ANTLR4_LIBRARIES antlr4-runtime)
+    
+    # Try to find system antlr4 first
+    find_package(PkgConfig QUIET)
+    if(PkgConfig_FOUND)
+        pkg_check_modules(ANTLR4_PKG antlr4-runtime)
+        if(ANTLR4_PKG_FOUND)
+            set(ANTLR4_INCLUDE_DIRS ${ANTLR4_PKG_INCLUDE_DIRS})
+            set(ANTLR4_LIBRARIES ${ANTLR4_PKG_LIBRARIES})
+        endif()
+    endif()
+endif()
+
+# Include directories
+include_directories(${ANTLR4_INCLUDE_DIRS})
 include_directories(src)
 
-# CHTL核心组件源文件
+# Source file groups
 set(CHTL_CORE_SOURCES
     src/CHTL/CHTLLexer/CHTLToken.cpp
     src/CHTL/CHTLLexer/CHTLGlobalMap.cpp
@@ -47,12 +135,8 @@ set(CHTL_CORE_SOURCES
     src/CHTL/CHTLNode/Visitor.cpp
     src/CHTL/CHTLParser/CHTLParser.cpp
     src/CHTL/CHTLGenerator/CHTLGenerator.cpp
-    # 暂时注释高级功能，确保核心编译成功
-    # src/CHTL/CHTLGenerator/SelectorAutomation.cpp
-    # src/CHTL/CHTLGenerator/TemplateEngine.cpp
 )
 
-# CHTL JS核心组件源文件（完全独立）
 set(CHTLJS_CORE_SOURCES
     "src/CHTL JS/CHTLJSLexer/CHTLJSToken.cpp"
     "src/CHTL JS/CHTLJSLexer/CHTLJSGlobalMap.cpp"
@@ -65,41 +149,22 @@ set(CHTLJS_CORE_SOURCES
     "src/CHTL JS/CHTLJSNode/AnimateNode.cpp"
     "src/CHTL JS/CHTLJSParser/CHTLJSParser.cpp"
     "src/CHTL JS/CHTLJSGenerator/CHTLJSGenerator.cpp"
-    # 暂时注释CHTL JS高级功能
-    # "src/CHTL JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp"
 )
 
-# 扫描器源文件
+set(CJMOD_SOURCES
+    "src/CHTL JS/CJMODSystem/CJMODCore.cpp"
+    "src/CHTL JS/CJMODSystem/CJMODIntegration.cpp"
+    "src/CHTL JS/CJMODSystem/ChthollyOfficialModule.cpp"
+)
+
 set(SCANNER_SOURCES
     src/Scanner/CHTLUnifiedScanner.cpp
 )
 
-# 调度器源文件
 set(DISPATCHER_SOURCES
     src/CompilerDispatcher/CompilerDispatcher.cpp
 )
 
-# 约束系统源文件
-set(CONSTRAINT_SOURCES
-    src/ConstraintSystem/CHTLConstraintValidator.cpp
-)
-
-# Import导入系统源文件 (已移动到CHTL/CHTLSystem内部)
-set(IMPORT_SOURCES
-    src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp
-)
-
-# 配置系统源文件
-set(CONFIGURATION_SOURCES
-    src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp
-)
-
-# 命名空间系统源文件
-set(NAMESPACE_SOURCES
-    src/CHTL/CHTLSystem/NamespaceSystem/NamespaceManager.cpp
-)
-
-# CSS编译器源文件（包含官方ANTLR生成的代码）
 set(CSS_SOURCES
     src/CSS/CSSCompiler.cpp
     src/CSS/generated/css3Lexer.cpp
@@ -107,7 +172,6 @@ set(CSS_SOURCES
     src/CSS/generated/css3ParserBaseListener.cpp
 )
 
-# JavaScript编译器源文件（包含官方ANTLR生成的代码）
 set(JS_SOURCES
     src/JS/JavaScriptCompiler.cpp
     src/JS/generated/JavaScriptLexer.cpp
@@ -117,330 +181,201 @@ set(JS_SOURCES
     src/JS/generated/JavaScriptParserBase.cpp
 )
 
-# CJMOD API源文件 (已移动到CHTL JS/CJMODSystem内部)
-set(CJMOD_SOURCES
-    "src/CHTL JS/CJMODSystem/CJMODCore.cpp"
-    "src/CHTL JS/CJMODSystem/CJMODIntegration.cpp"
-    "src/CHTL JS/CJMODSystem/ChthollyOfficialModule.cpp"
-)
-
-# CMOD模块系统源文件 (新增)
-set(CMOD_SOURCES
-    src/CHTL/CMODSystem/CMODManager.cpp
-)
-
-# 代码合并器源文件
 set(CODE_MERGER_SOURCES
     src/CodeMerger/CHTLCodeMerger.cpp
 )
 
-# 错误处理系统源文件 (新增)
 set(ERROR_SOURCES
     src/Error/Error.cpp
     src/Error/ErrorHandler.cpp
 )
 
-# 工具模块源文件 (新增)  
 set(UTIL_SOURCES
     src/Util/StringUtil/StringUtil.cpp
     src/Util/FileSystem/FileSystem.cpp
 )
 
-# 官方模块加载器源文件 (新增)
 set(MODULE_SOURCES
     src/Module/ModuleLoader.cpp
 )
 
-# 核心组件系统源文件 (新增)
-set(CORE_SOURCES
-    src/Core/ComponentManager.cpp
-    src/Core/CompilerComponentBase.cpp
-    src/Core/ServiceLocator.cpp
+set(CMOD_SOURCES
+    src/CHTL/CMODSystem/CMODManager.cpp
 )
 
-# 模块化组件源文件 (新增)
-set(COMPONENT_SOURCES
-    src/Components/CHTLCompilerComponent.cpp
-    src/Components/ModularCompilerDispatcher.cpp
+set(CONSTRAINT_SOURCES
+    src/ConstraintSystem/CHTLConstraintValidator.cpp
 )
 
-# 创建CHTL核心库
+set(IMPORT_SOURCES
+    src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp
+)
+
+# Create static libraries
 add_library(CHTLCore STATIC ${CHTL_CORE_SOURCES})
-add_library(CHTLCMODSystem STATIC ${CMOD_SOURCES})
-add_library(CHTLErrorSystem STATIC ${ERROR_SOURCES})
-add_library(CHTLUtilSystem STATIC ${UTIL_SOURCES})
-add_library(CHTLModuleSystem STATIC ${MODULE_SOURCES})
-# 暂时隔离核心组件系统和模块化组件 - 等待后续完善
-# add_library(CHTLCoreSystem STATIC ${CORE_SOURCES})
-# add_library(CHTLComponentSystem STATIC ${COMPONENT_SOURCES})
 target_include_directories(CHTLCore PUBLIC src/CHTL)
+target_compile_features(CHTLCore PUBLIC cxx_std_17)
 
-# 创建CHTL JS核心库（完全独立）
 add_library(CHTLJSCore STATIC ${CHTLJS_CORE_SOURCES})
 target_include_directories(CHTLJSCore PUBLIC "src/CHTL JS")
+target_compile_features(CHTLJSCore PUBLIC cxx_std_17)
 
-# 创建扫描器库
-add_library(CHTLScanner STATIC ${SCANNER_SOURCES})
-target_include_directories(CHTLScanner PUBLIC src/Scanner)
-
-# 创建约束系统库
-add_library(CHTLConstraint STATIC ${CONSTRAINT_SOURCES})
-target_include_directories(CHTLConstraint PUBLIC src/ConstraintSystem)
-target_link_libraries(CHTLConstraint CHTLCore CHTLJSCore)
-
-# 创建Import导入系统库
-add_library(CHTLImport STATIC ${IMPORT_SOURCES})
-target_include_directories(CHTLImport PUBLIC src/CHTL/CHTLSystem/ImportSystem)
-
-# 暂时注释高级系统库，确保核心编译成功
-# add_library(CHTLConfiguration STATIC ${CONFIGURATION_SOURCES})
-# target_include_directories(CHTLConfiguration PUBLIC src/CHTL/CHTLSystem/ConfigurationSystem)
-
-# add_library(CHTLNamespace STATIC ${NAMESPACE_SOURCES})
-# target_include_directories(CHTLNamespace PUBLIC src/CHTL/CHTLSystem/NamespaceSystem)
-
-# 添加ANTLR库路径
-link_directories(${CMAKE_SOURCE_DIR}/thirdparty/antlr/lib)
-include_directories(${CMAKE_SOURCE_DIR}/thirdparty/antlr/include)
-
-# 创建CSS编译器库
-add_library(CHTLCSSCompiler STATIC ${CSS_SOURCES})
-target_include_directories(CHTLCSSCompiler PUBLIC src/CSS)
-target_include_directories(CHTLCSSCompiler PUBLIC ${CMAKE_SOURCE_DIR}/thirdparty/antlr/include)
-target_link_libraries(CHTLCSSCompiler antlr4-runtime)
-
-# 创建JavaScript编译器库
-add_library(CHTLJSCompiler STATIC ${JS_SOURCES})
-target_include_directories(CHTLJSCompiler PUBLIC src/JS)
-target_include_directories(CHTLJSCompiler PUBLIC ${CMAKE_SOURCE_DIR}/thirdparty/antlr/include)
-target_link_libraries(CHTLJSCompiler antlr4-runtime)
-
-# 创建CJMOD API库
 add_library(CJMOD STATIC ${CJMOD_SOURCES})
 target_include_directories(CJMOD PUBLIC "src/CHTL JS/CJMODSystem")
+target_compile_features(CJMOD PUBLIC cxx_std_17)
 
-# 创建代码合并器库
+add_library(CHTLScanner STATIC ${SCANNER_SOURCES})
+target_include_directories(CHTLScanner PUBLIC src/Scanner)
+target_compile_features(CHTLScanner PUBLIC cxx_std_17)
+
 add_library(CHTLCodeMerger STATIC ${CODE_MERGER_SOURCES})
 target_include_directories(CHTLCodeMerger PUBLIC src/CodeMerger)
+target_compile_features(CHTLCodeMerger PUBLIC cxx_std_17)
 
-# 创建调度器库
+add_library(CHTLCSSCompiler STATIC ${CSS_SOURCES})
+target_include_directories(CHTLCSSCompiler PUBLIC src/CSS)
+target_compile_features(CHTLCSSCompiler PUBLIC cxx_std_17)
+target_link_libraries(CHTLCSSCompiler ${ANTLR4_LIBRARIES})
+
+add_library(CHTLJSCompiler STATIC ${JS_SOURCES})
+target_include_directories(CHTLJSCompiler PUBLIC src/JS)
+target_compile_features(CHTLJSCompiler PUBLIC cxx_std_17)
+target_link_libraries(CHTLJSCompiler ${ANTLR4_LIBRARIES})
+
+add_library(CHTLErrorSystem STATIC ${ERROR_SOURCES})
+target_include_directories(CHTLErrorSystem PUBLIC src/Error)
+target_compile_features(CHTLErrorSystem PUBLIC cxx_std_17)
+
+add_library(CHTLUtilSystem STATIC ${UTIL_SOURCES})
+target_include_directories(CHTLUtilSystem PUBLIC src/Util)
+target_compile_features(CHTLUtilSystem PUBLIC cxx_std_17)
+
+add_library(CHTLModuleSystem STATIC ${MODULE_SOURCES})
+target_include_directories(CHTLModuleSystem PUBLIC src/Module)
+target_compile_features(CHTLModuleSystem PUBLIC cxx_std_17)
+
+add_library(CHTLCMODSystem STATIC ${CMOD_SOURCES})
+target_include_directories(CHTLCMODSystem PUBLIC src/CHTL/CMODSystem)
+target_compile_features(CHTLCMODSystem PUBLIC cxx_std_17)
+
+add_library(CHTLConstraint STATIC ${CONSTRAINT_SOURCES})
+target_include_directories(CHTLConstraint PUBLIC src/ConstraintSystem)
+target_compile_features(CHTLConstraint PUBLIC cxx_std_17)
+
+add_library(CHTLImport STATIC ${IMPORT_SOURCES})
+target_include_directories(CHTLImport PUBLIC src/CHTL/CHTLSystem/ImportSystem)
+target_compile_features(CHTLImport PUBLIC cxx_std_17)
+
+# Dispatcher library
 add_library(CHTLDispatcher STATIC ${DISPATCHER_SOURCES})
 target_include_directories(CHTLDispatcher PUBLIC src/CompilerDispatcher)
-target_link_libraries(CHTLDispatcher CJMOD CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler)
+target_compile_features(CHTLDispatcher PUBLIC cxx_std_17)
+target_link_libraries(CHTLDispatcher 
+    CJMOD 
+    CHTLCore 
+    CHTLJSCore 
+    CHTLScanner 
+    CHTLConstraint 
+    CHTLImport 
+    CHTLCodeMerger 
+    CHTLCSSCompiler 
+    CHTLJSCompiler
+)
 
-# 主程序可执行文件
+# Main executable
 add_executable(chtl src/main.cpp)
-target_link_libraries(chtl CHTLDispatcher CJMOD CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner antlr4-runtime)
+target_compile_features(chtl PUBLIC cxx_std_17)
+target_link_libraries(chtl 
+    CHTLDispatcher 
+    CJMOD 
+    CHTLCodeMerger 
+    CHTLCSSCompiler 
+    CHTLJSCompiler 
+    CHTLImport 
+    CHTLConstraint 
+    CHTLCore 
+    CHTLJSCore 
+    CHTLScanner 
+    ${ANTLR4_LIBRARIES}
+)
 
-# 测试可执行文件
-add_executable(chtl_test src/Test/BasicCompilationTest.cpp)
-target_link_libraries(chtl_test CHTLDispatcher CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
-
-# 简化测试可执行文件
-add_executable(chtl_simple_test src/Test/SimpleCompilerTest.cpp)
-target_link_libraries(chtl_simple_test CHTLDispatcher CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
-
-# 解析器生成器测试可执行文件
-add_executable(chtl_parser_test src/Test/ParserGeneratorTest.cpp)
-target_link_libraries(chtl_parser_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
-
-# 架构验证测试可执行文件
-add_executable(chtl_architecture_test src/Test/ArchitectureTest.cpp)
-target_link_libraries(chtl_architecture_test CHTLDispatcher CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
-
-# 约束系统测试可执行文件
-add_executable(chtl_constraint_test src/Test/ConstraintTest.cpp)
-target_link_libraries(chtl_constraint_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
-
-# Import导入系统测试可执行文件
-add_executable(chtl_import_test src/Test/ImportTest.cpp)
-target_link_libraries(chtl_import_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
-
-
-
-# 项目结构修正报告可执行文件
-add_executable(chtl_structure_fix_report src/Test/ProjectStructureFixReport.cpp)
-
-# 官方模块测试可执行文件
-add_executable(chtl_official_module_test src/Test/OfficialModuleTest.cpp)
-target_link_libraries(chtl_official_module_test CHTLModuleSystem CHTLCMODSystem CHTLUtilSystem CHTLErrorSystem)
-
-# 文档遵循验证报告可执行文件
-add_executable(chtl_document_compliance src/Test/DocumentComplianceReport.cpp)
-
-# 官方ANTLR集成测试可执行文件
-add_executable(chtl_official_antlr_test src/Test/OfficialANTLRTest.cpp)
-
-# 最终完成验证报告可执行文件
-add_executable(chtl_final_completion_verification src/Test/FinalCompletionVerification.cpp)
-
-# 项目结构优化报告可执行文件
-add_executable(chtl_project_optimization_report src/Test/ProjectOptimizationReport.cpp)
-
-# 严格模块文档遵循验证测试可执行文件
-add_executable(chtl_strict_module_compliance_test src/Test/StrictModuleComplianceTest.cpp)
-target_link_libraries(chtl_strict_module_compliance_test CHTLUtilSystem)
-
-# Module分类结构验证测试可执行文件
-add_executable(chtl_module_classification_test src/Test/ModuleClassificationTest.cpp)
-target_link_libraries(chtl_module_classification_test CHTLUtilSystem)
-
-# 最终严格文档遵循验证报告可执行文件
-add_executable(chtl_final_strict_compliance src/Test/FinalStrictComplianceReport.cpp)
-
-# 仓库清理报告可执行文件
-add_executable(chtl_repository_cleanup_report src/Test/RepositoryCleanupReport.cpp)
-
-# 最终完成验证可执行文件
-add_executable(chtl_final_completion_report src/Test/FinalCompletionVerification.cpp)
-
-# 最终编译成功报告可执行文件
-add_executable(chtl_final_compilation_success src/Test/FinalCompilationSuccessReport.cpp)
-
-# 高级功能完善报告可执行文件
-add_executable(chtl_advanced_features_report src/Test/AdvancedFeaturesReport.cpp)
-
-# 项目最终状态报告可执行文件
-add_executable(chtl_project_final_status src/Test/ProjectFinalStatus.cpp)
-
-# 完整特征实现清单可执行文件
-add_executable(chtl_complete_feature_implementation src/Test/CompleteFeatureImplementation.cpp)
-
-# 特征实现进度跟踪器可执行文件
-add_executable(chtl_feature_implementation_tracker src/Test/FeatureImplementationTracker.cpp)
-
-# 生产标准验证器可执行文件
-add_executable(chtl_production_standard_validator src/Test/ProductionStandardValidator.cpp)
-
-# 100特征完整实现报告可执行文件
-add_executable(chtl_final_100_feature_completion src/Test/Final100FeatureCompletionReport.cpp)
-
-# 词法分析器测试可执行文件
-add_executable(chtl_lexer_test src/Test/LexerTest.cpp)
-target_link_libraries(chtl_lexer_test CHTLCore CHTLJSCore CHTLScanner)
-
-
-
-# 模板系统完善测试可执行文件
-add_executable(chtl_template_test src/Test/TemplateSystemTest.cpp)
-target_link_libraries(chtl_template_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
-
-# 自定义系统完善测试可执行文件
-add_executable(chtl_custom_test src/Test/CustomSystemTest.cpp)
-target_link_libraries(chtl_custom_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
-
-
-
-
-# 原始嵌入和配置系统测试可执行文件
-add_executable(chtl_origin_config_test src/Test/OriginConfigTest.cpp)
-target_link_libraries(chtl_origin_config_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
-
-# CJMOD API系统测试可执行文件
-# add_executable(chtl_cjmod_test src/Test/CJMODTest.cpp)
-# target_link_libraries(chtl_cjmod_test CJMOD CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
-
-
-
-
-# ANTLR真实集成测试可执行文件
-add_executable(chtl_antlr_real_test src/Test/ANTLRRealIntegrationTest.cpp)
-target_link_libraries(chtl_antlr_real_test CHTLCSSCompiler CHTLJSCompiler antlr4-runtime)
-
-# ANTLR构建报告可执行文件
-add_executable(chtl_antlr_build_report src/Test/ANTLRBuildReport.cpp)
-
-# 代码合并器测试可执行文件
-add_executable(chtl_code_merger_test src/Test/CodeMergerTest.cpp)
-target_link_libraries(chtl_code_merger_test CHTLCodeMerger)
-
-# 最终系统演示可执行文件
-add_executable(chtl_final_system_demo src/Test/FinalSystemDemo.cpp)
-target_link_libraries(chtl_final_system_demo CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler antlr4-runtime)
-
-# 完整编译流程测试可执行文件
-add_executable(chtl_complete_flow_test src/Test/CompleteCompilationFlowTest.cpp)
-target_link_libraries(chtl_complete_flow_test CHTLDispatcher CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler antlr4-runtime)
-
-# 项目完成度审计可执行文件
-add_executable(chtl_project_audit src/Test/ProjectCompletionAudit.cpp)
-
-# 性能基准测试可执行文件
-add_executable(chtl_performance_benchmark src/Test/PerformanceBenchmark.cpp)
-target_link_libraries(chtl_performance_benchmark CHTLDispatcher CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler antlr4-runtime)
-
-
-
-# CJMOD真实集成测试可执行文件
-add_executable(chtl_cjmod_real_test src/Test/CJMODRealIntegrationTest.cpp)
-target_link_libraries(chtl_cjmod_real_test CJMOD CHTLJSCore CHTLScanner)
-
-# 最终项目完成总结
-add_executable(chtl_final_completion src/Test/FinalProjectCompletionSummary.cpp)
-target_link_libraries(chtl_final_completion CHTLDispatcher)
-
-# CJMOD完整功能测试
-add_executable(chtl_cjmod_complete_test src/Test/CJMODCompleteTest.cpp)
-target_link_libraries(chtl_cjmod_complete_test CJMOD CHTLJSCore CHTLScanner)
-
-# 官方模块完整测试
-add_executable(chtl_official_module_complete_test src/Test/OfficialModuleCompleteTest.cpp)
-target_link_libraries(chtl_official_module_complete_test CJMOD CHTLModuleSystem CHTLUtilSystem CHTLJSCore CHTLScanner)
-
-# CJMOD最终集成测试
-add_executable(chtl_final_cjmod_test src/Test/FinalCJMODIntegrationTest.cpp)
-target_link_libraries(chtl_final_cjmod_test CJMOD CHTLDispatcher CHTLJSCore CHTLScanner)
-
-# CHTL彻底完整实现报告
-add_executable(chtl_complete_implementation_report src/Test/CHTLCompleteImplementationReport.cpp)
-target_link_libraries(chtl_complete_implementation_report CHTLDispatcher)
-
-# 最终完成检查报告
-add_executable(chtl_final_completion_check src/Test/FinalCompletionCheckReport.cpp)
-target_link_libraries(chtl_final_completion_check CHTLDispatcher)
-
-
-
-# 设置调试信息
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_compile_definitions(CHTL_DEBUG_MODE)
-    if(MSVC)
-        add_compile_options(/Zi)
-    else()
-        add_compile_options(-g)
+# Platform-specific executable configuration
+if(WIN32)
+    set_target_properties(chtl PROPERTIES
+        WIN32_EXECUTABLE FALSE
+        OUTPUT_NAME "chtl"
+    )
+    
+    # Copy DLL for Windows
+    if(EXISTS "${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4/lib/antlr4-runtime.dll")
+        add_custom_command(TARGET chtl POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4/lib/antlr4-runtime.dll"
+            $<TARGET_FILE_DIR:chtl>
+        )
     endif()
+else()
+    set_target_properties(chtl PROPERTIES
+        OUTPUT_NAME "chtl"
+    )
 endif()
 
-# 安装规则
-install(TARGETS chtl DESTINATION bin)
-install(TARGETS CHTLCore CHTLJSCore CHTLScanner CHTLDispatcher DESTINATION lib)
+# Test executables (only in Debug mode)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    # Core functionality tests
+    add_executable(chtl_cjmod_test src/Test/CJMODCompleteTest.cpp)
+    target_link_libraries(chtl_cjmod_test CJMOD CHTLJSCore CHTLScanner)
+    
+    add_executable(chtl_integration_test src/Test/FinalCJMODIntegrationTest.cpp)
+    target_link_libraries(chtl_integration_test CJMOD CHTLDispatcher CHTLJSCore CHTLScanner)
+    
+    add_executable(chtl_architecture_test src/Test/ArchitectureTest.cpp)
+    target_link_libraries(chtl_architecture_test CHTLDispatcher)
+    
+    # End-to-end comprehensive test
+    add_executable(chtl_end_to_end_test src/Test/EndToEndTest.cpp)
+    target_link_libraries(chtl_end_to_end_test CHTLDispatcher CJMOD CHTLJSCore CHTLScanner)
+endif()
 
-# 创建module目录（用于模块管理）
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/module)
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/module/CMOD)
-file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/module/CJMOD)
-
-# 复制示例文件
-configure_file(${CMAKE_SOURCE_DIR}/CHTL语法文档.md ${CMAKE_BINARY_DIR}/CHTL语法文档.md COPYONLY)
-
-# 打印配置信息
-message(STATUS "CHTL编译器配置完成")
-message(STATUS "C++标准: ${CMAKE_CXX_STANDARD}")
-message(STATUS "编译器: ${CMAKE_CXX_COMPILER_ID}")
-message(STATUS "构建类型: ${CMAKE_BUILD_TYPE}")
-message(STATUS "UTF-8支持: 已启用")
-message(STATUS "架构设计: CHTL和CHTL JS完全分离")
-
-# 自定义目标：运行测试
-add_custom_target(run_tests
-    COMMAND chtl_test
-    DEPENDS chtl_test
-    COMMENT "运行CHTL编译器基础测试"
+# Installation configuration
+install(TARGETS chtl 
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
 )
 
-# 自定义目标：编译示例
-add_custom_target(compile_example
-    COMMAND chtl example.chtl example.html
-    DEPENDS chtl
-    COMMENT "编译CHTL示例文件"
-)
+if(WIN32 AND EXISTS "${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4/lib/antlr4-runtime.dll")
+    install(FILES "${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4/lib/antlr4-runtime.dll" 
+        DESTINATION bin
+    )
+endif()
+
+# Package configuration
+set(CPACK_PACKAGE_NAME "CHTL-Compiler")
+set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PROJECT_DESCRIPTION}")
+set(CPACK_PACKAGE_VENDOR "CHTL Official")
+set(CPACK_PACKAGE_CONTACT "chtl-official@example.com")
+
+if(WIN32)
+    set(CPACK_GENERATOR "ZIP;NSIS")
+elseif(APPLE)
+    set(CPACK_GENERATOR "ZIP;DragNDrop")
+else()
+    set(CPACK_GENERATOR "ZIP;TGZ;DEB;RPM")
+endif()
+
+include(CPack)
+
+# Build information
+message(STATUS "=== CHTL Compiler Build Configuration ===")
+message(STATUS "Version: ${PROJECT_VERSION}")
+message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "Platform: ${CMAKE_SYSTEM_NAME}")
+message(STATUS "Architecture: ${CMAKE_SYSTEM_PROCESSOR}")
+message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "ANTLR4 Include: ${ANTLR4_INCLUDE_DIRS}")
+message(STATUS "ANTLR4 Libraries: ${ANTLR4_LIBRARIES}")
+message(STATUS "Output Directory: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
+message(STATUS "===========================================")

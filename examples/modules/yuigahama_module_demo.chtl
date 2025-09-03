@@ -1,0 +1,402 @@
+// 由比滨结衣官方模块使用演示
+// 展示CMOD模块的强大功能
+
+[Import] @chtl::Yuigahama as Yui
+
+[Namespace] YuigahamaDemo
+
+[Configuration] {
+    THEME_COLOR = "pink";
+    ANIMATION_DURATION = 800;
+    ENABLE_SOUND_EFFECTS = true;
+}
+
+html {
+    head {
+        title { "由比滨结衣模块演示" }
+        meta { charset="UTF-8" }
+        
+        style {
+            :root {
+                --yui-primary: #ff69b4;
+                --yui-secondary: #ffc0cb;
+                --yui-accent: #ffb6c1;
+                --yui-text: #333;
+                --yui-bg: #fff5f8;
+            }
+        }
+    }
+    
+    body {
+        div {
+            class = "yuigahama-showcase";
+            
+            header {
+                class = "yui-header";
+                
+                h1 { "🎀 由比滨结衣" }
+                p { "活泼开朗的女孩 - CMOD模块功能展示" }
+            }
+            
+            main {
+                class = "yui-content";
+                
+                // 四叶相册组件（来自CMOD）
+                section {
+                    use = "Yui::FourLeafAlbum";
+                    class = "album-section";
+                    
+                    h2 { "📷 四叶相册" }
+                    p { "由比滨的美好时光记录" }
+                    
+                    // 相册配置
+                    div {
+                        data-album-config = "clover";
+                        data-transition = "fade";
+                        data-autoplay = "true";
+                        
+                        div { class = "album-item"; "春天的樱花季" }
+                        div { class = "album-item"; "夏天的海边" }
+                        div { class = "album-item"; "秋天的红叶" }
+                        div { class = "album-item"; "冬天的雪景" }
+                    }
+                }
+                
+                // 备忘录组件（来自CMOD）
+                section {
+                    use = "Yui::Memo";
+                    class = "memo-section";
+                    
+                    h2 { "📝 备忘录" }
+                    p { "由比滨的日常记录和想法" }
+                    
+                    div {
+                        class = "memo-list";
+                        
+                        div {
+                            class = "memo-item";
+                            data-date = "2024-01-15";
+                            data-mood = "happy";
+                            
+                            h4 { "今天很开心！" }
+                            p { "和大家一起度过了愉快的时光，感觉每天都很充实呢～" }
+                        }
+                        
+                        div {
+                            class = "memo-item";
+                            data-date = "2024-01-20";
+                            data-mood = "thoughtful";
+                            
+                            h4 { "关于友情的思考" }
+                            p { "真正的朋友就是能够理解彼此，互相支持的人。我想成为这样的人。" }
+                        }
+                        
+                        div {
+                            class = "memo-item";
+                            data-date = "2024-01-25";
+                            data-mood = "excited";
+                            
+                            h4 { "新的挑战！" }
+                            p { "决定尝试新的事物！虽然有点紧张，但是很期待呢～" }
+                        }
+                    }
+                }
+                
+                // 交互演示区域
+                section {
+                    class = "interaction-demo";
+                    
+                    h2 { "🎮 交互功能演示" }
+                    
+                    div {
+                        class = "button-group";
+                        
+                        button {
+                            class = "yui-button primary";
+                            data-action = "greeting";
+                            "打招呼"
+                        }
+                        
+                        button {
+                            class = "yui-button secondary";
+                            data-action = "encouragement";
+                            "鼓励话语"
+                        }
+                        
+                        button {
+                            class = "yui-button accent";
+                            data-action = "friendship";
+                            "友情表达"
+                        }
+                    }
+                    
+                    div {
+                        class = "interaction-result";
+                        id = "interaction-result";
+                        "选择一个按钮来体验由比滨的互动功能..."
+                    }
+                }
+            }
+        }
+        
+        style {
+            .yuigahama-showcase {
+                background: var(--yui-bg);
+                min-height: 100vh;
+            }
+            
+            .yui-header {
+                text-align: center;
+                padding: 50px 20px;
+                background: linear-gradient(135deg, var(--yui-primary), var(--yui-secondary));
+                color: white;
+            }
+            
+            .yui-header h1 {
+                font-size: 3em;
+                margin: 0 0 15px 0;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            }
+            
+            .yui-content {
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+            
+            section {
+                margin: 40px 0;
+                padding: 30px;
+                background: white;
+                border-radius: 15px;
+                box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            }
+            
+            .album-section {
+                border-left: 5px solid var(--yui-primary);
+            }
+            
+            .memo-section {
+                border-left: 5px solid var(--yui-secondary);
+            }
+            
+            .interaction-demo {
+                border-left: 5px solid var(--yui-accent);
+            }
+            
+            .memo-item {
+                background: #f8f9fa;
+                padding: 20px;
+                margin: 15px 0;
+                border-radius: 10px;
+                border-left: 3px solid var(--yui-accent);
+            }
+            
+            .memo-item[data-mood="happy"] {
+                background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            }
+            
+            .memo-item[data-mood="thoughtful"] {
+                background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            }
+            
+            .memo-item[data-mood="excited"] {
+                background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+            }
+            
+            .button-group {
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                margin: 30px 0;
+                flex-wrap: wrap;
+            }
+            
+            .yui-button {
+                border: none;
+                padding: 15px 30px;
+                border-radius: 25px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            .yui-button.primary {
+                background: linear-gradient(45deg, var(--yui-primary), #ff1493);
+                color: white;
+            }
+            
+            .yui-button.secondary {
+                background: linear-gradient(45deg, var(--yui-secondary), #ff69b4);
+                color: white;
+            }
+            
+            .yui-button.accent {
+                background: linear-gradient(45deg, var(--yui-accent), #dda0dd);
+                color: white;
+            }
+            
+            .yui-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+            }
+            
+            .interaction-result {
+                background: #2d3748;
+                color: #e2e8f0;
+                padding: 25px;
+                border-radius: 10px;
+                font-family: 'Consolas', monospace;
+                white-space: pre-wrap;
+                min-height: 150px;
+                border: 2px solid var(--yui-primary);
+            }
+        }
+        
+        script {
+            console.log('🎀 由比滨结衣模块演示初始化');
+            
+            // 由比滨的特色功能
+            const YuigahamaFeatures = {
+                greeting: function() {
+                    const greetings = [
+                        "嗨！你好呀～ 我是由比滨结衣！",
+                        "今天天气真好呢～ 一起加油吧！",
+                        "啊哈哈～ 很高兴见到你！",
+                        "嗯嗯～ 有什么我可以帮忙的吗？"
+                    ];
+                    
+                    const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+                    
+                    return {
+                        type: 'greeting',
+                        message: randomGreeting,
+                        character: '由比滨结衣',
+                        mood: 'cheerful',
+                        timestamp: new Date().toLocaleString()
+                    };
+                },
+                
+                encouragement: function() {
+                    const encouragements = [
+                        "没关系的！失败了也要继续努力呢～",
+                        "相信自己！你一定可以做到的！",
+                        "嗯嗯！一步一步来，慢慢就会好的！",
+                        "大家都在支持你哦～ 不要放弃！"
+                    ];
+                    
+                    const randomEncouragement = encouragements[Math.floor(Math.random() * encouragements.length)];
+                    
+                    return {
+                        type: 'encouragement',
+                        message: randomEncouragement,
+                        character: '由比滨结衣',
+                        mood: 'supportive',
+                        effect: '💪 增加勇气值 +10'
+                    };
+                },
+                
+                friendship: function() {
+                    return {
+                        type: 'friendship',
+                        message: "真正的朋友就是能够互相理解、互相支持的人呢～",
+                        character: '由比滨结衣',
+                        mood: 'sincere',
+                        wisdom: "友情是世界上最珍贵的宝物",
+                        action: "伸出友谊之手"
+                    };
+                }
+            };
+            
+            // 初始化四叶相册
+            function initFourLeafAlbum() {
+                console.log('📸 初始化四叶相册组件');
+                
+                const albumItems = document.querySelectorAll('.album-item');
+                albumItems.forEach((item, index) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    
+                    setTimeout(() => {
+                        item.style.transition = 'all 0.5s ease';
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    }, index * 200);
+                });
+            }
+            
+            // 初始化备忘录
+            function initMemo() {
+                console.log('📝 初始化备忘录组件');
+                
+                const memoItems = document.querySelectorAll('.memo-item');
+                memoItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        const mood = this.dataset.mood;
+                        const date = this.dataset.date;
+                        
+                        console.log(`📅 备忘录点击: ${date} (心情: ${mood})`);
+                        
+                        // 添加点击效果
+                        this.style.transform = 'scale(1.05)';
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1)';
+                        }, 200);
+                    });
+                });
+            }
+            
+            // 页面加载完成后初始化
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('📄 由比滨结衣演示页面加载完成');
+                
+                // 初始化组件
+                initFourLeafAlbum();
+                initMemo();
+                
+                // 绑定交互按钮
+                const resultElement = document.getElementById('interaction-result');
+                
+                document.querySelectorAll('.yui-button').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const action = this.dataset.action;
+                        let result;
+                        
+                        switch(action) {
+                            case 'greeting':
+                                result = YuigahamaFeatures.greeting();
+                                break;
+                            case 'encouragement':
+                                result = YuigahamaFeatures.encouragement();
+                                break;
+                            case 'friendship':
+                                result = YuigahamaFeatures.friendship();
+                                break;
+                        }
+                        
+                        if (result) {
+                            resultElement.textContent = `${result.type.toUpperCase()} 功能执行结果:\n\n` +
+                                `💬 "${result.message}"\n\n` +
+                                `👤 角色: ${result.character}\n` +
+                                `😊 心情: ${result.mood}\n` +
+                                `⏰ 时间: ${result.timestamp || new Date().toLocaleString()}\n` +
+                                (result.effect ? `✨ 效果: ${result.effect}\n` : '') +
+                                (result.wisdom ? `💡 智慧: ${result.wisdom}\n` : '') +
+                                (result.action ? `🤝 行动: ${result.action}` : '');
+                        }
+                        
+                        // 按钮点击特效
+                        this.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1)';
+                        }, 150);
+                    });
+                });
+                
+                console.log('🎊 由比滨结衣模块演示准备完成');
+                console.log('📋 可用功能: 四叶相册, 备忘录, 交互系统');
+            });
+        }
+    }
+}

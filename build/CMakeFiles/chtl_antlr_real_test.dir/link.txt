@@ -1,1 +1,0 @@
-/usr/bin/c++ -Xlinker --dependency-file=CMakeFiles/chtl_antlr_real_test.dir/link.d CMakeFiles/chtl_antlr_real_test.dir/src/Test/ANTLRRealIntegrationTest.cpp.o -o bin/chtl_antlr_real_test   -L/workspace/thirdparty/antlr/lib  -Wl,-rpath,/workspace/thirdparty/antlr/lib lib/libCHTLCSSCompiler.a lib/libCHTLJSCompiler.a -lantlr4-runtime

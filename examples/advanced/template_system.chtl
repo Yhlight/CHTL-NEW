@@ -1,0 +1,179 @@
+// CHTL高级特征演示 - 模板系统
+// 展示模板定义、继承、特例化的强大功能
+
+[Template]
+<BaseCard> {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin: 15px 0;
+    transition: all 0.3s ease;
+}
+
+<ChthollyCard inherit="BaseCard"> {
+    border-left: 4px solid #ff6b6b;
+    background: linear-gradient(135deg, #fff 0%, #ffe8e8 100%);
+}
+
+<YuigahamaCard inherit="BaseCard"> {
+    border-left: 4px solid #4ecdc4;
+    background: linear-gradient(135deg, #fff 0%, #e8f8f5 100%);
+}
+
+// 按钮模板
+<BaseButton> {
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+<PrimaryButton inherit="BaseButton"> {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    color: white;
+}
+
+<SecondaryButton inherit="BaseButton"> {
+    background: linear-gradient(45deg, #4ecdc4, #6dd5ed);
+    color: white;
+}
+
+[Custom]
+// 特例化操作演示
+<SpecialChthollyCard inherit="ChthollyCard"> {
+    // 添加特殊效果
+    box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+    transform: scale(1.02);
+}
+
+// 无值样式组
+<ResetStyles> {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    head {
+        title { "CHTL模板系统演示" }
+        meta { charset="UTF-8" }
+        meta { name="viewport", content="width=device-width, initial-scale=1.0" }
+    }
+    
+    body {
+        use = "ResetStyles";
+        
+        div {
+            class = "container";
+            
+            h1 { "🎨 CHTL模板系统演示" }
+            
+            p { "展示模板定义、继承、特例化的强大功能" }
+            
+            // 使用珂朵莉卡片模板
+            div {
+                use = "ChthollyCard";
+                
+                h3 { "珂朵莉·诺塔·塞尼欧里斯" }
+                p { "妖精兵器，温柔善良的女孩，拥有美丽的红色长发和翠绿色眼睛。" }
+                p { "她愿意为了保护重要的人而牺牲一切。" }
+                
+                button {
+                    use = "PrimaryButton";
+                    "了解更多"
+                }
+            }
+            
+            // 使用由比滨卡片模板
+            div {
+                use = "YuigahamaCard";
+                
+                h3 { "由比滨结衣" }
+                p { "活泼开朗的女孩，善于察言观色，总是为朋友着想。" }
+                p { "她的温暖和真诚感染着身边的每一个人。" }
+                
+                button {
+                    use = "SecondaryButton";
+                    "了解更多"
+                }
+            }
+            
+            // 使用特例化模板
+            div {
+                use = "SpecialChthollyCard";
+                
+                h3 { "✨ 特例化模板效果" }
+                p { "这个卡片使用了特例化的ChthollyCard模板，具有特殊的阴影和缩放效果。" }
+                p { "展示了CHTL模板系统的灵活性和强大功能。" }
+            }
+        }
+        
+        style {
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 40px 20px;
+                font-family: 'Microsoft YaHei', 'Segoe UI', sans-serif;
+            }
+            
+            h1 {
+                text-align: center;
+                color: #333;
+                margin-bottom: 40px;
+                font-size: 2.5em;
+            }
+            
+            h3 {
+                color: #555;
+                margin-bottom: 15px;
+                font-size: 1.5em;
+            }
+            
+            p {
+                line-height: 1.6;
+                color: #666;
+                margin-bottom: 15px;
+            }
+            
+            // 按钮悬停效果
+            button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            }
+        }
+        
+        script {
+            console.log('🎨 CHTL模板系统演示加载完成');
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('📋 模板特征验证:');
+                console.log('  ✅ 模板定义和继承');
+                console.log('  ✅ 特例化操作');
+                console.log('  ✅ 无值样式组');
+                console.log('  ✅ use语法应用');
+                
+                // 为按钮添加点击事件
+                const buttons = document.querySelectorAll('button');
+                buttons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        alert('CHTL模板系统功能正常！\n按钮模板: ' + this.className);
+                    });
+                });
+                
+                // 添加卡片动画效果
+                const cards = document.querySelectorAll('[class*="Card"]');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 300);
+                });
+            });
+        }
+    }
+}

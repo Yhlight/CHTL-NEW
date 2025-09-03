@@ -1,1 +1,0 @@
-/usr/bin/c++ -Xlinker --dependency-file=CMakeFiles/chtl_final_strict_compliance.dir/link.d CMakeFiles/chtl_final_strict_compliance.dir/src/Test/FinalStrictComplianceReport.cpp.o -o bin/chtl_final_strict_compliance   -L/workspace/thirdparty/antlr/lib

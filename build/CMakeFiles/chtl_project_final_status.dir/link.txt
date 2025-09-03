@@ -1,1 +1,0 @@
-/usr/bin/c++ -Xlinker --dependency-file=CMakeFiles/chtl_project_final_status.dir/link.d CMakeFiles/chtl_project_final_status.dir/src/Test/ProjectFinalStatus.cpp.o -o bin/chtl_project_final_status   -L/workspace/thirdparty/antlr/lib

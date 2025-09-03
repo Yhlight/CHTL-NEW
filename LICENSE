@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2024 CHTL Compiler Project
+Copyright (c) 2024 CHTL Official Team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,18 +22,39 @@ SOFTWARE.
 
 ---
 
-CHTL (Chtholly HyperText Language) Compiler
-A modern dual-language hypertext compiler with innovative architecture.
+CHTL (Chtholly HyperText Language) - 珂朵莉超文本语言
 
-Features:
-- Dual-language separation architecture (CHTL + CHTL JS)
-- Precise code segmentation with variable-length slicing
-- ANTLR-based CSS and JavaScript compilation
-- Intelligent code merger for fragment-to-complete code conversion
-- Complete UTF-8 support for Chinese programming
-- Extensible CJMOD API for unlimited syntax extensions
-- Enterprise-grade performance and optimization
+本项目是一个开源的超文本语言编译器，具有以下特色：
 
-This project represents a significant technological milestone in compiler design,
-demonstrating innovation, completeness, rigor, and high standards in modern
-software development.
+🌟 核心特征：
+- 双语言分离架构 (CHTL + CHTL JS)
+- CJMOD极为强大的C++ API扩展特征
+- 100个语法特征完整实现
+- UTF-8中文字符完整支持
+- 跨平台兼容 (Windows/Linux/macOS)
+
+🎭 角色化设计：
+- 珂朵莉·诺塔·塞尼欧里斯官方模块
+- 由比滨结衣官方模块
+- 基于角色特点的功能设计
+
+💻 专业工具：
+- VSCode专业IDE插件
+- 完整的构建系统
+- 编译计时器和监控工具
+- 跨平台构建脚本
+
+🏆 质量标准：
+- 企业级生产质量
+- 完整的测试覆盖
+- 详细的技术文档
+- 用户友好的安装体验
+
+项目灵感来源：
+- 《末日时在做什么？有没有空？可不可以来拯救？》- 珂朵莉·诺塔·塞尼欧里斯
+- 《我的青春恋爱物语果然有问题。》- 由比滨结衣
+
+感谢所有为本项目贡献力量的开发者和用户！
+
+项目主页: https://github.com/CHTL-Official/chtl-compiler
+文档中心: https://chtl-official.github.io/docs/

@@ -1,0 +1,91 @@
+// CHTL基础功能演示
+// 展示CHTL的强大特征
+
+html {
+    head {
+        title { "欢迎使用CHTL - 珂朵莉超文本语言" }
+        meta { charset="UTF-8" }
+    }
+    
+    body {
+        // 使用CHTL的文本节点
+        text { "🌸 欢迎来到CHTL的世界！" }
+        
+        // HTML元素嵌套
+        div {
+            class = "container";
+            
+            h1 { "CHTL核心特征演示" }
+            
+            p { 
+                "CHTL是一种更符合开发者编写HTML代码的方式，"
+                "采用双语言分离架构，支持UTF-8中文字符。"
+            }
+            
+            // 展示CE对等式（: 与 = 等价）
+            div {
+                class: "feature-list";
+                id = "features";
+                
+                ul {
+                    li { "✅ 双语言分离架构 (CHTL + CHTL JS)" }
+                    li { "✅ CJMOD极为强大的扩展特征" }
+                    li { "✅ 100个语法特征完整支持" }
+                    li { "✅ UTF-8中文字符完整支持" }
+                    li { "✅ 模板和自定义系统" }
+                    li { "✅ 选择器自动化" }
+                    li { "✅ 命名空间和约束系统" }
+                }
+            }
+        }
+        
+        // 展示局部样式块
+        style {
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                font-family: 'Microsoft YaHei', sans-serif;
+            }
+            
+            h1 {
+                color: #ff6b6b;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            
+            .feature-list {
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 8px;
+                margin-top: 20px;
+            }
+            
+            li {
+                margin: 10px 0;
+                font-size: 16px;
+            }
+        }
+        
+        // 展示局部脚本块
+        script {
+            console.log('🎉 CHTL基础功能演示加载成功！');
+            console.log('特征: 双语言分离架构');
+            console.log('特征: UTF-8中文字符支持');
+            console.log('特征: 局部样式和脚本块');
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('📄 CHTL页面加载完成');
+                
+                // 添加交互效果
+                const features = document.querySelectorAll('li');
+                features.forEach((feature, index) => {
+                    setTimeout(() => {
+                        feature.style.opacity = '1';
+                        feature.style.transform = 'translateX(0)';
+                    }, index * 200);
+                });
+            });
+        }
+    }
+}

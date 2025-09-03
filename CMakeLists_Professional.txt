@@ -1,0 +1,377 @@
+# CHTL Compiler Professional Build Configuration
+# Version: 1.0.0
+# Architecture: Dual-language separation (CHTL + CHTL JS)
+# Features: CJMOD powerful extension system
+
+cmake_minimum_required(VERSION 3.16)
+
+# Project configuration
+project(CHTL_Compiler 
+    VERSION 1.0.0
+    DESCRIPTION "CHTL (Chtholly HyperText Language) Compiler with CJMOD powerful features"
+    LANGUAGES CXX
+)
+
+# Build type configuration
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+# C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Platform-specific configurations
+if(WIN32)
+    # Windows configuration (VS2019/VS2022)
+    message(STATUS "Configuring for Windows (Visual Studio)")
+    
+    # UTF-8 support
+    add_compile_options(/utf-8)
+    add_compile_definitions(_CRT_SECURE_NO_WARNINGS UNICODE _UNICODE WIN32_LEAN_AND_MEAN)
+    
+    # Runtime library configuration
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    
+    # Optimization flags
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        add_compile_options(/O2 /GL /DNDEBUG)
+        add_link_options(/LTCG /OPT:REF /OPT:ICF)
+    elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        add_compile_options(/Od /Zi /RTC1)
+        add_link_options(/DEBUG)
+    endif()
+    
+elseif(UNIX AND NOT APPLE)
+    # Linux configuration
+    message(STATUS "Configuring for Linux (GCC/Clang)")
+    
+    # UTF-8 support
+    add_compile_options(-finput-charset=UTF-8 -fexec-charset=UTF-8)
+    
+    # Optimization flags
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        add_compile_options(-O3 -DNDEBUG -flto)
+        add_link_options(-flto)
+    elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        add_compile_options(-O0 -g -fsanitize=address)
+        add_link_options(-fsanitize=address)
+    endif()
+    
+    # Additional flags
+    add_compile_options(-Wall -Wextra -pedantic)
+    
+elseif(APPLE)
+    # macOS configuration
+    message(STATUS "Configuring for macOS (Clang)")
+    
+    # UTF-8 support
+    add_compile_options(-finput-charset=UTF-8 -fexec-charset=UTF-8)
+    
+    # Optimization flags
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        add_compile_options(-O3 -DNDEBUG)
+    elseif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        add_compile_options(-O0 -g)
+    endif()
+    
+    # Additional flags
+    add_compile_options(-Wall -Wextra -pedantic)
+endif()
+
+# Output directories
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
+# ANTLR4 configuration
+if(WIN32)
+    # Windows ANTLR4 (user provided)
+    set(ANTLR4_ROOT ${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4)
+    set(ANTLR4_INCLUDE_DIRS ${ANTLR4_ROOT}/include)
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        set(ANTLR4_LIBRARIES ${ANTLR4_ROOT}/lib/antlr4-runtime.lib)
+    else()
+        set(ANTLR4_LIBRARIES ${ANTLR4_ROOT}/lib/antlr4-runtime-static.lib)
+    endif()
+else()
+    # Linux/macOS ANTLR4 - use built runtime
+    set(ANTLR4_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/src/ThirdParty/antlr/include)
+    set(ANTLR4_LIBRARIES antlr4-runtime)
+    
+    # Try to find system antlr4 first
+    find_package(PkgConfig QUIET)
+    if(PkgConfig_FOUND)
+        pkg_check_modules(ANTLR4_PKG antlr4-runtime)
+        if(ANTLR4_PKG_FOUND)
+            set(ANTLR4_INCLUDE_DIRS ${ANTLR4_PKG_INCLUDE_DIRS})
+            set(ANTLR4_LIBRARIES ${ANTLR4_PKG_LIBRARIES})
+        endif()
+    endif()
+endif()
+
+# Include directories
+include_directories(${ANTLR4_INCLUDE_DIRS})
+include_directories(src)
+
+# Source file groups
+set(CHTL_CORE_SOURCES
+    src/CHTL/CHTLLexer/CHTLToken.cpp
+    src/CHTL/CHTLLexer/CHTLGlobalMap.cpp
+    src/CHTL/CHTLLexer/CHTLLexer.cpp
+    src/CHTL/CHTLState/CHTLState.cpp
+    src/CHTL/CHTLContext/CHTLContext.cpp
+    src/CHTL/CHTLNode/CHTLBaseNode.cpp
+    src/CHTL/CHTLNode/ElementNode.cpp
+    src/CHTL/CHTLNode/TextNode.cpp
+    src/CHTL/CHTLNode/StyleNode.cpp
+    src/CHTL/CHTLNode/ScriptNode.cpp
+    src/CHTL/CHTLNode/TemplateNode.cpp
+    src/CHTL/CHTLNode/CustomNode.cpp
+    src/CHTL/CHTLNode/OriginNode.cpp
+    src/CHTL/CHTLNode/ConfigNode.cpp
+    src/CHTL/CHTLNode/NamespaceNode.cpp
+    src/CHTL/CHTLNode/Visitor.cpp
+    src/CHTL/CHTLParser/CHTLParser.cpp
+    src/CHTL/CHTLGenerator/CHTLGenerator.cpp
+)
+
+set(CHTLJS_CORE_SOURCES
+    "src/CHTL JS/CHTLJSLexer/CHTLJSToken.cpp"
+    "src/CHTL JS/CHTLJSLexer/CHTLJSGlobalMap.cpp"
+    "src/CHTL JS/CHTLJSLexer/CHTLJSLexer.cpp"
+    "src/CHTL JS/CHTLJSState/CHTLJSState.cpp"
+    "src/CHTL JS/CHTLJSContext/CHTLJSContext.cpp"
+    "src/CHTL JS/CHTLJSNode/CHTLJSBaseNode.cpp"
+    "src/CHTL JS/CHTLJSNode/EnhanceSelectorNode.cpp"
+    "src/CHTL JS/CHTLJSNode/VirObjectNode.cpp"
+    "src/CHTL JS/CHTLJSNode/AnimateNode.cpp"
+    "src/CHTL JS/CHTLJSParser/CHTLJSParser.cpp"
+    "src/CHTL JS/CHTLJSGenerator/CHTLJSGenerator.cpp"
+)
+
+set(CJMOD_SOURCES
+    "src/CHTL JS/CJMODSystem/CJMODCore.cpp"
+    "src/CHTL JS/CJMODSystem/CJMODIntegration.cpp"
+    "src/CHTL JS/CJMODSystem/ChthollyOfficialModule.cpp"
+)
+
+set(SCANNER_SOURCES
+    src/Scanner/CHTLUnifiedScanner.cpp
+)
+
+set(DISPATCHER_SOURCES
+    src/CompilerDispatcher/CompilerDispatcher.cpp
+)
+
+set(CSS_SOURCES
+    src/CSS/CSSCompiler.cpp
+    src/CSS/generated/css3Lexer.cpp
+    src/CSS/generated/css3Parser.cpp
+    src/CSS/generated/css3ParserBaseListener.cpp
+)
+
+set(JS_SOURCES
+    src/JS/JavaScriptCompiler.cpp
+    src/JS/generated/JavaScriptLexer.cpp
+    src/JS/generated/JavaScriptParser.cpp
+    src/JS/generated/JavaScriptParserBaseListener.cpp
+    src/JS/generated/JavaScriptLexerBase.cpp
+    src/JS/generated/JavaScriptParserBase.cpp
+)
+
+set(CODE_MERGER_SOURCES
+    src/CodeMerger/CHTLCodeMerger.cpp
+)
+
+set(ERROR_SOURCES
+    src/Error/Error.cpp
+    src/Error/ErrorHandler.cpp
+)
+
+set(UTIL_SOURCES
+    src/Util/StringUtil/StringUtil.cpp
+    src/Util/FileSystem/FileSystem.cpp
+)
+
+set(MODULE_SOURCES
+    src/Module/ModuleLoader.cpp
+)
+
+set(CMOD_SOURCES
+    src/CHTL/CMODSystem/CMODManager.cpp
+)
+
+set(CONSTRAINT_SOURCES
+    src/ConstraintSystem/CHTLConstraintValidator.cpp
+)
+
+set(IMPORT_SOURCES
+    src/CHTL/CHTLSystem/ImportSystem/CHTLImportManager.cpp
+)
+
+# Create static libraries
+add_library(CHTLCore STATIC ${CHTL_CORE_SOURCES})
+target_include_directories(CHTLCore PUBLIC src/CHTL)
+target_compile_features(CHTLCore PUBLIC cxx_std_17)
+
+add_library(CHTLJSCore STATIC ${CHTLJS_CORE_SOURCES})
+target_include_directories(CHTLJSCore PUBLIC "src/CHTL JS")
+target_compile_features(CHTLJSCore PUBLIC cxx_std_17)
+
+add_library(CJMOD STATIC ${CJMOD_SOURCES})
+target_include_directories(CJMOD PUBLIC "src/CHTL JS/CJMODSystem")
+target_compile_features(CJMOD PUBLIC cxx_std_17)
+
+add_library(CHTLScanner STATIC ${SCANNER_SOURCES})
+target_include_directories(CHTLScanner PUBLIC src/Scanner)
+target_compile_features(CHTLScanner PUBLIC cxx_std_17)
+
+add_library(CHTLCodeMerger STATIC ${CODE_MERGER_SOURCES})
+target_include_directories(CHTLCodeMerger PUBLIC src/CodeMerger)
+target_compile_features(CHTLCodeMerger PUBLIC cxx_std_17)
+
+add_library(CHTLCSSCompiler STATIC ${CSS_SOURCES})
+target_include_directories(CHTLCSSCompiler PUBLIC src/CSS)
+target_compile_features(CHTLCSSCompiler PUBLIC cxx_std_17)
+target_link_libraries(CHTLCSSCompiler ${ANTLR4_LIBRARIES})
+
+add_library(CHTLJSCompiler STATIC ${JS_SOURCES})
+target_include_directories(CHTLJSCompiler PUBLIC src/JS)
+target_compile_features(CHTLJSCompiler PUBLIC cxx_std_17)
+target_link_libraries(CHTLJSCompiler ${ANTLR4_LIBRARIES})
+
+add_library(CHTLErrorSystem STATIC ${ERROR_SOURCES})
+target_include_directories(CHTLErrorSystem PUBLIC src/Error)
+target_compile_features(CHTLErrorSystem PUBLIC cxx_std_17)
+
+add_library(CHTLUtilSystem STATIC ${UTIL_SOURCES})
+target_include_directories(CHTLUtilSystem PUBLIC src/Util)
+target_compile_features(CHTLUtilSystem PUBLIC cxx_std_17)
+
+add_library(CHTLModuleSystem STATIC ${MODULE_SOURCES})
+target_include_directories(CHTLModuleSystem PUBLIC src/Module)
+target_compile_features(CHTLModuleSystem PUBLIC cxx_std_17)
+
+add_library(CHTLCMODSystem STATIC ${CMOD_SOURCES})
+target_include_directories(CHTLCMODSystem PUBLIC src/CHTL/CMODSystem)
+target_compile_features(CHTLCMODSystem PUBLIC cxx_std_17)
+
+add_library(CHTLConstraint STATIC ${CONSTRAINT_SOURCES})
+target_include_directories(CHTLConstraint PUBLIC src/ConstraintSystem)
+target_compile_features(CHTLConstraint PUBLIC cxx_std_17)
+
+add_library(CHTLImport STATIC ${IMPORT_SOURCES})
+target_include_directories(CHTLImport PUBLIC src/CHTL/CHTLSystem/ImportSystem)
+target_compile_features(CHTLImport PUBLIC cxx_std_17)
+
+# Dispatcher library
+add_library(CHTLDispatcher STATIC ${DISPATCHER_SOURCES})
+target_include_directories(CHTLDispatcher PUBLIC src/CompilerDispatcher)
+target_compile_features(CHTLDispatcher PUBLIC cxx_std_17)
+target_link_libraries(CHTLDispatcher 
+    CJMOD 
+    CHTLCore 
+    CHTLJSCore 
+    CHTLScanner 
+    CHTLConstraint 
+    CHTLImport 
+    CHTLCodeMerger 
+    CHTLCSSCompiler 
+    CHTLJSCompiler
+)
+
+# Main executable
+add_executable(chtl src/main.cpp)
+target_compile_features(chtl PUBLIC cxx_std_17)
+target_link_libraries(chtl 
+    CHTLDispatcher 
+    CJMOD 
+    CHTLCodeMerger 
+    CHTLCSSCompiler 
+    CHTLJSCompiler 
+    CHTLImport 
+    CHTLConstraint 
+    CHTLCore 
+    CHTLJSCore 
+    CHTLScanner 
+    ${ANTLR4_LIBRARIES}
+)
+
+# Platform-specific executable configuration
+if(WIN32)
+    set_target_properties(chtl PROPERTIES
+        WIN32_EXECUTABLE FALSE
+        OUTPUT_NAME "chtl"
+    )
+    
+    # Copy DLL for Windows
+    if(EXISTS "${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4/lib/antlr4-runtime.dll")
+        add_custom_command(TARGET chtl POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4/lib/antlr4-runtime.dll"
+            $<TARGET_FILE_DIR:chtl>
+        )
+    endif()
+else()
+    set_target_properties(chtl PROPERTIES
+        OUTPUT_NAME "chtl"
+    )
+endif()
+
+# Test executables (only in Debug mode)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    # Core functionality tests
+    add_executable(chtl_cjmod_test src/Test/CJMODCompleteTest.cpp)
+    target_link_libraries(chtl_cjmod_test CJMOD CHTLJSCore CHTLScanner)
+    
+    add_executable(chtl_integration_test src/Test/FinalCJMODIntegrationTest.cpp)
+    target_link_libraries(chtl_integration_test CJMOD CHTLDispatcher CHTLJSCore CHTLScanner)
+    
+    add_executable(chtl_architecture_test src/Test/ArchitectureTest.cpp)
+    target_link_libraries(chtl_architecture_test CHTLDispatcher)
+endif()
+
+# Installation configuration
+install(TARGETS chtl 
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
+
+if(WIN32 AND EXISTS "${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4/lib/antlr4-runtime.dll")
+    install(FILES "${CMAKE_SOURCE_DIR}/src/ThirdParty/ANTLR4/lib/antlr4-runtime.dll" 
+        DESTINATION bin
+    )
+endif()
+
+# Package configuration
+set(CPACK_PACKAGE_NAME "CHTL-Compiler")
+set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PROJECT_DESCRIPTION}")
+set(CPACK_PACKAGE_VENDOR "CHTL Official")
+set(CPACK_PACKAGE_CONTACT "chtl-official@example.com")
+
+if(WIN32)
+    set(CPACK_GENERATOR "ZIP;NSIS")
+elseif(APPLE)
+    set(CPACK_GENERATOR "ZIP;DragNDrop")
+else()
+    set(CPACK_GENERATOR "ZIP;TGZ;DEB;RPM")
+endif()
+
+include(CPack)
+
+# Build information
+message(STATUS "=== CHTL Compiler Build Configuration ===")
+message(STATUS "Version: ${PROJECT_VERSION}")
+message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "Platform: ${CMAKE_SYSTEM_NAME}")
+message(STATUS "Architecture: ${CMAKE_SYSTEM_PROCESSOR}")
+message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "ANTLR4 Include: ${ANTLR4_INCLUDE_DIRS}")
+message(STATUS "ANTLR4 Libraries: ${ANTLR4_LIBRARIES}")
+message(STATUS "Output Directory: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
+message(STATUS "===========================================")
