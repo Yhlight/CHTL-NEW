@@ -1,0 +1,341 @@
+// CJMOD高级功能演示
+// 展示CJMOD API的所有强大特征
+// 严格按照CJMOD.md和四个基本文档实现
+
+[Import] @CJmod from "advanced_math_operations"
+[Import] @CJmod from "enhanced_selectors"  
+[Import] @CJmod from "virtual_object_system"
+
+[Configuration]
+{
+    DISABLE_STYLE_AUTO_ADD_CLASS = false;
+    DISABLE_STYLE_AUTO_ADD_ID = false;
+    DISABLE_SCRIPT_AUTO_ADD_CLASS = true;
+    DISABLE_SCRIPT_AUTO_ADD_ID = true;
+    ENABLE_CONTEXT_DEDUCTION = true;
+    CJMOD_DOUBLE_POINTER_SCAN = true;
+    CJMOD_PREFIX_CUT_SCAN = true;
+}
+
+html
+{
+    head
+    {
+        title
+        {
+            text
+            {
+                CJMOD高级功能完整演示
+            }
+        }
+    }
+    
+    body
+    {
+        div
+        {
+            id: cjmod-advanced-demo;
+            class: cjmod-container;
+            
+            text
+            {
+                🔥 CJMOD API强大功能展示
+            }
+            
+            script
+            {
+                // 1. 使用CJMOD的Syntax::analyze进行语法分析
+                // 这些语法会被CJMOD的双指针扫描法或前置截取法处理
+                
+                // 数学运算扩展（使用$占位符）
+                let result1 = $ ** $;  // CJMOD会分析并转换
+                let result2 = $ + $ * $;  // 复杂表达式
+                let result3 = pow($!, $?);  // 必须参数和可选参数
+                
+                // 使用$!_（必须无序占位符）和$?_（可选无序占位符）
+                calculateAdvanced({
+                    base: $!_,      // 必须无序参数
+                    exponent: $?_,  // 可选无序参数
+                    precision: $?_  // 另一个可选无序参数
+                });
+                
+                // 使用...（不定参数占位符）
+                sumAll(...);  // 接受任意数量的参数
+                
+                // 2. 使用CHTLJSFunction创建的强大函数
+                // 这些函数天然支持vir虚对象和无修饰字符串
+                
+                printMyLove({
+                    url: https://chtl.example.com,  // 无修饰字符串
+                    mode: auto,                     // 无修饰字符串
+                    message: 珂朵莉的爱意传递       // UTF-8中文支持
+                });
+                
+                // 天然支持vir虚对象
+                vir loveResult = printMyLove({
+                    url: https://love.example.com,
+                    mode: romantic,
+                    intensity: maximum
+                });
+                
+                vir mathResult = calculateAdvanced({
+                    base: 2,
+                    exponent: 10,
+                    precision: 2
+                });
+                
+                // 3. CJMOD增强的选择器功能
+                // 使用{{CSS选择器}}语法
+                
+                {{.cjmod-container}} -> click {
+                    console.log('🔥 CJMOD增强选择器点击');
+                    console.log('数学结果1:', result1);
+                    console.log('数学结果2:', result2);
+                    console.log('虚对象结果:', loveResult);
+                }
+                
+                {{#cjmod-advanced-demo}} -> mouseenter {
+                    // 使用CJMOD的动画API
+                    animate.fadeIn({{.highlight}}, 300);
+                    animate.slideUp({{.info}}, 500);
+                }
+                
+                {{#cjmod-advanced-demo}} -> mouseleave {
+                    animate.fadeOut({{.highlight}}, 200);
+                    animate.slideDown({{.info}}, 400);
+                }
+                
+                // 4. CJMOD的事件委托功能
+                delegate({{.dynamic-button}}, 'click', function(event) {
+                    console.log('🎯 CJMOD事件委托触发');
+                    
+                    // 使用CJMOD语法检测
+                    if (Syntax.isObject(event.target.dataset)) {
+                        console.log('✅ 检测到有效对象');
+                    }
+                    
+                    if (Syntax.isCHTLJSFunction('customAction {param: $!, mode: $?}')) {
+                        console.log('✅ 检测到CHTL JS函数语法');
+                    }
+                });
+                
+                // 5. CJMOD的listen增强监听器
+                listen({{document}}, 'DOMContentLoaded', function() {
+                    console.log('🌸 CJMOD增强监听器：页面加载完成');
+                    
+                    // 创建动态CHTL JS函数
+                    vir dynamicFunc = createCHTLJSFunction('dynamicAction {data: $!_, callback: $?_}');
+                    
+                    // 使用不定参数
+                    vir allResults = combineResults(...);
+                    
+                    console.log('所有结果:', allResults);
+                });
+                
+                // 6. CJMOD的->操作符（事件绑定操作符）
+                {{.advanced-feature}} -> {
+                    click: function() {
+                        console.log('点击事件');
+                    },
+                    hover: function() {
+                        console.log('悬停事件');
+                    },
+                    focus: function() {
+                        console.log('聚焦事件');
+                    }
+                }
+                
+                // 7. CJMOD的&->操作符（事件绑定操作符）
+                {{.special-element}} &-> {
+                    'custom:event': function(data) {
+                        console.log('自定义事件:', data);
+                    }
+                }
+            }
+            
+            style
+            {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+                color: white;
+                text-align: center;
+                
+                .cjmod-container {
+                    font-size: 24px;
+                    font-weight: bold;
+                    margin-bottom: 30px;
+                }
+                
+                // & 引用选择器优先选择class
+                & {
+                    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    position: relative;
+                    overflow: hidden;
+                }
+                
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                    transition: left 0.5s;
+                }
+                
+                &:hover:before {
+                    left: 100%;
+                }
+                
+                &:hover {
+                    transform: translateY(-10px) scale(1.02);
+                    box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+                }
+            }
+        }
+        
+        div
+        {
+            class: feature-showcase;
+            
+            text
+            {
+                CJMOD占位符类型展示
+            }
+            
+            script
+            {
+                // 展示所有CJMOD占位符类型
+                
+                // $ - 基本占位符
+                basicOperation($, $);
+                
+                // $? - 可选占位符
+                optionalOperation($, $?);
+                
+                // $! - 必须占位符
+                requiredOperation($!);
+                
+                // $_ - 无序占位符
+                unorderedOperation({param1: $_, param2: $_});
+                
+                // $!_ - 必须无序占位符
+                requiredUnorderedOperation({required: $!_, optional: $?_});
+                
+                // ... - 不定参数占位符
+                variadicOperation(...);
+                
+                // 组合使用
+                complexOperation({
+                    required: $!_,
+                    optional: $?_,
+                    variadic: ...,
+                    ordered: $!
+                });
+                
+                {{.feature-showcase}} -> click {
+                    console.log('🎯 所有CJMOD占位符类型演示完成');
+                    console.log('✅ $ - 基本占位符');
+                    console.log('✅ $? - 可选占位符'); 
+                    console.log('✅ $! - 必须占位符');
+                    console.log('✅ $_ - 无序占位符');
+                    console.log('✅ $!_ - 必须无序占位符');
+                    console.log('✅ ... - 不定参数占位符');
+                }
+            }
+            
+            style
+            {
+                background: #f8f9fa;
+                border: 3px solid #007bff;
+                border-radius: 15px;
+                padding: 30px;
+                margin: 30px 0;
+                cursor: pointer;
+                
+                .feature-showcase {
+                    color: #007bff;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+                
+                &:hover {
+                    border-color: #0056b3;
+                    background: #e3f2fd;
+                    transform: scale(1.05);
+                }
+            }
+        }
+        
+        div
+        {
+            class: api-demonstration;
+            
+            text
+            {
+                CJMOD API完整演示
+            }
+            
+            script
+            {
+                // 完整的CJMOD API使用流程
+                
+                // 1. 语法分析
+                vir syntaxPattern = Syntax.analyze('$ ** $');
+                console.log('语法分析结果:', syntaxPattern);
+                
+                // 2. 函数绑定
+                syntaxPattern.bind('$', function(value) {
+                    return value;
+                });
+                
+                syntaxPattern.bind('**', function(value) {
+                    return value;
+                });
+                
+                // 3. 扫描（双指针扫描法/前置截取法）
+                vir scanResult = CJMODScanner.scan(syntaxPattern, '**');
+                console.log('扫描结果:', scanResult);
+                
+                // 4. 填充值
+                syntaxPattern.fillValue(scanResult);
+                console.log('填充后的值:', syntaxPattern);
+                
+                // 5. 转换
+                syntaxPattern.transform('pow(' + syntaxPattern[0].value + ', ' + syntaxPattern[2].value + ')');
+                
+                // 6. 导出结果
+                vir finalCode = CJMODGenerator.exportResult(syntaxPattern);
+                console.log('最终生成的JS代码:', finalCode);
+                
+                {{.api-demonstration}} -> click {
+                    console.log('🚀 CJMOD API完整演示触发');
+                    console.log('展示了CJMOD API的完整工作流程');
+                }
+            }
+            
+            style
+            {
+                background: linear-gradient(45deg, #ff6b6b, #ffa726);
+                border-radius: 15px;
+                padding: 30px;
+                color: white;
+                text-align: center;
+                
+                .api-demonstration {
+                    font-size: 22px;
+                    font-weight: bold;
+                    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                }
+                
+                &:hover {
+                    background: linear-gradient(45deg, #ff5722, #ff9800);
+                    transform: rotateY(5deg);
+                }
+            }
+        }
+    }
+}

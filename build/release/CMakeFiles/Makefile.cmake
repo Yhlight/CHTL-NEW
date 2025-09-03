@@ -136,4 +136,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/chtl_minimal_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_safe_test.dir/DependInfo.cmake"
   "CMakeFiles/chtl_cjmod_real_api_test.dir/DependInfo.cmake"
+  "CMakeFiles/chtl_cjmod_integration_test.dir/DependInfo.cmake"
   )

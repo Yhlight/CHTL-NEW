@@ -1,0 +1,240 @@
+// CJMOD双指针扫描法专门演示
+// 展示双指针扫描法的强大能力
+// 严格按照完善选择器自动化与引用规则.ini实现
+
+[Import] @CJmod from "double_pointer_scanner"
+
+[Configuration]
+{
+    CJMOD_DOUBLE_POINTER_SCAN = true;
+    CJMOD_PRESCAN_LENGTH = 50;
+    ENABLE_CONTEXT_DEDUCTION = true;
+}
+
+html
+{
+    head
+    {
+        title
+        {
+            text
+            {
+                CJMOD双指针扫描法演示
+            }
+        }
+    }
+    
+    body
+    {
+        div
+        {
+            id: double-pointer-demo;
+            class: scanner-demo;
+            
+            text
+            {
+                🔍 双指针扫描法强大功能展示
+            }
+            
+            script
+            {
+                // 双指针扫描法工作原理演示：
+                // 1. 一开始位于0点，先进行一定长度的预先扫描
+                // 2. 若没有CJMOD语法，则将指针A移动到合适的位置
+                // 3. 指针A和指针B同步向前，类似滑动窗口
+                // 4. 当指针A遇到关键字时，会通知指针B进入收集状态
+                // 5. 确保能够收集到完整片段
+                
+                // 示例1: 数学操作符扫描
+                let calculation1 = 3 ** 4;  // ** 操作符会被双指针扫描法处理
+                let calculation2 = 5 ** 2;  // 另一个 ** 操作符
+                let calculation3 = base ** exponent;  // 变量形式的 ** 操作符
+                
+                // 示例2: 复杂表达式扫描
+                let complex1 = (a + b) ** (c - d);  // 复杂的 ** 表达式
+                let complex2 = Math.pow(x, y) ** Math.sqrt(z);  // 嵌套的 ** 表达式
+                
+                // 示例3: CHTL JS特有语法扫描
+                {{.scanner-demo}} -> click {
+                    // -> 操作符会被双指针扫描法处理
+                    console.log('🔍 双指针扫描法处理的点击事件');
+                    
+                    // 演示扫描过程
+                    console.log('指针A开始扫描...');
+                    console.log('预扫描50个字符...');
+                    console.log('发现CJMOD语法特征');
+                    console.log('指针A和指针B同步移动');
+                    console.log('遇到关键字，进入收集状态');
+                    console.log('收集完整片段完成');
+                }
+                
+                {{#double-pointer-demo}} -> mouseenter {
+                    console.log('🎯 双指针扫描法：鼠标进入事件');
+                    
+                    // 使用vir虚对象（CJMOD语法特征）
+                    vir scannerResult = doublePointerScan('**');
+                    vir collectedData = scannerResult.getFragments();
+                    
+                    console.log('收集的数据:', collectedData);
+                }
+                
+                // 示例4: 占位符语法扫描
+                function demonstrateScanning() {
+                    // 这些占位符会被双指针扫描法识别和处理
+                    let pattern1 = $ ** $;          // 基本占位符
+                    let pattern2 = $! ** $?;        // 必须 + 可选占位符
+                    let pattern3 = $_ ** $!_;       // 无序占位符
+                    let pattern4 = ... ** $;        // 不定参数占位符
+                    
+                    return {
+                        pattern1: pattern1,
+                        pattern2: pattern2,
+                        pattern3: pattern3,
+                        pattern4: pattern4
+                    };
+                }
+                
+                // 示例5: 链式操作扫描
+                asyncOperation()
+                    -> then(result1)
+                    -> then(result2)
+                    -> catch(error)
+                    -> finally(cleanup);
+                
+                // 每个 -> 都会被双指针扫描法精确处理
+                
+                // 示例6: 事件委托扫描
+                delegate({{.dynamic-elements}}, 'click', function(event) {
+                    console.log('🎯 事件委托被双指针扫描法处理');
+                    
+                    // 嵌套的CJMOD语法
+                    vir targetData = extractData(event.target);
+                    vir processedData = processData(targetData) -> validate() -> format();
+                    
+                    console.log('处理结果:', processedData);
+                });
+            }
+            
+            style
+            {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+                color: white;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+                
+                .scanner-demo {
+                    font-size: 24px;
+                    font-weight: bold;
+                    margin-bottom: 20px;
+                    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                }
+                
+                &:before {
+                    content: '🔍';
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    font-size: 40px;
+                    opacity: 0.3;
+                }
+                
+                & {
+                    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                }
+                
+                &:hover {
+                    transform: translateY(-15px) rotateX(5deg);
+                    box-shadow: 0 30px 80px rgba(102, 126, 234, 0.6);
+                }
+            }
+        }
+        
+        div
+        {
+            class: scanning-process;
+            
+            text
+            {
+                双指针扫描过程可视化
+            }
+            
+            script
+            {
+                // 可视化双指针扫描过程
+                function visualizeScanningProcess() {
+                    // 模拟双指针扫描法的工作过程
+                    
+                    console.log('🔄 双指针扫描法启动');
+                    console.log('📍 指针A位置: 0');
+                    console.log('📍 指针B位置: 0');
+                    
+                    // 预扫描阶段
+                    console.log('🔍 预扫描50个字符...');
+                    console.log('✅ 发现CJMOD语法特征: **, $, {{}}');
+                    
+                    // 同步移动阶段
+                    console.log('🔄 指针A和指针B开始同步移动');
+                    console.log('📍 指针A: 0 → 10 → 20 → 30...');
+                    console.log('📍 指针B: 0 → 10 → 20 → 30...');
+                    
+                    // 关键字检测阶段
+                    console.log('🎯 指针A遇到关键字 "**" 位置: 45');
+                    console.log('🔔 通知指针B进入收集状态');
+                    
+                    // 收集阶段
+                    console.log('📦 开始收集完整片段...');
+                    console.log('✅ 收集完成: "3 ** 4"');
+                    
+                    // 结果
+                    console.log('📊 扫描结果: ["3", "**", "4"]');
+                    console.log('🎉 双指针扫描法完成！');
+                }
+                
+                {{.scanning-process}} -> click {
+                    visualizeScanningProcess();
+                }
+                
+                // 使用CJMOD创建的函数演示扫描过程
+                vir scannerDemo = createScanner({
+                    method: 'double_pointer',
+                    prescan_length: 50,
+                    keywords: ['**', '->', 'vir', '{{}}']
+                });
+                
+                vir scanResult = scannerDemo.scan('3 ** 4 -> result');
+                console.log('扫描演示结果:', scanResult);
+            }
+            
+            style
+            {
+                background: #f8f9fa;
+                border: 2px solid #28a745;
+                border-radius: 15px;
+                padding: 30px;
+                margin: 30px 0;
+                cursor: pointer;
+                
+                .scanning-process {
+                    color: #28a745;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+                
+                &:hover {
+                    border-color: #20c997;
+                    background: #e8f5e8;
+                    transform: scale(1.02);
+                    box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+                }
+                
+                &:active {
+                    transform: scale(0.98);
+                }
+            }
+        }
+    }
+}

@@ -382,6 +382,19 @@ chtl_cjmod_real_api_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_api_test.dir/build.make CMakeFiles/chtl_cjmod_real_api_test.dir/build
 .PHONY : chtl_cjmod_real_api_test/fast
 
+#=============================================================================
+# Target rules for targets named chtl_cjmod_integration_test
+
+# Build rule for target.
+chtl_cjmod_integration_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_cjmod_integration_test
+.PHONY : chtl_cjmod_integration_test
+
+# fast build rule for target.
+chtl_cjmod_integration_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_integration_test.dir/build.make CMakeFiles/chtl_cjmod_integration_test.dir/build
+.PHONY : chtl_cjmod_integration_test/fast
+
 src/CHTL/CHTLContext/CHTLContext.o: src/CHTL/CHTLContext/CHTLContext.cpp.o
 .PHONY : src/CHTL/CHTLContext/CHTLContext.o
 
@@ -1726,6 +1739,30 @@ src/Scanner/CJMODScannerPlugin.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTLScanner.dir/build.make CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.s
 .PHONY : src/Scanner/CJMODScannerPlugin.cpp.s
 
+src/Test/CJMODComprehensiveIntegrationTest.o: src/Test/CJMODComprehensiveIntegrationTest.cpp.o
+.PHONY : src/Test/CJMODComprehensiveIntegrationTest.o
+
+# target to build an object file
+src/Test/CJMODComprehensiveIntegrationTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_integration_test.dir/build.make CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegrationTest.cpp.o
+.PHONY : src/Test/CJMODComprehensiveIntegrationTest.cpp.o
+
+src/Test/CJMODComprehensiveIntegrationTest.i: src/Test/CJMODComprehensiveIntegrationTest.cpp.i
+.PHONY : src/Test/CJMODComprehensiveIntegrationTest.i
+
+# target to preprocess a source file
+src/Test/CJMODComprehensiveIntegrationTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_integration_test.dir/build.make CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegrationTest.cpp.i
+.PHONY : src/Test/CJMODComprehensiveIntegrationTest.cpp.i
+
+src/Test/CJMODComprehensiveIntegrationTest.s: src/Test/CJMODComprehensiveIntegrationTest.cpp.s
+.PHONY : src/Test/CJMODComprehensiveIntegrationTest.s
+
+# target to generate assembly for a file
+src/Test/CJMODComprehensiveIntegrationTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_integration_test.dir/build.make CMakeFiles/chtl_cjmod_integration_test.dir/src/Test/CJMODComprehensiveIntegrationTest.cpp.s
+.PHONY : src/Test/CJMODComprehensiveIntegrationTest.cpp.s
+
 src/Test/CJMODRealAPITest.o: src/Test/CJMODRealAPITest.cpp.o
 .PHONY : src/Test/CJMODRealAPITest.o
 
@@ -1920,6 +1957,7 @@ help:
 	@echo "... CJMOD"
 	@echo "... chtl"
 	@echo "... chtl-professional"
+	@echo "... chtl_cjmod_integration_test"
 	@echo "... chtl_cjmod_real_api_test"
 	@echo "... chtl_minimal_test"
 	@echo "... chtl_safe_test"
@@ -2091,6 +2129,9 @@ help:
 	@echo "... src/Scanner/CJMODScannerPlugin.o"
 	@echo "... src/Scanner/CJMODScannerPlugin.i"
 	@echo "... src/Scanner/CJMODScannerPlugin.s"
+	@echo "... src/Test/CJMODComprehensiveIntegrationTest.o"
+	@echo "... src/Test/CJMODComprehensiveIntegrationTest.i"
+	@echo "... src/Test/CJMODComprehensiveIntegrationTest.s"
 	@echo "... src/Test/CJMODRealAPITest.o"
 	@echo "... src/Test/CJMODRealAPITest.i"
 	@echo "... src/Test/CJMODRealAPITest.s"

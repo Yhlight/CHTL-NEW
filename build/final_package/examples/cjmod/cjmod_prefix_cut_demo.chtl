@@ -1,0 +1,258 @@
+// CJMOD前置截取扫描法专门演示
+// 展示前置截取法的强大能力
+// 严格按照完善选择器自动化与引用规则.ini实现
+
+[Import] @CJmod from "prefix_cut_scanner"
+
+[Configuration]
+{
+    CJMOD_PREFIX_CUT_SCAN = true;
+    CJMOD_CUT_PRECISION = high;
+    ENABLE_CONTEXT_DEDUCTION = true;
+}
+
+html
+{
+    head
+    {
+        title
+        {
+            text
+            {
+                CJMOD前置截取扫描法演示
+            }
+        }
+    }
+    
+    body
+    {
+        div
+        {
+            id: prefix-cut-demo;
+            class: cut-scanner-demo;
+            
+            text
+            {
+                ✂️ 前置截取扫描法强大功能展示
+            }
+            
+            script
+            {
+                // 前置截取扫描法工作原理演示：
+                // 1. 扫描到关键字后，会回头截取关键字前面部分的参数
+                // 2. 避免错误地发送给编译器，以此获取完整片段
+                // 3. 确保参数的完整性和准确性
+                
+                // 示例1: 函数参数前置截取
+                // 当扫描到 'then' 关键字时，回头截取前面的参数
+                asyncFunction(param1, param2, param3) then handleResult;
+                // 前置截取: "asyncFunction(param1, param2, param3)"
+                // 完整片段: "then handleResult"
+                
+                processData(input, options, callback) then validateResult then formatOutput;
+                // 前置截取: "processData(input, options, callback)"
+                // 完整片段: "then validateResult then formatOutput"
+                
+                // 示例2: 选择器参数前置截取
+                // 当扫描到 '->' 时，回头截取选择器参数
+                document.querySelector('.target') -> click;
+                // 前置截取: "document.querySelector('.target')"
+                // 完整片段: "-> click"
+                
+                {{.advanced-selector}} -> hover;
+                // 前置截取: "{{.advanced-selector}}"
+                // 完整片段: "-> hover"
+                
+                // 示例3: 条件语句前置截取
+                // 当扫描到 'if' 关键字时，回头截取条件参数
+                (x > 0 && y < 100) if condition then action;
+                // 前置截取: "(x > 0 && y < 100)"
+                // 完整片段: "if condition then action"
+                
+                // 示例4: 复杂表达式前置截取
+                Math.pow(base, exponent) + offset * multiplier when ready then execute;
+                // 前置截取: "Math.pow(base, exponent) + offset * multiplier"
+                // 完整片段: "when ready then execute"
+                
+                {{.cut-scanner-demo}} -> click {
+                    console.log('✂️ 前置截取扫描法演示触发');
+                    
+                    // 演示截取过程
+                    console.log('🔍 扫描到关键字: "then"');
+                    console.log('↩️  回头截取前置参数');
+                    console.log('✂️  截取: "asyncFunction(param1, param2)"');
+                    console.log('📦 完整片段: "then handleResult"');
+                    console.log('✅ 避免错误发送给编译器');
+                    
+                    // 使用CJMOD API演示
+                    vir cutPattern = Syntax.analyze('$ then $');
+                    vir cutResult = CJMODScanner.scan(cutPattern, 'then');
+                    
+                    console.log('前置截取结果:', cutResult);
+                }
+                
+                // 示例5: 嵌套结构前置截取
+                complexObject.method(param1, {
+                    nested: value1,
+                    deep: {
+                        property: value2
+                    }
+                }) when complete then processResult;
+                
+                // 前置截取会正确处理嵌套结构
+                
+                // 示例6: 链式调用前置截取
+                dataProcessor
+                    .input(rawData)
+                    .validate(rules)
+                    .transform(mapper)
+                    .output(format) 
+                    when finished then notifyUser;
+                
+                {{#prefix-cut-demo}} -> mouseenter {
+                    console.log('🎯 前置截取：鼠标进入事件');
+                    
+                    // 演示前置截取的精确性
+                    vir cutScanner = createPrefixCutScanner({
+                        keywords: ['then', 'when', 'if', '->'],
+                        precision: 'high'
+                    });
+                    
+                    vir cutResults = cutScanner.scanAll(document.body.textContent);
+                    
+                    console.log('前置截取结果:', cutResults);
+                }
+                
+                // 示例7: 参数完整性保证
+                function demonstrateParameterIntegrity() {
+                    // 前置截取确保参数不会被错误分割
+                    
+                    let functionCall = complexFunction(
+                        param1,
+                        param2,
+                        {
+                            nested: true,
+                            complex: [1, 2, 3]
+                        }
+                    ) then processResult;
+                    
+                    // 前置截取会正确识别完整的函数调用参数
+                    // 不会在嵌套结构中间断开
+                    
+                    return functionCall;
+                }
+            }
+            
+            style
+            {
+                background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 15px 50px rgba(255, 154, 158, 0.4);
+                color: #333;
+                text-align: center;
+                position: relative;
+                
+                .cut-scanner-demo {
+                    font-size: 24px;
+                    font-weight: bold;
+                    margin-bottom: 20px;
+                    color: #d63384;
+                }
+                
+                &:before {
+                    content: '✂️';
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    font-size: 40px;
+                    opacity: 0.4;
+                    animation: cut-animation 2s infinite;
+                }
+                
+                @keyframes cut-animation {
+                    0%, 100% { transform: rotate(0deg); }
+                    25% { transform: rotate(-10deg); }
+                    75% { transform: rotate(10deg); }
+                }
+                
+                & {
+                    transition: all 0.4s ease;
+                }
+                
+                &:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 25px 70px rgba(255, 154, 158, 0.6);
+                    background: linear-gradient(45deg, #ff6b9d 0%, #f093fb 50%, #f093fb 100%);
+                }
+            }
+        }
+        
+        div
+        {
+            class: cutting-visualization;
+            
+            text
+            {
+                前置截取过程可视化
+            }
+            
+            script
+            {
+                function visualizeCuttingProcess() {
+                    console.log('✂️ 前置截取扫描法启动');
+                    console.log('📝 源代码: "asyncFunction(a, b, c) then handleResult"');
+                    
+                    console.log('\n🔍 扫描过程:');
+                    console.log('1. 开始扫描...');
+                    console.log('2. 发现关键字 "then" 位置: 25');
+                    console.log('3. ↩️  回头截取前置参数');
+                    console.log('4. 截取范围: 0 → 25');
+                    console.log('5. 前置参数: "asyncFunction(a, b, c)"');
+                    console.log('6. 📦 获取完整片段: "then handleResult"');
+                    console.log('7. ✅ 避免错误发送给编译器');
+                    
+                    console.log('\n📊 截取结果:');
+                    console.log('   前置参数片段: "asyncFunction(a, b, c)"');
+                    console.log('   完整片段: "then handleResult"');
+                    console.log('   ✅ 参数完整性: 保证');
+                    console.log('   ✅ 编译器安全: 保证');
+                }
+                
+                {{.cutting-visualization}} -> click {
+                    visualizeCuttingProcess();
+                }
+                
+                // 使用CJMOD API演示前置截取
+                vir cutPattern = Syntax.analyze('$ then $');
+                vir cutScanner = CJMODScanner.createPrefixCutScanner();
+                
+                vir cutResult = cutScanner.scan(cutPattern, 'then');
+                console.log('CJMOD前置截取结果:', cutResult);
+            }
+            
+            style
+            {
+                background: #fff3cd;
+                border: 3px dashed #ffc107;
+                border-radius: 15px;
+                padding: 30px;
+                margin: 30px 0;
+                cursor: pointer;
+                
+                .cutting-visualization {
+                    color: #856404;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+                
+                &:hover {
+                    background: #fff8e1;
+                    border-color: #ffb300;
+                    transform: scale(1.03);
+                    box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);
+                }
+            }
+        }
+    }
+}

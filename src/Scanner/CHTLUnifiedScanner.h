@@ -85,7 +85,6 @@ private:
     
     // CJMOD扫描挂件（只有Import CJMOD后才启用）
     bool m_CJMODEnabled;                                    // 是否启用CJMOD扫描
-    std::unique_ptr<CJMODScannerPlugin> m_CJMODPlugin; // CJMOD扫描插件
 
 public:
     /**

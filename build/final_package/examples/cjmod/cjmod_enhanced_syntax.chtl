@@ -1,0 +1,153 @@
+// CJMOD增强语法演示
+// 展示Import CJMOD后启用的强大扩展功能
+// 严格按照CJMOD.md和完善选择器自动化与引用规则.ini
+
+[Import] @CJmod from "enhanced_math"
+
+[Configuration]
+{
+    // 选择器自动化配置
+    DISABLE_STYLE_AUTO_ADD_CLASS = false;
+    DISABLE_STYLE_AUTO_ADD_ID = false;
+    DISABLE_SCRIPT_AUTO_ADD_CLASS = true;
+    DISABLE_SCRIPT_AUTO_ADD_ID = true;
+    ENABLE_CONTEXT_DEDUCTION = true;
+}
+
+html
+{
+    head
+    {
+        title
+        {
+            text
+            {
+                CJMOD增强语法演示
+            }
+        }
+    }
+    
+    body
+    {
+        div
+        {
+            id: math-container;
+            class: enhanced-math;
+            
+            text
+            {
+                CJMOD强大功能演示
+            }
+            
+            // 局部脚本使用CJMOD扩展的语法
+            script
+            {
+                // 使用CJMOD API创建的语法：$ ** $
+                // 这里会被CJMOD的双指针扫描法或前置截取法处理
+                let result1 = 3 ** 4;  // CJMOD会将 ** 转换为 pow(3, 4)
+                
+                // 使用CJMOD创建的CHTL JS函数
+                printMyLove({url: "https://chtl.example.com", mode: "auto"});
+                
+                // 天然支持vir虚对象
+                vir mathResult = printMyLove({url: "https://math.example.com", mode: "calculate"});
+                
+                // CJMOD扩展的选择器功能
+                {{.enhanced-math}} -> click {
+                    console.log('CJMOD增强选择器点击事件');
+                    console.log('计算结果:', result1);
+                }
+                
+                // 使用CJMOD的占位符语法
+                function calculate() {
+                    // $!_ 必须占位符，$?_ 可选占位符
+                    let base = $!_;  // 必须参数
+                    let exponent = $?_ || 2;  // 可选参数，默认2
+                    
+                    return pow(base, exponent);
+                }
+            }
+            
+            style
+            {
+                // 局部样式会自动添加类选择器
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                
+                .enhanced-math {
+                    color: white;
+                    text-align: center;
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+                
+                // & 引用选择器优先选择class
+                & {
+                    transition: all 0.3s ease;
+                }
+                
+                &:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+                }
+            }
+        }
+        
+        div
+        {
+            class: cjmod-demo;
+            
+            text
+            {
+                CJMOD API功能展示
+            }
+            
+            script
+            {
+                // 演示CJMOD的语法检测功能
+                if (Syntax.isObject("{name: 'CHTL', version: '1.0'}")) {
+                    console.log('✅ CJMOD正确识别JS对象');
+                }
+                
+                if (Syntax.isFunction("function test() { return true; }")) {
+                    console.log('✅ CJMOD正确识别JS函数');
+                }
+                
+                if (Syntax.isArray("[1, 2, 3, 4]")) {
+                    console.log('✅ CJMOD正确识别JS数组');
+                }
+                
+                if (Syntax.isCHTLJSFunction("testFunc {param: $!, optional: $?}")) {
+                    console.log('✅ CJMOD正确识别CHTL JS函数');
+                }
+                
+                // CJMOD扩展的事件处理
+                {{.cjmod-demo}} -> click {
+                    console.log('🔥 CJMOD增强的事件处理');
+                    
+                    // 使用CJMOD创建的语法
+                    let calculation = calculate(5, 3);  // 使用上面定义的calculate函数
+                    console.log('CJMOD计算结果:', calculation);
+                }
+            }
+            
+            style
+            {
+                background: #f8f9fa;
+                border: 2px solid #007bff;
+                border-radius: 10px;
+                padding: 25px;
+                margin: 20px 0;
+                cursor: pointer;
+                
+                .cjmod-demo {
+                    color: #007bff;
+                    font-weight: bold;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

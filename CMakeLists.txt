@@ -348,6 +348,9 @@ target_link_libraries(chtl_safe_test CHTLCore)
 add_executable(chtl_cjmod_real_api_test src/Test/CJMODRealAPITest.cpp)
 target_link_libraries(chtl_cjmod_real_api_test CJMOD)
 
+add_executable(chtl_cjmod_integration_test src/Test/CJMODComprehensiveIntegrationTest.cpp)
+target_link_libraries(chtl_cjmod_integration_test CJMOD CHTLScanner)
+
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_executable(chtl_cjmod_test src/Test/CJMODCompleteTest.cpp)
     target_link_libraries(chtl_cjmod_test CJMOD CHTLJSCore CHTLScanner)

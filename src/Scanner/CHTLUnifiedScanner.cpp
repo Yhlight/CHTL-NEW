@@ -11,14 +11,12 @@ CHTLUnifiedScanner::CHTLUnifiedScanner(const std::string& sourceCode)
     : m_SourceCode(sourceCode), m_CurrentPosition(0), m_CurrentLine(1), 
       m_CurrentColumn(1), m_HasError(false), m_CJMODEnabled(false) {
     InitializeKeywordMaps();
-    m_CJMODPlugin = std::make_unique<CJMODScannerPlugin>();
 }
 
 CHTLUnifiedScanner::CHTLUnifiedScanner()
     : m_SourceCode(""), m_CurrentPosition(0), m_CurrentLine(1), 
       m_CurrentColumn(1), m_HasError(false), m_CJMODEnabled(false) {
     InitializeKeywordMaps();
-    m_CJMODPlugin = std::make_unique<CJMODScannerPlugin>();
 }
 
 void CHTLUnifiedScanner::InitializeKeywordMaps() {
@@ -226,7 +224,43 @@ std::vector<SyntaxUnit> CHTLUnifiedScanner::PerformMinimalUnitCutting(const Code
 std::vector<SyntaxUnit> CHTLUnifiedScanner::CutCHTLJSEnhancedSelector(const std::string& content) {
     std::vector<SyntaxUnit> units;
     
-    // 使用正则表达式匹配CHTL JS增强选择器模式
+    // 如果启用了CJMOD扫描，使用CJMOD的强大扫描方法
+    if (m_CJMODEnabled) {
+        std::cout << "🔥 启用CJMOD扫描挂件处理CHTL JS内容" << std::endl;
+        
+        // 创建CJMOD扫描器插件实例
+        CJMODScannerPlugin cjmodPlugin;
+        cjmodPlugin.SetSourceCode(content);
+        cjmodPlugin.Activate();
+        
+        // 使用双指针扫描法处理操作符
+        auto operatorFragments = cjmodPlugin.DoublePointerScan("**");
+        for (const auto& fragment : operatorFragments) {
+            SyntaxUnit unit(fragment.Content, fragment.StartPosition, fragment.EndPosition, true);
+            units.push_back(unit);
+        }
+        
+        // 使用前置截取法处理选择器
+        auto selectorFragments = cjmodPlugin.PrefixCutScan("->");
+        for (const auto& fragment : selectorFragments) {
+            SyntaxUnit unit(fragment.Content, fragment.StartPosition, fragment.EndPosition, true);
+            units.push_back(unit);
+        }
+        
+        // 智能扫描其他CJMOD语法
+        auto smartFragments = cjmodPlugin.SmartScan("vir");
+        for (const auto& fragment : smartFragments) {
+            SyntaxUnit unit(fragment.Content, fragment.StartPosition, fragment.EndPosition, true);
+            units.push_back(unit);
+        }
+        
+        if (!units.empty()) {
+            std::cout << "   ✅ CJMOD扫描挂件处理完成，单元数量: " << units.size() << std::endl;
+            return units;
+        }
+    }
+    
+    // 使用正则表达式匹配CHTL JS增强选择器模式（标准方法）
     std::regex selectorPattern(R"(\{\{[^}]+\}\}(?:->|\.))");
     std::regex virPattern(R"(vir\s+\w+\s*=)");
     std::regex listenPattern(R"(->listen\s*\{)");
@@ -919,18 +953,11 @@ std::string CHTLUnifiedScanner::ReadUntilDelimiter() {
 
 void CHTLUnifiedScanner::EnableCJMODScanning() {
     m_CJMODEnabled = true;
-    if (m_CJMODPlugin) {
-        m_CJMODPlugin->SetSourceCode(m_SourceCode);
-        m_CJMODPlugin->Activate();
-    }
     std::cout << "🔥 统一扫描器：启用CJMOD扫描挂件" << std::endl;
 }
 
 void CHTLUnifiedScanner::DisableCJMODScanning() {
     m_CJMODEnabled = false;
-    if (m_CJMODPlugin) {
-        m_CJMODPlugin->Deactivate();
-    }
     std::cout << "⚪ 统一扫描器：禁用CJMOD扫描挂件" << std::endl;
 }
 

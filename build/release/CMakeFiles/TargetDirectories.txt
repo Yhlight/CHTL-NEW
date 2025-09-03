@@ -15,6 +15,7 @@
 /workspace/build/release/CMakeFiles/chtl_minimal_test.dir
 /workspace/build/release/CMakeFiles/chtl_safe_test.dir
 /workspace/build/release/CMakeFiles/chtl_cjmod_real_api_test.dir
+/workspace/build/release/CMakeFiles/chtl_cjmod_integration_test.dir
 /workspace/build/release/CMakeFiles/edit_cache.dir
 /workspace/build/release/CMakeFiles/rebuild_cache.dir
 /workspace/build/release/CMakeFiles/list_install_components.dir

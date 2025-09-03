@@ -1,5 +1,5 @@
 CHTL Module Directory Summary
-Generated: Wed Sep  3 10:39:12 AM UTC 2025
+Generated: Wed Sep  3 12:27:26 PM UTC 2025
 Source Directory: /workspace/src/Module
 Output Directory: /workspace/build/module
 Directory Structure: chaotic
@@ -21,5 +21,5 @@ Both module directories support:
 - Classified Structure: CMOD/CJMOD directory separation
 
 Packaged Modules:
-  -rw-r--r-- 1 ubuntu ubuntu 8865 Sep  3 10:39 /workspace/build/module/Chtholly.cmod
-  -rw-r--r-- 1 ubuntu ubuntu 2766 Sep  3 10:39 /workspace/build/module/Yuigahama.cmod
+  -rw-r--r-- 1 ubuntu ubuntu 15429 Sep  3 12:27 /workspace/build/module/Chtholly.cmod
+  -rw-r--r-- 1 ubuntu ubuntu  2766 Sep  3 12:27 /workspace/build/module/Yuigahama.cmod
