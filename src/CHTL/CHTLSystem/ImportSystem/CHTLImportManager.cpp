@@ -211,7 +211,7 @@ std::string CHTLImportManager::ResolveFilePath(const std::string& originalPath) 
             try {
                 for (const auto& entry : std::filesystem::recursive_directory_iterator(searchPath.BasePath)) {
                     if (entry.is_regular_file()) {
-                        std::string relativePath = std::filesystem::relative(entry.path(), searchPath.BasePath);
+                        std::string relativePath = std::filesystem::relative(entry.path(), searchPath.BasePath).string();
                         
                         if (relativePath == originalPath) {
                             return entry.path().string();

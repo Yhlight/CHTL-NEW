@@ -1,0 +1,2 @@
+/usr/bin/x86_64-w64-mingw32-ar qc lib/libCHTLDispatcher.a CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.obj
+/usr/bin/x86_64-w64-mingw32-ranlib lib/libCHTLDispatcher.a

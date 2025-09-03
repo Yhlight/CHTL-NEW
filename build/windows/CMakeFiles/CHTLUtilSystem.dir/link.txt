@@ -1,0 +1,2 @@
+/usr/bin/x86_64-w64-mingw32-ar qc lib/libCHTLUtilSystem.a CMakeFiles/CHTLUtilSystem.dir/src/Util/StringUtil/StringUtil.cpp.obj CMakeFiles/CHTLUtilSystem.dir/src/Util/FileSystem/FileSystem.cpp.obj
+/usr/bin/x86_64-w64-mingw32-ranlib lib/libCHTLUtilSystem.a

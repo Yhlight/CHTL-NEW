@@ -1,0 +1,3 @@
+/usr/bin/cmake -E rm -f CMakeFiles/chtl-professional.dir/objects.a
+/usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/chtl-professional.dir/objects.a @CMakeFiles/chtl-professional.dir/objects1.rsp
+/usr/bin/x86_64-w64-mingw32-g++  -DWIN32 -D_WIN32 -D_WINDOWS -DWIN32 -D_WIN32 -D_WINDOWS -O3 -DNDEBUG -static -static-libgcc -static-libstdc++ -Wl,--whole-archive CMakeFiles/chtl-professional.dir/objects.a -Wl,--no-whole-archive -o bin/chtl-professional.exe -Wl,--out-implib,lib/libchtl-professional.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/chtl-professional.dir/linkLibs.rsp

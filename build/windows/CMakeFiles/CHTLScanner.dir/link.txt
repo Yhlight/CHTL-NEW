@@ -1,0 +1,2 @@
+/usr/bin/x86_64-w64-mingw32-ar qc lib/libCHTLScanner.a CMakeFiles/CHTLScanner.dir/src/Scanner/CHTLUnifiedScanner.cpp.obj CMakeFiles/CHTLScanner.dir/src/Scanner/CJMODScannerPlugin.cpp.obj
+/usr/bin/x86_64-w64-mingw32-ranlib lib/libCHTLScanner.a

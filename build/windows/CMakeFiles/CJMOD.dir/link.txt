@@ -1,0 +1,2 @@
+/usr/bin/x86_64-w64-mingw32-ar qc lib/libCJMOD.a CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.obj CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.obj CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CHTLJSFunction.cpp.obj
+/usr/bin/x86_64-w64-mingw32-ranlib lib/libCJMOD.a
