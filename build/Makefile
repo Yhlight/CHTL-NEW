@@ -291,6 +291,19 @@ custom_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_test.dir/build.make CMakeFiles/custom_test.dir/build
 .PHONY : custom_test/fast
 
+#=============================================================================
+# Target rules for targets named origin_test
+
+# Build rule for target.
+origin_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 origin_test
+.PHONY : origin_test
+
+# fast build rule for target.
+origin_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/origin_test.dir/build.make CMakeFiles/origin_test.dir/build
+.PHONY : origin_test/fast
+
 src/CHTL/CHTLLexer/CHTLGlobalMap.o: src/CHTL/CHTLLexer/CHTLGlobalMap.cpp.o
 .PHONY : src/CHTL/CHTLLexer/CHTLGlobalMap.o
 
@@ -467,6 +480,30 @@ src/CHTL/CHTLNode/ElementNode.s: src/CHTL/CHTLNode/ElementNode.cpp.s
 src/CHTL/CHTLNode/ElementNode.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.s
 .PHONY : src/CHTL/CHTLNode/ElementNode.cpp.s
+
+src/CHTL/CHTLNode/OriginNode.o: src/CHTL/CHTLNode/OriginNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/OriginNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/OriginNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/OriginNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/OriginNode.cpp.o
+
+src/CHTL/CHTLNode/OriginNode.i: src/CHTL/CHTLNode/OriginNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/OriginNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/OriginNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/OriginNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/OriginNode.cpp.i
+
+src/CHTL/CHTLNode/OriginNode.s: src/CHTL/CHTLNode/OriginNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/OriginNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/OriginNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/OriginNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/OriginNode.cpp.s
 
 src/CHTL/CHTLNode/StyleNode.o: src/CHTL/CHTLNode/StyleNode.cpp.o
 .PHONY : src/CHTL/CHTLNode/StyleNode.o
@@ -765,6 +802,30 @@ src/Test/AstTest/CustomTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_test.dir/build.make CMakeFiles/custom_test.dir/src/Test/AstTest/CustomTest.cpp.s
 .PHONY : src/Test/AstTest/CustomTest.cpp.s
 
+src/Test/AstTest/OriginTest.o: src/Test/AstTest/OriginTest.cpp.o
+.PHONY : src/Test/AstTest/OriginTest.o
+
+# target to build an object file
+src/Test/AstTest/OriginTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/origin_test.dir/build.make CMakeFiles/origin_test.dir/src/Test/AstTest/OriginTest.cpp.o
+.PHONY : src/Test/AstTest/OriginTest.cpp.o
+
+src/Test/AstTest/OriginTest.i: src/Test/AstTest/OriginTest.cpp.i
+.PHONY : src/Test/AstTest/OriginTest.i
+
+# target to preprocess a source file
+src/Test/AstTest/OriginTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/origin_test.dir/build.make CMakeFiles/origin_test.dir/src/Test/AstTest/OriginTest.cpp.i
+.PHONY : src/Test/AstTest/OriginTest.cpp.i
+
+src/Test/AstTest/OriginTest.s: src/Test/AstTest/OriginTest.cpp.s
+.PHONY : src/Test/AstTest/OriginTest.s
+
+# target to generate assembly for a file
+src/Test/AstTest/OriginTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/origin_test.dir/build.make CMakeFiles/origin_test.dir/src/Test/AstTest/OriginTest.cpp.s
+.PHONY : src/Test/AstTest/OriginTest.cpp.s
+
 src/Test/AstTest/StyleTest.o: src/Test/AstTest/StyleTest.cpp.o
 .PHONY : src/Test/AstTest/StyleTest.o
 
@@ -880,6 +941,7 @@ help:
 	@echo "... ast_test"
 	@echo "... chtl_compiler"
 	@echo "... custom_test"
+	@echo "... origin_test"
 	@echo "... style_test"
 	@echo "... template_test"
 	@echo "... token_test"
@@ -904,6 +966,9 @@ help:
 	@echo "... src/CHTL/CHTLNode/ElementNode.o"
 	@echo "... src/CHTL/CHTLNode/ElementNode.i"
 	@echo "... src/CHTL/CHTLNode/ElementNode.s"
+	@echo "... src/CHTL/CHTLNode/OriginNode.o"
+	@echo "... src/CHTL/CHTLNode/OriginNode.i"
+	@echo "... src/CHTL/CHTLNode/OriginNode.s"
 	@echo "... src/CHTL/CHTLNode/StyleNode.o"
 	@echo "... src/CHTL/CHTLNode/StyleNode.i"
 	@echo "... src/CHTL/CHTLNode/StyleNode.s"
@@ -940,6 +1005,9 @@ help:
 	@echo "... src/Test/AstTest/CustomTest.o"
 	@echo "... src/Test/AstTest/CustomTest.i"
 	@echo "... src/Test/AstTest/CustomTest.s"
+	@echo "... src/Test/AstTest/OriginTest.o"
+	@echo "... src/Test/AstTest/OriginTest.i"
+	@echo "... src/Test/AstTest/OriginTest.s"
 	@echo "... src/Test/AstTest/StyleTest.o"
 	@echo "... src/Test/AstTest/StyleTest.i"
 	@echo "... src/Test/AstTest/StyleTest.s"
