@@ -8,6 +8,7 @@ bin/chtl_performance_benchmark: \
   lib/libCHTLCSSCompiler.a \
   lib/libCHTLJSCompiler.a \
   /workspace/thirdparty/antlr/lib/libantlr4-runtime.a \
+  lib/libCJMOD.a \
   lib/libCHTLScanner.a \
   lib/libCHTLConstraint.a \
   lib/libCHTLCore.a \
@@ -58,6 +59,8 @@ lib/libCHTLCSSCompiler.a:
 lib/libCHTLJSCompiler.a:
 
 /workspace/thirdparty/antlr/lib/libantlr4-runtime.a:
+
+lib/libCJMOD.a:
 
 lib/libCHTLScanner.a:
 

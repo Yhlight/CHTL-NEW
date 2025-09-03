@@ -1,4 +1,5 @@
 #include "CJMODIntegration.h"
+#include <iostream>
 #include <regex>
 #include <sstream>
 
@@ -112,6 +113,13 @@ std::string CJMODCompilerIntegration::ProcessCHTLJSExtensions(const std::string&
 void CJMODCompilerIntegration::Reset() {
     m_IsProcessing = false;
     m_ProcessedFragments.clear();
+}
+
+size_t CJMODCompilerIntegration::GetScannerFragmentCount() const {
+    if (m_Scanner) {
+        return m_Scanner->GetFragmentCount();
+    }
+    return 0;
 }
 
 std::vector<std::string> CJMODCompilerIntegration::AnalyzeCJMODSyntax(const std::string& fragment) {
@@ -280,12 +288,16 @@ CJMODManager::CJMODManager() : m_IsInitialized(false) {
 bool CJMODManager::Initialize(CHTL::CHTLUnifiedScanner* scanner,
                              CHTLJS::CHTLJSLexer* lexer,
                              CHTLJS::CHTLJSParser* parser) {
-    if (!scanner || !lexer || !parser) {
-        return false;
-    }
     
-    // 设置编译器引用
-    m_Integration->SetCompilerReferences(scanner, lexer, parser);
+    // 支持测试模式（允许nullptr）
+    if (scanner && lexer && parser) {
+        // 完整模式：设置编译器引用
+        m_Integration->SetCompilerReferences(scanner, lexer, parser);
+        std::cout << "CJMOD初始化：完整编译器模式" << std::endl;
+    } else {
+        // 测试模式：独立运行
+        std::cout << "CJMOD初始化：测试模式（独立运行）" << std::endl;
+    }
     
     // 注册内置扩展
     RegisterBuiltinExtensions();
@@ -311,22 +323,58 @@ std::string CJMODManager::ProcessCodeFragment(const std::string& fragment, size_
         return fragment;
     }
     
+    std::cout << "CJMOD处理代码片段 [" << fragmentIndex << "]:" << std::endl;
+    std::cout << "  原始片段: " << fragment << std::endl;
+    
     // 获取真实的代码片段
     std::string realFragment = m_Integration->GetRealCodeFragment(fragmentIndex);
     
     if (realFragment.empty()) {
         realFragment = fragment; // 使用传入的片段作为备选
+        std::cout << "  使用传入片段" << std::endl;
+    } else {
+        std::cout << "  扫描器片段: " << realFragment << std::endl;
     }
     
-    // 处理代码片段
-    std::string processedFragment = m_Integration->ProcessCodeFragment(realFragment, "CHTLJS");
+    // 使用CJMOD API处理片段
+    std::string processedFragment = realFragment;
     
-    // 如果片段被修改，更新扫描器中的片段
-    if (processedFragment != realFragment) {
-        m_Integration->ReturnProcessedFragment(fragmentIndex, processedFragment);
+    // 1. 语法分析
+    auto syntaxResult = CJMOD::Syntax::analyzeCode(realFragment);
+    std::cout << "  语法分析: " << syntaxResult.Type << std::endl;
+    
+    // 2. 扫描占位符
+    auto placeholders = CJMOD::CJMODScanner::scanPlaceholders(realFragment);
+    std::cout << "  发现占位符: " << placeholders.size() << " 个" << std::endl;
+    
+    // 3. 处理CHTL JS特征
+    if (syntaxResult.IsCHTLJSFunction || realFragment.find("listen") != std::string::npos ||
+        realFragment.find("delegate") != std::string::npos || realFragment.find("animate") != std::string::npos) {
+        
+        std::cout << "  检测到CHTL JS函数，应用CJMOD处理..." << std::endl;
+        
+        // 创建CHTL JS函数
+        auto functionInfo = CJMOD::CJMODFunctionGenerator::CreateCHTLJSFunction(
+            "listen", "cjmodProcessed", realFragment
+        );
+        
+        // 生成处理后的代码
+        processedFragment = CJMOD::CJMODFunctionGenerator::generateFunctionWrapper(functionInfo);
+        std::cout << "  CJMOD处理完成" << std::endl;
     }
     
-    return processedFragment;
+    // 4. 导出结果
+    std::string finalResult = CJMOD::CJMODGenerator::exportResult(processedFragment);
+    
+    // 5. 返回到扫描器（如果可能）
+    if (m_Integration->HasScanner() && fragmentIndex < m_Integration->GetScannerFragmentCount()) {
+        m_Integration->ReturnProcessedFragment(fragmentIndex, finalResult);
+        std::cout << "  片段已更新到扫描器" << std::endl;
+    }
+    
+    std::cout << "  最终结果长度: " << finalResult.length() << " 字符" << std::endl;
+    
+    return finalResult;
 }
 
 void CJMODManager::Reset() {

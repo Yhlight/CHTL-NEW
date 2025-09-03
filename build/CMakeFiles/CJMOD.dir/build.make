@@ -72,52 +72,24 @@ include CMakeFiles/CJMOD.dir/flags.make
 CMakeFiles/CJMOD.dir/codegen:
 .PHONY : CMakeFiles/CJMOD.dir/codegen
 
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o: CMakeFiles/CJMOD.dir/flags.make
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o: /workspace/src/CHTL\ JS/CJMODSystem/CJMODSyntax.cpp
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o: CMakeFiles/CJMOD.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o -MF CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o.d -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o -c "/workspace/src/CHTL JS/CJMODSystem/CJMODSyntax.cpp"
+CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o: CMakeFiles/CJMOD.dir/flags.make
+CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o: /workspace/src/CHTL\ JS/CJMODSystem/CJMODCore.cpp
+CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o: CMakeFiles/CJMOD.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o -MF CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o.d -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o -c "/workspace/src/CHTL JS/CJMODSystem/CJMODCore.cpp"
 
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/workspace/src/CHTL JS/CJMODSystem/CJMODSyntax.cpp" > CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.i
+CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/workspace/src/CHTL JS/CJMODSystem/CJMODCore.cpp" > CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.i
 
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CJMODSystem/CJMODSyntax.cpp" -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.s
-
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o: CMakeFiles/CJMOD.dir/flags.make
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o: /workspace/src/CHTL\ JS/CJMODSystem/CJMODScanner.cpp
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o: CMakeFiles/CJMOD.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o -MF CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o.d -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o -c "/workspace/src/CHTL JS/CJMODSystem/CJMODScanner.cpp"
-
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/workspace/src/CHTL JS/CJMODSystem/CJMODScanner.cpp" > CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.i
-
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CJMODSystem/CJMODScanner.cpp" -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.s
-
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o: CMakeFiles/CJMOD.dir/flags.make
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o: /workspace/src/CHTL\ JS/CJMODSystem/CJMODGenerator.cpp
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o: CMakeFiles/CJMOD.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o -MF CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o.d -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o -c "/workspace/src/CHTL JS/CJMODSystem/CJMODGenerator.cpp"
-
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/workspace/src/CHTL JS/CJMODSystem/CJMODGenerator.cpp" > CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.i
-
-CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CJMODSystem/CJMODGenerator.cpp" -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.s
+CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/workspace/src/CHTL JS/CJMODSystem/CJMODCore.cpp" -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.s
 
 CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o: CMakeFiles/CJMOD.dir/flags.make
 CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o: /workspace/src/CHTL\ JS/CJMODSystem/CJMODIntegration.cpp
 CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o: CMakeFiles/CJMOD.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o -MF CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o.d -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o -c "/workspace/src/CHTL JS/CJMODSystem/CJMODIntegration.cpp"
 
 CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.i: cmake_force
@@ -131,7 +103,7 @@ CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.s: cmake_force
 CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o: CMakeFiles/CJMOD.dir/flags.make
 CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o: /workspace/src/CHTL\ JS/CJMODSystem/ChthollyOfficialModule.cpp
 CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o: CMakeFiles/CJMOD.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o -MF CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o.d -o CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o -c "/workspace/src/CHTL JS/CJMODSystem/ChthollyOfficialModule.cpp"
 
 CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.i: cmake_force
@@ -144,23 +116,19 @@ CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.s: cmake
 
 # Object files for target CJMOD
 CJMOD_OBJECTS = \
-"CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o" \
-"CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o" \
-"CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o" \
+"CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o" \
 "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o" \
 "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o"
 
 # External object files for target CJMOD
 CJMOD_EXTERNAL_OBJECTS =
 
-lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o
-lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o
-lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o
+lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/build.make
 lib/libCJMOD.a: CMakeFiles/CJMOD.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library lib/libCJMOD.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library lib/libCJMOD.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/CJMOD.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CJMOD.dir/link.txt --verbose=$(VERBOSE)
 

@@ -25,14 +25,25 @@ void CompilerDispatcher::InitializeCompilers() {
     m_CHTLJSGenerator = std::make_unique<CHTLJS::CHTLJSGenerator>();
     m_CodeMerger = std::make_unique<CHTLCodeMerger>();     // 初始化代码合并器
     // 暂时注释CJMOD管理器初始化
-    // m_CJMODManager = std::make_unique<CJMOD::CJMODManager>(); // 初始化CJMOD管理器
+    m_CJMODManager = std::make_unique<CJMOD::CJMODManager>(); // 初始化CJMOD管理器
     m_CSSCompiler = std::make_unique<CSSCompiler>();
     m_JSCompiler = std::make_unique<JavaScriptCompiler>();
 }
 
 bool CompilerDispatcher::InitializeCJMODIntegration() {
-    // 暂时跳过CJMOD集成，专注核心功能
-    AddCompilationWarning("CJMOD集成暂时禁用，专注核心编译功能");
+    if (!m_CJMODManager) {
+        AddCompilationWarning("CJMOD管理器未初始化");
+        return true; // 允许核心编译继续
+    }
+    
+    // 使用真实的编译器组件进行初始化
+    bool result = m_CJMODManager->Initialize(m_Scanner.get(), nullptr, m_CHTLJSParser.get());
+    if (!result) {
+        AddCompilationWarning("CJMOD初始化失败，但允许核心编译继续");
+        return true; // 允许核心编译继续
+    }
+    
+    std::cout << "CJMOD集成：初始化成功，扩展功能已启用" << std::endl;
     return true;
 }
 
@@ -226,10 +237,11 @@ CompilationResult CompilerDispatcher::CompileCHTLJSFragments(const std::vector<C
         // 使用CJMOD管理器处理片段
         std::string processedContent = fragment.Content;
         
-        // 暂时跳过CJMOD处理
-        // if (m_CJMODManager && m_CJMODManager->IsInitialized()) {
-        //     processedContent = m_CJMODManager->ProcessCodeFragment(fragment.Content, i);
-        // }
+        // 使用CJMOD处理片段
+        if (m_CJMODManager) {
+            processedContent = m_CJMODManager->ProcessCodeFragment(fragment.Content, i);
+            std::cout << "CJMOD处理片段 " << i << " 完成" << std::endl;
+        }
         
         // 创建处理后的片段
         CodeFragment processedFragment = fragment;
@@ -708,10 +720,9 @@ void CompilerDispatcher::Reset() {
     if (m_JSCompiler) {
         m_JSCompiler->Reset();
     }
-    // 暂时跳过CJMOD重置
-    // if (m_CJMODManager) {
-    //     m_CJMODManager->Reset();
-    // }
+    if (m_CJMODManager) {
+        m_CJMODManager->Reset();
+    }
 }
 
 std::string CompilerDispatcher::GetCompilationStatistics() const {

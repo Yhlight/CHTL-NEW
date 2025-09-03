@@ -4,6 +4,7 @@ bin/chtl: \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
   CMakeFiles/chtl.dir/src/main.cpp.o \
   lib/libCHTLDispatcher.a \
+  lib/libCJMOD.a \
   lib/libCHTLCodeMerger.a \
   lib/libCHTLCSSCompiler.a \
   lib/libCHTLJSCompiler.a \
@@ -50,6 +51,8 @@ bin/chtl: \
 CMakeFiles/chtl.dir/src/main.cpp.o:
 
 lib/libCHTLDispatcher.a:
+
+lib/libCJMOD.a:
 
 lib/libCHTLCodeMerger.a:
 

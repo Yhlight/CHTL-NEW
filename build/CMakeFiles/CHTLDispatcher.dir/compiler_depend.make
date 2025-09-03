@@ -114,6 +114,7 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
   /usr/include/x86_64-linux-gnu/sys/types.h \
   /usr/include/c++/14/algorithm \
   /usr/include/c++/14/any \
+  /usr/include/c++/14/array \
   /usr/include/c++/14/atomic \
   /usr/include/c++/14/backward/auto_ptr.h \
   /usr/include/c++/14/backward/binders.h \
@@ -238,6 +239,7 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
   /usr/include/c++/14/climits \
   /usr/include/c++/14/clocale \
   /usr/include/c++/14/codecvt \
+  /usr/include/c++/14/compare \
   /usr/include/c++/14/concepts \
   /usr/include/c++/14/cstddef \
   /usr/include/c++/14/cstdint \
@@ -259,6 +261,7 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
   /usr/include/c++/14/ext/string_conversions.h \
   /usr/include/c++/14/ext/type_traits.h \
   /usr/include/c++/14/fstream \
+  /usr/include/c++/14/functional \
   /usr/include/c++/14/initializer_list \
   /usr/include/c++/14/ios \
   /usr/include/c++/14/iosfwd \
@@ -339,6 +342,11 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
   /workspace/src/CHTL\ JS/CHTLJSNode/EnhanceSelectorNode.h \
   /workspace/src/CHTL\ JS/CHTLJSNode/VirObjectNode.h \
   /workspace/src/CHTL\ JS/CHTLJSParser/CHTLJSParser.h \
+  /workspace/src/Scanner/CHTLUnifiedScanner.h \
+  /workspace/src/CHTL\ JS/CHTLJSLexer/CHTLJSLexer.h \
+  /workspace/src/CHTL\ JS/CHTLJSParser/CHTLJSParser.h \
+  /workspace/src/CHTL\ JS/CJMODSystem/CJMODCore.h \
+  /workspace/src/CHTL\ JS/CJMODSystem/CJMODIntegration.h \
   /workspace/src/CHTL/CHTLNode/CHTLBaseNode.h \
   /workspace/src/CHTL/CHTLNode/CustomNode.h \
   /workspace/src/CHTL/CHTLNode/ElementNode.h \
@@ -735,8 +743,6 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
 
 /workspace/thirdparty/antlr/include/ANTLRErrorStrategy.h:
 
-/workspace/src/Scanner/CHTLUnifiedScanner.h:
-
 /workspace/src/JS/generated/JavaScriptParserBaseListener.h:
 
 /workspace/src/JS/generated/JavaScriptParser.h:
@@ -772,6 +778,10 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
 /workspace/src/CHTL/CHTLNode/ElementNode.h:
 
 /workspace/src/CHTL/CHTLNode/CHTLBaseNode.h:
+
+/workspace/src/CHTL\ JS/CJMODSystem/CJMODCore.h:
+
+/workspace/src/Scanner/CHTLUnifiedScanner.h:
 
 /workspace/thirdparty/antlr/include/atn/PredictionMode.h:
 
@@ -887,7 +897,15 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
 
 /usr/include/c++/14/iostream:
 
+/usr/include/c++/14/functional:
+
 /usr/include/c++/14/fstream:
+
+/workspace/thirdparty/antlr/include/CharStream.h:
+
+/usr/include/c++/14/ext/type_traits.h:
+
+/usr/include/c++/14/ext/string_conversions.h:
 
 /usr/include/c++/14/bits/alloc_traits.h:
 
@@ -1007,6 +1025,8 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
 
 /usr/include/c++/14/bits/cpp_type_traits.h:
 
+/usr/include/c++/14/array:
+
 /workspace/thirdparty/antlr/include/tree/pattern/TagChunk.h:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
@@ -1038,6 +1058,8 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
 /usr/include/linux/posix_types.h:
 
 /workspace/thirdparty/antlr/include/RuleContext.h:
+
+/workspace/src/CHTL\ JS/CJMODSystem/CJMODIntegration.h:
 
 /usr/include/c++/14/locale:
 
@@ -1267,10 +1289,6 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
 
 /usr/include/limits.h:
 
-/workspace/thirdparty/antlr/include/CharStream.h:
-
-/usr/include/c++/14/ext/type_traits.h:
-
 /usr/include/x86_64-linux-gnu/asm/posix_types_64.h:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
@@ -1305,10 +1323,6 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
 
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
-/usr/include/c++/14/bits/basic_string.h:
-
-/usr/include/c++/14/bits/locale_facets.h:
-
 /usr/include/c++/14/bits/streambuf.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
@@ -1328,6 +1342,10 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/c++/14/bits/stl_relops.h:
+
+/usr/include/c++/14/bits/locale_facets.h:
+
+/usr/include/c++/14/bits/basic_string.h:
 
 /workspace/thirdparty/antlr/include/atn/PlusLoopbackState.h:
 
@@ -1438,6 +1456,8 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
 /workspace/thirdparty/antlr/include/support/CPPUtils.h:
 
 /usr/include/c++/14/ostream:
+
+/usr/include/c++/14/compare:
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
@@ -1602,5 +1622,3 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: /
 /workspace/thirdparty/antlr/include/atn/PlusBlockStartState.h:
 
 /usr/include/c++/14/ext/concurrence.h:
-
-/usr/include/c++/14/ext/string_conversions.h:

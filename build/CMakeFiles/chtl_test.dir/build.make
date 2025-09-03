@@ -102,6 +102,7 @@ bin/chtl_test: lib/libCHTLConstraint.a
 bin/chtl_test: lib/libCHTLCore.a
 bin/chtl_test: lib/libCHTLJSCore.a
 bin/chtl_test: lib/libCHTLScanner.a
+bin/chtl_test: lib/libCJMOD.a
 bin/chtl_test: lib/libCHTLCodeMerger.a
 bin/chtl_test: lib/libCHTLCSSCompiler.a
 bin/chtl_test: lib/libCHTLJSCompiler.a

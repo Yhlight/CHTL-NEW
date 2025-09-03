@@ -97,6 +97,7 @@ bin/chtl_final_completion: CMakeFiles/chtl_final_completion.dir/src/Test/FinalPr
 bin/chtl_final_completion: CMakeFiles/chtl_final_completion.dir/build.make
 bin/chtl_final_completion: CMakeFiles/chtl_final_completion.dir/compiler_depend.ts
 bin/chtl_final_completion: lib/libCHTLDispatcher.a
+bin/chtl_final_completion: lib/libCJMOD.a
 bin/chtl_final_completion: lib/libCHTLScanner.a
 bin/chtl_final_completion: lib/libCHTLConstraint.a
 bin/chtl_final_completion: lib/libCHTLCore.a

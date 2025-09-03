@@ -3,9 +3,7 @@
 #include "../../Scanner/CHTLUnifiedScanner.h"
 #include "../CHTLJSLexer/CHTLJSLexer.h"
 #include "../CHTLJSParser/CHTLJSParser.h"
-#include "CJMODSyntax.h"
-#include "CJMODScanner.h"
-#include "CJMODGenerator.h"
+#include "CJMODCore.h"
 #include <string>
 #include <vector>
 #include <memory>
@@ -125,6 +123,18 @@ public:
      * 重置集成状态
      */
     void Reset();
+    
+    /**
+     * 检查是否有扫描器
+     * @return 是否有扫描器
+     */
+    bool HasScanner() const { return m_Scanner != nullptr; }
+    
+    /**
+     * 获取扫描器片段数量
+     * @return 片段数量
+     */
+    size_t GetScannerFragmentCount() const;
 
 private:
     /**

@@ -30,8 +30,9 @@ export class CHTLCompilerManager {
         const config = vscode.workspace.getConfiguration('chtl');
         this.compilerPath = config.get('compilerPath', '');
 
-        // 设置内置编译器路径
-        this.builtinCompilerPath = path.join(this.context.extensionPath, 'bin', 'chtl-compiler');
+        // 设置内置编译器路径（使用工作区编译器）
+        const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || '';
+        this.builtinCompilerPath = path.join(workspaceRoot, 'build', 'bin', 'chtl');
         
         // 如果没有配置外部编译器，使用内置编译器
         if (!this.compilerPath) {
@@ -62,8 +63,8 @@ export class CHTLCompilerManager {
                 };
             }
 
-            // 执行编译命令
-            const command = `"${this.compilerPath}" "${filePath}" -o "${outputPath}"`;
+            // 执行编译命令（CHTL编译器格式：chtl input.chtl output.html）
+            const command = `"${this.compilerPath}" "${filePath}" "${outputPath}"`;
             console.log(`🔧 执行编译命令: ${command}`);
 
             const { stdout, stderr } = await execAsync(command, {
@@ -119,8 +120,9 @@ export class CHTLCompilerManager {
                 fs.mkdirSync(outputDir, { recursive: true });
             }
 
-            // 执行CSS导出命令
-            const command = `"${this.compilerPath}" "${filePath}" --export-css -o "${cssOutputPath}"`;
+            // 执行CSS导出命令（先编译到HTML，然后提取CSS）
+            const tempHtmlPath = path.join(outputDir, `${fileName}_temp.html`);
+            const command = `"${this.compilerPath}" "${filePath}" "${tempHtmlPath}"`;
             console.log(`🎨 执行CSS导出命令: ${command}`);
 
             const { stdout, stderr } = await execAsync(command, {
@@ -131,8 +133,17 @@ export class CHTLCompilerManager {
                 console.warn(`⚠️ CSS导出警告: ${stderr}`);
             }
 
-            if (fs.existsSync(cssOutputPath)) {
-                const cssContent = fs.readFileSync(cssOutputPath, 'utf8');
+            if (fs.existsSync(tempHtmlPath)) {
+                // 从HTML中提取CSS
+                const htmlContent = fs.readFileSync(tempHtmlPath, 'utf8');
+                const cssContent = this.extractCSSFromHTML(htmlContent);
+                
+                // 写入CSS文件
+                fs.writeFileSync(cssOutputPath, cssContent);
+                
+                // 清理临时文件
+                fs.unlinkSync(tempHtmlPath);
+                
                 return {
                     success: true,
                     outputPath: cssOutputPath,
@@ -166,8 +177,9 @@ export class CHTLCompilerManager {
                 fs.mkdirSync(outputDir, { recursive: true });
             }
 
-            // 执行JS导出命令
-            const command = `"${this.compilerPath}" "${filePath}" --export-js -o "${jsOutputPath}"`;
+            // 执行JS导出命令（先编译到HTML，然后提取JS）
+            const tempHtmlPath = path.join(outputDir, `${fileName}_temp.html`);
+            const command = `"${this.compilerPath}" "${filePath}" "${tempHtmlPath}"`;
             console.log(`⚡ 执行JS导出命令: ${command}`);
 
             const { stdout, stderr } = await execAsync(command, {
@@ -178,8 +190,17 @@ export class CHTLCompilerManager {
                 console.warn(`⚠️ JS导出警告: ${stderr}`);
             }
 
-            if (fs.existsSync(jsOutputPath)) {
-                const jsContent = fs.readFileSync(jsOutputPath, 'utf8');
+            if (fs.existsSync(tempHtmlPath)) {
+                // 从HTML中提取JavaScript
+                const htmlContent = fs.readFileSync(tempHtmlPath, 'utf8');
+                const jsContent = this.extractJSFromHTML(htmlContent);
+                
+                // 写入JS文件
+                fs.writeFileSync(jsOutputPath, jsContent);
+                
+                // 清理临时文件
+                fs.unlinkSync(tempHtmlPath);
+                
                 return {
                     success: true,
                     outputPath: jsOutputPath,
@@ -224,5 +245,34 @@ export class CHTLCompilerManager {
     // 重新加载编译器配置
     reload() {
         this.initializeCompiler();
+    }
+
+    // 从HTML中提取CSS
+    private extractCSSFromHTML(htmlContent: string): string {
+        const styleRegex = /<style[^>]*>([\s\S]*?)<\/style>/gi;
+        let cssContent = '';
+        let match;
+        
+        while ((match = styleRegex.exec(htmlContent)) !== null) {
+            cssContent += match[1] + '\n';
+        }
+        
+        return cssContent.trim();
+    }
+
+    // 从HTML中提取JavaScript
+    private extractJSFromHTML(htmlContent: string): string {
+        const scriptRegex = /<script[^>]*>([\s\S]*?)<\/script>/gi;
+        let jsContent = '';
+        let match;
+        
+        while ((match = scriptRegex.exec(htmlContent)) !== null) {
+            // 跳过src属性的script标签
+            if (!match[0].includes('src=')) {
+                jsContent += match[1] + '\n';
+            }
+        }
+        
+        return jsContent.trim();
     }
 }

@@ -50,6 +50,10 @@
 /workspace/build/CMakeFiles/chtl_performance_benchmark.dir
 /workspace/build/CMakeFiles/chtl_cjmod_real_test.dir
 /workspace/build/CMakeFiles/chtl_final_completion.dir
+/workspace/build/CMakeFiles/chtl_cjmod_complete_test.dir
+/workspace/build/CMakeFiles/chtl_official_module_complete_test.dir
+/workspace/build/CMakeFiles/chtl_final_cjmod_test.dir
+/workspace/build/CMakeFiles/chtl_complete_implementation_report.dir
 /workspace/build/CMakeFiles/run_tests.dir
 /workspace/build/CMakeFiles/compile_example.dir
 /workspace/build/CMakeFiles/edit_cache.dir

@@ -1,0 +1,13 @@
+listen { 
+    selector: ".button",
+    event: "click",
+    callback: function() {
+        console.log("CJMOD处理的按钮点击");
+    }
+}
+
+delegate {
+    parent: ".container",
+    target: ".dynamic-button",
+    event: "click"
+}

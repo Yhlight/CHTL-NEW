@@ -8,10 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/workspace/src/CHTL JS/CJMODSystem/CJMODGenerator.cpp" "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o" "gcc" "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODGenerator.cpp.o.d"
+  "/workspace/src/CHTL JS/CJMODSystem/CJMODCore.cpp" "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o" "gcc" "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODCore.cpp.o.d"
   "/workspace/src/CHTL JS/CJMODSystem/CJMODIntegration.cpp" "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o" "gcc" "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODIntegration.cpp.o.d"
-  "/workspace/src/CHTL JS/CJMODSystem/CJMODScanner.cpp" "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o" "gcc" "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODScanner.cpp.o.d"
-  "/workspace/src/CHTL JS/CJMODSystem/CJMODSyntax.cpp" "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o" "gcc" "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/CJMODSyntax.cpp.o.d"
   "/workspace/src/CHTL JS/CJMODSystem/ChthollyOfficialModule.cpp" "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o" "gcc" "CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o.d"
   )
 

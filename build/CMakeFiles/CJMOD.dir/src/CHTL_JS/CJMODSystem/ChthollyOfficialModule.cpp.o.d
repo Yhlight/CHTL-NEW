@@ -247,13 +247,11 @@ CMakeFiles/CJMOD.dir/src/CHTL_JS/CJMODSystem/ChthollyOfficialModule.cpp.o: \
   /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSParser/../CHTLJSNode/EnhanceSelectorNode.h \
   /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSParser/../CHTLJSNode/VirObjectNode.h \
   /workspace/src/CHTL\ JS/CJMODSystem/../CHTLJSParser/../CHTLJSNode/AnimateNode.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/CJMODSyntax.h \
+  /workspace/src/CHTL\ JS/CJMODSystem/CJMODCore.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/functional \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/std_function.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/array \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/compare \
-  /workspace/src/CHTL\ JS/CJMODSystem/CJMODScanner.h \
-  /workspace/src/CHTL\ JS/CJMODSystem/CJMODGenerator.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/regex \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bitset \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/sstream \

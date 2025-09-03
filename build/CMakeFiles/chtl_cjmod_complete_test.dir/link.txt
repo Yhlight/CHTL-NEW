@@ -1,0 +1,1 @@
+/usr/bin/c++ -Xlinker --dependency-file=CMakeFiles/chtl_cjmod_complete_test.dir/link.d CMakeFiles/chtl_cjmod_complete_test.dir/src/Test/CJMODCompleteTest.cpp.o -o bin/chtl_cjmod_complete_test   -L/workspace/thirdparty/antlr/lib  -Wl,-rpath,/workspace/thirdparty/antlr/lib lib/libCJMOD.a lib/libCHTLJSCore.a lib/libCHTLScanner.a

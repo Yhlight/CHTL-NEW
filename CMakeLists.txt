@@ -119,9 +119,7 @@ set(JS_SOURCES
 
 # CJMOD API源文件 (已移动到CHTL JS/CJMODSystem内部)
 set(CJMOD_SOURCES
-    "src/CHTL JS/CJMODSystem/CJMODSyntax.cpp"
-    "src/CHTL JS/CJMODSystem/CJMODScanner.cpp"
-    "src/CHTL JS/CJMODSystem/CJMODGenerator.cpp"
+    "src/CHTL JS/CJMODSystem/CJMODCore.cpp"
     "src/CHTL JS/CJMODSystem/CJMODIntegration.cpp"
     "src/CHTL JS/CJMODSystem/ChthollyOfficialModule.cpp"
 )
@@ -228,11 +226,11 @@ target_include_directories(CHTLCodeMerger PUBLIC src/CodeMerger)
 # 创建调度器库
 add_library(CHTLDispatcher STATIC ${DISPATCHER_SOURCES})
 target_include_directories(CHTLDispatcher PUBLIC src/CompilerDispatcher)
-target_link_libraries(CHTLDispatcher CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler)
+target_link_libraries(CHTLDispatcher CJMOD CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler)
 
 # 主程序可执行文件
 add_executable(chtl src/main.cpp)
-target_link_libraries(chtl CHTLDispatcher CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner antlr4-runtime)
+target_link_libraries(chtl CHTLDispatcher CJMOD CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner antlr4-runtime)
 
 # 测试可执行文件
 add_executable(chtl_test src/Test/BasicCompilationTest.cpp)
@@ -380,6 +378,22 @@ target_link_libraries(chtl_cjmod_real_test CJMOD CHTLJSCore CHTLScanner)
 # 最终项目完成总结
 add_executable(chtl_final_completion src/Test/FinalProjectCompletionSummary.cpp)
 target_link_libraries(chtl_final_completion CHTLDispatcher)
+
+# CJMOD完整功能测试
+add_executable(chtl_cjmod_complete_test src/Test/CJMODCompleteTest.cpp)
+target_link_libraries(chtl_cjmod_complete_test CJMOD CHTLJSCore CHTLScanner)
+
+# 官方模块完整测试
+add_executable(chtl_official_module_complete_test src/Test/OfficialModuleCompleteTest.cpp)
+target_link_libraries(chtl_official_module_complete_test CJMOD CHTLModuleSystem CHTLUtilSystem CHTLJSCore CHTLScanner)
+
+# CJMOD最终集成测试
+add_executable(chtl_final_cjmod_test src/Test/FinalCJMODIntegrationTest.cpp)
+target_link_libraries(chtl_final_cjmod_test CJMOD CHTLDispatcher CHTLJSCore CHTLScanner)
+
+# CHTL彻底完整实现报告
+add_executable(chtl_complete_implementation_report src/Test/CHTLCompleteImplementationReport.cpp)
+target_link_libraries(chtl_complete_implementation_report CHTLDispatcher)
 
 
 

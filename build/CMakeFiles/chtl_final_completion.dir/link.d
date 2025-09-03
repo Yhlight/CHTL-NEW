@@ -4,6 +4,7 @@ bin/chtl_final_completion: \
   /usr/lib/gcc/x86_64-linux-gnu/14/crtbeginS.o \
   CMakeFiles/chtl_final_completion.dir/src/Test/FinalProjectCompletionSummary.cpp.o \
   lib/libCHTLDispatcher.a \
+  lib/libCJMOD.a \
   lib/libCHTLScanner.a \
   lib/libCHTLConstraint.a \
   lib/libCHTLCore.a \
@@ -50,6 +51,8 @@ bin/chtl_final_completion: \
 CMakeFiles/chtl_final_completion.dir/src/Test/FinalProjectCompletionSummary.cpp.o:
 
 lib/libCHTLDispatcher.a:
+
+lib/libCJMOD.a:
 
 lib/libCHTLScanner.a:
 

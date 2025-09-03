@@ -246,13 +246,11 @@ CMakeFiles/chtl_cjmod_real_test.dir/src/Test/CJMODRealIntegrationTest.cpp.o: \
   /workspace/src/Test/../CHTL\ JS/CJMODSystem/../CHTLJSParser/../CHTLJSNode/EnhanceSelectorNode.h \
   /workspace/src/Test/../CHTL\ JS/CJMODSystem/../CHTLJSParser/../CHTLJSNode/VirObjectNode.h \
   /workspace/src/Test/../CHTL\ JS/CJMODSystem/../CHTLJSParser/../CHTLJSNode/AnimateNode.h \
-  /workspace/src/Test/../CHTL\ JS/CJMODSystem/CJMODSyntax.h \
+  /workspace/src/Test/../CHTL\ JS/CJMODSystem/CJMODCore.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/functional \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/std_function.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/array \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/compare \
-  /workspace/src/Test/../CHTL\ JS/CJMODSystem/CJMODScanner.h \
-  /workspace/src/Test/../CHTL\ JS/CJMODSystem/CJMODGenerator.h \
   /workspace/src/Test/../Scanner/CHTLUnifiedScanner.h \
   /workspace/src/Test/../CHTL\ JS/CHTLJSLexer/CHTLJSLexer.h \
   /workspace/src/Test/../CHTL\ JS/CHTLJSParser/CHTLJSParser.h \

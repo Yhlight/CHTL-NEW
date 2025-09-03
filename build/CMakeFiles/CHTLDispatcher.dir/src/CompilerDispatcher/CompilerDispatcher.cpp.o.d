@@ -276,6 +276,15 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: \
   /workspace/src/CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/EnhanceSelectorNode.h \
   /workspace/src/CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/VirObjectNode.h \
   /workspace/src/CompilerDispatcher/../CHTL\ JS/CHTLJSGenerator/../CHTLJSNode/AnimateNode.h \
+  /workspace/src/CompilerDispatcher/../CHTL\ JS/CJMODSystem/CJMODIntegration.h \
+  /workspace/src/CompilerDispatcher/../CHTL\ JS/CJMODSystem/../../Scanner/CHTLUnifiedScanner.h \
+  /workspace/src/CompilerDispatcher/../CHTL\ JS/CJMODSystem/../CHTLJSLexer/CHTLJSLexer.h \
+  /workspace/src/CompilerDispatcher/../CHTL\ JS/CJMODSystem/../CHTLJSParser/CHTLJSParser.h \
+  /workspace/src/CompilerDispatcher/../CHTL\ JS/CJMODSystem/CJMODCore.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/functional \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/std_function.h \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/array \
+  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/compare \
   /workspace/src/CompilerDispatcher/../CodeMerger/CHTLCodeMerger.h \
   /workspace/src/CompilerDispatcher/../CSS/CSSCompiler.h \
   /workspace/src/CompilerDispatcher/../CSS/generated/css3Lexer.h \
@@ -513,7 +522,6 @@ CMakeFiles/CHTLDispatcher.dir/src/CompilerDispatcher/CompilerDispatcher.cpp.o: \
   /workspace/src/CompilerDispatcher/../JS/generated/JavaScriptParserListener.h \
   /workspace/src/CompilerDispatcher/../JS/../../thirdparty/antlr/include/antlr4-runtime.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/regex \
-  /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/std_function.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_constants.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_error.h \
   /usr/lib/gcc/x86_64-linux-gnu/14/../../../../include/c++/14/bits/regex_automaton.h \

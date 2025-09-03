@@ -4,6 +4,10 @@
   "description": "CHTL (Chtholly HyperText Language) 官方IDE支持插件",
   "version": "1.0.0",
   "publisher": "CHTL-Official",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CHTL-Official/chtl-compiler"
+  },
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -21,18 +25,40 @@
     "template"
   ],
   "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:chtl",
+    "onLanguage:chtl-js",
+    "onCommand:chtl.compile",
+    "onCommand:chtl.preview",
+    "onCommand:chtl.format",
+    "onCommand:chtl.openInBrowser",
+    "onCommand:chtl.exportHTML",
+    "onCommand:chtl.exportCSS",
+    "onCommand:chtl.exportJS",
+    "onCommand:chtl.openDocumentation"
+  ],
   "contributes": {
     "languages": [
       {
         "id": "chtl",
-        "aliases": ["CHTL", "chtl"],
-        "extensions": [".chtl"],
+        "aliases": [
+          "CHTL",
+          "chtl"
+        ],
+        "extensions": [
+          ".chtl"
+        ],
         "configuration": "./language-configuration.json"
       },
       {
         "id": "chtl-js",
-        "aliases": ["CHTL JS", "chtl-js"],
-        "extensions": [".cjjs"],
+        "aliases": [
+          "CHTL JS",
+          "chtl-js"
+        ],
+        "extensions": [
+          ".cjjs"
+        ],
         "configuration": "./language-configuration-js.json"
       }
     ],
@@ -179,7 +205,10 @@
         },
         "chtl.formatStyle": {
           "type": "string",
-          "enum": ["cpp", "js"],
+          "enum": [
+            "cpp",
+            "js"
+          ],
           "default": "cpp",
           "description": "代码格式化风格"
         },
@@ -202,13 +231,15 @@
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
-    "@types/vscode": "^1.74.0",
+    "@types/chokidar": "^1.7.5",
     "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@types/ws": "^8.18.1",
     "typescript": "^4.9.4"
   },
   "dependencies": {
+    "chokidar": "^3.5.3",
     "express": "^4.18.2",
-    "ws": "^8.13.0",
-    "chokidar": "^3.5.3"
+    "ws": "^8.13.0"
   }
 }
