@@ -1,0 +1,25 @@
+CHTL Compilation Timer Log
+Started: Wed Sep  3 10:03:36 AM UTC 2025
+Command: bash scripts/linux/build_release.sh
+Max Time: 300s
+Max Memory: 2048MB
+
+Time(s) | Memory(MB) | CPU(%) | Status
+--------|-----------|--------|--------
+      0 |         3 |    0.0 | Running
+      2 |         3 |    0.0 | Running
+      4 |         3 |    0.0 | Running
+      7 |         3 |    0.0 | Running
+      9 |         3 |    0.0 | Running
+     11 |         3 |    0.0 | Running
+     13 |         3 |    0.0 | Running
+     15 |         3 |    0.0 | Running
+     18 |         3 |    0.0 | Running
+     20 |         3 |    0.0 | Running
+     22 |         3 |    0.0 | Running
+     24 |         3 |    0.0 | Running
+     26 |         3 |    0.0 | Running
+     28 |         3 |    0.0 | Running
+     31 |         3 |    0.0 | Running
+COMPLETED: Total time 33s, Exit status: 1
+Finished: Wed Sep  3 10:04:09 AM UTC 2025

@@ -343,6 +343,19 @@ chtl-professional/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl-professional.dir/build.make CMakeFiles/chtl-professional.dir/build
 .PHONY : chtl-professional/fast
 
+#=============================================================================
+# Target rules for targets named chtl_minimal_test
+
+# Build rule for target.
+chtl_minimal_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_minimal_test
+.PHONY : chtl_minimal_test
+
+# fast build rule for target.
+chtl_minimal_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_minimal_test.dir/build.make CMakeFiles/chtl_minimal_test.dir/build
+.PHONY : chtl_minimal_test/fast
+
 src/CHTL/CHTLContext/CHTLContext.o: src/CHTL/CHTLContext/CHTLContext.cpp.o
 .PHONY : src/CHTL/CHTLContext/CHTLContext.o
 
@@ -1735,6 +1748,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl.dir/build.make CMakeFiles/chtl.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/main_minimal_test.o: src/main_minimal_test.cpp.o
+.PHONY : src/main_minimal_test.o
+
+# target to build an object file
+src/main_minimal_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_minimal_test.dir/build.make CMakeFiles/chtl_minimal_test.dir/src/main_minimal_test.cpp.o
+.PHONY : src/main_minimal_test.cpp.o
+
+src/main_minimal_test.i: src/main_minimal_test.cpp.i
+.PHONY : src/main_minimal_test.i
+
+# target to preprocess a source file
+src/main_minimal_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_minimal_test.dir/build.make CMakeFiles/chtl_minimal_test.dir/src/main_minimal_test.cpp.i
+.PHONY : src/main_minimal_test.cpp.i
+
+src/main_minimal_test.s: src/main_minimal_test.cpp.s
+.PHONY : src/main_minimal_test.s
+
+# target to generate assembly for a file
+src/main_minimal_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_minimal_test.dir/build.make CMakeFiles/chtl_minimal_test.dir/src/main_minimal_test.cpp.s
+.PHONY : src/main_minimal_test.cpp.s
+
 src/main_professional.o: src/main_professional.cpp.o
 .PHONY : src/main_professional.o
 
@@ -1785,6 +1822,7 @@ help:
 	@echo "... CJMOD"
 	@echo "... chtl"
 	@echo "... chtl-professional"
+	@echo "... chtl_minimal_test"
 	@echo "... src/CHTL/CHTLContext/CHTLContext.o"
 	@echo "... src/CHTL/CHTLContext/CHTLContext.i"
 	@echo "... src/CHTL/CHTLContext/CHTLContext.s"
@@ -1959,6 +1997,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/main_minimal_test.o"
+	@echo "... src/main_minimal_test.i"
+	@echo "... src/main_minimal_test.s"
 	@echo "... src/main_professional.o"
 	@echo "... src/main_professional.i"
 	@echo "... src/main_professional.s"

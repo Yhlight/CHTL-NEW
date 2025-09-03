@@ -1,0 +1,1 @@
+/usr/bin/clang++ -O3 -DNDEBUG -Xlinker --dependency-file=CMakeFiles/chtl_minimal_test.dir/link.d CMakeFiles/chtl_minimal_test.dir/src/main_minimal_test.cpp.o -o bin/chtl_minimal_test  lib/libCHTLCore.a

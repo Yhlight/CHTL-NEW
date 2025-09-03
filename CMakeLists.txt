@@ -337,7 +337,10 @@ if(CHTL_FULL_SUPPORT)
     target_link_libraries(chtl-professional Threads::Threads)
 endif()
 
-# Test executables (Debug mode)
+# Test executables
+add_executable(chtl_minimal_test src/main_minimal_test.cpp)
+target_link_libraries(chtl_minimal_test CHTLCore)
+
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_executable(chtl_cjmod_test src/Test/CJMODCompleteTest.cpp)
     target_link_libraries(chtl_cjmod_test CJMOD CHTLJSCore CHTLScanner)

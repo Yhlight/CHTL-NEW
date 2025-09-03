@@ -258,14 +258,27 @@ private:
      * @return 统计信息
      */
     std::string GenerateStatistics();
-
-#ifndef CHTL_WITH_ANTLR
+    
     /**
-     * HTML转义函数（简化版本使用）
+     * 直接编译（安全模式）
+     * @return 是否成功
+     */
+    bool CompileDirectly();
+
+    /**
+     * HTML转义函数
      * @param input 输入字符串
      * @return 转义后的字符串
      */
     std::string escapeHtml(const std::string& input);
+
+#ifdef CHTL_WITH_ANTLR
+    /**
+     * HTML转义函数（ANTLR版本）
+     * @param input 输入字符串
+     * @return 转义后的字符串
+     */
+    std::string htmlEscape(const std::string& input);
 #endif
 };
 
