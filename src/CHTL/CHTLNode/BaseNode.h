@@ -50,8 +50,8 @@ namespace CHTL {
         // 配置相关节点
         CONFIGURATION,          // 配置节点
         CONFIG_ITEM,            // 配置项节点
-        NAME_CONFIG,            // Name配置节点
-        ORIGIN_TYPE_CONFIG,     // OriginType配置节点
+        NAME,                   // Name配置节点
+        ORIGIN_TYPE,            // OriginType配置节点
         
         // 命名空间相关节点
         NAMESPACE,              // 命名空间节点

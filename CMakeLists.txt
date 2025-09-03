@@ -48,6 +48,8 @@ set(CHTL_SOURCES
     src/CHTL/CHTLNode/TemplateNode.cpp
     src/CHTL/CHTLNode/CustomNode.cpp
     src/CHTL/CHTLNode/OriginNode.cpp
+    src/CHTL/CHTLNode/ImportNode.cpp
+    src/CHTL/CHTLNode/ConfigNode.cpp
 )
 
 add_library(CHTL_Lib STATIC ${CHTL_SOURCES})
@@ -160,6 +162,22 @@ if(BUILD_TESTS)
     
     target_link_libraries(origin_test CHTL_Lib)
     target_include_directories(origin_test PRIVATE src/CHTL src/Test/AstTest)
+    
+    # 导入测试
+    add_executable(import_test
+        src/Test/AstTest/ImportTest.cpp
+    )
+    
+    target_link_libraries(import_test CHTL_Lib)
+    target_include_directories(import_test PRIVATE src/CHTL src/Test/AstTest)
+    
+    # 配置测试
+    add_executable(config_test
+        src/Test/AstTest/ConfigTest.cpp
+    )
+    
+    target_link_libraries(config_test CHTL_Lib)
+    target_include_directories(config_test PRIVATE src/CHTL src/Test/AstTest)
 endif()
 
 # 安装规则

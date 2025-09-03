@@ -290,6 +290,8 @@ namespace CHTL {
             case CHTLNodeType::ORIGIN_CUSTOM: return "ORIGIN_CUSTOM";
             case CHTLNodeType::IMPORT: return "IMPORT";
             case CHTLNodeType::CONFIGURATION: return "CONFIGURATION";
+            case CHTLNodeType::NAME: return "NAME";
+            case CHTLNodeType::ORIGIN_TYPE: return "ORIGIN_TYPE";
             case CHTLNodeType::NAMESPACE: return "NAMESPACE";
             case CHTLNodeType::INHERIT: return "INHERIT";
             case CHTLNodeType::DELETE: return "DELETE";

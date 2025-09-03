@@ -60,4 +60,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/template_test.dir/DependInfo.cmake"
   "CMakeFiles/custom_test.dir/DependInfo.cmake"
   "CMakeFiles/origin_test.dir/DependInfo.cmake"
+  "CMakeFiles/import_test.dir/DependInfo.cmake"
+  "CMakeFiles/config_test.dir/DependInfo.cmake"
   )

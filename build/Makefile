@@ -304,6 +304,32 @@ origin_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/origin_test.dir/build.make CMakeFiles/origin_test.dir/build
 .PHONY : origin_test/fast
 
+#=============================================================================
+# Target rules for targets named import_test
+
+# Build rule for target.
+import_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 import_test
+.PHONY : import_test
+
+# fast build rule for target.
+import_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/import_test.dir/build.make CMakeFiles/import_test.dir/build
+.PHONY : import_test/fast
+
+#=============================================================================
+# Target rules for targets named config_test
+
+# Build rule for target.
+config_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 config_test
+.PHONY : config_test
+
+# fast build rule for target.
+config_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/config_test.dir/build.make CMakeFiles/config_test.dir/build
+.PHONY : config_test/fast
+
 src/CHTL/CHTLLexer/CHTLGlobalMap.o: src/CHTL/CHTLLexer/CHTLGlobalMap.cpp.o
 .PHONY : src/CHTL/CHTLLexer/CHTLGlobalMap.o
 
@@ -433,6 +459,30 @@ src/CHTL/CHTLNode/CommentNode.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/CommentNode.cpp.s
 .PHONY : src/CHTL/CHTLNode/CommentNode.cpp.s
 
+src/CHTL/CHTLNode/ConfigNode.o: src/CHTL/CHTLNode/ConfigNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/ConfigNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/ConfigNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ConfigNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/ConfigNode.cpp.o
+
+src/CHTL/CHTLNode/ConfigNode.i: src/CHTL/CHTLNode/ConfigNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/ConfigNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/ConfigNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ConfigNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/ConfigNode.cpp.i
+
+src/CHTL/CHTLNode/ConfigNode.s: src/CHTL/CHTLNode/ConfigNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/ConfigNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/ConfigNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ConfigNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/ConfigNode.cpp.s
+
 src/CHTL/CHTLNode/CustomNode.o: src/CHTL/CHTLNode/CustomNode.cpp.o
 .PHONY : src/CHTL/CHTLNode/CustomNode.o
 
@@ -480,6 +530,30 @@ src/CHTL/CHTLNode/ElementNode.s: src/CHTL/CHTLNode/ElementNode.cpp.s
 src/CHTL/CHTLNode/ElementNode.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ElementNode.cpp.s
 .PHONY : src/CHTL/CHTLNode/ElementNode.cpp.s
+
+src/CHTL/CHTLNode/ImportNode.o: src/CHTL/CHTLNode/ImportNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/ImportNode.o
+
+# target to build an object file
+src/CHTL/CHTLNode/ImportNode.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ImportNode.cpp.o
+.PHONY : src/CHTL/CHTLNode/ImportNode.cpp.o
+
+src/CHTL/CHTLNode/ImportNode.i: src/CHTL/CHTLNode/ImportNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/ImportNode.i
+
+# target to preprocess a source file
+src/CHTL/CHTLNode/ImportNode.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ImportNode.cpp.i
+.PHONY : src/CHTL/CHTLNode/ImportNode.cpp.i
+
+src/CHTL/CHTLNode/ImportNode.s: src/CHTL/CHTLNode/ImportNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/ImportNode.s
+
+# target to generate assembly for a file
+src/CHTL/CHTLNode/ImportNode.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CHTL_Lib.dir/build.make CMakeFiles/CHTL_Lib.dir/src/CHTL/CHTLNode/ImportNode.cpp.s
+.PHONY : src/CHTL/CHTLNode/ImportNode.cpp.s
 
 src/CHTL/CHTLNode/OriginNode.o: src/CHTL/CHTLNode/OriginNode.cpp.o
 .PHONY : src/CHTL/CHTLNode/OriginNode.o
@@ -778,6 +852,30 @@ src/Test/AstTest/ASTTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ast_test.dir/build.make CMakeFiles/ast_test.dir/src/Test/AstTest/ASTTest.cpp.s
 .PHONY : src/Test/AstTest/ASTTest.cpp.s
 
+src/Test/AstTest/ConfigTest.o: src/Test/AstTest/ConfigTest.cpp.o
+.PHONY : src/Test/AstTest/ConfigTest.o
+
+# target to build an object file
+src/Test/AstTest/ConfigTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/config_test.dir/build.make CMakeFiles/config_test.dir/src/Test/AstTest/ConfigTest.cpp.o
+.PHONY : src/Test/AstTest/ConfigTest.cpp.o
+
+src/Test/AstTest/ConfigTest.i: src/Test/AstTest/ConfigTest.cpp.i
+.PHONY : src/Test/AstTest/ConfigTest.i
+
+# target to preprocess a source file
+src/Test/AstTest/ConfigTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/config_test.dir/build.make CMakeFiles/config_test.dir/src/Test/AstTest/ConfigTest.cpp.i
+.PHONY : src/Test/AstTest/ConfigTest.cpp.i
+
+src/Test/AstTest/ConfigTest.s: src/Test/AstTest/ConfigTest.cpp.s
+.PHONY : src/Test/AstTest/ConfigTest.s
+
+# target to generate assembly for a file
+src/Test/AstTest/ConfigTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/config_test.dir/build.make CMakeFiles/config_test.dir/src/Test/AstTest/ConfigTest.cpp.s
+.PHONY : src/Test/AstTest/ConfigTest.cpp.s
+
 src/Test/AstTest/CustomTest.o: src/Test/AstTest/CustomTest.cpp.o
 .PHONY : src/Test/AstTest/CustomTest.o
 
@@ -801,6 +899,30 @@ src/Test/AstTest/CustomTest.s: src/Test/AstTest/CustomTest.cpp.s
 src/Test/AstTest/CustomTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/custom_test.dir/build.make CMakeFiles/custom_test.dir/src/Test/AstTest/CustomTest.cpp.s
 .PHONY : src/Test/AstTest/CustomTest.cpp.s
+
+src/Test/AstTest/ImportTest.o: src/Test/AstTest/ImportTest.cpp.o
+.PHONY : src/Test/AstTest/ImportTest.o
+
+# target to build an object file
+src/Test/AstTest/ImportTest.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/import_test.dir/build.make CMakeFiles/import_test.dir/src/Test/AstTest/ImportTest.cpp.o
+.PHONY : src/Test/AstTest/ImportTest.cpp.o
+
+src/Test/AstTest/ImportTest.i: src/Test/AstTest/ImportTest.cpp.i
+.PHONY : src/Test/AstTest/ImportTest.i
+
+# target to preprocess a source file
+src/Test/AstTest/ImportTest.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/import_test.dir/build.make CMakeFiles/import_test.dir/src/Test/AstTest/ImportTest.cpp.i
+.PHONY : src/Test/AstTest/ImportTest.cpp.i
+
+src/Test/AstTest/ImportTest.s: src/Test/AstTest/ImportTest.cpp.s
+.PHONY : src/Test/AstTest/ImportTest.s
+
+# target to generate assembly for a file
+src/Test/AstTest/ImportTest.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/import_test.dir/build.make CMakeFiles/import_test.dir/src/Test/AstTest/ImportTest.cpp.s
+.PHONY : src/Test/AstTest/ImportTest.cpp.s
 
 src/Test/AstTest/OriginTest.o: src/Test/AstTest/OriginTest.cpp.o
 .PHONY : src/Test/AstTest/OriginTest.o
@@ -940,7 +1062,9 @@ help:
 	@echo "... Scanner_Lib"
 	@echo "... ast_test"
 	@echo "... chtl_compiler"
+	@echo "... config_test"
 	@echo "... custom_test"
+	@echo "... import_test"
 	@echo "... origin_test"
 	@echo "... style_test"
 	@echo "... template_test"
@@ -960,12 +1084,18 @@ help:
 	@echo "... src/CHTL/CHTLNode/CommentNode.o"
 	@echo "... src/CHTL/CHTLNode/CommentNode.i"
 	@echo "... src/CHTL/CHTLNode/CommentNode.s"
+	@echo "... src/CHTL/CHTLNode/ConfigNode.o"
+	@echo "... src/CHTL/CHTLNode/ConfigNode.i"
+	@echo "... src/CHTL/CHTLNode/ConfigNode.s"
 	@echo "... src/CHTL/CHTLNode/CustomNode.o"
 	@echo "... src/CHTL/CHTLNode/CustomNode.i"
 	@echo "... src/CHTL/CHTLNode/CustomNode.s"
 	@echo "... src/CHTL/CHTLNode/ElementNode.o"
 	@echo "... src/CHTL/CHTLNode/ElementNode.i"
 	@echo "... src/CHTL/CHTLNode/ElementNode.s"
+	@echo "... src/CHTL/CHTLNode/ImportNode.o"
+	@echo "... src/CHTL/CHTLNode/ImportNode.i"
+	@echo "... src/CHTL/CHTLNode/ImportNode.s"
 	@echo "... src/CHTL/CHTLNode/OriginNode.o"
 	@echo "... src/CHTL/CHTLNode/OriginNode.i"
 	@echo "... src/CHTL/CHTLNode/OriginNode.s"
@@ -1002,9 +1132,15 @@ help:
 	@echo "... src/Test/AstTest/ASTTest.o"
 	@echo "... src/Test/AstTest/ASTTest.i"
 	@echo "... src/Test/AstTest/ASTTest.s"
+	@echo "... src/Test/AstTest/ConfigTest.o"
+	@echo "... src/Test/AstTest/ConfigTest.i"
+	@echo "... src/Test/AstTest/ConfigTest.s"
 	@echo "... src/Test/AstTest/CustomTest.o"
 	@echo "... src/Test/AstTest/CustomTest.i"
 	@echo "... src/Test/AstTest/CustomTest.s"
+	@echo "... src/Test/AstTest/ImportTest.o"
+	@echo "... src/Test/AstTest/ImportTest.i"
+	@echo "... src/Test/AstTest/ImportTest.s"
 	@echo "... src/Test/AstTest/OriginTest.o"
 	@echo "... src/Test/AstTest/OriginTest.i"
 	@echo "... src/Test/AstTest/OriginTest.s"
