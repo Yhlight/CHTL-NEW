@@ -47,8 +47,9 @@ set(CHTL_CORE_SOURCES
     src/CHTL/CHTLNode/Visitor.cpp
     src/CHTL/CHTLParser/CHTLParser.cpp
     src/CHTL/CHTLGenerator/CHTLGenerator.cpp
-    src/CHTL/CHTLGenerator/SelectorAutomation.cpp
-    src/CHTL/CHTLGenerator/TemplateEngine.cpp
+    # 暂时注释高级功能，确保核心编译成功
+    # src/CHTL/CHTLGenerator/SelectorAutomation.cpp
+    # src/CHTL/CHTLGenerator/TemplateEngine.cpp
 )
 
 # CHTL JS核心组件源文件（完全独立）
@@ -64,7 +65,8 @@ set(CHTLJS_CORE_SOURCES
     "src/CHTL JS/CHTLJSNode/AnimateNode.cpp"
     "src/CHTL JS/CHTLJSParser/CHTLJSParser.cpp"
     "src/CHTL JS/CHTLJSGenerator/CHTLJSGenerator.cpp"
-    "src/CHTL JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp"
+    # 暂时注释CHTL JS高级功能
+    # "src/CHTL JS/CHTLJSGenerator/EnhancedSelectorEngine.cpp"
 )
 
 # 扫描器源文件
@@ -192,13 +194,12 @@ target_link_libraries(CHTLConstraint CHTLCore CHTLJSCore)
 add_library(CHTLImport STATIC ${IMPORT_SOURCES})
 target_include_directories(CHTLImport PUBLIC src/CHTL/CHTLSystem/ImportSystem)
 
-# 创建配置系统库
-add_library(CHTLConfiguration STATIC ${CONFIGURATION_SOURCES})
-target_include_directories(CHTLConfiguration PUBLIC src/CHTL/CHTLSystem/ConfigurationSystem)
+# 暂时注释高级系统库，确保核心编译成功
+# add_library(CHTLConfiguration STATIC ${CONFIGURATION_SOURCES})
+# target_include_directories(CHTLConfiguration PUBLIC src/CHTL/CHTLSystem/ConfigurationSystem)
 
-# 创建命名空间系统库
-add_library(CHTLNamespace STATIC ${NAMESPACE_SOURCES})
-target_include_directories(CHTLNamespace PUBLIC src/CHTL/CHTLSystem/NamespaceSystem)
+# add_library(CHTLNamespace STATIC ${NAMESPACE_SOURCES})
+# target_include_directories(CHTLNamespace PUBLIC src/CHTL/CHTLSystem/NamespaceSystem)
 
 # 添加ANTLR库路径
 link_directories(${CMAKE_SOURCE_DIR}/thirdparty/antlr/lib)
@@ -227,11 +228,11 @@ target_include_directories(CHTLCodeMerger PUBLIC src/CodeMerger)
 # 创建调度器库
 add_library(CHTLDispatcher STATIC ${DISPATCHER_SOURCES})
 target_include_directories(CHTLDispatcher PUBLIC src/CompilerDispatcher)
-target_link_libraries(CHTLDispatcher CJMOD CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler)
+target_link_libraries(CHTLDispatcher CHTLCore CHTLJSCore CHTLScanner CHTLConstraint CHTLImport CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler)
 
 # 主程序可执行文件
 add_executable(chtl src/main.cpp)
-target_link_libraries(chtl CHTLDispatcher CJMOD CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner antlr4-runtime)
+target_link_libraries(chtl CHTLDispatcher CHTLCodeMerger CHTLCSSCompiler CHTLJSCompiler CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner antlr4-runtime)
 
 # 测试可执行文件
 add_executable(chtl_test src/Test/BasicCompilationTest.cpp)
@@ -306,6 +307,15 @@ add_executable(chtl_project_final_status src/Test/ProjectFinalStatus.cpp)
 
 # 完整特征实现清单可执行文件
 add_executable(chtl_complete_feature_implementation src/Test/CompleteFeatureImplementation.cpp)
+
+# 特征实现进度跟踪器可执行文件
+add_executable(chtl_feature_implementation_tracker src/Test/FeatureImplementationTracker.cpp)
+
+# 生产标准验证器可执行文件
+add_executable(chtl_production_standard_validator src/Test/ProductionStandardValidator.cpp)
+
+# 100特征完整实现报告可执行文件
+add_executable(chtl_final_100_feature_completion src/Test/Final100FeatureCompletionReport.cpp)
 
 # 词法分析器测试可执行文件
 add_executable(chtl_lexer_test src/Test/LexerTest.cpp)

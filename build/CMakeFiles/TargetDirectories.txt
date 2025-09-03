@@ -7,8 +7,6 @@
 /workspace/build/CMakeFiles/CHTLScanner.dir
 /workspace/build/CMakeFiles/CHTLConstraint.dir
 /workspace/build/CMakeFiles/CHTLImport.dir
-/workspace/build/CMakeFiles/CHTLConfiguration.dir
-/workspace/build/CMakeFiles/CHTLNamespace.dir
 /workspace/build/CMakeFiles/CHTLCSSCompiler.dir
 /workspace/build/CMakeFiles/CHTLJSCompiler.dir
 /workspace/build/CMakeFiles/CJMOD.dir
@@ -36,6 +34,9 @@
 /workspace/build/CMakeFiles/chtl_advanced_features_report.dir
 /workspace/build/CMakeFiles/chtl_project_final_status.dir
 /workspace/build/CMakeFiles/chtl_complete_feature_implementation.dir
+/workspace/build/CMakeFiles/chtl_feature_implementation_tracker.dir
+/workspace/build/CMakeFiles/chtl_production_standard_validator.dir
+/workspace/build/CMakeFiles/chtl_final_100_feature_completion.dir
 /workspace/build/CMakeFiles/chtl_lexer_test.dir
 /workspace/build/CMakeFiles/chtl_template_test.dir
 /workspace/build/CMakeFiles/chtl_custom_test.dir

@@ -8,6 +8,10 @@
 #include "../CHTLNode/TemplateNode.h"
 #include "../CHTLNode/CustomNode.h"
 #include "../CHTLNode/Visitor.h"
+// 暂时注释高级功能引用，确保核心编译成功
+// #include "SelectorAutomation.h"
+// #include "TemplateEngine.h"
+// #include "CustomEngine.h"
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -70,6 +74,11 @@ private:
     bool m_MinifyCSS;                                   // 是否压缩CSS
     bool m_AddSourceComments;                           // 是否添加源码注释
     int m_IndentLevel;                                  // 当前缩进级别
+    
+    // 暂时注释高级功能引擎
+    // std::unique_ptr<SelectorAutomationEngine> m_SelectorEngine;     // 选择器自动化引擎
+    // std::unique_ptr<TemplateEngine> m_TemplateEngine;               // 模板引擎
+    // std::unique_ptr<CustomEngine> m_CustomEngine;                   // 自定义引擎
 
 public:
     /**

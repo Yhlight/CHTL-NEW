@@ -100,7 +100,6 @@ bin/chtl_complete_flow_test: lib/libCHTLDispatcher.a
 bin/chtl_complete_flow_test: lib/libCHTLCodeMerger.a
 bin/chtl_complete_flow_test: lib/libCHTLCSSCompiler.a
 bin/chtl_complete_flow_test: lib/libCHTLJSCompiler.a
-bin/chtl_complete_flow_test: lib/libCJMOD.a
 bin/chtl_complete_flow_test: lib/libCHTLScanner.a
 bin/chtl_complete_flow_test: lib/libCHTLConstraint.a
 bin/chtl_complete_flow_test: lib/libCHTLCore.a

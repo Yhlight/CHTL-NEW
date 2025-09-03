@@ -2,12 +2,20 @@
 #include <sstream>
 #include <regex>
 #include <algorithm>
+#include <iostream>
 
 namespace CHTL {
 
 CHTLGenerator::CHTLGenerator() 
     : CHTLDefaultVisitor(), m_HasError(false), m_GenerateIndentedHTML(true), m_MinifyCSS(false), 
       m_AddSourceComments(true), m_IndentLevel(0) {
+    
+    // 暂时注释高级功能引擎初始化
+    // m_SelectorEngine = std::make_unique<SelectorAutomationEngine>();
+    // m_TemplateEngine = std::make_unique<TemplateEngine>();
+    // m_CustomEngine = std::make_unique<CustomEngine>(m_TemplateEngine.get());
+    
+    std::cout << "🚀 CHTL生成器初始化完成，核心功能已就绪" << std::endl;
 }
 
 GenerationResult CHTLGenerator::Generate(std::unique_ptr<CHTLBaseNode> rootNode) {

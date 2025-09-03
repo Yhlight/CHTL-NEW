@@ -8,7 +8,8 @@
 #include "../CHTL JS/CHTLJSParser/CHTLJSParser.h"
 #include "../CHTL JS/CHTLJSGenerator/CHTLJSGenerator.h"
 #include "../CodeMerger/CHTLCodeMerger.h"
-#include "../CHTL JS/CJMODSystem/CJMODIntegration.h"
+// 暂时注释CJMOD集成
+// #include "../CHTL JS/CJMODSystem/CJMODIntegration.h"
 #include <string>
 #include <vector>
 #include <memory>
@@ -70,7 +71,8 @@ private:
     std::unique_ptr<CHTLJS::CHTLJSParser> m_CHTLJSParser;  // CHTL JS解析器
     std::unique_ptr<CHTLJS::CHTLJSGenerator> m_CHTLJSGenerator; // CHTL JS生成器
     std::unique_ptr<CHTLCodeMerger> m_CodeMerger;          // 代码合并器（关键组件）
-    std::unique_ptr<CJMOD::CJMODManager> m_CJMODManager;   // CJMOD管理器（扩展处理）
+    // 暂时注释CJMOD管理器
+    // std::unique_ptr<CJMOD::CJMODManager> m_CJMODManager;   // CJMOD管理器（扩展处理）
     std::unique_ptr<CSSCompiler> m_CSSCompiler;            // CSS编译器（ANTLR）
     std::unique_ptr<JavaScriptCompiler> m_JSCompiler;      // JavaScript编译器（ANTLR）
     

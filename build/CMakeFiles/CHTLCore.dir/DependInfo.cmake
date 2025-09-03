@@ -10,8 +10,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/workspace/src/CHTL/CHTLContext/CHTLContext.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLContext/CHTLContext.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLContext/CHTLContext.cpp.o.d"
   "/workspace/src/CHTL/CHTLGenerator/CHTLGenerator.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/CHTLGenerator.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/CHTLGenerator.cpp.o.d"
-  "/workspace/src/CHTL/CHTLGenerator/SelectorAutomation.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/SelectorAutomation.cpp.o.d"
-  "/workspace/src/CHTL/CHTLGenerator/TemplateEngine.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLGenerator/TemplateEngine.cpp.o.d"
   "/workspace/src/CHTL/CHTLLexer/CHTLGlobalMap.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLGlobalMap.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLGlobalMap.cpp.o.d"
   "/workspace/src/CHTL/CHTLLexer/CHTLLexer.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLLexer.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLLexer.cpp.o.d"
   "/workspace/src/CHTL/CHTLLexer/CHTLToken.cpp" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLToken.cpp.o" "gcc" "CMakeFiles/CHTLCore.dir/src/CHTL/CHTLLexer/CHTLToken.cpp.o.d"

@@ -100,7 +100,6 @@ bin/chtl_performance_benchmark: lib/libCHTLDispatcher.a
 bin/chtl_performance_benchmark: lib/libCHTLCodeMerger.a
 bin/chtl_performance_benchmark: lib/libCHTLCSSCompiler.a
 bin/chtl_performance_benchmark: lib/libCHTLJSCompiler.a
-bin/chtl_performance_benchmark: lib/libCJMOD.a
 bin/chtl_performance_benchmark: lib/libCHTLScanner.a
 bin/chtl_performance_benchmark: lib/libCHTLConstraint.a
 bin/chtl_performance_benchmark: lib/libCHTLCore.a

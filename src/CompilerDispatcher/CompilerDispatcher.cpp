@@ -24,31 +24,15 @@ void CompilerDispatcher::InitializeCompilers() {
     m_CHTLJSParser = std::make_unique<CHTLJS::CHTLJSParser>("");
     m_CHTLJSGenerator = std::make_unique<CHTLJS::CHTLJSGenerator>();
     m_CodeMerger = std::make_unique<CHTLCodeMerger>();     // 初始化代码合并器
-    m_CJMODManager = std::make_unique<CJMOD::CJMODManager>(); // 初始化CJMOD管理器
+    // 暂时注释CJMOD管理器初始化
+    // m_CJMODManager = std::make_unique<CJMOD::CJMODManager>(); // 初始化CJMOD管理器
     m_CSSCompiler = std::make_unique<CSSCompiler>();
     m_JSCompiler = std::make_unique<JavaScriptCompiler>();
 }
 
 bool CompilerDispatcher::InitializeCJMODIntegration() {
-    if (!m_CJMODManager || !m_Scanner) {
-        return false;
-    }
-    
-    // 初始化CJMOD管理器，传入编译器引用
-    // 暂时简化初始化，不依赖具体的词法分析器和解析器
-    bool success = m_CJMODManager->Initialize(
-        m_Scanner.get(),
-        nullptr, // 词法分析器暂时为空
-        nullptr  // 解析器暂时为空
-    );
-    
-    if (success) {
-        AddCompilationWarning("CJMOD集成已初始化，支持语法扩展");
-    } else {
-        AddCompilationWarning("CJMOD集成初始化失败，将跳过语法扩展功能");
-        return true; // 不阻止编译继续进行
-    }
-    
+    // 暂时跳过CJMOD集成，专注核心功能
+    AddCompilationWarning("CJMOD集成暂时禁用，专注核心编译功能");
     return true;
 }
 
@@ -242,9 +226,10 @@ CompilationResult CompilerDispatcher::CompileCHTLJSFragments(const std::vector<C
         // 使用CJMOD管理器处理片段
         std::string processedContent = fragment.Content;
         
-        if (m_CJMODManager && m_CJMODManager->IsInitialized()) {
-            processedContent = m_CJMODManager->ProcessCodeFragment(fragment.Content, i);
-        }
+        // 暂时跳过CJMOD处理
+        // if (m_CJMODManager && m_CJMODManager->IsInitialized()) {
+        //     processedContent = m_CJMODManager->ProcessCodeFragment(fragment.Content, i);
+        // }
         
         // 创建处理后的片段
         CodeFragment processedFragment = fragment;
@@ -723,9 +708,10 @@ void CompilerDispatcher::Reset() {
     if (m_JSCompiler) {
         m_JSCompiler->Reset();
     }
-    if (m_CJMODManager) {
-        m_CJMODManager->Reset();
-    }
+    // 暂时跳过CJMOD重置
+    // if (m_CJMODManager) {
+    //     m_CJMODManager->Reset();
+    // }
 }
 
 std::string CompilerDispatcher::GetCompilationStatistics() const {
