@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/workspace/src/main.cpp" "CMakeFiles/chtl.dir/src/main.cpp.o" "gcc" "CMakeFiles/chtl.dir/src/main.cpp.o.d"
+  "/workspace/src/main_professional.cpp" "CMakeFiles/chtl.dir/src/main_professional.cpp.o" "gcc" "CMakeFiles/chtl.dir/src/main_professional.cpp.o.d"
   "" "bin/chtl" "gcc" "CMakeFiles/chtl.dir/link.d"
   )
 

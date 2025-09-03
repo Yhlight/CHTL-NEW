@@ -1,0 +1,16 @@
+Module,Size(lines),Compile_Time(approx)
+CHTL,19670,High
+CHTL JS,0,Low
+CodeMerger,989,Medium
+CompilerDispatcher,1708,High
+Components,1425,High
+ConstraintSystem,1014,High
+Core,1895,High
+CSS,14913,High
+Error,808,Medium
+JS,19299,High
+Module,726,Medium
+Scanner,1323,High
+Test,9717,High
+ThirdParty,59658,High
+Util,993,Medium

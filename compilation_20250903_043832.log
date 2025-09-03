@@ -1,0 +1,29 @@
+CHTL Compilation Timer Log
+Started: Wed Sep  3 04:38:32 AM UTC 2025
+Command: make -j4 -C thirdparty/antlr/antlr4-4.13.2/runtime/Cpp/build/runtime
+Max Time: 300s
+Max Memory: 2048MB
+
+Time(s) | Memory(MB) | CPU(%) | Status
+--------|-----------|--------|--------
+      0 |         2 |    0.0 | Running
+      2 |         2 |    0.0 | Running
+      4 |         2 |    0.0 | Running
+      7 |         2 |    0.0 | Running
+      9 |         2 |    0.0 | Running
+     11 |         2 |    0.0 | Running
+     13 |         2 |    0.0 | Running
+     15 |         2 |    0.0 | Running
+     17 |         2 |    0.0 | Running
+     19 |         2 |    0.0 | Running
+     22 |         2 |    0.0 | Running
+     24 |         2 |    0.0 | Running
+     26 |         2 |    0.0 | Running
+     28 |         2 |    0.0 | Running
+     30 |         2 |    0.0 | Running
+     33 |         2 |    0.0 | Running
+     35 |         2 |    0.0 | Running
+     37 |         2 |    0.0 | Running
+     39 |         2 |    0.0 | Running
+COMPLETED: Total time 41s, Exit status: 0
+Finished: Wed Sep  3 04:39:13 AM UTC 2025

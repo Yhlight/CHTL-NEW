@@ -139,6 +139,16 @@ public:
     Arg(Arg&& other) noexcept;
     
     /**
+     * 拷贝赋值操作符
+     */
+    Arg& operator=(const Arg& other);
+    
+    /**
+     * 移动赋值操作符
+     */
+    Arg& operator=(Arg&& other) noexcept;
+    
+    /**
      * 构造函数（完整参数）
      * @param name 参数名
      * @param value 参数值

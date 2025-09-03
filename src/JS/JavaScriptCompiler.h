@@ -11,7 +11,7 @@
 #include "generated/JavaScriptParserBaseListener.h"
 
 // ANTLR运行时
-#include "../../thirdparty/antlr/include/antlr4-runtime.h"
+#include "antlr4-runtime.h"
 
 namespace CHTL {
 

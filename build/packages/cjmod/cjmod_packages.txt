@@ -1,0 +1,26 @@
+CJMOD Package Summary
+Generated: Wed Sep  3 04:48:16 AM UTC 2025
+
+Total CJMOD packages created: 1
+
+CJMOD Format Standards:
+1. Pure CJMOD: .cjmod extension
+   - Contains C++ source files (.h/.cpp)
+   - Implements CJMOD API (Syntax, Arg, AtomArg, Scanner, Generator)
+   - Extends CHTL JS syntax capabilities
+
+2. Mixed CMOD+CJMOD: .cmod extension
+   - Contains both CHTL files and C++ files
+   - Provides CMOD functionality + CJMOD extensions
+   - Single file format for complete module
+
+CJMOD API Features:
+  - Syntax: Code analysis and type detection
+  - Arg: Parameter management and binding
+  - AtomArg: Placeholder handling (5 types: $, 0, , , ...)
+  - CJMODScanner: Code scanning and placeholder detection
+  - CJMODGenerator: JavaScript export and code generation
+  - CHTLJSFunction: Function creation and wrapper generation
+
+Package List:
+  - Chtholly.cmod (7.8K) [Mixed CMOD+CJMOD]

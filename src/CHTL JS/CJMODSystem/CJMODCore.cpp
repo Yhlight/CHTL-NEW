@@ -82,6 +82,37 @@ Arg::Arg(Arg&& other) noexcept : m_Pattern(std::move(other.m_Pattern)),
                                  IsCHTLJSFunction(other.IsCHTLJSFunction) {
 }
 
+Arg& Arg::operator=(const Arg& other) {
+    if (this != &other) {
+        m_Pattern = other.m_Pattern;
+        m_TransformResult = other.m_TransformResult;
+        Type = other.Type;
+        IsObject = other.IsObject;
+        IsFunction = other.IsFunction;
+        IsCHTLJSFunction = other.IsCHTLJSFunction;
+        
+        // 深拷贝unique_ptr
+        m_Args.clear();
+        for (const auto& arg : other.m_Args) {
+            m_Args.push_back(std::make_unique<AtomArg>(*arg));
+        }
+    }
+    return *this;
+}
+
+Arg& Arg::operator=(Arg&& other) noexcept {
+    if (this != &other) {
+        m_Pattern = std::move(other.m_Pattern);
+        m_Args = std::move(other.m_Args);
+        m_TransformResult = std::move(other.m_TransformResult);
+        Type = std::move(other.Type);
+        IsObject = other.IsObject;
+        IsFunction = other.IsFunction;
+        IsCHTLJSFunction = other.IsCHTLJSFunction;
+    }
+    return *this;
+}
+
 Arg::Arg(const std::string& name, const std::string& value, const std::string& type) {
     m_Pattern = name;
     auto atomArg = std::make_unique<AtomArg>("$");

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/chtl_end_to_end_test.dir/link.d"
-  "CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.o"
-  "CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.o.d"
+  "CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.o"
+  "CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.o.d"
   "bin/chtl_end_to_end_test"
   "bin/chtl_end_to_end_test.pdb"
 )

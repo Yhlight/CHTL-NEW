@@ -72,40 +72,33 @@ include CMakeFiles/chtl_end_to_end_test.dir/flags.make
 CMakeFiles/chtl_end_to_end_test.dir/codegen:
 .PHONY : CMakeFiles/chtl_end_to_end_test.dir/codegen
 
-CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.o: CMakeFiles/chtl_end_to_end_test.dir/flags.make
-CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.o: /workspace/src/Test/EndToEndTest.cpp
-CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.o: CMakeFiles/chtl_end_to_end_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.o -MF CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.o.d -o CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.o -c /workspace/src/Test/EndToEndTest.cpp
+CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.o: CMakeFiles/chtl_end_to_end_test.dir/flags.make
+CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.o: /workspace/src/Test/EndToEndTestSimplified.cpp
+CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.o: CMakeFiles/chtl_end_to_end_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/workspace/build/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.o -MF CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.o.d -o CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.o -c /workspace/src/Test/EndToEndTestSimplified.cpp
 
-CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/Test/EndToEndTest.cpp > CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.i
+CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/src/Test/EndToEndTestSimplified.cpp > CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.i
 
-CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/Test/EndToEndTest.cpp -o CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.s
+CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/src/Test/EndToEndTestSimplified.cpp -o CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.s
 
 # Object files for target chtl_end_to_end_test
 chtl_end_to_end_test_OBJECTS = \
-"CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.o"
+"CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.o"
 
 # External object files for target chtl_end_to_end_test
 chtl_end_to_end_test_EXTERNAL_OBJECTS =
 
-bin/chtl_end_to_end_test: CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTest.cpp.o
+bin/chtl_end_to_end_test: CMakeFiles/chtl_end_to_end_test.dir/src/Test/EndToEndTestSimplified.cpp.o
 bin/chtl_end_to_end_test: CMakeFiles/chtl_end_to_end_test.dir/build.make
 bin/chtl_end_to_end_test: CMakeFiles/chtl_end_to_end_test.dir/compiler_depend.ts
-bin/chtl_end_to_end_test: lib/libCHTLDispatcher.a
 bin/chtl_end_to_end_test: lib/libCJMOD.a
 bin/chtl_end_to_end_test: lib/libCHTLJSCore.a
 bin/chtl_end_to_end_test: lib/libCHTLScanner.a
-bin/chtl_end_to_end_test: lib/libCHTLCore.a
-bin/chtl_end_to_end_test: lib/libCHTLConstraint.a
-bin/chtl_end_to_end_test: lib/libCHTLImport.a
-bin/chtl_end_to_end_test: lib/libCHTLCodeMerger.a
-bin/chtl_end_to_end_test: lib/libCHTLCSSCompiler.a
-bin/chtl_end_to_end_test: lib/libCHTLJSCompiler.a
 bin/chtl_end_to_end_test: CMakeFiles/chtl_end_to_end_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/workspace/build/debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/chtl_end_to_end_test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chtl_end_to_end_test.dir/link.txt --verbose=$(VERBOSE)

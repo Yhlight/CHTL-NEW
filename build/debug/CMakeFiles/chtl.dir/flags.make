@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/clang++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/workspace/src/ThirdParty/antlr/include -I/workspace/src -I/workspace/src/CompilerDispatcher -I"/workspace/src/CHTL JS/CJMODSystem" -I/workspace/src/CHTL -I"/workspace/src/CHTL JS" -I/workspace/src/Scanner -I/workspace/src/ConstraintSystem -I/workspace/src/CHTL/CHTLSystem/ImportSystem -I/workspace/src/CodeMerger -I/workspace/src/CSS -I/workspace/src/JS
+CXX_INCLUDES = -I/workspace/src -I"/workspace/src/CHTL JS/CJMODSystem" -I/workspace/src/CodeMerger -I/workspace/src/CHTL/CHTLSystem/ImportSystem -I/workspace/src/ConstraintSystem -I/workspace/src/CHTL -I"/workspace/src/CHTL JS" -I/workspace/src/Scanner
 
 CXX_FLAGS = -g -std=c++17 -finput-charset=UTF-8 -fexec-charset=UTF-8 -O0 -g -fsanitize=address -Wall -Wextra -pedantic
 
