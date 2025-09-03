@@ -1,0 +1,5 @@
+if(EXISTS "/workspace/src/ThirdParty/antlr4-4.13.1/runtime/Cpp/build-linux/runtime/antlr4_tests[1]_tests.cmake")
+  include("/workspace/src/ThirdParty/antlr4-4.13.1/runtime/Cpp/build-linux/runtime/antlr4_tests[1]_tests.cmake")
+else()
+  add_test(antlr4_tests_NOT_BUILT antlr4_tests_NOT_BUILT)
+endif()
