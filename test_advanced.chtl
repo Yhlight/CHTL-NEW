@@ -1,0 +1,19 @@
+[Template]
+<ButtonStyle> {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+[Custom]
+<MyButton inherit="ButtonStyle"> {
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+<button use="MyButton">点击我</button>

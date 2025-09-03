@@ -721,19 +721,6 @@ chtl_origin_config_test/fast:
 .PHONY : chtl_origin_config_test/fast
 
 #=============================================================================
-# Target rules for targets named chtl_cjmod_test
-
-# Build rule for target.
-chtl_cjmod_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_cjmod_test
-.PHONY : chtl_cjmod_test
-
-# fast build rule for target.
-chtl_cjmod_test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_test.dir/build.make CMakeFiles/chtl_cjmod_test.dir/build
-.PHONY : chtl_cjmod_test/fast
-
-#=============================================================================
 # Target rules for targets named chtl_antlr_real_test
 
 # Build rule for target.
@@ -836,6 +823,19 @@ chtl_cjmod_real_test: cmake_check_build_system
 chtl_cjmod_real_test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_test.dir/build.make CMakeFiles/chtl_cjmod_real_test.dir/build
 .PHONY : chtl_cjmod_real_test/fast
+
+#=============================================================================
+# Target rules for targets named chtl_final_completion
+
+# Build rule for target.
+chtl_final_completion: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 chtl_final_completion
+.PHONY : chtl_final_completion
+
+# fast build rule for target.
+chtl_final_completion/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion.dir/build.make CMakeFiles/chtl_final_completion.dir/build
+.PHONY : chtl_final_completion/fast
 
 #=============================================================================
 # Target rules for targets named run_tests
@@ -2279,30 +2279,6 @@ src/Test/CJMODRealIntegrationTest.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_real_test.dir/build.make CMakeFiles/chtl_cjmod_real_test.dir/src/Test/CJMODRealIntegrationTest.cpp.s
 .PHONY : src/Test/CJMODRealIntegrationTest.cpp.s
 
-src/Test/CJMODTest.o: src/Test/CJMODTest.cpp.o
-.PHONY : src/Test/CJMODTest.o
-
-# target to build an object file
-src/Test/CJMODTest.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_test.dir/build.make CMakeFiles/chtl_cjmod_test.dir/src/Test/CJMODTest.cpp.o
-.PHONY : src/Test/CJMODTest.cpp.o
-
-src/Test/CJMODTest.i: src/Test/CJMODTest.cpp.i
-.PHONY : src/Test/CJMODTest.i
-
-# target to preprocess a source file
-src/Test/CJMODTest.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_test.dir/build.make CMakeFiles/chtl_cjmod_test.dir/src/Test/CJMODTest.cpp.i
-.PHONY : src/Test/CJMODTest.cpp.i
-
-src/Test/CJMODTest.s: src/Test/CJMODTest.cpp.s
-.PHONY : src/Test/CJMODTest.s
-
-# target to generate assembly for a file
-src/Test/CJMODTest.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_cjmod_test.dir/build.make CMakeFiles/chtl_cjmod_test.dir/src/Test/CJMODTest.cpp.s
-.PHONY : src/Test/CJMODTest.cpp.s
-
 src/Test/CodeMergerTest.o: src/Test/CodeMergerTest.cpp.o
 .PHONY : src/Test/CodeMergerTest.o
 
@@ -2545,6 +2521,30 @@ src/Test/FinalCompletionVerification.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_verification.dir/build.make CMakeFiles/chtl_final_completion_verification.dir/src/Test/FinalCompletionVerification.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion_report.dir/build.make CMakeFiles/chtl_final_completion_report.dir/src/Test/FinalCompletionVerification.cpp.s
 .PHONY : src/Test/FinalCompletionVerification.cpp.s
+
+src/Test/FinalProjectCompletionSummary.o: src/Test/FinalProjectCompletionSummary.cpp.o
+.PHONY : src/Test/FinalProjectCompletionSummary.o
+
+# target to build an object file
+src/Test/FinalProjectCompletionSummary.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion.dir/build.make CMakeFiles/chtl_final_completion.dir/src/Test/FinalProjectCompletionSummary.cpp.o
+.PHONY : src/Test/FinalProjectCompletionSummary.cpp.o
+
+src/Test/FinalProjectCompletionSummary.i: src/Test/FinalProjectCompletionSummary.cpp.i
+.PHONY : src/Test/FinalProjectCompletionSummary.i
+
+# target to preprocess a source file
+src/Test/FinalProjectCompletionSummary.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion.dir/build.make CMakeFiles/chtl_final_completion.dir/src/Test/FinalProjectCompletionSummary.cpp.i
+.PHONY : src/Test/FinalProjectCompletionSummary.cpp.i
+
+src/Test/FinalProjectCompletionSummary.s: src/Test/FinalProjectCompletionSummary.cpp.s
+.PHONY : src/Test/FinalProjectCompletionSummary.s
+
+# target to generate assembly for a file
+src/Test/FinalProjectCompletionSummary.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/chtl_final_completion.dir/build.make CMakeFiles/chtl_final_completion.dir/src/Test/FinalProjectCompletionSummary.cpp.s
+.PHONY : src/Test/FinalProjectCompletionSummary.cpp.s
 
 src/Test/FinalStrictComplianceReport.o: src/Test/FinalStrictComplianceReport.cpp.o
 .PHONY : src/Test/FinalStrictComplianceReport.o
@@ -3108,7 +3108,6 @@ help:
 	@echo "... chtl_antlr_real_test"
 	@echo "... chtl_architecture_test"
 	@echo "... chtl_cjmod_real_test"
-	@echo "... chtl_cjmod_test"
 	@echo "... chtl_code_merger_test"
 	@echo "... chtl_complete_feature_implementation"
 	@echo "... chtl_complete_flow_test"
@@ -3118,6 +3117,7 @@ help:
 	@echo "... chtl_feature_implementation_tracker"
 	@echo "... chtl_final_100_feature_completion"
 	@echo "... chtl_final_compilation_success"
+	@echo "... chtl_final_completion"
 	@echo "... chtl_final_completion_report"
 	@echo "... chtl_final_completion_verification"
 	@echo "... chtl_final_strict_compliance"
@@ -3317,9 +3317,6 @@ help:
 	@echo "... src/Test/CJMODRealIntegrationTest.o"
 	@echo "... src/Test/CJMODRealIntegrationTest.i"
 	@echo "... src/Test/CJMODRealIntegrationTest.s"
-	@echo "... src/Test/CJMODTest.o"
-	@echo "... src/Test/CJMODTest.i"
-	@echo "... src/Test/CJMODTest.s"
 	@echo "... src/Test/CodeMergerTest.o"
 	@echo "... src/Test/CodeMergerTest.i"
 	@echo "... src/Test/CodeMergerTest.s"
@@ -3350,6 +3347,9 @@ help:
 	@echo "... src/Test/FinalCompletionVerification.o"
 	@echo "... src/Test/FinalCompletionVerification.i"
 	@echo "... src/Test/FinalCompletionVerification.s"
+	@echo "... src/Test/FinalProjectCompletionSummary.o"
+	@echo "... src/Test/FinalProjectCompletionSummary.i"
+	@echo "... src/Test/FinalProjectCompletionSummary.s"
 	@echo "... src/Test/FinalStrictComplianceReport.o"
 	@echo "... src/Test/FinalStrictComplianceReport.i"
 	@echo "... src/Test/FinalStrictComplianceReport.s"

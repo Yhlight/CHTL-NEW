@@ -9,7 +9,6 @@ bin/chtl_test: \
   lib/libCHTLCore.a \
   lib/libCHTLJSCore.a \
   lib/libCHTLScanner.a \
-  lib/libCJMOD.a \
   lib/libCHTLCodeMerger.a \
   lib/libCHTLCSSCompiler.a \
   lib/libCHTLJSCompiler.a \
@@ -61,8 +60,6 @@ lib/libCHTLCore.a:
 lib/libCHTLJSCore.a:
 
 lib/libCHTLScanner.a:
-
-lib/libCJMOD.a:
 
 lib/libCHTLCodeMerger.a:
 

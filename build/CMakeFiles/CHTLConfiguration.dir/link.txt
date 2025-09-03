@@ -1,2 +1,0 @@
-/usr/bin/ar qc lib/libCHTLConfiguration.a CMakeFiles/CHTLConfiguration.dir/src/CHTL/CHTLSystem/ConfigurationSystem/ConfigurationManager.cpp.o
-/usr/bin/ranlib lib/libCHTLConfiguration.a

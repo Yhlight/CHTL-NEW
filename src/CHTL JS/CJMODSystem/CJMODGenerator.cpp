@@ -133,7 +133,9 @@ std::string CJMODGenerator::processPlaceholderBinding(const std::string& templat
     // 处理所有参数绑定
     for (const auto& argPair : args) {
         const Arg& arg = argPair.second;
-        result = arg.fillValue(result);
+        Arg tempArg(result);
+        arg.fillValue(tempArg);
+        result = tempArg.toString();
     }
     
     return result;
@@ -312,7 +314,7 @@ std::string CJMODGenerator::generateVirtualObjectBinding(const std::string& virN
 }
 
 // CHTLJSFunction类实现
-CHTLJSFunctionInfo CHTLJSFunction::CreateCHTLJSFunction(const std::string& functionType,
+CHTLJSFunctionInfo CHTLJSFunctionGenerator::CreateCHTLJSFunction(const std::string& functionType,
                                                        const std::string& functionName,
                                                        const std::string& functionBody) {
     CHTLJSFunctionInfo info;
@@ -328,7 +330,7 @@ CHTLJSFunctionInfo CHTLJSFunction::CreateCHTLJSFunction(const std::string& funct
     return info;
 }
 
-std::string CHTLJSFunction::bindVirtualObject(const std::string& virName, const CHTLJSFunctionInfo& functionInfo) {
+std::string CHTLJSFunctionGenerator::bindVirtualObject(const std::string& virName, const CHTLJSFunctionInfo& functionInfo) {
     std::ostringstream binding;
     
     binding << "// CJMOD Virtual Object Binding\n";
@@ -347,7 +349,7 @@ std::string CHTLJSFunction::bindVirtualObject(const std::string& virName, const 
     return binding.str();
 }
 
-std::string CHTLJSFunction::generateFunctionWrapper(const CHTLJSFunctionInfo& functionInfo) {
+std::string CHTLJSFunctionGenerator::generateFunctionWrapper(const CHTLJSFunctionInfo& functionInfo) {
     std::ostringstream wrapper;
     
     wrapper << "// CHTL JS Function Wrapper (CJMOD Generated)\n";
@@ -393,7 +395,7 @@ std::string CHTLJSFunction::generateFunctionWrapper(const CHTLJSFunctionInfo& fu
     return wrapper.str();
 }
 
-bool CHTLJSFunction::validateCHTLJSFunction(const std::string& functionCode) {
+bool CHTLJSFunctionGenerator::validateCHTLJSFunction(const std::string& functionCode) {
     // 验证CHTL JS函数语法
     
     // 检查函数类型

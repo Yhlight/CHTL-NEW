@@ -65,10 +65,8 @@ std::vector<std::unique_ptr<AtomArg>> CJMODScanner::scanPlaceholders(const std::
     
     for (; iter != end; ++iter) {
         std::string placeholderStr = iter->str();
-        auto atomArg = AtomArg::parsePlaceholder(placeholderStr);
-        if (atomArg) {
-            placeholders.push_back(std::move(atomArg));
-        }
+        auto atomArg = std::make_unique<AtomArg>(placeholderStr);
+        placeholders.push_back(std::move(atomArg));
     }
     
     return placeholders;

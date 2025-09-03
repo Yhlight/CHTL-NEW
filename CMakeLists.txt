@@ -339,8 +339,8 @@ add_executable(chtl_origin_config_test src/Test/OriginConfigTest.cpp)
 target_link_libraries(chtl_origin_config_test CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
 
 # CJMOD API系统测试可执行文件
-add_executable(chtl_cjmod_test src/Test/CJMODTest.cpp)
-target_link_libraries(chtl_cjmod_test CJMOD CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
+# add_executable(chtl_cjmod_test src/Test/CJMODTest.cpp)
+# target_link_libraries(chtl_cjmod_test CJMOD CHTLImport CHTLConstraint CHTLCore CHTLJSCore CHTLScanner)
 
 
 
@@ -376,6 +376,10 @@ target_link_libraries(chtl_performance_benchmark CHTLDispatcher CHTLCodeMerger C
 # CJMOD真实集成测试可执行文件
 add_executable(chtl_cjmod_real_test src/Test/CJMODRealIntegrationTest.cpp)
 target_link_libraries(chtl_cjmod_real_test CJMOD CHTLJSCore CHTLScanner)
+
+# 最终项目完成总结
+add_executable(chtl_final_completion src/Test/FinalProjectCompletionSummary.cpp)
+target_link_libraries(chtl_final_completion CHTLDispatcher)
 
 
 

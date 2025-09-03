@@ -195,7 +195,7 @@ private:
  * CJMOD函数创建器
  * 专门用于创建和管理CHTL JS函数
  */
-class CHTLJSFunction {
+class CHTLJSFunctionGenerator {
 public:
     /**
      * 创建CHTL JS函数

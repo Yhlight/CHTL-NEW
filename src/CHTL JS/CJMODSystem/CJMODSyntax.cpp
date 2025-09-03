@@ -47,7 +47,7 @@ void Arg::bind(const std::string& pattern, std::function<std::string(const std::
     }
 }
 
-void Arg::fillValue(const Arg& result) {
+void Arg::fillValue(const Arg& result) const {
     size_t minSize = std::min(m_Args.size(), result.m_Args.size());
     for (size_t i = 0; i < minSize; ++i) {
         m_Args[i]->setValue(result.m_Args[i]->getValue());
@@ -215,6 +215,19 @@ std::string CHTLJSFunction::detectValueType(const std::string& value) const {
     if (Syntax::isObject(value)) return "object";
     if (Syntax::isArray(value)) return "array";
     return "literal";
+}
+
+// AtomArg方法实现
+void AtomArg::ParseFromString(const std::string& str) {
+    m_Pattern = str;
+    m_Value = str;
+    m_IsOptional = (str.find("?") != std::string::npos);
+    m_HasValue = true;
+}
+
+// Arg方法实现
+std::string Arg::toString() const {
+    return m_TransformResult.empty() ? m_Pattern : m_TransformResult;
 }
 
 } // namespace CJMOD

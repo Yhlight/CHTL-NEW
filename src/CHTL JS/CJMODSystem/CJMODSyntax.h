@@ -87,6 +87,12 @@ public:
      * @return 处理后的值
      */
     std::string process(const std::string& inputValue);
+    
+    /**
+     * 从字符串解析
+     * @param str 输入字符串
+     */
+    void ParseFromString(const std::string& str);
 };
 
 /**
@@ -133,7 +139,7 @@ public:
      * 填充参数值
      * @param result 扫描结果
      */
-    void fillValue(const Arg& result);
+    void fillValue(const Arg& result) const;
     
     /**
      * 转换为最终代码
@@ -171,6 +177,12 @@ public:
      * @return 转换结果
      */
     std::string getTransformResult() const { return m_TransformResult; }
+    
+    /**
+     * 转换为字符串
+     * @return 字符串表示
+     */
+    std::string toString() const;
 
 private:
     /**
