@@ -57,4 +57,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/token_test.dir/DependInfo.cmake"
   "CMakeFiles/ast_test.dir/DependInfo.cmake"
   "CMakeFiles/style_test.dir/DependInfo.cmake"
+  "CMakeFiles/template_test.dir/DependInfo.cmake"
   )
